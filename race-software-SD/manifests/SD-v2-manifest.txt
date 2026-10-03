@@ -1,0 +1,45 @@
+SPEED-DENSITY v2  —  Hayabusa-5JCZSJ40-race-software-SD-v2.bin   (built on SD-v1)
+UNVERIFIED. Bench ECM only, and only after CKTEST boots and SD-v1 has been logged.
+Use with: Hayabusa-Gen3-5JCZSJ40-5JCZSJ10-race-software-SD.xdf
+================================================================================
+
+WHY v2: in stock logic the fuel pulse is MAP_path*(256-w) + THROTTLE_path*w, with the
+weight w (fef011CA) set by FUN_491BC. Stock ramps to the throttle path above 15-38 deg
+throttle (RPM-dependent curve 0x154E34) and forces 100% throttle path above 91.4 deg
+(0x1824C6). So SD-v1's new MAP tables were only used at light throttle — at WOT/boost
+the ECU ignored them. v2 makes the MAP (speed-density) path hold authority everywhere.
+
+CHANGES vs SD-v1 (11,168 bytes; all listed):
+1. Blend curve 0x154E34 (data @0x154E20, 10 x 16-bit): stock 15.0..38.2 deg -> 0xFFFF.
+   Result: w = 0 (full MAP path) at all throttle openings below the WOT gate.
+2. WOT throttle-path gate 0x1824C6: 33282 (91.4 deg) -> 0xFFFF (disabled).
+3. Neutral/clutch map gate 0x182626: 7863 -> 0. Needed because v1 repointed FUN_4543E
+   to absolute pressure; keeps stock neutral/clutch map selection behaviour.
+4. Neutral/clutch IAP fuel maps, all 4 cylinders (desc 0x156280/2D8/330/388): X axis
+   re-axised to absolute 20-300 kPa @200 counts/kPa, Z repopulated from each map's own
+   stock values (below 101 kPa) and density-scaled above — same method as v1.
+5. Field-1 CRC-16 re-stamped -> 0x426D.
+
+KEPT AS STOCK ON PURPOSE
+- Fault fallbacks in FUN_491BC: on certain sensor faults the ECU still forces the throttle
+  path (limp-home). Those throttle (alpha-N) maps are untouched stock.
+- IAP maps n=1..5 per cylinder (blend weight 0, unused in stock) — not re-axised.
+- Injector constants: stock (see INJECTOR section below — now editable in the SD XDF).
+
+WATCH WHEN LOGGING
+- Transients: full speed density with no throttle-path blend may need more accel
+  enrichment on quick throttle openings. Log AFR on snap throttle.
+- Sensor GAIN/OFFSET still provisional from v1 — calibrate first.
+
+INJECTOR CHARACTERIZATION (traced; editable in the SD XDF, category "Injectors")
+  time = deadtime(Vbatt) + fuel_time x (K-400)/200          (FUN_4714C)
+  fuel_time(primary)   = qty x split x trim_cyl / 2^23       (FUN_460F6)
+  fuel_time(secondary) = qty x split x sec_scaler / 2^22
+  - Global size scaler K          0x1824C8  stock 600 (=1.00)  <- bigger injectors:
+        factor = old_flow/new_flow, K = 400 + 200*factor (2x flow -> K=500)
+  - Primary flow trim cyl1-4      0x1826EF..F2  stock 132 each
+  - Secondary flow scaler         0x1826F3  stock 104
+  - Deadtime primary  (vs Vbatt)  0x156D08 (data 0x1579E0) 7pt, us: 1355..255 (0.355 ms @14.1 V)
+  - Deadtime secondary(vs Vbatt)  0x156D1C (data 0x157A00) 7pt, us
+  - Pulsewidth clamp min/max      0x1825FC / 0x1825FE  stock 250 / 25000 us
+  Units confirmed as microseconds (deadtime 0.25-1.4 ms, max pulse 25 ms).

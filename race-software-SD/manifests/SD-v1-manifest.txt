@@ -1,0 +1,45 @@
+SPEED-DENSITY v1  —  Hayabusa-5JCZSJ40-race-software-SD-v1.bin
+UNVERIFIED v1 CODE. BENCH ECM ONLY, and ONLY after the CKTEST bin boots.
+Keep the stock read for recovery. Do not run on the engine until logged and validated.
+================================================================================
+
+WHAT IS IN THIS BIN (11,222 bytes changed vs stock, all accounted for below)
+1. Sensor scale -> ~200 counts/kPa (PROVISIONAL, GM 3-bar assumption):
+     IAP GAIN 0x18EF58 0x81AA->0xA400,  OFFSET 0x18EF5A 0x8000->0x5772
+     AP  GAIN 0x18EF5E 0x81AA->0x41F5,  OFFSET 0x18EF60 0x1EB7->0x0000
+   Derived from: GM 3-bar curve kPa=62.9V-12.6, assumed ADC ~204.6 counts/V,
+   target 200 counts/kPa, 0 offset. MUST be trued with one key-on reading.
+2. CODE PATCH (2 bytes) repointing the fuel-pressure lookup from manifold VACUUM
+   to ABSOLUTE manifold pressure:
+     0x45338  29->23   (FUN_45320 base-fuel lookup X input 0x2628 -> 0x2622)
+     0x4545E  29->23   (FUN_4543E  fuel finalizer    X input 0x2628 -> 0x2622)
+3. Fuel maps, all 4 cylinders (map0): X axis re-axised to absolute 20-300 kPa on the
+   200/kPa scale; Z repopulated from each cylinder's own stock curve below ~101 kPa and
+   density-scaled above it (the starting-point table).
+4. Field-1 CRC-16 recomputed -> 0xC547.
+
+NOT IN THIS BIN (deferred on purpose, keeps v1 small and reviewable)
+- Injector flow/deadtime scaling (addresses not isolated).
+- Air-shifter (output register not mapped).
+- OBD pressure formatter rescale (cosmetic; scan-tool MAP will read wrong).
+- Field-3 hardware CRC-32 (unsolved) — CKTEST tells us if it is even enforced.
+
+KNOWN LIMITATIONS TO WATCH WHEN LOGGING
+- Sensor constants are PROVISIONAL. Expect the MAP reading to be in the right ballpark
+  but not exact until calibrated. Confirm key-on MAP ~= local barometric.
+- MAP/TPS BLEND GATE not yet rescaled: the thresholds (0x182626/0x182628) that decide
+  whether the MAP table or the throttle table has fuel authority are still in old-scale
+  counts. At light load/idle this should be fine, but log fuel source — if the throttle
+  table is winning where the MAP table should, that gate is why, and it is the first v2 fix.
+- No boost on a bench, so the >101 kPa region is UNTESTED here; bench proves the sub-
+  atmospheric logic (reads MAP, fuels from the absolute table). Boost region is validated
+  on the vehicle, on a wideband.
+
+BENCH TEST SEQUENCE
+1. Confirm CKTEST booted first (proves flash + field-1 + field-3-not-enforced).
+2. Flash this bin to the bench ECM.
+3. Key on: read MAP ~= barometric? If wildly off, the sensor GAIN/OFFSET need the
+   calibration reading before anything else.
+4. Start/idle: does it run? Log MAP, injector pulsewidth, fuel source, AFR.
+5. Report back and we build v2: calibrated sensor constants, blend-gate rescale, then
+   injectors / OBD / field-3 as needed.

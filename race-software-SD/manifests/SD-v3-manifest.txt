@@ -1,0 +1,77 @@
+SPEED-DENSITY v3  —  Hayabusa-5JCZSJ40-race-software-SD-v3.bin   (built on SD-v2)
+UNVERIFIED. Bench ECM only, and only after CKTEST boots. Keep the stock read for recovery.
+Use with: Hayabusa-Gen3-5JCZSJ40-5JCZSJ10-race-software-SD-v3.xdf
+================================================================================
+
+WHY v3: in SD-v1/v2, rescaling the AP and IAP sensors to 200 counts/kPa changed the pressure scale for the
+WHOLE ECU, not just fuel. About 130 stock consumers (baro fuel/ignition corrections, the vacuum calc,
+throttle-by-wire airflow maps, fault defaults, baro-learn clamps, diagnostics) were still on the stock
+scale. Example: the baro ignition curve (IGN Correction-23) read sea level as ~31 kPa and added about 35 deg
+on the idle/neutral timing path.
+v3 keeps the entire ECU on the STOCK internal scale (7862 + 393.14 counts/kPa). Only SD fuel and the new
+boost spark map read the RAW IAP sensor ADC, which covers the full 3-bar range.
+
+CHANGES vs SD-v2 (1,840 bytes; 23,732 vs stock 5JCZSJ40; every change listed)
+CODE (verified with GNU objdump v850e3v5):
+ 1. 0x45338  23 26 -> 75 25   FUN_45320 SD fuel lookup X: ld.hu 0x2622 -> ld.hu 0x2574 (raw IAP ADC)
+ 2. 0x4545E  23 26 -> 75 25   FUN_4543E neutral/clutch SD lookup X: same
+ 3. 0x52600  03 26 -> 75 25   FUN_525EE "Trim B" (Offset Timing 5/6) X: throttle 0x2602 -> raw IAP 0x2574
+ 4. 0x74302  5A 55 -> AD 2A   FUN_742E2 IAP conversion divisor 21850 -> 10925 (so a 3-bar sensor
+                              fits the stock scale with a 16-bit gain)
+SENSORS:
+ 5. AP (baro) GAIN/OFFSET 0x18EF5E/60 -> back to STOCK 0x81AA / 0x1EB7 (stock baro sensor kept)
+ 6. IAP GAIN 0x18EF58 = 41263 (0xA12F), OFFSET 0x18EF5A = 27814 (0x6CA6)
+    counts = 7862 + (OFFSET-0x8000) + raw*GAIN*32/10925 -> stock scale, saturates at ~147 kPa
+    (that saturation is by design: only stock consumers see it).
+    For sensor kPa = a*raw + b:  GAIN = 393.14*a*10925/32,  OFFSET = 32768 + 393.14*b
+    Provisional a = 62.9/204.6 = 0.307429 kPa/count, b = -12.6 kPa (same assumption as v1/v2).
+    Published 3-bar transfers differ by part number (examples: 62.9 kPa/V -12.6 vs 57.6 kPa/V +10).
+    CALIBRATE before trusting any fuel number.
+ 7. IAP circuit-high DTC threshold 0x1547E2: 983 -> 1022 raw. Stock 983 = ~290 kPa on the 3-bar sensor
+    and would set a fault (limp-home) under high boost.
+FUEL:
+ 8. SD maps, 4 in-gear + 4 neutral/clutch (X axes @0x155A04/C14/E24/156034/244/29C/2F4/34C): re-axised
+    to raw-ADC counts for the SAME kPa breakpoints as v2 (20-300 kPa). Fuel values (Z) unchanged from v2.
+    XDF shows kPa via X*0.307429-12.6.
+    KEPT from v2: blend curve 0x154E20 = 0xFFFF, WOT throttle-path gate 0x1824C6 = 0xFFFF, neutral gate
+    0x182626 = 0 (must stay 0 now: FUN_4543E compares the raw ADC against it).
+BOOST SPARK (new):
+ 9. Trim B maps -> "Boost Spark Retard" MAP x RPM (23 x 39, 8-bit, 64 = 0 deg, >64 = RETARD):
+      In gear:           data 0x188598, X 0x18492C, Y 0x186F54 (desc 0x183108)
+      Neutral/clutch-in: data 0x188214, X 0x1848FC, Y 0x186F04 (desc 0x1830EC)
+    X axis = 20-300 kPa abs (raw ADC). Stock data was all 64 (unused).
+    Default: 0 retard to 100 kPa, then ~1 deg/psi of boost, same in every RPM row (28.8 deg at 300 kPa).
+    This is a conservative starting point, NOT a tune.
+10. Enable weight curve (IGN Correction-25, 0x1828C0, 5 x 8-bit vs ECT): 0 -> 0x80 at all temps, so the
+    weight fef01674 ramps to 128/128 (full).
+    Signal path: map -> fef01671 -> fef01575 -> MAX-of-retards fef01569 (FUN_5171C) -> subtracted from the
+    main advance in FUN_517B4. It acts as a retard FLOOR: if another retard source (traction, Trim A/C,
+    etc.) asks for more, the larger one wins. It is not stacked on top.
+    Not applied on the idle/neutral timing path (fef01544, weight fef0157A).
+    Base timing under boost still comes from the TP x RPM Advance maps (top TP columns at WOT = RPM line).
+11. Field-1 CRC-16/CCITT-FALSE (0x10000-0x1FFAFB, big-endian @0x1FFAFE) -> 0xC808. Field 3 untouched.
+
+RESOLVED SINCE v2
+ - FUN_453B8 blend weight is hard 0 (disassembly: min(0,1024)), so IAP maps 1-5 are never used.
+ - Every XDF table (746 descriptor-backed) cross-checked against the ECU descriptors: addresses,
+   counts and 8/16-bit sizes all match.
+ - XDF trim descriptions corrected: trims ABOVE 64 RETARD (the old text said advance).
+
+KNOWN LIMITATIONS / WATCH
+ - Raw IAP ADC is unfiltered (stock IAP was low-pass filtered). Log MAP noise at idle. If fuel jitters,
+   smooth the low-kPa end of the SD maps or plumb the sensor with a small restrictor.
+ - Sensor-fault limp-home (FUN_491BC) still forces the stock throttle (alpha-N) path, which knows nothing
+   about boost. Treat any IAP fault under boost as a stop-now event.
+ - Neutral/clutch-in SD map stays active under boost (stock dropped it at IAP >= baro). Matters for launch.
+ - Stock internal IAP saturates at ~147 kPa: scan-tool MAP and stock-side logic read "147 kPa" in boost.
+   Use a boost gauge or log the raw ADC (fef02574) for real boost.
+ - Injector scaling still stock: the 300 kPa fuel cells ask for ~3x stock WOT fuel. Set injector K
+   (0x1824C8) and deadtimes for your injectors before boost.
+
+BENCH / FIRST-START SEQUENCE
+ 1. CKTEST boots (proves flash + field-1 + field-3 not enforced).
+ 2. Flash v3. Key on: log raw IAP ADC (fef02574) and baro. raw*0.307429-12.6 should equal baro;
+    if not, fix a/b, recompute IAP GAIN/OFFSET (formula above) and change the XDF equation on the
+    8 SD maps + 2 boost spark maps.
+ 3. Idle: MAP noise, fuel source (fef011CA should be 0), AFR.
+ 4. Vehicle on wideband, boost added in steps; log knock/timing.
