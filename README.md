@@ -8,11 +8,16 @@ Everything here is **unverified on hardware**. Bench an ECM first and keep the s
 | Path | What it is |
 |---|---|
 | `race-software-SD/Hayabusa-5JCZSJ40-race-software-SD-v4.1.bin` | Current race bin: speed-density fuel on a 3-bar IAP sensor, boost spark retard, rolling anti-lag (ALS **disabled** by default). Built on 5JCZSJ40. |
-| `race-software-SD/Hayabusa-Gen3-5JCZSJ40-5JCZSJ10-race-software-SD-v5.xdf` | TunerPro definition for the SD bins (SD-v4 and SD-v4.1 share the same layout). |
+| `race-software-SD/Hayabusa-Gen3-5JCZSJ40-5JCZSJ10-race-software-SD-v5-test26.xdf` | **Open this one in TunerPro.** Same tables, constants and flags as SD-v5, with the header description shortened because the full text made TunerPro crash. Works with SD-v4 and SD-v4.1. |
+| `race-software-SD/Hayabusa-Gen3-5JCZSJ40-5JCZSJ10-race-software-SD-v5.xdf` | SD-v5 with the full header description (ALS and SD usage notes). Reference copy. |
+| `race-software-SD/bin-history/`, `xdf-history/` | Earlier SD bins (v1 to v4) and the XDFs that went with them. |
 | `race-software-SD/manifests/` | Per-version change lists, SD-v1 through SD-v4.1. Each lists every changed byte and the bench sequence. |
 | `race-software-SD/src/als.s`, `als_harness.s` | Anti-lag source (GNU as, `-mv850e3v5`) and its simulator test harness. |
 | `stock-xdf/Hayabusa-Gen3-5JCZSJ10-stock-v9.xdf` | Stock fuel-strategy XDF for an unmodified 5JCZSJ10 or 5JCZSJ40 read. |
 | `stock-xdf/v9-manifest.txt` | What the v9 stock XDF covers and how the stock fuel strategy works. |
+| `stock-xdf/history/` | Earlier stock XDFs v2 to v8 (there is no v6). |
+| `stock-reads/` | Unmodified full reads: 5JCZSJ00/10/20/30/40, 5JCZSJA0, 5JCZSJB0, 5JCZSNC0, the 10L4 `.ori`, and the original `Hayabusa gen 3 stock.bin`. |
+| `reverse-engineering/` | Ghidra project and decompiled C for 5JCZSJ40. |
 | `tools/fix_field1_crc.py` | Re-stamps the field-1 CRC after editing a bin. |
 | `docs/` | RAM variable list, DTC table, and the decoded index of the v5 XDF. |
 
