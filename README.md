@@ -1,34 +1,72 @@
 # Gen 3 Hayabusa — binaries and XDFs
 
-Suzuki Hayabusa Gen 3 (RH850/E1L), full 2 MB reads of 5JCZSJ40 (ECM 32990-10L4) and 5JCZSJ10 (32990-10L1).
-Everything here is **unverified on hardware**. Bench an ECM first and keep the stock read for recovery.
+Suzuki Hayabusa Gen 3 (2022+, Renesas RH850/E1L). TunerPro XDFs, stock 2 MB reads, and a custom
+"race software" build that adds speed-density fuelling on a 3-bar MAP sensor, boost spark retard and
+rolling anti-lag.
+
+> **Everything here is unverified on hardware.** Bench an ECM first and keep a stock read for recovery.
+
+## Where to start
+
+| I want to… | Use |
+|---|---|
+| Flash the current race build | [`race-software-sd/current/Hayabusa-5JCZSJ40-race-software-SD-v4.1.bin`](race-software-sd/current/) |
+| Edit the race build in TunerPro | [`race-software-sd/current/…-race-software-SD-v5-test26.xdf`](race-software-sd/current/) |
+| Edit a stock 5JCZSJ10 or 5JCZSJ40 read | [`stock/xdf/Hayabusa-Gen3-5JCZSJ10-stock-v9.xdf`](stock/xdf/) |
+| Fix the checksum after editing | `python3 tools/fix_field1_crc.py tuned.bin` |
 
 ## Layout
 
-| Path | What it is |
-|---|---|
-| `race-software-SD/Hayabusa-5JCZSJ40-race-software-SD-v4.1.bin` | Current race bin: speed-density fuel on a 3-bar IAP sensor, boost spark retard, rolling anti-lag (ALS **disabled** by default). Built on 5JCZSJ40. |
-| `race-software-SD/Hayabusa-Gen3-5JCZSJ40-5JCZSJ10-race-software-SD-v5-test26.xdf` | **Open this one in TunerPro.** Same tables, constants and flags as SD-v5, with the header description shortened because the full text made TunerPro crash. Works with SD-v4 and SD-v4.1. |
-| `race-software-SD/Hayabusa-Gen3-5JCZSJ40-5JCZSJ10-race-software-SD-v5.xdf` | SD-v5 with the full header description (ALS and SD usage notes). Reference copy. |
-| `race-software-SD/bin-history/`, `xdf-history/` | Earlier SD bins (v1 to v4) and the XDFs that went with them. |
-| `race-software-SD/manifests/` | Per-version change lists, SD-v1 through SD-v4.1. Each lists every changed byte and the bench sequence. |
-| `race-software-SD/src/als.s`, `als_harness.s` | Anti-lag source (GNU as, `-mv850e3v5`) and its simulator test harness. |
-| `stock-xdf/Hayabusa-Gen3-5JCZSJ10-stock-v9.xdf` | Stock fuel-strategy XDF for an unmodified 5JCZSJ10 or 5JCZSJ40 read. |
-| `stock-xdf/v9-manifest.txt` | What the v9 stock XDF covers and how the stock fuel strategy works. |
-| `stock-xdf/history/` | Earlier stock XDFs v2 to v8 (there is no v6). |
-| `stock-reads/` | Unmodified full reads: 5JCZSJ00/10/20/30/40, 5JCZSJA0, 5JCZSJB0, 5JCZSNC0, the 10L4 `.ori`, and the original `Hayabusa gen 3 stock.bin`. |
-| `reverse-engineering/` | Ghidra project and decompiled C for 5JCZSJ40. |
-| `tools/fix_field1_crc.py` | Re-stamps the field-1 CRC after editing a bin. |
-| `docs/` | RAM variable list, DTC table, and the decoded index of the v5 XDF. |
+```
+race-software-sd/          custom speed-density + anti-lag build (see its README)
+  current/                 SD-v4.1 bin and the SD-v5 XDFs
+  manifests/               change list for every SD version, SD-v1 to SD-v4.1
+  als/                     anti-lag assembly source and simulator harness
+  history/bins/            SD-v1 to SD-v4 bins
+  history/xdfs/            the XDFs that went with SD-v1/v2, v3 and v4
+stock/
+  reads/                   unmodified 2 MB reads, named <ECM part>-<software>.bin
+  reads/other-software/    reads from other software families (see below)
+  xdf/                     stock fuel-strategy XDF v9 and its manifest
+  xdf/history/             stock XDFs v2 to v8 (there is no v6)
+reverse-engineering/       Ghidra project and decompiled C for 5JCZSJ40
+docs/                      RAM variable list, DTC table, decoded index of the SD-v5 XDF
+tools/                     fix_field1_crc.py
+```
+
+## Stock reads
+
+Every read in `stock/reads/` has byte-identical code (0x10000–0x14FFFF) and a valid field-1 CRC.
+Calibration bytes differ from 5JCZSJ40 by the amounts below. The XDFs were verified on 5JCZSJ10 and
+5JCZSJ40 only; check a map or two before trusting them on the others, especially 5JCZSJB0.
+
+| File | ECM | Software | Calibration bytes different from 5JCZSJ40 |
+|---|---|---|---|
+| `32990-10L0x-5JCZSJ00.bin` | 32990-10L0 | 5JCZSJ00 | 22 |
+| `32990-10L1x-5JCZSJ10.bin` | 32990-10L1 | 5JCZSJ10 | 1,032 (stock v9 XDF verified on this read) |
+| `32990-10L2x-5JCZSJ20.bin` | 32990-10L2 | 5JCZSJ20 | 5 |
+| `32990-10L3x-5JCZSJ30.bin` | 32990-10L3 | 5JCZSJ30 | 1,029 |
+| `32990-10L4x-5JCZSJ40.bin` | 32990-10L4 | 5JCZSJ40 | — (base for every SD bin) |
+| `32920-10LAx-5JCZSJA0.bin` | 32920-10LA | 5JCZSJA0 | 18 |
+| `32920-10LBx-5JCZSJB0.bin` | 32920-10LB | 5JCZSJB0 | 123,307 |
+| `32920-10LCx-5JCZSNC0.bin` | 32920-10LC | 5JCZSNC0 | 252 |
+
+`stock/reads/other-software/` holds files the XDFs here do **not** fit:
+
+- `Hayabusa-Gen3-stock-5JCXSJ10.bin` — software 5JCXSJ10, from the original DanCycles HayabusaGen3 project
+  (see [NOTICE.md](NOTICE.md)). Roughly 700 KB of code differs from 5JCZSJ10, and the field-1 CRC method
+  below does not match it.
+- `32990-10L4-5JCUSJ40.ori` — software 5JCUSJ40 in a 2,031,679-byte container, not a plain 2 MB read.
 
 ## Checksums
 
-- **Field 1**: CRC-16/CCITT-FALSE over 0x10000–0x1FFAFB, stored big-endian at 0x1FFAFE.
-  Re-stamp after every edit: `python3 tools/fix_field1_crc.py tuned.bin`
-- **Field 3** (0x1FFEF8): not solved and not recomputed. A CKTEST bin booting on the bench is what shows whether it is enforced.
+- **Field 1**: CRC-16/CCITT-FALSE (poly 0x1021, init 0xFFFF) over 0x10000–0x1FFAFB, stored big-endian at
+  0x1FFAFE. Re-stamp after every edit with `tools/fix_field1_crc.py`.
+- **Field 3** (0x1FFEF8): not solved and not recomputed. A CKTEST bin booting on the bench shows whether
+  it is enforced.
 
-## ECU variant
+## ECU variant warning
 
-The SD bins are built on 5JCZSJ40. 5JCZSJ10 differs in more than ID bytes. For example,
-"ETV Limit A | Neutral, Gears 1-2" differs in 559 of 897 cells. On a 10L1 bike, an SD bin also
-changes neutral, 1st and 2nd gear throttle limiting. See the SD-v4.1 manifest.
+The SD bins are built on 5JCZSJ40. 5JCZSJ10 differs in more than ID bytes: for example,
+"ETV Limit A | Neutral, Gears 1-2" differs in 559 of 897 cells. On a 10L1 bike, flashing an SD bin also
+changes neutral, 1st and 2nd gear throttle limiting.

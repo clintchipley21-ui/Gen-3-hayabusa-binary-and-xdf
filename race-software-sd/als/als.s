@@ -1,4 +1,4 @@
-# Rolling anti-lag for Hayabusa Gen3 5JCZSJ40 SD-v3  (RH850 / v850e3v5)
+# Rolling anti-lag for Hayabusa Gen3 5JCZSJ40 SD-v4.1  (RH850 / v850e3v5)
         .set ALS_RAM,   0xfebfe000      # flags(u8) +0, cap(u16) +2, timer(u16) +4
         .set CAL,       0x000bf000
         .set C_EN,      0               # u8  0x80 = enabled
@@ -63,7 +63,10 @@ ALS_TICK:
         bl      3f
         mov     r14, r15
 3:      st.h    r15, 2[r10]
-        st.h    r0, 4[r10]
+        # SD-v4.1: no timer reset here. Active time accumulates across re-captures and is
+        # cleared only in .Ldisarm (START released). Two NOPs keep every later address unchanged.
+        nop
+        nop
         set1    0, 0[r10]
         br      .Ldone
 .Lactive:
