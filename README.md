@@ -72,6 +72,15 @@ Calibration bytes differ from 5JCZSJ40 by the amounts below.
   below does not match it.
 - `32990-10L4-5JCUSJ40.ori` — software 5JCUSJ40 in a 2,031,679-byte container, not a plain 2 MB read.
 
+## Race-relevant settings (stock XDFs, no code patch)
+
+| Setting | Where in the XDF | Stock |
+|---|---|---|
+| Top-speed limiter (~299 km/h) | `Per-Gear Limiter \| 6th` — a 6th-gear RPM limit, enable 0x15444B | 10,450 soft / 10,550 rpm hard |
+| Per-gear rev limits 3rd–5th | `Per-Gear Limiter \| 3rd/4th/5th` | parked at 25,000 rpm (off) |
+| Quickshifter cut strategy | `Quickshifter :: Shift Actions` (checkboxes: spark cut, retard, fuel cut + throttle, fuel factor per phase, on- and off-throttle) | see each read's XDF |
+| Launch control RPM | `Launch Control \| Level 1-3` and `Launch Control - Throttle Limit` | Level 1 hard cut 3,700 rpm |
+
 ## Checksums
 
 - **Field 1**: CRC-16/CCITT-FALSE (poly 0x1021, init 0xFFFF) over 0x10000–0x1FFAFB, stored big-endian at

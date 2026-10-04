@@ -112,7 +112,7 @@ def item_bytes(b, kind, el):
 SAME_SUFFIX = ' - every cell the same, so the function is probably disabled or unused in this calibration.'
 VALUES_LINE = re.compile(r'^VALUES \(stock ' + REF_SW + r'\): (\S+) to (\S+) (.*?)(\.|' + re.escape(SAME_SUFFIX) + r')$')
 STOCK_CONST = re.compile(r'^STOCK \(' + REF_SW + r'\): (\S+) (.*?)\(raw (\S+) / 0x[0-9A-F]+\)\.(.*)$')
-STOCK_FLAG = re.compile(r'^STOCK \(' + REF_SW + r'\): 0x[0-9A-F]{2} \(monitor (ON|OFF)\)\.(.*)$')
+STOCK_FLAG = re.compile(r'^STOCK \(' + REF_SW + r'\): 0x[0-9A-F]{2} \((monitor )?(ON|OFF)\)\.(.*)$')
 
 
 def rewrite_desc(desc, kind, el, b, sw, differs):
@@ -139,8 +139,8 @@ def rewrite_desc(desc, kind, el, b, sw, differs):
             a = int(el.find('EMBEDDEDDATA').get('mmedaddress'), 16)
             mask = int(el.findtext('mask'), 16)
             on = b[a] & mask
-            tail = m.group(2).replace('Stock %s already has' % REF_SW, 'Several stock calibrations ship with')
-            lines[i] = 'STOCK (%s): 0x%02X (monitor %s).%s' % (sw, b[a], 'ON' if on else 'OFF', tail)
+            tail = m.group(3).replace('Stock %s already has' % REF_SW, 'Several stock calibrations ship with')
+            lines[i] = 'STOCK (%s): 0x%02X (%s%s).%s' % (sw, b[a], m.group(1) or '', 'ON' if on else 'OFF', tail)
             continue
     out = '\n'.join(lines)
     if differs:
@@ -278,7 +278,7 @@ def build(master_text, ref, b, sw, part):
 
     hdr = re.search(r'<deftitle>.*?</deftitle>\s*<description>.*?</description>', text, re.S)
     text = (text[:hdr.start()]
-            + '<deftitle>Hayabusa Gen3 %s (%s) - Stock - v9</deftitle>\n    <description>%s</description>'
+            + '<deftitle>Hayabusa Gen3 %s (%s) - Stock - v9.1</deftitle>\n    <description>%s</description>'
             % (sw, part, escape(header(sw, part, n_diff), quote=False))
             + text[hdr.end():])
 

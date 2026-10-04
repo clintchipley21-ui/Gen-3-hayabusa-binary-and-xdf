@@ -1,7 +1,7 @@
 <XDFFORMAT version="1.70">
   <XDFHEADER>
     <flags>0x1</flags>
-    <deftitle>Hayabusa Gen3 5JCZSJ20 (32990-10L2) - Stock - v9</deftitle>
+    <deftitle>Hayabusa Gen3 5JCZSJ20 (32990-10L2) - Stock - v9.1</deftitle>
     <description>Hayabusa Gen 3 stock read 5JCZSJ20 (ECM 32990-10L2), stock fuel strategy, no patches. Values in descriptions are from this read; 33 items are marked DIFFERS FROM 5JCZSJ10. RPM=X/2.56, deg=X/364.08, kPa=(X-7862)/393.14, C=X*0.9375-30, ign=(X-64)*0.3516. Re-stamp field-1 CRC after editing (tools/fix_field1_crc.py). AUTO-DEFINED items: log before changing.</description>
     <author>Clint Chipley / Claude</author>
     <BASEOFFSET offset="0" subtract="0" />
@@ -2230,7 +2230,7 @@ REFERENCE: data @0x150E04, X axis @0x150DE8, descriptor @0x150E20, code FUN_2f04
   </XDFTABLE>
   <XDFTABLE uniqueid="0x102C" flags="0x0">
     <title>Quickshifter :: Max Load vs RPM x Final Ignition</title>
-    <description>DECODED (v5, confidence LOW): FUN_2A5B8: fef00972 = map(RPM, final ignition fef01567). If throttle fef025FE &gt; map value (or fault) a debounce clears fef009AE bit2, otherwise sets it. Used as a timing/load plausibility flag for the quickshift logic.
+    <description>DECODED (v5, confidence LOW): FUN_2A5B8: fef00972 = map(RPM, final ignition fef01567). If throttle fef025FE is BELOW the map value (or a fault is present) a debounce (0x154308) clears fef009AE bit2 = OFF-THROTTLE; at or above it a debounce (0x154306) sets bit2 = ON-THROTTLE. That flag selects the On-Throttle or Off-Throttle shift-action profile (see "Quickshifter :: Shift Actions"). Used as a timing/load plausibility flag for the quickshift logic.
 
 Previous title: Cluster A :: Map [RPM x IgnFinal] 14x10 FUN_2a5b8 #034
 
@@ -40046,7 +40046,7 @@ REFERENCE: @0x1542EA.</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x9815" flags="0x0">
-    <title>Per-Gear Limiter | 6th | Soft Cut start</title>
+    <title>Per-Gear Limiter | 6th | Soft Cut start (TOP SPEED ~299 km/h)</title>
     <description>Per-gear RPM limiter FUN_2C068 (enabled by option 0x15444B = 0x80; skipped in 1st and 2nd). From word 1 up to word 2 the ECU sets 0xFEF009C6 bit0 = soft (pattern) fuel cut; at or above words 3 and 4 it sets bit1 = full fuel cut (FUN_4BAAE). STOCK 6th gear = 10,450 / 10,549 / 10,550 / 10,550 rpm - this is the factory ~299 km/h (186 mph) top-speed governor implemented as a 6th-gear RPM limit. Raise all four (keep the order) to remove it; gearing changes move the speed it acts at.
 
 STOCK (5JCZSJ20): 10450 RPM (raw 26752 / 0x6880).
@@ -40064,7 +40064,7 @@ REFERENCE: @0x1542EC.</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x9816" flags="0x0">
-    <title>Per-Gear Limiter | 6th | Soft Cut end / hard window</title>
+    <title>Per-Gear Limiter | 6th | Soft Cut end / hard window (TOP SPEED ~299 km/h)</title>
     <description>Per-gear RPM limiter FUN_2C068 (enabled by option 0x15444B = 0x80; skipped in 1st and 2nd). From word 1 up to word 2 the ECU sets 0xFEF009C6 bit0 = soft (pattern) fuel cut; at or above words 3 and 4 it sets bit1 = full fuel cut (FUN_4BAAE). STOCK 6th gear = 10,450 / 10,549 / 10,550 / 10,550 rpm - this is the factory ~299 km/h (186 mph) top-speed governor implemented as a 6th-gear RPM limit. Raise all four (keep the order) to remove it; gearing changes move the speed it acts at.
 
 STOCK (5JCZSJ20): 10549.22 RPM (raw 27006 / 0x697E).
@@ -40082,7 +40082,7 @@ REFERENCE: @0x1542EE.</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x9817" flags="0x0">
-    <title>Per-Gear Limiter | 6th | Hard Cut ON</title>
+    <title>Per-Gear Limiter | 6th | Hard Cut ON (TOP SPEED ~299 km/h)</title>
     <description>Per-gear RPM limiter FUN_2C068 (enabled by option 0x15444B = 0x80; skipped in 1st and 2nd). From word 1 up to word 2 the ECU sets 0xFEF009C6 bit0 = soft (pattern) fuel cut; at or above words 3 and 4 it sets bit1 = full fuel cut (FUN_4BAAE). STOCK 6th gear = 10,450 / 10,549 / 10,550 / 10,550 rpm - this is the factory ~299 km/h (186 mph) top-speed governor implemented as a 6th-gear RPM limit. Raise all four (keep the order) to remove it; gearing changes move the speed it acts at.
 
 STOCK (5JCZSJ20): 10549.61 RPM (raw 27007 / 0x697F).
@@ -40100,7 +40100,7 @@ REFERENCE: @0x1542F0.</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x9818" flags="0x0">
-    <title>Per-Gear Limiter | 6th | Hard Cut ON (confirm)</title>
+    <title>Per-Gear Limiter | 6th | Hard Cut ON (confirm) (TOP SPEED ~299 km/h)</title>
     <description>Per-gear RPM limiter FUN_2C068 (enabled by option 0x15444B = 0x80; skipped in 1st and 2nd). From word 1 up to word 2 the ECU sets 0xFEF009C6 bit0 = soft (pattern) fuel cut; at or above words 3 and 4 it sets bit1 = full fuel cut (FUN_4BAAE). STOCK 6th gear = 10,450 / 10,549 / 10,550 / 10,550 rpm - this is the factory ~299 km/h (186 mph) top-speed governor implemented as a 6th-gear RPM limit. Raise all four (keep the order) to remove it; gearing changes move the speed it acts at.
 
 STOCK (5JCZSJ20): 10550 RPM (raw 27008 / 0x6980).
@@ -47286,16 +47286,13 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20117" flags="0x0">
-    <title>Quickshifter :: FUN_2A5B8 parameter #1</title>
-    <description>Calibration value read by FUN_2A5B8.
-USAGE (decompiled, locals resolved one level):
-  2a5b8: if (DAT_ram_00154306 &lt;= DAT_ram_fef009a2) {
+    <title>Quickshifter :: On-Throttle Detect Debounce | Set</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). FUN_2A5B8: the on-throttle flag fef009AE bit2 picks the shift-action profile. Debounce counter for Set (cycles throttle must stay at/above the threshold map).
 
-STOCK (5JCZSJ20): 18 raw (raw 18 / 0x12). ADDRESS 0x154306, 16-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 18 cycles (raw 18 / 0x12). ADDRESS 0x154306, 16-bit.</description>
     <CATEGORYMEM index="0" category="74" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154306" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
+    <units>cycles</units>
     <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
@@ -47305,16 +47302,13 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20118" flags="0x0">
-    <title>Quickshifter :: FUN_2A5B8 parameter #2</title>
-    <description>Calibration value read by FUN_2A5B8.
-USAGE (decompiled, locals resolved one level):
-  2a5b8: if (DAT_ram_00154308 &lt;= DAT_ram_fef009a4) {
+    <title>Quickshifter :: On-Throttle Detect Debounce | Clear</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). FUN_2A5B8: the on-throttle flag fef009AE bit2 picks the shift-action profile. Debounce counter for Clear (cycles throttle must stay below the threshold map).
 
-STOCK (5JCZSJ20): 18 raw (raw 18 / 0x12). ADDRESS 0x154308, 16-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 18 cycles (raw 18 / 0x12). ADDRESS 0x154308, 16-bit.</description>
     <CATEGORYMEM index="0" category="74" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154308" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
+    <units>cycles</units>
     <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
@@ -47482,176 +47476,146 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20121" flags="0x0">
-    <title>Quickshifter :: QS Level Selection parameter #1</title>
-    <description>FUNCTION: QS Level Selection. Calibration value read by FUN_2B6B0.
-USAGE (decompiled, locals resolved one level):
-  2b6b0: DAT_ram_fef009ca = DAT_ram_fef009ca;
-  2b6b0: DAT_ram_fef009ca = DAT_ram_00154324;
-  2b6b0: DAT_ram_fef009ca = DAT_ram_00154326;
-  2b6b0: DAT_ram_fef009ca = DAT_ram_00154328;
+    <title>Quickshifter :: Phase Fuel Factor | During Spark Cut</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). FUN_2B6B0: when shift action D is ON, fuel factor fef009CA (multiplier in FUN_45C18, 256 = x1.00) is set to "During Spark Cut" while the spark cut is active, otherwise to the factor for the current up/down phase. With D OFF it is 256 (x1.00). Stock: 0 during spark cut (fuel cut too), 256 elsewhere.
 
-STOCK (5JCZSJ20): 0.00 raw (raw 0 / 0x0). ADDRESS 0x15431A, 16-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0.00 x (raw 0 / 0x0). ADDRESS 0x15431A, 16-bit.</description>
     <CATEGORYMEM index="0" category="74" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x15431A" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
+    <units>x</units>
+    <decimalpl>2</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X">
+    <MATH equation="X/256">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20122" flags="0x0">
-    <title>Quickshifter :: QS Level Selection parameter #2</title>
-    <description>FUNCTION: QS Level Selection. Calibration value read by FUN_2B6B0.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <title>Quickshifter :: Phase Fuel Factor | Upshift Phase 1</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). FUN_2B6B0: when shift action D is ON, fuel factor fef009CA (multiplier in FUN_45C18, 256 = x1.00) is set to "During Spark Cut" while the spark cut is active, otherwise to the factor for the current up/down phase. With D OFF it is 256 (x1.00). Stock: 0 during spark cut (fuel cut too), 256 elsewhere.
 
-STOCK (5JCZSJ20): 256 raw (raw 256 / 0x100). ADDRESS 0x15431C, 16-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 1 x (raw 256 / 0x100). ADDRESS 0x15431C, 16-bit.</description>
     <CATEGORYMEM index="0" category="74" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x15431C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
+    <units>x</units>
+    <decimalpl>2</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X">
+    <MATH equation="X/256">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20123" flags="0x0">
-    <title>Quickshifter :: QS Level Selection parameter #3</title>
-    <description>FUNCTION: QS Level Selection. Calibration value read by FUN_2B6B0.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <title>Quickshifter :: Phase Fuel Factor | Upshift Phase 2</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). FUN_2B6B0: when shift action D is ON, fuel factor fef009CA (multiplier in FUN_45C18, 256 = x1.00) is set to "During Spark Cut" while the spark cut is active, otherwise to the factor for the current up/down phase. With D OFF it is 256 (x1.00). Stock: 0 during spark cut (fuel cut too), 256 elsewhere.
 
-STOCK (5JCZSJ20): 256 raw (raw 256 / 0x100). ADDRESS 0x15431E, 16-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 1 x (raw 256 / 0x100). ADDRESS 0x15431E, 16-bit.</description>
     <CATEGORYMEM index="0" category="74" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x15431E" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
+    <units>x</units>
+    <decimalpl>2</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X">
+    <MATH equation="X/256">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20124" flags="0x0">
-    <title>Quickshifter :: QS Level Selection parameter #4</title>
-    <description>FUNCTION: QS Level Selection. Calibration value read by FUN_2B6B0.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <title>Quickshifter :: Phase Fuel Factor | Upshift Phase 3</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). FUN_2B6B0: when shift action D is ON, fuel factor fef009CA (multiplier in FUN_45C18, 256 = x1.00) is set to "During Spark Cut" while the spark cut is active, otherwise to the factor for the current up/down phase. With D OFF it is 256 (x1.00). Stock: 0 during spark cut (fuel cut too), 256 elsewhere.
 
-STOCK (5JCZSJ20): 256 raw (raw 256 / 0x100). ADDRESS 0x154320, 16-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 1 x (raw 256 / 0x100). ADDRESS 0x154320, 16-bit.</description>
     <CATEGORYMEM index="0" category="74" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154320" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
+    <units>x</units>
+    <decimalpl>2</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X">
+    <MATH equation="X/256">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20125" flags="0x0">
-    <title>Quickshifter :: QS Level Selection parameter #5</title>
-    <description>FUNCTION: QS Level Selection. Calibration value read by FUN_2B6B0.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <title>Quickshifter :: Phase Fuel Factor | Upshift Phase 4</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). FUN_2B6B0: when shift action D is ON, fuel factor fef009CA (multiplier in FUN_45C18, 256 = x1.00) is set to "During Spark Cut" while the spark cut is active, otherwise to the factor for the current up/down phase. With D OFF it is 256 (x1.00). Stock: 0 during spark cut (fuel cut too), 256 elsewhere.
 
-STOCK (5JCZSJ20): 256 raw (raw 256 / 0x100). ADDRESS 0x154322, 16-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 1 x (raw 256 / 0x100). ADDRESS 0x154322, 16-bit.</description>
     <CATEGORYMEM index="0" category="74" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154322" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
+    <units>x</units>
+    <decimalpl>2</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X">
+    <MATH equation="X/256">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20126" flags="0x0">
-    <title>Quickshifter :: QS Level Selection parameter #6</title>
-    <description>FUNCTION: QS Level Selection. Calibration value read by FUN_2B6B0.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <title>Quickshifter :: Phase Fuel Factor | Downshift Phase 1</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). FUN_2B6B0: when shift action D is ON, fuel factor fef009CA (multiplier in FUN_45C18, 256 = x1.00) is set to "During Spark Cut" while the spark cut is active, otherwise to the factor for the current up/down phase. With D OFF it is 256 (x1.00). Stock: 0 during spark cut (fuel cut too), 256 elsewhere.
 
-STOCK (5JCZSJ20): 256 raw (raw 256 / 0x100). ADDRESS 0x154324, 16-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 1 x (raw 256 / 0x100). ADDRESS 0x154324, 16-bit.</description>
     <CATEGORYMEM index="0" category="74" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154324" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
+    <units>x</units>
+    <decimalpl>2</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X">
+    <MATH equation="X/256">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20127" flags="0x0">
-    <title>Quickshifter :: QS Level Selection parameter #7</title>
-    <description>FUNCTION: QS Level Selection. Calibration value read by FUN_2B6B0.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <title>Quickshifter :: Phase Fuel Factor | Downshift Phase 2</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). FUN_2B6B0: when shift action D is ON, fuel factor fef009CA (multiplier in FUN_45C18, 256 = x1.00) is set to "During Spark Cut" while the spark cut is active, otherwise to the factor for the current up/down phase. With D OFF it is 256 (x1.00). Stock: 0 during spark cut (fuel cut too), 256 elsewhere.
 
-STOCK (5JCZSJ20): 256 raw (raw 256 / 0x100). ADDRESS 0x154326, 16-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 1 x (raw 256 / 0x100). ADDRESS 0x154326, 16-bit.</description>
     <CATEGORYMEM index="0" category="74" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154326" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
+    <units>x</units>
+    <decimalpl>2</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X">
+    <MATH equation="X/256">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20128" flags="0x0">
-    <title>Quickshifter :: QS Level Selection parameter #8</title>
-    <description>FUNCTION: QS Level Selection. Calibration value read by FUN_2B6B0.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <title>Quickshifter :: Phase Fuel Factor | Downshift Phase 3</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). FUN_2B6B0: when shift action D is ON, fuel factor fef009CA (multiplier in FUN_45C18, 256 = x1.00) is set to "During Spark Cut" while the spark cut is active, otherwise to the factor for the current up/down phase. With D OFF it is 256 (x1.00). Stock: 0 during spark cut (fuel cut too), 256 elsewhere.
 
-STOCK (5JCZSJ20): 256 raw (raw 256 / 0x100). ADDRESS 0x154328, 16-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 1 x (raw 256 / 0x100). ADDRESS 0x154328, 16-bit.</description>
     <CATEGORYMEM index="0" category="74" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154328" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
+    <units>x</units>
+    <decimalpl>2</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X">
+    <MATH equation="X/256">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20129" flags="0x0">
-    <title>Quickshifter :: QS Level Selection parameter #9</title>
-    <description>FUNCTION: QS Level Selection. Calibration value read by FUN_2B6B0.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <title>Quickshifter :: Phase Fuel Factor | Downshift Phase 4</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). FUN_2B6B0: when shift action D is ON, fuel factor fef009CA (multiplier in FUN_45C18, 256 = x1.00) is set to "During Spark Cut" while the spark cut is active, otherwise to the factor for the current up/down phase. With D OFF it is 256 (x1.00). Stock: 0 during spark cut (fuel cut too), 256 elsewhere.
 
-STOCK (5JCZSJ20): 256 raw (raw 256 / 0x100). ADDRESS 0x15432A, 16-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 1 x (raw 256 / 0x100). ADDRESS 0x15432A, 16-bit.</description>
     <CATEGORYMEM index="0" category="74" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x15432A" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
+    <units>x</units>
+    <decimalpl>2</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X">
+    <MATH equation="X/256">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -49966,21 +49930,18 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x201A0" flags="0x0">
-    <title>Cruise Control :: FUN_30064 parameter #1</title>
-    <description>Calibration value read by FUN_30064.
-USAGE (decompiled, locals resolved one level):
-  30064: FUN_ram_00091a82(((uint)DAT_ram_00154438 - (uint)DAT_ram_fef009f2) + 0x8000,0xffff,0);
+    <title>Cruise Control :: Max Set Speed Cap</title>
+    <description>FUN_30064 (cruise speed controller): speed headroom = this - filtered rear wheel speed (fef009F2), fed through table 0x1512EC into the cruise throttle demand. Only active with cruise engaged (FUN_2FF8E resets the output otherwise). Not the top-speed limiter - that is "Per-Gear Limiter | 6th".
 
-STOCK (5JCZSJ20): 38400 raw (raw 38400 / 0x9600). ADDRESS 0x154438, 16-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 300 km/h (raw 38400 / 0x9600). ADDRESS 0x154438, 16-bit.</description>
     <CATEGORYMEM index="0" category="77" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154438" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
+    <units>km/h</units>
+    <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -50316,13 +50277,10 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x201B2" flags="0x0">
-    <title>Quickshifter :: FUN_2A4D4 parameter #1</title>
-    <description>Calibration value read by FUN_2A4D4.
-USAGE (decompiled, locals resolved one level):
-  2a4d4: if (DAT_ram_00154450 == '\0') {
+    <title>Quickshifter :: Master Disable (non-zero = QS OFF)</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). FUN_2A4D4: any value other than 0 forces the quickshift-enable flag (fef0096F bit1) off, whatever the dash QS setting. Stock 0 = QS follows the dash setting.
 
-STOCK (5JCZSJ20): 0.00 raw (raw 0 / 0x0). ADDRESS 0x154450, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0.00 raw (raw 0 / 0x0). ADDRESS 0x154450, 8-bit.</description>
     <CATEGORYMEM index="0" category="74" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154450" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -50335,13 +50293,10 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x201B3" flags="0x0">
-    <title>SWITCH Quickshifter :: FUN_2A4D4 option byte (0x80 = on) #2</title>
-    <description>Calibration value read by FUN_2A4D4.
-USAGE (decompiled, locals resolved one level):
-  2a4d4: bVar1 = DAT_ram_00154451 == -0x80;
+    <title>SWITCH Quickshifter :: Force QS On (ignore dash setting)</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). FUN_2A4D4: 0x80 = quickshifter enabled even when the rider has QS set to OFF on the dash (fef026D8 not 1/2). Only used when Master Disable is 0.
 
-STOCK (5JCZSJ20): 0.00 raw (raw 0 / 0x0). ADDRESS 0x154451, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0.00 raw (raw 0 / 0x0). ADDRESS 0x154451, 8-bit.</description>
     <CATEGORYMEM index="0" category="74" />
     <CATEGORYMEM index="1" category="65" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154451" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
@@ -50355,16 +50310,10 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x201B4" flags="0x0">
-    <title>SWITCH Quickshifter :: FUN_2A6E8 option byte (0x80 = on) #3</title>
-    <description>Calibration value read by FUN_2A6E8, FUN_2AD8E.
-USAGE (decompiled, locals resolved one level):
-  2a6e8: if (DAT_ram_00154452 == -0x80) {
-  2ad8e: DAT_ram_00154452 = '\x01';
-  2ad8e: DAT_ram_00154452 = bVar25 * (DAT_ram_fef00994 &lt; DAT_ram_0015430c);
-  2ad8e: if (DAT_ram_00154452 == '\x01') {
+    <title>SWITCH Quickshifter :: Shift Detection Option A (leave 0x80)</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Read by the upshift (FUN_2A6E8) and downshift (FUN_2AD8E) detection routines with the gear-sensor windows 0x15430A/0C. Purpose within detection not isolated - leave stock (0x80).
 
-STOCK (5JCZSJ20): 128 raw (raw 128 / 0x80). ADDRESS 0x154452, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 128 raw (raw 128 / 0x80). ADDRESS 0x154452, 8-bit.</description>
     <CATEGORYMEM index="0" category="74" />
     <CATEGORYMEM index="1" category="65" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154452" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
@@ -50378,17 +50327,10 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x201B5" flags="0x0">
-    <title>SWITCH Quickshifter :: FUN_2A6E8 option byte (0x80 = on) #4</title>
-    <description>Calibration value read by FUN_2A6E8, FUN_2A952, FUN_2AD8E, FUN_2AFB6, FUN_2B3B6.
-USAGE (decompiled, locals resolved one level):
-  2a6e8: if (((bVar1) || (bVar29)) &amp;&amp; ((DAT_ram_00154453 != -0x80 || (cVar15 == '\0')))) {
-  2a952: ((DAT_ram_fef026c2 != '@' &amp;&amp; ((DAT_ram_00154453 != -0x80 || (iVar3 == 0)))))) {
-  2ad8e: if (((bVar1) || (bVar27)) &amp;&amp; ((DAT_ram_00154453 != -0x80 || (cVar16 == '\0')))) {
-  2afb6: ((DAT_ram_fef026c2 != '\x02' &amp;&amp; ((DAT_ram_00154453 != -0x80 || (iVar3 == 0)))))) {
-COMPARED WITH: fef026C2 = Gear - Gear position bitmask (1=N, 2=1st ... 0x40=6th) from GP sensor ADC ch2E. Units inferred from that variable.
+    <title>SWITCH Quickshifter :: Shift Detection Option B (leave 0x80)</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Read by upshift/downshift detection (FUN_2A6E8, FUN_2AD8E) and the phase routines FUN_2A952, FUN_2AFB6, FUN_2B3B6 together with the gear position. Leave stock (0x80).
 
-STOCK (5JCZSJ20): 128 raw (raw 128 / 0x80). ADDRESS 0x154453, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 128 raw (raw 128 / 0x80). ADDRESS 0x154453, 8-bit.</description>
     <CATEGORYMEM index="0" category="74" />
     <CATEGORYMEM index="1" category="65" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154453" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
@@ -50401,646 +50343,299 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201B6" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set A (levels 1-4) parameter #1</title>
-    <description>FUNCTION: QS Level Parameter Set A (levels 1-4). Calibration value read by FUN_2ABA2, FUN_2B204.
-USAGE (decompiled, locals resolved one level):
-  2aba2: DAT_ram_00154454 = DAT_ram_00154458;
-  2aba2: DAT_ram_00154454 = DAT_ram_0015445c;
-  2aba2: DAT_ram_00154454 = DAT_ram_00154460;
-  2aba2: FUN_ram_0002ab46(DAT_ram_00154454,DAT_ram_00154455,DAT_ram_00154456,DAT_ram_00154457);
+  <XDFFLAG uniqueid="0x201B6">
+    <title>Quickshifter :: Shift Actions | On-Throttle | Phase 1 | A Spark Cut</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). On-Throttle: profile used when throttle is at/above the threshold map. Action A Spark Cut: sets fef009AE bit6 -&gt; fef00970 bit0 -&gt; ignition coil inhibit (FUN_4FBCC). Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 128 raw (raw 128 / 0x80). ADDRESS 0x154454, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x80 (ON).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154454" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201B7" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set A (levels 1-4) parameter #2</title>
-    <description>FUNCTION: QS Level Parameter Set A (levels 1-4). Calibration value read by FUN_2ABA2, FUN_2B204.
-USAGE (decompiled, locals resolved one level):
-  2aba2: DAT_ram_00154455 = DAT_ram_00154459;
-  2aba2: DAT_ram_00154455 = DAT_ram_0015445d;
-  2aba2: DAT_ram_00154455 = DAT_ram_00154461;
-  2aba2: FUN_ram_0002ab46(DAT_ram_00154454,DAT_ram_00154455,DAT_ram_00154456,DAT_ram_00154457);
+    <EMBEDDEDDATA mmedaddress="0x154454" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0x201B7">
+    <title>Quickshifter :: Shift Actions | On-Throttle | Phase 1 | B Ignition Retard</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). On-Throttle: profile used when throttle is at/above the threshold map. Action B Ignition Retard: fef0096F bit4 -&gt; FUN_2BA00 copies the per-phase ignition offset (fef009B0-B7, 64 = 0 deg) to fef00A15. Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 128 raw (raw 128 / 0x80). ADDRESS 0x154455, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x80 (ON).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154455" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201B8" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set A (levels 1-4) parameter #3</title>
-    <description>FUNCTION: QS Level Parameter Set A (levels 1-4). Calibration value read by FUN_2ABA2, FUN_2B204.
-USAGE (decompiled, locals resolved one level):
-  2aba2: DAT_ram_00154456 = DAT_ram_0015445a;
-  2aba2: DAT_ram_00154456 = DAT_ram_0015445e;
-  2aba2: DAT_ram_00154456 = DAT_ram_00154462;
-  2aba2: FUN_ram_0002ab46(DAT_ram_00154454,DAT_ram_00154455,DAT_ram_00154456,DAT_ram_00154457);
+    <EMBEDDEDDATA mmedaddress="0x154455" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0x201B8">
+    <title>Quickshifter :: Shift Actions | On-Throttle | Phase 1 | C Fuel Cut + Throttle</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). On-Throttle: profile used when throttle is at/above the threshold map. Action C Fuel Cut + Throttle: upshift: fef0096F bit5, downshift: bit6 -&gt; injection inhibit (FUN_4A4CC/FUN_4A63E) and throttle-by-wire offset (FUN_7C788/7C7D6/7C886): throttle close on upshift, blip on downshift. Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 0.00 raw (raw 0 / 0x0). ADDRESS 0x154456, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x00 (OFF).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154456" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201B9" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set A (levels 1-4) parameter #4</title>
-    <description>FUNCTION: QS Level Parameter Set A (levels 1-4). Calibration value read by FUN_2ABA2, FUN_2B204.
-USAGE (decompiled, locals resolved one level):
-  2aba2: DAT_ram_00154457 = DAT_ram_0015445b;
-  2aba2: DAT_ram_00154457 = DAT_ram_0015445f;
-  2aba2: DAT_ram_00154457 = DAT_ram_00154463;
-  2aba2: FUN_ram_0002ab46(DAT_ram_00154454,DAT_ram_00154455,DAT_ram_00154456,DAT_ram_00154457);
+    <EMBEDDEDDATA mmedaddress="0x154456" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0x201B9">
+    <title>Quickshifter :: Shift Actions | On-Throttle | Phase 1 | D Phase Fuel Factor</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). On-Throttle: profile used when throttle is at/above the threshold map. Action D Phase Fuel Factor: fef009AE bit7 -&gt; FUN_2B6B0 sets fuel factor fef009CA (used by FUN_45C18) to "During Spark Cut" while spark cut is active, otherwise to the per-phase factor. Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 128 raw (raw 128 / 0x80). ADDRESS 0x154457, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x80 (ON).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154457" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201BA" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set A (levels 1-4) parameter #5</title>
-    <description>FUNCTION: QS Level Parameter Set A (levels 1-4). Calibration value read by FUN_2ABA2, FUN_2B204.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <EMBEDDEDDATA mmedaddress="0x154457" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0x201BA">
+    <title>Quickshifter :: Shift Actions | On-Throttle | Phase 2 | A Spark Cut</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). On-Throttle: profile used when throttle is at/above the threshold map. Action A Spark Cut: sets fef009AE bit6 -&gt; fef00970 bit0 -&gt; ignition coil inhibit (FUN_4FBCC). Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 128 raw (raw 128 / 0x80). ADDRESS 0x154458, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x80 (ON).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154458" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201BB" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set A (levels 1-4) parameter #6</title>
-    <description>FUNCTION: QS Level Parameter Set A (levels 1-4). Calibration value read by FUN_2ABA2, FUN_2B204.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <EMBEDDEDDATA mmedaddress="0x154458" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0x201BB">
+    <title>Quickshifter :: Shift Actions | On-Throttle | Phase 2 | B Ignition Retard</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). On-Throttle: profile used when throttle is at/above the threshold map. Action B Ignition Retard: fef0096F bit4 -&gt; FUN_2BA00 copies the per-phase ignition offset (fef009B0-B7, 64 = 0 deg) to fef00A15. Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 128 raw (raw 128 / 0x80). ADDRESS 0x154459, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x80 (ON).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154459" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201BC" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set A (levels 1-4) parameter #7</title>
-    <description>FUNCTION: QS Level Parameter Set A (levels 1-4). Calibration value read by FUN_2ABA2, FUN_2B204.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <EMBEDDEDDATA mmedaddress="0x154459" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0x201BC">
+    <title>Quickshifter :: Shift Actions | On-Throttle | Phase 2 | C Fuel Cut + Throttle</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). On-Throttle: profile used when throttle is at/above the threshold map. Action C Fuel Cut + Throttle: upshift: fef0096F bit5, downshift: bit6 -&gt; injection inhibit (FUN_4A4CC/FUN_4A63E) and throttle-by-wire offset (FUN_7C788/7C7D6/7C886): throttle close on upshift, blip on downshift. Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 0.00 raw (raw 0 / 0x0). ADDRESS 0x15445A, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x00 (OFF).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x15445A" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201BD" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set A (levels 1-4) parameter #8</title>
-    <description>FUNCTION: QS Level Parameter Set A (levels 1-4). Calibration value read by FUN_2ABA2, FUN_2B204.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <EMBEDDEDDATA mmedaddress="0x15445A" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0x201BD">
+    <title>Quickshifter :: Shift Actions | On-Throttle | Phase 2 | D Phase Fuel Factor</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). On-Throttle: profile used when throttle is at/above the threshold map. Action D Phase Fuel Factor: fef009AE bit7 -&gt; FUN_2B6B0 sets fuel factor fef009CA (used by FUN_45C18) to "During Spark Cut" while spark cut is active, otherwise to the per-phase factor. Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 128 raw (raw 128 / 0x80). ADDRESS 0x15445B, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x80 (ON).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x15445B" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201BE" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set A (levels 1-4) parameter #9</title>
-    <description>FUNCTION: QS Level Parameter Set A (levels 1-4). Calibration value read by FUN_2ABA2, FUN_2B204.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <EMBEDDEDDATA mmedaddress="0x15445B" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0x201BE">
+    <title>Quickshifter :: Shift Actions | On-Throttle | Phase 3 | A Spark Cut</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). On-Throttle: profile used when throttle is at/above the threshold map. Action A Spark Cut: sets fef009AE bit6 -&gt; fef00970 bit0 -&gt; ignition coil inhibit (FUN_4FBCC). Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 0.00 raw (raw 0 / 0x0). ADDRESS 0x15445C, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x00 (OFF).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x15445C" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201BF" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set A (levels 1-4) parameter #10</title>
-    <description>FUNCTION: QS Level Parameter Set A (levels 1-4). Calibration value read by FUN_2ABA2, FUN_2B204.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <EMBEDDEDDATA mmedaddress="0x15445C" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0x201BF">
+    <title>Quickshifter :: Shift Actions | On-Throttle | Phase 3 | B Ignition Retard</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). On-Throttle: profile used when throttle is at/above the threshold map. Action B Ignition Retard: fef0096F bit4 -&gt; FUN_2BA00 copies the per-phase ignition offset (fef009B0-B7, 64 = 0 deg) to fef00A15. Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 128 raw (raw 128 / 0x80). ADDRESS 0x15445D, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x80 (ON).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x15445D" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201C0" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set A (levels 1-4) parameter #11</title>
-    <description>FUNCTION: QS Level Parameter Set A (levels 1-4). Calibration value read by FUN_2ABA2, FUN_2B204.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <EMBEDDEDDATA mmedaddress="0x15445D" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0x201C0">
+    <title>Quickshifter :: Shift Actions | On-Throttle | Phase 3 | C Fuel Cut + Throttle</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). On-Throttle: profile used when throttle is at/above the threshold map. Action C Fuel Cut + Throttle: upshift: fef0096F bit5, downshift: bit6 -&gt; injection inhibit (FUN_4A4CC/FUN_4A63E) and throttle-by-wire offset (FUN_7C788/7C7D6/7C886): throttle close on upshift, blip on downshift. Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 0.00 raw (raw 0 / 0x0). ADDRESS 0x15445E, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x00 (OFF).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x15445E" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201C1" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set A (levels 1-4) parameter #12</title>
-    <description>FUNCTION: QS Level Parameter Set A (levels 1-4). Calibration value read by FUN_2ABA2, FUN_2B204.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <EMBEDDEDDATA mmedaddress="0x15445E" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0x201C1">
+    <title>Quickshifter :: Shift Actions | On-Throttle | Phase 3 | D Phase Fuel Factor</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). On-Throttle: profile used when throttle is at/above the threshold map. Action D Phase Fuel Factor: fef009AE bit7 -&gt; FUN_2B6B0 sets fuel factor fef009CA (used by FUN_45C18) to "During Spark Cut" while spark cut is active, otherwise to the per-phase factor. Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 128 raw (raw 128 / 0x80). ADDRESS 0x15445F, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x80 (ON).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x15445F" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201C2" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set A (levels 1-4) parameter #13</title>
-    <description>FUNCTION: QS Level Parameter Set A (levels 1-4). Calibration value read by FUN_2ABA2, FUN_2B204.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <EMBEDDEDDATA mmedaddress="0x15445F" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0x201C2">
+    <title>Quickshifter :: Shift Actions | On-Throttle | Phase 4 | A Spark Cut</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). On-Throttle: profile used when throttle is at/above the threshold map. Action A Spark Cut: sets fef009AE bit6 -&gt; fef00970 bit0 -&gt; ignition coil inhibit (FUN_4FBCC). Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 0.00 raw (raw 0 / 0x0). ADDRESS 0x154460, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x00 (OFF).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154460" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201C3" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set A (levels 1-4) parameter #14</title>
-    <description>FUNCTION: QS Level Parameter Set A (levels 1-4). Calibration value read by FUN_2ABA2, FUN_2B204.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <EMBEDDEDDATA mmedaddress="0x154460" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0x201C3">
+    <title>Quickshifter :: Shift Actions | On-Throttle | Phase 4 | B Ignition Retard</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). On-Throttle: profile used when throttle is at/above the threshold map. Action B Ignition Retard: fef0096F bit4 -&gt; FUN_2BA00 copies the per-phase ignition offset (fef009B0-B7, 64 = 0 deg) to fef00A15. Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 128 raw (raw 128 / 0x80). ADDRESS 0x154461, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x80 (ON).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154461" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201C4" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set A (levels 1-4) parameter #15</title>
-    <description>FUNCTION: QS Level Parameter Set A (levels 1-4). Calibration value read by FUN_2ABA2, FUN_2B204.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <EMBEDDEDDATA mmedaddress="0x154461" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0x201C4">
+    <title>Quickshifter :: Shift Actions | On-Throttle | Phase 4 | C Fuel Cut + Throttle</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). On-Throttle: profile used when throttle is at/above the threshold map. Action C Fuel Cut + Throttle: upshift: fef0096F bit5, downshift: bit6 -&gt; injection inhibit (FUN_4A4CC/FUN_4A63E) and throttle-by-wire offset (FUN_7C788/7C7D6/7C886): throttle close on upshift, blip on downshift. Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 0.00 raw (raw 0 / 0x0). ADDRESS 0x154462, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x00 (OFF).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154462" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201C5" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set A (levels 1-4) parameter #16</title>
-    <description>FUNCTION: QS Level Parameter Set A (levels 1-4). Calibration value read by FUN_2ABA2, FUN_2B204.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <EMBEDDEDDATA mmedaddress="0x154462" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0x201C5">
+    <title>Quickshifter :: Shift Actions | On-Throttle | Phase 4 | D Phase Fuel Factor</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). On-Throttle: profile used when throttle is at/above the threshold map. Action D Phase Fuel Factor: fef009AE bit7 -&gt; FUN_2B6B0 sets fuel factor fef009CA (used by FUN_45C18) to "During Spark Cut" while spark cut is active, otherwise to the per-phase factor. Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 128 raw (raw 128 / 0x80). ADDRESS 0x154463, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x80 (ON).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154463" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201C6" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set B (levels 1-4) parameter #1</title>
-    <description>FUNCTION: QS Level Parameter Set B (levels 1-4). Calibration value read by FUN_2AC4C, FUN_2B2AE.
-USAGE (decompiled, locals resolved one level):
-  2ac4c: DAT_ram_00154464 = DAT_ram_00154468;
-  2ac4c: DAT_ram_00154464 = DAT_ram_0015446c;
-  2ac4c: DAT_ram_00154464 = DAT_ram_00154470;
-  2ac4c: FUN_ram_0002ab46(DAT_ram_00154464,DAT_ram_00154465,DAT_ram_00154466,DAT_ram_00154467);
+    <EMBEDDEDDATA mmedaddress="0x154463" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0x201C6">
+    <title>Quickshifter :: Shift Actions | Off-Throttle | Phase 1 | A Spark Cut</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). Off-Throttle: profile used when throttle is below the threshold map. Action A Spark Cut: sets fef009AE bit6 -&gt; fef00970 bit0 -&gt; ignition coil inhibit (FUN_4FBCC). Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 0.00 raw (raw 0 / 0x0). ADDRESS 0x154464, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x00 (OFF).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154464" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201C7" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set B (levels 1-4) parameter #2</title>
-    <description>FUNCTION: QS Level Parameter Set B (levels 1-4). Calibration value read by FUN_2AC4C, FUN_2B2AE.
-USAGE (decompiled, locals resolved one level):
-  2ac4c: DAT_ram_00154465 = DAT_ram_00154469;
-  2ac4c: DAT_ram_00154465 = DAT_ram_0015446d;
-  2ac4c: DAT_ram_00154465 = DAT_ram_00154471;
-  2ac4c: FUN_ram_0002ab46(DAT_ram_00154464,DAT_ram_00154465,DAT_ram_00154466,DAT_ram_00154467);
+    <EMBEDDEDDATA mmedaddress="0x154464" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0x201C7">
+    <title>Quickshifter :: Shift Actions | Off-Throttle | Phase 1 | B Ignition Retard</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). Off-Throttle: profile used when throttle is below the threshold map. Action B Ignition Retard: fef0096F bit4 -&gt; FUN_2BA00 copies the per-phase ignition offset (fef009B0-B7, 64 = 0 deg) to fef00A15. Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 0.00 raw (raw 0 / 0x0). ADDRESS 0x154465, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x00 (OFF).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154465" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201C8" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set B (levels 1-4) parameter #3</title>
-    <description>FUNCTION: QS Level Parameter Set B (levels 1-4). Calibration value read by FUN_2AC4C, FUN_2B2AE.
-USAGE (decompiled, locals resolved one level):
-  2ac4c: DAT_ram_00154466 = DAT_ram_0015446a;
-  2ac4c: DAT_ram_00154466 = DAT_ram_0015446e;
-  2ac4c: DAT_ram_00154466 = DAT_ram_00154472;
-  2ac4c: FUN_ram_0002ab46(DAT_ram_00154464,DAT_ram_00154465,DAT_ram_00154466,DAT_ram_00154467);
+    <EMBEDDEDDATA mmedaddress="0x154465" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0x201C8">
+    <title>Quickshifter :: Shift Actions | Off-Throttle | Phase 1 | C Fuel Cut + Throttle</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). Off-Throttle: profile used when throttle is below the threshold map. Action C Fuel Cut + Throttle: upshift: fef0096F bit5, downshift: bit6 -&gt; injection inhibit (FUN_4A4CC/FUN_4A63E) and throttle-by-wire offset (FUN_7C788/7C7D6/7C886): throttle close on upshift, blip on downshift. Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 128 raw (raw 128 / 0x80). ADDRESS 0x154466, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x80 (ON).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154466" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201C9" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set B (levels 1-4) parameter #4</title>
-    <description>FUNCTION: QS Level Parameter Set B (levels 1-4). Calibration value read by FUN_2AC4C, FUN_2B2AE.
-USAGE (decompiled, locals resolved one level):
-  2ac4c: DAT_ram_00154467 = DAT_ram_0015446b;
-  2ac4c: DAT_ram_00154467 = DAT_ram_0015446f;
-  2ac4c: DAT_ram_00154467 = DAT_ram_00154473;
-  2ac4c: FUN_ram_0002ab46(DAT_ram_00154464,DAT_ram_00154465,DAT_ram_00154466,DAT_ram_00154467);
+    <EMBEDDEDDATA mmedaddress="0x154466" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0x201C9">
+    <title>Quickshifter :: Shift Actions | Off-Throttle | Phase 1 | D Phase Fuel Factor</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). Off-Throttle: profile used when throttle is below the threshold map. Action D Phase Fuel Factor: fef009AE bit7 -&gt; FUN_2B6B0 sets fuel factor fef009CA (used by FUN_45C18) to "During Spark Cut" while spark cut is active, otherwise to the per-phase factor. Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 128 raw (raw 128 / 0x80). ADDRESS 0x154467, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x80 (ON).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154467" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201CA" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set B (levels 1-4) parameter #5</title>
-    <description>FUNCTION: QS Level Parameter Set B (levels 1-4). Calibration value read by FUN_2AC4C, FUN_2B2AE.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <EMBEDDEDDATA mmedaddress="0x154467" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0x201CA">
+    <title>Quickshifter :: Shift Actions | Off-Throttle | Phase 2 | A Spark Cut</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). Off-Throttle: profile used when throttle is below the threshold map. Action A Spark Cut: sets fef009AE bit6 -&gt; fef00970 bit0 -&gt; ignition coil inhibit (FUN_4FBCC). Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 0.00 raw (raw 0 / 0x0). ADDRESS 0x154468, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x00 (OFF).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154468" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201CB" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set B (levels 1-4) parameter #6</title>
-    <description>FUNCTION: QS Level Parameter Set B (levels 1-4). Calibration value read by FUN_2AC4C, FUN_2B2AE.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <EMBEDDEDDATA mmedaddress="0x154468" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0x201CB">
+    <title>Quickshifter :: Shift Actions | Off-Throttle | Phase 2 | B Ignition Retard</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). Off-Throttle: profile used when throttle is below the threshold map. Action B Ignition Retard: fef0096F bit4 -&gt; FUN_2BA00 copies the per-phase ignition offset (fef009B0-B7, 64 = 0 deg) to fef00A15. Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 0.00 raw (raw 0 / 0x0). ADDRESS 0x154469, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x00 (OFF).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154469" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201CC" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set B (levels 1-4) parameter #7</title>
-    <description>FUNCTION: QS Level Parameter Set B (levels 1-4). Calibration value read by FUN_2AC4C, FUN_2B2AE.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <EMBEDDEDDATA mmedaddress="0x154469" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0x201CC">
+    <title>Quickshifter :: Shift Actions | Off-Throttle | Phase 2 | C Fuel Cut + Throttle</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). Off-Throttle: profile used when throttle is below the threshold map. Action C Fuel Cut + Throttle: upshift: fef0096F bit5, downshift: bit6 -&gt; injection inhibit (FUN_4A4CC/FUN_4A63E) and throttle-by-wire offset (FUN_7C788/7C7D6/7C886): throttle close on upshift, blip on downshift. Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 128 raw (raw 128 / 0x80). ADDRESS 0x15446A, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x80 (ON).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x15446A" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201CD" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set B (levels 1-4) parameter #8</title>
-    <description>FUNCTION: QS Level Parameter Set B (levels 1-4). Calibration value read by FUN_2AC4C, FUN_2B2AE.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <EMBEDDEDDATA mmedaddress="0x15446A" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0x201CD">
+    <title>Quickshifter :: Shift Actions | Off-Throttle | Phase 2 | D Phase Fuel Factor</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). Off-Throttle: profile used when throttle is below the threshold map. Action D Phase Fuel Factor: fef009AE bit7 -&gt; FUN_2B6B0 sets fuel factor fef009CA (used by FUN_45C18) to "During Spark Cut" while spark cut is active, otherwise to the per-phase factor. Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 128 raw (raw 128 / 0x80). ADDRESS 0x15446B, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x80 (ON).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x15446B" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201CE" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set B (levels 1-4) parameter #9</title>
-    <description>FUNCTION: QS Level Parameter Set B (levels 1-4). Calibration value read by FUN_2AC4C, FUN_2B2AE.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <EMBEDDEDDATA mmedaddress="0x15446B" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0x201CE">
+    <title>Quickshifter :: Shift Actions | Off-Throttle | Phase 3 | A Spark Cut</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). Off-Throttle: profile used when throttle is below the threshold map. Action A Spark Cut: sets fef009AE bit6 -&gt; fef00970 bit0 -&gt; ignition coil inhibit (FUN_4FBCC). Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 0.00 raw (raw 0 / 0x0). ADDRESS 0x15446C, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x00 (OFF).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x15446C" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201CF" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set B (levels 1-4) parameter #10</title>
-    <description>FUNCTION: QS Level Parameter Set B (levels 1-4). Calibration value read by FUN_2AC4C, FUN_2B2AE.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <EMBEDDEDDATA mmedaddress="0x15446C" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0x201CF">
+    <title>Quickshifter :: Shift Actions | Off-Throttle | Phase 3 | B Ignition Retard</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). Off-Throttle: profile used when throttle is below the threshold map. Action B Ignition Retard: fef0096F bit4 -&gt; FUN_2BA00 copies the per-phase ignition offset (fef009B0-B7, 64 = 0 deg) to fef00A15. Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 0.00 raw (raw 0 / 0x0). ADDRESS 0x15446D, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x00 (OFF).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x15446D" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201D0" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set B (levels 1-4) parameter #11</title>
-    <description>FUNCTION: QS Level Parameter Set B (levels 1-4). Calibration value read by FUN_2AC4C, FUN_2B2AE.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <EMBEDDEDDATA mmedaddress="0x15446D" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0x201D0">
+    <title>Quickshifter :: Shift Actions | Off-Throttle | Phase 3 | C Fuel Cut + Throttle</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). Off-Throttle: profile used when throttle is below the threshold map. Action C Fuel Cut + Throttle: upshift: fef0096F bit5, downshift: bit6 -&gt; injection inhibit (FUN_4A4CC/FUN_4A63E) and throttle-by-wire offset (FUN_7C788/7C7D6/7C886): throttle close on upshift, blip on downshift. Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 0.00 raw (raw 0 / 0x0). ADDRESS 0x15446E, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x00 (OFF).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x15446E" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201D1" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set B (levels 1-4) parameter #12</title>
-    <description>FUNCTION: QS Level Parameter Set B (levels 1-4). Calibration value read by FUN_2AC4C, FUN_2B2AE.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <EMBEDDEDDATA mmedaddress="0x15446E" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0x201D1">
+    <title>Quickshifter :: Shift Actions | Off-Throttle | Phase 3 | D Phase Fuel Factor</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). Off-Throttle: profile used when throttle is below the threshold map. Action D Phase Fuel Factor: fef009AE bit7 -&gt; FUN_2B6B0 sets fuel factor fef009CA (used by FUN_45C18) to "During Spark Cut" while spark cut is active, otherwise to the per-phase factor. Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 128 raw (raw 128 / 0x80). ADDRESS 0x15446F, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x80 (ON).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x15446F" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201D2" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set B (levels 1-4) parameter #13</title>
-    <description>FUNCTION: QS Level Parameter Set B (levels 1-4). Calibration value read by FUN_2AC4C, FUN_2B2AE.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <EMBEDDEDDATA mmedaddress="0x15446F" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0x201D2">
+    <title>Quickshifter :: Shift Actions | Off-Throttle | Phase 4 | A Spark Cut</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). Off-Throttle: profile used when throttle is below the threshold map. Action A Spark Cut: sets fef009AE bit6 -&gt; fef00970 bit0 -&gt; ignition coil inhibit (FUN_4FBCC). Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 0.00 raw (raw 0 / 0x0). ADDRESS 0x154470, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x00 (OFF).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154470" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201D3" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set B (levels 1-4) parameter #14</title>
-    <description>FUNCTION: QS Level Parameter Set B (levels 1-4). Calibration value read by FUN_2AC4C, FUN_2B2AE.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <EMBEDDEDDATA mmedaddress="0x154470" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0x201D3">
+    <title>Quickshifter :: Shift Actions | Off-Throttle | Phase 4 | B Ignition Retard</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). Off-Throttle: profile used when throttle is below the threshold map. Action B Ignition Retard: fef0096F bit4 -&gt; FUN_2BA00 copies the per-phase ignition offset (fef009B0-B7, 64 = 0 deg) to fef00A15. Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 0.00 raw (raw 0 / 0x0). ADDRESS 0x154471, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x00 (OFF).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154471" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201D4" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set B (levels 1-4) parameter #15</title>
-    <description>FUNCTION: QS Level Parameter Set B (levels 1-4). Calibration value read by FUN_2AC4C, FUN_2B2AE.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <EMBEDDEDDATA mmedaddress="0x154471" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0x201D4">
+    <title>Quickshifter :: Shift Actions | Off-Throttle | Phase 4 | C Fuel Cut + Throttle</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). Off-Throttle: profile used when throttle is below the threshold map. Action C Fuel Cut + Throttle: upshift: fef0096F bit5, downshift: bit6 -&gt; injection inhibit (FUN_4A4CC/FUN_4A63E) and throttle-by-wire offset (FUN_7C788/7C7D6/7C886): throttle close on upshift, blip on downshift. Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 0.00 raw (raw 0 / 0x0). ADDRESS 0x154472, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x00 (OFF).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154472" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x201D5" flags="0x0">
-    <title>Quickshifter :: QS Level Parameter Set B (levels 1-4) parameter #16</title>
-    <description>FUNCTION: QS Level Parameter Set B (levels 1-4). Calibration value read by FUN_2AC4C, FUN_2B2AE.
-USAGE (decompiled, locals resolved one level):
-  (value is read into a register and used in arithmetic - see the function)
+    <EMBEDDEDDATA mmedaddress="0x154472" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0x201D5">
+    <title>Quickshifter :: Shift Actions | Off-Throttle | Phase 4 | D Phase Fuel Factor</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). Shift-action table (16 bytes per profile, 4 per phase, 0x80 = action ON). Shared by upshifts (row = upshift phase fef00A13, FUN_2ABA2/2AC4C) and downshifts (row = downshift phase fef00A14, FUN_2B204/2B2AE). Off-Throttle: profile used when throttle is below the threshold map. Action D Phase Fuel Factor: fef009AE bit7 -&gt; FUN_2B6B0 sets fuel factor fef009CA (used by FUN_45C18) to "During Spark Cut" while spark cut is active, otherwise to the per-phase factor. Confidence: A, B HIGH; C, D MEDIUM.
 
-STOCK (5JCZSJ20): 128 raw (raw 128 / 0x80). ADDRESS 0x154473, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0x80 (ON).</description>
     <CATEGORYMEM index="0" category="74" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154473" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
+    <EMBEDDEDDATA mmedaddress="0x154473" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0x201D6" flags="0x0">
-    <title>SWITCH Quickshifter :: FUN_2AA2A option byte (0x80 = on) #1</title>
-    <description>Calibration value read by FUN_2AA2A.
-USAGE (decompiled, locals resolved one level):
-  2aa2a: if ((((DAT_ram_fef009bd &amp; 2) == 0) &amp;&amp; (iVar2 == 1)) || (DAT_ram_00154474 == -0x80)) {
+    <title>SWITCH Quickshifter :: Live Profile Switching | Upshift</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). FUN_2AA2A: normally the on-/off-throttle action profile for a upshift is chosen once, while the shift logic is idle, and then held for the whole shift. 0x80 = the profile follows the on-throttle flag (fef009AE bit2) continuously, so it can change mid-shift. Stock 0 (latched).
 
-STOCK (5JCZSJ20): 0.00 raw (raw 0 / 0x0). ADDRESS 0x154474, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0.00 raw (raw 0 / 0x0). ADDRESS 0x154474, 8-bit.</description>
     <CATEGORYMEM index="0" category="74" />
     <CATEGORYMEM index="1" category="65" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154474" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
@@ -51054,13 +50649,10 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x201D7" flags="0x0">
-    <title>SWITCH Quickshifter :: FUN_2B08C option byte (0x80 = on) #1</title>
-    <description>Calibration value read by FUN_2B08C.
-USAGE (decompiled, locals resolved one level):
-  2b08c: if ((((DAT_ram_fef009bd &amp; 8) == 0) &amp;&amp; (iVar2 == 1)) || (DAT_ram_00154475 == -0x80)) {
+    <title>SWITCH Quickshifter :: Live Profile Switching | Downshift</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). FUN_2B08C: normally the on-/off-throttle action profile for a downshift is chosen once, while the shift logic is idle, and then held for the whole shift. 0x80 = the profile follows the on-throttle flag (fef009AE bit2) continuously, so it can change mid-shift. Stock 0 (latched).
 
-STOCK (5JCZSJ20): 0.00 raw (raw 0 / 0x0). ADDRESS 0x154475, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0.00 raw (raw 0 / 0x0). ADDRESS 0x154475, 8-bit.</description>
     <CATEGORYMEM index="0" category="74" />
     <CATEGORYMEM index="1" category="65" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154475" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
@@ -51074,13 +50666,10 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x201D8" flags="0x0">
-    <title>SWITCH Quickshifter :: FUN_2B4DE option byte (0x80 = on) #1</title>
-    <description>Calibration value read by FUN_2B4DE.
-USAGE (decompiled, locals resolved one level):
-  2b4de: (DAT_ram_00154476 == -0x80)) {
+    <title>SWITCH Quickshifter :: Live On-Throttle Flag | Downshift</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). FUN_2B4DE: same idea for the downshift copy of the on-throttle flag (fef009AF bit4). 0x80 = update continuously instead of latching. Stock 0.
 
-STOCK (5JCZSJ20): 0.00 raw (raw 0 / 0x0). ADDRESS 0x154476, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 0.00 raw (raw 0 / 0x0). ADDRESS 0x154476, 8-bit.</description>
     <CATEGORYMEM index="0" category="74" />
     <CATEGORYMEM index="1" category="65" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154476" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
@@ -51094,40 +50683,34 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x201D9" flags="0x0">
-    <title>Quickshifter :: FUN_2B838 parameter #1</title>
-    <description>Calibration value read by FUN_2B838.
-USAGE (decompiled, locals resolved one level):
-  2b838: DAT_ram_fef009b3 = FUN_ram_00091a82((int)(((uint)DAT_ram_fef009ba - 0x40) * (uint)DAT_ram_00154477) / 0x100 + 0x40,0xff,
+    <title>Quickshifter :: Phase-4 Ignition Retard Scale | Upshift</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). FUN_2B838 / FUN_2B982: the phase-4 ignition offset is scaled by this value: out = 64 + (in-64) x value/256 (64 = 0 deg). 255 = ~100%% of the mapped retard, 0 = no retard in phase 4.
 
-STOCK (5JCZSJ20): 255 raw (raw 255 / 0xFF). ADDRESS 0x154477, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 99.61 % (raw 255 / 0xFF). ADDRESS 0x154477, 8-bit.</description>
     <CATEGORYMEM index="0" category="74" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154477" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
+    <units>%</units>
+    <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X">
+    <MATH equation="X*100/256">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x201DA" flags="0x0">
-    <title>Quickshifter :: FUN_2B982 parameter #1</title>
-    <description>Calibration value read by FUN_2B982.
-USAGE (decompiled, locals resolved one level):
-  2b982: DAT_ram_fef009b7 = FUN_ram_00091a82((int)(((uint)DAT_ram_fef009ba - 0x40) * (uint)DAT_ram_00154478) / 0x100 + 0x40,0xff,
+    <title>Quickshifter :: Phase-4 Ignition Retard Scale | Downshift</title>
+    <description>Decoded from FUN_2A4D4-FUN_2BA00 (quickshifter module). FUN_2B838 / FUN_2B982: the phase-4 ignition offset is scaled by this value: out = 64 + (in-64) x value/256 (64 = 0 deg). 255 = ~100%% of the mapped retard, 0 = no retard in phase 4.
 
-STOCK (5JCZSJ20): 255 raw (raw 255 / 0xFF). ADDRESS 0x154478, 8-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 99.61 % (raw 255 / 0xFF). ADDRESS 0x154478, 8-bit.</description>
     <CATEGORYMEM index="0" category="74" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154478" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
-    <decimalpl>0</decimalpl>
+    <units>%</units>
+    <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X">
+    <MATH equation="X*100/256">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -59570,84 +59153,66 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20387" flags="0x0">
-    <title>HO2 / Closed Loop :: FUN_42C9A throttle threshold #1</title>
-    <description>Calibration value read by FUN_42C9A.
-USAGE (decompiled, locals resolved one level):
-  42c9a: (uint)(DAT_ram_001825cc &lt; DAT_ram_fef02636) == 1) {
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+    <title>HO2 / Closed Loop :: Low-Speed Gate | OFF below</title>
+    <description>FUN_42C9A: rear wheel speed (fef02636 - a wheel speed, not throttle) windows with hysteresis. fef00F98 bit5 = above the low-speed gate (ON above 0x1825CE, held until below 0x1825CC); bit6 = below the high-speed gate (ON below 0x1825D0, held until above 0x1825D2). Used by the closed-loop (O2) logic.
 
-STOCK (5JCZSJ20): 9.14 deg TP (raw 3328 / 0xD00). ADDRESS 0x1825CC, 16-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 26 km/h (raw 3328 / 0xD00). ADDRESS 0x1825CC, 16-bit.</description>
     <CATEGORYMEM index="0" category="81" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1825CC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20388" flags="0x0">
-    <title>HO2 / Closed Loop :: FUN_42C9A throttle threshold #2</title>
-    <description>Calibration value read by FUN_42C9A.
-USAGE (decompiled, locals resolved one level):
-  42c9a: if (((uint)(DAT_ram_001825ce &lt; DAT_ram_fef02636) +
-  42c9a: -((int)((uint)DAT_ram_fef00f98 &lt;&lt; 0x1a) &gt;&gt; 0x1f) * (uint)(DAT_ram_001825ce &gt;= DAT_ram_fef02636)) *
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+    <title>HO2 / Closed Loop :: Low-Speed Gate | ON above</title>
+    <description>FUN_42C9A: rear wheel speed (fef02636 - a wheel speed, not throttle) windows with hysteresis. fef00F98 bit5 = above the low-speed gate (ON above 0x1825CE, held until below 0x1825CC); bit6 = below the high-speed gate (ON below 0x1825D0, held until above 0x1825D2). Used by the closed-loop (O2) logic.
 
-STOCK (5JCZSJ20): 9.84 deg TP (raw 3584 / 0xE00). ADDRESS 0x1825CE, 16-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 28 km/h (raw 3584 / 0xE00). ADDRESS 0x1825CE, 16-bit.</description>
     <CATEGORYMEM index="0" category="81" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1825CE" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20389" flags="0x0">
-    <title>HO2 / Closed Loop :: FUN_42C9A throttle threshold #3</title>
-    <description>Calibration value read by FUN_42C9A.
-USAGE (decompiled, locals resolved one level):
-  42c9a: if ((uint)(DAT_ram_fef02636 &lt; DAT_ram_001825d0) +
-  42c9a: (uint)(DAT_ram_fef02636 &gt;= DAT_ram_001825d0) != 1) {
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+    <title>HO2 / Closed Loop :: High-Speed Gate | ON below</title>
+    <description>FUN_42C9A: rear wheel speed (fef02636 - a wheel speed, not throttle) windows with hysteresis. fef00F98 bit5 = above the low-speed gate (ON above 0x1825CE, held until below 0x1825CC); bit6 = below the high-speed gate (ON below 0x1825D0, held until above 0x1825D2). Used by the closed-loop (O2) logic.
 
-STOCK (5JCZSJ20): 66.80 deg TP (raw 24320 / 0x5F00). ADDRESS 0x1825D0, 16-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 190 km/h (raw 24320 / 0x5F00). ADDRESS 0x1825D0, 16-bit.</description>
     <CATEGORYMEM index="0" category="81" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1825D0" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2038A" flags="0x0">
-    <title>HO2 / Closed Loop :: FUN_42C9A throttle threshold #4</title>
-    <description>Calibration value read by FUN_42C9A.
-USAGE (decompiled, locals resolved one level):
-  42c9a: -((int)((uint)DAT_ram_fef00f98 &lt;&lt; 0x19) &gt;&gt; 0x1f) * (uint)(DAT_ram_fef02636 &lt; DAT_ram_001825d2) *
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+    <title>HO2 / Closed Loop :: High-Speed Gate | OFF above</title>
+    <description>FUN_42C9A: rear wheel speed (fef02636 - a wheel speed, not throttle) windows with hysteresis. fef00F98 bit5 = above the low-speed gate (ON above 0x1825CE, held until below 0x1825CC); bit6 = below the high-speed gate (ON below 0x1825D0, held until above 0x1825D2). Used by the closed-loop (O2) logic.
 
-STOCK (5JCZSJ20): 70.31 deg TP (raw 25600 / 0x6400). ADDRESS 0x1825D2, 16-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 200 km/h (raw 25600 / 0x6400). ADDRESS 0x1825D2, 16-bit.</description>
     <CATEGORYMEM index="0" category="81" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1825D2" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -78261,22 +77826,18 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20735" flags="0x0">
-    <title>Sensors / Ride Mode / Comms :: FUN_6DD00 throttle threshold #1</title>
-    <description>Calibration value read by FUN_6DD00.
-USAGE (decompiled, locals resolved one level):
-  6dd00: if (((DAT_ram_fef02634 &lt; DAT_ram_0018f054) &amp;&amp; (DAT_ram_fef02636 &lt; DAT_ram_0018f054)) &amp;&amp;
-COMPARED WITH: fef02634 = TP - Throttle position (copy). Units inferred from that variable.
+    <title>Sensors / Ride Mode / Comms :: FUN_6DD00 Wheel Speed Limit</title>
+    <description>FUN_6DD00: sets an interlock flag (fef02292/93) when either wheel speed (fef02634 front, fef02636 rear) is at/above this or grip is at/above the paired grip threshold. Stock 300 km/h = speed never blocks; grip is the real condition.
 
-STOCK (5JCZSJ20): 105.47 deg TP (raw 38400 / 0x9600). ADDRESS 0x18F054, 16-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 300 km/h (raw 38400 / 0x9600). ADDRESS 0x18F054, 16-bit.</description>
     <CATEGORYMEM index="0" category="89" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18F054" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -78301,22 +77862,18 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20737" flags="0x0">
-    <title>Sensors / Ride Mode / Comms :: FUN_6DD46 throttle threshold #1</title>
-    <description>Calibration value read by FUN_6DD46.
-USAGE (decompiled, locals resolved one level):
-  6dd46: if (((DAT_ram_fef02634 &lt; DAT_ram_0018f058) &amp;&amp; (DAT_ram_fef02636 &lt; DAT_ram_0018f058)) &amp;&amp;
-COMPARED WITH: fef02634 = TP - Throttle position (copy). Units inferred from that variable.
+    <title>Sensors / Ride Mode / Comms :: FUN_6DD46 Wheel Speed Limit</title>
+    <description>FUN_6DD46: sets an interlock flag (fef02292/93) when either wheel speed (fef02634 front, fef02636 rear) is at/above this or grip is at/above the paired grip threshold. Stock 300 km/h = speed never blocks; grip is the real condition.
 
-STOCK (5JCZSJ20): 105.47 deg TP (raw 38400 / 0x9600). ADDRESS 0x18F058, 16-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 300 km/h (raw 38400 / 0x9600). ADDRESS 0x18F058, 16-bit.</description>
     <CATEGORYMEM index="0" category="89" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18F058" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -78341,22 +77898,18 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20739" flags="0x0">
-    <title>Sensors / Ride Mode / Comms :: FUN_6DD8C throttle threshold #1</title>
-    <description>Calibration value read by FUN_6DD8C.
-USAGE (decompiled, locals resolved one level):
-  6dd8c: if (((DAT_ram_fef02634 &lt; DAT_ram_0018f05c) &amp;&amp; (DAT_ram_fef02636 &lt; DAT_ram_0018f05c)) &amp;&amp;
-COMPARED WITH: fef02634 = TP - Throttle position (copy). Units inferred from that variable.
+    <title>Sensors / Ride Mode / Comms :: FUN_6DD8C Wheel Speed Limit</title>
+    <description>FUN_6DD8C: sets an interlock flag (fef02292/93) when either wheel speed (fef02634 front, fef02636 rear) is at/above this or grip is at/above the paired grip threshold. Stock 300 km/h = speed never blocks; grip is the real condition.
 
-STOCK (5JCZSJ20): 105.47 deg TP (raw 38400 / 0x9600). ADDRESS 0x18F05C, 16-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 300 km/h (raw 38400 / 0x9600). ADDRESS 0x18F05C, 16-bit.</description>
     <CATEGORYMEM index="0" category="89" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18F05C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -78381,22 +77934,18 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2073B" flags="0x0">
-    <title>Sensors / Ride Mode / Comms :: FUN_6DDD2 throttle threshold #1</title>
-    <description>Calibration value read by FUN_6DDD2.
-USAGE (decompiled, locals resolved one level):
-  6ddd2: if (((DAT_ram_fef02634 &lt; DAT_ram_0018f060) &amp;&amp; (DAT_ram_fef02636 &lt; DAT_ram_0018f060)) &amp;&amp;
-COMPARED WITH: fef02634 = TP - Throttle position (copy). Units inferred from that variable.
+    <title>Sensors / Ride Mode / Comms :: FUN_6DDD2 Wheel Speed Limit</title>
+    <description>FUN_6DDD2: sets an interlock flag (fef02292/93) when either wheel speed (fef02634 front, fef02636 rear) is at/above this or grip is at/above the paired grip threshold. Stock 300 km/h = speed never blocks; grip is the real condition.
 
-STOCK (5JCZSJ20): 105.47 deg TP (raw 38400 / 0x9600). ADDRESS 0x18F060, 16-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 300 km/h (raw 38400 / 0x9600). ADDRESS 0x18F060, 16-bit.</description>
     <CATEGORYMEM index="0" category="89" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18F060" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -78421,22 +77970,18 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2073D" flags="0x0">
-    <title>Sensors / Ride Mode / Comms :: FUN_6DE18 throttle threshold #1</title>
-    <description>Calibration value read by FUN_6DE18.
-USAGE (decompiled, locals resolved one level):
-  6de18: if (((DAT_ram_fef02634 &lt; DAT_ram_0018f064) &amp;&amp; (DAT_ram_fef02636 &lt; DAT_ram_0018f064)) &amp;&amp;
-COMPARED WITH: fef02634 = TP - Throttle position (copy). Units inferred from that variable.
+    <title>Sensors / Ride Mode / Comms :: FUN_6DE18 Wheel Speed Limit</title>
+    <description>FUN_6DE18: sets an interlock flag (fef02292/93) when either wheel speed (fef02634 front, fef02636 rear) is at/above this or grip is at/above the paired grip threshold. Stock 300 km/h = speed never blocks; grip is the real condition.
 
-STOCK (5JCZSJ20): 105.47 deg TP (raw 38400 / 0x9600). ADDRESS 0x18F064, 16-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 300 km/h (raw 38400 / 0x9600). ADDRESS 0x18F064, 16-bit.</description>
     <CATEGORYMEM index="0" category="89" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18F064" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -78461,22 +78006,18 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2073F" flags="0x0">
-    <title>Sensors / Ride Mode / Comms :: FUN_6DE5E throttle threshold #1</title>
-    <description>Calibration value read by FUN_6DE5E.
-USAGE (decompiled, locals resolved one level):
-  6de5e: if (((DAT_ram_fef02634 &lt; DAT_ram_0018f068) &amp;&amp; (DAT_ram_fef02636 &lt; DAT_ram_0018f068)) &amp;&amp;
-COMPARED WITH: fef02634 = TP - Throttle position (copy). Units inferred from that variable.
+    <title>Sensors / Ride Mode / Comms :: FUN_6DE5E Wheel Speed Limit</title>
+    <description>FUN_6DE5E: sets an interlock flag (fef02292/93) when either wheel speed (fef02634 front, fef02636 rear) is at/above this or grip is at/above the paired grip threshold. Stock 300 km/h = speed never blocks; grip is the real condition.
 
-STOCK (5JCZSJ20): 105.47 deg TP (raw 38400 / 0x9600). ADDRESS 0x18F068, 16-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 300 km/h (raw 38400 / 0x9600). ADDRESS 0x18F068, 16-bit.</description>
     <CATEGORYMEM index="0" category="89" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18F068" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -78561,22 +78102,18 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20744" flags="0x0">
-    <title>Sensors / Ride Mode / Comms :: FUN_6DEA4 throttle threshold #1</title>
-    <description>Calibration value read by FUN_6DEA4.
-USAGE (decompiled, locals resolved one level):
-  6dea4: if (((DAT_ram_fef02634 &lt; DAT_ram_0018f072) &amp;&amp; (DAT_ram_fef02636 &lt; DAT_ram_0018f072)) &amp;&amp;
-COMPARED WITH: fef02634 = TP - Throttle position (copy). Units inferred from that variable.
+    <title>Sensors / Ride Mode / Comms :: FUN_6DEA4 Wheel Speed Limit</title>
+    <description>FUN_6DEA4: sets an interlock flag (fef02292/93) when either wheel speed (fef02634 front, fef02636 rear) is at/above this or grip is at/above the paired grip threshold. Stock 300 km/h = speed never blocks; grip is the real condition.
 
-STOCK (5JCZSJ20): 105.47 deg TP (raw 38400 / 0x9600). ADDRESS 0x18F072, 16-bit.
-CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
+STOCK (5JCZSJ20): 300 km/h (raw 38400 / 0x9600). ADDRESS 0x18F072, 16-bit.</description>
     <CATEGORYMEM index="0" category="89" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18F072" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
