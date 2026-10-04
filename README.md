@@ -12,7 +12,7 @@ rolling anti-lag.
 |---|---|
 | Flash the current race build | [`race-software-sd/current/Hayabusa-5JCZSJ40-race-software-SD-v4.1.bin`](race-software-sd/current/) |
 | Edit the race build in TunerPro | [`race-software-sd/current/…-race-software-SD-v5-test26.xdf`](race-software-sd/current/) |
-| Edit a stock 5JCZSJ10 or 5JCZSJ40 read | [`stock/xdf/Hayabusa-Gen3-5JCZSJ10-stock-v9.xdf`](stock/xdf/) |
+| Edit any stock read | [`stock/xdf/per-read/Hayabusa-Gen3-<software>-stock-v9.xdf`](stock/xdf/per-read/), matching the software number in the read's filename |
 | Fix the checksum after editing | `python3 tools/fix_field1_crc.py tuned.bin` |
 
 ## Layout
@@ -27,18 +27,22 @@ race-software-sd/          custom speed-density + anti-lag build (see its README
 stock/
   reads/                   unmodified 2 MB reads, named <ECM part>-<software>.bin
   reads/other-software/    reads from other software families (see below)
-  xdf/                     stock fuel-strategy XDF v9 and its manifest
+  xdf/                     stock fuel-strategy XDF v9 (master, written for 5JCZSJ10) and its manifest
+  xdf/per-read/            one XDF per stock read, generated from the master by tools/make_stock_xdfs.py
   xdf/history/             stock XDFs v2 to v8 (there is no v6)
 reverse-engineering/       Ghidra project and decompiled C for 5JCZSJ40
 docs/                      RAM variable list, DTC table, decoded index of the SD-v5 XDF
-tools/                     fix_field1_crc.py
+tools/                     fix_field1_crc.py, make_stock_xdfs.py
 ```
 
 ## Stock reads
 
 Every read in `stock/reads/` has byte-identical code (0x10000–0x14FFFF) and a valid field-1 CRC.
-Calibration bytes differ from 5JCZSJ40 by the amounts below. The XDFs were verified on 5JCZSJ10 and
-5JCZSJ40 only; check a map or two before trusting them on the others, especially 5JCZSJB0.
+Every byte that differs between the reads lies inside an item the stock XDF defines (apart from an ID
+string and one variant word, which the per-read XDFs add), so map descriptors, addresses and sizes are
+the same in all of them. Each read has its own XDF in `stock/xdf/per-read/` with that read's stock values;
+items whose data differs from 5JCZSJ10 say so in their description. Calibration bytes differ from 5JCZSJ40
+by the amounts below.
 
 | File | ECM | Software | Calibration bytes different from 5JCZSJ40 |
 |---|---|---|---|
