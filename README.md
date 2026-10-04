@@ -12,7 +12,7 @@ rolling anti-lag.
 |---|---|
 | Flash the current race build | [`race-software-sd/current/Hayabusa-5JCZSJ40-race-software-SD-v4.1.bin`](race-software-sd/current/) |
 | Edit the race build in TunerPro | [`race-software-sd/current/…-race-software-SD-v5-test26.xdf`](race-software-sd/current/) |
-| Edit any stock read | [`stock/xdf/per-read/Hayabusa-Gen3-<software>-stock-v9.xdf`](stock/xdf/per-read/), matching the software number in the read's filename |
+| Edit a stock read | Open the folder for your read under [`stock/`](stock/): it holds the `.bin` and its matching `.xdf` |
 | Fix the checksum after editing | `python3 tools/fix_field1_crc.py tuned.bin` |
 
 ## Layout
@@ -25,11 +25,10 @@ race-software-sd/          custom speed-density + anti-lag build (see its README
   history/bins/            SD-v1 to SD-v4 bins
   history/xdfs/            the XDFs that went with SD-v1/v2, v3 and v4
 stock/
-  reads/                   unmodified 2 MB reads, named <ECM part>-<software>.bin
-  reads/other-software/    reads from other software families (see below)
-  xdf/                     stock fuel-strategy XDF v9 (master, written for 5JCZSJ10) and its manifest
-  xdf/per-read/            one XDF per stock read, generated from the master by tools/make_stock_xdfs.py
-  xdf/history/             stock XDFs v2 to v8 (there is no v6)
+  <ECM>-<software>/        one folder per stock read: <name>.bin and the matching <name>.xdf
+  other-software/          reads from other software families (see below)
+  xdf-master/              stock XDF v9 (full-length master the per-read XDFs are built from) and its manifest
+  xdf-master/history/      stock XDFs v2 to v8 (there is no v6)
 reverse-engineering/       Ghidra project and decompiled C for 5JCZSJ40
 docs/                      RAM variable list, DTC table, decoded index of the SD-v5 XDF
 tools/                     fix_field1_crc.py, make_stock_xdfs.py
@@ -37,25 +36,36 @@ tools/                     fix_field1_crc.py, make_stock_xdfs.py
 
 ## Stock reads
 
-Every read in `stock/reads/` has byte-identical code (0x10000–0x14FFFF) and a valid field-1 CRC.
-Every byte that differs between the reads lies inside an item the stock XDF defines (apart from an ID
-string and one variant word, which the per-read XDFs add), so map descriptors, addresses and sizes are
-the same in all of them. Each read has its own XDF in `stock/xdf/per-read/` with that read's stock values;
-items whose data differs from 5JCZSJ10 say so in their description. Calibration bytes differ from 5JCZSJ40
-by the amounts below.
+Each folder in `stock/` holds one unmodified 2 MB read and the XDF built for it. All eight reads have
+byte-identical code (0x10000–0x14FFFF) and a valid field-1 CRC. Every byte that differs between them lies
+inside an item the XDF defines (apart from an ID string and one variant word, which the XDFs add), so map
+descriptors, addresses and sizes are the same in all of them.
 
-| File | ECM | Software | Calibration bytes different from 5JCZSJ40 |
+Each XDF has 758 tables, 2,801 constants and 163 flags. The VALUES / STOCK line in every description is that
+read's own value, and items whose data differs from 5JCZSJ10 are marked "DIFFERS FROM 5JCZSJ10".
+
+**TunerPro limits.** The SD-v5 race XDF crashed TunerPro on open because of its long, multi-line header; the
+same file with a 490-character header (`test26`) opens, with item descriptions up to 1,372 characters. The
+per-read XDFs stay inside that: single-line headers of about 355 characters and every item description at
+most 1,300 characters. 32 long descriptions are shortened (least important paragraphs first; values, axes and
+addresses are always kept) and say so. The full text is in `stock/xdf-master/`, whose 1,611-character header
+and longer descriptions may be too long for TunerPro, so treat it as reference. Regenerate the per-read XDFs
+with `python3 tools/make_stock_xdfs.py` after changing the master.
+
+Calibration bytes differ from 5JCZSJ40 by the amounts below.
+
+| Folder | ECM | Software | Calibration bytes different from 5JCZSJ40 |
 |---|---|---|---|
-| `32990-10L0x-5JCZSJ00.bin` | 32990-10L0 | 5JCZSJ00 | 22 |
-| `32990-10L1x-5JCZSJ10.bin` | 32990-10L1 | 5JCZSJ10 | 1,032 (stock v9 XDF verified on this read) |
-| `32990-10L2x-5JCZSJ20.bin` | 32990-10L2 | 5JCZSJ20 | 5 |
-| `32990-10L3x-5JCZSJ30.bin` | 32990-10L3 | 5JCZSJ30 | 1,029 |
-| `32990-10L4x-5JCZSJ40.bin` | 32990-10L4 | 5JCZSJ40 | — (base for every SD bin) |
-| `32920-10LAx-5JCZSJA0.bin` | 32920-10LA | 5JCZSJA0 | 18 |
-| `32920-10LBx-5JCZSJB0.bin` | 32920-10LB | 5JCZSJB0 | 123,307 |
-| `32920-10LCx-5JCZSNC0.bin` | 32920-10LC | 5JCZSNC0 | 252 |
+| [`32990-10L0x-5JCZSJ00/`](stock/32990-10L0x-5JCZSJ00/) | 32990-10L0 | 5JCZSJ00 | 22 |
+| [`32990-10L1x-5JCZSJ10/`](stock/32990-10L1x-5JCZSJ10/) | 32990-10L1 | 5JCZSJ10 | 1,032 (stock v9 XDF verified on this read) |
+| [`32990-10L2x-5JCZSJ20/`](stock/32990-10L2x-5JCZSJ20/) | 32990-10L2 | 5JCZSJ20 | 5 |
+| [`32990-10L3x-5JCZSJ30/`](stock/32990-10L3x-5JCZSJ30/) | 32990-10L3 | 5JCZSJ30 | 1,029 |
+| [`32990-10L4x-5JCZSJ40/`](stock/32990-10L4x-5JCZSJ40/) | 32990-10L4 | 5JCZSJ40 | — (base for every SD bin) |
+| [`32920-10LAx-5JCZSJA0/`](stock/32920-10LAx-5JCZSJA0/) | 32920-10LA | 5JCZSJA0 | 18 |
+| [`32920-10LBx-5JCZSJB0/`](stock/32920-10LBx-5JCZSJB0/) | 32920-10LB | 5JCZSJB0 | 123,307 |
+| [`32920-10LCx-5JCZSNC0/`](stock/32920-10LCx-5JCZSNC0/) | 32920-10LC | 5JCZSNC0 | 252 |
 
-`stock/reads/other-software/` holds files the XDFs here do **not** fit:
+`stock/other-software/` holds files the XDFs here do **not** fit:
 
 - `Hayabusa-Gen3-stock-5JCXSJ10.bin` — software 5JCXSJ10, from the original DanCycles HayabusaGen3 project
   (see [NOTICE.md](NOTICE.md)). Roughly 700 KB of code differs from 5JCZSJ10, and the field-1 CRC method

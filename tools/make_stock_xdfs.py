@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
 """Build one stock XDF per Gen 3 Hayabusa read from the master stock v9 XDF.
 
-Every 5JCZSJ* read in stock/reads/ has the same code and calibration layout as 5JCZSJ10
+Every stock/<ECM>-<software>/<ECM>-<software>.bin read has the same code and calibration layout as 5JCZSJ10
 (every byte that differs between the reads lies inside an item the XDF defines), so the
 definitions themselves carry over unchanged. Per read, this script:
 
   - recomputes every "VALUES (stock ...)" line (tables) and "STOCK (...)" line
     (constants and flags) from that read,
-  - adds "THIS READ DIFFERS FROM 5JCZSJ10" to every item whose bytes differ, because the
-    free-text remarks ("flat in stock", "stock 255", ...) were written for 5JCZSJ10,
+  - marks every item whose bytes differ from 5JCZSJ10, because the free-text remarks
+    ("flat in stock", "stock 255", ...) were written for 5JCZSJ10,
   - adds two items the master does not define: the ECM ID string at 0x1FFAE4 and the
     variant word at 0x1B957C (both differ between reads),
-  - writes a short per-read header (long header text crashes TunerPro).
+  - keeps every description within what TunerPro is known to open (see LIMITS below),
+  - writes the XDF next to the read: stock/<name>/<name>.xdf.
 
 The file is edited as text, so formatting and element order stay exactly as in the master.
 
@@ -25,10 +26,21 @@ import xml.etree.ElementTree as ET
 from html import escape
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-MASTER = os.path.join(ROOT, 'stock/xdf/Hayabusa-Gen3-5JCZSJ10-stock-v9.xdf')
-REF_BIN = os.path.join(ROOT, 'stock/reads/32990-10L1x-5JCZSJ10.bin')
-OUT_DIR = os.path.join(ROOT, 'stock/xdf/per-read')
+MASTER = os.path.join(ROOT, 'stock/xdf-master/Hayabusa-Gen3-5JCZSJ10-stock-v9.xdf')
+REF_BIN = os.path.join(ROOT, 'stock/32990-10L1x-5JCZSJ10/32990-10L1x-5JCZSJ10.bin')
 REF_SW = '5JCZSJ10'
+
+# LIMITS - from the race XDFs: SD-v5 (2,373-char header with line breaks) crashed TunerPro on open;
+# test26 (same items, 490-char single-line header, item descriptions up to 1,372 chars) opens.
+# Stay inside what test26 proves.
+HEADER_MAX = 480
+DESC_MAX = 1300
+SHORTENED = ' [Shortened for TunerPro - full text in stock/xdf-master.]'
+DIFFERS = 'DIFFERS FROM 5JCZSJ10 in this read: free-text "stock" remarks above describe 5JCZSJ10.'
+# paragraphs dropped first, then trimmed, when a description is too long
+DROP_FIRST = ('CONFIDENCE', 'Previous title')
+TRIM_ORDER = ('HOW THE ECU USES IT', 'TUNING NOTES')
+KEEP = ('VALUES', 'STOCK', 'AXES', 'REFERENCE', 'ADDRESS', 'DIFFERS FROM')
 
 BLOCK = re.compile(r'(  <(XDFTABLE|XDFCONSTANT|XDFFLAG) uniqueid="(0x[0-9A-Fa-f]+)".*?</\2>\n)', re.S)
 
@@ -132,22 +144,52 @@ def rewrite_desc(desc, kind, el, b, sw, differs):
             continue
     out = '\n'.join(lines)
     if differs:
-        out += ('\n\nTHIS READ DIFFERS FROM %s for this item. Any free-text "stock" remark above '
-                '(e.g. "flat in stock") describes %s; the VALUES / STOCK line is this read.' % (REF_SW, REF_SW))
-    return out
+        out += '\n\n' + DIFFERS
+    return compact(out)
+
+
+def _trim(text, n):
+    if n <= 0:
+        return ''
+    if len(text) <= n:
+        return text
+    cut = text[:max(0, n - 3)].rsplit(' ', 1)[0]
+    return cut + '...'
+
+
+def compact(desc):
+    if len(desc) <= DESC_MAX:
+        return desc
+    paras = desc.split('\n\n')
+    budget = DESC_MAX - len(SHORTENED)
+    size = lambda ps: len('\n\n'.join(p for p in ps if p))
+    for prefix in DROP_FIRST:
+        if size(paras) <= budget:
+            break
+        paras = [p for p in paras if not p.startswith(prefix)]
+    for prefix in TRIM_ORDER:
+        over = size(paras) - budget
+        if over <= 0:
+            break
+        for i, p in enumerate(paras):
+            if p.startswith(prefix):
+                paras[i] = _trim(p, len(p) - over) if len(p) - over > len(prefix) + 20 else ''
+                break
+    over = size(paras) - budget
+    if over > 0:  # last resort: trim the longest free-text paragraph
+        i = max((i for i, p in enumerate(paras) if not p.startswith(KEEP)), key=lambda i: len(paras[i]))
+        paras[i] = _trim(paras[i], len(paras[i]) - over)
+    out = '\n\n'.join(p for p in paras if p)
+    return out + SHORTENED
 
 
 def header(sw, part, n_diff):
-    return (
-        'Suzuki Hayabusa Gen 3 (RH850/E1L), full 2 MB read, software %s (ECM %s). Stock fuel strategy '
-        '(IAP vacuum / TPS blend), no patches. Built from the stock v9 XDF (verified on 5JCZSJ10): this read '
-        'has identical code, and every byte that differs from 5JCZSJ10 lies inside an item defined here, so all '
-        'addresses, sizes and axes are the same. VALUES / STOCK lines are recomputed from this read; %d items '
-        'differ from 5JCZSJ10 and say so in their description. Scales: RPM = X/2.56; throttle/grip deg = X/364.08; '
-        'kPa = (X-7862)/393.14; 8-bit temp C = X*0.9375-30; ignition deg = (X-64)*0.3516; trims above 64 = RETARD; '
-        'km/h = X/128. Re-stamp the field-1 CRC after editing: python3 tools/fix_field1_crc.py. Field 3 (0x1FFEF8) '
-        'is not handled. AUTO-DEFINED items come from code cross-references; log before changing them.'
-        % (sw, part, n_diff))
+    h = ('Hayabusa Gen 3 stock read %s (ECM %s), stock fuel strategy, no patches. Values in descriptions are '
+         'from this read; %d items are marked DIFFERS FROM 5JCZSJ10. RPM=X/2.56, deg=X/364.08, '
+         'kPa=(X-7862)/393.14, C=X*0.9375-30, ign=(X-64)*0.3516. Re-stamp field-1 CRC after editing '
+         '(tools/fix_field1_crc.py). AUTO-DEFINED items: log before changing.' % (sw, part, n_diff))
+    assert len(h) <= HEADER_MAX and '\n' not in h, len(h)
+    return h
 
 
 NEW_ITEMS = '''  <XDFTABLE uniqueid="0xC00D" flags="0x0">
@@ -249,17 +291,25 @@ def build(master_text, ref, b, sw, part):
     return text, n_diff
 
 
+def check(root):
+    h = root.find('XDFHEADER').findtext('description')
+    assert len(h) <= HEADER_MAX and '\n' not in h
+    for e in root:
+        if e.tag in ('XDFTABLE', 'XDFCONSTANT', 'XDFFLAG'):
+            d = e.findtext('description') or ''
+            assert len(d) <= DESC_MAX, (e.findtext('title'), len(d))
+
+
 def main():
     master_text = open(MASTER, encoding='utf-8').read()
     ref = open(REF_BIN, 'rb').read()
-    os.makedirs(OUT_DIR, exist_ok=True)
-    for path in sorted(glob.glob(os.path.join(ROOT, 'stock/reads/*-5JCZ*.bin'))):
+    for path in sorted(glob.glob(os.path.join(ROOT, 'stock/*-5JCZ*/*-5JCZ*.bin'))):
         name = os.path.basename(path)[:-4]
         part, sw = name.split('-', 2)[0] + '-' + name.split('-', 2)[1][:-1], name.split('-', 2)[2]
         b = open(path, 'rb').read()
         text, n_diff = build(master_text, ref, b, sw, part)
-        ET.fromstring(text)  # must still be valid XML
-        out = os.path.join(OUT_DIR, 'Hayabusa-Gen3-%s-stock-v9.xdf' % sw)
+        check(ET.fromstring(text))  # valid XML, every description within LIMITS
+        out = path[:-4] + '.xdf'
         open(out, 'w', encoding='utf-8').write(text)
         print('%-10s %-11s %4d items differ from %s -> %s' % (sw, part, n_diff, REF_SW, os.path.relpath(out, ROOT)))
 

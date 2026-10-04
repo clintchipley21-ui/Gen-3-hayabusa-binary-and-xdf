@@ -1,6 +1,6 @@
 # Third-party notice
 
-`stock/reads/other-software/Hayabusa-Gen3-stock-5JCXSJ10.bin` comes from the HayabusaGen3 project by
+`stock/other-software/Hayabusa-Gen3-stock-5JCXSJ10.bin` comes from the HayabusaGen3 project by
 DanCycles, released under the MIT License:
 
 ```
