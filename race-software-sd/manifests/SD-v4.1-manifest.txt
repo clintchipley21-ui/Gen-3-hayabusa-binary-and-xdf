@@ -1,0 +1,45 @@
+SPEED-DENSITY v4.1 + ROLLING ANTI-LAG  —  Hayabusa-5JCZSJ40-race-software-SD-v4.1.bin   (built on SD-v4)
+UNVERIFIED ON HARDWARE. Bench ECM first. Keep the stock read for recovery.
+Use with: Hayabusa-Gen3-5JCZSJ40-5JCZSJ10-race-software-SD-v5-test26.xdf (opens in TunerPro; same definitions as
+          SD-v5 with the header description shortened, since the full one crashes TunerPro)
+SHA-256: 5af12da86686cd6441b1d8a319f99bd2b92521daf50c4d3f762eedeebc6fa7c0
+================================================================================
+
+CHANGES vs SD-v4 (6 bytes; all listed)
+ 1. ALS SHIPS DISABLED
+    0xBF000  80 -> 00   "ALS Enable". Any value other than 0x80 disables ALS (ALS_TICK disarms
+                        every tick, ALS_LIMIT falls through to the stock 11,900/12,000 rpm limiter).
+    Bench boot and idle run with ALS off. Set back to 0x80 in the XDF once the bike idles
+    cleanly, then re-stamp field 1 (fix_field1_crc.py).
+
+ 2. ALS MAX-TIME IS NOW CUMULATIVE PER START-BUTTON PRESS
+    0xBE096  6A 07 04 00 (st.h r0, 4[r10]) -> 00 00 00 00 (nop; nop)
+    In SD-v4 every capture zeroed the active-time counter, so rolling the grip below the release
+    angle and re-opening gave a fresh 10 s each time: fuel-on spark cut could run indefinitely.
+    Now the counter is zeroed only in the disarm path (START released, speed below min, ECT below
+    min, or ALS disabled). Active time adds up across re-captures; at "ALS Max Active Time"
+    (2000 ticks, ~10 s) ALS latches off until START is released.
+    Nothing else in ALS_TICK changes. The capture path still stores the clamped RPM and sets the
+    active bit.
+
+ 3. Field-1 CRC-16/CCITT-FALSE re-stamped: 0xD834 -> 0xD153 (verified).
+    Field 3 (0x1FFEF8) still not recomputed (same as every SD bin).
+
+HARNESS (als_harness.s) EXPECTATIONS THAT CHANGE
+ - Scenario 8 (re-capture after grip release): timer no longer returns to 0; it continues from
+   the value it had at release.
+ - Timeout test: unchanged when run straight through. A new useful case: capture, release by grip,
+   re-capture, and confirm the latch fires when the total reaches C_TMAX.
+ - Every scenario now needs ALS Enable set to 0x80 in the test image (the bin ships with 0x00).
+
+STILL TO VERIFY ON THE BENCH (unchanged from SD-v4)
+ - CKTEST boots (field-3 not enforced).
+ - 5 ms task period (times the 10 s limit).
+ - Key-on raw IAP ADC x 0.307429 - 12.6 = baro.
+ - Full grip reads >= 90 deg at fef025ec (else ALS never captures; lower "ALS Capture Grip Angle").
+
+ECU VARIANT NOTE
+ This bin, like all SD bins, is built on 5JCZSJ40 (32990-10L4). 5JCZSJ10 (10L1) differs in more
+ than ID bytes: "ETV Limit A | Neutral, Gears 1-2" (0x1A4708) differs in 559 of 897 cells
+ (5JCZSJ40 lower in 473), plus ride-mode variant thresholds and meter options. On a 10L1 bike,
+ flashing this bin also changes neutral/1st/2nd throttle limiting.

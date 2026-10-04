@@ -1,0 +1,82 @@
+HAYABUSA GEN 3  -  5JCZSJ10 (ECM 32990-10L1x)  -  STOCK FUEL STRATEGY XDF v9
+File: Hayabusa-Gen3-5JCZSJ10-stock-v9.xdf      Bin: 32990-10L1x - 5JCZSJ10.bin (2 MB read)
+================================================================================
+
+WHAT THIS IS
+ A complete TunerPro definition for the stock 5JCZSJ10 read, built from the SD-v5 knowledge base
+ with every speed-density / anti-lag item removed or restored to its stock definition. Fueling is
+ Suzuki's own IAP(vacuum) x TPS blended strategy, untouched. No code patches. Bin is not modified.
+
+VERIFICATION DONE ON 5JCZSJ10
+ - All 749 map descriptors in the bin parsed and checked against the XDF: data address, X/Y axis
+   address, row/column counts and 8/16-bit sizes. 0 mismatches (747 + the 2 injector deadtime curves).
+ - 5JCZSJ10 vs 5JCZSJ40: identical code and calibration layout (all map/code addresses the same).
+   The only calibration differences are the Market Variant bytes already in the XDF, ID strings,
+   and the field-1/field-3 check data. So this XDF also opens a stock 5JCZSJ40 read.
+ - Every table's "VALUES" line and every constant's "STOCK" line recomputed from the 5JCZSJ10 read.
+ - Field-1 CRC-16/CCITT-FALSE confirmed on this bin (stored 0x7DA2 = computed 0x7DA2).
+ - XML valid, no duplicate IDs, every address inside the 2 MB image, no new overlapping definitions.
+ - Coverage: of the 3,834 calibration addresses the code reads directly, all READ accesses are now
+   defined. What is left is pointer tables / structure bases (DATA references), not tunable values.
+
+COUNTS
+ 757 tables, 2,800 constants, 163 flags.
+   hand-decoded (v9):              154 constants + 3 new tables (decel fuel-cut x2, adaptive trim defaults)
+   DTC monitor enable switches:     82 (cover the 111 DTCs that have an enable byte; 20 more are hard-enabled in code)
+   DTC monitor thresholds:         135 (each tied to its DTC by code - role auto-described)
+   other code-read scalars:      2,292 (AUTO-DEFINED, grouped "Scalars - <subsystem>")
+   switches/toggles (0x80 = ON):   184 also listed under "Switches & Toggles (0x80 = ON)"
+
+REMOVED / RESTORED FROM THE SD XDF
+ - Removed: ALS calibration (0xBF000 block - 0xFF in a stock bin), legacy 8x8 "Deceleration Fuel Cut"
+   block (wrong layout - replaced, see below), duplicate P0444 flag.
+ - Restored to stock definitions: 8 IAP fuel maps (X = manifold VACUUM kPa, 78 -> 0), both Trim B maps
+   (X = throttle angle), Trim B enable weight, blend threshold curve, WOT gate, neutral/clutch gate,
+   IAP/AP sensor gain/offset, IAP circuit DTC thresholds. Descriptions rewritten for stock values.
+ - Kept from SD work because it is true for the stock strategy: injector K / flow trims / deadtimes /
+   pulsewidth clamps, trim polarity (above 64 = RETARD), max-of-retards behaviour, starter thresholds,
+   sensor transfer formulas, field-1 CRC.
+
+HOW THE STOCK FUEL STRATEGY WORKS (what to tune, in order)
+ base fuel = IAP_map x (256 - w) + TPS_map x w            (FUN_453B8 / FUN_491BC)
+  - w = 0 below "Fuel Blend - MAP->Throttle Threshold (vs RPM)" (stock 15.0 deg @1200 rpm .. 38.2 deg
+    @10800 rpm), ramps to 256 over 16<<6 counts = 2.8 deg ("Fuel Blend :: MAP->Throttle Ramp Width"),
+    forced to 256 at/above the WOT gate (91.4 deg, held 4 cycles after you drop below it).
+  - So: idle / cruise / part throttle = "IAP - In Gear | Cyl 1-4" (vacuum x rpm);
+        bigger openings and WOT = "TPS - In Gear | Cyl 1-4" (throttle x rpm).
+  - Neutral or clutch pulled (after 3 cycles, vacuum >= 0 kPa) = the Neutral/Clutch-In IAP/TPS maps.
+  - Sensor fault limp-home forces w = 256 (TPS maps).
+ Then corrections multiply in (FUN_45C18): ECT warm-up, afterstart (3 stages), IAT density, baro,
+ per-gear enrichment (TP >= 77.3 deg), accel enrichment, HO2 closed loop + adaptive trims, decel cut.
+ Injector time = deadtime(Vbatt) + fuel x (K-400)/200, clamped 250..25000 us.
+
+NEW, HAND-DECODED GROUPS WORTH KNOWING
+ Fuel Strategy Switches & Gates (stock): blend curve, WOT gate, ramp width, WOT release delay,
+   neutral/clutch gates, base fuel calculation mode (leave 0x80).
+ Decel Fuel Cut :: Resume / Cut RPM (Gear x Cylinder) - real layout, 8 rows (neutral, 1st-6th,
+   clutch-in) x 4 cylinders, plus cold-engine pairs, cold ECT switch, max RPM.
+ Afterstart / Accel enrichment / Adaptive fuel trim (restore mode, valid range, defaults, learn sets).
+ Cooling fan: main ON 100.3 C / OFF 94.7 C, stage-2 109.7/105 C, plus two more ECT paths, delays.
+ Gear position sensor in-gear windows (V) and RPM/speed ratio gear-calc windows (change with sprockets).
+ Starter relay engage < 500 rpm, drop-out 1000 rpm.
+
+DIAGNOSTICS
+ - "Diagnostics - Monitor Enables (DTC on/off)": one flag per enable byte (0x80 = monitor runs).
+   Unticking stops the monitor itself (no code, no lamp, no fail-safe for that fault). 10L1 already ships
+   with EVAP, oil temp/pressure, PAIR system, fuel-system (lean/rich), several range/performance and
+   misfire monitors OFF. Safety monitors (APS/TPS, CKP/CMP, ECM, EEPROM, oil pressure, CAN) carry a warning.
+ - "Diagnostics - DTC Lamp Control": lamp-only toggles (unchanged from v8/SD-v5).
+ - "Diagnostics - Monitor Thresholds (per DTC)": the limits/debounce counts each monitor reads.
+   For a race bike with the O2 sensors / PAIR / exhaust valve removed, switch those monitors OFF here
+   rather than editing thresholds.
+
+AUTO-DEFINED ITEMS - READ THIS
+ Anything whose description says "AUTO-DEFINED" was generated from the code cross-reference: the address,
+ width, signedness, reading function and the decompiled line that uses it are exact; the name and the
+ inferred unit are best-effort (taken from the RAM variable it is compared with). Treat them as a map of
+ what exists. Log before you change one, and change one thing at a time.
+
+FLASHING NOTES
+ - Re-stamp field-1 CRC after editing: python3 fix_field1_crc.py tuned.bin
+ - Field 3 (0x1FFEF8) is not recomputed by anything here (same status as every earlier bin).
+ - Keep the stock read for recovery.

@@ -1,0 +1,6 @@
+# ECU images and archives: never diff or normalise line endings
+*.bin binary
+*.ori binary
+*.zip binary
+# XDFs are XML but multi-megabyte; keep them byte-exact and out of text diffs
+*.xdf -text -diff linguist-generated

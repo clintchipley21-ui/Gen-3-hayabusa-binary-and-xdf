@@ -1,0 +1,483 @@
+uid,new_title,confidence,what_it_does,previous_title
+0x1001,Quickshifter :: GP-Sensor Upshift Window A Offset vs Gear,MEDIUM,FUN_2A696: fef00974 = GP target fef009CC + this curve(gear). Upper GP-sensor window used to detect an upshift in progress.,Gear :: Curve [Gear] 7pt FUN_2a696 #005
+0x1002,Quickshifter :: Upshift Sensor Threshold Low vs RPM x Gear | QS Mode 2 (flat),MEDIUM,FUN_2A6E8 (QS mode fef026D8=2 set): lower trigger threshold for the gearshift-sensor load signal fef02666. Flat in stock.,Gear :: Map [RPM x Gear] 14x7 FUN_2a6e8 #006 (flat)
+0x1003,Quickshifter :: Upshift Sensor Threshold Low vs RPM x Gear | QS Mode 1,MEDIUM,"FUN_2A6E8: gearshift-sensor signal fef02666 must be below this (or above the High map) to request an upshift; QS mode 1 (stiffer, longer stroke).",Gear :: Map [RPM x Gear] 14x7 FUN_2a6e8 #008
+0x1004,Quickshifter :: Upshift Sensor Threshold High vs RPM x Gear | QS Mode 1,MEDIUM,"FUN_2A6E8: upper gearshift-sensor trigger threshold, QS mode 1.",Gear :: Map [RPM x Gear] 14x7 FUN_2a6e8 #00A
+0x1005,Quickshifter :: Upshift Sensor Threshold High vs RPM x Gear | QS Mode 2,MEDIUM,"FUN_2A6E8: upper gearshift-sensor trigger threshold, QS mode 2 (lighter, shorter stroke).",Gear :: Map [RPM x Gear] 14x7 FUN_2a6e8 #00C
+0x1006,Quickshifter :: GP-Sensor Upshift Window B Offset vs Gear,MEDIUM,FUN_2A696: fef0097A = fef009CC + this curve(gear). Second upshift GP window (phase 1->2 boundary in FUN_2AAAC).,Gear :: Curve [Gear] 7pt FUN_2a696 #00E
+0x1007,Quickshifter :: GP-Sensor Upshift Window C Offset vs Gear,MEDIUM,FUN_2AA62: fef0097C = fef009CC + curve(gear); phase 2->3 boundary for upshift in FUN_2AAAC.,Gear :: Curve [Gear] 7pt FUN_2aa62 #00F
+0x1008,Quickshifter :: Upshift Detect Reference vs Gear,LOW,FUN_2A6E8: per-gear reference read at the start of upshift detection (curve 0x150994).,Gear :: Curve [Gear] 7pt FUN_2a6e8 #010
+0x1009,Quickshifter :: Upshift Minimum RPM vs Gear,MEDIUM,"FUN_2A952: an upshift request is accepted only if RPM fef0258E is above this value for the current gear (not neutral, not 6th).",Gear :: Curve [Gear] 7pt FUN_2a952 #011
+0x100A,Quickshifter :: Downshift Minimum RPM vs Gear (flat),LOW,FUN_2AD8E: downshift detection reference per gear. Flat in stock.,Gear :: Curve [Gear] 7pt FUN_2ad8e #012 (flat)
+0x100B,Quickshifter :: Downshift Enable RPM vs Gear (flat),MEDIUM,"FUN_2AFB6: downshift request allowed only above this RPM (not neutral, not 1st). Flat in stock.",Gear :: Curve [Gear] 7pt FUN_2afb6 #013 (flat)
+0x100C,Quickshifter :: Upshift Phase Timeout vs RPM (flat),MEDIUM,FUN_2AAAC: upshift phase counter fef0099E; when it reaches this value the upshift sequence ends (phase 4). Flat 1 in stock.,Cluster A :: Curve [RPM] 14pt FUN_2aaac #014 (flat)
+0x100D,Quickshifter :: GP-Sensor Downshift Window A Offset vs Gear,MEDIUM,FUN_2AD3C: fef0097E = fef009CC - curve(gear). Downshift detection window.,Gear :: Curve [Gear] 7pt FUN_2ad3c #015
+0x100E,Quickshifter :: GP-Sensor Downshift Window B Offset vs Gear,MEDIUM,FUN_2AD3C: fef00980 = fef009CC - curve(gear).,Gear :: Curve [Gear] 7pt FUN_2ad3c #016
+0x100F,Quickshifter :: GP-Sensor Downshift Window C Offset vs Gear,MEDIUM,FUN_2B0C4: fef00982 = fef009CC - curve(gear).,Gear :: Curve [Gear] 7pt FUN_2b0c4 #017
+0x1010,Quickshifter :: Downshift Phase Timeout vs RPM (flat),MEDIUM,FUN_2B10E: downshift phase counter fef009A0 end value. Flat 1 in stock.,Cluster A :: Curve [RPM] 14pt FUN_2b10e #018 (flat)
+0x1011,Quickshifter :: GP-Sensor Deviation Abort Threshold vs Gear (flat 65535),MEDIUM,"FUN_2B3B6: fef009AC = curve(gear); if |GP target - GP sensor| exceeds it during a shift, flag fef009AF bit5 (shift fault/abort). 65535 = disabled.",Gear :: Curve [Gear] 7pt FUN_2b3b6 #019 (flat)
+0x1012,Quickshifter :: Upshift Retard Ramp-Out Rate vs RPM,HIGH,FUN_2B838: phase 4 - retard fef009B3 decreases by this amount per step back to 64 (0 deg).,Cluster A :: Curve [RPM] 14pt FUN_2b838 #01A
+0x1013,Quickshifter :: Downshift Retard Ramp-Out Rate vs RPM (flat),HIGH,FUN_2B982: downshift phase 4 retard ramp-out step.,Cluster A :: Curve [RPM] 14pt FUN_2b982 #01B (flat)
+0x1014,Rev Limiter :: Hot-Engine Limiter Delay vs ECT,MEDIUM,"FUN_2C7E8: with ECT inside the 0x154449-0x15444A window, a counter must exceed this curve(ECT) before fef00A1E bit4 is set (selects the alternate neutral limiter pair 0x1542CC/CE).",ECT Comp :: Curve [ECT] 13pt FUN_2c7e8 #01C
+0x1017,Pitch Control :: Throttle-Based Pitch Limit Curve,LOW,"FUN_2937E: fef00934 = this curve (31 pt, input = TP angle). Used in FUN_29480 with the gear gain (fef00940) and setting gain (fef00941) to build the pitch-control intervention.",Cluster A :: Curve [TP] 31pt FUN_2937e #01F
+0x1018,Pitch Control :: Gear Gain (flat 80),MEDIUM,FUN_29414: fef00940 = curve(gear). Multiplies the pitch term in FUN_29480. Flat in stock.,Gear :: Curve [Gear] 7pt FUN_29414 #020 (flat)
+0x1019,Pitch Control :: Speed Limit Curve (flat),LOW,"FUN_29582: base limit vs wheel speed (fef00938, fef02642); combined with the level curve to make fef0093A. Flat in stock.",Cluster A :: Curve [Speed] 36pt FUN_29582 #021 (flat)
+0x101D,Anti-Lift :: Pitch-Angle Reference Curve (stage 1),LOW,FUN_29E3A: fef00962 = curve(fef00960 = fef00952 - IMU fef02688 + 0x8000). Feeds stage 2 (FUN_29E7C).,Cluster A :: Curve [?] 30pt FUN_29e3a #025
+0x101E,Anti-Lift :: Pitch-Angle Correction Curve (stage 2),LOW,"FUN_29E7C: fef00966 = curve(fef00962 - IMU fef02684 + 0x8000) when wheel-speed data valid, else 0x154348.",Cluster A :: Curve [RAM_fef00964] 30pt FUN_29e7c #026
+0x1020,Cruise Control :: Cancel-Switch Plausibility Low Limit vs Speed (flat 0),MEDIUM,FUN_2F9CE: lower limit for grip/APS-derived signal fef02682 vs wheel speed in the cruise cancel-switch plausibility check (switch fef023BE bit5). Flat in stock.,Cluster A :: Curve [WhlSpd] 36pt FUN_2f9ce #028 (flat)
+0x1021,Cruise Control :: Cancel-Switch Plausibility High Limit vs Speed (flat),MEDIUM,FUN_2F9CE: upper limit counterpart.,Cluster A :: Curve [WhlSpd] 36pt FUN_2f9ce #029 (flat)
+0x1022,Cruise Control :: Cancel-Switch Stuck Time Limit vs Speed (flat 65535),MEDIUM,FUN_2FB2E: counter fef00ACA of switch held while moving; at this limit flag fef00ADE bit2 (stuck). 65535 = disabled.,Cluster A :: Curve [WhlSpd] 36pt FUN_2fb2e #02A (flat)
+0x1023,Cruise Control :: Cancel-Switch 2 Plausibility Low Limit vs Speed (flat),MEDIUM,FUN_2FBA8: as FUN_2F9CE for the second cancel contact (fef023BE bit6).,Cluster A :: Curve [WhlSpd] 36pt FUN_2fba8 #02B (flat)
+0x1024,Cruise Control :: Cancel-Switch 2 Plausibility High Limit vs Speed (flat 65535),MEDIUM,FUN_2FBA8 upper limit.,Cluster A :: Curve [WhlSpd] 36pt FUN_2fba8 #02C (flat)
+0x1025,Cruise Control :: Accel Rate Gain vs Throttle Step (up),MEDIUM,FUN_2DDE8: fef00A02 = curve(fef00A89) x fef00A0C / 1000 - target-speed ramp-up step for RES/+ in the cruise state machine.,Cluster A :: Curve [RAM_fef00a89] 7pt FUN_2dde8 #02D
+0x1026,Cruise Control :: Accel Rate Gain vs Throttle Step (down),MEDIUM,FUN_2DDE8: fef00A04 = curve(fef00A89) x fef00A0C / 1000 - target-speed ramp-down step.,Cluster A :: Curve [RAM_fef00a89] 7pt FUN_2dde8 #02E
+0x1027,Cruise Control :: Max Set Speed vs Gear (flat),MEDIUM,FUN_2E3EC: fef00A64 = curve(gear); clamp limits for cruise / active speed limiter set speed.,Gear :: Curve [Gear] 7pt FUN_2e3ec #02F (flat)
+0x1028,Cruise Control :: Min Set Speed vs Gear (flat),MEDIUM,FUN_2E3EC: fef00A62/A66 lower set-speed limits per gear.,Gear :: Curve [Gear] 7pt FUN_2e3ec #030 (flat)
+0x1029,Cruise Control :: Set-Speed Default vs Gear (flat),LOW,FUN_2D538 (cruise engage): base set-speed / gain per gear (0x150DC0). Flat in stock.,Gear :: Curve [Gear] 7pt FUN_2d538 #031 (flat)
+0x102A,Cruise Control :: Set Speed Limit (unit B) vs Gear (flat),MEDIUM,FUN_2E3EC: fef00A68 limit for the alternate speed unit (km/h vs mph flag fef023BE bit0).,Gear :: Curve [Gear] 7pt FUN_2e3ec #032 (flat)
+0x102B,Cruise Control :: Speed Correction (per mille) vs Set Speed,MEDIUM,FUN_2F046: fef009FA = set speed x (1000 + curve)/1000 - speedometer correction applied to cruise target.,Cluster A :: Curve [RAM_fef00a00] 14pt FUN_2f046 #033
+0x102C,Quickshifter :: Max Load vs RPM x Final Ignition,LOW,"FUN_2A5B8: fef00972 = map(RPM, final ignition fef01567). If throttle fef025FE > map value (or fault) a debounce clears fef009AE bit2, otherwise sets it. Used as a timing/load plausibility flag for the quickshift logic.",Cluster A :: Map [RPM x IgnFinal] 14x10 FUN_2a5b8 #034
+0x102D,Quickshifter :: Upshift Max Duration vs RPM x Gear,MEDIUM,FUN_2B5DA: upshift active counter fef00986 limit (counts); exceeding it ends the cut (fef009AF bit6).,Gear :: Map [RPM x Gear] 14x7 FUN_2b5da #036
+0x102E,Quickshifter :: Downshift Max Duration vs RPM x Gear,MEDIUM,FUN_2B5DA: downshift active counter fef00988 limit.,Gear :: Map [RPM x Gear] 14x7 FUN_2b5da #038
+0x102F,Quickshifter :: Upshift Ignition Retard Phase 1 vs RPM x TP,HIGH,FUN_2B76C: in upshift phase 1 (fef00A13=1) fef009B0 = this map -> fef00A15 (QS retard request into the MAX-of-retards selector). >64 = retard (X-64)*0.3516 deg.,Cluster A :: Map [RPM x TP] 14x8 FUN_2b76c #03A
+0x1030,Quickshifter :: Upshift Ignition Retard Phase 2 vs RPM x TP,HIGH,FUN_2B7B0: upshift phase 2 retard -> fef00A15.,Cluster A :: Map [RPM x TP] 14x8 FUN_2b7b0 #03C
+0x1031,Quickshifter :: Upshift Ignition Retard Phase 3 vs RPM x TP,HIGH,FUN_2B7F4: upshift phase 3 retard -> fef00A15.,Cluster A :: Map [RPM x TP] 14x8 FUN_2b7f4 #03E
+0x1032,Quickshifter :: Downshift Ignition Retard Phase 1 vs RPM x TP,HIGH,FUN_2B8B6: downshift phase 1 (fef00A14=1) -> fef00A15. 64 = no retard.,Cluster A :: Map [RPM x TP] 14x8 FUN_2b8b6 #040
+0x1033,Quickshifter :: Downshift Ignition Retard Phase 2 vs RPM x TP,HIGH,FUN_2B8FA: downshift phase 2 -> fef00A15.,Cluster A :: Map [RPM x TP] 14x8 FUN_2b8fa #042
+0x1034,Quickshifter :: Downshift Ignition Retard Phase 3 vs RPM x TP,HIGH,FUN_2B93E: downshift phase 3 -> fef00A15.,Cluster A :: Map [RPM x TP] 14x8 FUN_2b93e #044
+0x1036,Pitch Control :: Setting Gain vs |Pitch| x SDMS Field-3 Level (flat 64),MEDIUM,"FUN_29438: fef00941 = map(|pitch fef0268C|, level fef026D5). 64 = 1.0 gain in FUN_29480. Flat in stock.",Cluster A :: Map [? x RAM_fef026d5] 13x11 FUN_29438 #048 (flat)
+0x1038,Launch Control :: Post-Launch RPM Margin (vs RPM),MEDIUM,FUN_28A16: fef00714 = RPM(fef02642) - this curve. FUN_28A42/FUN_28B50 compare filtered RPM against fef00714 during the launch release phase. Flat (1280 raw = 500 rpm) in stock.,Cluster A :: Curve [RAM_fef02642] 16pt FUN_28a16 #04C (flat)
+0x1039,Launch Control :: Release Phase-Out Duration (vs launch counter x speed counter),MEDIUM,"FUN_28AC4: once LC releases (fef00725 bit3), fef00708 = this map(launch progress fef00704>>8, wheel-speed counter fef00716) << 8; FUN_28B08 ends the phase-out when the elapsed count fef0070C reaches it.",Cluster A :: Map [? x RAM_fef00716] 5x5 FUN_28ac4 #04D
+0x103A,Engine Brake Control :: Throttle Opening vs RPM x EB Level (neutral / clutch / decel-entry),MEDIUM,"FUN_290EA: used when the in-gear decel condition (FUN_2924C) is false, or in neutral/clutch for up to 0x154492 counts. X = RPM, Y = EB level fef026D6 (SDMS field 4). Output fef009E2 = throttle-valve opening request (X/364.08 deg; max ~15 deg).",Cluster A :: Map [RPM x RAM_fef026d6] 39x4 FUN_290ea #04F
+0x103B,Engine Brake Control :: Throttle Opening vs RPM x Gear | EB Level 1,MEDIUM,FUN_290EA when decelerating in gear (FUN_2924C=1) with EB level fef026D6=1: throttle-valve opening request fef009E2 (X/364.08 deg) that reduces engine braking. Paired retard map #057 -> fef00A16.,Gear :: Map [RPM x Gear] 39x7 FUN_290ea #051
+0x103C,Engine Brake Control :: Throttle Opening vs RPM x Gear | EB Level 2,MEDIUM,"As EB Level 1 table, used when fef026D6=2.",Gear :: Map [RPM x Gear] 39x7 FUN_290ea #053
+0x103D,Engine Brake Control :: Throttle Opening vs RPM x Gear | EB Level 3,MEDIUM,"As EB Level 1 table, used when fef026D6=3 (higher level = less engine braking).",Gear :: Map [RPM x Gear] 39x7 FUN_290ea #055
+0x103E,"Engine Brake Control :: Ignition Trim vs RPM x Gear | EB Level 1 (unused, 64)",MEDIUM,"FUN_290EA paired map -> fef00A16, one of the retard requests in the MAX-of-retards selector (FUN_5171C). 64 = 0 deg; stock flat.",Gear :: Map [RPM x Gear] 39x7 FUN_290ea #057 (flat)
+0x103F,"Engine Brake Control :: Ignition Trim vs RPM x Gear | EB Level 2 (unused, 64)",MEDIUM,"As Level 1 trim, EB level 2.",Gear :: Map [RPM x Gear] 39x7 FUN_290ea #059 (flat)
+0x1040,"Engine Brake Control :: Ignition Trim vs RPM x Gear | EB Level 3 (unused, 64)",MEDIUM,"As Level 1 trim, EB level 3.",Gear :: Map [RPM x Gear] 39x7 FUN_290ea #05B (flat)
+0x1041,Pitch Control :: Lift-Detect Throttle Threshold vs Speed (A),LOW,FUN_2CE16: curve(TP fef02636) compared with RPM-rise fef009F2-fef009F0 to detect front-wheel lift; with pitch fef0268C below 0x15438A sets the lift flag (FUN_29A4C).,Cluster A :: Curve [Speed] 37pt FUN_2ce16 #05D
+0x1042,Pitch Control :: Lift-Detect Throttle Threshold vs Speed (B),LOW,FUN_2CE16: second threshold; |TP difference| below it (or acceleration high) clears lift detection.,Cluster A :: Curve [Speed] 37pt FUN_2ce16 #05E
+0x1043,Cruise Control :: Throttle Feed-Forward vs Target Angle,LOW,FUN_2D0F0: fef00A38 = curve(fef00A3E); fef00A3A = curve + gain x (fef00A3E - fef02638). Cruise throttle command shaping.,Cluster A :: Curve [RAM_fef00a3e] 36pt FUN_2d0f0 #05F
+0x1044,Wheel Speed :: Rear-Wheel Speed Correction vs Rear Speed,LOW,"FUN_2CB40: fef00A22 = clamp(front/vehicle speed fef02642 + curve(rear speed), 0x1542A0..A2); fef00A26 = fef00A22 - 0x15429E. Gear-sensor-fault fuel-cut speed reference.",Cluster A :: Curve [RearSpd] 10pt FUN_2cb40 #060
+0x1045,Cruise Control :: Throttle Correction vs Speed Error (A),MEDIUM,FUN_2F330: speed-error (target fef00A00 - actual fef009F2) correction curve -> fef00A92.,Cluster A :: Curve [?] 16pt FUN_2f330 #061
+0x1046,Cruise Control :: Throttle Correction vs Speed Error (B),MEDIUM,FUN_2F3EC: speed-error correction curve -> fef00A96.,Cluster A :: Curve [?] 16pt FUN_2f3ec #062
+0x1047,Cruise Control :: Throttle Correction vs Speed Error (C),MEDIUM,FUN_2F39C: speed-error correction curve -> fef00A94.,Cluster A :: Curve [?] 16pt FUN_2f39c #063
+0x1048,Cruise Control :: Throttle Correction vs Speed Error (D),MEDIUM,FUN_2F47C: speed-error (target fef00A00 - actual fef009F2) curve -> fef00A9C; ramped in state 0x0E.,Cluster A :: Curve [?] 16pt FUN_2f47c #064
+0x1049,"Cruise Control :: Throttle Correction vs Speed Error (E, corrected target)",MEDIUM,FUN_2F52A: error between corrected target (fef009F8 x correction/1000) and actual speed -> fef00A9E.,Cluster A :: Curve [?] 16pt FUN_2f52a #065
+0x104A,"Pitch Control :: Level Scaling vs SDMS Field-3 Level (0-10, all 0)",MEDIUM,"FUN_29582: 11-point curve indexed by fef026D5 (SDMS preset field 3, 0 = off). Zero in stock = function inactive.",Cluster A :: Curve [RAM_fef026d5] 11pt FUN_29582 #066 (flat)
+0x104B,Pitch Control :: Pitch Signal Gain Curve (vs IMU pitch fef0268C),MEDIUM,"FUN_28508: when the throttle is open (both TP copies above 0x18F082) and no IMU/CAN fault, fef009E4 = this curve of the filtered IMU pitch signal fef0268C (0x8000 = neutral); otherwise 0x8000. fef009E4 feeds the pitch-limit calculation in FUN_2937E/FUN_29C5A (SDMS field-3 pitch control) and the max-hold logger.",Cluster A :: Curve [RAM_fef0268c] 37pt FUN_28508 #067
+0x104C,Cruise Control :: Speedometer Correction (per mille) vs Vehicle Speed,MEDIUM,FUN_2F2E0: fef00A0C = 1000 - curve(fef009F2) unless option 0x1544A5 = 1 (then meter-supplied value).,Cluster A :: Curve [RAM_fef009f2] 14pt FUN_2f2e0 #068
+0x104D,Cruise Control :: Throttle Correction vs Vehicle Speed (flat 0),MEDIUM,FUN_2F508: fef00ABC = curve(vehicle speed fef009F2); selectable into fef00AAC. Zero in stock.,Cluster A :: Curve [RAM_fef009f2] 16pt FUN_2f508 #069 (flat)
+0x104E,Cruise Control :: Speed-Limit Gain vs Speed Error (flat),LOW,"FUN_30064: curve of (0x154438 - vehicle speed) -> fef00AF2, multiplied by fef009EC in FUN_300AA. Flat 65535 in stock.",Cluster A :: Curve [?] 16pt FUN_30064 #06A (flat)
+0x104F,HO2 Heater :: Duty Limit A vs ECT (flat),LOW,FUN_3DAFA: fef00BDC = curve(ECT); used by HO2 heater control/diagnosis (FUN_3DBAE/3DDB2/3E036). Flat in stock.,ECT Comp :: Curve [ECT] 6pt FUN_3dafa #06B (flat)
+0x1050,HO2 Heater :: Duty Limit B vs ECT (flat),LOW,FUN_3DAFA: fef00BDE = curve(ECT); second heater limit.,ECT Comp :: Curve [ECT] 6pt FUN_3dafa #06C (flat)
+0x1051,HO2 Monitor :: Enable Max Vacuum vs Baro x RPM (flat),MEDIUM,"FUN_3BCA6 (HO2 sensor response monitor): vacuum fef02628 must be below this map(baro, RPM) to run the test. Flat in stock.",Pressure Comp :: Map [AP x RPM] 10x14 FUN_3bca6 #06D (flat)
+0x1052,Catalyst/HO2 Monitor :: Threshold vs fef026BE (flat 6000),LOW,FUN_402CE: fef00C14 = curve(fef026BE); compared with counter fef00C12 to set monitor result flag fef00E6E bit2. Flat in stock.,Cluster A :: Curve [RAM_fef026be] 22pt FUN_402ce #06F (flat)
+0x1053,HO2 Monitor :: Baro Correction vs Baro,MEDIUM,FUN_3EFA0: fef00E2C = curve(baro); scales the HO2 monitor reference fef00E20/E22 (with IAT term). 128 = 1.0.,Pressure Comp :: Curve [AP] 8pt FUN_3efa0 #070
+0x1054,HO2 Monitor :: IAT Correction vs IAT,MEDIUM,FUN_3EFA0: IAT term (curve>>8 + 0x180) in the HO2 monitor reference.,IAT Comp :: Curve [IAT] 10pt FUN_3efa0 #071
+0x1056,Fuel :: Afterstart Enrichment vs ECT | Stage 1,MEDIUM,FUN_49456: per-cylinder fef01174 (decays) = curve(ECT) in stage 1 after start; multiplies main fuel in FUN_45C18.,ECT Comp :: Curve [ECT] 22pt FUN_49456 #073
+0x1057,Fuel :: Afterstart Enrichment vs ECT | Stage 2,MEDIUM,FUN_49456 stage 2.,ECT Comp :: Curve [ECT] 22pt FUN_49456 #074
+0x1058,Fuel :: Afterstart Enrichment vs ECT | Stage 3 (flat),MEDIUM,FUN_49456 stage 3. Flat 128 in stock.,ECT Comp :: Curve [ECT] 22pt FUN_49456 #075 (flat)
+0x1059,Accel Enrichment :: TP-Change Factor,LOW,FUN_46354: fef010BA = curve(fef02604); product in FUN_46408 gives the one-shot accel fuel fef010B4 (FUN_46464).,Cluster A :: Curve [RAM_fef02604] 8pt FUN_46354 #076
+0x105A,Accel Enrichment :: TP Factor,LOW,FUN_46354: fef010BB = curve(TP fef025FE).,Cluster A :: Curve [TP] 9pt FUN_46354 #077
+0x105B,Accel Enrichment :: ECT Factor,MEDIUM,FUN_46354: fef011F9 = curve(ECT).,ECT Comp :: Curve [ECT] 22pt FUN_46354 #078
+0x105C,Accel Enrichment :: Baro Factor,MEDIUM,FUN_46354: fef011F8 = curve(baro).,Pressure Comp :: Curve [AP] 21pt FUN_46354 #079
+0x105D,Accel Enrichment :: RPM Factor,MEDIUM,FUN_46354: fef010BC = curve(RPM).,Cluster A :: Curve [RPM] 13pt FUN_46354 #07A
+0x105E,Accel Enrichment :: IAT Factor,MEDIUM,FUN_46354: fef011FA = curve(IAT) (+0x180 base).,IAT Comp :: Curve [IAT] 25pt FUN_46354 #07B
+0x105F,Start Prime Pulse :: Base Quantity vs ECT,MEDIUM,"FUN_45810: fef01076 = curve(ECT); FUN_45934 builds fef01078 -> fef011C4 (primary) / fef011C6 (secondary, x0x182704) which FUN_47188 fires into all cylinders at start sync.",ECT Comp :: Curve [ECT] 22pt FUN_45810 #07C
+0x1060,Cranking Fuel :: Base Quantity vs ECT,MEDIUM,FUN_457EE: fef01074 = curve(ECT); FUN_45884 builds cranking fuel fef011C8 = IAT x TP x baro corrections x fef01074.,ECT Comp :: Curve [ECT] 22pt FUN_457ee #07D
+0x1061,Start Prime Pulse :: RPM Correction,MEDIUM,FUN_45910: fef0107A = curve(RPM fef0259C); multiplies the prime pulse only (FUN_45934).,Cluster A :: Curve [RAM_fef0259c] 11pt FUN_45910 #07E
+0x1062,Cranking Fuel :: TP Correction (flat),MEDIUM,FUN_45832: fef0107B = curve(TP) (0 if TP fault). Multiplies cranking and prime fuel. 128 = 1.0.,Cluster A :: Curve [TP] 6pt FUN_45832 #07F (flat)
+0x1063,Cranking Fuel :: Baro Correction,HIGH,FUN_45860: fef0107C = curve(baro); multiplies cranking (FUN_45884) and prime (FUN_45934) fuel. 128 = 1.0. (Not part of running fuel.),Pressure Comp :: Curve [AP] 8pt FUN_45860 #080
+0x1064,Fuel :: ECT Warm-Up Correction | Normal,MEDIUM,FUN_47A84: fef011FB = curve(ECT) when fef01212 bit0 clear; multiplies main fuel in FUN_45C18.,ECT Comp :: Curve [ECT] 22pt FUN_47a84 #081
+0x1065,Fuel :: ECT Warm-Up Correction | Alternate,MEDIUM,FUN_47A84: used when fef01212 bit0 set.,ECT Comp :: Curve [ECT] 22pt FUN_47a84 #082
+0x1066,Fuel :: Baro Correction | Secondary Injectors,HIGH,FUN_4934C (called by FUN_4938C with baro fef025C0): fef011FD multiplies secondary fuel in FUN_45C18.,Cluster A :: Curve [?] 21pt FUN_4934c #083
+0x1067,Fuel :: Baro Correction | Primary Injectors,HIGH,FUN_4936C: fef011FE = curve(baro); multiplies primary fuel in FUN_45C18.,Cluster A :: Curve [?] 21pt FUN_4936c #084
+0x1068,Fuel :: IAT Density Correction,HIGH,"FUN_47B6C: fef011FF = curve(IAT). Multiplies main running fuel (FUN_45C18, (x+0x180)/1024), cranking fuel and the prime pulse.",IAT Comp :: Curve [IAT] 21pt FUN_47b6c #085
+0x1069,Idle/Heat-Soak :: Correction Curve 1 vs fef0131E,LOW,FUN_4BF9E: fef0130A = curve(fef0131E)<<5; later multiplied by the IAT map 0x108E.,Cluster A :: Curve [RAM_fef0131e] 22pt FUN_4bf9e #086
+0x106A,Idle/Heat-Soak :: Correction Curve 2 vs fef0131E,LOW,FUN_4BF9E: fef0130C.,Cluster A :: Curve [RAM_fef0131e] 22pt FUN_4bf9e #087
+0x106B,Idle/Heat-Soak :: Correction Curve 3 vs fef0131E,LOW,FUN_4BF9E: fef0130E.,Cluster A :: Curve [RAM_fef0131e] 22pt FUN_4bf9e #088 (flat)
+0x106C,Idle/Heat-Soak :: ECT Decay Curve 1,LOW,"FUN_4C15E: fef01310 = curve(ECT), decremented through fef01316.",ECT Comp :: Curve [ECT] 22pt FUN_4c15e #089
+0x106D,Idle/Heat-Soak :: ECT Decay Curve 2,LOW,FUN_4C15E: fef01312 / fef01318.,ECT Comp :: Curve [ECT] 22pt FUN_4c15e #08A (flat)
+0x106E,Idle/Heat-Soak :: ECT Decay Curve 3,LOW,FUN_4C15E: fef01314 / fef0131A.,ECT Comp :: Curve [ECT] 22pt FUN_4c15e #08B (flat)
+0x106F,Decel Fuel Cut :: Vacuum Threshold vs RPM,LOW,FUN_4B346: fef012BE = curve(RPM); FUN_4B364 enables overrun cut when the input is between fef012BE and fef012BA.,Cluster A :: Curve [RPM] 17pt FUN_4b346 #08C
+0x1070,Decel Fuel Cut :: Recovery ECT Factor | Set A,LOW,FUN_4B59A family: fef012C1 = curve(ECT).,ECT Comp :: Curve [ECT] 14pt FUN_4b528 #08D
+0x1071,Decel Fuel Cut :: Recovery ECT Factor | Set B,LOW,As Set A.,ECT Comp :: Curve [ECT] 14pt FUN_4b528 #08E
+0x1072,Decel Fuel Cut :: Recovery Rate vs RPM | Set A,LOW,FUN_4B59A family: fef012C7 = curve(RPM) -> fef012B2 step.,Cluster A :: Curve [RPM] 17pt FUN_4b43a #08F
+0x1073,Decel Fuel Cut :: Recovery Rate vs RPM | Set B,LOW,As Set A.,Cluster A :: Curve [RPM] 17pt FUN_4b43a #090
+0x1074,Decel Fuel Cut :: Per-Cylinder Cut Delay vs RPM,MEDIUM,FUN_4ABFC: per-cylinder counters fef01278[0..3] must reach this before the cylinder is cut (staggered overrun cut).,Cluster A :: Curve [RPM] 10pt FUN_4abfc #091
+0x1075,Decel Fuel Cut :: Grip Angle Limit vs RPM (flat),MEDIUM,FUN_4ABB6: fef01288 = curve(RPM); overrun cut requires grip fef025EC <= this (FUN_4ACA2).,Cluster A :: Curve [RPM] 39pt FUN_4abb6 #092 (flat)
+0x1076,Decel Fuel Cut :: Recovery RPM vs RPM (flat),LOW,FUN_4ABB6: fef0128A = curve(RPM); compared in FUN_4ACCE.,Cluster A :: Curve [RPM] 39pt FUN_4abb6 #093 (flat)
+0x1077,HO2 Feedback :: Closed-Loop Enable Delay vs ECT,HIGH,FUN_44D1C: fef00F58 = curve(ECT); after start the counter fef00F5A must exceed it before closed-loop flag fef00F9A bit2 is set.,ECT Comp :: Curve [ECT] 22pt FUN_44d1c #094
+0x1078,HO2 Feedback :: Rich-to-Lean Proportional Step vs RPM | Bank 1,MEDIUM,FUN_43EEA: fef00F44[bank] = curve(RPM). FUN_4430C applies 0x10000 - step to the closed-loop factor fef00F2C on a rich->lean HO2 switch.,Cluster A :: Curve [RPM] 7pt FUN_43eea #095
+0x1079,HO2 Feedback :: Rich-to-Lean Proportional Step vs RPM | Bank 2,MEDIUM,As Bank 1 (pointer table 0x154A0C[1]).,Cluster A :: Curve [RPM] 7pt FUN_43eea #096
+0x107A,HO2 Feedback :: Lean-to-Rich Proportional Step vs RPM | Bank 1,MEDIUM,FUN_43F1C: fef00F48[bank] = curve(RPM); FUN_4430C applies 0x10000 + step on a lean->rich switch.,Cluster A :: Curve [RPM] 7pt FUN_43f1c #097
+0x107B,HO2 Feedback :: Lean-to-Rich Proportional Step vs RPM | Bank 2,MEDIUM,As Bank 1.,Cluster A :: Curve [RPM] 7pt FUN_43f1c #098
+0x107C,HO2 Feedback :: Switch-Point Offset vs RPM | Bank 1,MEDIUM,FUN_43FFA -> FUN_4402A: fef00F68[bank] = bias fef00F94 + curve(RPM) - 128 (HO2 rich/lean decision offset) when the zone is active.,Cluster A :: Curve [RPM] 7pt FUN_43ffa #099
+0x107D,HO2 Feedback :: Switch-Point Offset vs RPM | Bank 2,MEDIUM,As Bank 1.,Cluster A :: Curve [RPM] 7pt FUN_43ffa #09A
+0x107E,HO2 Feedback :: Switch Delay vs RPM | Bank 1,LOW,FUN_4409A: per-bank curve(RPM)>>8 used as a switch delay/count in the HO2 feedback loop.,Cluster A :: Curve [RPM] 7pt FUN_4409a #09B
+0x107F,HO2 Feedback :: Switch Delay vs RPM | Bank 2,LOW,As Bank 1.,Cluster A :: Curve [RPM] 7pt FUN_4409a #09C
+0x1080,HO2 Feedback :: Proportional Step vs RPM | Set 2 Bank 1 (flat),LOW,FUN_43F1C alternate pointer-table entry; flat 15 in stock.,Cluster A :: Curve [RPM] 7pt FUN_43f1c #09D (flat)
+0x1081,HO2 Feedback :: Proportional Step vs RPM | Set 2 Bank 2 (flat),LOW,As above.,Cluster A :: Curve [RPM] 7pt FUN_43f1c #09E (flat)
+0x1082,HO2 Feedback :: Proportional Step vs RPM | Set 3 Bank 1 (flat),LOW,As above.,Cluster A :: Curve [RPM] 7pt FUN_43f1c #09F (flat)
+0x1083,HO2 Feedback :: Proportional Step vs RPM | Set 3 Bank 2 (flat),LOW,As above.,Cluster A :: Curve [RPM] 7pt FUN_43f1c #0A0 (flat)
+0x1084,Fuel :: Transition Threshold vs Input | Set 1 (flat),LOW,FUN_46650: fef010C2 = curve selected by fef010C5; FUN_4672C sets a flag when fef010C2 <= fef010C3. Flat 100 in stock.,Cluster A :: Curve [RPM] 8pt FUN_46650 #0A1 (flat)
+0x1085,Fuel :: Transition Threshold vs Input | Set 2 (flat),LOW,See Set 1.,Cluster A :: Curve [RPM] 8pt FUN_46650 #0A2 (flat)
+0x1086,Fuel :: Transition Threshold vs Input | Set 3 (flat),LOW,See Set 1.,Cluster A :: Curve [RPM] 8pt FUN_46650 #0A3 (flat)
+0x1087,Fuel :: Transition Threshold vs Input | Set 4 (flat),LOW,See Set 1.,Cluster A :: Curve [RPM] 8pt FUN_46650 #0A4 (flat)
+0x1088,Fuel :: Transition Threshold vs Input | Set 5 (flat),LOW,See Set 1.,Cluster A :: Curve [RPM] 8pt FUN_46650 #0A5 (flat)
+0x1089,Fuel :: Transition Threshold vs Input | Set 6 (flat),LOW,See Set 1.,Cluster A :: Curve [RPM] 8pt FUN_46650 #0A6 (flat)
+0x108A,Fuel :: Transition Threshold vs Input | Set 7 (flat),LOW,See Set 1.,Cluster A :: Curve [RPM] 8pt FUN_46650 #0A7 (flat)
+0x108B,Fuel :: Trim D Fuel Map vs TP x RPM,MEDIUM,"FUN_4B624: fef011FC = (map-0x80)*fef01572/0x80 + 0x80 (weighted by the Trim D blend weight), gated by gear mask 0x182713. 128 = 1.0.",Cluster A :: Map [TP x RPM] 17x14 FUN_4b624 #0A8
+0x108C,Fuel :: Correction Map A (flat 0),LOW,"FUN_47ACA: fef011D4 = map(param, RPM); added in main fuel (FUN_45FEA). Zero in stock.",Cluster A :: Map [? x RPM] 22x10 FUN_47aca #0AA (flat)
+0x108D,Fuel :: Correction Map B (flat 4096),LOW,"FUN_47AEC: fef011D6 = map(param, RPM); used in FUN_45FEA. Flat 4096 (=1.0) in stock.",Cluster A :: Map [? x RPM] 22x10 FUN_47aec #0AC (flat)
+0x108E,Idle/Heat-Soak :: IAT Factor Map,LOW,"FUN_4C00C: fef0131C = map(IAT, fef0131E*1.5-IAT); multiplies fef0130A..E.",IAT Comp :: Map [IAT x RAM_fef0131d] 7x7 FUN_4c00c #0AE
+0x108F,HO2 Feedback :: Zone Map Aux 1 (TP x RPM),LOW,Closed-loop zone helper map (pointer table 0x154A6C..); see Fuel Mode Zone maps.,Fuel Mode Zone - TPS | Aux 1
+0x1090,HO2 Feedback :: Zone Map Aux 2 (TP x RPM),LOW,As Aux 1.,Fuel Mode Zone - TPS | Aux 2
+0x1091,Decel Fuel Cut :: Recovery Fuel Map vs TP x RPM | Set A,LOW,"FUN_4B59A: fef012C6 = map(TP, RPM), chosen by the sign of fef012C2; output scaled by (fef012C2-0x80). Shapes fuel return after decel cut.",Cluster B :: Map [TP x RPM] 6x17 FUN_4b3fe #0B4
+0x1092,Decel Fuel Cut :: Recovery Fuel Map vs TP x RPM | Set B,LOW,"As Set A, other sign of fef012C2.",Cluster B :: Map [TP x RPM] 6x17 FUN_4b3fe #0B6
+0x1093,Fuel :: TP x RPM Air-Charge Factor (main),LOW,"FUN_4832E: fef011E2 = map(TP, RPM) (alt map when fef0121D bit2); used as divisor (0x5555 + fef011E2) in fuel and ignition load calc (FUN_4836A, FUN_52C7C).",Fuel Trim - TPS | Main
+0x1094,"Fuel :: TP x RPM Air-Charge Factor (alternate, flat)",LOW,FUN_4832E alternate map (fef0121D bit2). Flat in stock.,Cluster B :: Map [TP x RPM] 13x19 FUN_4832e #0BA (flat)
+0x1095,HO2 Feedback :: Closed-Loop Zone Map | Set 1 Map 1 (TP x RPM),MEDIUM,"FUN_430B8: zone = map(fef0261C = TP - offsets, RPM)>>8 per bank; 0 = closed loop, 1 = hold/learn, 2 = open loop. Set chosen by fef00F5C (1..3).",Fuel Mode Zone - TPS | Set 1 Map 1
+0x1096,HO2 Feedback :: Closed-Loop Zone Map | Set 1 Map 2 (TP x RPM),MEDIUM,See Set 1 Map 1.,Fuel Mode Zone - TPS | Set 1 Map 2
+0x1097,HO2 Feedback :: Closed-Loop Zone Map | Set 1 Map 3 (TP x RPM),MEDIUM,See Set 1 Map 1.,Fuel Mode Zone - TPS | Set 1 Map 3
+0x1098,HO2 Feedback :: Closed-Loop Zone Map | Set 1 Map 4 (TP x RPM),MEDIUM,See Set 1 Map 1.,Fuel Mode Zone - TPS | Set 1 Map 4
+0x1099,HO2 Feedback :: Closed-Loop Zone Map | Set 1 Map 5 (TP x RPM),MEDIUM,See Set 1 Map 1.,Fuel Mode Zone - TPS | Set 1 Map 5
+0x109A,HO2 Feedback :: Closed-Loop Zone Map | Set 1 Map 6 (TP x RPM),MEDIUM,See Set 1 Map 1.,Fuel Mode Zone - TPS | Set 1 Map 6
+0x109B,HO2 Feedback :: Closed-Loop Zone Map | IAP Set 1 Map 1 (vacuum x RPM),MEDIUM,Vacuum-indexed zone map (0/1). Light-load closed-loop region.,Fuel Mode Zone - IAP | Set 1 Map 1
+0x109C,HO2 Feedback :: Closed-Loop Zone Map | IAP Set 1 Map 2 (vacuum x RPM),MEDIUM,As above.,Fuel Mode Zone - IAP | Set 1 Map 2
+0x109D,"HO2 Feedback :: Closed-Loop Zone Map | Set 2 Map 1 (TP x RPM, all open-loop)",MEDIUM,Set 2 = bank 2 / alternate; all 2 = open loop.,Fuel Mode Zone - TPS | Set 2 Map 1
+0x109E,"HO2 Feedback :: Closed-Loop Zone Map | Set 2 Map 2 (TP x RPM, all open-loop)",MEDIUM,As above.,Fuel Mode Zone - TPS | Set 2 Map 2
+0x109F,HO2 Feedback :: Closed-Loop Zone Map | Set 2 Map 3 (TP x RPM),MEDIUM,See Set 1 Map 1.,Fuel Mode Zone - TPS | Set 2 Map 3
+0x10A0,HO2 Feedback :: Closed-Loop Zone Map | Set 2 Map 4 (TP x RPM),MEDIUM,See Set 1 Map 1.,Fuel Mode Zone - TPS | Set 2 Map 4
+0x10A1,HO2 Feedback :: Closed-Loop Zone Map | Set 2 Map 5 (TP x RPM),MEDIUM,See Set 1 Map 1.,Fuel Mode Zone - TPS | Set 2 Map 5
+0x10A2,HO2 Feedback :: Closed-Loop Zone Map | Set 2 Map 6 (TP x RPM),MEDIUM,See Set 1 Map 1.,Fuel Mode Zone - TPS | Set 2 Map 6
+0x10A3,HO2 Feedback :: Closed-Loop Zone Map | IAP Set 2 Map 1 (vacuum x RPM),MEDIUM,As IAP Set 1.,Fuel Mode Zone - IAP | Set 2 Map 1
+0x10A4,HO2 Feedback :: Closed-Loop Zone Map | IAP Set 2 Map 2 (vacuum x RPM),MEDIUM,As IAP Set 1.,Fuel Mode Zone - IAP | Set 2 Map 2
+0x10A5,HO2 Feedback :: Cylinder-Balance Bias Map 1 (cyl 1 signal x RPM),LOW,"FUN_42E80: 8 maps of four per-cylinder signals fef02EDC/EDE/EE0/EE2 (from FUN_7FC10) x RPM are summed per HO2 bank (option 0x1826F9) into bias bytes fef00F94..F97, used by FUN_4402A as the HO2 switch-point/target offset. 128 = 0.",Cluster B :: Map [RAM_fef02edc x RPM] 7x7 FUN_42e80 #0DC
+0x10A6,HO2 Feedback :: Cylinder-Balance Bias Map 2 (cyl 2 signal x RPM),LOW,See Map 1 (FUN_42E80).,Cluster B :: Map [RAM_fef02ede x RPM] 7x7 FUN_42e80 #0DE
+0x10A7,HO2 Feedback :: Cylinder-Balance Bias Map 3 (cyl 3 signal x RPM),LOW,See Map 1 (FUN_42E80).,Cluster B :: Map [RAM_fef02ee0 x RPM] 7x7 FUN_42e80 #0E0
+0x10A8,HO2 Feedback :: Cylinder-Balance Bias Map 4 (cyl 4 signal x RPM),LOW,See Map 1 (FUN_42E80).,Cluster B :: Map [RAM_fef02ee2 x RPM] 7x7 FUN_42e80 #0E2
+0x10A9,"HO2 Feedback :: Cylinder-Balance Bias Map 5 (cyl 1 signal x RPM, bank 2)",LOW,See Map 1 (FUN_42E80).,Cluster B :: Map [RAM_fef02edc x RPM] 7x7 FUN_42e80 #0E4
+0x10AA,"HO2 Feedback :: Cylinder-Balance Bias Map 6 (cyl 2 signal x RPM, bank 2)",LOW,See Map 1 (FUN_42E80).,Cluster B :: Map [RAM_fef02ede x RPM] 7x7 FUN_42e80 #0E6
+0x10AB,"HO2 Feedback :: Cylinder-Balance Bias Map 7 (cyl 3 signal x RPM, bank 2)",LOW,See Map 1 (FUN_42E80).,Cluster B :: Map [RAM_fef02ee0 x RPM] 7x7 FUN_42e80 #0E8
+0x10AC,"HO2 Feedback :: Cylinder-Balance Bias Map 8 (cyl 4 signal x RPM, bank 2)",LOW,See Map 1 (FUN_42E80).,Cluster B :: Map [RAM_fef02ee2 x RPM] 7x7 FUN_42e80 #0EA
+0x10AD,Injection Timing :: Primary Injection Angle vs TP x RPM | Base (cold),MEDIUM,FUN_46D84/FUN_46E26: fef01208/9 target; FUN_4700C ramps fef01209 by 0x182687 per step; FUN_46F7E adds offset (0x182682 x 15 / 720) -> fef01202 = primary injector timing (crank-angle units). Used below ECT 0x182684.,Fuel Trim - TPS | 1
+0x10AE,Injection Timing :: Primary Injection Angle vs TP x RPM | Warm,MEDIUM,FUN_46E26: selected once ECT exceeds 0x182684 (hysteresis 0x182683).,Fuel Trim - TPS | 2
+0x10AF,Injection Timing :: Primary Injection Angle vs TP x RPM | In Gear,MEDIUM,FUN_46EA0: used in gear with clutch out (ramp rate 0x182686); otherwise the base/warm map applies.,Fuel Trim - TPS | 3
+0x10B0,Injection Timing :: Secondary Injection Angle vs TP x RPM,MEDIUM,"FUN_46F1E: fef0120C target, ramped into fef0120D (FUN_470F8) -> fef01203 secondary injector timing.",Fuel Trim - TPS | 4
+0x10E9,Engine Brake Control :: Fuel-Cut Cylinder Pattern vs Speed x Gear | EB Level 1 (flat),MEDIUM,"FUN_4A54E: bitmask (bits1-4 = cyl 1-4) of cylinders allowed to stay fuelled/cut on overrun, by wheel speed fef02640 x gear, EB level fef026D6. Flat in stock.",Cluster C :: Map [RPM x ?] 39x7 #164 (flat)
+0x10EA,Engine Brake Control :: Fuel-Cut Cylinder Pattern vs Speed x Gear | EB Level 2 (flat),MEDIUM,As level 1.,Cluster C :: Map [RPM x ?] 39x7 #166 (flat)
+0x10EB,Engine Brake Control :: Fuel-Cut Cylinder Pattern vs Speed x Gear | EB Level 3 (flat),MEDIUM,As level 1.,Cluster C :: Map [RPM x ?] 39x7 #168 (flat)
+0x10EC,Fuel :: Per-Gear Enrichment vs RPM | 3rd Gear,MEDIUM,"FUN_44F4A: in gear 3 (and TP >= 0x182634, no TP fault) fef01204 = curve(RPM); main fuel FUN_45C18 multiplies by (fef01204+0x380)/1024 (128 = 1.0). Other gears = 128.",Cluster C :: Curve [RPM] 15pt FUN_44f4a #16A
+0x10ED,Fuel :: Per-Gear Enrichment vs RPM | 4th Gear,MEDIUM,"As 3rd gear table, gear 4.",Cluster C :: Curve [RPM] 15pt FUN_44f4a #16B
+0x10EE,Fuel :: Per-Gear Enrichment vs RPM | 5th Gear,MEDIUM,"As 3rd gear table, gear 5.",Cluster C :: Curve [RPM] 15pt FUN_44f4a #16C
+0x10EF,Fuel :: Per-Gear Enrichment vs RPM | 6th Gear,MEDIUM,"As 3rd gear table, gear 6.",Cluster C :: Curve [RPM] 15pt FUN_44f4a #16D
+0x10F2,"Fuel :: Primary Trim vs TP x fef020B9 (flat, inactive)",LOW,FUN_4511C: active only when fef015B3 bits0/1 set; fef00FFB -> primary trim fef01205. 128 = 1.0.,Cluster C :: Map [? x RAM_fef020b9] 23x9 FUN_4511c #170 (flat)
+0x10F3,"Fuel :: Secondary Trim vs TP x fef020B9 (flat, inactive)",LOW,FUN_4511C: fef00FFA -> secondary trim fef01206.,Cluster C :: Map [? x RAM_fef020b9] 23x9 FUN_4511c #172 (flat)
+0x10F4,"Fuel :: Per-Gear Trim vs RPM x TP | 1st (flat, inactive)",MEDIUM,"FUN_450A0: fef00FF9 = map(RPM, TP) for the current gear; FUN_45182 multiplies with fef00FFA/FFB into primary/secondary trims fef01205/fef01206 when option 0x18DBB4/0x182706 enabled. 128 = 1.0; flat in stock.",Cluster A :: Map [RPM x ?] 25x10 FUN_450a0 #174 (flat)
+0x10F5,"Fuel :: Per-Gear Trim vs RPM x TP | 2nd (flat, inactive)",MEDIUM,See 1st-gear table.,Cluster A :: Map [RPM x ?] 25x10 FUN_450a0 #176 (flat)
+0x10F6,"Fuel :: Per-Gear Trim vs RPM x TP | 3rd (flat, inactive)",MEDIUM,See 1st-gear table.,Cluster A :: Map [RPM x ?] 25x10 FUN_450a0 #178 (flat)
+0x10F7,"Fuel :: Per-Gear Trim vs RPM x TP | 4th (flat, inactive)",MEDIUM,See 1st-gear table.,Cluster A :: Map [RPM x ?] 25x10 FUN_450a0 #17A (flat)
+0x10F8,"Fuel :: Per-Gear Trim vs RPM x TP | 5th (flat, inactive)",MEDIUM,See 1st-gear table.,Cluster A :: Map [RPM x ?] 25x10 FUN_450a0 #17C (flat)
+0x10F9,"Fuel :: Per-Gear Trim vs RPM x TP | 6th (flat, inactive)",MEDIUM,See 1st-gear table.,Cluster A :: Map [RPM x ?] 25x10 FUN_450a0 #17E (flat)
+0x10FA,"Fuel :: Per-Gear Trim vs RPM x TP | Neutral (flat, inactive)",MEDIUM,See 1st-gear table.,Cluster A :: Map [RPM x ?] 25x10 FUN_450a0 #180 (flat)
+0x10FB,Ignition Transient :: ECT Factor,LOW,"FUN_4C5AC: fef011F2 = curve(ECT) x curve(fef01340), then decays.",ECT Comp :: Curve [ECT] 14pt FUN_4c5ac #182
+0x10FC,Ignition Transient :: Input Factor (Correction-1),LOW,"FUN_4C5AC: curve(fef01340), multiplies the ECT factor into fef011F2.",IGN :: Correction - 1
+0x10FD,Ignition Transient :: Decay Rate,LOW,FUN_4C5AC: decay step for fef011F2.,ECT Comp :: Curve [ECT] 14pt FUN_4c5ac #184 (flat)
+0x10FE,Ignition Transient :: Target Map vs TP x RPM (Correction Map-1),LOW,"FUN_4C67A: fef011F4/fef011F2 TP x RPM target value; rise/fall rate curves follow (Correction 2, 4-13).",IGN :: Correction - 2
+0x10FF,Ignition Transient :: Counter Limit vs RPM (Correction-3),LOW,FUN_4C51A: count limit by RPM for the transient timing model.,IGN :: Correction - 3
+0x1100,Ignition Transient :: Rate Curve (Correction-2),LOW,FUN_4C67A rise/fall rate curve set.,IGN :: Correction - 4
+0x1101,Ignition Transient :: Rate Curve (Correction-4),LOW,FUN_4C67A rise/fall rate curve set.,IGN :: Correction - 5
+0x1102,Ignition Transient :: Rate Curve (Correction-5),LOW,FUN_4C67A rise/fall rate curve set.,IGN :: Correction - 6
+0x1103,Ignition Transient :: Rate Curve (Correction-6),LOW,FUN_4C67A rise/fall rate curve set.,IGN :: Correction - 7
+0x1104,Ignition Transient :: Rate Curve (Correction-7),LOW,FUN_4C67A rise/fall rate curve set.,IGN :: Correction - 8
+0x1105,Ignition Transient :: Rate Curve (Correction-8),LOW,FUN_4C67A rise/fall rate curve set.,IGN :: Correction - 9
+0x1106,Ignition Transient :: Rate Curve (Correction-9),LOW,FUN_4C67A rise/fall rate curve set.,IGN :: Correction - 10
+0x1107,Ignition Transient :: Rate Curve (Correction-10),LOW,FUN_4C67A rise/fall rate curve set.,IGN :: Correction - 11
+0x1108,Ignition Transient :: Rate Curve (Correction-11),LOW,FUN_4C67A rise/fall rate curve set.,IGN :: Correction - 12
+0x1109,Ignition Transient :: Rate Curve (Correction-12),LOW,FUN_4C67A rise/fall rate curve set.,IGN :: Correction - 13
+0x110A,Ignition Transient :: Rate Curve (Correction-13),LOW,FUN_4C67A rise/fall rate curve set.,IGN :: Correction Map - 1
+0x110B,Ignition :: RPM Threshold vs RPM (Correction-14),LOW,"FUN_4B76A: fef01304 = curve(RPM), compared with fef02670; sets status bit fef01309.4.",IGN :: Correction - 14
+0x110C,Ignition :: Ride-Mode Retard vs ECT | Mode A (flat 0),LOW,FUN_5145C: fef0156A = curve(ECT) for ride mode fef026C2=2; a retard request (MAX-of-retards). Flat 0 = off.,ECT Comp :: Curve [ECT] 22pt FUN_5145c #194 (flat)
+0x110D,"Ignition :: Ride-Mode Retard vs ECT | Mode B (Correction-15, flat 0)",LOW,"FUN_5145C, ride mode 4.",IGN :: Correction - 15
+0x110E,"Ignition :: Ride-Mode Retard vs ECT | Mode C (Correction-16, flat 0)",LOW,"FUN_5145C, ride mode 8.",IGN :: Correction - 16
+0x110F,"Ignition :: Ride-Mode Retard vs ECT | Mode D (Correction-17, flat 0)",LOW,"FUN_5145C, ride mode 0x10.",IGN :: Correction - 17
+0x1110,"Ignition :: Ride-Mode Retard vs ECT | Mode E (Correction-18, flat 0)",LOW,"FUN_5145C, ride mode 0x20.",IGN :: Correction - 18
+0x1111,"Ignition :: Ride-Mode Retard vs ECT | Default (Correction-19, flat 0)",LOW,"FUN_5145C, other modes.",IGN :: Correction - 19
+0x1112,"Ignition :: Retard vs RPM (Correction-20, flat 0)",LOW,FUN_5145C case 2: fef0156A = curve(RPM).,IGN :: Correction - 20
+0x1113,Ignition :: IAT Timing Correction (Correction-21),MEDIUM,"fef0156B = curve(IAT); added in FUN_517B4, active inside an RPM/vacuum/ECT window.",IGN :: Correction - 21
+0x1114,Ignition :: Transient One-Shot Correction (Correction-22),LOW,fef0156D one-shot transient value.,IGN :: Correction - 22
+0x1115,"Ignition :: Baro Advance, Idle Path (Correction-23)",HIGH,fef0156F = curve(baro); idle/neutral timing path only.,IGN :: Correction - 23
+0x1116,Ignition :: Cold-Start Advance vs ECT (Correction-24),MEDIUM,"fef01571 = curve(ECT), added in FUN_517B4, decays by 0x18B745.",IGN :: Correction - 24
+0x1118,Ignition :: Throttle Threshold vs RPM | Mode A (Correction-26),LOW,FUN_51D28: fef0165E = curve(RPM); FUN_51DFC compares TP fef025FE with it. Selected by ride mode fef026C2.,IGN :: Correction - 26
+0x1119,Ignition :: Second Threshold vs RPM | Mode A (Correction-27),LOW,"FUN_51D92: fef01660 = curve(RPM), used with fef0165E in FUN_51DFC.",IGN :: Correction - 27
+0x111A,Ignition :: Throttle Threshold vs RPM | Mode B (Correction-28),LOW,See Mode A.,IGN :: Correction - 28
+0x111B,Ignition :: Second Threshold vs RPM | Mode B (Correction-29),LOW,See Mode A.,IGN :: Correction - 29
+0x111C,Ignition :: Throttle Threshold vs RPM | Mode C (Correction-30),LOW,See Mode A.,IGN :: Correction - 30
+0x111D,Ignition :: Second Threshold vs RPM | Mode C (Correction-31),LOW,See Mode A.,IGN :: Correction - 31
+0x111E,Ignition :: Throttle Threshold vs RPM | Mode D (Correction-32),LOW,See Mode A.,IGN :: Correction - 32
+0x111F,Ignition :: Second Threshold vs RPM | Mode D (Correction-33),LOW,See Mode A.,IGN :: Correction - 33
+0x1120,Ignition :: Throttle Threshold vs RPM | Mode E (Correction-34),LOW,See Mode A.,IGN :: Correction - 34
+0x1121,Ignition :: Second Threshold vs RPM | Mode E (Correction-35),LOW,See Mode A.,IGN :: Correction - 35
+0x1122,Ignition :: Throttle Threshold vs RPM | Default (Correction-36),LOW,See Mode A.,IGN :: Correction - 36
+0x1123,Ignition :: Second Threshold vs RPM | Default (Correction-37),LOW,See Mode A.,IGN :: Correction - 37
+0x1124,"Ignition :: ECT Ramp Target (Correction-38, flat)",LOW,FUN_51F14: fef01677 ramps toward curve(ECT) at rates 0x18B74C/0x18B74D every 0x18B74B ticks.,IGN :: Correction - 38
+0x1125,Ignition :: Afterstart Hold Time vs ECT,LOW,FUN_52266: fef01662 = curve(ECT): time before the afterstart value fef0167B starts to decay.,ECT Comp :: Curve [ECT] 14pt FUN_52266 #1AD
+0x1126,Ignition :: Afterstart Correction vs ECT (Correction-39),LOW,"FUN_52266: fef0167B start value = curve(ECT), then decays by 0x18B756 every 0x18B755 ticks.",IGN :: Correction - 39
+0x1127,Ignition :: Per-Cylinder Correction vs RPM | Cyl 1 (Correction-40),LOW,"FUN_50F52: fef01646[cyl] = curve(RPM)>>8 minus 0x18B65E, when FUN_4F64C allows. Indexed by cylinder via table 0x182A58.",IGN :: Correction - 40
+0x1128,Ignition :: Per-Cylinder Correction vs RPM | Cyl 2 (Correction-41),LOW,See Cyl 1.,IGN :: Correction - 41
+0x1129,Ignition :: Per-Cylinder Correction vs RPM | Cyl 3 (Correction-42),LOW,See Cyl 1.,IGN :: Correction - 42
+0x112A,Ignition :: Per-Cylinder Correction vs RPM | Cyl 4 (Correction-43),LOW,See Cyl 1.,IGN :: Correction - 43
+0x112B,Ignition :: IAT Weight Curve (Correction-44),LOW,"FUN_505DA: fef015CE = curve(IAT) when option 0x18B787 = 0x80, else 128. Weights the Trim blend in FUN_50612.",IGN :: Correction - 44
+0x112C,Ignition :: Dwell vs Battery Volts x RPM | Main,HIGH,FUN_4F3A0: coil dwell time.,IGN :: Volt-Dwell - 1
+0x112D,Ignition :: Dwell vs Battery Volts x RPM | Alternate,HIGH,FUN_4F3A0: used when option 0x18B725 is set.,IGN :: Volt-Dwell - 2
+0x113F,Ignition :: Idle-Path Timing vs ECT x RPM | Cyl 1/4,MEDIUM,"FUN_51272: fef01550/1553 = map(ECT, RPM); idle/neutral timing base used by FUN_517B4.",ECT Comp :: Map [ECT x RPM] 15x3 FUN_51272 #1DA
+0x1140,Ignition :: Idle-Path Timing vs ECT x RPM | Cyl 2/3,MEDIUM,FUN_51272: fef01551/1552.,ECT Comp :: Map [ECT x RPM] 15x3 FUN_51272 #1DC
+0x1141,Ignition :: Idle-Path Weight vs ECT x RPM,LOW,"FUN_51272: fef0157B, read by FUN_5275A.",ECT Comp :: Map [ECT x RPM] 15x3 FUN_51272 #1DE
+0x1142,"Ignition Trim :: Mode Map vs TP x RPM | Set 1 (flat, inactive)",LOW,FUN_50612: active when fef015B3.0; selected by option 0x18B778 / ride mode fef026C2; fef015CF -> blended with fef01574 into fef015D1. 64 = 0.,Cluster A :: Map [RAM_fef02600 x RPM] 5x10 FUN_50612 #1E0 (flat)
+0x1143,"Ignition Trim :: Mode Map vs TP x RPM | Set 2 (flat, inactive)",LOW,See Set 1 (mode B).,Cluster A :: Map [RAM_fef02600 x RPM] 5x10 FUN_50612 #1E2 (flat)
+0x1144,"Ignition Trim :: Mode Map vs TP x RPM | Set 3 (flat, inactive)",LOW,See Set 1 (mode C).,Cluster A :: Map [RAM_fef02600 x RPM] 5x10 FUN_50612 #1E4 (flat)
+0x1145,Ignition Retard :: Throttle Window Low vs RPM,LOW,FUN_4E704: TP fef025FE compared against this lower bound.,Cluster D :: Curve [RPM] 39pt FUN_4e704 #1E6
+0x1146,Ignition Retard :: Throttle Window High vs RPM,LOW,FUN_4E704: upper bound.,Cluster D :: Curve [RPM] 39pt FUN_4e704 #1E7
+0x1147,Ignition Retard :: ECT Factor (flat),MEDIUM,FUN_4EFC2: multiplies fef014DA.,ECT Comp :: Curve [ECT] 8pt FUN_4f058 #1E8 (flat)
+0x118A,Traction Control :: Wheel-Speed Band vs fef02642,LOW,FUN_4CCAA: produces fef0134C/fef0134E band limits.,Cluster D :: Curve [RAM_fef02642] 12pt FUN_4ccaa #22B
+0x1196,Traction Control :: Slip Gain vs RPM | 1st Gear,MEDIUM,FUN_4DA8E: fef013AF = curve(RPM) for the current gear; used by the slip calculation FUN_4DBD6.,Cluster D :: Curve [RPM] 15pt FUN_4da8e #237
+0x1197,Traction Control :: Slip Gain vs RPM | 2nd Gear,MEDIUM,See 1st gear.,Cluster D :: Curve [RPM] 15pt FUN_4da8e #238
+0x1198,Traction Control :: Slip Gain vs RPM | 3rd Gear,MEDIUM,See 1st gear.,Cluster D :: Curve [RPM] 15pt FUN_4da8e #239
+0x1199,Traction Control :: Slip Gain vs RPM | 4th Gear,MEDIUM,See 1st gear.,Cluster D :: Curve [RPM] 15pt FUN_4da8e #23A
+0x119A,Traction Control :: Slip Gain vs RPM | 5th Gear,MEDIUM,See 1st gear.,Cluster D :: Curve [RPM] 15pt FUN_4da8e #23B
+0x119B,Traction Control :: Slip Gain vs RPM | 6th Gear,MEDIUM,See 1st gear.,Cluster D :: Curve [RPM] 15pt FUN_4da8e #23C
+0x11C8,Traction Control :: Launch Value vs fef01564,LOW,FUN_4CF3C.,Cluster D :: Curve [RAM_fef01564] 8pt FUN_4cf3c #269
+0x11C9,Traction Control :: Indexed Curve 1,LOW,FUN_4E59E: -> fef01376.,Cluster D :: Curve [index] 32pt FUN_4e59e #26A
+0x11CA,Traction Control :: Indexed Curve 2,LOW,FUN_4E59E: -> fef01378.,Cluster D :: Curve [index] 32pt FUN_4e59e #26B
+0x11CB,Traction Control :: Indexed Curve 3,LOW,FUN_4E59E: -> fef0137A.,Cluster D :: Curve [index] 32pt FUN_4e59e #26C
+0x11CC,Traction Control :: Indexed Curve 4,LOW,FUN_4E59E: -> fef0137C.,Cluster D :: Curve [index] 32pt FUN_4e59e #26D
+0x11CD,Ignition Retard :: Per-Gear Retard Map vs TP x RPM | Set 1,MEDIUM,"FUN_4EFC2: fef014DA = map(TP fef0155C, RPM), selected per gear by 0x18B7BA-BF, x ECT curve 0x1147 -> target for fef0157D (subtracted from timing, FUN_4F058).",Cluster D :: Map [? x RPM] 9x40 #26E
+0x11CE,Ignition Retard :: Per-Gear Retard Map vs TP x RPM | Set 2,MEDIUM,See Set 1.,Cluster D :: Map [? x RPM] 9x40 #270
+0x11CF,Ignition Retard :: Per-Gear Retard Map vs TP x RPM | Set 3,MEDIUM,See Set 1.,Cluster D :: Map [? x RPM] 9x40 #272
+0x11DA,Ignition :: Baro Correction A (flat),MEDIUM,FUN_500A8: -> fef0156E (added in FUN_517B4).,Pressure Comp :: Curve [AP] 27pt FUN_500a8 #288 (flat)
+0x11DB,Ignition :: Baro Correction B (flat),MEDIUM,FUN_500A8: -> fef0156E alternate.,Pressure Comp :: Curve [AP] 27pt FUN_500a8 #289 (flat)
+0x11DC,Idle Control :: IAT Factor (flat),LOW,"FUN_52DFA: fef016F0 = curve(IAT), 0x8000 = 1.0; used by the idle airflow calc FUN_52A70/FUN_532D0.",IAT Comp :: Curve [IAT] 14pt FUN_52dfa #28A (flat)
+0x11DD,Idle Control :: Correction Curve A (flat 0),LOW,FUN_531EE: fef016F2 = curve(input) below 0x18C4B6.,Cluster D :: Curve [?] 8pt FUN_531ee #28B (flat)
+0x11DE,Idle Control :: Correction Curve B (flat 0),LOW,FUN_5321A: fef01701 = curve(input) below 0x18C4B6.,Cluster D :: Curve [?] 8pt FUN_5321a #28C (flat)
+0x11DF,Idle Control :: Limit vs ECT (flat),LOW,FUN_52A4E: fef01692 = curve(ECT); other limit for fef016F4.,ECT Comp :: Curve [ECT] 22pt FUN_52a4e #28D (flat)
+0x11E0,Idle Control :: Limit vs Engine Speed (flat),LOW,FUN_52A2C: fef01690 = curve(fef02594); limit for fef016F4 in FUN_52B5E.,Cluster D :: Curve [RAM_fef02594] 12pt FUN_52a2c #28E (flat)
+0x11E1,Idle Control :: Load Airflow Curve A,LOW,FUN_541E6: fef016D8; blended with Curve B by fef01700 into fef016D6.,Cluster D :: Curve [?] 9pt FUN_541e6 #28F
+0x11E2,Idle Control :: Load Airflow Curve B,LOW,FUN_541E6: fef016DA.,Cluster D :: Curve [?] 9pt FUN_541e6 #290
+0x11E3,Idle Control :: Load Airflow ECT Factor,LOW,FUN_5425E: fef016DC = curve(ECT); fef016F6 = fef016D6 x fef016DC / 128.,ECT Comp :: Curve [ECT] 22pt FUN_5425e #291
+0x11E4,Idle Control :: Low-RPM Threshold vs ECT (flat),LOW,FUN_537D6: fef016B4 = curve(ECT); counts while engine speed fef02594 is below it.,ECT Comp :: Curve [ECT] 22pt FUN_537d6 #292 (flat)
+0x11E5,Idle Control :: High-RPM Threshold vs ECT (flat),LOW,FUN_537D6: fef016B6 = curve(ECT); counts while engine speed is above it.,ECT Comp :: Curve [ECT] 22pt FUN_537d6 #293 (flat)
+0x11E6,Idle Control :: Neutral Delay vs ECT (flat),LOW,FUN_53790: fef016C4 = curve(ECT) on leaving neutral; compared with counter fef016C3.,ECT Comp :: Curve [ECT] 22pt FUN_53790 #294 (flat)
+0x11E7,Idle Control :: Feedback Base vs ECT (flat 0),LOW,"FUN_53B4A: fef016C0 = curve(ECT), added into the idle airflow command fef016FA.",ECT Comp :: Curve [ECT] 22pt FUN_53b4a #295 (flat)
+0x11E8,"Idle Control :: Feedback Step, RPM Below Target",LOW,FUN_53C2E: fef016BA = curve(|RPM error|) when RPM < target fef016EA; added to fef016FA.,Cluster D :: Curve [?] 5pt FUN_53c2e #296
+0x11E9,"Idle Control :: Feedback Step, RPM Above Target",LOW,FUN_53C2E: subtracted from fef016FA when RPM > target.,Cluster D :: Curve [?] 5pt FUN_53c2e #297
+0x11EA,Idle Control :: Base Airflow vs ECT,LOW,FUN_52E9A: fef016A2 = curve(ECT) -> fef016FC (idle base term).,ECT Comp :: Curve [ECT] 22pt FUN_52e9a #298
+0x11EB,Idle Control :: Dashpot Threshold vs ECT (flat),LOW,FUN_52F74: fef016A5 = curve(ECT)>>8 when RPM >= idle target fef016EA + 0x18C474; counter limit.,ECT Comp :: Curve [ECT] 22pt FUN_52f74 #299 (flat)
+0x11EC,Idle Control :: Dashpot Value vs ECT (flat),LOW,FUN_52F74: fef016A0 = curve(ECT).,ECT Comp :: Curve [ECT] 22pt FUN_52f74 #29A (flat)
+0x11ED,Idle Control :: Decel Airflow vs RPM | Set 1 (flat 0),LOW,"FUN_53FAC: fef016FE = curve(RPM), set chosen per ride mode by 0x18C4CE-D3. Added to the idle command.",Cluster D :: Curve [RPM] 22pt FUN_53fac #29B (flat)
+0x11EE,Idle Control :: Decel Airflow vs RPM | Set 2 (flat 0),LOW,See Set 1.,Cluster D :: Curve [RPM] 22pt FUN_53fac #29C (flat)
+0x11EF,Idle Control :: Decel Airflow vs RPM | Set 3 (flat 0),LOW,See Set 1.,Cluster D :: Curve [RPM] 22pt FUN_53fac #29D (flat)
+0x11F0,Idle Control :: Initial Value vs ECT (flat),LOW,FUN_5286E: fef0168A = curve(ECT) at start.,ECT Comp :: Curve [ECT] 22pt FUN_5286e #29E (flat)
+0x11F1,Idle Control :: Target Curve A,LOW,FUN_528A6: fef016EC; blended with Curve B by weight fef01700 -> fef016EA.,Cluster A :: Curve [?] 22pt FUN_528a6 #29F
+0x11F2,Idle Control :: Target Curve B,LOW,FUN_528A6: fef016EE; see Curve A.,Cluster A :: Curve [?] 22pt FUN_528a6 #2A0
+0x11F3,Idle Control :: ECT Curve 1,LOW,FUN_52CD4: fef016E2; blended with Curve 2 by fef0169E in FUN_52D34.,ECT Comp :: Curve [ECT] 22pt FUN_52cd4 #2A1
+0x11F4,Idle Control :: ECT Curve 2,LOW,FUN_52CD4: fef016E4.,ECT Comp :: Curve [ECT] 22pt FUN_52cd4 #2A2
+0x11F5,Idle Control :: ECT Curve 3,LOW,FUN_52CD4: fef016E6; blended with Curve 4.,ECT Comp :: Curve [ECT] 22pt FUN_52cd4 #2A3
+0x11F6,Idle Control :: ECT Curve 4,LOW,FUN_52CD4: fef016E8.,ECT Comp :: Curve [ECT] 22pt FUN_52cd4 #2A4
+0x11F7,Idle Control :: Airflow Map vs RPM x ECT | Set 1,LOW,"FUN_53DD8: fef016CA = map(RPM, ECT); set chosen per ride mode by 0x18C4D7-DC.",ECT Comp :: Map [RPM x ECT] 22x9 FUN_53dd8 #2A5
+0x11F8,Idle Control :: Airflow Map vs RPM x ECT | Set 2,LOW,See Set 1.,ECT Comp :: Map [RPM x ECT] 22x9 FUN_53dd8 #2A7
+0x11F9,Idle Control :: Airflow Map vs RPM x ECT | Set 3,LOW,See Set 1.,ECT Comp :: Map [RPM x ECT] 22x9 FUN_53dd8 #2A9
+0x11FA,Meter Fuel Consumption :: RPM Factor,LOW,FUN_5518E: fef01C14 = curve(RPM); used to compute fuel-consumption values fef01C15/fef01A67 sent to the meter.,Cluster A :: Curve [RPM] 15pt FUN_5518e #2AB
+0x11FB,Meter Fuel Consumption :: IAT Factor,LOW,FUN_5518E: fef01C16 = curve(IAT).,IAT Comp :: Curve [IAT] 16pt FUN_5518e #2AC
+0x11FC,ID :: Hardware Number (ASCII bytes),HIGH,FUN_5602C: 16 bytes copied to fef01704 by index; values are ASCII codes. Differs between SJ40 and SJ10.,Hardware Nr.
+0x11FD,ID :: Identification String A (ASCII bytes),MEDIUM,FUN_56056: 11 bytes -> fef01A68.,Cluster D :: Curve [index] 11pt FUN_56056 #2AE
+0x11FE,ID :: Identification String B (ASCII bytes),MEDIUM,FUN_5607E: 11 bytes -> fef01A73. Differs between SJ40 and SJ10.,Cluster D :: Curve [index] 11pt FUN_5607e #2AF
+0x11FF,ID :: Software Upgrade Number (ASCII bytes),HIGH,FUN_560A6: 16 bytes -> fef01714.,Software Upgrade Nr.
+0x1200,ID :: Identification String C (ASCII bytes),MEDIUM,FUN_560D0: 16 bytes -> fef01A7F.,Cluster D :: Curve [index] 16pt FUN_560d0 #2B1
+0x1201,Speed Monitor :: Threshold vs fef01F4E,LOW,FUN_5E9D8: fef02184; compared with fef01F70 to set fef02198.2.,Cluster A :: Curve [RAM_fef01f4e] 11pt FUN_5e9d8 #2B2
+0x1202,Speed Monitor :: Upper Threshold vs fef01F4E,LOW,FUN_5E564: fef02186; compared with fef0264A to set fef02199.1. fef01F4E = copy of fef02636.,Cluster D :: Curve [RAM_fef01f4e] 15pt FUN_5e564 #2B3
+0x1203,Speed Monitor :: Hysteresis Threshold vs fef01F4E (flat),LOW,FUN_5E564: fef02188.,Cluster D :: Curve [RAM_fef01f4e] 15pt FUN_5e564 #2B4 (flat)
+0x1204,Fuel/Air Estimate :: Vacuum Factor (flat),LOW,FUN_5E148: fef0208D = curve(vacuum); product with fef0208E in FUN_5E1BA.,Pressure Comp :: Curve [Vacuum] 17pt FUN_5e148 #2B5 (flat)
+0x1205,EVAP Purge :: ECT Factor (flat),LOW,FUN_5D1E8: fef020CF.,ECT Comp :: Curve [ECT] 22pt FUN_5d1e8 #2B6 (flat)
+0x1206,EVAP Purge :: Baro Factor (flat),LOW,FUN_5D20C: fef020D0.,Pressure Comp :: Curve [AP] 8pt FUN_5d20c #2B7 (flat)
+0x1207,EVAP Purge :: Ramp Factor (flat),LOW,FUN_5D494: fef020D1 = curve(fef020CA).,Cluster D :: Curve [RAM_fef020ca] 10pt FUN_5d494 #2B8 (flat)
+0x1208,EVAP Purge :: Enable Threshold Curve,LOW,FUN_5D840: compared to fef020D6 to set fef020E0.0 (with HO2 status).,Cluster A :: Curve [?] 14pt FUN_5d840 #2B9
+0x1209,Mode-Setting Limit :: Curve vs Rear Wheel Speed | Level 1,LOW,FUN_6A926: fef021F4 = curve(rear speed) for fef026FE = 1.,Cluster D :: Curve [RearSpd] 16pt FUN_6a926 #2BA
+0x120A,Mode-Setting Limit :: Curve vs Rear Wheel Speed | Level 2,LOW,See Level 1.,Cluster D :: Curve [RearSpd] 16pt FUN_6a926 #2BB
+0x120B,Mode-Setting Limit :: Curve vs Rear Wheel Speed | Level 3,LOW,See Level 1.,Cluster D :: Curve [RearSpd] 16pt FUN_6a926 #2BC
+0x120C,Mode-Setting Limit :: Curve vs fef0267A | Level 1,LOW,FUN_6A89C: fef021F2 = curve(fef0267A) for setting fef026FE = 1 (ride-mode preset field 7); x curve(fef0268C) -> fef021F0.,Cluster D :: Curve [RAM_fef0267a] 37pt FUN_6a89c #2BD
+0x120D,Mode-Setting Limit :: Curve vs fef0267A | Level 2,LOW,See Level 1.,Cluster D :: Curve [RAM_fef0267a] 37pt FUN_6a89c #2BE
+0x120E,Mode-Setting Limit :: Curve vs fef0267A | Level 3,LOW,See Level 1.,Cluster D :: Curve [RAM_fef0267a] 37pt FUN_6a89c #2BF
+0x120F,Mode-Setting Limit :: Factor vs fef0268C,LOW,FUN_6A8EE: fef021F0 = fef021F2 x curve / 32768.,Cluster D :: Curve [RAM_fef0268c] 31pt FUN_6a8ee #2C0
+0x1210,GP/Shift Window :: Upper Offset vs Ride Mode,LOW,"FUN_6A6CA: offset added to GP target fef009CC; compares GP sensor fef025CE, gated by setting fef026FE.",Gear :: Curve [Gear] 7pt FUN_6a6ca #2C1
+0x1211,GP/Shift Window :: Lower Offset vs Ride Mode (flat),LOW,FUN_6A6CA: see upper offset.,Gear :: Curve [Gear] 7pt FUN_6a6ca #2C2 (flat)
+0x1212,Mode-Setting Limit :: Scaling vs fef026B2,LOW,FUN_6ABC6: fef01F62 factor.,Cluster D :: Curve [RAM_fef026b2] 5pt FUN_6abc6 #2C3
+0x1213,Fuel/Air Estimate :: TP x RPM Factor,LOW,"FUN_5E16C: fef0208E = map(TP, RPM).",Cluster D :: Map [TP x RPM] 10x21 FUN_5e16c #2C4
+0x1214,EVAP Purge :: Enable Map vs TP x RPM,LOW,"FUN_5CFB0: map >> 8 must be 1 (with ECT, no sensor/HO2 faults) to set fef020C6.0; purge active gates HO2 feedback and fuel learning (FUN_42264, FUN_48F7C).",Cluster D :: Map [? x RPM] 10x14 #2C6
+0x1215,EVAP Purge :: Base Duty vs TP x RPM,LOW,"FUN_5D1B4: fef020C8 = map, x ECT, baro and flow factors in FUN_5D4B6.",Cluster D :: Map [TP x RPM] 10x14 FUN_5d1b4 #2C8
+0x1216,Ride Mode :: Threshold Map vs Throttle x RPM | Default,LOW,FUN_6BA2E: fef02218 = map; compared with the Mode map value.,Cluster D :: Map [TP x RPM] 6x25 FUN_6ba2e #2CA
+0x1217,Ride Mode :: Threshold Map vs Throttle x RPM | Mode 8,LOW,"FUN_6BA2E, ride mode 8.",Cluster D :: Map [TP x RPM] 6x25 FUN_6ba2e #2CC
+0x1218,Ride Mode :: Threshold Map vs Throttle x RPM | Mode 0x10,LOW,"FUN_6BA2E, ride mode 0x10.",Cluster D :: Map [TP x RPM] 6x25 FUN_6ba2e #2CE
+0x1219,Ride Mode :: Throttle Map vs Throttle x RPM | Mode 1,LOW,"FUN_6B18E: map(fef02602, RPM)>>8, indexed by ride mode fef026C2 via 0x18CBA4.",Cluster D :: Map [TP x RPM] 6x25 FUN_6b18e #2D0
+0x121A,Ride Mode :: Throttle Map vs Throttle x RPM | Mode 2,LOW,See Mode 1.,Cluster D :: Map [TP x RPM] 6x25 FUN_6b18e #2D2
+0x121B,Ride Mode :: Throttle Map vs Throttle x RPM | Mode 3,LOW,See Mode 1.,Cluster D :: Map [TP x RPM] 6x25 FUN_6b18e #2D4
+0x121C,Ride Mode :: Throttle Map vs Throttle x RPM | Mode 4,LOW,See Mode 1.,Cluster D :: Map [TP x RPM] 6x25 FUN_6b18e #2D6
+0x121D,Ride Mode :: Throttle Map vs Throttle x RPM | Mode 5,LOW,See Mode 1.,Cluster D :: Map [TP x RPM] 6x25 FUN_6b18e #2D8
+0x121E,Ride Mode :: Throttle Map vs Throttle x RPM | Mode 6,LOW,See Mode 1.,Cluster D :: Map [TP x RPM] 6x25 FUN_6b18e #2DA
+0x121F,Ride Mode :: Throttle Map vs Throttle x RPM | Mode 7,LOW,See Mode 1.,Cluster D :: Map [TP x RPM] 6x25 FUN_6b18e #2DC
+0x1220,Sensor :: ECT Conversion (ADC -> deg C) | Main,HIGH,"FUN_73714: ECT fef026BD = curve(fef025AC ADC), rate-limited; used unless option 0x18F0C4 = 0x80.",Cluster A :: Curve [RAM_fef025ac] 31pt FUN_73714 #2DE
+0x1221,Sensor :: ECT Conversion (ADC -> deg C) | Alternate,HIGH,FUN_73714: used when option 0x18F0C4 = 0x80.,Cluster D :: Curve [RAM_fef025ac] 29pt FUN_73714 #2DF
+0x1222,Sensor :: ADC fef0257C Conversion -> fef026C0,MEDIUM,FUN_6D29C: fef026C0 = curve(fef0257C).,Cluster D :: Curve [RAM_fef0257c] 30pt FUN_6d29c #2E0
+0x1223,ETV :: Baro Airflow Factor,MEDIUM,FUN_79724: fef02934 = curve(baro); used by FUN_79748 airflow scaling.,Pressure Comp :: Curve [AP] 29pt FUN_79724 #2E1
+0x1224,Unreferenced :: RPM Curve 29pt A,LOW,No reader found in the decompiled code (descriptor only).,Cluster D :: Curve [RPM] 29pt #2E2
+0x1225,Unreferenced :: RPM Curve 29pt B,LOW,No reader found in the decompiled code (descriptor only).,Cluster D :: Curve [RPM] 29pt #2E3
+0x1226,Sensor :: IAT Conversion (ADC -> deg C),HIGH,"FUN_73902: IAT fef026C3 = curve(fef025D0>>6), rate-limited by 0x18F0DD.",Cluster D :: Curve [?] 30pt FUN_73902 #2E4
+0x1227,Gear Ratio Window :: Limit A vs Gear,LOW,FUN_756EC: per-gear limits with fef0274C..58 (gear-ratio detection).,Gear :: Curve [Gear] 7pt FUN_756ec #2E5
+0x1228,Gear Ratio Window :: Limit B vs Gear,LOW,See Limit A.,Gear :: Curve [Gear] 7pt FUN_756ec #2E6
+0x122A,IMU :: Lean Angle Calibration Curve A,LOW,FUN_76DE6: curve(fef0268E lean) -> scaled to fef027A8/fef027AC (lean-dependent value used by cornering functions).,Lean Angle :: Curve [Lean] 9pt FUN_76de6 #2E8
+0x122D,IMU :: Wheel-Speed Correction vs Lean-Derived Value,LOW,"FUN_77568: fef02648 = value x curve / 1024 (14pt, ~1.0); a tyre-radius-at-lean speed correction.",Cluster D :: Curve [RPM] 14pt FUN_77568 #2EB
+0x122E,IMU :: Axis Correction A vs fef0296A,LOW,FUN_7A43E: fef026A0 = curve(scaled fef0294E); used by cruise FUN_2FE16.,Cluster D :: Curve [RAM_fef0296a] 37pt FUN_7a43e #2EC
+0x122F,IMU :: Axis Correction B vs fef0296C,LOW,FUN_7A43E: fef026A2 = curve(scaled fef02950).,Cluster D :: Curve [RAM_fef0296c] 37pt FUN_7a43e #2ED
+0x1230,ETV :: IMU Pitch/Lean Gain vs fef0268C,LOW,FUN_7A0D6: gain curve used in the fef02684 calculation (IMU-based vehicle dynamics).,Cluster D :: Curve [RAM_fef0268c] 37pt FUN_7a0d6 #2EE
+0x1231,Anti-Lift :: Pitch-Rate Gain Curve (vs fef0094E),LOW,"FUN_29D18: fef00956 = fef00954 x (curve(fef0094E) - 0x8000) x 0x15447F / 2500. Part of the anti-lift chain (FUN_29AB0..2A09A, setting fef026D7).",Cluster D :: Curve [RAM_fef0094e] 37pt FUN_29d18 #2EF
+0x1232,IMU :: Map vs fef0268C x Wheel Speed (Helper 1),LOW,"FUN_7A7CA: fef02692 = map(fef0268C, front/rear speed fef02978) above speed 0x18F080 and with no IMU faults.",ETV - Helper 1
+0x1233,"ETV :: IMU Gain vs fef02690 (Helper 2, flat)",LOW,FUN_7A0D6: multiplies (fef02944 - fef0267E) into fef02682.,ETV - Helper 2
+0x1234,ETV :: QS RPM Scaling vs Ride Mode,LOW,"FUN_7C5D4: during QS phase fef00A14 = 1, fef02AD4 = RPM x curve(ride mode)/128 x 125/2048.",Gear :: Curve [Gear] 7pt FUN_7c5d4 #2F3
+0x1235,ETV :: ECT Factor (Helper 3),LOW,FUN_7CBAC: fef02AF6 = curve(ECT); product with fef02AE2 and Trim D weight fef01572 in FUN_7CBD0.,ETV - Helper 3
+0x1236,"ETV :: Throttle Limit vs RPM (Helper 4, flat)",MEDIUM,"FUN_7CEA6: fef02AF0 = curve(RPM); MIN with other throttle limits (QS, cruise) -> fef02A08.",ETV - Helper 4
+0x1237,ETV :: Gain vs fef025F8 (Helper 5),LOW,FUN_7B5D8: fef02A72 = curve(fef025F8) -> correction fef02A1E.,ETV - Helper 5
+0x1238,"ETV :: Direction-Change Gain vs fef02A2E (Helper 6, flat)",LOW,FUN_7AF06: fef02A40 gain applied on sign changes of fef02A2A.,ETV - Helper 6
+0x1239,"ETV :: Gain vs RPM, Positive Error (Helper 7, flat 0)",LOW,FUN_7B42E: fef02A3C = (fef02A2A-0x8000) x curve/8 + 0x8000 when error >= 0.,ETV - Helper 7
+0x123A,"ETV :: Gain vs RPM, Negative Error (Helper 8, flat 0)",LOW,FUN_7B42E: used when fef02A2A < 0x8000.,ETV - Helper 8
+0x127E,ETV :: Grip-to-Throttle Map | Index 0,MEDIUM,"FUN_7C8C2: fef02ACA = map(grip fef02AEA, RPM fef02AEC); map chosen by fef02AF7 from pointer table 0x18FD44.",ETV 3 - 1
+0x127F,ETV :: Grip-to-Throttle Map | Index 1,MEDIUM,See Index 0.,ETV 3 - 2
+0x1280,ETV :: Grip-to-Throttle Map | Index 2,MEDIUM,See Index 0.,ETV 3 - 3
+0x1281,ETV :: Grip-to-Throttle Map | Index 3 (flat 0),MEDIUM,See Index 0.,ETV 3 - 4
+0x1282,ETV :: Grip-to-Throttle Map | Index 4 (flat 0),MEDIUM,See Index 0.,ETV 3 - 5
+0x1283,ETV :: Grip-to-Throttle Map | Index 5 (flat 0),MEDIUM,See Index 0.,ETV 3 - 6
+0x1284,ETV :: Grip-to-Throttle Map | Index 6 (flat 0),MEDIUM,See Index 0.,ETV 3 - 7
+0x1285,ETV Monitor :: Limit vs RPM | Set A,LOW,FUN_7F430: fef03116 = curve(RPM) above 0x1B6EFA; compared with fef026AC.,Cluster A :: Curve [RPM] 21pt FUN_7f430 #38E
+0x1286,ETV Monitor :: Limit vs RPM | Set B,LOW,FUN_7F430: used when fef030A0 > 0x1B6EF8.,Cluster E :: Curve [RPM] 21pt FUN_7f430 #38F
+0x1287,ETV Monitor :: ECT Factor (flat),LOW,FUN_81480: fef0314A = curve(ECT); multiplies all monitor air/torque maps (FUN_817F8..81EEA).,ECT Comp :: Curve [ECT] 16pt FUN_81480 #390 (flat)
+0x1288,ETV Monitor :: fef030A0 Factor (flat),LOW,FUN_814A2: fef0314C = curve(fef030A0); multiplies all monitor air/torque maps.,Cluster E :: Curve [RAM_fef030a0] 11pt FUN_814a2 #391 (flat)
+0x1289,ETV Monitor :: Baro x RPM Reference,LOW,"FUN_7F556: fef0311C = map(baro, RPM).",Pressure Comp :: Map [AP x RPM] 5x21 FUN_7f556 #392
+0x128A,ETV Monitor :: Fault Accumulation Rate vs IAP x RPM,LOW,FUN_7FC6A: fef03134 added to fef03130 while any monitor check (FUN_82AEC..82EF8) fails.,Pressure Comp :: Map [IAP x RPM] 10x21 FUN_7fc6a #394
+0x128B,ETV Monitor :: Threshold vs RPM (flat),LOW,FUN_7FE48: fef03138.,Cluster E :: Curve [RPM] 21pt FUN_7fe48 #396 (flat)
+0x128C,ETV Monitor :: Limit vs IAP x RPM (flat),LOW,"FUN_7FECC: fef02EE4 = MIN(map, 1000).",Pressure Comp :: Map [IAP x RPM] 8x12 FUN_7fecc #397 (flat)
+0x128D,ETV Monitor :: Count vs RPM (flat),LOW,FUN_7FF9E: monitor counter limit.,Cluster E :: Curve [RPM] 21pt FUN_7ff9e #399 (flat)
+0x128E,ETV Monitor :: Ratio Factor vs RPM (flat),LOW,FUN_803DC: fef03142 = curve(RPM); monitor plausibility check sets fef03147/fef03148 status bits.,Cluster E :: Curve [RPM] 21pt FUN_803dc #39A (flat)
+0x128F,ETV Monitor :: Limit Map Group 1 | Output A | Neutral/Clutch,LOW,"FUN_80FFC: map(IAP copy fef026A8, RPM copy fef02592) -> fef02EEE/2EF8/2F02 (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_80ffc #39B (flat)
+0x1290,ETV Monitor :: Limit Map Group 1 | Output B | Neutral/Clutch,LOW,"FUN_80FFC: map(IAP copy fef026A8, RPM copy fef02592) -> fef02EEE/2EF8/2F02 (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_80ffc #39D (flat)
+0x1291,ETV Monitor :: Limit Map Group 1 | Output C | Neutral/Clutch,LOW,"FUN_80FFC: map(IAP copy fef026A8, RPM copy fef02592) -> fef02EEE/2EF8/2F02 (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_80ffc #39F (flat)
+0x1292,ETV Monitor :: Limit Map Group 1 | Output A | In Gear,LOW,"FUN_80FFC: map(IAP copy fef026A8, RPM copy fef02592) -> fef02EEE/2EF8/2F02 (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_80ffc #3A1 (flat)
+0x1293,ETV Monitor :: Limit Map Group 1 | Output B | In Gear,LOW,"FUN_80FFC: map(IAP copy fef026A8, RPM copy fef02592) -> fef02EEE/2EF8/2F02 (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_80ffc #3A3 (flat)
+0x1294,ETV Monitor :: Limit Map Group 1 | Output C | In Gear,LOW,"FUN_80FFC: map(IAP copy fef026A8, RPM copy fef02592) -> fef02EEE/2EF8/2F02 (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_80ffc #3A5 (flat)
+0x1295,ETV Monitor :: Limit Map Group 2 | Output A | Neutral/Clutch,LOW,"FUN_81086: map(IAP copy fef026A8, RPM copy fef02592) -> fef02F0C/2F16/2F20 (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_81086 #3A7 (flat)
+0x1296,ETV Monitor :: Limit Map Group 2 | Output B | Neutral/Clutch,LOW,"FUN_81086: map(IAP copy fef026A8, RPM copy fef02592) -> fef02F0C/2F16/2F20 (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_81086 #3A9 (flat)
+0x1297,ETV Monitor :: Limit Map Group 2 | Output C | Neutral/Clutch,LOW,"FUN_81086: map(IAP copy fef026A8, RPM copy fef02592) -> fef02F0C/2F16/2F20 (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_81086 #3AB (flat)
+0x1298,ETV Monitor :: Limit Map Group 2 | Output A | In Gear,LOW,"FUN_81086: map(IAP copy fef026A8, RPM copy fef02592) -> fef02F0C/2F16/2F20 (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_81086 #3AD
+0x1299,ETV Monitor :: Limit Map Group 2 | Output B | In Gear,LOW,"FUN_81086: map(IAP copy fef026A8, RPM copy fef02592) -> fef02F0C/2F16/2F20 (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_81086 #3AF
+0x129A,ETV Monitor :: Limit Map Group 2 | Output C | In Gear,LOW,"FUN_81086: map(IAP copy fef026A8, RPM copy fef02592) -> fef02F0C/2F16/2F20 (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_81086 #3B1
+0x129B,ETV Monitor :: Limit Map Group 3 | Output A | Neutral/Clutch,LOW,"FUN_81110: map(IAP copy fef026A8, RPM copy fef02592) -> fef02F2A/2F34/2F3E (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_81110 #3B3 (flat)
+0x129C,ETV Monitor :: Limit Map Group 3 | Output B | Neutral/Clutch,LOW,"FUN_81110: map(IAP copy fef026A8, RPM copy fef02592) -> fef02F2A/2F34/2F3E (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_81110 #3B5 (flat)
+0x129D,ETV Monitor :: Limit Map Group 3 | Output C | Neutral/Clutch,LOW,"FUN_81110: map(IAP copy fef026A8, RPM copy fef02592) -> fef02F2A/2F34/2F3E (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_81110 #3B7 (flat)
+0x129E,ETV Monitor :: Limit Map Group 3 | Output A | In Gear,LOW,"FUN_81110: map(IAP copy fef026A8, RPM copy fef02592) -> fef02F2A/2F34/2F3E (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_81110 #3B9 (flat)
+0x129F,ETV Monitor :: Limit Map Group 3 | Output B | In Gear,LOW,"FUN_81110: map(IAP copy fef026A8, RPM copy fef02592) -> fef02F2A/2F34/2F3E (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_81110 #3BB (flat)
+0x12A0,ETV Monitor :: Limit Map Group 3 | Output C | In Gear,LOW,"FUN_81110: map(IAP copy fef026A8, RPM copy fef02592) -> fef02F2A/2F34/2F3E (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_81110 #3BD (flat)
+0x12A1,ETV Monitor :: Limit Map Group 4 | Output A | Neutral/Clutch,LOW,"FUN_8119A: map(IAP copy fef026A8, RPM copy fef02592) -> fef02F48/2F52/2F5C (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_8119a #3BF (flat)
+0x12A2,ETV Monitor :: Limit Map Group 4 | Output B | Neutral/Clutch,LOW,"FUN_8119A: map(IAP copy fef026A8, RPM copy fef02592) -> fef02F48/2F52/2F5C (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_8119a #3C1 (flat)
+0x12A3,ETV Monitor :: Limit Map Group 4 | Output C | Neutral/Clutch,LOW,"FUN_8119A: map(IAP copy fef026A8, RPM copy fef02592) -> fef02F48/2F52/2F5C (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_8119a #3C3 (flat)
+0x12A4,ETV Monitor :: Limit Map Group 4 | Output A | In Gear,LOW,"FUN_8119A: map(IAP copy fef026A8, RPM copy fef02592) -> fef02F48/2F52/2F5C (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_8119a #3C5
+0x12A5,ETV Monitor :: Limit Map Group 4 | Output B | In Gear,LOW,"FUN_8119A: map(IAP copy fef026A8, RPM copy fef02592) -> fef02F48/2F52/2F5C (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_8119a #3C7
+0x12A6,ETV Monitor :: Limit Map Group 4 | Output C | In Gear,LOW,"FUN_8119A: map(IAP copy fef026A8, RPM copy fef02592) -> fef02F48/2F52/2F5C (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_8119a #3C9
+0x12A7,ETV Monitor :: Limit Map Group 5 | Output A | Neutral/Clutch,LOW,"FUN_81224: map(IAP copy fef026A8, RPM copy fef02592) -> fef02F66/2F70/2F7A (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_81224 #3CB (flat)
+0x12A8,ETV Monitor :: Limit Map Group 5 | Output B | Neutral/Clutch,LOW,"FUN_81224: map(IAP copy fef026A8, RPM copy fef02592) -> fef02F66/2F70/2F7A (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_81224 #3CD (flat)
+0x12A9,ETV Monitor :: Limit Map Group 5 | Output C | Neutral/Clutch,LOW,"FUN_81224: map(IAP copy fef026A8, RPM copy fef02592) -> fef02F66/2F70/2F7A (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_81224 #3CF (flat)
+0x12AA,ETV Monitor :: Limit Map Group 5 | Output A | In Gear,LOW,"FUN_81224: map(IAP copy fef026A8, RPM copy fef02592) -> fef02F66/2F70/2F7A (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_81224 #3D1
+0x12AB,ETV Monitor :: Limit Map Group 5 | Output B | In Gear,LOW,"FUN_81224: map(IAP copy fef026A8, RPM copy fef02592) -> fef02F66/2F70/2F7A (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_81224 #3D3
+0x12AC,ETV Monitor :: Limit Map Group 5 | Output C | In Gear,LOW,"FUN_81224: map(IAP copy fef026A8, RPM copy fef02592) -> fef02F66/2F70/2F7A (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_81224 #3D5
+0x12AD,ETV Monitor :: Limit Map Group 6 | Output A | Neutral/Clutch,LOW,"FUN_812AE: map(IAP copy fef026A8, RPM copy fef02592) -> fef02F84/2F8E/2F98 (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_812ae #3D7 (flat)
+0x12AE,ETV Monitor :: Limit Map Group 6 | Output B | Neutral/Clutch,LOW,"FUN_812AE: map(IAP copy fef026A8, RPM copy fef02592) -> fef02F84/2F8E/2F98 (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_812ae #3D9 (flat)
+0x12AF,ETV Monitor :: Limit Map Group 6 | Output C | Neutral/Clutch,LOW,"FUN_812AE: map(IAP copy fef026A8, RPM copy fef02592) -> fef02F84/2F8E/2F98 (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_812ae #3DB (flat)
+0x12B0,ETV Monitor :: Limit Map Group 6 | Output A | In Gear,LOW,"FUN_812AE: map(IAP copy fef026A8, RPM copy fef02592) -> fef02F84/2F8E/2F98 (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_812ae #3DD
+0x12B1,ETV Monitor :: Limit Map Group 6 | Output B | In Gear,LOW,"FUN_812AE: map(IAP copy fef026A8, RPM copy fef02592) -> fef02F84/2F8E/2F98 (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_812ae #3DF
+0x12B2,ETV Monitor :: Limit Map Group 6 | Output C | In Gear,LOW,"FUN_812AE: map(IAP copy fef026A8, RPM copy fef02592) -> fef02F84/2F8E/2F98 (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_812ae #3E1
+0x12B3,ETV Monitor :: Limit Map Group 7 | Output A | Neutral/Clutch,LOW,"FUN_81338: map(IAP copy fef026A8, RPM copy fef02592) -> fef02FA2/2FAC/2FB6 (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_81338 #3E3 (flat)
+0x12B4,ETV Monitor :: Limit Map Group 7 | Output B | Neutral/Clutch,LOW,"FUN_81338: map(IAP copy fef026A8, RPM copy fef02592) -> fef02FA2/2FAC/2FB6 (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_81338 #3E5 (flat)
+0x12B5,ETV Monitor :: Limit Map Group 7 | Output C | Neutral/Clutch,LOW,"FUN_81338: map(IAP copy fef026A8, RPM copy fef02592) -> fef02FA2/2FAC/2FB6 (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_81338 #3E7 (flat)
+0x12B6,ETV Monitor :: Limit Map Group 7 | Output A | In Gear,LOW,"FUN_81338: map(IAP copy fef026A8, RPM copy fef02592) -> fef02FA2/2FAC/2FB6 (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_81338 #3E9
+0x12B7,ETV Monitor :: Limit Map Group 7 | Output B | In Gear,LOW,"FUN_81338: map(IAP copy fef026A8, RPM copy fef02592) -> fef02FA2/2FAC/2FB6 (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_81338 #3EB
+0x12B8,ETV Monitor :: Limit Map Group 7 | Output C | In Gear,LOW,"FUN_81338: map(IAP copy fef026A8, RPM copy fef02592) -> fef02FA2/2FAC/2FB6 (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_81338 #3ED
+0x12B9,ETV Monitor :: Limit Map Group 8 | Output A | Neutral/Clutch,LOW,"FUN_813C2: map(IAP copy fef026A8, RPM copy fef02592) -> fef02FC0/2FCA/2FD4 (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_813c2 #3EF (flat)
+0x12BA,ETV Monitor :: Limit Map Group 8 | Output B | Neutral/Clutch,LOW,"FUN_813C2: map(IAP copy fef026A8, RPM copy fef02592) -> fef02FC0/2FCA/2FD4 (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_813c2 #3F1 (flat)
+0x12BB,ETV Monitor :: Limit Map Group 8 | Output C | Neutral/Clutch,LOW,"FUN_813C2: map(IAP copy fef026A8, RPM copy fef02592) -> fef02FC0/2FCA/2FD4 (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_813c2 #3F3 (flat)
+0x12BC,ETV Monitor :: Limit Map Group 8 | Output A | In Gear,LOW,"FUN_813C2: map(IAP copy fef026A8, RPM copy fef02592) -> fef02FC0/2FCA/2FD4 (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_813c2 #3F5
+0x12BD,ETV Monitor :: Limit Map Group 8 | Output B | In Gear,LOW,"FUN_813C2: map(IAP copy fef026A8, RPM copy fef02592) -> fef02FC0/2FCA/2FD4 (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_813c2 #3F7
+0x12BE,ETV Monitor :: Limit Map Group 8 | Output C | In Gear,LOW,"FUN_813C2: map(IAP copy fef026A8, RPM copy fef02592) -> fef02FC0/2FCA/2FD4 (A/B/C); neutral/clutch set when FUN_7446A = 1. Level-2 torque/air monitor calibration (0x1ADxxx).",Pressure Comp :: Map [IAP x RPM] 5x21 FUN_813c2 #3F9
+0x12BF,ETV Monitor :: Air/Torque Map 1 | Cond 0 | Neutral/Clutch,LOW,"FUN_817F8: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef02FDE (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_817f8 #3FB (flat)
+0x12C0,ETV Monitor :: Air/Torque Map 1 | Cond 1 | Neutral/Clutch,LOW,"FUN_817F8: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef02FDE (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_817f8 #3FD (flat)
+0x12C1,ETV Monitor :: Air/Torque Map 1 | Cond 0 | In Gear,LOW,"FUN_817F8: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef02FDE (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_817f8 #3FF (flat)
+0x12C2,ETV Monitor :: Air/Torque Map 1 | Cond 1 | In Gear,LOW,"FUN_817F8: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef02FDE (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_817f8 #401 (flat)
+0x12C3,ETV Monitor :: Air/Torque Map 2 | Cond 0 | Neutral/Clutch,LOW,"FUN_818F6: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef02FEA (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_818f6 #403 (flat)
+0x12C4,ETV Monitor :: Air/Torque Map 2 | Cond 1 | Neutral/Clutch,LOW,"FUN_818F6: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef02FEA (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_818f6 #405 (flat)
+0x12C5,ETV Monitor :: Air/Torque Map 2 | Cond 0 | In Gear,LOW,"FUN_818F6: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef02FEA (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_818f6 #407
+0x12C6,ETV Monitor :: Air/Torque Map 2 | Cond 1 | In Gear,LOW,"FUN_818F6: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef02FEA (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_818f6 #409 (flat)
+0x12C7,ETV Monitor :: Air/Torque Map 3 | Cond 0 | Neutral/Clutch,LOW,"FUN_819F4: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef02FF6 (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_819f4 #40B (flat)
+0x12C8,ETV Monitor :: Air/Torque Map 3 | Cond 1 | Neutral/Clutch,LOW,"FUN_819F4: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef02FF6 (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_819f4 #40D (flat)
+0x12C9,ETV Monitor :: Air/Torque Map 3 | Cond 0 | In Gear,LOW,"FUN_819F4: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef02FF6 (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_819f4 #40F (flat)
+0x12CA,ETV Monitor :: Air/Torque Map 3 | Cond 1 | In Gear,LOW,"FUN_819F4: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef02FF6 (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_819f4 #411 (flat)
+0x12CB,ETV Monitor :: Air/Torque Map 4 | Cond 0 | Neutral/Clutch,LOW,"FUN_81AF2: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef03002 (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_81af2 #413 (flat)
+0x12CC,ETV Monitor :: Air/Torque Map 4 | Cond 1 | Neutral/Clutch,LOW,"FUN_81AF2: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef03002 (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_81af2 #415 (flat)
+0x12CD,ETV Monitor :: Air/Torque Map 4 | Cond 0 | In Gear,LOW,"FUN_81AF2: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef03002 (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_81af2 #417
+0x12CE,ETV Monitor :: Air/Torque Map 4 | Cond 1 | In Gear,LOW,"FUN_81AF2: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef03002 (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_81af2 #419 (flat)
+0x12CF,ETV Monitor :: Air/Torque Map 5 | Cond 0 | Neutral/Clutch,LOW,"FUN_81BF0: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef0300E (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_81bf0 #41B (flat)
+0x12D0,ETV Monitor :: Air/Torque Map 5 | Cond 1 | Neutral/Clutch,LOW,"FUN_81BF0: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef0300E (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_81bf0 #41D (flat)
+0x12D1,ETV Monitor :: Air/Torque Map 5 | Cond 0 | In Gear,LOW,"FUN_81BF0: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef0300E (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_81bf0 #41F
+0x12D2,ETV Monitor :: Air/Torque Map 5 | Cond 1 | In Gear,LOW,"FUN_81BF0: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef0300E (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_81bf0 #421 (flat)
+0x12D3,ETV Monitor :: Air/Torque Map 6 | Cond 0 | Neutral/Clutch,LOW,"FUN_81DEC: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef03026 (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_81dec #423 (flat)
+0x12D4,ETV Monitor :: Air/Torque Map 6 | Cond 1 | Neutral/Clutch,LOW,"FUN_81DEC: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef03026 (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_81dec #425 (flat)
+0x12D5,ETV Monitor :: Air/Torque Map 6 | Cond 0 | In Gear,LOW,"FUN_81DEC: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef03026 (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_81dec #427
+0x12D6,ETV Monitor :: Air/Torque Map 6 | Cond 1 | In Gear,LOW,"FUN_81DEC: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef03026 (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_81dec #429 (flat)
+0x12D7,ETV Monitor :: Air/Torque Map 7 | Cond 0 | Neutral/Clutch,LOW,"FUN_81EEA: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef03032 (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_81eea #42B (flat)
+0x12D8,ETV Monitor :: Air/Torque Map 7 | Cond 1 | Neutral/Clutch,LOW,"FUN_81EEA: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef03032 (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_81eea #42D (flat)
+0x12D9,ETV Monitor :: Air/Torque Map 7 | Cond 0 | In Gear,LOW,"FUN_81EEA: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef03032 (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_81eea #42F
+0x12DA,ETV Monitor :: Air/Torque Map 7 | Cond 1 | In Gear,LOW,"FUN_81EEA: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef03032 (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_81eea #431 (flat)
+0x12DB,ETV Monitor :: Air/Torque Map 8 | Cond 0 | Neutral/Clutch,LOW,"FUN_81CEE: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef0301A (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_81cee #433 (flat)
+0x12DC,ETV Monitor :: Air/Torque Map 8 | Cond 1 | Neutral/Clutch,LOW,"FUN_81CEE: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef0301A (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_81cee #435 (flat)
+0x12DD,ETV Monitor :: Air/Torque Map 8 | Cond 0 | In Gear,LOW,"FUN_81CEE: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef0301A (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_81cee #437
+0x12DE,ETV Monitor :: Air/Torque Map 8 | Cond 1 | In Gear,LOW,"FUN_81CEE: map(IAP copy, RPM copy) x ECT factor fef0314A x fef0314C -> fef0301A (5-sample history). Cond = FUN_7D02C state.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_81cee #439 (flat)
+0x12DF,ETV Monitor :: IAP Threshold vs RPM (flat),LOW,FUN_7E9DC: fef02E84 = curve(RPM); compared with IAP copy fef026A8 (Level-2 monitor calibration block 0x1AE).,Cluster E :: Curve [RPM] 21pt FUN_7e9dc #43B (flat)
+0x12E0,ETV Monitor :: Air/Torque Estimate vs IAP x RPM | Set 1 (flat),LOW,"FUN_7F000: fef02E8A/8C = map(IAP copy, RPM), set chosen by FUN_7D02C / FUN_7446A; monitor-layer estimate.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_7f000 #43C (flat)
+0x12E1,ETV Monitor :: Air/Torque Estimate vs IAP x RPM | Set 2 (flat),LOW,See Set 1.,Pressure Comp :: Map [IAP x RPM] 10x21 FUN_7f000 #43E (flat)
+0x12E2,ETV Monitor :: Air/Torque Estimate vs IAP x RPM | Set 3 (flat),LOW,See Set 1.,Pressure Comp :: Map [IAP x RPM] 10x21 FUN_7f000 #440 (flat)
+0x12E3,ETV Monitor :: Air/Torque Estimate vs IAP x RPM | Set 4 (flat),LOW,See Set 1.,Pressure Comp :: Map [IAP x RPM] 10x21 FUN_7f000 #442 (flat)
+0x12E4,ETV Monitor :: Air/Torque Estimate vs IAP x RPM | Set 5 (flat),LOW,See Set 1.,Pressure Comp :: Map [IAP x RPM] 10x21 FUN_7f000 #444 (flat)
+0x12E5,ETV Monitor :: Air/Torque Estimate vs IAP x RPM | Set 6 (flat),LOW,See Set 1.,Pressure Comp :: Map [IAP x RPM] 10x21 FUN_7f000 #446 (flat)
+0x12E6,ETV Monitor :: Air/Torque Estimate vs IAP x RPM | Set 7 (flat),LOW,See Set 1.,Pressure Comp :: Map [IAP x RPM] 10x21 FUN_7f000 #448 (flat)
+0x12E7,ETV Monitor :: Air/Torque Estimate vs IAP x RPM | Set 8 (flat),LOW,See Set 1.,Pressure Comp :: Map [IAP x RPM] 10x21 FUN_7f000 #44A (flat)
+0x12E8,ETV Monitor :: Filtered Limit Map 3 | Neutral/Clutch (flat 0),LOW,"map(IAP copy, RPM copy)>>8 -> fef031A1, filtered; FUN_821F4/8217E/82108 family.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_821f4 #44C (flat)
+0x12E9,ETV Monitor :: Filtered Limit Map 3 | In Gear (flat 0),LOW,See Neutral/Clutch map.,Pressure Comp :: Map [IAP x RPM] 10x21 FUN_821f4 #44E (flat)
+0x12EA,ETV Monitor :: Filtered Limit Map 2 | Neutral/Clutch (flat 0),LOW,"map(IAP copy, RPM copy)>>8 -> fef031A0, filtered; FUN_821F4/8217E/82108 family.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_8217e #450 (flat)
+0x12EB,ETV Monitor :: Filtered Limit Map 2 | In Gear (flat 0),LOW,See Neutral/Clutch map.,Pressure Comp :: Map [IAP x RPM] 10x21 FUN_8217e #452 (flat)
+0x12EC,ETV Monitor :: Filtered Limit Map 1 | Neutral/Clutch (flat 0),LOW,"map(IAP copy, RPM copy)>>8 -> fef0319F, filtered; FUN_821F4/8217E/82108 family.",Pressure Comp :: Map [IAP x RPM] 10x21 FUN_82108 #454 (flat)
+0x12ED,ETV Monitor :: Filtered Limit Map 1 | In Gear (flat 0),LOW,See Neutral/Clutch map.,Pressure Comp :: Map [IAP x RPM] 10x21 FUN_82108 #456 (flat)
+0x12EE,Ramp Controller fef025E4 :: Step Sizes (was 'Fan Temperature Control'),LOW,"FUN_768C0: fef025E4 is ramped and clamped between 0x18EFB2/0x18EFB6; 0x18EFC2/0x18EFC6 are the up/down step sizes, gated by fef02780 vs 0x18EFBA/0x18EFBE and ride-mode mask 0x18F0EE. Not a coolant temperature; the fan relay logic is elsewhere.",Fan Temperature Control
+0x12F4,Diagnostic Enable :: Check 0x57 (fef00C7E.0),MEDIUM,"Part of the DTC enable byte block 0x154968-0x1549EA (all copied by FUN_11010). FUN_33B12: when 0x80 and FUN_54DFA(0x57) = 0, fef00C7E bit0 follows fef021C1 bit2. 10L1 = 0x00 (disabled), 10L4 = 0x80.",Option byte @0x154976
+0x12F5,Ride-Mode Variant :: RPM Threshold A,LOW,FUN_509A2: copied to fef015B4 for mode A (option 0x18B778).,Variant RPM threshold A @0x18B66C
+0x12F6,Ride-Mode Variant :: RPM Threshold B,LOW,FUN_509A2: fef015B4 for mode B.,Variant RPM threshold B @0x18B670
+0x12F7,Ride-Mode Variant :: RPM Threshold C,LOW,FUN_509A2: fef015B6 for mode B/C.,Variant RPM threshold C @0x18B672
+0x12F8,Ride-Mode Variant :: TP Threshold A,LOW,"Ride-mode variant constant, same family as RPM thresholds.",Variant TP threshold A @0x18B678
+0x12F9,Ride-Mode Variant :: TP Threshold B,LOW,See TP Threshold A.,Variant TP threshold B @0x18B67C
+0x12FA,Ride-Mode Variant :: TP Threshold C,LOW,See TP Threshold A.,Variant TP threshold C @0x18B67E
+0x12FB,Ride-Mode Variant :: Timer A,LOW,Ride-mode variant timer/count.,Variant timer/count A @0x18B692
+0x12FC,Ride-Mode Variant :: Timer B,LOW,See Timer A.,Variant timer/count B @0x18B694
+0x12FD,Ride-Mode Variant :: Timer C,LOW,See Timer A.,Variant timer/count C @0x18B698
+0x12FE,Option :: Meter Signal Enable (0x80),LOW,"FUN_558E2: when 0x80, fef01AA0 = fef01F54; else 0xFF.",Option byte @0x18DB74
+0x12FF,Option :: Meter Count Mode,LOW,FUN_55A4E: 0 = fixed 0xAA; 0x80 = -2; 0xFF = count of bits set in fef020BC.,Option byte @0x18DBCB
+0x1300,ETV :: Mode Setting fef02ACC | State 0 Alt,LOW,FUN_7C988: fef02ACC per state fef02AF2 (0x1AD85C-66).,Variant setting @0x1AD860
+0x1301,ETV :: Mode Setting fef02AF3 | State 0 Alt,LOW,FUN_7C988: fef02AF3 per state fef02AF2 (0x1AD8F3-F8).,Variant setting @0x1AD8F5
+0x1302,Variant Code @0x1BC729,LOW,Variant/coding byte in the monitor calibration block; no direct reader identified.,Variant code @0x1BC729
+0x130C,Diagnostic Enable :: Check 0x57 bit7,MEDIUM,Bit view of 0x154976 (see the byte).,Option bit7 @0x154976
+0x130D,Option :: Meter Signal Enable bit7,LOW,Bit view of 0x18DB74 (see option byte).,Option bit7 @0x18DB74
+0x9842,Launch Control :: Engine-Running Confirm Count,MEDIUM,"FUN_28BC6: while RPM > 0x18DA8E (500 rpm), after 0x15448B ticks and with START released (FUN_73B52 = 0), counts fef0071C; at this count sets fef00725 bit2 (engine-started flag used by LC). Not a limiter hold timer.",Launch Control | Hold suspend timer
