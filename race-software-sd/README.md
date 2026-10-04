@@ -31,6 +31,17 @@ Each version builds on the one before. Full byte-level change lists are in `mani
 - `als_harness.s` — simulator test harness. It needs `blob_*.bin` extracts of the stock code, which are not
   in this repo.
 
+## Corrections to the earlier manifests (XDF v9.2 audit)
+
+- **0x1824C6 is a tip-in rate gate, not a WOT gate.** SD-v2/SD-v3 manifests call it the "WOT throttle-path
+  gate, 91.4 deg". The code compares it with the throttle opening *rate* (TP now - TP 4 samples ago), so
+  stock 33282 means "TP rises 1.41 deg or more within 4 samples". Setting it to 0xFFFF (done since SD-v2)
+  still has the intended result - the speed-density map keeps authority - but on fast tip-in, not at WOT.
+- RAM `fef02634` / `fef02636` are front / rear wheel speed, `fef02604` is throttle opening rate and
+  `fef01562` is the traction-control slip error. The race XDFs in `current/` are corrected
+  (`tools/xdf_corrections.py`); the XDFs in `history/` are kept as originally published.
+- Anti-lag is unaffected: `als.s` reads `fef0263A`, verified as the averaged front wheel speed.
+
 ## After editing a bin
 
 Re-stamp the field-1 CRC: `python3 ../tools/fix_field1_crc.py your.bin`

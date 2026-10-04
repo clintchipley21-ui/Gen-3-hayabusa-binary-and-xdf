@@ -96,3 +96,25 @@ V9.1 (decoded quickshifter, top-speed limiter, speed windows)
  - Cruise Control :: Max Set Speed Cap (0x154438, 300 km/h) - cruise only, not the governor.
  - HO2 / Closed Loop speed gates (0x1825CC-D2) and the seven settings-interlock wheel-speed limits
    (0x18F054-0x18F072) were labelled as throttle angles; they are wheel speeds (X/128 km/h).
+
+V9.2 (full unit / axis audit - tools/xdf_corrections.py)
+ Cause: AUTO-DEFINED items took their unit from the RAM variable they were "compared with". That RAM list
+ was built by guessing each variable from the tables that use it, and some items were tied to the wrong
+ variable of a multi-variable comparison.
+ Audit:
+  - All 38 RAM variables the XDF uses for units re-checked against the code that writes them: 33 correct,
+    5 wrong - fef02634 / fef02636 are front / rear WHEEL SPEED (were "throttle position"), fef02604 is
+    throttle opening RATE (TP now - TP 4 samples ago, 0x8000 = 0), fef01562 is the traction-control slip
+    error (was "grip %"), fef0264C is RPM expected from wheel speed x gear (was "engine speed copy").
+  - Every constant re-paired with the variable the code actually compares it with (one pass over the
+    decompiled 5JCZSJ40): 100 constants re-scaled / renamed (e.g. DTC P0410 gate was 6,210 C -> 2,600 rpm,
+    OBD gates -> 800 rpm, many "throttle thresholds" -> wheel-speed thresholds in km/h).
+  - Every table checked against the ECU map descriptors (all 749 descriptor-backed tables match: address,
+    size, count, axis pointers) and every axis input against the code: 16 axes re-scaled (cruise and
+    speed-monitor axes were shown as RPM, are km/h; throttle-rate, throttle and rear-speed axes were raw).
+  - Range check of every axis and sensor-scaled constant: no axis out of range; remaining out-of-range
+    constants are 0xFFxx "disabled" sentinels.
+ Important: 0x1824C6 ("Fuel Blend - WOT Throttle-Path Gate", 91.4 deg) is compared with fef02604, so it
+ is a TIP-IN RATE GATE: a TP rise of >= 1.41 deg within 4 samples forces 100% TPS-map fuel for 4 cycles.
+ It is not a WOT angle. The fuel-strategy text above ("forced to 256 at/above the WOT gate 91.4 deg") is
+ superseded by this.

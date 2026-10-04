@@ -1984,21 +1984,21 @@ Previous title: Cluster A :: Curve [RAM_fef00a00] 14pt FUN_2f046 #033
 
 HOW THE ECU USES IT: looked up by FUN_2f046; X input = RAM 0xfef00a00.
 
-AXES: X axis: 14 points, 1500 to 12000 RPM.
+AXES: X axis: 14 points, 30.0 to 240.0 km/h. X input verified from code (v9.2): Cruise target speed (fef00A00).
 
 VALUES (stock 5JCZSJ40): 36.0 to 74.0 raw.
 
 REFERENCE: data @0x150E04, X axis @0x150DE8, descriptor @0x150E20, code FUN_2f046.</description>
     <CATEGORYMEM index="0" category="56" /><XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x150DE8" mmedelementsizebits="16" mmedcolcount="14" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>RPM</units>
+      <units>km/h</units>
       <indexcount>14</indexcount>
-      <decimalpl>0</decimalpl>
+      <decimalpl>1</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X/2.56">
+      <MATH equation="X/128">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -2774,7 +2774,7 @@ Previous title: Gear :: Map [RPM x Gear] 39x7 FUN_290ea #051
 
 Gear-dependent setting. The gear axis is a bitmask: 1 = Neutral, 2 = 1st, 4 = 2nd, 8 = 3rd, 16 = 4th, 32 = 5th, 64 = 6th. (Family-level description - specific use not individually confirmed.)
 
-HOW THE ECU USES IT: looked up by FUN_290ea; X input = Engine speed (copy) (RAM 0xFEF0264C); Y input = Gear position bitmask (1=N, 2=1st ... 0x40=6th) from GP sensor ADC ch2E (RAM 0xFEF026C2).
+HOW THE ECU USES IT: looked up by FUN_290ea; X input = RPM expected from wheel speed x gear ratio (RAM 0xFEF0264C); Y input = Gear position bitmask (1=N, 2=1st ... 0x40=6th) from GP sensor ADC ch2E (RAM 0xFEF026C2).
 
 AXES: X axis: 39 points, 800 to 12000 RPM; Y axis: 7 points, 1.00 to 64.0 gear bit.
 
@@ -2826,7 +2826,7 @@ Previous title: Gear :: Map [RPM x Gear] 39x7 FUN_290ea #053
 
 Gear-dependent setting. The gear axis is a bitmask: 1 = Neutral, 2 = 1st, 4 = 2nd, 8 = 3rd, 16 = 4th, 32 = 5th, 64 = 6th. (Family-level description - specific use not individually confirmed.)
 
-HOW THE ECU USES IT: looked up by FUN_290ea; X input = Engine speed (copy) (RAM 0xFEF0264C); Y input = Gear position bitmask (1=N, 2=1st ... 0x40=6th) from GP sensor ADC ch2E (RAM 0xFEF026C2).
+HOW THE ECU USES IT: looked up by FUN_290ea; X input = RPM expected from wheel speed x gear ratio (RAM 0xFEF0264C); Y input = Gear position bitmask (1=N, 2=1st ... 0x40=6th) from GP sensor ADC ch2E (RAM 0xFEF026C2).
 
 AXES: X axis: 39 points, 800 to 12000 RPM; Y axis: 7 points, 1.00 to 64.0 gear bit.
 
@@ -2878,7 +2878,7 @@ Previous title: Gear :: Map [RPM x Gear] 39x7 FUN_290ea #055
 
 Gear-dependent setting. The gear axis is a bitmask: 1 = Neutral, 2 = 1st, 4 = 2nd, 8 = 3rd, 16 = 4th, 32 = 5th, 64 = 6th. (Family-level description - specific use not individually confirmed.)
 
-HOW THE ECU USES IT: looked up by FUN_290ea; X input = Engine speed (copy) (RAM 0xFEF0264C); Y input = Gear position bitmask (1=N, 2=1st ... 0x40=6th) from GP sensor ADC ch2E (RAM 0xFEF026C2).
+HOW THE ECU USES IT: looked up by FUN_290ea; X input = RPM expected from wheel speed x gear ratio (RAM 0xFEF0264C); Y input = Gear position bitmask (1=N, 2=1st ... 0x40=6th) from GP sensor ADC ch2E (RAM 0xFEF026C2).
 
 AXES: X axis: 39 points, 800 to 12000 RPM; Y axis: 7 points, 1.00 to 64.0 gear bit.
 
@@ -2930,7 +2930,7 @@ Previous title: Gear :: Map [RPM x Gear] 39x7 FUN_290ea #057 (flat)
 
 Gear-dependent setting. The gear axis is a bitmask: 1 = Neutral, 2 = 1st, 4 = 2nd, 8 = 3rd, 16 = 4th, 32 = 5th, 64 = 6th. (Family-level description - specific use not individually confirmed.)
 
-HOW THE ECU USES IT: looked up by FUN_290ea; X input = Engine speed (copy) (RAM 0xFEF0264C); Y input = Gear position bitmask (1=N, 2=1st ... 0x40=6th) from GP sensor ADC ch2E (RAM 0xFEF026C2).
+HOW THE ECU USES IT: looked up by FUN_290ea; X input = RPM expected from wheel speed x gear ratio (RAM 0xFEF0264C); Y input = Gear position bitmask (1=N, 2=1st ... 0x40=6th) from GP sensor ADC ch2E (RAM 0xFEF026C2).
 
 AXES: X axis: 39 points, 800 to 16000 RPM; Y axis: 7 points, 1.00 to 64.0 gear bit.
 
@@ -2983,7 +2983,7 @@ Previous title: Gear :: Map [RPM x Gear] 39x7 FUN_290ea #059 (flat)
 
 Gear-dependent setting. The gear axis is a bitmask: 1 = Neutral, 2 = 1st, 4 = 2nd, 8 = 3rd, 16 = 4th, 32 = 5th, 64 = 6th. (Family-level description - specific use not individually confirmed.)
 
-HOW THE ECU USES IT: looked up by FUN_290ea; X input = Engine speed (copy) (RAM 0xFEF0264C); Y input = Gear position bitmask (1=N, 2=1st ... 0x40=6th) from GP sensor ADC ch2E (RAM 0xFEF026C2).
+HOW THE ECU USES IT: looked up by FUN_290ea; X input = RPM expected from wheel speed x gear ratio (RAM 0xFEF0264C); Y input = Gear position bitmask (1=N, 2=1st ... 0x40=6th) from GP sensor ADC ch2E (RAM 0xFEF026C2).
 
 AXES: X axis: 39 points, 800 to 16000 RPM; Y axis: 7 points, 1.00 to 64.0 gear bit.
 
@@ -3036,7 +3036,7 @@ Previous title: Gear :: Map [RPM x Gear] 39x7 FUN_290ea #05B (flat)
 
 Gear-dependent setting. The gear axis is a bitmask: 1 = Neutral, 2 = 1st, 4 = 2nd, 8 = 3rd, 16 = 4th, 32 = 5th, 64 = 6th. (Family-level description - specific use not individually confirmed.)
 
-HOW THE ECU USES IT: looked up by FUN_290ea; X input = Engine speed (copy) (RAM 0xFEF0264C); Y input = Gear position bitmask (1=N, 2=1st ... 0x40=6th) from GP sensor ADC ch2E (RAM 0xFEF026C2).
+HOW THE ECU USES IT: looked up by FUN_290ea; X input = RPM expected from wheel speed x gear ratio (RAM 0xFEF0264C); Y input = Gear position bitmask (1=N, 2=1st ... 0x40=6th) from GP sensor ADC ch2E (RAM 0xFEF026C2).
 
 AXES: X axis: 39 points, 800 to 16000 RPM; Y axis: 7 points, 1.00 to 64.0 gear bit.
 
@@ -3181,21 +3181,21 @@ Previous title: Cluster A :: Curve [RAM_fef00a3e] 36pt FUN_2d0f0 #05F
 
 HOW THE ECU USES IT: looked up by FUN_2d0f0; X input = RAM 0xfef00a3e.
 
-AXES: X axis: 36 points, 0.00 to 123 deg (TP angle).
+AXES: X axis: 36 points, 0 to 44800 raw. X input verified from code (v9.2): Cruise controller internal value (fef00A3E, 0x8000-centred).
 
 VALUES (stock 5JCZSJ40): 32848 to 42941 raw.
 
 REFERENCE: data @0x154190, X axis @0x154148, descriptor @0x1511B0, code FUN_2d0f0.</description>
     <CATEGORYMEM index="0" category="56" /><XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154148" mmedelementsizebits="16" mmedcolcount="36" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>deg (TP angle)</units>
+      <units>raw</units>
       <indexcount>36</indexcount>
-      <decimalpl>1</decimalpl>
+      <decimalpl>0</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X/364.08">
+      <MATH equation="X">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -3227,21 +3227,21 @@ Previous title: Cluster A :: Curve [RearSpd] 10pt FUN_2cb40 #060
 
 HOW THE ECU USES IT: looked up by FUN_2cb40; X input = Rear wheel speed (RAM 0xFEF0263C).
 
-AXES: X axis: 10 points, 1280 to 20480 raw.
+AXES: X axis: 10 points, 10.0 to 160.0 km/h. X input verified from code (v9.2): Rear wheel speed, averaged (fef0263C).
 
 VALUES (stock 5JCZSJ40): 2712 to 6694 raw.
 
 REFERENCE: data @0x1511D8, X axis @0x1511C4, descriptor @0x1511EC, code FUN_2cb40.</description>
     <CATEGORYMEM index="0" category="58" /><XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1511C4" mmedelementsizebits="16" mmedcolcount="10" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>raw</units>
+      <units>km/h</units>
       <indexcount>10</indexcount>
-      <decimalpl>0</decimalpl>
+      <decimalpl>1</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X">
+      <MATH equation="X/128">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -3596,21 +3596,21 @@ Previous title: Cluster A :: Curve [RAM_fef009f2] 14pt FUN_2f2e0 #068
 
 HOW THE ECU USES IT: looked up by FUN_2f2e0; X input = RAM 0xfef009f2.
 
-AXES: X axis: 14 points, 1500 to 12000 RPM.
+AXES: X axis: 14 points, 30.0 to 240.0 km/h. X input verified from code (v9.2): Rear wheel speed, filtered (fef009F2).
 
 VALUES (stock 5JCZSJ40): 36.0 to 74.0 raw.
 
 REFERENCE: data @0x1512A8, X axis @0x15128C, descriptor @0x1512C4, code FUN_2f2e0.</description>
     <CATEGORYMEM index="0" category="56" /><XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x15128C" mmedelementsizebits="16" mmedcolcount="14" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>RPM</units>
+      <units>km/h</units>
       <indexcount>14</indexcount>
-      <decimalpl>0</decimalpl>
+      <decimalpl>1</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X/2.56">
+      <MATH equation="X/128">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -3642,7 +3642,7 @@ Previous title: Cluster A :: Curve [RAM_fef009f2] 16pt FUN_2f508 #069 (flat)
 
 HOW THE ECU USES IT: looked up by FUN_2f508; X input = RAM 0xfef009f2.
 
-AXES: X axis: 16 points, 1500 to 9000 RPM.
+AXES: X axis: 16 points, 30.0 to 180.0 km/h. X input verified from code (v9.2): Rear wheel speed, filtered (fef009F2).
 
 VALUES (stock 5JCZSJ40): 0.00 to 0.00 raw - every cell is the same (0.00), so the function is probably disabled or unused in this calibration.
 
@@ -3650,14 +3650,14 @@ REFERENCE: data @0x150818, X axis @0x1507F8, descriptor @0x1512D8, code FUN_2f50
     <CATEGORYMEM index="0" category="56" /><CATEGORYMEM index="1" category="31" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1507F8" mmedelementsizebits="16" mmedcolcount="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>RPM</units>
+      <units>km/h</units>
       <indexcount>16</indexcount>
-      <decimalpl>0</decimalpl>
+      <decimalpl>1</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X/2.56">
+      <MATH equation="X/128">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -4218,21 +4218,21 @@ Previous title: Cluster A :: Curve [RAM_fef02604] 8pt FUN_46354 #076
 
 HOW THE ECU USES IT: looked up by FUN_46354; X input = RAM 0xfef02604.
 
-AXES: X axis: 8 points, 32768 to 48512 raw.
+AXES: X axis: 8 points, 0.0 to 43.2 deg/4 samples. X input verified from code (v9.2): Throttle opening rate (fef02604).
 
 VALUES (stock 5JCZSJ40): 43.0 to 72.0 raw.
 
 REFERENCE: data @0x1549FC, X axis @0x154B2C, descriptor @0x154E84, code FUN_46354.</description>
     <CATEGORYMEM index="0" category="2" /><XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154B2C" mmedelementsizebits="16" mmedcolcount="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>raw</units>
+      <units>deg/4 samples</units>
       <indexcount>8</indexcount>
-      <decimalpl>0</decimalpl>
+      <decimalpl>1</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X">
+      <MATH equation="(X-32768)/364.08">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -8525,7 +8525,7 @@ REFERENCE: data @0x159A8C, X axis @0x154DF8, Y axis @0x154B04, descriptor @0x155
     <title>SD (abs MAP) - In Gear | Cyl 1</title>
     <description>SPEED-DENSITY base fuel, cylinder 1, In Gear. Output = raw fuel quantity (injection time units) vs manifold ABSOLUTE pressure and RPM.
 
-HOW THE ECU USES IT (SD-v3): looked up by FUN_45320 (map 0 of the cylinder set; maps 1-5 are never blended - weight is hard 0). X input = RAW IAP sensor ADC fef02574 (code patch); axis shown in kPa via X*0.307429-12.6 (provisional 3-bar calibration). Fuel authority: blend curve and WOT gate are 0xFFFF, so this map fuels the engine at all throttle openings except sensor-fault limp-home (throttle path).
+HOW THE ECU USES IT (SD-v3): looked up by FUN_45320 (map 0 of the cylinder set; maps 1-5 are never blended - weight is hard 0). X input = RAW IAP sensor ADC fef02574 (code patch); axis shown in kPa via X*0.307429-12.6 (provisional 3-bar calibration). Fuel authority: blend curve and tip-in rate gate (0x1824C6) are 0xFFFF, so this map fuels the engine at all throttle openings except sensor-fault limp-home (throttle path).
 
 AXES: X 30 points, 20-300 kPa abs; Y 50 points, 800-16000 RPM.
 
@@ -8837,7 +8837,7 @@ SD-v3: FUN_45320 now feeds this map the RAW IAP ADC (not vacuum), so the X axis 
     <title>SD (abs MAP) - In Gear | Cyl 2</title>
     <description>SPEED-DENSITY base fuel, cylinder 2, In Gear. Output = raw fuel quantity (injection time units) vs manifold ABSOLUTE pressure and RPM.
 
-HOW THE ECU USES IT (SD-v3): looked up by FUN_45320 (map 0 of the cylinder set; maps 1-5 are never blended - weight is hard 0). X input = RAW IAP sensor ADC fef02574 (code patch); axis shown in kPa via X*0.307429-12.6 (provisional 3-bar calibration). Fuel authority: blend curve and WOT gate are 0xFFFF, so this map fuels the engine at all throttle openings except sensor-fault limp-home (throttle path).
+HOW THE ECU USES IT (SD-v3): looked up by FUN_45320 (map 0 of the cylinder set; maps 1-5 are never blended - weight is hard 0). X input = RAW IAP sensor ADC fef02574 (code patch); axis shown in kPa via X*0.307429-12.6 (provisional 3-bar calibration). Fuel authority: blend curve and tip-in rate gate (0x1824C6) are 0xFFFF, so this map fuels the engine at all throttle openings except sensor-fault limp-home (throttle path).
 
 AXES: X 30 points, 20-300 kPa abs; Y 50 points, 800-16000 RPM.
 
@@ -9149,7 +9149,7 @@ SD-v3: FUN_45320 now feeds this map the RAW IAP ADC (not vacuum), so the X axis 
     <title>SD (abs MAP) - In Gear | Cyl 3</title>
     <description>SPEED-DENSITY base fuel, cylinder 3, In Gear. Output = raw fuel quantity (injection time units) vs manifold ABSOLUTE pressure and RPM.
 
-HOW THE ECU USES IT (SD-v3): looked up by FUN_45320 (map 0 of the cylinder set; maps 1-5 are never blended - weight is hard 0). X input = RAW IAP sensor ADC fef02574 (code patch); axis shown in kPa via X*0.307429-12.6 (provisional 3-bar calibration). Fuel authority: blend curve and WOT gate are 0xFFFF, so this map fuels the engine at all throttle openings except sensor-fault limp-home (throttle path).
+HOW THE ECU USES IT (SD-v3): looked up by FUN_45320 (map 0 of the cylinder set; maps 1-5 are never blended - weight is hard 0). X input = RAW IAP sensor ADC fef02574 (code patch); axis shown in kPa via X*0.307429-12.6 (provisional 3-bar calibration). Fuel authority: blend curve and tip-in rate gate (0x1824C6) are 0xFFFF, so this map fuels the engine at all throttle openings except sensor-fault limp-home (throttle path).
 
 AXES: X 30 points, 20-300 kPa abs; Y 50 points, 800-16000 RPM.
 
@@ -9461,7 +9461,7 @@ SD-v3: FUN_45320 now feeds this map the RAW IAP ADC (not vacuum), so the X axis 
     <title>SD (abs MAP) - In Gear | Cyl 4</title>
     <description>SPEED-DENSITY base fuel, cylinder 4, In Gear. Output = raw fuel quantity (injection time units) vs manifold ABSOLUTE pressure and RPM.
 
-HOW THE ECU USES IT (SD-v3): looked up by FUN_45320 (map 0 of the cylinder set; maps 1-5 are never blended - weight is hard 0). X input = RAW IAP sensor ADC fef02574 (code patch); axis shown in kPa via X*0.307429-12.6 (provisional 3-bar calibration). Fuel authority: blend curve and WOT gate are 0xFFFF, so this map fuels the engine at all throttle openings except sensor-fault limp-home (throttle path).
+HOW THE ECU USES IT (SD-v3): looked up by FUN_45320 (map 0 of the cylinder set; maps 1-5 are never blended - weight is hard 0). X input = RAW IAP sensor ADC fef02574 (code patch); axis shown in kPa via X*0.307429-12.6 (provisional 3-bar calibration). Fuel authority: blend curve and tip-in rate gate (0x1824C6) are 0xFFFF, so this map fuels the engine at all throttle openings except sensor-fault limp-home (throttle path).
 
 AXES: X 30 points, 20-300 kPa abs; Y 50 points, 800-16000 RPM.
 
@@ -9773,7 +9773,7 @@ SD-v3: FUN_45320 now feeds this map the RAW IAP ADC (not vacuum), so the X axis 
     <title>SD (abs MAP) - Neutral/Clutch-In | Cyl 1</title>
     <description>SPEED-DENSITY base fuel, cylinder 1, Neutral/Clutch-In. Output = raw fuel quantity (injection time units) vs manifold ABSOLUTE pressure and RPM.
 
-HOW THE ECU USES IT (SD-v3): looked up by FUN_4543E (used when neutral/clutch flag set &gt;=3 cycles and option 0x1826E8 != 3; gate 0x182626 = 0). X input = RAW IAP sensor ADC fef02574 (code patch); axis shown in kPa via X*0.307429-12.6 (provisional 3-bar calibration). Fuel authority: blend curve and WOT gate are 0xFFFF, so this map fuels the engine at all throttle openings except sensor-fault limp-home (throttle path).
+HOW THE ECU USES IT (SD-v3): looked up by FUN_4543E (used when neutral/clutch flag set &gt;=3 cycles and option 0x1826E8 != 3; gate 0x182626 = 0). X input = RAW IAP sensor ADC fef02574 (code patch); axis shown in kPa via X*0.307429-12.6 (provisional 3-bar calibration). Fuel authority: blend curve and tip-in rate gate (0x1824C6) are 0xFFFF, so this map fuels the engine at all throttle openings except sensor-fault limp-home (throttle path).
 
 AXES: X 30 points, 20-300 kPa abs; Y 50 points, 800-16000 RPM.
 
@@ -9820,7 +9820,7 @@ REFERENCE: data @0x16BEB8, X axis @0x156244, Y axis @0x16BE54, descriptor @0x156
     <title>SD (abs MAP) - Neutral/Clutch-In | Cyl 2</title>
     <description>SPEED-DENSITY base fuel, cylinder 2, Neutral/Clutch-In. Output = raw fuel quantity (injection time units) vs manifold ABSOLUTE pressure and RPM.
 
-HOW THE ECU USES IT (SD-v3): looked up by FUN_4543E (used when neutral/clutch flag set &gt;=3 cycles and option 0x1826E8 != 3; gate 0x182626 = 0). X input = RAW IAP sensor ADC fef02574 (code patch); axis shown in kPa via X*0.307429-12.6 (provisional 3-bar calibration). Fuel authority: blend curve and WOT gate are 0xFFFF, so this map fuels the engine at all throttle openings except sensor-fault limp-home (throttle path).
+HOW THE ECU USES IT (SD-v3): looked up by FUN_4543E (used when neutral/clutch flag set &gt;=3 cycles and option 0x1826E8 != 3; gate 0x182626 = 0). X input = RAW IAP sensor ADC fef02574 (code patch); axis shown in kPa via X*0.307429-12.6 (provisional 3-bar calibration). Fuel authority: blend curve and tip-in rate gate (0x1824C6) are 0xFFFF, so this map fuels the engine at all throttle openings except sensor-fault limp-home (throttle path).
 
 AXES: X 30 points, 20-300 kPa abs; Y 50 points, 800-16000 RPM.
 
@@ -9867,7 +9867,7 @@ REFERENCE: data @0x16CAD4, X axis @0x15629C, Y axis @0x16CA70, descriptor @0x156
     <title>SD (abs MAP) - Neutral/Clutch-In | Cyl 3</title>
     <description>SPEED-DENSITY base fuel, cylinder 3, Neutral/Clutch-In. Output = raw fuel quantity (injection time units) vs manifold ABSOLUTE pressure and RPM.
 
-HOW THE ECU USES IT (SD-v3): looked up by FUN_4543E (used when neutral/clutch flag set &gt;=3 cycles and option 0x1826E8 != 3; gate 0x182626 = 0). X input = RAW IAP sensor ADC fef02574 (code patch); axis shown in kPa via X*0.307429-12.6 (provisional 3-bar calibration). Fuel authority: blend curve and WOT gate are 0xFFFF, so this map fuels the engine at all throttle openings except sensor-fault limp-home (throttle path).
+HOW THE ECU USES IT (SD-v3): looked up by FUN_4543E (used when neutral/clutch flag set &gt;=3 cycles and option 0x1826E8 != 3; gate 0x182626 = 0). X input = RAW IAP sensor ADC fef02574 (code patch); axis shown in kPa via X*0.307429-12.6 (provisional 3-bar calibration). Fuel authority: blend curve and tip-in rate gate (0x1824C6) are 0xFFFF, so this map fuels the engine at all throttle openings except sensor-fault limp-home (throttle path).
 
 AXES: X 30 points, 20-300 kPa abs; Y 50 points, 800-16000 RPM.
 
@@ -9914,7 +9914,7 @@ REFERENCE: data @0x16D6F0, X axis @0x1562F4, Y axis @0x16D68C, descriptor @0x156
     <title>SD (abs MAP) - Neutral/Clutch-In | Cyl 4</title>
     <description>SPEED-DENSITY base fuel, cylinder 4, Neutral/Clutch-In. Output = raw fuel quantity (injection time units) vs manifold ABSOLUTE pressure and RPM.
 
-HOW THE ECU USES IT (SD-v3): looked up by FUN_4543E (used when neutral/clutch flag set &gt;=3 cycles and option 0x1826E8 != 3; gate 0x182626 = 0). X input = RAW IAP sensor ADC fef02574 (code patch); axis shown in kPa via X*0.307429-12.6 (provisional 3-bar calibration). Fuel authority: blend curve and WOT gate are 0xFFFF, so this map fuels the engine at all throttle openings except sensor-fault limp-home (throttle path).
+HOW THE ECU USES IT (SD-v3): looked up by FUN_4543E (used when neutral/clutch flag set &gt;=3 cycles and option 0x1826E8 != 3; gate 0x182626 = 0). X input = RAW IAP sensor ADC fef02574 (code patch); axis shown in kPa via X*0.307429-12.6 (provisional 3-bar calibration). Fuel authority: blend curve and tip-in rate gate (0x1824C6) are 0xFFFF, so this map fuels the engine at all throttle openings except sensor-fault limp-home (throttle path).
 
 AXES: X 30 points, 20-300 kPa abs; Y 50 points, 800-16000 RPM.
 
@@ -15781,7 +15781,7 @@ Previous title: Cluster A :: Map [RAM_fef02600 x RPM] 5x10 FUN_50612 #1E0 (flat)
 
 HOW THE ECU USES IT: looked up by FUN_50612; X input = RAM 0xfef02600; Y input = Engine speed (main) (RAM 0xFEF0258E).
 
-AXES: X axis: 5 points, 26240 to 41985 raw; Y axis: 10 points, 2000 to 10000 RPM.
+AXES: X axis: 5 points, 72.1 to 115.3 deg TP; Y axis: 10 points, 2000 to 10000 RPM. X input verified from code (v9.2): Throttle valve position (fef02600).
 
 VALUES (stock 5JCZSJ40): 64.0 to 64.0 raw - every cell is the same (64.0), so the function is probably disabled or unused in this calibration.
 
@@ -15789,14 +15789,14 @@ REFERENCE: data @0x184CD0, X axis @0x184CC4, Y axis @0x1832AC, descriptor @0x183
     <CATEGORYMEM index="0" category="11" /><CATEGORYMEM index="1" category="31" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x184CC4" mmedelementsizebits="16" mmedcolcount="5" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>raw</units>
+      <units>deg TP</units>
       <indexcount>5</indexcount>
-      <decimalpl>0</decimalpl>
+      <decimalpl>1</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X">
+      <MATH equation="X/364.08">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -15831,7 +15831,7 @@ Previous title: Cluster A :: Map [RAM_fef02600 x RPM] 5x10 FUN_50612 #1E2 (flat)
 
 HOW THE ECU USES IT: looked up by FUN_50612; X input = RAM 0xfef02600; Y input = Engine speed (main) (RAM 0xFEF0258E).
 
-AXES: X axis: 5 points, 26240 to 41985 raw; Y axis: 10 points, 2000 to 10000 RPM.
+AXES: X axis: 5 points, 72.1 to 115.3 deg TP; Y axis: 10 points, 2000 to 10000 RPM. X input verified from code (v9.2): Throttle valve position (fef02600).
 
 VALUES (stock 5JCZSJ40): 64.0 to 64.0 raw - every cell is the same (64.0), so the function is probably disabled or unused in this calibration.
 
@@ -15839,14 +15839,14 @@ REFERENCE: data @0x184D10, X axis @0x184D04, Y axis @0x1832DC, descriptor @0x183
     <CATEGORYMEM index="0" category="11" /><CATEGORYMEM index="1" category="31" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x184D04" mmedelementsizebits="16" mmedcolcount="5" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>raw</units>
+      <units>deg TP</units>
       <indexcount>5</indexcount>
-      <decimalpl>0</decimalpl>
+      <decimalpl>1</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X">
+      <MATH equation="X/364.08">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -15881,7 +15881,7 @@ Previous title: Cluster A :: Map [RAM_fef02600 x RPM] 5x10 FUN_50612 #1E4 (flat)
 
 HOW THE ECU USES IT: looked up by FUN_50612; X input = RAM 0xfef02600; Y input = Engine speed (main) (RAM 0xFEF0258E).
 
-AXES: X axis: 5 points, 26240 to 41985 raw; Y axis: 10 points, 2000 to 10000 RPM.
+AXES: X axis: 5 points, 72.1 to 115.3 deg TP; Y axis: 10 points, 2000 to 10000 RPM. X input verified from code (v9.2): Throttle valve position (fef02600).
 
 VALUES (stock 5JCZSJ40): 64.0 to 64.0 raw - every cell is the same (64.0), so the function is probably disabled or unused in this calibration.
 
@@ -15889,14 +15889,14 @@ REFERENCE: data @0x184D50, X axis @0x184D44, Y axis @0x18330C, descriptor @0x183
     <CATEGORYMEM index="0" category="11" /><CATEGORYMEM index="1" category="31" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x184D44" mmedelementsizebits="16" mmedcolcount="5" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>raw</units>
+      <units>deg TP</units>
       <indexcount>5</indexcount>
-      <decimalpl>0</decimalpl>
+      <decimalpl>1</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X">
+      <MATH equation="X/364.08">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -24974,28 +24974,28 @@ REFERENCE: data @0x18C5A4, X axis @0x18C594, descriptor @0x18C62C, code FUN_560d
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x1201" flags="0x0">
-    <title>Speed Monitor :: Threshold vs fef01F4E</title>
+    <title>Speed Monitor :: Threshold vs Rear Wheel Speed</title>
     <description>DECODED (v5, confidence LOW): FUN_5E9D8: fef02184; compared with fef01F70 to set fef02198.2.
 
 Previous title: Cluster A :: Curve [RAM_fef01f4e] 11pt FUN_5e9d8 #2B2
 
 HOW THE ECU USES IT: looked up by FUN_5e9d8; X input = RAM 0xfef01f4e.
 
-AXES: X axis: 11 points, 500 to 5500 RPM.
+AXES: X axis: 11 points, 10.0 to 110.0 km/h. X input verified from code (v9.2): Rear wheel speed (fef01F4E = fef02636).
 
 VALUES (stock 5JCZSJ40): 77.0 to 219 raw.
 
 REFERENCE: data @0x18CBD8, X axis @0x18CBC0, descriptor @0x18C7B4, code FUN_5e9d8.</description>
     <CATEGORYMEM index="0" category="58" /><XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18CBC0" mmedelementsizebits="16" mmedcolcount="11" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>RPM</units>
+      <units>km/h</units>
       <indexcount>11</indexcount>
-      <decimalpl>0</decimalpl>
+      <decimalpl>1</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X/2.56">
+      <MATH equation="X/128">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -25020,28 +25020,28 @@ REFERENCE: data @0x18CBD8, X axis @0x18CBC0, descriptor @0x18C7B4, code FUN_5e9d
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x1202" flags="0x0">
-    <title>Speed Monitor :: Upper Threshold vs fef01F4E</title>
+    <title>Speed Monitor :: Upper Threshold vs Rear Wheel Speed</title>
     <description>DECODED (v5, confidence LOW): FUN_5E564: fef02186; compared with fef0264A to set fef02199.1. fef01F4E = copy of fef02636.
 
 Previous title: Cluster D :: Curve [RAM_fef01f4e] 15pt FUN_5e564 #2B3
 
 HOW THE ECU USES IT: looked up by FUN_5e564; X input = RAM 0xfef01f4e.
 
-AXES: X axis: 15 points, 1000 to 8000 RPM.
+AXES: X axis: 15 points, 20.0 to 160.0 km/h. X input verified from code (v9.2): Rear wheel speed (fef01F4E = fef02636).
 
 VALUES (stock 5JCZSJ40): 30848 to 31488 raw.
 
 REFERENCE: data @0x18CC10, X axis @0x18CBF0, descriptor @0x18C7C8, code FUN_5e564.</description>
     <CATEGORYMEM index="0" category="58" /><XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18CBF0" mmedelementsizebits="16" mmedcolcount="15" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>RPM</units>
+      <units>km/h</units>
       <indexcount>15</indexcount>
-      <decimalpl>0</decimalpl>
+      <decimalpl>1</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X/2.56">
+      <MATH equation="X/128">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -25066,14 +25066,14 @@ REFERENCE: data @0x18CC10, X axis @0x18CBF0, descriptor @0x18C7C8, code FUN_5e56
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x1203" flags="0x0">
-    <title>Speed Monitor :: Hysteresis Threshold vs fef01F4E (flat)</title>
+    <title>Speed Monitor :: Hysteresis Threshold vs Rear Wheel Speed (flat)</title>
     <description>DECODED (v5, confidence LOW): FUN_5E564: fef02188.
 
 Previous title: Cluster D :: Curve [RAM_fef01f4e] 15pt FUN_5e564 #2B4 (flat)
 
 HOW THE ECU USES IT: looked up by FUN_5e564; X input = RAM 0xfef01f4e.
 
-AXES: X axis: 15 points, 1000 to 8000 RPM.
+AXES: X axis: 15 points, 20.0 to 160.0 km/h. X input verified from code (v9.2): Rear wheel speed (fef01F4E = fef02636).
 
 VALUES (stock 5JCZSJ40): 32128 to 32128 raw - every cell is the same (32128), so the function is probably disabled or unused in this calibration.
 
@@ -25081,14 +25081,14 @@ REFERENCE: data @0x18CC50, X axis @0x18CC30, descriptor @0x18C7DC, code FUN_5e56
     <CATEGORYMEM index="0" category="58" /><CATEGORYMEM index="1" category="31" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18CC30" mmedelementsizebits="16" mmedcolcount="15" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>RPM</units>
+      <units>km/h</units>
       <indexcount>15</indexcount>
-      <decimalpl>0</decimalpl>
+      <decimalpl>1</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X/2.56">
+      <MATH equation="X/128">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -25363,21 +25363,21 @@ Previous title: Cluster D :: Curve [RearSpd] 16pt FUN_6a926 #2BA
 
 HOW THE ECU USES IT: looked up by FUN_6a926; X input = Rear wheel speed (RAM 0xFEF0263C).
 
-AXES: X axis: 16 points, 0.00 to 38400 raw.
+AXES: X axis: 16 points, 0.0 to 300.0 km/h. X input verified from code (v9.2): Rear wheel speed, averaged (fef0263C).
 
 VALUES (stock 5JCZSJ40): 0.00 to 16351 raw.
 
 REFERENCE: data @0x18C6E8, X axis @0x18C6C8, descriptor @0x18C884, code FUN_6a926.</description>
     <CATEGORYMEM index="0" category="48" /><XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18C6C8" mmedelementsizebits="16" mmedcolcount="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>raw</units>
+      <units>km/h</units>
       <indexcount>16</indexcount>
-      <decimalpl>0</decimalpl>
+      <decimalpl>1</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X">
+      <MATH equation="X/128">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -25409,21 +25409,21 @@ Previous title: Cluster D :: Curve [RearSpd] 16pt FUN_6a926 #2BB
 
 HOW THE ECU USES IT: looked up by FUN_6a926; X input = Rear wheel speed (RAM 0xFEF0263C).
 
-AXES: X axis: 16 points, 0.00 to 38400 raw.
+AXES: X axis: 16 points, 0.0 to 300.0 km/h. X input verified from code (v9.2): Rear wheel speed, averaged (fef0263C).
 
 VALUES (stock 5JCZSJ40): 0.00 to 16351 raw.
 
 REFERENCE: data @0x18C728, X axis @0x18C708, descriptor @0x18C898, code FUN_6a926.</description>
     <CATEGORYMEM index="0" category="48" /><XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18C708" mmedelementsizebits="16" mmedcolcount="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>raw</units>
+      <units>km/h</units>
       <indexcount>16</indexcount>
-      <decimalpl>0</decimalpl>
+      <decimalpl>1</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X">
+      <MATH equation="X/128">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -25455,21 +25455,21 @@ Previous title: Cluster D :: Curve [RearSpd] 16pt FUN_6a926 #2BC
 
 HOW THE ECU USES IT: looked up by FUN_6a926; X input = Rear wheel speed (RAM 0xFEF0263C).
 
-AXES: X axis: 16 points, 0.00 to 38400 raw.
+AXES: X axis: 16 points, 0.0 to 300.0 km/h. X input verified from code (v9.2): Rear wheel speed, averaged (fef0263C).
 
 VALUES (stock 5JCZSJ40): 0.00 to 16351 raw.
 
 REFERENCE: data @0x18C768, X axis @0x18C748, descriptor @0x18C8AC, code FUN_6a926.</description>
     <CATEGORYMEM index="0" category="48" /><XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18C748" mmedelementsizebits="16" mmedcolcount="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>raw</units>
+      <units>km/h</units>
       <indexcount>16</indexcount>
-      <decimalpl>0</decimalpl>
+      <decimalpl>1</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X">
+      <MATH equation="X/128">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -27306,7 +27306,7 @@ REFERENCE: data @0x18E3E8, X axis @0x18E39C, descriptor @0x18DE28, code FUN_29d1
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x1232" flags="0x0">
-    <title>IMU :: Map vs fef0268C x Wheel Speed (Helper 1)</title>
+    <title>IMU :: Map vs Lean x Wheel Speed (Helper 1)</title>
     <description>DECODED (v5, confidence LOW): FUN_7A7CA: fef02692 = map(fef0268C, front/rear speed fef02978) above speed 0x18F080 and with no IMU faults.
 
 Previous title: ETV - Helper 1
@@ -27315,7 +27315,7 @@ Small curve/map stored just before the ETV block; used in throttle-by-wire set-u
 
 HOW THE ECU USES IT: looked up by FUN_7a7ca; X input = RAM 0xfef0268c; Y input = RAM 0xfef02978.
 
-AXES: X axis: 37 points, 16384 to 49152 raw; Y axis: 36 points, 0.00 to 105 deg (TP angle).
+AXES: X axis: 37 points, 16384 to 49152 raw; Y axis: 36 points, 0.0 to 300.0 km/h. Y input verified from code (v9.2): Wheel speed, front or rear (fef02978).
 
 VALUES (stock 5JCZSJ40): 0.00 to 65535 raw.
 
@@ -27337,14 +27337,14 @@ REFERENCE: data @0x18E4C8, X axis @0x18E434, Y axis @0x18E480, descriptor @0x18D
     </XDFAXIS>
     <XDFAXIS id="y" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18E480" mmedelementsizebits="16" mmedcolcount="36" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>deg (TP angle)</units>
+      <units>km/h</units>
       <indexcount>36</indexcount>
       <decimalpl>1</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X/364.08">
+      <MATH equation="X/128">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -38172,9 +38172,11 @@ STOCK: 104 (0x68). ADDRESS 0x1826F3, 8-bit.</description><CATEGORYMEM index="0" 
 
 STOCK: 250 (0xFA). ADDRESS 0x1825FC, 16-bit.</description><CATEGORYMEM index="0" category="52" /><EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1825FC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" /><units>us</units><decimalpl>0</decimalpl><datatype>0</datatype><unittype>0</unittype><DALINK index="0" /><MATH equation="X"><VAR id="X" /></MATH></XDFCONSTANT><XDFCONSTANT uniqueid="0xC008" flags="0x0"><title>Injector Pulsewidth Maximum</title><description>Upper clamp on computed injector time before deadtime (FUN_460F6), microseconds (stock 25,000 = 25 ms). Check against your max-RPM injection window if you raise fueling a lot.
 
-STOCK: 25000 (0x61A8). ADDRESS 0x1825FE, 16-bit.</description><CATEGORYMEM index="0" category="52" /><EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1825FE" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" /><units>us</units><decimalpl>0</decimalpl><datatype>0</datatype><unittype>0</unittype><DALINK index="0" /><MATH equation="X"><VAR id="X" /></MATH></XDFCONSTANT><XDFCONSTANT uniqueid="0xC009" flags="0x0"><title>Fuel Blend - WOT Throttle-Path Gate</title><description>Above this throttle angle (fef02604) the ECU forces 100% throttle-path (alpha-N) fueling (FUN_4916E/FUN_491BC). Stock 91.4 deg. SD-v2 sets 0xFFFF (disabled) so speed density holds at WOT/boost.
+STOCK: 25000 (0x61A8). ADDRESS 0x1825FE, 16-bit.</description><CATEGORYMEM index="0" category="52" /><EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1825FE" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" /><units>us</units><decimalpl>0</decimalpl><datatype>0</datatype><unittype>0</unittype><DALINK index="0" /><MATH equation="X"><VAR id="X" /></MATH></XDFCONSTANT><XDFCONSTANT uniqueid="0xC009" flags="0x0"><title>Fuel Blend - Tip-In Rate Gate (forces TPS maps)</title><description>Tip-in rate gate (FUN_4916E / FUN_491BC). Compared with fef02604 = throttle opening rate (TP now - TP 4 samples ago, 0x8000 = 0), NOT throttle position. While the rate is at/above this value, and for 0x18267A (4) cycles after it drops below, the ECU forces 100% TPS-map fuel (blend weight fef011CA = 256). Stock 33282 = TP rise of 1.41 deg within 4 samples. 0xFFFF disables it (SD-v2 and later race bins do this so the speed-density map keeps authority on tip-in). Earlier XDFs showed this as a 91.4 deg WOT gate - that was wrong.
 
-STOCK: 33282 (0x8202). ADDRESS 0x1824C6, 16-bit.</description><CATEGORYMEM index="0" category="53" /><EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1824C6" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" /><units>deg</units><decimalpl>1</decimalpl><datatype>0</datatype><unittype>0</unittype><DALINK index="0" /><MATH equation="X/364.08"><VAR id="X" /></MATH></XDFCONSTANT><XDFCONSTANT uniqueid="0xC00A" flags="0x0"><title>Neutral/Clutch Fuel-Map Gate</title><description>Pressure gate used by FUN_4543E (neutral/clutch fuel map allowed only if input &gt;= gate) and FUN_455E6 (neutral dwell counter, input = vacuum fef02628). SD-v3: FUN_4543E input is the raw IAP ADC (0-1023), so this must stay 0 or the neutral map is never used. Side effect vs stock: the neutral/clutch-in map also stays active under boost (stock dropped it at IAP &gt;= baro); those maps are boost-capable.
+STOCK: 33282 (0x8202). ADDRESS 0x1824C6, 16-bit.
+
+STOCK (5JCZSJ10): 90.00 deg/4 samples (raw 65535 / 0xFFFF). ADDRESS 0x1824C6, 16-bit.</description><CATEGORYMEM index="0" category="53" /><EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1824C6" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" /><units>deg/4 samples</units><decimalpl>2</decimalpl><datatype>0</datatype><unittype>0</unittype><DALINK index="0" /><MATH equation="(X-32768)/364.08"><VAR id="X" /></MATH></XDFCONSTANT><XDFCONSTANT uniqueid="0xC00A" flags="0x0"><title>Neutral/Clutch Fuel-Map Gate</title><description>Pressure gate used by FUN_4543E (neutral/clutch fuel map allowed only if input &gt;= gate) and FUN_455E6 (neutral dwell counter, input = vacuum fef02628). SD-v3: FUN_4543E input is the raw IAP ADC (0-1023), so this must stay 0 or the neutral map is never used. Side effect vs stock: the neutral/clutch-in map also stays active under boost (stock dropped it at IAP &gt;= baro); those maps are boost-capable.
 
 STOCK: 7863 (0x1EB7). ADDRESS 0x182626, 16-bit.</description><CATEGORYMEM index="0" category="53" /><EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x182626" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" /><units>raw</units><decimalpl>0</decimalpl><datatype>0</datatype><unittype>0</unittype><DALINK index="0" /><MATH equation="X"><VAR id="X" /></MATH></XDFCONSTANT><XDFCONSTANT uniqueid="0xC00C" flags="0x0"><title>IAP Sensor Circuit-Low Threshold (raw ADC)</title><description>Raw IAP ADC below which the circuit-low DTC starts debouncing (FUN_39076). Unchanged.
 

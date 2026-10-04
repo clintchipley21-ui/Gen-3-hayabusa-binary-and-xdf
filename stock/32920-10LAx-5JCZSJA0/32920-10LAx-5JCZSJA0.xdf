@@ -1,7 +1,7 @@
 <XDFFORMAT version="1.70">
   <XDFHEADER>
     <flags>0x1</flags>
-    <deftitle>Hayabusa Gen3 5JCZSJA0 (32920-10LA) - Stock - v9.1</deftitle>
+    <deftitle>Hayabusa Gen3 5JCZSJA0 (32920-10LA) - Stock - v9.2</deftitle>
     <description>Hayabusa Gen 3 stock read 5JCZSJA0 (ECM 32920-10LA), stock fuel strategy, no patches. Values in descriptions are from this read; 34 items are marked DIFFERS FROM 5JCZSJ10. RPM=X/2.56, deg=X/364.08, kPa=(X-7862)/393.14, C=X*0.9375-30, ign=(X-64)*0.3516. Re-stamp field-1 CRC after editing (tools/fix_field1_crc.py). AUTO-DEFINED items: log before changing.</description>
     <author>Clint Chipley / Claude</author>
     <BASEOFFSET offset="0" subtract="0" />
@@ -2189,7 +2189,7 @@ Previous title: Cluster A :: Curve [RAM_fef00a00] 14pt FUN_2f046 #033
 
 HOW THE ECU USES IT: looked up by FUN_2f046; X input = RAM 0xfef00a00.
 
-AXES: X axis: 14 points, 1500 to 12000 RPM.
+AXES: X axis: 14 points, 30.0 to 240.0 km/h. X input verified from code (v9.2): Cruise target speed (fef00A00).
 
 VALUES (stock 5JCZSJA0): 36 to 74 raw.
 
@@ -2197,14 +2197,14 @@ REFERENCE: data @0x150E04, X axis @0x150DE8, descriptor @0x150E20, code FUN_2f04
     <CATEGORYMEM index="0" category="56" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x150DE8" mmedelementsizebits="16" mmedcolcount="14" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>RPM</units>
+      <units>km/h</units>
       <indexcount>14</indexcount>
-      <decimalpl>0</decimalpl>
+      <decimalpl>1</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X/2.56">
+      <MATH equation="X/128">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -2995,7 +2995,7 @@ Previous title: Gear :: Map [RPM x Gear] 39x7 FUN_290ea #051
 
 Gear-dependent setting. The gear axis is a bitmask: 1 = Neutral, 2 = 1st, 4 = 2nd, 8 = 3rd, 16 = 4th, 32 = 5th, 64 = 6th. (Family-level description - specific use not individually confirmed.)
 
-HOW THE ECU USES IT: looked up by FUN_290ea; X input = Engine speed (copy) (RAM 0xFEF0264C); Y input = Gear position bitmask (1=N, 2=1st ... 0x40=6th) from GP sensor ADC ch2E (RAM 0xFEF026C2).
+HOW THE ECU USES IT: looked up by FUN_290ea; X input = RPM expected from wheel speed x gear ratio (RAM 0xFEF0264C); Y input = Gear position bitmask (1=N, 2=1st ... 0x40=6th) from GP sensor ADC ch2E (RAM 0xFEF026C2).
 
 AXES: X axis: 39 points, 800 to 12000 RPM; Y axis: 7 points, 1.00 to 64.0 gear bit.
 
@@ -3048,7 +3048,7 @@ Previous title: Gear :: Map [RPM x Gear] 39x7 FUN_290ea #053
 
 Gear-dependent setting. The gear axis is a bitmask: 1 = Neutral, 2 = 1st, 4 = 2nd, 8 = 3rd, 16 = 4th, 32 = 5th, 64 = 6th. (Family-level description - specific use not individually confirmed.)
 
-HOW THE ECU USES IT: looked up by FUN_290ea; X input = Engine speed (copy) (RAM 0xFEF0264C); Y input = Gear position bitmask (1=N, 2=1st ... 0x40=6th) from GP sensor ADC ch2E (RAM 0xFEF026C2).
+HOW THE ECU USES IT: looked up by FUN_290ea; X input = RPM expected from wheel speed x gear ratio (RAM 0xFEF0264C); Y input = Gear position bitmask (1=N, 2=1st ... 0x40=6th) from GP sensor ADC ch2E (RAM 0xFEF026C2).
 
 AXES: X axis: 39 points, 800 to 12000 RPM; Y axis: 7 points, 1.00 to 64.0 gear bit.
 
@@ -3101,7 +3101,7 @@ Previous title: Gear :: Map [RPM x Gear] 39x7 FUN_290ea #055
 
 Gear-dependent setting. The gear axis is a bitmask: 1 = Neutral, 2 = 1st, 4 = 2nd, 8 = 3rd, 16 = 4th, 32 = 5th, 64 = 6th. (Family-level description - specific use not individually confirmed.)
 
-HOW THE ECU USES IT: looked up by FUN_290ea; X input = Engine speed (copy) (RAM 0xFEF0264C); Y input = Gear position bitmask (1=N, 2=1st ... 0x40=6th) from GP sensor ADC ch2E (RAM 0xFEF026C2).
+HOW THE ECU USES IT: looked up by FUN_290ea; X input = RPM expected from wheel speed x gear ratio (RAM 0xFEF0264C); Y input = Gear position bitmask (1=N, 2=1st ... 0x40=6th) from GP sensor ADC ch2E (RAM 0xFEF026C2).
 
 AXES: X axis: 39 points, 800 to 12000 RPM; Y axis: 7 points, 1.00 to 64.0 gear bit.
 
@@ -3154,7 +3154,7 @@ Previous title: Gear :: Map [RPM x Gear] 39x7 FUN_290ea #057 (flat)
 
 Gear-dependent setting. The gear axis is a bitmask: 1 = Neutral, 2 = 1st, 4 = 2nd, 8 = 3rd, 16 = 4th, 32 = 5th, 64 = 6th. (Family-level description - specific use not individually confirmed.)
 
-HOW THE ECU USES IT: looked up by FUN_290ea; X input = Engine speed (copy) (RAM 0xFEF0264C); Y input = Gear position bitmask (1=N, 2=1st ... 0x40=6th) from GP sensor ADC ch2E (RAM 0xFEF026C2).
+HOW THE ECU USES IT: looked up by FUN_290ea; X input = RPM expected from wheel speed x gear ratio (RAM 0xFEF0264C); Y input = Gear position bitmask (1=N, 2=1st ... 0x40=6th) from GP sensor ADC ch2E (RAM 0xFEF026C2).
 
 AXES: X axis: 39 points, 800 to 16000 RPM; Y axis: 7 points, 1.00 to 64.0 gear bit.
 
@@ -3208,7 +3208,7 @@ Previous title: Gear :: Map [RPM x Gear] 39x7 FUN_290ea #059 (flat)
 
 Gear-dependent setting. The gear axis is a bitmask: 1 = Neutral, 2 = 1st, 4 = 2nd, 8 = 3rd, 16 = 4th, 32 = 5th, 64 = 6th. (Family-level description - specific use not individually confirmed.)
 
-HOW THE ECU USES IT: looked up by FUN_290ea; X input = Engine speed (copy) (RAM 0xFEF0264C); Y input = Gear position bitmask (1=N, 2=1st ... 0x40=6th) from GP sensor ADC ch2E (RAM 0xFEF026C2).
+HOW THE ECU USES IT: looked up by FUN_290ea; X input = RPM expected from wheel speed x gear ratio (RAM 0xFEF0264C); Y input = Gear position bitmask (1=N, 2=1st ... 0x40=6th) from GP sensor ADC ch2E (RAM 0xFEF026C2).
 
 AXES: X axis: 39 points, 800 to 16000 RPM; Y axis: 7 points, 1.00 to 64.0 gear bit.
 
@@ -3262,7 +3262,7 @@ Previous title: Gear :: Map [RPM x Gear] 39x7 FUN_290ea #05B (flat)
 
 Gear-dependent setting. The gear axis is a bitmask: 1 = Neutral, 2 = 1st, 4 = 2nd, 8 = 3rd, 16 = 4th, 32 = 5th, 64 = 6th. (Family-level description - specific use not individually confirmed.)
 
-HOW THE ECU USES IT: looked up by FUN_290ea; X input = Engine speed (copy) (RAM 0xFEF0264C); Y input = Gear position bitmask (1=N, 2=1st ... 0x40=6th) from GP sensor ADC ch2E (RAM 0xFEF026C2).
+HOW THE ECU USES IT: looked up by FUN_290ea; X input = RPM expected from wheel speed x gear ratio (RAM 0xFEF0264C); Y input = Gear position bitmask (1=N, 2=1st ... 0x40=6th) from GP sensor ADC ch2E (RAM 0xFEF026C2).
 
 AXES: X axis: 39 points, 800 to 16000 RPM; Y axis: 7 points, 1.00 to 64.0 gear bit.
 
@@ -3410,7 +3410,7 @@ Previous title: Cluster A :: Curve [RAM_fef00a3e] 36pt FUN_2d0f0 #05F
 
 HOW THE ECU USES IT: looked up by FUN_2d0f0; X input = RAM 0xfef00a3e.
 
-AXES: X axis: 36 points, 0.00 to 123 deg (TP angle).
+AXES: X axis: 36 points, 0 to 44800 raw. X input verified from code (v9.2): Cruise controller internal value (fef00A3E, 0x8000-centred).
 
 VALUES (stock 5JCZSJA0): 32848 to 42941 raw.
 
@@ -3418,14 +3418,14 @@ REFERENCE: data @0x154190, X axis @0x154148, descriptor @0x1511B0, code FUN_2d0f
     <CATEGORYMEM index="0" category="56" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154148" mmedelementsizebits="16" mmedcolcount="36" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>deg (TP angle)</units>
+      <units>raw</units>
       <indexcount>36</indexcount>
-      <decimalpl>1</decimalpl>
+      <decimalpl>0</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X/364.08">
+      <MATH equation="X">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -3457,7 +3457,7 @@ Previous title: Cluster A :: Curve [RearSpd] 10pt FUN_2cb40 #060
 
 HOW THE ECU USES IT: looked up by FUN_2cb40; X input = Rear wheel speed (RAM 0xFEF0263C).
 
-AXES: X axis: 10 points, 1280 to 20480 raw.
+AXES: X axis: 10 points, 10.0 to 160.0 km/h. X input verified from code (v9.2): Rear wheel speed, averaged (fef0263C).
 
 VALUES (stock 5JCZSJA0): 2712 to 6694 raw.
 
@@ -3465,14 +3465,14 @@ REFERENCE: data @0x1511D8, X axis @0x1511C4, descriptor @0x1511EC, code FUN_2cb4
     <CATEGORYMEM index="0" category="58" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1511C4" mmedelementsizebits="16" mmedcolcount="10" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>raw</units>
+      <units>km/h</units>
       <indexcount>10</indexcount>
-      <decimalpl>0</decimalpl>
+      <decimalpl>1</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X">
+      <MATH equation="X/128">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -3834,7 +3834,7 @@ Previous title: Cluster A :: Curve [RAM_fef009f2] 14pt FUN_2f2e0 #068
 
 HOW THE ECU USES IT: looked up by FUN_2f2e0; X input = RAM 0xfef009f2.
 
-AXES: X axis: 14 points, 1500 to 12000 RPM.
+AXES: X axis: 14 points, 30.0 to 240.0 km/h. X input verified from code (v9.2): Rear wheel speed, filtered (fef009F2).
 
 VALUES (stock 5JCZSJA0): 36 to 74 raw.
 
@@ -3842,14 +3842,14 @@ REFERENCE: data @0x1512A8, X axis @0x15128C, descriptor @0x1512C4, code FUN_2f2e
     <CATEGORYMEM index="0" category="56" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x15128C" mmedelementsizebits="16" mmedcolcount="14" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>RPM</units>
+      <units>km/h</units>
       <indexcount>14</indexcount>
-      <decimalpl>0</decimalpl>
+      <decimalpl>1</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X/2.56">
+      <MATH equation="X/128">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -3881,7 +3881,7 @@ Previous title: Cluster A :: Curve [RAM_fef009f2] 16pt FUN_2f508 #069 (flat)
 
 HOW THE ECU USES IT: looked up by FUN_2f508; X input = RAM 0xfef009f2.
 
-AXES: X axis: 16 points, 1500 to 9000 RPM.
+AXES: X axis: 16 points, 30.0 to 180.0 km/h. X input verified from code (v9.2): Rear wheel speed, filtered (fef009F2).
 
 VALUES (stock 5JCZSJA0): 0.00 to 0.00 raw - every cell the same, so the function is probably disabled or unused in this calibration.
 
@@ -3890,14 +3890,14 @@ REFERENCE: data @0x150818, X axis @0x1507F8, descriptor @0x1512D8, code FUN_2f50
     <CATEGORYMEM index="1" category="31" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1507F8" mmedelementsizebits="16" mmedcolcount="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>RPM</units>
+      <units>km/h</units>
       <indexcount>16</indexcount>
-      <decimalpl>0</decimalpl>
+      <decimalpl>1</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X/2.56">
+      <MATH equation="X/128">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -4275,7 +4275,7 @@ REFERENCE: data @0x1545F8, X axis @0x1545EC, descriptor @0x1545C0, code FUN_3efa
   </XDFTABLE>
   <XDFTABLE uniqueid="0x1055" flags="0x0">
     <title>Fuel Blend - MAP-&gt;Throttle Threshold (vs RPM)</title>
-    <description>Throttle angle at which base fuel starts handing over from the IAP (vacuum) maps to the TPS maps, vs engine speed. FUN_491BC: w = clamp((TP + width - threshold) x 256 / width) with width = 16 &lt;&lt; (Fuel Blend :: MAP-&gt;Throttle Ramp Width), stock 1024 counts = 2.8 deg; final base fuel = IAP_map x (256-w) + TPS_map x w (weight fef011CA). Stock thresholds 15-38 deg. Raise a cell to keep the IAP maps in charge to a larger throttle opening at that rpm, lower it to hand over to the TPS maps earlier. Above the WOT gate (Fuel Blend - WOT Throttle-Path Gate, 91.4 deg) the TPS maps always have 100% authority. Sensor-fault limp-home (FUN_36976/FUN_3A96C) forces w = 256. Axis input is fef0259C (engine speed, X/2.56).
+    <description>Throttle angle at which base fuel starts handing over from the IAP (vacuum) maps to the TPS maps, vs engine speed. FUN_491BC: w = clamp((TP + width - threshold) x 256 / width) with width = 16 &lt;&lt; (Fuel Blend :: MAP-&gt;Throttle Ramp Width), stock 1024 counts = 2.8 deg; final base fuel = IAP_map x (256-w) + TPS_map x w (weight fef011CA). Stock thresholds 15-38 deg. Raise a cell to keep the IAP maps in charge to a larger throttle opening at that rpm, lower it to hand over to the TPS maps earlier. On a fast throttle opening (Fuel Blend - Tip-In Rate Gate: TP rise of 1.41 deg or more within 4 samples) the TPS maps take 100% authority for 4 cycles. Sensor-fault limp-home (FUN_36976/FUN_3A96C) forces w = 256. Axis input is fef0259C (engine speed, X/2.56).
 
 REFERENCE: data @0x154E20 (10 x 16-bit), X axis @0x154E0C, descriptor @0x154E34, code FUN_491bc.</description>
     <CATEGORYMEM index="0" category="2" />
@@ -4472,7 +4472,7 @@ Previous title: Cluster A :: Curve [RAM_fef02604] 8pt FUN_46354 #076
 
 HOW THE ECU USES IT: looked up by FUN_46354; X input = RAM 0xfef02604.
 
-AXES: X axis: 8 points, 32768 to 48512 raw.
+AXES: X axis: 8 points, 0.0 to 43.2 deg/4 samples. X input verified from code (v9.2): Throttle opening rate (fef02604).
 
 VALUES (stock 5JCZSJA0): 43 to 72 raw.
 
@@ -4480,14 +4480,14 @@ REFERENCE: data @0x1549FC, X axis @0x154B2C, descriptor @0x154E84, code FUN_4635
     <CATEGORYMEM index="0" category="2" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154B2C" mmedelementsizebits="16" mmedcolcount="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>raw</units>
+      <units>deg/4 samples</units>
       <indexcount>8</indexcount>
-      <decimalpl>0</decimalpl>
+      <decimalpl>1</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X">
+      <MATH equation="(X-32768)/364.08">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -8862,13 +8862,11 @@ REFERENCE: data @0x159A8C, X axis @0x154DF8, Y axis @0x154B04, descriptor @0x155
     <title>IAP - In Gear | Cyl 1</title>
     <description>Main IAP (manifold-vacuum based) base fuel map for cylinder 1 while in gear with the clutch released. Output is a raw fuel quantity (injection time units) indexed by manifold vacuum and RPM.
 
-HOW THE ECU USES IT: Code: FUN_45320 looks up...
-
 AXES: X axis: 30 points, 78.1 down to 0.0 kPa VACUUM (0 = atmospheric / WOT, 78 = high vacuum / closed throttle); Y axis: 50 points, 800 to 16000 RPM.
 
 VALUES (stock 5JCZSJA0): 532 to 4872 fuel qty (raw).
 
-TUNING NOTES: This is the cylinder 1 IAP fuel map you would normally tune. Changes here affect cylinder 1 only, so keep the four cylinder maps consistent unless you are correcting a cylinder-to-cylinder imbalance. HOW IT IS COMBINED: final base fuel = IAP_map x (256 - w) + TPS_map x w, where w (fef011CA) comes from FUN_491BC: w = 0 (100% this IAP map) below the "Fuel Blend - MAP-&gt;Throttle Threshold (vs RPM)" throttle angle, ramps to 256 over the next ~2.8 deg (Fuel Blend :: MAP-&gt;Throttle Ramp Width), and is forced to 256 (100% TPS map) at/above the WOT gate (0x1824C6, 91.4 deg). So at light/part throttle this map fuels the engine; at large throttle openings and WOT the TPS map does.
+TUNING NOTES: This is the cylinder 1 IAP fuel map you would normally tune. Changes here affect cylinder 1 only, so keep the four cylinder maps consistent unless you are correcting a cylinder-to-cylinder imbalance. HOW IT IS COMBINED: final base fuel = IAP_map x (256 - w) + TPS_map x w, where w (fef011CA) comes from FUN_491BC: w = 0 (100% this IAP map) below the "Fuel Blend - MAP-&gt;Throttle Threshold (vs RPM)" throttle angle, ramps to 256 over the next ~2.8 deg (Fuel Blend :: MAP-&gt;Throttle Ramp Width), and is forced to 256 (100% TPS map) for 4 cycles after a fast throttle opening (tip-in rate gate 0x1824C6: TP rise of 1.41 deg or more within 4 samples). So at light/part throttle this map fuels the engine; at large openings, WOT...
 
 REFERENCE: data @0x159BB8, X axis @0x155A04, Y axis @0x159B54, descriptor @0x155A40, code FUN_45320. [Shortened for TunerPro - full text in stock/xdf-master.]</description>
     <CATEGORYMEM index="0" category="2" />
@@ -9193,13 +9191,11 @@ REFERENCE: data @0x15D844, X axis @0x155BBC, Y axis @0x15D7E0, descriptor @0x155
     <title>IAP - In Gear | Cyl 2</title>
     <description>Main IAP (manifold-vacuum based) base fuel map for cylinder 2 while in gear with the clutch released. Output is a raw fuel quantity (injection time units) indexed by manifold vacuum and RPM.
 
-HOW THE ECU USES IT: Code: FUN_45320 looks up...
-
 AXES: X axis: 30 points, 78.1 down to 0.0 kPa VACUUM (0 = atmospheric / WOT, 78 = high vacuum / closed throttle); Y axis: 50 points, 800 to 16000 RPM.
 
 VALUES (stock 5JCZSJA0): 504 to 4760 fuel qty (raw).
 
-TUNING NOTES: This is the cylinder 2 IAP fuel map you would normally tune. Changes here affect cylinder 2 only, so keep the four cylinder maps consistent unless you are correcting a cylinder-to-cylinder imbalance. HOW IT IS COMBINED: final base fuel = IAP_map x (256 - w) + TPS_map x w, where w (fef011CA) comes from FUN_491BC: w = 0 (100% this IAP map) below the "Fuel Blend - MAP-&gt;Throttle Threshold (vs RPM)" throttle angle, ramps to 256 over the next ~2.8 deg (Fuel Blend :: MAP-&gt;Throttle Ramp Width), and is forced to 256 (100% TPS map) at/above the WOT gate (0x1824C6, 91.4 deg). So at light/part throttle this map fuels the engine; at large throttle openings and WOT the TPS map does.
+TUNING NOTES: This is the cylinder 2 IAP fuel map you would normally tune. Changes here affect cylinder 2 only, so keep the four cylinder maps consistent unless you are correcting a cylinder-to-cylinder imbalance. HOW IT IS COMBINED: final base fuel = IAP_map x (256 - w) + TPS_map x w, where w (fef011CA) comes from FUN_491BC: w = 0 (100% this IAP map) below the "Fuel Blend - MAP-&gt;Throttle Threshold (vs RPM)" throttle angle, ramps to 256 over the next ~2.8 deg (Fuel Blend :: MAP-&gt;Throttle Ramp Width), and is forced to 256 (100% TPS map) for 4 cycles after a fast throttle opening (tip-in rate gate 0x1824C6: TP rise of 1.41 deg or more within 4 samples). So at light/part throttle this map fuels the engine; at large openings, WOT...
 
 REFERENCE: data @0x15E460, X axis @0x155C14, Y axis @0x15E3FC, descriptor @0x155C50, code FUN_45320. [Shortened for TunerPro - full text in stock/xdf-master.]</description>
     <CATEGORYMEM index="0" category="2" />
@@ -9524,13 +9520,11 @@ REFERENCE: data @0x1620EC, X axis @0x155DCC, Y axis @0x162088, descriptor @0x155
     <title>IAP - In Gear | Cyl 3</title>
     <description>Main IAP (manifold-vacuum based) base fuel map for cylinder 3 while in gear with the clutch released. Output is a raw fuel quantity (injection time units) indexed by manifold vacuum and RPM.
 
-HOW THE ECU USES IT: Code: FUN_45320 looks up...
-
 AXES: X axis: 30 points, 78.1 down to 0.0 kPa VACUUM (0 = atmospheric / WOT, 78 = high vacuum / closed throttle); Y axis: 50 points, 800 to 16000 RPM.
 
 VALUES (stock 5JCZSJA0): 512 to 4745 fuel qty (raw).
 
-TUNING NOTES: This is the cylinder 3 IAP fuel map you would normally tune. Changes here affect cylinder 3 only, so keep the four cylinder maps consistent unless you are correcting a cylinder-to-cylinder imbalance. HOW IT IS COMBINED: final base fuel = IAP_map x (256 - w) + TPS_map x w, where w (fef011CA) comes from FUN_491BC: w = 0 (100% this IAP map) below the "Fuel Blend - MAP-&gt;Throttle Threshold (vs RPM)" throttle angle, ramps to 256 over the next ~2.8 deg (Fuel Blend :: MAP-&gt;Throttle Ramp Width), and is forced to 256 (100% TPS map) at/above the WOT gate (0x1824C6, 91.4 deg). So at light/part throttle this map fuels the engine; at large throttle openings and WOT the TPS map does.
+TUNING NOTES: This is the cylinder 3 IAP fuel map you would normally tune. Changes here affect cylinder 3 only, so keep the four cylinder maps consistent unless you are correcting a cylinder-to-cylinder imbalance. HOW IT IS COMBINED: final base fuel = IAP_map x (256 - w) + TPS_map x w, where w (fef011CA) comes from FUN_491BC: w = 0 (100% this IAP map) below the "Fuel Blend - MAP-&gt;Throttle Threshold (vs RPM)" throttle angle, ramps to 256 over the next ~2.8 deg (Fuel Blend :: MAP-&gt;Throttle Ramp Width), and is forced to 256 (100% TPS map) for 4 cycles after a fast throttle opening (tip-in rate gate 0x1824C6: TP rise of 1.41 deg or more within 4 samples). So at light/part throttle this map fuels the engine; at large openings, WOT...
 
 REFERENCE: data @0x162D08, X axis @0x155E24, Y axis @0x162CA4, descriptor @0x155E60, code FUN_45320. [Shortened for TunerPro - full text in stock/xdf-master.]</description>
     <CATEGORYMEM index="0" category="2" />
@@ -9855,13 +9849,11 @@ REFERENCE: data @0x166994, X axis @0x155FDC, Y axis @0x166930, descriptor @0x156
     <title>IAP - In Gear | Cyl 4</title>
     <description>Main IAP (manifold-vacuum based) base fuel map for cylinder 4 while in gear with the clutch released. Output is a raw fuel quantity (injection time units) indexed by manifold vacuum and RPM.
 
-HOW THE ECU USES IT: Code: FUN_45320 looks up...
-
 AXES: X axis: 30 points, 78.1 down to 0.0 kPa VACUUM (0 = atmospheric / WOT, 78 = high vacuum / closed throttle); Y axis: 50 points, 800 to 16000 RPM.
 
 VALUES (stock 5JCZSJA0): 498 to 4782 fuel qty (raw).
 
-TUNING NOTES: This is the cylinder 4 IAP fuel map you would normally tune. Changes here affect cylinder 4 only, so keep the four cylinder maps consistent unless you are correcting a cylinder-to-cylinder imbalance. HOW IT IS COMBINED: final base fuel = IAP_map x (256 - w) + TPS_map x w, where w (fef011CA) comes from FUN_491BC: w = 0 (100% this IAP map) below the "Fuel Blend - MAP-&gt;Throttle Threshold (vs RPM)" throttle angle, ramps to 256 over the next ~2.8 deg (Fuel Blend :: MAP-&gt;Throttle Ramp Width), and is forced to 256 (100% TPS map) at/above the WOT gate (0x1824C6, 91.4 deg). So at light/part throttle this map fuels the engine; at large throttle openings and WOT the TPS map does.
+TUNING NOTES: This is the cylinder 4 IAP fuel map you would normally tune. Changes here affect cylinder 4 only, so keep the four cylinder maps consistent unless you are correcting a cylinder-to-cylinder imbalance. HOW IT IS COMBINED: final base fuel = IAP_map x (256 - w) + TPS_map x w, where w (fef011CA) comes from FUN_491BC: w = 0 (100% this IAP map) below the "Fuel Blend - MAP-&gt;Throttle Threshold (vs RPM)" throttle angle, ramps to 256 over the next ~2.8 deg (Fuel Blend :: MAP-&gt;Throttle Ramp Width), and is forced to 256 (100% TPS map) for 4 cycles after a fast throttle opening (tip-in rate gate 0x1824C6: TP rise of 1.41 deg or more within 4 samples). So at light/part throttle this map fuels the engine; at large openings, WOT...
 
 REFERENCE: data @0x1675B0, X axis @0x156034, Y axis @0x16754C, descriptor @0x156070, code FUN_45320. [Shortened for TunerPro - full text in stock/xdf-master.]</description>
     <CATEGORYMEM index="0" category="2" />
@@ -16362,7 +16354,7 @@ Previous title: Cluster A :: Map [RAM_fef02600 x RPM] 5x10 FUN_50612 #1E0 (flat)
 
 HOW THE ECU USES IT: looked up by FUN_50612; X input = RAM 0xfef02600; Y input = Engine speed (main) (RAM 0xFEF0258E).
 
-AXES: X axis: 5 points, 26240 to 41985 raw; Y axis: 10 points, 2000 to 10000 RPM.
+AXES: X axis: 5 points, 72.1 to 115.3 deg TP; Y axis: 10 points, 2000 to 10000 RPM. X input verified from code (v9.2): Throttle valve position (fef02600).
 
 VALUES (stock 5JCZSJA0): 64 to 64 raw - every cell the same, so the function is probably disabled or unused in this calibration.
 
@@ -16371,14 +16363,14 @@ REFERENCE: data @0x184CD0, X axis @0x184CC4, Y axis @0x1832AC, descriptor @0x183
     <CATEGORYMEM index="1" category="31" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x184CC4" mmedelementsizebits="16" mmedcolcount="5" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>raw</units>
+      <units>deg TP</units>
       <indexcount>5</indexcount>
-      <decimalpl>0</decimalpl>
+      <decimalpl>1</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X">
+      <MATH equation="X/364.08">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -16413,7 +16405,7 @@ Previous title: Cluster A :: Map [RAM_fef02600 x RPM] 5x10 FUN_50612 #1E2 (flat)
 
 HOW THE ECU USES IT: looked up by FUN_50612; X input = RAM 0xfef02600; Y input = Engine speed (main) (RAM 0xFEF0258E).
 
-AXES: X axis: 5 points, 26240 to 41985 raw; Y axis: 10 points, 2000 to 10000 RPM.
+AXES: X axis: 5 points, 72.1 to 115.3 deg TP; Y axis: 10 points, 2000 to 10000 RPM. X input verified from code (v9.2): Throttle valve position (fef02600).
 
 VALUES (stock 5JCZSJA0): 64 to 64 raw - every cell the same, so the function is probably disabled or unused in this calibration.
 
@@ -16422,14 +16414,14 @@ REFERENCE: data @0x184D10, X axis @0x184D04, Y axis @0x1832DC, descriptor @0x183
     <CATEGORYMEM index="1" category="31" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x184D04" mmedelementsizebits="16" mmedcolcount="5" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>raw</units>
+      <units>deg TP</units>
       <indexcount>5</indexcount>
-      <decimalpl>0</decimalpl>
+      <decimalpl>1</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X">
+      <MATH equation="X/364.08">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -16464,7 +16456,7 @@ Previous title: Cluster A :: Map [RAM_fef02600 x RPM] 5x10 FUN_50612 #1E4 (flat)
 
 HOW THE ECU USES IT: looked up by FUN_50612; X input = RAM 0xfef02600; Y input = Engine speed (main) (RAM 0xFEF0258E).
 
-AXES: X axis: 5 points, 26240 to 41985 raw; Y axis: 10 points, 2000 to 10000 RPM.
+AXES: X axis: 5 points, 72.1 to 115.3 deg TP; Y axis: 10 points, 2000 to 10000 RPM. X input verified from code (v9.2): Throttle valve position (fef02600).
 
 VALUES (stock 5JCZSJA0): 64 to 64 raw - every cell the same, so the function is probably disabled or unused in this calibration.
 
@@ -16473,14 +16465,14 @@ REFERENCE: data @0x184D50, X axis @0x184D44, Y axis @0x18330C, descriptor @0x183
     <CATEGORYMEM index="1" category="31" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x184D44" mmedelementsizebits="16" mmedcolcount="5" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>raw</units>
+      <units>deg TP</units>
       <indexcount>5</indexcount>
-      <decimalpl>0</decimalpl>
+      <decimalpl>1</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X">
+      <MATH equation="X/364.08">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -25754,14 +25746,14 @@ DIFFERS FROM 5JCZSJ10 in this read: free-text "stock" remarks above describe 5JC
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x1201" flags="0x0">
-    <title>Speed Monitor :: Threshold vs fef01F4E</title>
+    <title>Speed Monitor :: Threshold vs Rear Wheel Speed</title>
     <description>DECODED (v5, confidence LOW): FUN_5E9D8: fef02184; compared with fef01F70 to set fef02198.2.
 
 Previous title: Cluster A :: Curve [RAM_fef01f4e] 11pt FUN_5e9d8 #2B2
 
 HOW THE ECU USES IT: looked up by FUN_5e9d8; X input = RAM 0xfef01f4e.
 
-AXES: X axis: 11 points, 500 to 5500 RPM.
+AXES: X axis: 11 points, 10.0 to 110.0 km/h. X input verified from code (v9.2): Rear wheel speed (fef01F4E = fef02636).
 
 VALUES (stock 5JCZSJA0): 77 to 219 raw.
 
@@ -25769,14 +25761,14 @@ REFERENCE: data @0x18CBD8, X axis @0x18CBC0, descriptor @0x18C7B4, code FUN_5e9d
     <CATEGORYMEM index="0" category="58" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18CBC0" mmedelementsizebits="16" mmedcolcount="11" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>RPM</units>
+      <units>km/h</units>
       <indexcount>11</indexcount>
-      <decimalpl>0</decimalpl>
+      <decimalpl>1</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X/2.56">
+      <MATH equation="X/128">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -25801,14 +25793,14 @@ REFERENCE: data @0x18CBD8, X axis @0x18CBC0, descriptor @0x18C7B4, code FUN_5e9d
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x1202" flags="0x0">
-    <title>Speed Monitor :: Upper Threshold vs fef01F4E</title>
+    <title>Speed Monitor :: Upper Threshold vs Rear Wheel Speed</title>
     <description>DECODED (v5, confidence LOW): FUN_5E564: fef02186; compared with fef0264A to set fef02199.1. fef01F4E = copy of fef02636.
 
 Previous title: Cluster D :: Curve [RAM_fef01f4e] 15pt FUN_5e564 #2B3
 
 HOW THE ECU USES IT: looked up by FUN_5e564; X input = RAM 0xfef01f4e.
 
-AXES: X axis: 15 points, 1000 to 8000 RPM.
+AXES: X axis: 15 points, 20.0 to 160.0 km/h. X input verified from code (v9.2): Rear wheel speed (fef01F4E = fef02636).
 
 VALUES (stock 5JCZSJA0): 30848 to 31488 raw.
 
@@ -25816,14 +25808,14 @@ REFERENCE: data @0x18CC10, X axis @0x18CBF0, descriptor @0x18C7C8, code FUN_5e56
     <CATEGORYMEM index="0" category="58" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18CBF0" mmedelementsizebits="16" mmedcolcount="15" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>RPM</units>
+      <units>km/h</units>
       <indexcount>15</indexcount>
-      <decimalpl>0</decimalpl>
+      <decimalpl>1</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X/2.56">
+      <MATH equation="X/128">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -25848,14 +25840,14 @@ REFERENCE: data @0x18CC10, X axis @0x18CBF0, descriptor @0x18C7C8, code FUN_5e56
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x1203" flags="0x0">
-    <title>Speed Monitor :: Hysteresis Threshold vs fef01F4E (flat)</title>
+    <title>Speed Monitor :: Hysteresis Threshold vs Rear Wheel Speed (flat)</title>
     <description>DECODED (v5, confidence LOW): FUN_5E564: fef02188.
 
 Previous title: Cluster D :: Curve [RAM_fef01f4e] 15pt FUN_5e564 #2B4 (flat)
 
 HOW THE ECU USES IT: looked up by FUN_5e564; X input = RAM 0xfef01f4e.
 
-AXES: X axis: 15 points, 1000 to 8000 RPM.
+AXES: X axis: 15 points, 20.0 to 160.0 km/h. X input verified from code (v9.2): Rear wheel speed (fef01F4E = fef02636).
 
 VALUES (stock 5JCZSJA0): 32128 to 32128 raw - every cell the same, so the function is probably disabled or unused in this calibration.
 
@@ -25864,14 +25856,14 @@ REFERENCE: data @0x18CC50, X axis @0x18CC30, descriptor @0x18C7DC, code FUN_5e56
     <CATEGORYMEM index="1" category="31" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18CC30" mmedelementsizebits="16" mmedcolcount="15" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>RPM</units>
+      <units>km/h</units>
       <indexcount>15</indexcount>
-      <decimalpl>0</decimalpl>
+      <decimalpl>1</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X/2.56">
+      <MATH equation="X/128">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -26151,7 +26143,7 @@ Previous title: Cluster D :: Curve [RearSpd] 16pt FUN_6a926 #2BA
 
 HOW THE ECU USES IT: looked up by FUN_6a926; X input = Rear wheel speed (RAM 0xFEF0263C).
 
-AXES: X axis: 16 points, 0.00 to 38400 raw.
+AXES: X axis: 16 points, 0.0 to 300.0 km/h. X input verified from code (v9.2): Rear wheel speed, averaged (fef0263C).
 
 VALUES (stock 5JCZSJA0): 0.00 to 16351 raw.
 
@@ -26159,14 +26151,14 @@ REFERENCE: data @0x18C6E8, X axis @0x18C6C8, descriptor @0x18C884, code FUN_6a92
     <CATEGORYMEM index="0" category="48" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18C6C8" mmedelementsizebits="16" mmedcolcount="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>raw</units>
+      <units>km/h</units>
       <indexcount>16</indexcount>
-      <decimalpl>0</decimalpl>
+      <decimalpl>1</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X">
+      <MATH equation="X/128">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -26198,7 +26190,7 @@ Previous title: Cluster D :: Curve [RearSpd] 16pt FUN_6a926 #2BB
 
 HOW THE ECU USES IT: looked up by FUN_6a926; X input = Rear wheel speed (RAM 0xFEF0263C).
 
-AXES: X axis: 16 points, 0.00 to 38400 raw.
+AXES: X axis: 16 points, 0.0 to 300.0 km/h. X input verified from code (v9.2): Rear wheel speed, averaged (fef0263C).
 
 VALUES (stock 5JCZSJA0): 0.00 to 16351 raw.
 
@@ -26206,14 +26198,14 @@ REFERENCE: data @0x18C728, X axis @0x18C708, descriptor @0x18C898, code FUN_6a92
     <CATEGORYMEM index="0" category="48" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18C708" mmedelementsizebits="16" mmedcolcount="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>raw</units>
+      <units>km/h</units>
       <indexcount>16</indexcount>
-      <decimalpl>0</decimalpl>
+      <decimalpl>1</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X">
+      <MATH equation="X/128">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -26245,7 +26237,7 @@ Previous title: Cluster D :: Curve [RearSpd] 16pt FUN_6a926 #2BC
 
 HOW THE ECU USES IT: looked up by FUN_6a926; X input = Rear wheel speed (RAM 0xFEF0263C).
 
-AXES: X axis: 16 points, 0.00 to 38400 raw.
+AXES: X axis: 16 points, 0.0 to 300.0 km/h. X input verified from code (v9.2): Rear wheel speed, averaged (fef0263C).
 
 VALUES (stock 5JCZSJA0): 0.00 to 16351 raw.
 
@@ -26253,14 +26245,14 @@ REFERENCE: data @0x18C768, X axis @0x18C748, descriptor @0x18C8AC, code FUN_6a92
     <CATEGORYMEM index="0" category="48" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18C748" mmedelementsizebits="16" mmedcolcount="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>raw</units>
+      <units>km/h</units>
       <indexcount>16</indexcount>
-      <decimalpl>0</decimalpl>
+      <decimalpl>1</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X">
+      <MATH equation="X/128">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -28138,7 +28130,7 @@ REFERENCE: data @0x18E3E8, X axis @0x18E39C, descriptor @0x18DE28, code FUN_29d1
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x1232" flags="0x0">
-    <title>IMU :: Map vs fef0268C x Wheel Speed (Helper 1)</title>
+    <title>IMU :: Map vs Lean x Wheel Speed (Helper 1)</title>
     <description>DECODED (v5, confidence LOW): FUN_7A7CA: fef02692 = map(fef0268C, front/rear speed fef02978) above speed 0x18F080 and with no IMU faults.
 
 Previous title: ETV - Helper 1
@@ -28147,7 +28139,7 @@ Small curve/map stored just before the ETV block; used in throttle-by-wire set-u
 
 HOW THE ECU USES IT: looked up by FUN_7a7ca; X input = RAM 0xfef0268c; Y input = RAM 0xfef02978.
 
-AXES: X axis: 37 points, 16384 to 49152 raw; Y axis: 36 points, 0.00 to 105 deg (TP angle).
+AXES: X axis: 37 points, 16384 to 49152 raw; Y axis: 36 points, 0.0 to 300.0 km/h. Y input verified from code (v9.2): Wheel speed, front or rear (fef02978).
 
 VALUES (stock 5JCZSJA0): 0.00 to 65535 raw.
 
@@ -28170,14 +28162,14 @@ REFERENCE: data @0x18E4C8, X axis @0x18E434, Y axis @0x18E480, descriptor @0x18D
     </XDFAXIS>
     <XDFAXIS id="y" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18E480" mmedelementsizebits="16" mmedcolcount="36" mmedmajorstridebits="0" mmedminorstridebits="0" />
-      <units>deg (TP angle)</units>
+      <units>km/h</units>
       <indexcount>36</indexcount>
       <decimalpl>1</decimalpl>
       <embedinfo type="1" />
       <datatype>0</datatype>
       <unittype>0</unittype>
       <DALINK index="0" />
-      <MATH equation="X/364.08">
+      <MATH equation="X/128">
         <VAR id="X" />
       </MATH>
     </XDFAXIS>
@@ -42506,19 +42498,19 @@ STOCK (5JCZSJA0): 25000 us (raw 25000 / 0x61A8).</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0xC009" flags="0x0">
-    <title>Fuel Blend - WOT Throttle-Path Gate</title>
-    <description>At/above this throttle angle (fef02604) the ECU forces 100% TPS-map fuel (w = 256) - FUN_4916E/FUN_491BC. Below it the IAP/TPS blend follows the threshold curve. Stock 33282 = 91.4 deg. Raise toward 0xFFFF to let the IAP maps keep authority at WOT (only sensible if the IAP maps are tuned for WOT).
+    <title>Fuel Blend - Tip-In Rate Gate (forces TPS maps)</title>
+    <description>Tip-in rate gate (FUN_4916E / FUN_491BC). Compared with fef02604 = throttle opening rate (TP now - TP 4 samples ago, 0x8000 = 0), NOT throttle position. While the rate is at/above this value, and for 0x18267A (4) cycles after it drops below, the ECU forces 100% TPS-map fuel (blend weight fef011CA = 256). Stock 33282 = TP rise of 1.41 deg within 4 samples. 0xFFFF disables it (SD-v2 and later race bins do this so the speed-density map keeps authority on tip-in). Earlier XDFs showed this as a 91.4 deg WOT gate - that was wrong.
 
-ADDRESS 0x1824C6.</description>
+STOCK (5JCZSJA0): 1.41 deg/4 samples (raw 33282 / 0x8202). ADDRESS 0x1824C6, 16-bit.</description>
     <CATEGORYMEM index="0" category="53" />
     <CATEGORYMEM index="1" category="2" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1824C6" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg</units>
-    <decimalpl>1</decimalpl>
+    <units>deg/4 samples</units>
+    <decimalpl>2</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="(X-32768)/364.08">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -43091,20 +43083,20 @@ CONFIDENCE: hand-decoded from the disassembly/decompilation (v9).</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20018" flags="0x0">
-    <title>Accel Enrichment :: Min Fuel-Path Throttle</title>
+    <title>Accel Enrichment :: Min Throttle Opening Rate</title>
     <description>FUN_46464: accel enrichment only if fef02604 &gt;= this. Stock 32925 = 90.4 deg. (fef02604 is a throttle signal on a different offset; verify by logging before changing.)
 
-STOCK (5JCZSJA0): 90.43 deg TP (raw 32925 / 0x809D). ADDRESS 0x1824D0, 16-bit.
+STOCK (5JCZSJA0): 0.43 deg/4 samples (raw 32925 / 0x809D). ADDRESS 0x1824D0, 16-bit.
 CODE: FUN_46464
 CONFIDENCE: hand-decoded from the disassembly/decompilation (v9).</description>
     <CATEGORYMEM index="0" category="2" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1824D0" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
-    <decimalpl>1</decimalpl>
+    <units>deg/4 samples</units>
+    <decimalpl>2</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="(X-32768)/364.08">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -43967,7 +43959,7 @@ CONFIDENCE: hand-decoded from the disassembly/decompilation (v9).</description>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20049" flags="0x0">
     <title>Fuel Blend :: WOT Gate Release Delay (cycles)</title>
-    <description>FUN_4916E: while TP (fef02604) is at/above the WOT gate (0x1824C6) the ECU forces 100% throttle-path fuel. After TP drops below the gate it must stay there for more than this many cycles before blending resumes. Stock 4.
+    <description>FUN_4916E: while the throttle opening rate (fef02604: TP rise over 4 samples) is at/above the tip-in rate gate (0x1824C6) the ECU forces 100% throttle-path fuel. After the rate drops below the gate it must stay there for more than this many cycles before blending resumes. Stock 4.
 
 STOCK (5JCZSJA0): 4 cycles (raw 4 / 0x4). ADDRESS 0x18267A, 8-bit.
 CODE: FUN_4916E
@@ -47720,63 +47712,63 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2012F" flags="0x0">
-    <title>Pitch Control :: FUN_2934E grip % threshold #1</title>
+    <title>Pitch Control :: FUN_2934E slip-error threshold #1</title>
     <description>Calibration value read by FUN_2934E.
 USAGE (decompiled, locals resolved one level):
   2934e: DAT_ram_0015433a * (ushort)(DAT_ram_fef01562 &lt;= DAT_ram_00154336) +
   2934e: DAT_ram_00154338 * (ushort)(DAT_ram_fef01562 &gt; DAT_ram_00154336);
-COMPARED WITH: fef01562 = Grip% - Grip opening 0-100 % (X/5). Units inferred from that variable.
+COMPARED WITH: fef01562 = Traction-control slip error (actual - target slip) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 0.00 % grip (raw 0 / 0x0). ADDRESS 0x154336, 16-bit.
+STOCK (5JCZSJA0): 0.00 raw (raw 0 / 0x0). ADDRESS 0x154336, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="71" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154336" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>% grip</units>
+    <units>raw</units>
     <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/5">
+    <MATH equation="X">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20130" flags="0x0">
-    <title>Pitch Control :: FUN_2934E grip % threshold #2</title>
+    <title>Pitch Control :: FUN_2934E slip-error threshold #2</title>
     <description>Calibration value read by FUN_2934E.
 USAGE (decompiled, locals resolved one level):
   2934e: DAT_ram_00154338 * (ushort)(DAT_ram_fef01562 &gt; DAT_ram_00154336);
-COMPARED WITH: fef01562 = Grip% - Grip opening 0-100 % (X/5). Units inferred from that variable.
+COMPARED WITH: fef01562 = Traction-control slip error (actual - target slip) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 6553.60 % grip (raw 32768 / 0x8000). ADDRESS 0x154338, 16-bit.
+STOCK (5JCZSJA0): 32768 raw (raw 32768 / 0x8000). ADDRESS 0x154338, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="71" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154338" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>% grip</units>
+    <units>raw</units>
     <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/5">
+    <MATH equation="X">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20131" flags="0x0">
-    <title>Pitch Control :: FUN_2934E grip % threshold #3</title>
+    <title>Pitch Control :: FUN_2934E slip-error threshold #3</title>
     <description>Calibration value read by FUN_2934E.
 USAGE (decompiled, locals resolved one level):
   2934e: DAT_ram_0015433a * (ushort)(DAT_ram_fef01562 &lt;= DAT_ram_00154336) +
-COMPARED WITH: fef01562 = Grip% - Grip opening 0-100 % (X/5). Units inferred from that variable.
+COMPARED WITH: fef01562 = Traction-control slip error (actual - target slip) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 6553.60 % grip (raw 32768 / 0x8000). ADDRESS 0x15433A, 16-bit.
+STOCK (5JCZSJA0): 32768 raw (raw 32768 / 0x8000). ADDRESS 0x15433A, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="71" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x15433A" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>% grip</units>
+    <units>raw</units>
     <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/5">
+    <MATH equation="X">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -47939,24 +47931,24 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2013A" flags="0x0">
-    <title>Anti-Lift Control :: FUN_29FD2 throttle threshold #1</title>
+    <title>Anti-Lift Control :: FUN_29FD2 speed threshold #1</title>
     <description>Calibration value read by FUN_29FD2.
 USAGE (decompiled, locals resolved one level):
   29fd2: DAT_ram_0015434c = FUN_ram_00091d8a(&amp;PTR_DAT_ram_0000240a_ram_00150cf8,DAT_ram_fef02636);
   29fd2: DAT_ram_0015434c = FUN_ram_00091dde(&amp;LAB_ram_00151078,DAT_ram_fef00968,DAT_ram_fef0258e);
   29fd2: DAT_ram_fef0096a = DAT_ram_0015434c;
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 57.60 deg TP (raw 20971 / 0x51EB). ADDRESS 0x15434C, 16-bit.
+STOCK (5JCZSJA0): 163.84 km/h (raw 20971 / 0x51EB). ADDRESS 0x15434C, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="75" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x15434C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -48213,44 +48205,44 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20148" flags="0x0">
-    <title>Engine Brake Control :: FUN_29024 throttle threshold #2</title>
+    <title>Engine Brake Control :: FUN_29024 speed threshold #2</title>
     <description>Calibration value read by FUN_29024.
 USAGE (decompiled, locals resolved one level):
   29024: (((DAT_ram_fef02634 &lt;= DAT_ram_00154388 &amp;&amp; (DAT_ram_fef02636 &lt;= DAT_ram_00154388)) ||
-COMPARED WITH: fef02634 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02634 = Front wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 3.52 deg TP (raw 1280 / 0x500). ADDRESS 0x154388, 16-bit.
+STOCK (5JCZSJA0): 10 km/h (raw 1280 / 0x500). ADDRESS 0x154388, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="76" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154388" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20149" flags="0x0">
-    <title>Pitch Control :: FUN_2CE16 throttle threshold #1</title>
+    <title>Pitch Control :: FUN_2CE16 speed threshold #1</title>
     <description>Calibration value read by FUN_2CE16.
 USAGE (decompiled, locals resolved one level):
   2ce16: ((uVar9 &lt;= DAT_ram_0015438a &amp;&amp; ((uVar6 &lt; uVar7 &amp;&amp; (DAT_ram_0015438c &lt; uVar8)))))) {
   2ce16: DAT_ram_0015438a = FUN_ram_00091a82((uint)DAT_ram_fef02636 - (uint)DAT_ram_fef02634,0xffff,0);
   2ce16: if ((iVar11 == 1) &amp;&amp; ((DAT_ram_0015438a &lt; uVar5 || (DAT_ram_0015438e &lt; (uint)DAT_ram_fef009f4)))) {
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 115.00 deg TP (raw 41870 / 0xA38E). ADDRESS 0x15438A, 16-bit.
+STOCK (5JCZSJA0): 327.11 km/h (raw 41870 / 0xA38E). ADDRESS 0x15438A, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="71" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x15438A" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -48350,42 +48342,42 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2014F" flags="0x0">
-    <title>Cruise Control :: FUN_2D150 throttle threshold #1</title>
+    <title>Cruise Control :: FUN_2D150 speed threshold #1</title>
     <description>Calibration value read by FUN_2D150.
 USAGE (decompiled, locals resolved one level):
   2d150: if (DAT_ram_fef02636 &lt; DAT_ram_00154396) {
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 1.76 deg TP (raw 640 / 0x280). ADDRESS 0x154396, 16-bit.
+STOCK (5JCZSJA0): 5 km/h (raw 640 / 0x280). ADDRESS 0x154396, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="77" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154396" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20150" flags="0x0">
-    <title>Cruise Control :: FUN_2D150 throttle threshold #2</title>
+    <title>Cruise Control :: FUN_2D150 speed threshold #2</title>
     <description>Calibration value read by FUN_2D150.
 USAGE (decompiled, locals resolved one level):
   2d150: if (DAT_ram_fef02636 &lt; DAT_ram_00154398) {
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 3.52 deg TP (raw 1280 / 0x500). ADDRESS 0x154398, 16-bit.
+STOCK (5JCZSJA0): 10 km/h (raw 1280 / 0x500). ADDRESS 0x154398, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="77" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154398" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -49892,42 +49884,42 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2019E" flags="0x0">
-    <title>IMU / Wheel Speed :: FUN_2FE98 throttle threshold #2</title>
+    <title>IMU / Wheel Speed :: FUN_2FE98 speed threshold #2</title>
     <description>Calibration value read by FUN_2FE98.
 USAGE (decompiled, locals resolved one level):
   2fe98: if ((DAT_ram_fef02634 &lt;= DAT_ram_00154434) &amp;&amp; (DAT_ram_00154436 &lt;= DAT_ram_fef02636)) {
-COMPARED WITH: fef02634 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02634 = Front wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 180.00 deg TP (raw 65535 / 0xFFFF). ADDRESS 0x154434, 16-bit.
+STOCK (5JCZSJA0): 511.99 km/h (raw 65535 / 0xFFFF). ADDRESS 0x154434, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="79" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154434" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2019F" flags="0x0">
-    <title>IMU / Wheel Speed :: FUN_2FE98 throttle threshold #3</title>
+    <title>IMU / Wheel Speed :: FUN_2FE98 speed threshold #3</title>
     <description>Calibration value read by FUN_2FE98.
 USAGE (decompiled, locals resolved one level):
   2fe98: if ((DAT_ram_fef02634 &lt;= DAT_ram_00154434) &amp;&amp; (DAT_ram_00154436 &lt;= DAT_ram_fef02636)) {
-COMPARED WITH: fef02634 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 0.00 deg TP (raw 0 / 0x0). ADDRESS 0x154436, 16-bit.
+STOCK (5JCZSJA0): 0.00 km/h (raw 0 / 0x0). ADDRESS 0x154436, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="79" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154436" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -51205,7 +51197,7 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     <description>Calibration value read by FUN_2D2F0.
 USAGE (decompiled, locals resolved one level):
   2d2f0: FUN_ram_00091826(&amp;local_30,(-(uint)DAT_ram_00154497 &amp; 0xff) &lt;&lt; 8,DAT_ram_fef02634);
-COMPARED WITH: fef02634 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02634 = Front wheel speed (verified from code, v9.2).
 
 STOCK (5JCZSJA0): 20 raw (raw 20 / 0x14). ADDRESS 0x154497, 8-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
@@ -51225,7 +51217,7 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     <description>Calibration value read by FUN_2D2F0.
 USAGE (decompiled, locals resolved one level):
   2d2f0: FUN_ram_00091826(&amp;uStack_2c,(-(uint)DAT_ram_00154498 &amp; 0xff) &lt;&lt; 8,DAT_ram_fef02634);
-COMPARED WITH: fef02634 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02634 = Front wheel speed (verified from code, v9.2).
 
 STOCK (5JCZSJA0): 128 raw (raw 128 / 0x80). ADDRESS 0x154498, 8-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
@@ -51245,7 +51237,7 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     <description>Calibration value read by FUN_2D2F0.
 USAGE (decompiled, locals resolved one level):
   2d2f0: FUN_ram_00091826(&amp;uStack_2e,(-(uint)DAT_ram_00154499 &amp; 0xff) &lt;&lt; 8,DAT_ram_fef02636);
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
 STOCK (5JCZSJA0): 20 raw (raw 20 / 0x14). ADDRESS 0x154499, 8-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
@@ -51265,7 +51257,7 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     <description>Calibration value read by FUN_2D2F0.
 USAGE (decompiled, locals resolved one level):
   2d2f0: FUN_ram_00091826(auStack_2a,(-(uint)DAT_ram_0015449a &amp; 0xff) &lt;&lt; 8,DAT_ram_fef02636);
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
 STOCK (5JCZSJA0): 128 raw (raw 128 / 0x80). ADDRESS 0x15449A, 8-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
@@ -51581,7 +51573,7 @@ USAGE (decompiled, locals resolved one level):
   2f9ce: if (((uVar18 == 1) &amp;&amp; (cVar20 == '\x01')) &amp;&amp; ((uint)DAT_ram_001544aa &lt;= (uint)((int)(uint)DAT_ram_fef02634 &gt;&gt; 7))) {
   2fb2e: if ((uint)DAT_ram_001544aa &lt;= (uint)((int)(uint)DAT_ram_fef02634 &gt;&gt; 7)) {
   2fba8: if (((iVar19 == 1) &amp;&amp; (iVar17 == 1)) &amp;&amp; ((uint)DAT_ram_001544aa &lt;= (uint)((int)(uint)DAT_ram_fef02634 &gt;&gt; 7))) {
-COMPARED WITH: fef02634 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02634 = Front wheel speed (verified from code, v9.2).
 
 STOCK (5JCZSJA0): 255 raw (raw 255 / 0xFF). ADDRESS 0x1544AA, 8-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
@@ -52294,22 +52286,22 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2022B" flags="0x0">
-    <title>Diagnostics - DTC Lamp Control :: FUN_338D0 throttle threshold #3</title>
+    <title>Diagnostics - DTC Lamp Control :: FUN_338D0 speed threshold #3</title>
     <description>Calibration value read by FUN_338D0.
 USAGE (decompiled, locals resolved one level):
   338d0: (((DAT_ram_fef02636 == 0 &amp;&amp; (DAT_ram_0015476e &lt;= DAT_ram_fef02634)) &amp;&amp;
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02634 = Front wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 3.52 deg TP (raw 1280 / 0x500). ADDRESS 0x15476E, 16-bit.
+STOCK (5JCZSJA0): 10 km/h (raw 1280 / 0x500). ADDRESS 0x15476E, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="70" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x15476E" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -54266,22 +54258,22 @@ CONFIDENCE: AUTO-DEFINED from code cross-references - the DTC link is certain (t
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20290" flags="0x0">
-    <title>DTC P0830 :: RPM threshold #3</title>
+    <title>DTC P0830 :: throttle threshold #3</title>
     <description>Diagnostic monitor calibration for P0830 - Clutch switch circuit. Read by FUN_3B0A2. Typical role: fault threshold, enable condition or debounce time (counts are task cycles).
 USAGE (decompiled, locals resolved one level):
   3b0a2: if ((((DAT_ram_00154838 &lt; DAT_ram_fef0258e) &amp;&amp; (DAT_ram_fef0258e &lt; DAT_ram_0015483a)) &amp;&amp; (DAT_ram_0015483c &lt; DAT_ram_fef02600)) &amp;&amp;
-COMPARED WITH: fef0258E = RPM - Engine speed (main). Units inferred from that variable.
+COMPARED WITH: fef02600 = Throttle valve position (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 901.17 RPM (raw 2307 / 0x903). ADDRESS 0x15483C, 16-bit.
+STOCK (5JCZSJA0): 6.34 deg TP (raw 2307 / 0x903). ADDRESS 0x15483C, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references - the DTC link is certain (the reading function calls the DTC routine), the exact role of this value is not individually verified.</description>
     <CATEGORYMEM index="0" category="64" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x15483C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>RPM</units>
-    <decimalpl>0</decimalpl>
+    <units>deg TP</units>
+    <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/2.56">
+    <MATH equation="X/364.08">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -54385,22 +54377,22 @@ CONFIDENCE: AUTO-DEFINED from code cross-references - the DTC link is certain (t
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20296" flags="0x0">
-    <title>DTC P0850 :: RPM threshold #3</title>
+    <title>DTC P0850 :: throttle threshold #3</title>
     <description>Diagnostic monitor calibration for P0850 - Neutral (park/neutral) switch. Read by FUN_3B3B8. Typical role: fault threshold, enable condition or debounce time (counts are task cycles).
 USAGE (decompiled, locals resolved one level):
   3b3b8: if (((((DAT_ram_00154844 &lt; DAT_ram_fef0258e) &amp;&amp; (DAT_ram_fef0258e &lt; DAT_ram_00154846)) &amp;&amp; (DAT_ram_00154848 &lt; DAT_ram_fef02600)) &amp;&amp;
-COMPARED WITH: fef0258E = RPM - Engine speed (main). Units inferred from that variable.
+COMPARED WITH: fef02600 = Throttle valve position (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 901.17 RPM (raw 2307 / 0x903). ADDRESS 0x154848, 16-bit.
+STOCK (5JCZSJA0): 6.34 deg TP (raw 2307 / 0x903). ADDRESS 0x154848, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references - the DTC link is certain (the reading function calls the DTC routine), the exact role of this value is not individually verified.</description>
     <CATEGORYMEM index="0" category="64" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154848" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>RPM</units>
-    <decimalpl>0</decimalpl>
+    <units>deg TP</units>
+    <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/2.56">
+    <MATH equation="X/364.08">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -54621,62 +54613,62 @@ CONFIDENCE: AUTO-DEFINED from code cross-references - the DTC link is certain (t
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x202A2" flags="0x0">
-    <title>DTC P0133 / P0153 :: throttle threshold #9</title>
+    <title>DTC P0133 / P0153 :: speed threshold #9</title>
     <description>Diagnostic monitor calibration for P0133 - HO2 sensor B1S1 slow response; P0153 - HO2 sensor B2S1 slow response. Read by FUN_3BCA6. Typical role: fault threshold, enable condition or debounce time (counts are task cycles).
 USAGE (decompiled, locals resolved one level):
   3bca6: ((((((uVar5 &lt; DAT_ram_00154860 &amp;&amp; (DAT_ram_00154862 &lt;= DAT_ram_fef02636)) &amp;&amp; (DAT_ram_fef02636 &lt; DAT_ram_00154864)) &amp;&amp;
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 36.00 deg TP (raw 13107 / 0x3333). ADDRESS 0x154860, 16-bit.
+STOCK (5JCZSJA0): 102.40 km/h (raw 13107 / 0x3333). ADDRESS 0x154860, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references - the DTC link is certain (the reading function calls the DTC routine), the exact role of this value is not individually verified.</description>
     <CATEGORYMEM index="0" category="64" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154860" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x202A3" flags="0x0">
-    <title>DTC P0133 / P0153 :: throttle threshold #10</title>
+    <title>DTC P0133 / P0153 :: speed threshold #10</title>
     <description>Diagnostic monitor calibration for P0133 - HO2 sensor B1S1 slow response; P0153 - HO2 sensor B2S1 slow response. Read by FUN_3BCA6. Typical role: fault threshold, enable condition or debounce time (counts are task cycles).
 USAGE (decompiled, locals resolved one level):
   3bca6: ((((((uVar5 &lt; DAT_ram_00154860 &amp;&amp; (DAT_ram_00154862 &lt;= DAT_ram_fef02636)) &amp;&amp; (DAT_ram_fef02636 &lt; DAT_ram_00154864)) &amp;&amp;
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 29.88 deg TP (raw 10880 / 0x2A80). ADDRESS 0x154862, 16-bit.
+STOCK (5JCZSJA0): 85 km/h (raw 10880 / 0x2A80). ADDRESS 0x154862, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references - the DTC link is certain (the reading function calls the DTC routine), the exact role of this value is not individually verified.</description>
     <CATEGORYMEM index="0" category="64" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154862" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x202A4" flags="0x0">
-    <title>DTC P0133 / P0153 :: throttle threshold #11</title>
+    <title>DTC P0133 / P0153 :: speed threshold #11</title>
     <description>Diagnostic monitor calibration for P0133 - HO2 sensor B1S1 slow response; P0153 - HO2 sensor B2S1 slow response. Read by FUN_3BCA6. Typical role: fault threshold, enable condition or debounce time (counts are task cycles).
 USAGE (decompiled, locals resolved one level):
   3bca6: ((((((uVar5 &lt; DAT_ram_00154860 &amp;&amp; (DAT_ram_00154862 &lt;= DAT_ram_fef02636)) &amp;&amp; (DAT_ram_fef02636 &lt; DAT_ram_00154864)) &amp;&amp;
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 36.91 deg TP (raw 13440 / 0x3480). ADDRESS 0x154864, 16-bit.
+STOCK (5JCZSJA0): 105 km/h (raw 13440 / 0x3480). ADDRESS 0x154864, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references - the DTC link is certain (the reading function calls the DTC routine), the exact role of this value is not individually verified.</description>
     <CATEGORYMEM index="0" category="64" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154864" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -55350,42 +55342,42 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x202C7" flags="0x0">
-    <title>DTC P0410 :: temperature threshold #1</title>
+    <title>DTC P0410 :: RPM threshold #1</title>
     <description>Diagnostic monitor calibration for P0410 - PAIR (secondary air) system. Read by FUN_3E95C. Typical role: fault threshold, enable condition or debounce time (counts are task cycles).
 USAGE (decompiled, locals resolved one level):
   3e95c: (((DAT_ram_fef026bd &lt;= DAT_ram_001549d8 &amp;&amp; (DAT_ram_001548aa &lt;= DAT_ram_fef0258e)) &amp;&amp;
-COMPARED WITH: fef026BD = ECT - Engine coolant temperature (ADC ch2D), 8-bit. Units inferred from that variable.
+COMPARED WITH: fef0258e = Engine speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 6210 deg C (raw 6656 / 0x1A00). ADDRESS 0x1548AA, 16-bit.
+STOCK (5JCZSJA0): 2600 RPM (raw 6656 / 0x1A00). ADDRESS 0x1548AA, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references - the DTC link is certain (the reading function calls the DTC routine), the exact role of this value is not individually verified.</description>
     <CATEGORYMEM index="0" category="64" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1548AA" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg C</units>
-    <decimalpl>1</decimalpl>
+    <units>RPM</units>
+    <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X*0.9375-30">
+    <MATH equation="X/2.56">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x202C8" flags="0x0">
-    <title>DTC P0410 :: throttle threshold #2</title>
+    <title>DTC P0410 :: RPM threshold #2</title>
     <description>Diagnostic monitor calibration for P0410 - PAIR (secondary air) system. Read by FUN_3E95C. Typical role: fault threshold, enable condition or debounce time (counts are task cycles).
 USAGE (decompiled, locals resolved one level):
   3e95c: ((DAT_ram_fef0258e &lt;= DAT_ram_001548ac &amp;&amp; ((DAT_ram_001548ae &lt;= DAT_ram_fef02600 &amp;&amp; (DAT_ram_fef02600 &lt;= DAT_ram_001548b0)))))))) &amp;&amp;
-COMPARED WITH: fef02600 = TP - Throttle position (selected copy of fef025FE). Units inferred from that variable.
+COMPARED WITH: fef0258e = Engine speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 23.20 deg TP (raw 8448 / 0x2100). ADDRESS 0x1548AC, 16-bit.
+STOCK (5JCZSJA0): 3300 RPM (raw 8448 / 0x2100). ADDRESS 0x1548AC, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references - the DTC link is certain (the reading function calls the DTC routine), the exact role of this value is not individually verified.</description>
     <CATEGORYMEM index="0" category="64" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1548AC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
-    <decimalpl>1</decimalpl>
+    <units>RPM</units>
+    <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/2.56">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -55450,22 +55442,22 @@ CONFIDENCE: AUTO-DEFINED from code cross-references - the DTC link is certain (t
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x202CC" flags="0x0">
-    <title>DTC P0410 :: temperature threshold #6</title>
+    <title>DTC P0410 :: vacuum threshold #6</title>
     <description>Diagnostic monitor calibration for P0410 - PAIR (secondary air) system. Read by FUN_3E95C. Typical role: fault threshold, enable condition or debounce time (counts are task cycles).
 USAGE (decompiled, locals resolved one level):
   3e95c: ((((((DAT_ram_fef02628 &lt;= DAT_ram_001548b4 &amp;&amp; (DAT_ram_001549d9 &lt;= DAT_ram_fef026c3)) &amp;&amp; (DAT_ram_fef026c3 &lt;= DAT_ram_001549da)) &amp;&amp;
-COMPARED WITH: fef026C3 = IAT - Intake air temperature (ADC ch02, 8-bit) - used in calculated-load density correction. Units inferred from that variable.
+COMPARED WITH: fef02628 = Manifold vacuum (AP - IAP, 7862 = 0 kPa) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 36826.88 deg C (raw 39314 / 0x9992). ADDRESS 0x1548B4, 16-bit.
+STOCK (5JCZSJA0): 80.00 kPa vacuum (raw 39314 / 0x9992). ADDRESS 0x1548B4, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references - the DTC link is certain (the reading function calls the DTC routine), the exact role of this value is not individually verified.</description>
     <CATEGORYMEM index="0" category="64" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1548B4" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg C</units>
+    <units>kPa vacuum</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X*0.9375-30">
+    <MATH equation="(X-7862)/393.14">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -55952,22 +55944,22 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x202E6" flags="0x0">
-    <title>Diagnostics - Monitors :: FUN_3F624 throttle threshold #3</title>
+    <title>Diagnostics - Monitors :: FUN_3F624 speed threshold #3</title>
     <description>Calibration value read by FUN_3F624.
 USAGE (decompiled, locals resolved one level):
   3f624: (((DAT_ram_fef02634 == 0 &amp;&amp; (DAT_ram_001548e8 &lt;= DAT_ram_fef02636)) &amp;&amp;
-COMPARED WITH: fef02634 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 3.52 deg TP (raw 1280 / 0x500). ADDRESS 0x1548E8, 16-bit.
+STOCK (5JCZSJA0): 10 km/h (raw 1280 / 0x500). ADDRESS 0x1548E8, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="80" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1548E8" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -56015,7 +56007,7 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
 USAGE (decompiled, locals resolved one level):
   3f510: ((DAT_ram_fef02634 != 0 || (DAT_ram_001548ee &lt;= DAT_ram_fef02688)))) {
   3f624: ((DAT_ram_fef02688 &lt; DAT_ram_001548ee &amp;&amp; ((DAT_ram_fef00e50 &amp; 2) != 0)))))) {
-COMPARED WITH: fef02634 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02634 = Front wheel speed (km/h = X/128). Units inferred from that variable.
 
 STOCK (5JCZSJA0): 180.00 deg TP (raw 65535 / 0xFFFF). ADDRESS 0x1548EE, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
@@ -56333,22 +56325,22 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x202F9" flags="0x0">
-    <title>HO2 / Closed Loop :: FUN_40224 RPM threshold #2</title>
+    <title>HO2 / Closed Loop :: FUN_40224 vacuum threshold #2</title>
     <description>Calibration value read by FUN_40224.
 USAGE (decompiled, locals resolved one level):
   40224: if (((((DAT_ram_fef00e6e &amp; 1) == 1) &amp;&amp; (DAT_ram_0015490c &lt;= DAT_ram_fef0258e)) &amp;&amp; (DAT_ram_fef02628 &lt;= DAT_ram_0015490e)) &amp;&amp;
-COMPARED WITH: fef0258E = RPM - Engine speed (main). Units inferred from that variable.
+COMPARED WITH: fef02628 = Manifold vacuum (AP - IAP, 7862 = 0 kPa) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 12285.55 RPM (raw 31451 / 0x7ADB). ADDRESS 0x15490E, 16-bit.
+STOCK (5JCZSJA0): 60.00 kPa vacuum (raw 31451 / 0x7ADB). ADDRESS 0x15490E, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="81" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x15490E" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>RPM</units>
-    <decimalpl>0</decimalpl>
+    <units>kPa vacuum</units>
+    <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/2.56">
+    <MATH equation="(X-7862)/393.14">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -58519,7 +58511,7 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     <description>Calibration value read by FUN_4104C.
 USAGE (decompiled, locals resolved one level):
   4104c: FUN_ram_00091826(&amp;local_e,(-(uint)DAT_ram_001549ec &amp; 0xff) &lt;&lt; 8,(uint)DAT_ram_fef02634);
-COMPARED WITH: fef02634 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02634 = Front wheel speed (verified from code, v9.2).
 
 STOCK (5JCZSJA0): 60 raw (raw 60 / 0x3C). ADDRESS 0x1549EC, 8-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
@@ -58539,7 +58531,7 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     <description>Calibration value read by FUN_41278.
 USAGE (decompiled, locals resolved one level):
   41278: FUN_ram_00091826(&amp;local_e,(-(uint)DAT_ram_001549ed &amp; 0xff) &lt;&lt; 8,(uint)DAT_ram_fef02636);
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
 STOCK (5JCZSJA0): 60 raw (raw 60 / 0x3C). ADDRESS 0x1549ED, 8-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
@@ -58733,22 +58725,22 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20372" flags="0x0">
-    <title>Fuel :: FUN_46816 throttle threshold #1</title>
+    <title>Fuel :: FUN_46816 throttle-rate threshold #1</title>
     <description>Calibration value read by FUN_46816.
 USAGE (decompiled, locals resolved one level):
   46816: if (((iVar4 == 1) &amp;&amp; (-1 &lt; (int)((uint)DAT_ram_fef03148 &lt;&lt; 0x19))) &amp;&amp; (DAT_ram_001824d2 &lt;= DAT_ram_fef02604)) {
-COMPARED WITH: fef02604 = TP - Throttle position used by fuel path. Units inferred from that variable.
+COMPARED WITH: fef02604 = Throttle opening rate (TP now - TP 4 samples ago, 0x8000 = 0) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 92.81 deg TP (raw 33792 / 0x8400). ADDRESS 0x1824D2, 16-bit.
+STOCK (5JCZSJA0): 2.81 deg/4 samples (raw 33792 / 0x8400). ADDRESS 0x1824D2, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="84" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1824D2" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
-    <decimalpl>1</decimalpl>
+    <units>deg/4 samples</units>
+    <decimalpl>2</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="(X-32768)/364.08">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -58830,22 +58822,22 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20377" flags="0x0">
-    <title>Deceleration Fuel Cut :: FUN_4AB6A throttle threshold #1</title>
+    <title>Deceleration Fuel Cut :: FUN_4AB6A throttle-rate threshold #1</title>
     <description>Calibration value read by FUN_4AB6A.
 USAGE (decompiled, locals resolved one level):
   4ab6a: if (DAT_ram_0018259c &lt; DAT_ram_fef02604) {
-COMPARED WITH: fef02604 = TP - Throttle position used by fuel path. Units inferred from that variable.
+COMPARED WITH: fef02604 = Throttle opening rate (TP now - TP 4 samples ago, 0x8000 = 0) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 91.05 deg TP (raw 33150 / 0x817E). ADDRESS 0x18259C, 16-bit.
+STOCK (5JCZSJA0): 1.05 deg/4 samples (raw 33150 / 0x817E). ADDRESS 0x18259C, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="85" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18259C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
-    <decimalpl>1</decimalpl>
+    <units>deg/4 samples</units>
+    <decimalpl>2</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="(X-32768)/364.08">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -58913,7 +58905,7 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
 USAGE (decompiled, locals resolved one level):
   43b7a: (((DAT_ram_001825b4 &lt;= DAT_ram_fef011e0 &amp;&amp; (DAT_ram_fef011e0 &lt;= DAT_ram_001825b8)) &amp;&amp; (DAT_ram_001825bc &lt;= DAT_ram_fef02604))))
   43cc0: if ((((iVar6 != 1) || (DAT_ram_fef011e0 &lt; DAT_ram_001825b4)) || (DAT_ram_001825b8 &lt; DAT_ram_fef011e0)) ||
-COMPARED WITH: fef02604 = TP - Throttle position used by fuel path. Units inferred from that variable.
+COMPARED WITH: fef02604 = Throttle opening rate (TP now - TP 4 samples ago, 0x8000 = 0). Units inferred from that variable.
 
 STOCK (5JCZSJA0): 89.16 deg TP (raw 32461 / 0x7ECD). ADDRESS 0x1825B4, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
@@ -58954,7 +58946,7 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
 USAGE (decompiled, locals resolved one level):
   43b7a: (((DAT_ram_001825b4 &lt;= DAT_ram_fef011e0 &amp;&amp; (DAT_ram_fef011e0 &lt;= DAT_ram_001825b8)) &amp;&amp; (DAT_ram_001825bc &lt;= DAT_ram_fef02604))))
   43cc0: if ((((iVar6 != 1) || (DAT_ram_fef011e0 &lt; DAT_ram_001825b4)) || (DAT_ram_001825b8 &lt; DAT_ram_fef011e0)) ||
-COMPARED WITH: fef02604 = TP - Throttle position used by fuel path. Units inferred from that variable.
+COMPARED WITH: fef02604 = Throttle opening rate (TP now - TP 4 samples ago, 0x8000 = 0). Units inferred from that variable.
 
 STOCK (5JCZSJA0): 90.43 deg TP (raw 32922 / 0x809A). ADDRESS 0x1825B8, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
@@ -58970,67 +58962,67 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2037E" flags="0x0">
-    <title>HO2 / Closed Loop :: FUN_43A16 throttle threshold #3</title>
+    <title>HO2 / Closed Loop :: FUN_43A16 throttle-rate threshold #3</title>
     <description>Calibration value read by FUN_43A16, FUN_43C1C.
 USAGE (decompiled, locals resolved one level):
   43a16: ((DAT_ram_001825ba &lt;= DAT_ram_fef02604 &amp;&amp; (DAT_ram_fef02604 &lt;= DAT_ram_001825be)))))) {
   43c1c: ((DAT_ram_fef02604 &lt; DAT_ram_001825ba || (DAT_ram_001825be &lt; DAT_ram_fef02604)))) ||
-COMPARED WITH: fef02604 = TP - Throttle position used by fuel path. Units inferred from that variable.
+COMPARED WITH: fef02604 = Throttle opening rate (TP now - TP 4 samples ago, 0x8000 = 0) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 89.30 deg TP (raw 32511 / 0x7EFF). ADDRESS 0x1825BA, 16-bit.
+STOCK (5JCZSJA0): -0.71 deg/4 samples (raw 32511 / 0x7EFF). ADDRESS 0x1825BA, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="81" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1825BA" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
-    <decimalpl>1</decimalpl>
+    <units>deg/4 samples</units>
+    <decimalpl>2</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="(X-32768)/364.08">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2037F" flags="0x0">
-    <title>HO2 / Closed Loop :: FUN_43B7A throttle threshold #3</title>
+    <title>HO2 / Closed Loop :: FUN_43B7A throttle-rate threshold #3</title>
     <description>Calibration value read by FUN_43B7A, FUN_43CC0.
 USAGE (decompiled, locals resolved one level):
   43b7a: (((DAT_ram_001825b4 &lt;= DAT_ram_fef011e0 &amp;&amp; (DAT_ram_fef011e0 &lt;= DAT_ram_001825b8)) &amp;&amp; (DAT_ram_001825bc &lt;= DAT_ram_fef02604))))
   43cc0: (((DAT_ram_fef02604 &lt; DAT_ram_001825bc || (DAT_ram_001825c2 &lt; DAT_ram_fef02604)) ||
-COMPARED WITH: fef02604 = TP - Throttle position used by fuel path. Units inferred from that variable.
+COMPARED WITH: fef02604 = Throttle opening rate (TP now - TP 4 samples ago, 0x8000 = 0) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 89.30 deg TP (raw 32511 / 0x7EFF). ADDRESS 0x1825BC, 16-bit.
+STOCK (5JCZSJA0): -0.71 deg/4 samples (raw 32511 / 0x7EFF). ADDRESS 0x1825BC, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="81" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1825BC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
-    <decimalpl>1</decimalpl>
+    <units>deg/4 samples</units>
+    <decimalpl>2</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="(X-32768)/364.08">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20380" flags="0x0">
-    <title>HO2 / Closed Loop :: FUN_43A16 throttle threshold #4</title>
+    <title>HO2 / Closed Loop :: FUN_43A16 throttle-rate threshold #4</title>
     <description>Calibration value read by FUN_43A16, FUN_43C1C, FUN_480B2.
 USAGE (decompiled, locals resolved one level):
   43a16: ((DAT_ram_001825ba &lt;= DAT_ram_fef02604 &amp;&amp; (DAT_ram_fef02604 &lt;= DAT_ram_001825be)))))) {
   43c1c: ((DAT_ram_fef02604 &lt; DAT_ram_001825ba || (DAT_ram_001825be &lt; DAT_ram_fef02604)))) ||
   480b2: (DAT_ram_fef02604 &lt; DAT_ram_001825be)) &amp;&amp; ((iVar17 != 0 || ((&amp;DAT_ram_fef011e6)[param_1] != '\0')))) &amp;&amp;
   480b2: if ((DAT_ram_001826aa &lt;= bVar1) || (DAT_ram_001825be &lt;= DAT_ram_fef02604)) goto LAB_ram_00048266;
-COMPARED WITH: fef02604 = TP - Throttle position used by fuel path. Units inferred from that variable.
+COMPARED WITH: fef02604 = Throttle opening rate (TP now - TP 4 samples ago, 0x8000 = 0) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 90.71 deg TP (raw 33025 / 0x8101). ADDRESS 0x1825BE, 16-bit.
+STOCK (5JCZSJA0): 0.71 deg/4 samples (raw 33025 / 0x8101). ADDRESS 0x1825BE, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="81" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1825BE" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
-    <decimalpl>1</decimalpl>
+    <units>deg/4 samples</units>
+    <decimalpl>2</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="(X-32768)/364.08">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -59054,23 +59046,23 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20382" flags="0x0">
-    <title>HO2 / Closed Loop :: FUN_43B7A throttle threshold #4</title>
+    <title>HO2 / Closed Loop :: FUN_43B7A throttle-rate threshold #4</title>
     <description>Calibration value read by FUN_43B7A, FUN_43CC0.
 USAGE (decompiled, locals resolved one level):
   43b7a: bVar5 = DAT_ram_fef02604 &lt;= DAT_ram_001825c2;
   43cc0: (((DAT_ram_fef02604 &lt; DAT_ram_001825bc || (DAT_ram_001825c2 &lt; DAT_ram_fef02604)) ||
-COMPARED WITH: fef02604 = TP - Throttle position used by fuel path. Units inferred from that variable.
+COMPARED WITH: fef02604 = Throttle opening rate (TP now - TP 4 samples ago, 0x8000 = 0) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 90.71 deg TP (raw 33025 / 0x8101). ADDRESS 0x1825C2, 16-bit.
+STOCK (5JCZSJA0): 0.71 deg/4 samples (raw 33025 / 0x8101). ADDRESS 0x1825C2, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="81" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1825C2" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
-    <decimalpl>1</decimalpl>
+    <units>deg/4 samples</units>
+    <decimalpl>2</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="(X-32768)/364.08">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -59497,22 +59489,22 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20399" flags="0x0">
-    <title>Idle Control :: Idle Speed Control Parameter throttle threshold #2</title>
+    <title>Idle Control :: Idle Speed Control Parameter throttle-rate threshold #2</title>
     <description>FUNCTION: Idle Speed Control Parameter. Calibration value read by FUN_4C2DA.
 USAGE (decompiled, locals resolved one level):
   4c2da: if ((DAT_ram_fef02602 &lt; DAT_ram_0018263a) &amp;&amp; (DAT_ram_fef02604 &lt; DAT_ram_0018263c)) {
-COMPARED WITH: fef02602 = TP - Throttle valve position (from TP sensors, ADC ch0B/ch2C). Units inferred from that variable.
+COMPARED WITH: fef02604 = Throttle opening rate (TP now - TP 4 samples ago, 0x8000 = 0) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 94.39 deg TP (raw 34367 / 0x863F). ADDRESS 0x18263C, 16-bit.
+STOCK (5JCZSJA0): 4.39 deg/4 samples (raw 34367 / 0x863F). ADDRESS 0x18263C, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="86" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18263C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
-    <decimalpl>1</decimalpl>
+    <units>deg/4 samples</units>
+    <decimalpl>2</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="(X-32768)/364.08">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -59656,22 +59648,22 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x203A1" flags="0x0">
-    <title>Idle Control :: Idle Speed Control Parameter throttle threshold #6</title>
+    <title>Idle Control :: Idle Speed Control Parameter throttle-rate threshold #6</title>
     <description>FUNCTION: Idle Speed Control Parameter. Calibration value read by FUN_4C2DA.
 USAGE (decompiled, locals resolved one level):
   4c2da: if ((DAT_ram_0018264a &lt; DAT_ram_fef02602) &amp;&amp; (((DAT_ram_0018264c &lt; DAT_ram_fef02604 &amp;&amp; ((uint)DAT_ram_0018264e &lt;= uVar14)) &amp;&amp; (uVar14 &lt;= (uint)DAT_ram_00182650)))) {
-COMPARED WITH: fef02602 = TP - Throttle valve position (from TP sensors, ADC ch0B/ch2C). Units inferred from that variable.
+COMPARED WITH: fef02604 = Throttle opening rate (TP now - TP 4 samples ago, 0x8000 = 0) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 90.71 deg TP (raw 33024 / 0x8100). ADDRESS 0x18264C, 16-bit.
+STOCK (5JCZSJA0): 0.70 deg/4 samples (raw 33024 / 0x8100). ADDRESS 0x18264C, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="86" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18264C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
-    <decimalpl>1</decimalpl>
+    <units>deg/4 samples</units>
+    <decimalpl>2</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="(X-32768)/364.08">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -59949,22 +59941,22 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x203B0" flags="0x0">
-    <title>EVAP Purge :: EVAP Purge Enable Window RPM threshold #3</title>
+    <title>EVAP Purge :: EVAP Purge Enable Window throttle threshold #3</title>
     <description>FUNCTION: EVAP Purge Enable Window. Calibration value read by FUN_42384.
 USAGE (decompiled, locals resolved one level):
   42384: ((DAT_ram_00182666 &lt;= DAT_ram_fef0258e &amp;&amp; ((DAT_ram_fef0258e &lt;= DAT_ram_00182668 &amp;&amp; (DAT_ram_0018266a &lt;= DAT_ram_fef02602)))))) &amp;&amp;
-COMPARED WITH: fef0258E = RPM - Engine speed (main). Units inferred from that variable.
+COMPARED WITH: fef02602 = Throttle valve position (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 614.45 RPM (raw 1573 / 0x625). ADDRESS 0x18266A, 16-bit.
+STOCK (5JCZSJA0): 4.32 deg TP (raw 1573 / 0x625). ADDRESS 0x18266A, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="83" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18266A" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>RPM</units>
-    <decimalpl>0</decimalpl>
+    <units>deg TP</units>
+    <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/2.56">
+    <MATH equation="X/364.08">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -59989,22 +59981,22 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x203B2" flags="0x0">
-    <title>EVAP Purge :: EVAP Purge Enable Window throttle threshold #5</title>
+    <title>EVAP Purge :: EVAP Purge Enable Window vacuum threshold #5</title>
     <description>FUNCTION: EVAP Purge Enable Window. Calibration value read by FUN_42384.
 USAGE (decompiled, locals resolved one level):
   42384: ((DAT_ram_fef02602 &lt;= DAT_ram_0018266c &amp;&amp; (DAT_ram_0018266e &lt;= DAT_ram_fef02628)))) {
-COMPARED WITH: fef02602 = TP - Throttle valve position (from TP sensors, ADC ch0B/ch2C). Units inferred from that variable.
+COMPARED WITH: fef02628 = Manifold vacuum (AP - IAP, 7862 = 0 kPa) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 0.00 deg TP (raw 0 / 0x0). ADDRESS 0x18266E, 16-bit.
+STOCK (5JCZSJA0): -20.00 kPa vacuum (raw 0 / 0x0). ADDRESS 0x18266E, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="83" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18266E" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>kPa vacuum</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="(X-7862)/393.14">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -61487,22 +61479,22 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x203FE" flags="0x0">
-    <title>Ignition :: Retard Request Logic throttle threshold #1</title>
+    <title>Ignition :: Retard Request Logic throttle-rate threshold #1</title>
     <description>FUNCTION: Retard Request Logic. Calibration value read by FUN_5167E.
 USAGE (decompiled, locals resolved one level):
   5167e: else if (DAT_ram_0018b632 &lt;= DAT_ram_fef02604) {
-COMPARED WITH: fef02604 = TP - Throttle position used by fuel path. Units inferred from that variable.
+COMPARED WITH: fef02604 = Throttle opening rate (TP now - TP 4 samples ago, 0x8000 = 0) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 91.05 deg TP (raw 33151 / 0x817F). ADDRESS 0x18B632, 16-bit.
+STOCK (5JCZSJA0): 1.05 deg/4 samples (raw 33151 / 0x817F). ADDRESS 0x18B632, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="66" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18B632" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
-    <decimalpl>1</decimalpl>
+    <units>deg/4 samples</units>
+    <decimalpl>2</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="(X-32768)/364.08">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -61589,43 +61581,43 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20403" flags="0x0">
-    <title>Ignition :: Transient One-Shot Timing Correction throttle threshold #1</title>
+    <title>Ignition :: Transient One-Shot Timing Correction throttle-rate threshold #1</title>
     <description>FUNCTION: Transient One-Shot Timing Correction. Calibration value read by FUN_4FE00.
 USAGE (decompiled, locals resolved one level):
   4fe00: if (((((DAT_ram_fef015b0 &amp; 1) == 0) || (DAT_ram_fef02604 &lt; DAT_ram_0018b63c)) ||
-COMPARED WITH: fef02604 = TP - Throttle position used by fuel path. Units inferred from that variable.
+COMPARED WITH: fef02604 = Throttle opening rate (TP now - TP 4 samples ago, 0x8000 = 0) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 91.06 deg TP (raw 33152 / 0x8180). ADDRESS 0x18B63C, 16-bit.
+STOCK (5JCZSJA0): 1.05 deg/4 samples (raw 33152 / 0x8180). ADDRESS 0x18B63C, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="66" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18B63C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
-    <decimalpl>1</decimalpl>
+    <units>deg/4 samples</units>
+    <decimalpl>2</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="(X-32768)/364.08">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20404" flags="0x0">
-    <title>Ignition :: Transient One-Shot Timing Correction throttle threshold #2</title>
+    <title>Ignition :: Transient One-Shot Timing Correction throttle-rate threshold #2</title>
     <description>FUNCTION: Transient One-Shot Timing Correction. Calibration value read by FUN_4FE00, FUN_4FEA4.
 USAGE (decompiled, locals resolved one level):
   4fe00: (DAT_ram_0018b63e &lt; DAT_ram_fef02604)) ||
   4fea4: (((DAT_ram_fef015b0 &amp; 1) != 0 &amp;&amp; (DAT_ram_0018b63e &lt; DAT_ram_fef02604)))) {
-COMPARED WITH: fef02604 = TP - Throttle position used by fuel path. Units inferred from that variable.
+COMPARED WITH: fef02604 = Throttle opening rate (TP now - TP 4 samples ago, 0x8000 = 0) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 97.21 deg TP (raw 35392 / 0x8A40). ADDRESS 0x18B63E, 16-bit.
+STOCK (5JCZSJA0): 7.21 deg/4 samples (raw 35392 / 0x8A40). ADDRESS 0x18B63E, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="66" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18B63E" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
-    <decimalpl>1</decimalpl>
+    <units>deg/4 samples</units>
+    <decimalpl>2</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="(X-32768)/364.08">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -61670,22 +61662,22 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20407" flags="0x0">
-    <title>Ignition :: Transient One-Shot Timing Correction throttle threshold #5</title>
+    <title>Ignition :: Transient One-Shot Timing Correction throttle-rate threshold #5</title>
     <description>FUNCTION: Transient One-Shot Timing Correction. Calibration value read by FUN_4FEA4.
 USAGE (decompiled, locals resolved one level):
   4fea4: if (DAT_ram_fef02604 &lt; DAT_ram_0018b644) {
-COMPARED WITH: fef02604 = TP - Throttle position used by fuel path. Units inferred from that variable.
+COMPARED WITH: fef02604 = Throttle opening rate (TP now - TP 4 samples ago, 0x8000 = 0) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 90.00 deg TP (raw 32768 / 0x8000). ADDRESS 0x18B644, 16-bit.
+STOCK (5JCZSJA0): 0.00 deg/4 samples (raw 32768 / 0x8000). ADDRESS 0x18B644, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="66" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18B644" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
-    <decimalpl>1</decimalpl>
+    <units>deg/4 samples</units>
+    <decimalpl>2</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="(X-32768)/364.08">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -61710,42 +61702,42 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20409" flags="0x0">
-    <title>Ignition :: Retard Request Logic throttle threshold #3</title>
+    <title>Ignition :: Retard Request Logic throttle-rate threshold #3</title>
     <description>FUNCTION: Retard Request Logic. Calibration value read by FUN_51E86.
 USAGE (decompiled, locals resolved one level):
   51e86: (DAT_ram_fef02604 &lt; DAT_ram_0018b648)) ||
-COMPARED WITH: fef02604 = TP - Throttle position used by fuel path. Units inferred from that variable.
+COMPARED WITH: fef02604 = Throttle opening rate (TP now - TP 4 samples ago, 0x8000 = 0) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 67.49 deg TP (raw 24573 / 0x5FFD). ADDRESS 0x18B648, 16-bit.
+STOCK (5JCZSJA0): -22.51 deg/4 samples (raw 24573 / 0x5FFD). ADDRESS 0x18B648, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="66" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18B648" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
-    <decimalpl>1</decimalpl>
+    <units>deg/4 samples</units>
+    <decimalpl>2</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="(X-32768)/364.08">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2040A" flags="0x0">
-    <title>Ignition :: Retard Request Logic throttle threshold #4</title>
+    <title>Ignition :: Retard Request Logic throttle-rate threshold #4</title>
     <description>FUNCTION: Retard Request Logic. Calibration value read by FUN_51E86.
 USAGE (decompiled, locals resolved one level):
   51e86: (((DAT_ram_0018b64a &lt; DAT_ram_fef02604 || ((DAT_ram_fef01687 &amp; 8) == 0)) ||
-COMPARED WITH: fef02604 = TP - Throttle position used by fuel path. Units inferred from that variable.
+COMPARED WITH: fef02604 = Throttle opening rate (TP now - TP 4 samples ago, 0x8000 = 0) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 112.32 deg TP (raw 40894 / 0x9FBE). ADDRESS 0x18B64A, 16-bit.
+STOCK (5JCZSJA0): 22.32 deg/4 samples (raw 40894 / 0x9FBE). ADDRESS 0x18B64A, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="66" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18B64A" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
-    <decimalpl>1</decimalpl>
+    <units>deg/4 samples</units>
+    <decimalpl>2</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="(X-32768)/364.08">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -61945,42 +61937,42 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20415" flags="0x0">
-    <title>Ignition :: Retard Request Logic throttle threshold #10</title>
+    <title>Ignition :: Retard Request Logic throttle-rate threshold #10</title>
     <description>FUNCTION: Retard Request Logic. Calibration value read by FUN_51134.
 USAGE (decompiled, locals resolved one level):
   51134: if ((!bVar9) &amp;&amp; (DAT_ram_fef0164b = bVar9, DAT_ram_fef02604 &lt;= DAT_ram_0018b660)) {
-COMPARED WITH: fef02604 = TP - Throttle position used by fuel path. Units inferred from that variable.
+COMPARED WITH: fef02604 = Throttle opening rate (TP now - TP 4 samples ago, 0x8000 = 0) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 112.15 deg TP (raw 40832 / 0x9F80). ADDRESS 0x18B660, 16-bit.
+STOCK (5JCZSJA0): 22.15 deg/4 samples (raw 40832 / 0x9F80). ADDRESS 0x18B660, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="66" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18B660" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
-    <decimalpl>1</decimalpl>
+    <units>deg/4 samples</units>
+    <decimalpl>2</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="(X-32768)/364.08">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20416" flags="0x0">
-    <title>Ignition :: Retard Request Logic throttle threshold #11</title>
+    <title>Ignition :: Retard Request Logic speed threshold #11</title>
     <description>FUNCTION: Retard Request Logic. Calibration value read by FUN_51134.
 USAGE (decompiled, locals resolved one level):
   51134: ((((DAT_ram_fef0164c &amp; 4) == 0 || (bVar1 != 0)) || ((DAT_ram_0018b662 &lt; DAT_ram_fef02636 || (iVar8 != 0)))))) {
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 180.00 deg TP (raw 65535 / 0xFFFF). ADDRESS 0x18B662, 16-bit.
+STOCK (5JCZSJA0): 511.99 km/h (raw 65535 / 0xFFFF). ADDRESS 0x18B662, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="66" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18B662" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -62390,22 +62382,22 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2042B" flags="0x0">
-    <title>Ignition :: IAT Timing Correction Gate throttle threshold #3</title>
+    <title>Ignition :: IAT Timing Correction Gate RPM threshold #3</title>
     <description>FUNCTION: IAT Timing Correction Gate. Calibration value read by FUN_4FD0E.
 USAGE (decompiled, locals resolved one level):
   4fd0e: if ((((DAT_ram_fef02600 &lt; DAT_ram_0018b69a) || (DAT_ram_0018b69e &lt;= DAT_ram_fef0258e)) ||
-COMPARED WITH: fef02600 = TP - Throttle position (selected copy of fef025FE). Units inferred from that variable.
+COMPARED WITH: fef0258e = Engine speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 179.30 deg TP (raw 65280 / 0xFF00). ADDRESS 0x18B69E, 16-bit.
+STOCK (5JCZSJA0): 25500 RPM (raw 65280 / 0xFF00). ADDRESS 0x18B69E, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="66" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18B69E" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
-    <decimalpl>1</decimalpl>
+    <units>RPM</units>
+    <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/2.56">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -62430,22 +62422,22 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2042D" flags="0x0">
-    <title>Ignition :: Ignition Aux State Logic throttle threshold #1</title>
+    <title>Ignition :: Ignition Aux State Logic speed threshold #1</title>
     <description>FUNCTION: Ignition Aux State Logic. Calibration value read by FUN_4E912.
 USAGE (decompiled, locals resolved one level):
   4e912: if (DAT_ram_fef02636 &lt; DAT_ram_0018b6a2) {
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 3.52 deg TP (raw 1280 / 0x500). ADDRESS 0x18B6A2, 16-bit.
+STOCK (5JCZSJA0): 10 km/h (raw 1280 / 0x500). ADDRESS 0x18B6A2, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="66" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18B6A2" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -62859,242 +62851,242 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20443" flags="0x0">
-    <title>Traction Control :: Traction Control Slip Calculation grip % threshold #1</title>
+    <title>Traction Control :: Traction Control Slip Calculation slip-error threshold #1</title>
     <description>FUNCTION: Traction Control Slip Calculation. Calibration value read by FUN_4DBD6.
 USAGE (decompiled, locals resolved one level):
   4dbd6: if ((((((iVar14 != 1) &amp;&amp; (DAT_ram_fef01562 = DAT_ram_0018b6ce, DAT_ram_fef026d4 != '\x01')) &amp;&amp;
-COMPARED WITH: fef01562 = Grip% - Grip opening 0-100 % (X/5). Units inferred from that variable.
+COMPARED WITH: fef01562 = Traction-control slip error (actual - target slip) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 37.60 % grip (raw 188 / 0xBC). ADDRESS 0x18B6CE, 16-bit.
+STOCK (5JCZSJA0): 188 raw (raw 188 / 0xBC). ADDRESS 0x18B6CE, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="82" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18B6CE" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>% grip</units>
+    <units>raw</units>
     <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/5">
+    <MATH equation="X">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20444" flags="0x0">
-    <title>Traction Control :: Traction Control Slip Calculation grip % threshold #2</title>
+    <title>Traction Control :: Traction Control Slip Calculation slip-error threshold #2</title>
     <description>FUNCTION: Traction Control Slip Calculation. Calibration value read by FUN_4DBD6.
 USAGE (decompiled, locals resolved one level):
   4dbd6: (DAT_ram_fef01562 = DAT_ram_0018b6d0, DAT_ram_fef026d4 != '\x02')) &amp;&amp;
-COMPARED WITH: fef01562 = Grip% - Grip opening 0-100 % (X/5). Units inferred from that variable.
+COMPARED WITH: fef01562 = Traction-control slip error (actual - target slip) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 37 % grip (raw 185 / 0xB9). ADDRESS 0x18B6D0, 16-bit.
+STOCK (5JCZSJA0): 185 raw (raw 185 / 0xB9). ADDRESS 0x18B6D0, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="82" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18B6D0" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>% grip</units>
+    <units>raw</units>
     <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/5">
+    <MATH equation="X">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20445" flags="0x0">
-    <title>Traction Control :: Traction Control Slip Calculation grip % threshold #3</title>
+    <title>Traction Control :: Traction Control Slip Calculation slip-error threshold #3</title>
     <description>FUNCTION: Traction Control Slip Calculation. Calibration value read by FUN_4DBD6.
 USAGE (decompiled, locals resolved one level):
   4dbd6: ((DAT_ram_fef01562 = DAT_ram_0018b6d2, DAT_ram_fef026d4 != '\x03' &amp;&amp; (DAT_ram_fef01562 = DAT_ram_0018b6d4, DAT_ram_fef026d4 != '\x04'))
-COMPARED WITH: fef01562 = Grip% - Grip opening 0-100 % (X/5). Units inferred from that variable.
+COMPARED WITH: fef01562 = Traction-control slip error (actual - target slip) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 36.40 % grip (raw 182 / 0xB6). ADDRESS 0x18B6D2, 16-bit.
+STOCK (5JCZSJA0): 182 raw (raw 182 / 0xB6). ADDRESS 0x18B6D2, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="82" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18B6D2" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>% grip</units>
+    <units>raw</units>
     <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/5">
+    <MATH equation="X">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20446" flags="0x0">
-    <title>Traction Control :: Traction Control Slip Calculation grip % threshold #4</title>
+    <title>Traction Control :: Traction Control Slip Calculation slip-error threshold #4</title>
     <description>FUNCTION: Traction Control Slip Calculation. Calibration value read by FUN_4DBD6.
 USAGE (decompiled, locals resolved one level):
   4dbd6: ((DAT_ram_fef01562 = DAT_ram_0018b6d2, DAT_ram_fef026d4 != '\x03' &amp;&amp; (DAT_ram_fef01562 = DAT_ram_0018b6d4, DAT_ram_fef026d4 != '\x04'))
-COMPARED WITH: fef01562 = Grip% - Grip opening 0-100 % (X/5). Units inferred from that variable.
+COMPARED WITH: fef01562 = Traction-control slip error (actual - target slip) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 30 % grip (raw 150 / 0x96). ADDRESS 0x18B6D4, 16-bit.
+STOCK (5JCZSJA0): 150 raw (raw 150 / 0x96). ADDRESS 0x18B6D4, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="82" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18B6D4" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>% grip</units>
+    <units>raw</units>
     <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/5">
+    <MATH equation="X">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20447" flags="0x0">
-    <title>Traction Control :: Traction Control Slip Calculation grip % threshold #5</title>
+    <title>Traction Control :: Traction Control Slip Calculation slip-error threshold #5</title>
     <description>FUNCTION: Traction Control Slip Calculation. Calibration value read by FUN_4DBD6.
 USAGE (decompiled, locals resolved one level):
   4dbd6: )) &amp;&amp; ((DAT_ram_fef01562 = DAT_ram_0018b6d6, DAT_ram_fef026d4 != '\x05' &amp;&amp;
-COMPARED WITH: fef01562 = Grip% - Grip opening 0-100 % (X/5). Units inferred from that variable.
+COMPARED WITH: fef01562 = Traction-control slip error (actual - target slip) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 24 % grip (raw 120 / 0x78). ADDRESS 0x18B6D6, 16-bit.
+STOCK (5JCZSJA0): 120 raw (raw 120 / 0x78). ADDRESS 0x18B6D6, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="82" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18B6D6" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>% grip</units>
+    <units>raw</units>
     <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/5">
+    <MATH equation="X">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20448" flags="0x0">
-    <title>Traction Control :: Traction Control Slip Calculation grip % threshold #6</title>
+    <title>Traction Control :: Traction Control Slip Calculation slip-error threshold #6</title>
     <description>FUNCTION: Traction Control Slip Calculation. Calibration value read by FUN_4DBD6.
 USAGE (decompiled, locals resolved one level):
   4dbd6: ((DAT_ram_fef01562 = DAT_ram_0018b6d8, DAT_ram_fef026d4 != '\x06' &amp;&amp;
-COMPARED WITH: fef01562 = Grip% - Grip opening 0-100 % (X/5). Units inferred from that variable.
+COMPARED WITH: fef01562 = Traction-control slip error (actual - target slip) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 18.20 % grip (raw 91 / 0x5B). ADDRESS 0x18B6D8, 16-bit.
+STOCK (5JCZSJA0): 91 raw (raw 91 / 0x5B). ADDRESS 0x18B6D8, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="82" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18B6D8" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>% grip</units>
+    <units>raw</units>
     <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/5">
+    <MATH equation="X">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20449" flags="0x0">
-    <title>Traction Control :: Traction Control Slip Calculation grip % threshold #7</title>
+    <title>Traction Control :: Traction Control Slip Calculation slip-error threshold #7</title>
     <description>FUNCTION: Traction Control Slip Calculation. Calibration value read by FUN_4DBD6.
 USAGE (decompiled, locals resolved one level):
   4dbd6: (DAT_ram_fef01562 = DAT_ram_0018b6da, DAT_ram_fef026d4 != '\a')))))) &amp;&amp;
-COMPARED WITH: fef01562 = Grip% - Grip opening 0-100 % (X/5). Units inferred from that variable.
+COMPARED WITH: fef01562 = Traction-control slip error (actual - target slip) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 14.80 % grip (raw 74 / 0x4A). ADDRESS 0x18B6DA, 16-bit.
+STOCK (5JCZSJA0): 74 raw (raw 74 / 0x4A). ADDRESS 0x18B6DA, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="82" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18B6DA" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>% grip</units>
+    <units>raw</units>
     <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/5">
+    <MATH equation="X">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2044A" flags="0x0">
-    <title>Traction Control :: Traction Control Slip Calculation grip % threshold #8</title>
+    <title>Traction Control :: Traction Control Slip Calculation slip-error threshold #8</title>
     <description>FUNCTION: Traction Control Slip Calculation. Calibration value read by FUN_4DBD6.
 USAGE (decompiled, locals resolved one level):
   4dbd6: (DAT_ram_fef01562 = DAT_ram_0018b6dc, DAT_ram_fef026d4 != '\b')) {
-COMPARED WITH: fef01562 = Grip% - Grip opening 0-100 % (X/5). Units inferred from that variable.
+COMPARED WITH: fef01562 = Traction-control slip error (actual - target slip) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 12.40 % grip (raw 62 / 0x3E). ADDRESS 0x18B6DC, 16-bit.
+STOCK (5JCZSJA0): 62 raw (raw 62 / 0x3E). ADDRESS 0x18B6DC, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="82" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18B6DC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>% grip</units>
+    <units>raw</units>
     <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/5">
+    <MATH equation="X">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2044B" flags="0x0">
-    <title>Traction Control :: Traction Control Slip Calculation grip % threshold #9</title>
+    <title>Traction Control :: Traction Control Slip Calculation slip-error threshold #9</title>
     <description>FUNCTION: Traction Control Slip Calculation. Calibration value read by FUN_4DBD6.
 USAGE (decompiled, locals resolved one level):
   4dbd6: DAT_ram_fef01562 = DAT_ram_0018b6e0 * (ushort)(DAT_ram_fef026d4 != '\t') + DAT_ram_0018b6de * (ushort)(DAT_ram_fef026d4 == '\t');
-COMPARED WITH: fef01562 = Grip% - Grip opening 0-100 % (X/5). Units inferred from that variable.
+COMPARED WITH: fef01562 = Traction-control slip error (actual - target slip) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 8.80 % grip (raw 44 / 0x2C). ADDRESS 0x18B6DE, 16-bit.
+STOCK (5JCZSJA0): 44 raw (raw 44 / 0x2C). ADDRESS 0x18B6DE, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="82" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18B6DE" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>% grip</units>
+    <units>raw</units>
     <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/5">
+    <MATH equation="X">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2044C" flags="0x0">
-    <title>Traction Control :: Traction Control Slip Calculation grip % threshold #10</title>
+    <title>Traction Control :: Traction Control Slip Calculation slip-error threshold #10</title>
     <description>FUNCTION: Traction Control Slip Calculation. Calibration value read by FUN_4DBD6.
 USAGE (decompiled, locals resolved one level):
   4dbd6: DAT_ram_fef01562 = DAT_ram_0018b6e0 * (ushort)(DAT_ram_fef026d4 != '\t') + DAT_ram_0018b6de * (ushort)(DAT_ram_fef026d4 == '\t');
-COMPARED WITH: fef01562 = Grip% - Grip opening 0-100 % (X/5). Units inferred from that variable.
+COMPARED WITH: fef01562 = Traction-control slip error (actual - target slip) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 6.80 % grip (raw 34 / 0x22). ADDRESS 0x18B6E0, 16-bit.
+STOCK (5JCZSJA0): 34 raw (raw 34 / 0x22). ADDRESS 0x18B6E0, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="82" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18B6E0" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>% grip</units>
+    <units>raw</units>
     <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/5">
+    <MATH equation="X">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2044D" flags="0x0">
-    <title>Traction Control :: Traction Control Slip Calculation grip % threshold #11</title>
+    <title>Traction Control :: Traction Control Slip Calculation slip-error threshold #11</title>
     <description>FUNCTION: Traction Control Slip Calculation. Calibration value read by FUN_4DBD6.
 USAGE (decompiled, locals resolved one level):
   4dbd6: DAT_ram_fef01562 = DAT_ram_0018b6e2;
-COMPARED WITH: fef01562 = Grip% - Grip opening 0-100 % (X/5). Units inferred from that variable.
+COMPARED WITH: fef01562 = Traction-control slip error (actual - target slip) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 3.80 % grip (raw 19 / 0x13). ADDRESS 0x18B6E2, 16-bit.
+STOCK (5JCZSJA0): 19 raw (raw 19 / 0x13). ADDRESS 0x18B6E2, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="82" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18B6E2" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>% grip</units>
+    <units>raw</units>
     <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/5">
+    <MATH equation="X">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2044E" flags="0x0">
-    <title>Traction Control :: FUN_4DDFC grip % threshold #1</title>
+    <title>Traction Control :: FUN_4DDFC slip-error threshold #1</title>
     <description>Calibration value read by FUN_4DDFC.
 USAGE (decompiled, locals resolved one level):
   4ddfc: if (DAT_ram_0018b6e4 &lt; DAT_ram_fef01562) {
-COMPARED WITH: fef01562 = Grip% - Grip opening 0-100 % (X/5). Units inferred from that variable.
+COMPARED WITH: fef01562 = Traction-control slip error (actual - target slip) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 48 % grip (raw 240 / 0xF0). ADDRESS 0x18B6E4, 16-bit.
+STOCK (5JCZSJA0): 240 raw (raw 240 / 0xF0). ADDRESS 0x18B6E4, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="82" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18B6E4" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>% grip</units>
+    <units>raw</units>
     <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/5">
+    <MATH equation="X">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -63391,22 +63383,22 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2045E" flags="0x0">
-    <title>Ignition :: Baro Timing Correction Gate RPM threshold #3</title>
+    <title>Ignition :: Baro Timing Correction Gate throttle threshold #3</title>
     <description>FUNCTION: Baro Timing Correction Gate. Calibration value read by FUN_500A8.
 USAGE (decompiled, locals resolved one level):
   500a8: if (((DAT_ram_0018b718 &lt; DAT_ram_fef0258e) &amp;&amp; (DAT_ram_fef0258e &lt; DAT_ram_0018b71a)) &amp;&amp; (DAT_ram_fef025d2 &lt;= DAT_ram_0018b71c)) {
-COMPARED WITH: fef0258E = RPM - Engine speed (main). Units inferred from that variable.
+COMPARED WITH: fef025d2 = Throttle or grip angle (selected) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 25599.61 RPM (raw 65535 / 0xFFFF). ADDRESS 0x18B71C, 16-bit.
+STOCK (5JCZSJA0): 180.00 deg (raw 65535 / 0xFFFF). ADDRESS 0x18B71C, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="66" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18B71C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>RPM</units>
-    <decimalpl>0</decimalpl>
+    <units>deg</units>
+    <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/2.56">
+    <MATH equation="X/364.08">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -65277,7 +65269,7 @@ USAGE (decompiled, locals resolved one level):
   50ba2: if ((uint)DAT_ram_0018b785 != 0) {
   50ba2: for (uVar3 = 0; uVar3 &lt; (uint)DAT_ram_0018b785; uVar3 = uVar3 + 1 &amp; 0xff) {
   50ba2: DAT_ram_fef02636 = FUN_ram_000919c2(uVar5 / (uint)DAT_ram_0018b785,0xffff);
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
 STOCK (5JCZSJA0): 26 raw (raw 26 / 0x1A). ADDRESS 0x18B785, 8-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
@@ -67077,22 +67069,22 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20519" flags="0x0">
-    <title>Idle Control :: FUN_538C4 throttle threshold #2</title>
+    <title>Idle Control :: FUN_538C4 speed threshold #2</title>
     <description>Calibration value read by FUN_538C4.
 USAGE (decompiled, locals resolved one level):
   538c4: ((DAT_ram_fef02636 &lt;= DAT_ram_0018c4a2 &amp;&amp; (DAT_ram_fef016fe == 0)))) {
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 3.52 deg TP (raw 1280 / 0x500). ADDRESS 0x18C4A2, 16-bit.
+STOCK (5JCZSJA0): 10 km/h (raw 1280 / 0x500). ADDRESS 0x18C4A2, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="86" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18C4A2" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -68233,122 +68225,122 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20554" flags="0x0">
-    <title>Diagnostics - OBD / Communication :: FUN_AB16C temperature threshold #1</title>
+    <title>Diagnostics - OBD / Communication :: FUN_AB16C RPM threshold #1</title>
     <description>Calibration value read by FUN_AB16C.
 USAGE (decompiled, locals resolved one level):
   ab16c: if ((((DAT_ram_0018c4fa &lt; DAT_ram_fef02594) &amp;&amp; (DAT_ram_fef02594 &lt; DAT_ram_0018c4fc)) &amp;&amp; (iVar8 != 1)) &amp;&amp; ((DAT_ram_0018c524 &lt;= DAT_ram_fef026bd &amp;&amp; (iVar7 == 1))))
-COMPARED WITH: fef026BD = ECT - Engine coolant temperature (ADC ch2D), 8-bit. Units inferred from that variable.
+COMPARED WITH: fef02594 = Engine speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 1890 deg C (raw 2048 / 0x800). ADDRESS 0x18C4FA, 16-bit.
+STOCK (5JCZSJA0): 800 RPM (raw 2048 / 0x800). ADDRESS 0x18C4FA, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="69" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18C4FA" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg C</units>
-    <decimalpl>1</decimalpl>
+    <units>RPM</units>
+    <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X*0.9375-30">
+    <MATH equation="X/2.56">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20555" flags="0x0">
-    <title>Diagnostics - OBD / Communication :: FUN_AB16C temperature threshold #2</title>
+    <title>Diagnostics - OBD / Communication :: FUN_AB16C RPM threshold #2</title>
     <description>Calibration value read by FUN_AB16C.
 USAGE (decompiled, locals resolved one level):
   ab16c: if ((((DAT_ram_0018c4fa &lt; DAT_ram_fef02594) &amp;&amp; (DAT_ram_fef02594 &lt; DAT_ram_0018c4fc)) &amp;&amp; (iVar8 != 1)) &amp;&amp; ((DAT_ram_0018c524 &lt;= DAT_ram_fef026bd &amp;&amp; (iVar7 == 1))))
-COMPARED WITH: fef026BD = ECT - Engine coolant temperature (ADC ch2D), 8-bit. Units inferred from that variable.
+COMPARED WITH: fef02594 = Engine speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 7002.19 deg C (raw 7501 / 0x1D4D). ADDRESS 0x18C4FC, 16-bit.
+STOCK (5JCZSJA0): 2930.08 RPM (raw 7501 / 0x1D4D). ADDRESS 0x18C4FC, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="69" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18C4FC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg C</units>
-    <decimalpl>1</decimalpl>
+    <units>RPM</units>
+    <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X*0.9375-30">
+    <MATH equation="X/2.56">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20556" flags="0x0">
-    <title>Diagnostics - OBD / Communication :: OBD Service Config throttle threshold #1</title>
+    <title>Diagnostics - OBD / Communication :: OBD Service Config speed threshold #1</title>
     <description>FUNCTION: OBD Service Config. Calibration value read by FUN_AB39E.
 USAGE (decompiled, locals resolved one level):
   ab39e: if ((((DAT_ram_0018f0d2 == -0x80) &amp;&amp; (DAT_ram_0018c4fe &lt;= DAT_ram_fef02636)) || (DAT_ram_fef02594 &lt;= DAT_ram_0018c500)) ||
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 1.05 deg TP (raw 384 / 0x180). ADDRESS 0x18C4FE, 16-bit.
+STOCK (5JCZSJA0): 3 km/h (raw 384 / 0x180). ADDRESS 0x18C4FE, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="69" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18C4FE" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20557" flags="0x0">
-    <title>Diagnostics - OBD / Communication :: OBD Service Config throttle threshold #2</title>
+    <title>Diagnostics - OBD / Communication :: OBD Service Config RPM threshold #2</title>
     <description>FUNCTION: OBD Service Config. Calibration value read by FUN_AB39E.
 USAGE (decompiled, locals resolved one level):
   ab39e: if ((((DAT_ram_0018f0d2 == -0x80) &amp;&amp; (DAT_ram_0018c4fe &lt;= DAT_ram_fef02636)) || (DAT_ram_fef02594 &lt;= DAT_ram_0018c500)) ||
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02594 = Engine speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 5.63 deg TP (raw 2048 / 0x800). ADDRESS 0x18C500, 16-bit.
+STOCK (5JCZSJA0): 800 RPM (raw 2048 / 0x800). ADDRESS 0x18C500, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="69" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18C500" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
-    <decimalpl>1</decimalpl>
+    <units>RPM</units>
+    <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/2.56">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20558" flags="0x0">
-    <title>Diagnostics - OBD / Communication :: OBD Service Config temperature threshold #3</title>
+    <title>Diagnostics - OBD / Communication :: OBD Service Config RPM threshold #3</title>
     <description>FUNCTION: OBD Service Config. Calibration value read by FUN_AB39E.
 USAGE (decompiled, locals resolved one level):
   ab39e: (((DAT_ram_0018c502 &lt;= DAT_ram_fef02594 || (iVar11 == 1)) || ((DAT_ram_fef026bd &lt; DAT_ram_0018c524 || (iVar10 != 1)))))) {
-COMPARED WITH: fef026BD = ECT - Engine coolant temperature (ADC ch2D), 8-bit. Units inferred from that variable.
+COMPARED WITH: fef02594 = Engine speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 7002.19 deg C (raw 7501 / 0x1D4D). ADDRESS 0x18C502, 16-bit.
+STOCK (5JCZSJA0): 2930.08 RPM (raw 7501 / 0x1D4D). ADDRESS 0x18C502, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="69" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18C502" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg C</units>
-    <decimalpl>1</decimalpl>
+    <units>RPM</units>
+    <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X*0.9375-30">
+    <MATH equation="X/2.56">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20559" flags="0x0">
-    <title>Diagnostics - OBD / Communication :: FUN_ABBEA throttle threshold #1</title>
+    <title>Diagnostics - OBD / Communication :: FUN_ABBEA speed threshold #1</title>
     <description>Calibration value read by FUN_ABBEA.
 USAGE (decompiled, locals resolved one level):
   abbea: if ((((DAT_ram_0018f0d2 != -0x80) || (DAT_ram_fef02636 &lt; DAT_ram_0018c504)) &amp;&amp;
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 1.05 deg TP (raw 384 / 0x180). ADDRESS 0x18C504, 16-bit.
+STOCK (5JCZSJA0): 3 km/h (raw 384 / 0x180). ADDRESS 0x18C504, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="69" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18C504" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -70259,85 +70251,85 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x205B9" flags="0x0">
-    <title>IMU / Wheel Speed :: FUN_5E7FE throttle threshold #1</title>
+    <title>IMU / Wheel Speed :: FUN_5E7FE speed threshold #1</title>
     <description>Calibration value read by FUN_5E7FE, FUN_5EA12.
 USAGE (decompiled, locals resolved one level):
   5e7fe: bVar1 = DAT_ram_fef02636 &lt;= DAT_ram_0018da5a;
   5ea12: (uint)(DAT_ram_0018da5c &gt; DAT_ram_fef02636)) * (uint)(DAT_ram_0018da5a &lt; DAT_ram_fef02636)
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 4.57 deg TP (raw 1664 / 0x680). ADDRESS 0x18DA5A, 16-bit.
+STOCK (5JCZSJA0): 13 km/h (raw 1664 / 0x680). ADDRESS 0x18DA5A, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="79" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18DA5A" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x205BA" flags="0x0">
-    <title>IMU / Wheel Speed :: FUN_5EA12 throttle threshold #1</title>
+    <title>IMU / Wheel Speed :: FUN_5EA12 speed threshold #1</title>
     <description>Calibration value read by FUN_5EA12.
 USAGE (decompiled, locals resolved one level):
   5ea12: iVar1 = ((uint)(DAT_ram_0018da5c &lt;= DAT_ram_fef02636) +
   5ea12: (uint)(DAT_ram_0018da5c &gt; DAT_ram_fef02636)) * (uint)(DAT_ram_0018da5a &lt; DAT_ram_fef02636)
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 5.27 deg TP (raw 1920 / 0x780). ADDRESS 0x18DA5C, 16-bit.
+STOCK (5JCZSJA0): 15 km/h (raw 1920 / 0x780). ADDRESS 0x18DA5C, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="79" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18DA5C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x205BB" flags="0x0">
-    <title>IMU / Wheel Speed :: FUN_5EA12 throttle threshold #2</title>
+    <title>IMU / Wheel Speed :: FUN_5EA12 speed threshold #2</title>
     <description>Calibration value read by FUN_5EA12.
 USAGE (decompiled, locals resolved one level):
   5ea12: iVar3 = (uint)(DAT_ram_fef02636 &lt;= DAT_ram_0018da5e) +
   5ea12: (uint)(DAT_ram_fef02636 &gt; DAT_ram_0018da5e);
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 40.43 deg TP (raw 14720 / 0x3980). ADDRESS 0x18DA5E, 16-bit.
+STOCK (5JCZSJA0): 115 km/h (raw 14720 / 0x3980). ADDRESS 0x18DA5E, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="79" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18DA5E" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x205BC" flags="0x0">
-    <title>IMU / Wheel Speed :: FUN_5EA12 throttle threshold #3</title>
+    <title>IMU / Wheel Speed :: FUN_5EA12 speed threshold #3</title>
     <description>Calibration value read by FUN_5EA12.
 USAGE (decompiled, locals resolved one level):
   5ea12: (DAT_ram_fef0219a &amp; 1) * (uint)(DAT_ram_fef02636 &lt; DAT_ram_0018da60) *
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 42.19 deg TP (raw 15360 / 0x3C00). ADDRESS 0x18DA60, 16-bit.
+STOCK (5JCZSJA0): 120 km/h (raw 15360 / 0x3C00). ADDRESS 0x18DA60, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="79" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18DA60" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -70423,24 +70415,24 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x205C1" flags="0x0">
-    <title>IMU / Wheel Speed :: Wheel-Speed Processing throttle threshold #12</title>
+    <title>IMU / Wheel Speed :: Wheel-Speed Processing RPM threshold #12</title>
     <description>FUNCTION: Wheel-Speed Processing. Calibration value read by FUN_5E64C.
 USAGE (decompiled, locals resolved one level):
   5e64c: (((DAT_ram_0018da68 &lt;= DAT_ram_fef02602 || (DAT_ram_0018da6a &lt;= DAT_ram_fef0258e)) &amp;&amp; (DAT_ram_0018db60 &lt;= DAT_ram_fef02196)))) {
   5e64c: (((uint)DAT_ram_0018da6c &lt;= uVar12 &amp;&amp; (((DAT_ram_0018da68 &lt;= DAT_ram_fef02602 || (DAT_ram_0018da6a &lt;= DAT_ram_fef0258e)) &amp;&amp; (DAT_ram_0018db60 &lt;= DAT_ram_fef02196)))))) {
   5e64c: if ((DAT_ram_fef02602 &lt; DAT_ram_0018da68) &amp;&amp; (DAT_ram_fef0258e &lt; DAT_ram_0018da6a)) {
-COMPARED WITH: fef02602 = TP - Throttle valve position (from TP sensors, ADC ch0B/ch2C). Units inferred from that variable.
+COMPARED WITH: fef0258e = Engine speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 45.00 deg TP (raw 16384 / 0x4000). ADDRESS 0x18DA6A, 16-bit.
+STOCK (5JCZSJA0): 6400 RPM (raw 16384 / 0x4000). ADDRESS 0x18DA6A, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="79" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18DA6A" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
-    <decimalpl>1</decimalpl>
+    <units>RPM</units>
+    <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/2.56">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -70485,42 +70477,42 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x205C4" flags="0x0">
-    <title>IMU / Wheel Speed :: FUN_5E47C throttle threshold #1</title>
+    <title>IMU / Wheel Speed :: FUN_5E47C throttle-rate threshold #1</title>
     <description>Calibration value read by FUN_5E47C.
 USAGE (decompiled, locals resolved one level):
   5e47c: if (DAT_ram_fef02604 &lt; DAT_ram_0018da70) {
-COMPARED WITH: fef02604 = TP - Throttle position used by fuel path. Units inferred from that variable.
+COMPARED WITH: fef02604 = Throttle opening rate (TP now - TP 4 samples ago, 0x8000 = 0) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 91.41 deg TP (raw 33280 / 0x8200). ADDRESS 0x18DA70, 16-bit.
+STOCK (5JCZSJA0): 1.41 deg/4 samples (raw 33280 / 0x8200). ADDRESS 0x18DA70, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="79" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18DA70" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
-    <decimalpl>1</decimalpl>
+    <units>deg/4 samples</units>
+    <decimalpl>2</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="(X-32768)/364.08">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x205C5" flags="0x0">
-    <title>IMU / Wheel Speed :: FUN_5E4E8 throttle threshold #1</title>
+    <title>IMU / Wheel Speed :: FUN_5E4E8 throttle-rate threshold #1</title>
     <description>Calibration value read by FUN_5E4E8.
 USAGE (decompiled, locals resolved one level):
   5e4e8: if (DAT_ram_0018da72 &lt; DAT_ram_fef02604) {
-COMPARED WITH: fef02604 = TP - Throttle position used by fuel path. Units inferred from that variable.
+COMPARED WITH: fef02604 = Throttle opening rate (TP now - TP 4 samples ago, 0x8000 = 0) (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 87.19 deg TP (raw 31744 / 0x7C00). ADDRESS 0x18DA72, 16-bit.
+STOCK (5JCZSJA0): -2.81 deg/4 samples (raw 31744 / 0x7C00). ADDRESS 0x18DA72, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="79" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18DA72" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
-    <decimalpl>1</decimalpl>
+    <units>deg/4 samples</units>
+    <decimalpl>2</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="(X-32768)/364.08">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -71035,82 +71027,82 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x205E0" flags="0x0">
-    <title>ECU Settings :: Meter/CAN Parameter throttle threshold #1</title>
+    <title>ECU Settings :: Meter/CAN Parameter speed threshold #1</title>
     <description>FUNCTION: Meter/CAN Parameter. Calibration value read by FUN_5C15E.
 USAGE (decompiled, locals resolved one level):
   5c15e: if (DAT_ram_fef02636 &lt;= DAT_ram_0018daac) {
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 0.00 deg TP (raw 0 / 0x0). ADDRESS 0x18DAAC, 16-bit.
+STOCK (5JCZSJA0): 0.00 km/h (raw 0 / 0x0). ADDRESS 0x18DAAC, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="87" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18DAAC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x205E1" flags="0x0">
-    <title>ECU Settings :: Meter/CAN Parameter throttle threshold #2</title>
+    <title>ECU Settings :: Meter/CAN Parameter speed threshold #2</title>
     <description>FUNCTION: Meter/CAN Parameter. Calibration value read by FUN_5C15E.
 USAGE (decompiled, locals resolved one level):
   5c15e: if (DAT_ram_0018daae &lt;= DAT_ram_fef02636) {
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 0.35 deg TP (raw 128 / 0x80). ADDRESS 0x18DAAE, 16-bit.
+STOCK (5JCZSJA0): 1 km/h (raw 128 / 0x80). ADDRESS 0x18DAAE, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="87" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18DAAE" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x205E2" flags="0x0">
-    <title>ECU Settings :: Meter/CAN Parameter throttle threshold #3</title>
+    <title>ECU Settings :: Meter/CAN Parameter speed threshold #3</title>
     <description>FUNCTION: Meter/CAN Parameter. Calibration value read by FUN_5C15E.
 USAGE (decompiled, locals resolved one level):
   5c15e: if (DAT_ram_fef02636 &lt;= DAT_ram_0018dab0) {
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 179.30 deg TP (raw 65279 / 0xFEFF). ADDRESS 0x18DAB0, 16-bit.
+STOCK (5JCZSJA0): 509.99 km/h (raw 65279 / 0xFEFF). ADDRESS 0x18DAB0, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="87" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18DAB0" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x205E3" flags="0x0">
-    <title>ECU Settings :: Meter/CAN Parameter throttle threshold #4</title>
+    <title>ECU Settings :: Meter/CAN Parameter speed threshold #4</title>
     <description>FUNCTION: Meter/CAN Parameter. Calibration value read by FUN_5C15E.
 USAGE (decompiled, locals resolved one level):
   5c15e: if (DAT_ram_0018dab2 &lt;= DAT_ram_fef02636) {
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 179.30 deg TP (raw 65280 / 0xFF00). ADDRESS 0x18DAB2, 16-bit.
+STOCK (5JCZSJA0): 510 km/h (raw 65280 / 0xFF00). ADDRESS 0x18DAB2, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="87" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18DAB2" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -72319,103 +72311,103 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20621" flags="0x0">
-    <title>ECU Settings :: FUN_5AE5A throttle threshold #2</title>
+    <title>ECU Settings :: FUN_5AE5A speed threshold #2</title>
     <description>Calibration value read by FUN_5AE5A.
 USAGE (decompiled, locals resolved one level):
   5ae5a: if ((DAT_ram_0018db2e &lt; uVar6) &amp;&amp; (DAT_ram_0018db30 &lt; DAT_ram_fef02634)) {
-COMPARED WITH: fef02634 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02634 = Front wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 107.50 deg TP (raw 39140 / 0x98E4). ADDRESS 0x18DB2E, 16-bit.
+STOCK (5JCZSJA0): 305.78 km/h (raw 39140 / 0x98E4). ADDRESS 0x18DB2E, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="87" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18DB2E" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20622" flags="0x0">
-    <title>ECU Settings :: FUN_5AE5A throttle threshold #3</title>
+    <title>ECU Settings :: FUN_5AE5A speed threshold #3</title>
     <description>Calibration value read by FUN_5AE5A.
 USAGE (decompiled, locals resolved one level):
   5ae5a: if ((DAT_ram_0018db2e &lt; uVar6) &amp;&amp; (DAT_ram_0018db30 &lt; DAT_ram_fef02634)) {
-COMPARED WITH: fef02634 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02634 = Front wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 7.03 deg TP (raw 2560 / 0xA00). ADDRESS 0x18DB30, 16-bit.
+STOCK (5JCZSJA0): 20 km/h (raw 2560 / 0xA00). ADDRESS 0x18DB30, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="87" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18DB30" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20623" flags="0x0">
-    <title>ECU Settings :: FUN_5AF98 throttle threshold #1</title>
+    <title>ECU Settings :: FUN_5AF98 speed threshold #1</title>
     <description>Calibration value read by FUN_5AF98.
 USAGE (decompiled, locals resolved one level):
   5af98: if (DAT_ram_fef02634 &lt; DAT_ram_0018db32) {
-COMPARED WITH: fef02634 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02634 = Front wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 1.76 deg TP (raw 640 / 0x280). ADDRESS 0x18DB32, 16-bit.
+STOCK (5JCZSJA0): 5 km/h (raw 640 / 0x280). ADDRESS 0x18DB32, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="87" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18DB32" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20624" flags="0x0">
-    <title>ECU Settings :: FUN_5AF98 throttle threshold #2</title>
+    <title>ECU Settings :: FUN_5AF98 speed threshold #2</title>
     <description>Calibration value read by FUN_5AF98.
 USAGE (decompiled, locals resolved one level):
   5af98: if (DAT_ram_0018db34 &lt; DAT_ram_fef02634) {
-COMPARED WITH: fef02634 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02634 = Front wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 3.52 deg TP (raw 1280 / 0x500). ADDRESS 0x18DB34, 16-bit.
+STOCK (5JCZSJA0): 10 km/h (raw 1280 / 0x500). ADDRESS 0x18DB34, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="87" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18DB34" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20625" flags="0x0">
-    <title>ECU Settings :: FUN_5B082 throttle threshold #1</title>
+    <title>ECU Settings :: FUN_5B082 speed threshold #1</title>
     <description>Calibration value read by FUN_5B082.
 USAGE (decompiled, locals resolved one level):
   5b082: if ((DAT_ram_0018db36 &lt;= DAT_ram_fef02634) || (DAT_ram_fef020c4 != '\0')) goto LAB_ram_0005b0fa;
   5b082: (uint)DAT_ram_fef01c5f = (uint)(DAT_ram_0018db36 &lt;= DAT_ram_fef02634) * 0xff + (uint)DAT_ram_fef01c5f * (DAT_ram_0018db36 &gt; DAT_ram_fef02634);
-COMPARED WITH: fef02634 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02634 = Front wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 1.76 deg TP (raw 640 / 0x280). ADDRESS 0x18DB36, 16-bit.
+STOCK (5JCZSJA0): 5 km/h (raw 640 / 0x280). ADDRESS 0x18DB36, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="87" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18DB36" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -75652,23 +75644,23 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x206C8" flags="0x0">
-    <title>IMU / Wheel Speed :: FUN_77636 throttle threshold #1</title>
+    <title>IMU / Wheel Speed :: FUN_77636 speed threshold #1</title>
     <description>Calibration value read by FUN_77636.
 USAGE (decompiled, locals resolved one level):
   77636: if ((iVar2 == 0) &amp;&amp; (DAT_ram_0018ef56 &lt;= DAT_ram_fef02634)) {
   77636: if ((((iVar3 == 0) &amp;&amp; (DAT_ram_fef02634 &lt; DAT_ram_0018ef56)) || (iVar2 == 1)) &amp;&amp;
-COMPARED WITH: fef02634 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02634 = Front wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 3.52 deg TP (raw 1280 / 0x500). ADDRESS 0x18EF56, 16-bit.
+STOCK (5JCZSJA0): 10 km/h (raw 1280 / 0x500). ADDRESS 0x18EF56, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="79" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18EF56" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -76878,65 +76870,65 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20705" flags="0x0">
-    <title>Traction Control :: FUN_76F44 throttle threshold #2</title>
+    <title>Traction Control :: FUN_76F44 speed threshold #2</title>
     <description>Calibration value read by FUN_76F44, FUN_770A8.
 USAGE (decompiled, locals resolved one level):
   76f44: uVar4 = FUN_ram_00091ab6(DAT_ram_fef02634,DAT_ram_0018efdc);
   770a8: uVar3 = FUN_ram_00091ab6(DAT_ram_fef02638,DAT_ram_0018efdc);
-COMPARED WITH: fef02634 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02634 = Front wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 7.03 deg TP (raw 2560 / 0xA00). ADDRESS 0x18EFDC, 16-bit.
+STOCK (5JCZSJA0): 20 km/h (raw 2560 / 0xA00). ADDRESS 0x18EFDC, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="82" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18EFDC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20706" flags="0x0">
-    <title>Traction Control :: FUN_7722C throttle threshold #1</title>
+    <title>Traction Control :: FUN_7722C speed threshold #1</title>
     <description>Calibration value read by FUN_7722C, FUN_774E8.
 USAGE (decompiled, locals resolved one level):
   7722c: DAT_ram_fef0263e = FUN_ram_000919c2(((uint)DAT_ram_0018efde * iVar1 &gt;&gt; 10) * (uint)DAT_ram_0018efe0 &gt;&gt; 10,0xffff);
   774e8: uVar1 = ((((uint)DAT_ram_fef02636 * (uint)DAT_ram_0018efde &gt;&gt; 10) * (uint)DAT_ram_0018efe0 &gt;&gt; 10)
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 4.49 deg TP (raw 1634 / 0x662). ADDRESS 0x18EFDE, 16-bit.
+STOCK (5JCZSJA0): 12.77 km/h (raw 1634 / 0x662). ADDRESS 0x18EFDE, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="82" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18EFDE" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20707" flags="0x0">
-    <title>Traction Control :: FUN_7722C throttle threshold #2</title>
+    <title>Traction Control :: FUN_7722C speed threshold #2</title>
     <description>Calibration value read by FUN_7722C, FUN_774E8.
 USAGE (decompiled, locals resolved one level):
   7722c: DAT_ram_fef0263e = FUN_ram_000919c2(((uint)DAT_ram_0018efde * iVar1 &gt;&gt; 10) * (uint)DAT_ram_0018efe0 &gt;&gt; 10,0xffff);
   774e8: uVar1 = ((((uint)DAT_ram_fef02636 * (uint)DAT_ram_0018efde &gt;&gt; 10) * (uint)DAT_ram_0018efe0 &gt;&gt; 10)
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 6.72 deg TP (raw 2445 / 0x98D). ADDRESS 0x18EFE0, 16-bit.
+STOCK (5JCZSJA0): 19.10 km/h (raw 2445 / 0x98D). ADDRESS 0x18EFE0, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="82" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18EFE0" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -78044,22 +78036,22 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20741" flags="0x0">
-    <title>Ride Mode Presets :: FUN_6F1DA throttle threshold #1</title>
+    <title>Ride Mode Presets :: FUN_6F1DA speed threshold #1</title>
     <description>Calibration value read by FUN_6F1DA.
 USAGE (decompiled, locals resolved one level):
   6f1da: ((((DAT_ram_fef02634 &lt; DAT_ram_0018f06c &amp;&amp; (DAT_ram_fef02636 &lt; DAT_ram_0018f06c)) &amp;&amp; (DAT_ram_fef025ec &lt; DAT_ram_0018f06e)) &amp;&amp;
-COMPARED WITH: fef02634 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02634 = Front wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 1.76 deg TP (raw 640 / 0x280). ADDRESS 0x18F06C, 16-bit.
+STOCK (5JCZSJA0): 5 km/h (raw 640 / 0x280). ADDRESS 0x18F06C, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="68" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18F06C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -78254,23 +78246,23 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2074C" flags="0x0">
-    <title>Pitch Control :: FUN_28508 throttle threshold #1</title>
+    <title>Pitch Control :: FUN_28508 speed threshold #1</title>
     <description>Calibration value read by FUN_28508, FUN_7A5C8.
 USAGE (decompiled, locals resolved one level):
   28508: if ((((DAT_ram_fef02634 &lt; DAT_ram_0018f082) &amp;&amp; (DAT_ram_fef02636 &lt; DAT_ram_0018f082)) || (iVar4 == 1)) ||
   7a5c8: if ((DAT_ram_fef02634 &lt; DAT_ram_0018f082) &amp;&amp; (DAT_ram_fef02636 &lt; DAT_ram_0018f082)) {
-COMPARED WITH: fef02634 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02634 = Front wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 1.76 deg TP (raw 640 / 0x280). ADDRESS 0x18F082, 16-bit.
+STOCK (5JCZSJA0): 5 km/h (raw 640 / 0x280). ADDRESS 0x18F082, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="71" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18F082" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -78917,7 +78909,7 @@ USAGE (decompiled, locals resolved one level):
   50ba2: if (DAT_ram_0018f0d2 == -0x80) {
   ab39e: if ((((DAT_ram_0018f0d2 == -0x80) &amp;&amp; (DAT_ram_0018c4fe &lt;= DAT_ram_fef02636)) || (DAT_ram_fef02594 &lt;= DAT_ram_0018c500)) ||
   abbea: if ((((DAT_ram_0018f0d2 != -0x80) || (DAT_ram_fef02636 &lt; DAT_ram_0018c504)) &amp;&amp;
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
 STOCK (5JCZSJA0): 128 raw (raw 128 / 0x80). ADDRESS 0x18F0D2, 8-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
@@ -81778,22 +81770,22 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x207FD" flags="0x0">
-    <title>Throttle By Wire :: ETV Mode Parameter throttle threshold #4</title>
+    <title>Throttle By Wire :: ETV Mode Parameter speed threshold #4</title>
     <description>FUNCTION: ETV Mode Parameter. Calibration value read by FUN_7CC3E.
 USAGE (decompiled, locals resolved one level):
   7cc3e: if (DAT_ram_fef02636 &lt;= DAT_ram_001ad856) goto LAB_ram_0007cd96;
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 1.76 deg TP (raw 640 / 0x280). ADDRESS 0x1AD856, 16-bit.
+STOCK (5JCZSJA0): 5 km/h (raw 640 / 0x280). ADDRESS 0x1AD856, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="94" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1AD856" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -84581,22 +84573,22 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2088C" flags="0x0">
-    <title>ETV Monitor / Level-2 Safety :: FUN_7FE6A pressure threshold #1</title>
+    <title>ETV Monitor / Level-2 Safety :: FUN_7FE6A RPM threshold #1</title>
     <description>Calibration value read by FUN_7FE6A.
 USAGE (decompiled, locals resolved one level):
   7fe6a: if ((DAT_ram_fef03138 &lt;= DAT_ram_fef026a8) || (DAT_ram_001b6f2c &lt;= DAT_ram_fef02592)) {
-COMPARED WITH: fef026A8 = IAP - Intake manifold pressure (IAP) copy. Units inferred from that variable.
+COMPARED WITH: fef02592 = Engine speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 142.79 kPa (raw 64000 / 0xFA00). ADDRESS 0x1B6F2C, 16-bit.
+STOCK (5JCZSJA0): 25000 RPM (raw 64000 / 0xFA00). ADDRESS 0x1B6F2C, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="90" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B6F2C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>kPa</units>
-    <decimalpl>1</decimalpl>
+    <units>RPM</units>
+    <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="(X-7862)/393.14">
+    <MATH equation="X/2.56">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -84620,22 +84612,22 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2088E" flags="0x0">
-    <title>ETV Monitor / Level-2 Safety :: FUN_7EB02 throttle threshold #1</title>
+    <title>ETV Monitor / Level-2 Safety :: FUN_7EB02 speed threshold #1</title>
     <description>Calibration value read by FUN_7EB02.
 USAGE (decompiled, locals resolved one level):
   7eb02: if ((iVar9 == 1) &amp;&amp; (DAT_ram_fef02636 &lt; DAT_ram_001b6f30)) {
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 35.16 deg TP (raw 12800 / 0x3200). ADDRESS 0x1B6F30, 16-bit.
+STOCK (5JCZSJA0): 100 km/h (raw 12800 / 0x3200). ADDRESS 0x1B6F30, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="90" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B6F30" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -84699,22 +84691,22 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20892" flags="0x0">
-    <title>ETV Monitor / Level-2 Safety :: FUN_7F14E throttle threshold #2</title>
+    <title>ETV Monitor / Level-2 Safety :: FUN_7F14E speed threshold #2</title>
     <description>Calibration value read by FUN_7F14E.
 USAGE (decompiled, locals resolved one level):
   7f14e: (DAT_ram_fef02636 &lt; DAT_ram_001b6f38)) || ((DAT_ram_fef02ea0 &amp; 4) != 0)) {
-COMPARED WITH: fef02636 = TP - Throttle position (copy). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 105.47 deg TP (raw 38400 / 0x9600). ADDRESS 0x1B6F38, 16-bit.
+STOCK (5JCZSJA0): 300 km/h (raw 38400 / 0x9600). ADDRESS 0x1B6F38, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="90" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B6F38" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg TP</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -90302,22 +90294,22 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x209B2" flags="0x0">
-    <title>Diagnostics - OBD / Communication :: FUN_96008 angle threshold #1</title>
+    <title>Diagnostics - OBD / Communication :: FUN_96008 speed threshold #1</title>
     <description>Calibration value read by FUN_96008.
 USAGE (decompiled, locals resolved one level):
   96008: if (((DAT_ram_001b946e &lt; DAT_ram_fef025d2) || (DAT_ram_001b9468 &lt; DAT_ram_fef02636)) || (iVar5 != 0)) {
-COMPARED WITH: fef025D2 = TP/APS selected angle (fef025FE or fef025EC). Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): 0.56 deg (raw 204 / 0xCC). ADDRESS 0x1B9468, 16-bit.
+STOCK (5JCZSJA0): 1.59 km/h (raw 204 / 0xCC). ADDRESS 0x1B9468, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="69" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9468" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>deg</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X/364.08">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -90342,22 +90334,22 @@ CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load in
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x209B4" flags="0x0">
-    <title>Diagnostics - OBD / Communication :: FUN_95F86 pressure threshold #1</title>
+    <title>Diagnostics - OBD / Communication :: FUN_95F86 speed threshold #1</title>
     <description>Calibration value read by FUN_95F86.
 USAGE (decompiled, locals resolved one level):
   95f86: if ((((DAT_ram_001b9466 &lt;= DAT_ram_fef025c0) &amp;&amp; (DAT_ram_001b9470 &lt;= DAT_ram_fef026c3)) &amp;&amp; (DAT_ram_001b946c &lt;= DAT_ram_fef02636))
-COMPARED WITH: fef025C0 = AP - Barometric/atmospheric pressure (AP sensor, ADC ch30) - used as the reference in calculated load and vacuum. Units inferred from that variable.
+COMPARED WITH: fef02636 = Rear wheel speed (verified from code, v9.2).
 
-STOCK (5JCZSJA0): -11.86 kPa (raw 3200 / 0xC80). ADDRESS 0x1B946C, 16-bit.
+STOCK (5JCZSJA0): 25 km/h (raw 3200 / 0xC80). ADDRESS 0x1B946C, 16-bit.
 CONFIDENCE: AUTO-DEFINED from code cross-references (width/sign from the load instruction, subsystem from neighbouring decoded code). Purpose not individually verified - log before changing.</description>
     <CATEGORYMEM index="0" category="69" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B946C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>kPa</units>
+    <units>km/h</units>
     <decimalpl>1</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="(X-7862)/393.14">
+    <MATH equation="X/128">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>

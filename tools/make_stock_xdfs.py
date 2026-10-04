@@ -278,7 +278,7 @@ def build(master_text, ref, b, sw, part):
 
     hdr = re.search(r'<deftitle>.*?</deftitle>\s*<description>.*?</description>', text, re.S)
     text = (text[:hdr.start()]
-            + '<deftitle>Hayabusa Gen3 %s (%s) - Stock - v9.1</deftitle>\n    <description>%s</description>'
+            + '<deftitle>Hayabusa Gen3 %s (%s) - Stock - v9.2</deftitle>\n    <description>%s</description>'
             % (sw, part, escape(header(sw, part, n_diff), quote=False))
             + text[hdr.end():])
 

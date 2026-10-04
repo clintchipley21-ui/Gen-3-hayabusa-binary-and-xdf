@@ -31,7 +31,7 @@ stock/
   xdf-master/history/      stock XDFs v2 to v8 (there is no v6)
 reverse-engineering/       Ghidra project and decompiled C for 5JCZSJ40
 docs/                      RAM variable list, DTC table, decoded index of the SD-v5 XDF
-tools/                     fix_field1_crc.py, make_stock_xdfs.py
+tools/                     fix_field1_crc.py, make_stock_xdfs.py, xdf_corrections.py
 ```
 
 ## Stock reads
@@ -80,6 +80,16 @@ Calibration bytes differ from 5JCZSJ40 by the amounts below.
 | Per-gear rev limits 3rd–5th | `Per-Gear Limiter \| 3rd/4th/5th` | parked at 25,000 rpm (off) |
 | Quickshifter cut strategy | `Quickshifter :: Shift Actions` (checkboxes: spark cut, retard, fuel cut + throttle, fuel factor per phase, on- and off-throttle) | see each read's XDF |
 | Launch control RPM | `Launch Control \| Level 1-3` and `Launch Control - Throttle Limit` | Level 1 hard cut 3,700 rpm |
+
+## XDF accuracy (v9.2 audit)
+
+Every RAM variable the XDFs use for units was re-checked against the code that writes it, every constant
+against the code that compares it, and every table against the ECU's own map descriptors. Five variables
+had been mislabelled (two wheel speeds shown as throttle position, throttle rate shown as throttle position,
+traction-control slip error shown as grip %, a wheel-derived RPM shown as engine RPM), which put wrong
+units on about 120 items. All are fixed in the stock and current race XDFs; details and the method are in
+`stock/xdf-master/v9-manifest.txt` and `tools/xdf_corrections.py`. Notably **0x1824C6 is a tip-in rate
+gate (1.41 deg / 4 samples), not a 91.4 deg WOT gate.**
 
 ## Checksums
 
