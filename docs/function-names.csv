@@ -1,0 +1,67 @@
+address,name
+# Readable names for the decompiled functions we have identified. tools/xdf_funcnames.py replaces the
+# matching "FUN_<addr>" tokens in the shipped XDF descriptions with these names (the full FUN_/address is
+# kept here and in docs/xdf-notes.csv for cross-reference). Only confidently identified functions are listed;
+# everything else keeps its FUN_<addr> handle. Add rows as more functions are identified.
+0x45320,base-fuel pressure lookup
+0x4536C,cylinder base-fuel map lookup
+0x453B8,fuel-map blend/result
+0x4543E,fuel finalizer (neutral/clutch select)
+0x460F6,injector pulsewidth clamp
+0x45C18,fuel-factor multiplier
+0x47B6C,IAT air-density correction
+0x45810,start-prime pulse vs ECT
+0x45910,start-prime pulse vs RPM
+0x491BC,MAP/TPS fuel-blend weight
+0x4650C,accel-enrichment routine
+0x47296,key-on prime pulse
+0x45A4E,fuel option routine
+0x49E10,decel fuel-cut band select
+0x4A256,decel fuel-cut state machine
+0x4AB6A,decel fuel-cut tip-in gate
+0x4BAAE,per-cylinder fuel cut
+0x477B0,fuel-cut helper
+0x42C9A,HO2 high-speed gate
+0x4FBCC,ignition coil-inhibit (spark cut)
+0x4FA02,ignition-output per-cylinder
+0x4C5AC,ECT ignition compensation
+0x4C2DA,idle-speed control
+0x51A90,ignition gear/mode select
+0x52266,ignition saturating clamp
+0x76F44,front wheel-speed calc
+0x770A8,rear wheel-speed calc
+0x77000,front wheel-speed average
+0x77184,rear wheel-speed average
+0x5627E,rear-speed/odometer calc
+0x7A976,gear calculation
+0x2C8E2,gear-sensor window check
+0x2C068,per-gear RPM limiter
+0x2C700,ignition-cut limiter
+0x2C73E,in-gear rev-limiter state machine
+0x2C652,in-gear rev limiter
+0x2C68C,neutral rev limiter
+0x2C6C6,neutral rev limiter (alt)
+0x2C396,spark-cut propagation
+0x2C7E8,hot-engine limiter delay
+0x28C36,launch-control state machine
+0x289C4,launch-control arming
+0x28A42,launch-control speed gate
+0x28B50,launch RPM-limit release
+0x2A4D4,quickshifter module
+0x2A6E8,upshift detection
+0x2AD8E,downshift detection
+0x2A5B8,quickshifter on-throttle debounce
+0x2B6B0,quickshifter fuel-factor
+0x6A926,ride-mode limit curve
+0x6BA2E,ride-mode threshold map
+0x509A2,ride-mode variant feature
+0x5DB5E,PAIR/EVAP output mapper
+0x69BC6,PAIR command state machine
+0x3E95C,P0410 PAIR monitor
+0x42384,EVAP purge enable window
+0x33D4A,P0412 PAIR circuit monitor
+0x11010,OBD mode/PID service
+0x5BDB4,5 ms starter task
+0x7446A,neutral/clutch-in flag
+0x73B52,START/starter switch read
+0x8D8E4,ADC channel selector

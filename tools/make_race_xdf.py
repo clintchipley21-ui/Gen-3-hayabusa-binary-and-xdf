@@ -24,6 +24,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import make_stock_xdfs as ms  # noqa: E402
 import xdf_userfriendly as uf  # noqa: E402
 import xdf_patches as xp  # noqa: E402
+import xdf_funcnames as fn  # noqa: E402
 
 ROOT = ms.ROOT
 RACE_SRC = os.path.join(ROOT, 'race/old/SD-v5.xdf')
@@ -154,6 +155,7 @@ def main():
     uf.check(ET.fromstring(text))
     text = xp.inject(text)
     xp.check(text)
+    text = fn.rename(text)
     open(OUT, 'w', encoding='utf-8').write(text)
     print('%s: %d race overrides, %d ALS settings added, %d items differ from stock 5JCZSJ40, %d new categories'
           % (os.path.relpath(OUT, ROOT), n_used, len(ADD_CONSTS), n_diff, n_new))

@@ -31,10 +31,12 @@ stock/
   master/              master-v9.xdf (full-length master the per-read XDFs are built from), v9-notes.txt
   master/old/          stock XDFs v2 to v8 (there is no v6)
 re/                    Ghidra project and decompiled C for 5JCZSJ40
-docs/                  xdf-notes.csv (full text of every XDF item), ram-variables.csv, dtc-table.csv,
-                       v5-index.csv (decoded index of the SD-v5 XDF), autodef-trace.csv
+docs/                  xdf-notes.csv (full text of every XDF item), function-names.csv (readable names
+                       for decompiled functions) and function-registry.csv (every FUN_ referenced),
+                       ram-variables.csv, dtc-table.csv, v5-index.csv, autodef-trace.csv
 tools/                 fix_field1_crc.py, apply_patches.py, make_stock_xdfs.py, make_race_xdf.py,
-                       xdf_userfriendly.py, xdf_patches.py, xdf_corrections.py, xdf_autodef_trace.py
+                       xdf_userfriendly.py, xdf_patches.py, xdf_funcnames.py, xdf_corrections.py,
+                       xdf_autodef_trace.py
 ```
 
 All paths are kept short (at most 27 characters inside the repo) so the folder can be copied into Dropbox
@@ -50,23 +52,29 @@ descriptors, addresses and sizes are the same in all of them.
 Each XDF has 758 tables, 2,769 constants and 195 flags. The VALUES / STOCK line in every description is that
 read's own value, and items whose data differs from 5JCZSJ10 are marked "DIFFERS FROM 5JCZSJ10".
 
-**Folders.** Every XDF you open in TunerPro (the eight stock ones and the race XDF) uses the same numbered
-folders, in the order you would normally work:
+**Folders.** Every XDF you open in TunerPro (the eight stock ones and the race XDF) uses the same folders.
+TunerPro's Parameter Tree nests them, so related folders sit under a parent:
 
-| Folder | What is in it |
+| Parent | Child folders |
 |---|---|
-| 00 Start Here | The maps most tunes start with: main fuel maps, ignition advance, injector dead time, rev and top-speed limiters, launch RPM, quickshifter on/off, PWR 1 throttle maps (race file: SD maps, ALS on/off). These items are also in their own folder. |
-| 01–06 Fuel | Main maps; strategy and blend; injectors; start / warm-up / air temp / baro; accel enrichment and decel cut; closed loop (O2) |
-| 07–08 Ignition | Base advance maps; trims and corrections |
-| 09–19 | Throttle (ETV) and power modes, ride mode presets, limiters, launch, quickshifter, traction, anti-lift / pitch / engine brake, cruise, IMU / wheel speed / gear, idle and fan, sensors and scaling |
-| 20 Race | SD fuel maps, boost and ALS spark maps, ALS settings (race XDF only) |
-| 30–32 Diagnostics | DTC on/off; DTC thresholds and MIL; OBD / CAN / meter / EVAP |
-| 40–41 | Other ECU settings; ETV safety monitor (do not edit) |
-| 80, 88, 89 | Extra views: low-confidence items (log before changing), every on/off switch, unused / flat maps |
-| 99 | IDs, variant bytes and check fields (do not edit) |
+| Fuel | 01 Main Fuel Maps, 02 Strategy/Blend/Settings, 03 Injectors, 04 Start/Warm-Up/Air Temp/Baro, 05 Accel Enrichment & Decel Cut, 06 Closed Loop (O2) |
+| Ignition | 07 Base Advance Maps, 08 Trims and Corrections |
+| Throttle & Ride Modes | 09 Throttle (ETV) & Power Modes, 10 Ride Mode Presets |
+| Limiters, Launch & Shift | 11 Limiters, 12 Launch Control, 13 Quickshifter |
+| Traction & Chassis | 14 Traction Control, 15 Anti-Lift/Pitch/Engine Brake, 17 IMU/Wheel Speed/Gear |
+| Cruise & Idle | 16 Cruise Control, 18 Idle & Cooling Fan |
+| Sensors, ECU & IDs | 19 Sensors & Scaling, 40 ECU Settings, 41 ETV Safety Monitor, 99 IDs/Variant/Checksums |
+| Diagnostics | 30 DTC On/Off, 31 DTC Thresholds & Lamp, 32 OBD/CAN/Meter/EVAP |
+| (top level) | 20 Race, 22 Patches & Air-Shifter |
 
-Each item sits in one main folder; folders 00, 20, 80, 88 and 89 are extra views of items that also live in
-their main folder.
+Each item's first folder is its home; the cross-cutting views **00 Start Here**, **80 Low Confidence**,
+**88 All Switches** and **89 Unused / Flat** appear nested under it as well (so, e.g., a key fuel map shows
+up under both `Fuel → 01 Main Fuel Maps` and `… → 00 Start Here`).
+
+**Function names.** Where a decompiled routine has been identified, its `FUN_<addr>` handle in the item
+descriptions is replaced with a readable name (e.g. "per-gear RPM limiter", "front wheel-speed calc");
+unidentified ones keep `FUN_<addr>`. The name list is `docs/function-names.csv` (edit it to add names) and
+`docs/function-registry.csv` lists every function referenced with its name or "unidentified".
 
 **TunerPro limits.** The SD-v5 race XDF crashed TunerPro on open because of its long, multi-line header. The
 XDFs here keep a single-line header (under 480 characters) and **short item descriptions (at most 420
