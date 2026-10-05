@@ -739,7 +739,7 @@ address,name,references_in_notes
 0x4C9EC,unidentified,2
 0x4CA10,unidentified,2
 0x4CA4E,unidentified,2
-0x4CA72,traction-control speed gate,2
+0x4CA72,unidentified,2
 0x4CAA4,unidentified,2
 0x4CBD2,unidentified,2
 0x4CCAA,unidentified,4
@@ -758,7 +758,7 @@ address,name,references_in_notes
 0x4D602,unidentified,135
 0x4D9DE,unidentified,23
 0x4DA8E,unidentified,19
-0x4DB4C,traction-control speed gate,6
+0x4DB4C,unidentified,6
 0x4DBD6,unidentified,102
 0x4DDFC,unidentified,104
 0x4E140,unidentified,1

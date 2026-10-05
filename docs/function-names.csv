@@ -54,8 +54,6 @@ address,name
 0x2B6B0,quickshifter fuel-factor
 0x6A926,ride-mode limit curve
 0x6BA2E,ride-mode threshold map
-0x4CA72,traction-control speed gate
-0x4DB4C,traction-control speed gate
 0x509A2,ride-mode variant feature
 0x5DB5E,PAIR/EVAP output mapper
 0x69BC6,PAIR command state machine

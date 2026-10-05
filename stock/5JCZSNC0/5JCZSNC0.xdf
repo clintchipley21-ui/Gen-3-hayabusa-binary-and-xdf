@@ -22680,7 +22680,7 @@ Confidence LOW. @0x18D408 - full notes: docs/xdf-notes.csv</description>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x1217" flags="0x0">
     <title>Ride Mode :: Threshold Map vs Throttle x RPM | Mode 8</title>
-    <description>ride-mode threshold map, ride mode 8.
+    <description>, ride mode 8.
 VALUES (stock 5JCZSNC0): 64 to 255 raw.
 Confidence LOW. @0x18D4A0 - full notes: docs/xdf-notes.csv</description>
     <CATEGORYMEM index="0" category="4" />
@@ -22724,7 +22724,7 @@ Confidence LOW. @0x18D4A0 - full notes: docs/xdf-notes.csv</description>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x1218" flags="0x0">
     <title>Ride Mode :: Threshold Map vs Throttle x RPM | Mode 0x10</title>
-    <description>ride-mode threshold map, ride mode 0x10.
+    <description>, ride mode 0x10.
 VALUES (stock 5JCZSNC0): 70 to 255 raw.
 Confidence LOW. @0x18D538 - full notes: docs/xdf-notes.csv</description>
     <CATEGORYMEM index="0" category="4" />
@@ -38930,7 +38930,7 @@ Confidence MEDIUM. @0x1826F9 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2006F" flags="0x0">
-    <title>Fuel :: Option (FUN_45A4E) Enable</title>
+    <title>Fuel :: Option Enable</title>
     <description>fuel option routine: 0x80 together with 0x1826F9 != 0 enables an alternate fuel correction path. Stock 0x80.
 STOCK (5JCZSNC0): 128 switch (raw 128 / 0x80).
 Confidence MEDIUM. @0x1826FA - full notes: docs/xdf-notes.csv</description>
@@ -41175,7 +41175,7 @@ STOCK (5JCZSNC0): 18 cycles (raw 18 / 0x12).
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20119" flags="0x0">
-    <title>Quickshifter :: FUN_2A6E8 threshold vs fef0098a #1</title>
+    <title>Quickshifter :: upshift detection threshold vs fef0098a #1</title>
     <description>Compared with RAM fef0098a, whose meaning is not identified yet (written by upshift detection (expr)).
 STOCK (5JCZSNC0): 2 raw (raw 2 / 0x2).
 Confidence MEDIUM. @0x15430A - full notes: docs/xdf-notes.csv</description>
@@ -41192,7 +41192,7 @@ Confidence MEDIUM. @0x15430A - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2011A" flags="0x0">
-    <title>Quickshifter :: FUN_2A6E8 threshold vs fef00990 #2</title>
+    <title>Quickshifter :: upshift detection threshold vs fef00990 #2</title>
     <description>Compared with RAM fef00990, whose meaning is not identified yet (written by upshift detection (expr)).
 STOCK (5JCZSNC0): 5 raw (raw 5 / 0x5).
 Confidence MEDIUM. @0x15430C - full notes: docs/xdf-notes.csv</description>
@@ -41312,7 +41312,7 @@ Confidence HIGH. @0x154318 - full notes: docs/xdf-notes.csv</description>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20121" flags="0x0">
     <title>Quickshifter :: Phase Fuel Factor | During Spark Cut</title>
-    <description>Decoded from FUN_2BA00 (quickshifter module). : when shift action D is ON, fuel factor fef009CA (multiplier in fuel-factor multiplier, 256 = x1.00) is set to "During Spark Cut" while the spark cut is active...
+    <description>Decoded from FUN_2BA00 (quickshifter module). : when shift action D is ON, fuel factor fef009CA (multiplier in, 256 = x1.00) is set to "During Spark Cut" while the spark cut is active...
 STOCK (5JCZSNC0): 0.00 x (raw 0 / 0x0).
 @0x15431A - full notes: docs/xdf-notes.csv</description>
     <CATEGORYMEM index="0" category="5" />
@@ -41329,7 +41329,7 @@ STOCK (5JCZSNC0): 0.00 x (raw 0 / 0x0).
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20122" flags="0x0">
     <title>Quickshifter :: Phase Fuel Factor | Upshift Phase 1</title>
-    <description>Decoded from FUN_2BA00 (quickshifter module). : when shift action D is ON, fuel factor fef009CA (multiplier in fuel-factor multiplier, 256 = x1.00) is set to "During Spark Cut" while the spark cut is active...
+    <description>Decoded from FUN_2BA00 (quickshifter module). : when shift action D is ON, fuel factor fef009CA (multiplier in, 256 = x1.00) is set to "During Spark Cut" while the spark cut is active...
 STOCK (5JCZSNC0): 1 x (raw 256 / 0x100).
 @0x15431C - full notes: docs/xdf-notes.csv</description>
     <CATEGORYMEM index="0" category="5" />
@@ -41346,7 +41346,7 @@ STOCK (5JCZSNC0): 1 x (raw 256 / 0x100).
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20123" flags="0x0">
     <title>Quickshifter :: Phase Fuel Factor | Upshift Phase 2</title>
-    <description>Decoded from FUN_2BA00 (quickshifter module). : when shift action D is ON, fuel factor fef009CA (multiplier in fuel-factor multiplier, 256 = x1.00) is set to "During Spark Cut" while the spark cut is active...
+    <description>Decoded from FUN_2BA00 (quickshifter module). : when shift action D is ON, fuel factor fef009CA (multiplier in, 256 = x1.00) is set to "During Spark Cut" while the spark cut is active...
 STOCK (5JCZSNC0): 1 x (raw 256 / 0x100).
 @0x15431E - full notes: docs/xdf-notes.csv</description>
     <CATEGORYMEM index="0" category="5" />
@@ -41363,7 +41363,7 @@ STOCK (5JCZSNC0): 1 x (raw 256 / 0x100).
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20124" flags="0x0">
     <title>Quickshifter :: Phase Fuel Factor | Upshift Phase 3</title>
-    <description>Decoded from FUN_2BA00 (quickshifter module). : when shift action D is ON, fuel factor fef009CA (multiplier in fuel-factor multiplier, 256 = x1.00) is set to "During Spark Cut" while the spark cut is active...
+    <description>Decoded from FUN_2BA00 (quickshifter module). : when shift action D is ON, fuel factor fef009CA (multiplier in, 256 = x1.00) is set to "During Spark Cut" while the spark cut is active...
 STOCK (5JCZSNC0): 1 x (raw 256 / 0x100).
 @0x154320 - full notes: docs/xdf-notes.csv</description>
     <CATEGORYMEM index="0" category="5" />
@@ -41380,7 +41380,7 @@ STOCK (5JCZSNC0): 1 x (raw 256 / 0x100).
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20125" flags="0x0">
     <title>Quickshifter :: Phase Fuel Factor | Upshift Phase 4</title>
-    <description>Decoded from FUN_2BA00 (quickshifter module). : when shift action D is ON, fuel factor fef009CA (multiplier in fuel-factor multiplier, 256 = x1.00) is set to "During Spark Cut" while the spark cut is active...
+    <description>Decoded from FUN_2BA00 (quickshifter module). : when shift action D is ON, fuel factor fef009CA (multiplier in, 256 = x1.00) is set to "During Spark Cut" while the spark cut is active...
 STOCK (5JCZSNC0): 1 x (raw 256 / 0x100).
 @0x154322 - full notes: docs/xdf-notes.csv</description>
     <CATEGORYMEM index="0" category="5" />
@@ -41397,7 +41397,7 @@ STOCK (5JCZSNC0): 1 x (raw 256 / 0x100).
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20126" flags="0x0">
     <title>Quickshifter :: Phase Fuel Factor | Downshift Phase 1</title>
-    <description>Decoded from FUN_2BA00 (quickshifter module). : when shift action D is ON, fuel factor fef009CA (multiplier in fuel-factor multiplier, 256 = x1.00) is set to "During Spark Cut" while the spark cut is active...
+    <description>Decoded from FUN_2BA00 (quickshifter module). : when shift action D is ON, fuel factor fef009CA (multiplier in, 256 = x1.00) is set to "During Spark Cut" while the spark cut is active...
 STOCK (5JCZSNC0): 1 x (raw 256 / 0x100).
 @0x154324 - full notes: docs/xdf-notes.csv</description>
     <CATEGORYMEM index="0" category="5" />
@@ -41414,7 +41414,7 @@ STOCK (5JCZSNC0): 1 x (raw 256 / 0x100).
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20127" flags="0x0">
     <title>Quickshifter :: Phase Fuel Factor | Downshift Phase 2</title>
-    <description>Decoded from FUN_2BA00 (quickshifter module). : when shift action D is ON, fuel factor fef009CA (multiplier in fuel-factor multiplier, 256 = x1.00) is set to "During Spark Cut" while the spark cut is active...
+    <description>Decoded from FUN_2BA00 (quickshifter module). : when shift action D is ON, fuel factor fef009CA (multiplier in, 256 = x1.00) is set to "During Spark Cut" while the spark cut is active...
 STOCK (5JCZSNC0): 1 x (raw 256 / 0x100).
 @0x154326 - full notes: docs/xdf-notes.csv</description>
     <CATEGORYMEM index="0" category="5" />
@@ -41431,7 +41431,7 @@ STOCK (5JCZSNC0): 1 x (raw 256 / 0x100).
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20128" flags="0x0">
     <title>Quickshifter :: Phase Fuel Factor | Downshift Phase 3</title>
-    <description>Decoded from FUN_2BA00 (quickshifter module). : when shift action D is ON, fuel factor fef009CA (multiplier in fuel-factor multiplier, 256 = x1.00) is set to "During Spark Cut" while the spark cut is active...
+    <description>Decoded from FUN_2BA00 (quickshifter module). : when shift action D is ON, fuel factor fef009CA (multiplier in, 256 = x1.00) is set to "During Spark Cut" while the spark cut is active...
 STOCK (5JCZSNC0): 1 x (raw 256 / 0x100).
 @0x154328 - full notes: docs/xdf-notes.csv</description>
     <CATEGORYMEM index="0" category="5" />
@@ -41448,7 +41448,7 @@ STOCK (5JCZSNC0): 1 x (raw 256 / 0x100).
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20129" flags="0x0">
     <title>Quickshifter :: Phase Fuel Factor | Downshift Phase 4</title>
-    <description>Decoded from FUN_2BA00 (quickshifter module). : when shift action D is ON, fuel factor fef009CA (multiplier in fuel-factor multiplier, 256 = x1.00) is set to "During Spark Cut" while the spark cut is active...
+    <description>Decoded from FUN_2BA00 (quickshifter module). : when shift action D is ON, fuel factor fef009CA (multiplier in, 256 = x1.00) is set to "During Spark Cut" while the spark cut is active...
 STOCK (5JCZSNC0): 1 x (raw 256 / 0x100).
 @0x15432A - full notes: docs/xdf-notes.csv</description>
     <CATEGORYMEM index="0" category="5" />
@@ -41841,7 +41841,7 @@ Confidence MEDIUM. @0x154356 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20140" flags="0x0">
-    <title>Launch Control :: FUN_289C4 speed threshold #1</title>
+    <title>Launch Control :: speed threshold #1</title>
     <description>Compared with fef0263c = Rear wheel speed (averaged) (meaning verified from the code that writes it).
 STOCK (5JCZSNC0): 10 km/h (raw 1280 / 0x500).
 Confidence HIGH. @0x15435A - full notes: docs/xdf-notes.csv</description>
@@ -41858,7 +41858,7 @@ Confidence HIGH. @0x15435A - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20141" flags="0x0">
-    <title>Launch Control :: FUN_28A42 throttle threshold #1</title>
+    <title>Launch Control :: throttle threshold #1</title>
     <description>Compared with fef025fe = Throttle valve position (meaning verified from the code that writes it).
 STOCK (5JCZSNC0): 10.80 deg TP (raw 3932 / 0xF5C).
 Confidence HIGH. @0x15435E - full notes: docs/xdf-notes.csv</description>
@@ -41875,7 +41875,7 @@ Confidence HIGH. @0x15435E - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20142" flags="0x0">
-    <title>Launch Control :: FUN_28A42 threshold vs fef02596 #2</title>
+    <title>Launch Control :: threshold vs fef02596 #2</title>
     <description>Compared with RAM fef02596, whose meaning is not identified yet (written by FUN_7472E (expr)). The displayed unit was inferred earlier and is NOT confirmed by this trace.
 STOCK (5JCZSNC0): 63.28 deg TP (raw 23040 / 0x5A00).
 Confidence MEDIUM. @0x154360 - full notes: docs/xdf-notes.csv</description>
@@ -41892,7 +41892,7 @@ Confidence MEDIUM. @0x154360 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20143" flags="0x0">
-    <title>Launch Control :: FUN_28B50 threshold vs fef0071a #1</title>
+    <title>Launch Control :: threshold vs fef0071a #1</title>
     <description>Compared with RAM fef0071a, whose meaning is not identified yet (written by launch RPM-limit release (expr)).
 STOCK (5JCZSNC0): 1 raw (raw 1 / 0x1).
 Confidence MEDIUM. @0x154364 - full notes: docs/xdf-notes.csv</description>
@@ -41909,7 +41909,7 @@ Confidence MEDIUM. @0x154364 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20144" flags="0x0">
-    <title>Launch Control :: FUN_28C36 debounce/timer count #1</title>
+    <title>Launch Control :: debounce/timer count #1</title>
     <description>Compared with fef0071e, a counter the code steps by 1 each cycle, so this is a cycle count (debounce/delay), not a sensor value.
 STOCK (5JCZSNC0): 250 raw (raw 250 / 0xFA).
 Confidence HIGH. @0x154380 - full notes: docs/xdf-notes.csv</description>
@@ -43694,7 +43694,7 @@ Confidence MEDIUM. @0x154448 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x201AC" flags="0x0">
-    <title>Limiters :: FUN_2C7E8 coolant-temp threshold #1</title>
+    <title>Limiters :: hot-engine limiter delay coolant-temp threshold #1</title>
     <description>Compared with fef026bd = Coolant temperature (ECT) (meaning verified from the code that writes it).
 STOCK (5JCZSNC0): -30 deg C (raw 0 / 0x0).
 Confidence HIGH. @0x154449 - full notes: docs/xdf-notes.csv</description>
@@ -43711,7 +43711,7 @@ Confidence HIGH. @0x154449 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x201AD" flags="0x0">
-    <title>Limiters :: FUN_2C7E8 coolant-temp threshold #2</title>
+    <title>Limiters :: hot-engine limiter delay coolant-temp threshold #2</title>
     <description>Compared with fef026bd = Coolant temperature (ECT) (meaning verified from the code that writes it).
 STOCK (5JCZSNC0): -29.06 deg C (raw 1 / 0x1).
 Confidence HIGH. @0x15444A - full notes: docs/xdf-notes.csv</description>
@@ -43857,7 +43857,7 @@ STOCK (5JCZSNC0): 128 raw (raw 128 / 0x80).
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x201B5" flags="0x0">
     <title>SWITCH Quickshifter :: Shift Detection Option B (leave 0x80)</title>
-    <description>Decoded from FUN_2BA00 (quickshifter module). Read by upshift/downshift detection (,) and the phase routines FUN_2A952, FUN_2AFB6, FUN_2B3B6 together with the gear position.
+    <description>Decoded from FUN_2BA00 (quickshifter module). Read by upshift/downshift detection and the phase routines FUN_2A952, FUN_2AFB6, FUN_2B3B6 together with the gear position.
 STOCK (5JCZSNC0): 128 raw (raw 128 / 0x80).
 @0x154453 - full notes: docs/xdf-notes.csv</description>
     <CATEGORYMEM index="0" category="5" />
@@ -51336,7 +51336,7 @@ Confidence MEDIUM. @0x18250A - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20377" flags="0x0">
-    <title>Deceleration Fuel Cut :: FUN_4AB6A throttle-rate threshold #1</title>
+    <title>Deceleration Fuel Cut :: throttle-rate threshold #1</title>
     <description>Calibration value read by decel fuel-cut tip-in gate. COMPARED WITH: fef02604 = Throttle opening rate (TP now - TP 4 samples ago, 0x8000 = 0) (verified from code, v9.2).
 STOCK (5JCZSNC0): 1.05 deg/4 samples (raw 33150 / 0x817E).
 Confidence VERIFIED. @0x18259C - full notes: docs/xdf-notes.csv</description>
@@ -52857,7 +52857,7 @@ Confidence HIGH. @0x1826A2 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x203CF" flags="0x0">
-    <title>Deceleration Fuel Cut :: FUN_4AB6A debounce/timer count #2</title>
+    <title>Deceleration Fuel Cut :: debounce/timer count #2</title>
     <description>Compared with fef01290, a counter the code steps by 1 each cycle, so this is a cycle count (debounce/delay), not a sensor value.
 STOCK (5JCZSNC0): 5 raw (raw 5 / 0x5).
 Confidence HIGH. @0x1826A4 - full notes: docs/xdf-notes.csv</description>
@@ -54176,7 +54176,7 @@ Confidence HIGH. @0x18B66A - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2041B" flags="0x0">
-    <title>Ride Mode Presets :: FUN_509A2 value written to fef015b6 #1</title>
+    <title>Ride Mode Presets :: value written to fef015b6 #1</title>
     <description>Written directly into RAM fef015b6 (initial, fallback or target value). Writer of fef015b6: ride-mode variant feature (expr).
 STOCK (5JCZSNC0): 11648 raw (raw 11648 / 0x2D80).
 Confidence HIGH. @0x18B66E - full notes: docs/xdf-notes.csv</description>
@@ -54193,7 +54193,7 @@ Confidence HIGH. @0x18B66E - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2041C" flags="0x0">
-    <title>Ride Mode Presets :: FUN_509A2 value written to fef015b4 #2</title>
+    <title>Ride Mode Presets :: value written to fef015b4 #2</title>
     <description>Written directly into RAM fef015b4 (initial, fallback or target value). Writer of fef015b4: ride-mode variant feature (expr).
 STOCK (5JCZSNC0): 25600 raw (raw 25600 / 0x6400).
 Confidence HIGH. @0x18B674 - full notes: docs/xdf-notes.csv</description>
@@ -54210,7 +54210,7 @@ Confidence HIGH. @0x18B674 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2041D" flags="0x0">
-    <title>Ride Mode Presets :: FUN_509A2 value written to fef015b6 #3</title>
+    <title>Ride Mode Presets :: value written to fef015b6 #3</title>
     <description>Written directly into RAM fef015b6 (initial, fallback or target value). Writer of fef015b6: ride-mode variant feature (expr).
 STOCK (5JCZSNC0): 26880 raw (raw 26880 / 0x6900).
 Confidence HIGH. @0x18B676 - full notes: docs/xdf-notes.csv</description>
@@ -56290,7 +56290,7 @@ Confidence MEDIUM. @0x18B754 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20496" flags="0x0">
-    <title>Ignition :: FUN_52266 debounce/timer count #1</title>
+    <title>Ignition :: debounce/timer count #1</title>
     <description>Compared with fef01683, a counter the code steps by 1 each cycle, so this is a cycle count (debounce/delay), not a sensor value.
 STOCK (5JCZSNC0): 120 raw (raw 120 / 0x78).
 Confidence HIGH. @0x18B755 - full notes: docs/xdf-notes.csv</description>
@@ -56307,7 +56307,7 @@ Confidence HIGH. @0x18B755 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20497" flags="0x0">
-    <title>Ignition :: FUN_52266 clamp/limit value #2</title>
+    <title>Ignition :: clamp/limit value #2</title>
     <description>Used as a limit or operand inside a saturating calculation.
 STOCK (5JCZSNC0): 6 raw (raw 6 / 0x6).
 Confidence MEDIUM. @0x18B756 - full notes: docs/xdf-notes.csv</description>
@@ -57627,7 +57627,7 @@ Confidence LOW. @0x18B7A9 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x204E2" flags="0x0">
-    <title>SWITCH Limiters :: FUN_4FBCC option byte (0x80 = on) #1</title>
+    <title>SWITCH Limiters :: ignition coil-inhibit (spark cut) option byte (0x80 = on) #1</title>
     <description>Tested for 0x80: 0x80 = function ON, anything else = OFF.
 STOCK (5JCZSNC0): 0.00 raw (raw 0 / 0x0).
 Confidence HIGH. @0x18B7AA - full notes: docs/xdf-notes.csv</description>
@@ -65212,7 +65212,7 @@ Confidence MEDIUM. @0x18DBC3 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20697" flags="0x0">
-    <title>Ride Mode Presets :: FUN_6BA2E value written to fef020b8 #1</title>
+    <title>Ride Mode Presets :: value written to fef020b8 #1</title>
     <description>Written directly into RAM fef020b8 (initial, fallback or target value). Writer of fef020b8: FUN_6B1F0 (expr).
 STOCK (5JCZSNC0): 161 raw (raw 161 / 0xA1).
 Confidence HIGH. @0x18DBC4 - full notes: docs/xdf-notes.csv</description>
@@ -65229,7 +65229,7 @@ Confidence HIGH. @0x18DBC4 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20698" flags="0x0">
-    <title>Ride Mode Presets :: FUN_6BA2E parameter #2</title>
+    <title>Ride Mode Presets :: parameter #2</title>
     <description>Read by ride-mode threshold map; the trace could not resolve how the value is used (indirect or structure access). Purpose unknown - leave stock.
 STOCK (5JCZSNC0): 255 raw (raw 255 / 0xFF).
 Confidence LOW. @0x18DBC5 - full notes: docs/xdf-notes.csv</description>
@@ -65247,7 +65247,7 @@ Confidence LOW. @0x18DBC5 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20699" flags="0x0">
-    <title>SWITCH Ride Mode Presets :: FUN_6BA2E option byte (0x80 = on) #3</title>
+    <title>SWITCH Ride Mode Presets :: option byte (0x80 = on) #3</title>
     <description>Tested for 0x80: 0x80 = function ON, anything else = OFF.
 STOCK (5JCZSNC0): 0.00 raw (raw 0 / 0x0).
 Confidence HIGH. @0x18DBC6 - full notes: docs/xdf-notes.csv</description>
@@ -67097,7 +67097,7 @@ Confidence HIGH. @0x18EFD8 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20704" flags="0x0">
-    <title>Traction Control :: FUN_76F44 argument to FUN_184A0 #1</title>
+    <title>Traction Control :: front wheel-speed calc argument to FUN_184A0 #1</title>
     <description>Passed as an argument to FUN_184A0.
 STOCK (5JCZSNC0): 44800 raw (raw 44800 / 0xAF00).
 Confidence MEDIUM. @0x18EFDA - full notes: docs/xdf-notes.csv</description>
@@ -67114,7 +67114,7 @@ Confidence MEDIUM. @0x18EFDA - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20705" flags="0x0">
-    <title>Traction Control :: FUN_76F44 speed threshold #2</title>
+    <title>Traction Control :: front wheel-speed calc speed threshold #2</title>
     <description>Calibration value read by, rear wheel-speed calc. COMPARED WITH: fef02634 = Front wheel speed (verified from code, v9.2).
 STOCK (5JCZSNC0): 20 km/h (raw 2560 / 0xA00).
 Confidence VERIFIED. @0x18EFDC - full notes: docs/xdf-notes.csv</description>
@@ -69549,7 +69549,7 @@ Confidence HIGH. @0x18F0F6 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20792" flags="0x0">
-    <title>Traction Control :: FUN_77000 threshold (computed input) #1</title>
+    <title>Traction Control :: front wheel-speed average threshold (computed input) #1</title>
     <description>Compared with a value computed inside the function (not a single RAM variable).
 STOCK (5JCZSNC0): 12 raw (raw 12 / 0xC).
 Confidence MEDIUM. @0x18F0F7 - full notes: docs/xdf-notes.csv</description>
@@ -69566,7 +69566,7 @@ Confidence MEDIUM. @0x18F0F7 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20793" flags="0x0">
-    <title>Traction Control :: FUN_77184 threshold (computed input) #1</title>
+    <title>Traction Control :: rear wheel-speed average threshold (computed input) #1</title>
     <description>Compared with a value computed inside the function (not a single RAM variable).
 STOCK (5JCZSNC0): 12 raw (raw 12 / 0xC).
 Confidence MEDIUM. @0x18F0F8 - full notes: docs/xdf-notes.csv</description>
@@ -78539,7 +78539,7 @@ Confidence HIGH. @0x1B944B - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20999" flags="0x0">
-    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to FUN_8D8E4 #1</title>
+    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to ADC channel selector #1</title>
     <description>Passed as an argument to ADC channel selector.
 STOCK (5JCZSNC0): 24 raw (raw 24 / 0x18).
 Confidence MEDIUM. @0x1B944E - full notes: docs/xdf-notes.csv</description>
@@ -78556,7 +78556,7 @@ Confidence MEDIUM. @0x1B944E - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2099A" flags="0x0">
-    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to FUN_8D8E4 #2</title>
+    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to ADC channel selector #2</title>
     <description>Passed as an argument to ADC channel selector.
 STOCK (5JCZSNC0): 255 raw (raw 255 / 0xFF).
 Confidence MEDIUM. @0x1B944F - full notes: docs/xdf-notes.csv</description>
@@ -78573,7 +78573,7 @@ Confidence MEDIUM. @0x1B944F - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2099B" flags="0x0">
-    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to FUN_8D8E4 #3</title>
+    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to ADC channel selector #3</title>
     <description>Passed as an argument to ADC channel selector.
 STOCK (5JCZSNC0): 255 raw (raw 255 / 0xFF).
 Confidence MEDIUM. @0x1B9450 - full notes: docs/xdf-notes.csv</description>
@@ -78590,7 +78590,7 @@ Confidence MEDIUM. @0x1B9450 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2099C" flags="0x0">
-    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to FUN_8D8E4 #4</title>
+    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to ADC channel selector #4</title>
     <description>Passed as an argument to ADC channel selector.
 STOCK (5JCZSNC0): 255 raw (raw 255 / 0xFF).
 Confidence MEDIUM. @0x1B9451 - full notes: docs/xdf-notes.csv</description>
@@ -78607,7 +78607,7 @@ Confidence MEDIUM. @0x1B9451 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2099D" flags="0x0">
-    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to FUN_8D8E4 #5</title>
+    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to ADC channel selector #5</title>
     <description>Passed as an argument to ADC channel selector.
 STOCK (5JCZSNC0): 255 raw (raw 255 / 0xFF).
 Confidence MEDIUM. @0x1B9452 - full notes: docs/xdf-notes.csv</description>
@@ -78624,7 +78624,7 @@ Confidence MEDIUM. @0x1B9452 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2099E" flags="0x0">
-    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to FUN_8D8E4 #6</title>
+    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to ADC channel selector #6</title>
     <description>Passed as an argument to ADC channel selector.
 STOCK (5JCZSNC0): 255 raw (raw 255 / 0xFF).
 Confidence MEDIUM. @0x1B9453 - full notes: docs/xdf-notes.csv</description>
@@ -78641,7 +78641,7 @@ Confidence MEDIUM. @0x1B9453 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2099F" flags="0x0">
-    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to FUN_8D8E4 #7</title>
+    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to ADC channel selector #7</title>
     <description>Passed as an argument to ADC channel selector.
 STOCK (5JCZSNC0): 255 raw (raw 255 / 0xFF).
 Confidence MEDIUM. @0x1B9454 - full notes: docs/xdf-notes.csv</description>
@@ -78658,7 +78658,7 @@ Confidence MEDIUM. @0x1B9454 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x209A0" flags="0x0">
-    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to FUN_8D8E4 #8</title>
+    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to ADC channel selector #8</title>
     <description>Passed as an argument to ADC channel selector.
 STOCK (5JCZSNC0): 255 raw (raw 255 / 0xFF).
 Confidence MEDIUM. @0x1B9455 - full notes: docs/xdf-notes.csv</description>
@@ -78675,7 +78675,7 @@ Confidence MEDIUM. @0x1B9455 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x209A1" flags="0x0">
-    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to FUN_8D8E4 #9</title>
+    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to ADC channel selector #9</title>
     <description>Passed as an argument to ADC channel selector.
 STOCK (5JCZSNC0): 255 raw (raw 255 / 0xFF).
 Confidence MEDIUM. @0x1B9456 - full notes: docs/xdf-notes.csv</description>
@@ -78692,7 +78692,7 @@ Confidence MEDIUM. @0x1B9456 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x209A2" flags="0x0">
-    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to FUN_8D8E4 #10</title>
+    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to ADC channel selector #10</title>
     <description>Passed as an argument to ADC channel selector.
 STOCK (5JCZSNC0): 255 raw (raw 255 / 0xFF).
 Confidence MEDIUM. @0x1B9457 - full notes: docs/xdf-notes.csv</description>
@@ -78709,7 +78709,7 @@ Confidence MEDIUM. @0x1B9457 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x209A3" flags="0x0">
-    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to FUN_8D8E4 #11</title>
+    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to ADC channel selector #11</title>
     <description>Passed as an argument to ADC channel selector.
 STOCK (5JCZSNC0): 255 raw (raw 255 / 0xFF).
 Confidence MEDIUM. @0x1B9458 - full notes: docs/xdf-notes.csv</description>
@@ -78726,7 +78726,7 @@ Confidence MEDIUM. @0x1B9458 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x209A4" flags="0x0">
-    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to FUN_8D8E4 #12</title>
+    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to ADC channel selector #12</title>
     <description>Passed as an argument to ADC channel selector.
 STOCK (5JCZSNC0): 255 raw (raw 255 / 0xFF).
 Confidence MEDIUM. @0x1B9459 - full notes: docs/xdf-notes.csv</description>
@@ -78743,7 +78743,7 @@ Confidence MEDIUM. @0x1B9459 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x209A5" flags="0x0">
-    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to FUN_8D8E4 #13</title>
+    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to ADC channel selector #13</title>
     <description>Passed as an argument to ADC channel selector.
 STOCK (5JCZSNC0): 255 raw (raw 255 / 0xFF).
 Confidence MEDIUM. @0x1B945A - full notes: docs/xdf-notes.csv</description>
@@ -78760,7 +78760,7 @@ Confidence MEDIUM. @0x1B945A - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x209A6" flags="0x0">
-    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to FUN_8D8E4 #14</title>
+    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to ADC channel selector #14</title>
     <description>Passed as an argument to ADC channel selector.
 STOCK (5JCZSNC0): 255 raw (raw 255 / 0xFF).
 Confidence MEDIUM. @0x1B945B - full notes: docs/xdf-notes.csv</description>
@@ -78777,7 +78777,7 @@ Confidence MEDIUM. @0x1B945B - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x209A7" flags="0x0">
-    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to FUN_8D8E4 #15</title>
+    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to ADC channel selector #15</title>
     <description>Passed as an argument to ADC channel selector.
 STOCK (5JCZSNC0): 255 raw (raw 255 / 0xFF).
 Confidence MEDIUM. @0x1B945C - full notes: docs/xdf-notes.csv</description>
@@ -78794,7 +78794,7 @@ Confidence MEDIUM. @0x1B945C - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x209A8" flags="0x0">
-    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to FUN_8D8E4 #16</title>
+    <title>Diagnostics - OBD / Communication :: Diag Comms Timing Select E argument to ADC channel selector #16</title>
     <description>Passed as an argument to ADC channel selector.
 STOCK (5JCZSNC0): 255 raw (raw 255 / 0xFF).
 Confidence MEDIUM. @0x1B945D - full notes: docs/xdf-notes.csv</description>
@@ -78811,7 +78811,7 @@ Confidence MEDIUM. @0x1B945D - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x209A9" flags="0x0">
-    <title>Diagnostics - OBD / Communication :: FUN_90BEE argument to FUN_8D8E4 #1</title>
+    <title>Diagnostics - OBD / Communication :: FUN_90BEE argument to ADC channel selector #1</title>
     <description>Passed as an argument to ADC channel selector.
 STOCK (5JCZSNC0): 32 raw (raw 32 / 0x20).
 Confidence MEDIUM. @0x1B945E - full notes: docs/xdf-notes.csv</description>
@@ -78828,7 +78828,7 @@ Confidence MEDIUM. @0x1B945E - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x209AA" flags="0x0">
-    <title>Diagnostics - OBD / Communication :: FUN_90D94 argument to FUN_8D8E4 #1</title>
+    <title>Diagnostics - OBD / Communication :: FUN_90D94 argument to ADC channel selector #1</title>
     <description>Passed as an argument to ADC channel selector.
 STOCK (5JCZSNC0): 14 raw (raw 14 / 0xE).
 Confidence MEDIUM. @0x1B945F - full notes: docs/xdf-notes.csv</description>
@@ -78845,7 +78845,7 @@ Confidence MEDIUM. @0x1B945F - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x209AB" flags="0x0">
-    <title>Diagnostics - OBD / Communication :: FUN_90DAA argument to FUN_8D8E4 #1</title>
+    <title>Diagnostics - OBD / Communication :: FUN_90DAA argument to ADC channel selector #1</title>
     <description>Passed as an argument to ADC channel selector.
 STOCK (5JCZSNC0): 15 raw (raw 15 / 0xF).
 Confidence MEDIUM. @0x1B9460 - full notes: docs/xdf-notes.csv</description>
@@ -78862,7 +78862,7 @@ Confidence MEDIUM. @0x1B9460 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x209AC" flags="0x0">
-    <title>Diagnostics - OBD / Communication :: FUN_8E76C argument to FUN_8D8E4 #1</title>
+    <title>Diagnostics - OBD / Communication :: FUN_8E76C argument to ADC channel selector #1</title>
     <description>Passed as an argument to ADC channel selector.
 STOCK (5JCZSNC0): 7 raw (raw 7 / 0x7).
 Confidence MEDIUM. @0x1B9461 - full notes: docs/xdf-notes.csv</description>
@@ -78913,7 +78913,7 @@ Confidence MEDIUM. @0x1B9463 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x209AF" flags="0x0">
-    <title>Diagnostics - OBD / Communication :: FUN_8EA52 argument to FUN_8D8E4 #3</title>
+    <title>Diagnostics - OBD / Communication :: FUN_8EA52 argument to ADC channel selector #3</title>
     <description>Passed as an argument to ADC channel selector.
 STOCK (5JCZSNC0): 8 raw (raw 8 / 0x8).
 Confidence MEDIUM. @0x1B9464 - full notes: docs/xdf-notes.csv</description>
@@ -78930,7 +78930,7 @@ Confidence MEDIUM. @0x1B9464 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x209B0" flags="0x0">
-    <title>Diagnostics - OBD / Communication :: FUN_8EA52 argument to FUN_8D8E4 #4</title>
+    <title>Diagnostics - OBD / Communication :: FUN_8EA52 argument to ADC channel selector #4</title>
     <description>Passed as an argument to ADC channel selector.
 STOCK (5JCZSNC0): 12 raw (raw 12 / 0xC).
 Confidence MEDIUM. @0x1B9465 - full notes: docs/xdf-notes.csv</description>

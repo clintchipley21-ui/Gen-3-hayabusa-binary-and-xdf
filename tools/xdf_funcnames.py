@@ -26,34 +26,43 @@ def load():
     return names
 
 
+def _norm(s):
+    return re.sub(r'[-_]', ' ', s).lower()
+
+
+def _clean(body):
+    """Tidy artifacts left when a handle is dropped or replaced."""
+    body = re.sub(r'(\b(?:from|by|in|via|and)\s+)-\s*', r'\1', body)   # "from -FUN" / "by -"
+    body = re.sub(r'\s+-\s*(?=FUN_)', ' ', body)                        # "module -FUN_x" range leftover
+    body = re.sub(r'\(\s*[,;]?\s*\)', '', body)                         # "()" / "( )"
+    body = re.sub(r'\(\s+', '(', body)
+    body = re.sub(r'\s+::\s*', ' :: ', body)                            # tidy "X ::  y"
+    body = re.sub(r'[ \t]{2,}', ' ', body)                             # double spaces
+    body = re.sub(r'\s+([.;,)])', r'\1', body)                          # space before punctuation
+    return body.strip()
+
+
 def rename(text, names=None):
-    """Within each <description>, replace a known FUN_<addr> with its name - but if the name's lead word is
-    already in the text right next to the handle (the prose already says what it is, e.g. 'Per-gear RPM
-    limiter FUN_2C068'), drop the handle instead of duplicating. Unknown handles are left as-is."""
+    """Replace a known FUN_<addr> with its name in item <title> and <description> - but if the name's lead
+    word is already next to the handle (the text or the category prefix already says what it is, e.g.
+    'Per-gear RPM limiter FUN_2C068' or 'Launch Control :: FUN_289C4 ...'), drop the handle instead of
+    duplicating. Unknown handles are left as-is. Hyphens/underscores are ignored when checking for a duplicate."""
     names = load() if names is None else names
 
-    def do(m):
-        body = m.group(1)
-
+    def process(body):
         def sub(t):
             name = names.get(int(t.group(1), 16))
             if not name:
                 return t.group(0)
-            win = (body[max(0, t.start() - 45):t.start()] + body[t.end():t.end() + 45]).lower()
-            head = name.split()[0].strip('(/').lower()
+            win = _norm(body[max(0, t.start() - 45):t.start()] + body[t.end():t.end() + 45])
+            head = _norm(name.split()[0].strip('(/'))
             return '' if head and head in win else name
+        return _clean(TOKEN.sub(sub, body))
 
-        body = TOKEN.sub(sub, body)
-        # tidy artifacts left by a dropped handle
-        body = re.sub(r'(\b(?:from|by|in|via|and)\s+)-\s*', r'\1', body)   # "from -FUN" / "by -"
-        body = re.sub(r'\s+-\s*(?=FUN_)', ' ', body)                        # "module -FUN_x" range leftover
-        body = re.sub(r'\(\s*\)', '', body)                                 # "()"
-        body = re.sub(r'[ \t]{2,}', ' ', body)                              # double spaces
-        body = re.sub(r'\s+([.;,)])', r'\1', body)                          # space before punctuation
-        body = re.sub(r'\(\s+', '(', body)
-        return '<description>' + body + '</description>'
-
-    return re.sub(r'<description>(.*?)</description>', do, text, flags=re.S)
+    for tag in ('description', 'title'):
+        text = re.sub(r'<%s>(.*?)</%s>' % (tag, tag),
+                      lambda m: '<%s>%s</%s>' % (tag, process(m.group(1)), tag), text, flags=re.S)
+    return text
 
 
 def count_known(text, names=None):
