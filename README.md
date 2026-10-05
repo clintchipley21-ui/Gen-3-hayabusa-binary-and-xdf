@@ -13,6 +13,7 @@ rolling anti-lag.
 | Flash the current race build | [`race/Busa-SD-v4.1.bin`](race/) |
 | Edit the race build in TunerPro | [`race/Busa-SD-v6.xdf`](race/) |
 | Edit a stock read | Open `stock/<software>/` for your read (for example `stock/5JCZSJ40/`): it holds the `.bin` and its matching `.xdf` |
+| Add anti-lag / air-shifter to a stock bin | `python3 tools/apply_patches.py stock.bin out.bin` (see [`race/`](race/)) |
 | Fix the checksum after editing | `python3 tools/fix_field1_crc.py tuned.bin` |
 
 ## Layout
@@ -32,8 +33,8 @@ stock/
 re/                    Ghidra project and decompiled C for 5JCZSJ40
 docs/                  xdf-notes.csv (full text of every XDF item), ram-variables.csv, dtc-table.csv,
                        v5-index.csv (decoded index of the SD-v5 XDF), autodef-trace.csv
-tools/                 fix_field1_crc.py, make_stock_xdfs.py, make_race_xdf.py, xdf_userfriendly.py,
-                       xdf_corrections.py, xdf_autodef_trace.py
+tools/                 fix_field1_crc.py, apply_patches.py, make_stock_xdfs.py, make_race_xdf.py,
+                       xdf_userfriendly.py, xdf_patches.py, xdf_corrections.py, xdf_autodef_trace.py
 ```
 
 All paths are kept short (at most 27 characters inside the repo) so the folder can be copied into Dropbox
@@ -105,6 +106,20 @@ Calibration bytes differ from 5JCZSJ40 by the amounts below.
 | Per-gear rev limits 3rd–5th | `Per-Gear Limiter \| 3rd/4th/5th` | parked at 25,000 rpm (off) |
 | Quickshifter cut strategy | `Quickshifter :: Shift Actions` (checkboxes: spark cut, retard, fuel cut + throttle, fuel factor per phase, on- and off-throttle) | see each read's XDF |
 | Launch control RPM | `Launch Control \| Level 1-3` and `Launch Control - Throttle Limit` | Level 1 hard cut 3,700 rpm |
+
+## Code patches (add a feature to a stock bin)
+
+Every XDF also carries two TunerPro patches (Patch Manager), and the folder `22 Patches & Air-Shifter`
+holds the auto-shift settings:
+
+- **Install Rolling Anti-Lag** — the SD-v4.1 anti-lag on a stock bin.
+- **Install Auto-Upshift (air-shifter)** — at a per-gear RPM target, pulses the PAIR-valve output to drive
+  a relay → MAC valve → air ram (no spark cut; the factory quickshifter does that).
+
+Both ship **disabled** and are **unverified on hardware**. The reliable way to apply them (it also
+re-stamps the CRC) is `python3 tools/apply_patches.py stock.bin out.bin`. If you apply them inside
+TunerPro instead, re-stamp the field-1 CRC afterward. Details and the required bench check for the
+air-shifter output are in [`race/`](race/) and [`race/notes/autoshift.txt`](race/notes/autoshift.txt).
 
 ## XDF accuracy (v9.2 audit)
 

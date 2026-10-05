@@ -27,6 +27,7 @@ from html import escape
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import xdf_userfriendly as uf  # noqa: E402
+import xdf_patches as xp  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MASTER = os.path.join(ROOT, 'stock/master/master-v9.xdf')
@@ -317,6 +318,8 @@ def main():
         check(ET.fromstring(text))  # valid XML, every description within LIMITS
         text = uf.finalize(text)    # workflow folders, short descriptions (full text: docs/xdf-notes.csv)
         uf.check(ET.fromstring(text))
+        text = xp.inject(text)      # anti-lag + auto-shift patches and auto-shift settings
+        xp.check(text)
         out = path[:-4] + '.xdf'
         open(out, 'w', encoding='utf-8').write(text)
         print('%-10s %-11s %4d items differ from %s -> %s' % (sw, part, n_diff, REF_SW, os.path.relpath(out, ROOT)))
