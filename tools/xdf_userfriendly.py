@@ -36,16 +36,42 @@ LOW = '80 Low Confidence - log before changing'
 SWITCHES = '88 All On/Off Switches (0x80 = ON)'
 UNUSED = '89 Unused / Flat / Inactive - leave stock'
 
+# Parent folders. TunerPro's Parameter Tree nests by each item's category-membership order (first = top),
+# so giving a numbered folder a parent as its first membership makes it appear under that parent.
+FUEL = 'Fuel'
+IGN = 'Ignition'
+THROTTLE = 'Throttle & Ride Modes'
+LIMITS = 'Limiters, Launch & Shift'
+CHASSIS = 'Traction & Chassis'
+COMFORT = 'Cruise & Idle'
+SENSORS = 'Sensors, ECU & IDs'
+DIAG = 'Diagnostics'
+
+# child folder number -> parent folder
+PARENTS = {
+    '01': FUEL, '02': FUEL, '03': FUEL, '04': FUEL, '05': FUEL, '06': FUEL,
+    '07': IGN, '08': IGN,
+    '09': THROTTLE, '10': THROTTLE,
+    '11': LIMITS, '12': LIMITS, '13': LIMITS,
+    '14': CHASSIS, '15': CHASSIS, '17': CHASSIS,
+    '16': COMFORT, '18': COMFORT,
+    '19': SENSORS, '40': SENSORS, '41': SENSORS, '99': SENSORS,
+    '30': DIAG, '31': DIAG, '32': DIAG,
+}
+
 FOLDERS = [
     START,
-    '01 Fuel - Main Fuel Maps',
-    '02 Fuel - Strategy, Blend and Settings',
-    '03 Fuel - Injectors and Injection Timing',
-    '04 Fuel - Start, Warm-Up, Air Temp and Baro',
-    '05 Fuel - Accel Enrichment and Decel Cut',
-    '06 Fuel - Closed Loop (O2)',
-    '07 Ignition - Base Advance Maps',
-    '08 Ignition - Trims and Corrections',
+    # parents (this order is the top-level tree order)
+    FUEL, IGN, THROTTLE, LIMITS, CHASSIS, COMFORT, SENSORS, DIAG,
+    # children, grouped under their parent (this order is the order within each parent)
+    '01 Main Fuel Maps',
+    '02 Strategy, Blend and Settings',
+    '03 Injectors and Injection Timing',
+    '04 Start, Warm-Up, Air Temp and Baro',
+    '05 Accel Enrichment and Decel Cut',
+    '06 Closed Loop (O2)',
+    '07 Base Advance Maps',
+    '08 Trims and Corrections',
     '09 Throttle (ETV) and Power Modes',
     '10 Ride Mode Presets',
     '11 Limiters - Rev, Per-Gear, Top Speed',
@@ -53,20 +79,21 @@ FOLDERS = [
     '13 Quickshifter',
     '14 Traction Control',
     '15 Anti-Lift, Pitch and Engine Brake',
-    '16 Cruise Control',
     '17 IMU, Wheel Speed and Gear Position',
+    '16 Cruise Control',
     '18 Idle and Cooling Fan',
     '19 Sensors and Scaling',
-    RACE,
-    '30 Diagnostics - DTC On/Off',
-    '31 Diagnostics - DTC Thresholds and Lamp',
-    '32 Diagnostics - OBD, CAN, Meter, EVAP',
     '40 ECU Settings',
     '41 ETV Safety Monitor - do not edit',
+    '99 IDs, Variant, Checksums - do not edit',
+    '30 DTC On/Off',
+    '31 DTC Thresholds and Lamp',
+    '32 OBD, CAN, Meter, EVAP',
+    # top-level folders without a parent
+    RACE,
     LOW,
     SWITCHES,
     UNUSED,
-    '99 IDs, Variant, Checksums - do not edit',
 ]
 
 # (folder number, regex on the title, regex on the item's old main category); first match wins
@@ -126,6 +153,9 @@ def folders_for(title, old, desc):
     """Main folder first, then the cross-cutting folders the item belongs to."""
     by_num = {f[:2]: f for f in FOLDERS}
     out = [by_num[folder_number(title, old)]]
+    parent = PARENTS.get(out[0][:2])      # nest under a parent (first membership = tree top)
+    if parent:
+        out = [parent] + out
     joined = ' | '.join(old)
     if any(re.search(r, title) for r in START_RULES):
         out.append(START)
@@ -294,6 +324,8 @@ def main():
         w.writerow(('source', 'address', 'type', 'title', 'folder', 'full_notes'))
         w.writerows(rows)
     print('%s: %d stock items + %d race-specific rows' % (os.path.relpath(NOTES, ROOT), len(stock), len(rows) - len(stock)))
+    import xdf_funcnames
+    xdf_funcnames.main()        # refresh docs/function-registry.csv from the new notes
 
 
 if __name__ == '__main__':
