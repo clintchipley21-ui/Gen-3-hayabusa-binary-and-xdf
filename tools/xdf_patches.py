@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
-"""Add the two code patches and the auto-shift tuning items to a finalized XDF.
+"""Add the patch tuning items to a finalized XDF (folder "22 Patches & Air-Shifter").
 
 Called at the end of make_stock_xdfs.py and make_race_xdf.py, after xdf_userfriendly.finalize().
-It appends (without disturbing any existing category index):
+It appends, without disturbing any existing category index:
 
   - one folder "22 Patches & Air-Shifter";
-  - TunerPro one-click patches (Patch Manager): "Install Rolling Anti-Lag" and "Install Auto-Upshift",
-    whose base/patch bytes are taken from the stock read and race/Busa-SD-v4.1.bin / race/als/autoshift.bin;
   - editable auto-shift settings (enable, bench-test output, pulse, WOT gate, re-arm, 5 per-gear RPM targets)
-    at 0xBF010.
+    at 0xBF010;
+  - the rolling anti-lag settings at 0xBF000, but only for XDFs that do not already define them (the eight
+    stock reads; the race XDF already has them).
 
-The native-patch XML (XDFPATCH/XDFPATCHENTRY) is best-effort: verify one XDF opens in TunerPro before relying
-on it, and use tools/apply_patches.py (which also re-stamps the CRC) as the guaranteed way to patch a bin.
-After applying patches inside TunerPro, re-stamp the field-1 CRC with tools/fix_field1_crc.py.
+The patches themselves are applied with tools/apply_patches.py (which also re-stamps the field-1 CRC), NOT
+from inside the XDF: native TunerPro patch elements (XDFPATCH/XDFPATCHENTRY) crashed TunerPro on open, so
+they are deliberately not embedded. The PATCH/PENTRY templates below are kept for reference only, in case the
+exact format is confirmed later; check() asserts no XDFPATCH is ever written.
 """
 import os
 import re
@@ -117,15 +118,9 @@ def inject(text, which=('antilag', 'autoshift')):
                                addr=addr, bits=bits, units=escape(units, quote=False), eq=escape(eq, quote=False), dec=dec))
         uid += 1
 
-    ent = ap.entries(open(ap.STOCK_REF, 'rb').read(), open(ap.SD_REF, 'rb').read())
-    uid = UID_PATCH
-    for name in which:
-        title, desc = PATCH_DESC[name]
-        rows = ''.join(PENTRY.format(name='0x%X' % a, addr=a, n=len(p), patch=p.hex().upper(), base=b.hex().upper())
-                       for a, b, p in ent[name])
-        out.append(PATCH.format(uid=uid, title=escape(title, quote=False), desc=escape(desc, quote=False),
-                                cat=cat, entries=rows))
-        uid += 1
+    # NOTE: native TunerPro patches (XDFPATCH) are intentionally NOT embedded - that element crashed
+    # TunerPro on open. Patches are applied with tools/apply_patches.py instead. The PATCH/PENTRY
+    # templates and PATCH_DESC are kept for reference / possible future use once the format is confirmed.
 
     cat_xml = '    <CATEGORY index="0x%X" name="%s" />\n' % (n, escape(FOLDER))
     text = re.sub(r'(\n  </XDFHEADER>)', lambda m: '\n' + cat_xml.rstrip('\n') + m.group(1), text, count=1)
@@ -137,14 +132,6 @@ def check(text):
     root = ET.fromstring(text)                 # must be valid XML
     names = [c.get('name') for c in root.find('XDFHEADER').findall('CATEGORY')]
     assert FOLDER in names, 'patch folder missing'
-    assert len(root.findall('XDFPATCH')) >= 1, 'no patches'
-    seen = []
-    for e in root.iter():
-        u = e.get('uniqueid') if e.tag in ('XDFCONSTANT', 'XDFFLAG', 'XDFTABLE', 'XDFPATCH') else None
-        if u:
-            seen.append(u)
+    assert not root.findall('XDFPATCH'), 'XDFPATCH present - crashes TunerPro, must not be embedded'
+    seen = [e.get('uniqueid') for e in root.iter() if e.tag in ('XDFCONSTANT', 'XDFFLAG', 'XDFTABLE')]
     assert len(seen) == len(set(seen)), 'duplicate uniqueid'
-    n = len(names)
-    for e in root.findall('XDFPATCH'):
-        for m in e.findall('CATEGORYMEM'):
-            assert 1 <= int(m.get('category')) <= n
