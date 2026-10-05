@@ -30,8 +30,10 @@ stock/
   xdf-master/              stock XDF v9 (full-length master the per-read XDFs are built from) and its manifest
   xdf-master/history/      stock XDFs v2 to v8 (there is no v6)
 reverse-engineering/       Ghidra project and decompiled C for 5JCZSJ40
-docs/                      RAM variable list, DTC table, decoded index of the SD-v5 XDF, autodef-trace.csv
-tools/                     fix_field1_crc.py, make_stock_xdfs.py, xdf_corrections.py, xdf_autodef_trace.py
+docs/                      xdf-notes.csv (full text of every XDF item), RAM variable list, DTC table,
+                           decoded index of the SD-v5 XDF, autodef-trace.csv
+tools/                     fix_field1_crc.py, make_stock_xdfs.py, make_race_xdf.py, xdf_userfriendly.py,
+                           xdf_corrections.py, xdf_autodef_trace.py
 ```
 
 ## Stock reads
@@ -41,16 +43,36 @@ byte-identical code (0x10000–0x14FFFF) and a valid field-1 CRC. Every byte tha
 inside an item the XDF defines (apart from an ID string and one variant word, which the XDFs add), so map
 descriptors, addresses and sizes are the same in all of them.
 
-Each XDF has 758 tables, 2,801 constants and 163 flags. The VALUES / STOCK line in every description is that
+Each XDF has 758 tables, 2,769 constants and 195 flags. The VALUES / STOCK line in every description is that
 read's own value, and items whose data differs from 5JCZSJ10 are marked "DIFFERS FROM 5JCZSJ10".
 
-**TunerPro limits.** The SD-v5 race XDF crashed TunerPro on open because of its long, multi-line header; the
-same file with a 490-character header (`test26`) opens, with item descriptions up to 1,372 characters. The
-per-read XDFs stay inside that: single-line headers of about 355 characters and every item description at
-most 1,300 characters. 32 long descriptions are shortened (least important paragraphs first; values, axes and
-addresses are always kept) and say so. The full text is in `stock/xdf-master/`, whose 1,611-character header
-and longer descriptions may be too long for TunerPro, so treat it as reference. Regenerate the per-read XDFs
-with `python3 tools/make_stock_xdfs.py` after changing the master.
+**Folders.** Every XDF you open in TunerPro (the eight stock ones and the race XDF) uses the same numbered
+folders, in the order you would normally work:
+
+| Folder | What is in it |
+|---|---|
+| 00 Start Here | The maps most tunes start with: main fuel maps, ignition advance, injector dead time, rev and top-speed limiters, launch RPM, quickshifter on/off, PWR 1 throttle maps (race file: SD maps, ALS on/off). These items are also in their own folder. |
+| 01–06 Fuel | Main maps; strategy and blend; injectors; start / warm-up / air temp / baro; accel enrichment and decel cut; closed loop (O2) |
+| 07–08 Ignition | Base advance maps; trims and corrections |
+| 09–19 | Throttle (ETV) and power modes, ride mode presets, limiters, launch, quickshifter, traction, anti-lift / pitch / engine brake, cruise, IMU / wheel speed / gear, idle and fan, sensors and scaling |
+| 20 Race | SD fuel maps, boost and ALS spark maps, ALS settings (race XDF only) |
+| 30–32 Diagnostics | DTC on/off; DTC thresholds and MIL; OBD / CAN / meter / EVAP |
+| 40–41 | Other ECU settings; ETV safety monitor (do not edit) |
+| 80, 88, 89 | Extra views: low-confidence items (log before changing), every on/off switch, unused / flat maps |
+| 99 | IDs, variant bytes and check fields (do not edit) |
+
+Each item sits in one main folder; folders 00, 20, 80, 88 and 89 are extra views of items that also live in
+their main folder.
+
+**TunerPro limits.** The SD-v5 race XDF crashed TunerPro on open because of its long, multi-line header. The
+XDFs here keep a single-line header (under 480 characters) and **short item descriptions (at most 420
+characters, about 210 on average)**: what the item does, this bin's value, a confidence / "differs" tag and
+its address. Descriptions take about 0.8 MB per file, down from 1.6 MB. The full text of every item (how the
+ECU uses it, axes, tuning notes, the code it was traced through) is in
+[`docs/xdf-notes.csv`](docs/xdf-notes.csv): search it by title or address. The stock master in
+`stock/xdf-master/` keeps the full text inline and may be too large for TunerPro, so treat it as reference.
+Regenerate with `python3 tools/make_stock_xdfs.py`, `python3 tools/make_race_xdf.py` and
+`python3 tools/xdf_userfriendly.py` (notes CSV) after changing the master.
 
 Calibration bytes differ from 5JCZSJ40 by the amounts below.
 

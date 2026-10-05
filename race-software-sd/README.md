@@ -8,7 +8,7 @@ boot a CKTEST bin on a bench ECM first, and keep the stock read for recovery.
 | File | Use |
 |---|---|
 | `Hayabusa-5JCZSJ40-race-software-SD-v4.1.bin` | The bin to flash. Anti-lag ships **disabled**. |
-| `Hayabusa-Gen3-race-software-SD-v6.xdf` | Open this in TunerPro. XDF v6 = the full stock XDF v9.3 (quickshifter decode, top-speed limiter, unit audit, every auto-defined item traced) plus the race definitions: SD fuel maps, ALS / boost spark maps, sensor scaling, ALS settings. Values are from the SD-v4.1 bin; items the race software changed are marked. Kept within TunerPro's limits (single-line header, descriptions <= 1,300 chars). Rebuild with `python3 tools/make_race_xdf.py`. |
+| `Hayabusa-Gen3-race-software-SD-v6.xdf` | Open this in TunerPro. XDF v6 = the full stock XDF v9.3 (quickshifter decode, top-speed limiter, unit audit, every auto-defined item traced) plus the race definitions: SD fuel maps, ALS / boost spark maps, sensor scaling, ALS settings. Values are from the SD-v4.1 bin; items the race software changed are marked. Same numbered workflow folders as the stock XDFs (start in `00 Start Here`; race items are also in `20 Race`). Short descriptions (<= 420 chars) keep TunerPro from crashing; full notes are in `docs/xdf-notes.csv`. Rebuild with `python3 tools/make_race_xdf.py`. |
 
 ## Versions
 

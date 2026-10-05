@@ -22,6 +22,7 @@ from html import escape
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import make_stock_xdfs as ms  # noqa: E402
+import xdf_userfriendly as uf  # noqa: E402
 
 ROOT = ms.ROOT
 RACE_SRC = os.path.join(ROOT, 'race-software-sd/history/xdfs/Hayabusa-Gen3-5JCZSJ40-5JCZSJ10-race-software-SD-v5.xdf')
@@ -38,7 +39,8 @@ ADD_CONSTS = {0xBF000, 0xBF001, 0xBF002, 0xBF004, 0xBF006, 0xBF008, 0xBF00A, 0xB
 HEADER = ('Hayabusa Gen 3 race software SD (speed density on a 3-bar MAP, boost spark retard, rolling anti-lag) '
           'for Hayabusa-5JCZSJ40-race-software-SD-v4.1.bin. XDF v6 = stock XDF v9.3 + race definitions. SD fuel and '
           'boost/ALS spark maps: X = raw IAP ADC, kPa = X*0.307429-12.6 (provisional 3-bar). Values are from SD-v4.1; '
-          'items the race software changed say DIFFERS FROM STOCK. Re-stamp field-1 CRC after editing.')
+          'items the race software changed are marked. Re-stamp field-1 CRC after editing. Start in folder 00; '
+          'full item notes: docs/xdf-notes.csv.')
 DIFFERS = ('DIFFERS FROM STOCK 5JCZSJ40 in the SD-v4.1 bin (changed by the race software): '
            'free-text "stock" remarks above describe the stock calibration.')
 
@@ -56,7 +58,8 @@ def categories(text):
     return {int(i, 16): n for i, n in re.findall(r'<CATEGORY index="(0x[0-9A-Fa-f]+)" name="([^"]*)"', text)}
 
 
-def main():
+def build_race():
+    """Race XDF text before the user-friendly pass, plus counts for the summary line."""
     master = open(ms.MASTER, encoding='utf-8').read()
     race = open(RACE_SRC, encoding='utf-8').read()
     mcat, rcat = categories(master), categories(race)
@@ -140,10 +143,17 @@ def main():
     assert len(HEADER) <= ms.HEADER_MAX, len(HEADER)
     text = (text[:hdr.start()] + '<deftitle>Hayabusa Gen3 race software SD-v4.1 - XDF v6 (stock v9.3 base)</deftitle>\n'
             '    <description>%s</description>' % escape(HEADER, quote=False) + text[hdr.end():])
+    return text, len(used), n_diff, len(new_cats)
+
+
+def main():
+    text, n_used, n_diff, n_new = build_race()
     ms.check(ET.fromstring(text))
+    text = uf.finalize(text, race_changed_text='DIFFERS FROM STOCK 5JCZSJ40')
+    uf.check(ET.fromstring(text))
     open(OUT, 'w', encoding='utf-8').write(text)
     print('%s: %d race overrides, %d ALS settings added, %d items differ from stock 5JCZSJ40, %d new categories'
-          % (os.path.relpath(OUT, ROOT), len(used), len(ADD_CONSTS), n_diff, len(new_cats)))
+          % (os.path.relpath(OUT, ROOT), n_used, len(ADD_CONSTS), n_diff, n_new))
 
 
 if __name__ == '__main__':

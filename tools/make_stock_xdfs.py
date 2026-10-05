@@ -25,6 +25,9 @@ import sys
 import xml.etree.ElementTree as ET
 from html import escape
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import xdf_userfriendly as uf  # noqa: E402
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MASTER = os.path.join(ROOT, 'stock/xdf-master/Hayabusa-Gen3-5JCZSJ10-stock-v9.xdf')
 REF_BIN = os.path.join(ROOT, 'stock/32990-10L1x-5JCZSJ10/32990-10L1x-5JCZSJ10.bin')
@@ -187,7 +190,7 @@ def header(sw, part, n_diff):
     h = ('Hayabusa Gen 3 stock read %s (ECM %s), stock fuel strategy, no patches. Values in descriptions are '
          'from this read; %d items are marked DIFFERS FROM 5JCZSJ10. RPM=X/2.56, deg=X/364.08, '
          'kPa=(X-7862)/393.14, C=X*0.9375-30, ign=(X-64)*0.3516. Re-stamp field-1 CRC after editing '
-         '(tools/fix_field1_crc.py). AUTO-DEFINED items: log before changing.' % (sw, part, n_diff))
+         '(tools/fix_field1_crc.py). Start in folder 00; full item notes: docs/xdf-notes.csv.' % (sw, part, n_diff))
     assert len(h) <= HEADER_MAX and '\n' not in h, len(h)
     return h
 
@@ -309,6 +312,8 @@ def main():
         b = open(path, 'rb').read()
         text, n_diff = build(master_text, ref, b, sw, part)
         check(ET.fromstring(text))  # valid XML, every description within LIMITS
+        text = uf.finalize(text)    # workflow folders, short descriptions (full text: docs/xdf-notes.csv)
+        uf.check(ET.fromstring(text))
         out = path[:-4] + '.xdf'
         open(out, 'w', encoding='utf-8').write(text)
         print('%-10s %-11s %4d items differ from %s -> %s' % (sw, part, n_diff, REF_SW, os.path.relpath(out, ROOT)))
