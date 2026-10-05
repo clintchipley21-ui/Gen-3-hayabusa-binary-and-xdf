@@ -64224,11 +64224,11 @@ Confidence LOW. @0x18EFD6 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20703" flags="0x0">
-    <title>ECU Info :: FUN_5627E threshold (computed input) #1</title>
-    <description>Compared with a value computed inside the function (not a single RAM variable).
+    <title>Wheel Speed :: Rear Scaling Divisor - Fine Term (pairs with 0x18F0F4)</title>
+    <description>Fine term of the rear wheel-speed scaling divisor. FUN_770A8 divides the rear pulse by (0x18F0F4 x this) when forming rear raw wheel speed fef02636 (output X/128 km/h)...
 STOCK (5JCZSJ40): 64 raw (raw 64 / 0x40).
-Confidence MEDIUM. @0x18EFD8 - full notes: docs/xdf-notes.csv</description>
-    <CATEGORYMEM index="0" category="24" />
+Confidence HIGH. @0x18EFD8 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="18" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18EFD8" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
@@ -66486,11 +66486,11 @@ Confidence HIGH. @0x18F0F2 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2078E" flags="0x0">
-    <title>Traction Control :: FUN_76F44 threshold (computed input) #3</title>
-    <description>Compared with a value computed inside the function (not a single RAM variable).
+    <title>Wheel Speed :: Front Scaling Divisor (front tire size / tone-ring teeth)</title>
+    <description>Front wheel-speed scaling divisor: sets distance per front ABS pulse, so it carries front tire rolling circumference and the tone-ring tooth count.
 STOCK (5JCZSJ40): 48 raw (raw 48 / 0x30).
-Confidence MEDIUM. @0x18F0F3 - full notes: docs/xdf-notes.csv</description>
-    <CATEGORYMEM index="0" category="15" />
+Confidence HIGH. @0x18F0F3 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="18" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18F0F3" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
@@ -66502,11 +66502,11 @@ Confidence MEDIUM. @0x18F0F3 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2078F" flags="0x0">
-    <title>ECU Info :: FUN_5627E threshold vs fef01880 #2</title>
-    <description>Compared with RAM fef01880, whose meaning is not identified yet (written by FUN_56310 (alias of fef01880)).
+    <title>Wheel Speed :: Rear Scaling Divisor (rear tire size / tone-ring teeth)</title>
+    <description>Rear wheel-speed scaling divisor, main term: with the fine term 0x18EFD8 it sets distance per rear ABS pulse, carrying rear tire rolling circumference and the tone-ring tooth count.
 STOCK (5JCZSJ40): 50 raw (raw 50 / 0x32).
-Confidence MEDIUM. @0x18F0F4 - full notes: docs/xdf-notes.csv</description>
-    <CATEGORYMEM index="0" category="24" />
+Confidence HIGH. @0x18F0F4 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="18" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18F0F4" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>

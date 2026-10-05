@@ -72,6 +72,7 @@ FOLDERS = [
 # (folder number, regex on the title, regex on the item's old main category); first match wins
 FOLDER_RULES = [
     ('99', r'^(ID ::|Software Nr|Market Variant|Variant)', r'Checksums|xdf moto bin|^ECU Info|Market Variant'),
+    ('17', r'^Wheel Speed ::', None),
     ('02', r'^Fuel Blend', None),
     ('20', r'^(ALS |Boost Spark|ALS Timing)|Rolling Anti-Lag', r'Rolling Anti-Lag'),
     ('01', r'^(TPS|IAP|SD \(abs MAP\)) - ', None),
