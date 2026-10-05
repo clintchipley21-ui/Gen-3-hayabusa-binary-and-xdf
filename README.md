@@ -109,16 +109,19 @@ Calibration bytes differ from 5JCZSJ40 by the amounts below.
 
 ## Code patches (add a feature to a stock bin)
 
-Every XDF also carries two TunerPro patches (Patch Manager), and the folder `22 Patches & Air-Shifter`
-holds the auto-shift settings:
+Two code patches can be added to a stock bin, and the XDF folder `22 Patches & Air-Shifter` holds the
+settings for both:
 
-- **Install Rolling Anti-Lag** — the SD-v4.1 anti-lag on a stock bin.
-- **Install Auto-Upshift (air-shifter)** — at a per-gear RPM target, pulses the PAIR-valve output to drive
+- **Rolling anti-lag** — the SD-v4.1 anti-lag on a stock bin.
+- **Auto-upshift (air-shifter)** — at a per-gear RPM target, pulses the PAIR-valve output to drive
   a relay → MAC valve → air ram (no spark cut; the factory quickshifter does that).
 
-Both ship **disabled** and are **unverified on hardware**. The reliable way to apply them (it also
-re-stamps the CRC) is `python3 tools/apply_patches.py stock.bin out.bin`. If you apply them inside
-TunerPro instead, re-stamp the field-1 CRC afterward. Details and the required bench check for the
+Apply them with `python3 tools/apply_patches.py stock.bin out.bin` (both), or add `antilag` / `autoshift`
+for one — it checks the bytes and re-stamps the CRC. Then open the result in its XDF and enable/tune in the
+`22 Patches & Air-Shifter` folder. (The patches are applied by the script, not from inside TunerPro — the
+native TunerPro patch element crashed TunerPro on open, so it is not embedded.)
+
+Both ship **disabled** and are **unverified on hardware**. Details and the required bench check for the
 air-shifter output are in [`race/`](race/) and [`race/notes/autoshift.txt`](race/notes/autoshift.txt).
 
 ## XDF accuracy (v9.2 audit)

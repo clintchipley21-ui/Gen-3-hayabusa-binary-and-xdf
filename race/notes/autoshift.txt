@@ -2,7 +2,7 @@ AUTO-UPSHIFT (AIR-SHIFTER)  —  code patch, applies to any stock 5JCZ read
 UNVERIFIED ON HARDWARE. Bench an ECM first and keep a stock read for recovery.
 Source:   autoshift.s (GNU as -mv850e3v5), build with race/als/build.sh
 Apply:    python3 tools/apply_patches.py stock.bin out.bin autoshift     (re-stamps CRC)
-          or TunerPro Patch Manager -> "Install Auto-Upshift (air-shifter)" (then re-stamp CRC)
+          (applied by the script, not from inside TunerPro - the native XDFPATCH element crashed TunerPro)
 ================================================================================
 
 WHAT IT DOES (rider's view)

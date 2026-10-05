@@ -32,14 +32,14 @@ across the eight reads). Both ship **disabled** and both are **unverified on har
 | Rolling anti-lag | The SD-v4.1 anti-lag (code 0xBE000, settings 0xBF000, retard map, three hooks). Enable/tune with the `ALS ...` items, which are in every XDF (folder `22 Patches & Air-Shifter`). |
 | Auto-upshift (air-shifter) | At a per-gear RPM target, pulses the PAIR-valve output to drive a relay → MAC valve → air ram. No spark cut (the factory quickshifter does that). Tune with the `Auto-Shift ::` items. See [`notes/autoshift.txt`](notes/autoshift.txt). |
 
-Two ways to apply them:
+Apply them with the script (it checks the base bytes and re-stamps the field-1 CRC):
 
-- **Script (guaranteed, re-stamps the CRC):**
-  `python3 ../tools/apply_patches.py stock.bin out.bin` (both), or add `antilag` / `autoshift` for one.
-- **In TunerPro:** open a stock read with its XDF, Patch Manager → "Install Rolling Anti-Lag" /
-  "Install Auto-Upshift", then **re-stamp the field-1 CRC** (`tools/fix_field1_crc.py`) or the ECU may
-  reject the bin. The native-patch XML is best-effort — open one XDF first to confirm it loads, and fall
-  back to the script if not.
+    python3 ../tools/apply_patches.py stock.bin out.bin          # both
+    python3 ../tools/apply_patches.py stock.bin out.bin antilag  # one of: antilag autoshift
+
+Then open the patched bin in its XDF and enable/tune in the `22 Patches & Air-Shifter` folder. The patches
+are applied by the script, not from inside TunerPro: native TunerPro patch elements (XDFPATCH) crashed
+TunerPro on open, so they are not embedded in the XDFs.
 
 The air-shifter's PAIR output bit is unverified: confirm it on the bench with the XDF
 "Auto-Shift :: Bench Test Output" switch before trusting it (procedure in `notes/autoshift.txt`).
