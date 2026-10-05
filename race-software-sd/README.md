@@ -8,8 +8,7 @@ boot a CKTEST bin on a bench ECM first, and keep the stock read for recovery.
 | File | Use |
 |---|---|
 | `Hayabusa-5JCZSJ40-race-software-SD-v4.1.bin` | The bin to flash. Anti-lag ships **disabled**. |
-| `Hayabusa-Gen3-5JCZSJ40-5JCZSJ10-race-software-SD-v5-test26.xdf` | Open this in TunerPro. Same definitions as SD-v5 with the header description shortened, because the full text crashes TunerPro. |
-| `Hayabusa-Gen3-5JCZSJ40-5JCZSJ10-race-software-SD-v5.xdf` | SD-v5 with the full header description (anti-lag and SD usage notes). Reference only. |
+| `Hayabusa-Gen3-race-software-SD-v6.xdf` | Open this in TunerPro. XDF v6 = the full stock XDF v9.3 (quickshifter decode, top-speed limiter, unit audit, every auto-defined item traced) plus the race definitions: SD fuel maps, ALS / boost spark maps, sensor scaling, ALS settings. Values are from the SD-v4.1 bin; items the race software changed are marked. Kept within TunerPro's limits (single-line header, descriptions <= 1,300 chars). Rebuild with `python3 tools/make_race_xdf.py`. |
 
 ## Versions
 
@@ -21,7 +20,7 @@ Each version builds on the one before. Full byte-level change lists are in `mani
 | SD-v2 | `history/bins/…-SD-v2.bin` | `history/xdfs/…-race-software-SD.xdf` | Speed-density map holds fuel authority at all throttle openings (blend curve and WOT gate disabled); neutral/clutch maps re-axised. |
 | SD-v3 | `history/bins/…-SD-v3.bin` | `history/xdfs/…-SD-v3.xdf` | Rest of the ECU back on the stock pressure scale; SD fuel and new boost spark map read the raw IAP ADC; IAP fault threshold raised. |
 | SD-v4 | `history/bins/…-SD-v4.bin` | `history/xdfs/…-SD-v4.xdf` | Rolling anti-lag (START button + WOT captures RPM, spark cut + timing retard). Source in `als/`. |
-| SD-v4.1 | `current/…-SD-v4.1.bin` | `current/…-SD-v5-test26.xdf` | Anti-lag disabled by default; anti-lag time limit can no longer be reset by re-capturing. |
+| SD-v4.1 | `current/…-SD-v4.1.bin` | `current/…-race-software-SD-v6.xdf` | Anti-lag disabled by default; anti-lag time limit can no longer be reset by re-capturing. |
 
 ## Anti-lag source (`als/`)
 
@@ -38,8 +37,8 @@ Each version builds on the one before. Full byte-level change lists are in `mani
   stock 33282 means "TP rises 1.41 deg or more within 4 samples". Setting it to 0xFFFF (done since SD-v2)
   still has the intended result - the speed-density map keeps authority - but on fast tip-in, not at WOT.
 - RAM `fef02634` / `fef02636` are front / rear wheel speed, `fef02604` is throttle opening rate and
-  `fef01562` is the traction-control slip error. The race XDFs in `current/` are corrected
-  (`tools/xdf_corrections.py`); the XDFs in `history/` are kept as originally published.
+  `fef01562` is the traction-control slip error. The current race XDF (v6) includes these corrections; `history/` keeps the SD-v5 / test26
+  XDFs with only the v9.2 corrections applied.
 - Anti-lag is unaffected: `als.s` reads `fef0263A`, verified as the averaged front wheel speed.
 
 ## After editing a bin

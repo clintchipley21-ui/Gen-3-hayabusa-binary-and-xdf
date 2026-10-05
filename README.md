@@ -11,7 +11,7 @@ rolling anti-lag.
 | I want to… | Use |
 |---|---|
 | Flash the current race build | [`race-software-sd/current/Hayabusa-5JCZSJ40-race-software-SD-v4.1.bin`](race-software-sd/current/) |
-| Edit the race build in TunerPro | [`race-software-sd/current/…-race-software-SD-v5-test26.xdf`](race-software-sd/current/) |
+| Edit the race build in TunerPro | [`race-software-sd/current/Hayabusa-Gen3-race-software-SD-v6.xdf`](race-software-sd/current/) |
 | Edit a stock read | Open the folder for your read under [`stock/`](stock/): it holds the `.bin` and its matching `.xdf` |
 | Fix the checksum after editing | `python3 tools/fix_field1_crc.py tuned.bin` |
 
@@ -19,11 +19,11 @@ rolling anti-lag.
 
 ```
 race-software-sd/          custom speed-density + anti-lag build (see its README)
-  current/                 SD-v4.1 bin and the SD-v5 XDFs
+  current/                 SD-v4.1 bin and the race XDF v6
   manifests/               change list for every SD version, SD-v1 to SD-v4.1
   als/                     anti-lag assembly source and simulator harness
   history/bins/            SD-v1 to SD-v4 bins
-  history/xdfs/            the XDFs that went with SD-v1/v2, v3 and v4
+  history/xdfs/            the XDFs that went with SD-v1/v2, v3, v4 and v5 (incl. test26)
 stock/
   <ECM>-<software>/        one folder per stock read: <name>.bin and the matching <name>.xdf
   other-software/          reads from other software families (see below)
