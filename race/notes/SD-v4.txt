@@ -1,6 +1,6 @@
-SPEED-DENSITY v4 + ROLLING ANTI-LAG  —  Hayabusa-5JCZSJ40-race-software-SD-v4.bin   (built on SD-v3)
+SPEED-DENSITY v4 + ROLLING ANTI-LAG  —  SD-v4.bin   (built on SD-v3)
 UNVERIFIED ON HARDWARE. Bench ECM first. Keep the stock read for recovery.
-Use with: Hayabusa-Gen3-5JCZSJ40-5JCZSJ10-race-software-SD-v4.xdf
+Use with: old/SD-v4.xdf
 Source:   als.s (assembly, GNU as -mv850e3v5), als_harness.s (simulator test)
 ================================================================================
 

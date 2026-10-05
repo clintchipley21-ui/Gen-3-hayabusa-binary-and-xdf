@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build one stock XDF per Gen 3 Hayabusa read from the master stock v9 XDF.
 
-Every stock/<ECM>-<software>/<ECM>-<software>.bin read has the same code and calibration layout as 5JCZSJ10
+Every stock/<software>/<software>.bin read has the same code and calibration layout as 5JCZSJ10
 (every byte that differs between the reads lies inside an item the XDF defines), so the
 definitions themselves carry over unchanged. Per read, this script:
 
@@ -12,7 +12,7 @@ definitions themselves carry over unchanged. Per read, this script:
   - adds two items the master does not define: the ECM ID string at 0x1FFAE4 and the
     variant word at 0x1B957C (both differ between reads),
   - keeps every description within what TunerPro is known to open (see LIMITS below),
-  - writes the XDF next to the read: stock/<name>/<name>.xdf.
+  - writes the XDF next to the read: stock/<software>/<software>.xdf.
 
 The file is edited as text, so formatting and element order stay exactly as in the master.
 
@@ -29,16 +29,19 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import xdf_userfriendly as uf  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-MASTER = os.path.join(ROOT, 'stock/xdf-master/Hayabusa-Gen3-5JCZSJ10-stock-v9.xdf')
-REF_BIN = os.path.join(ROOT, 'stock/32990-10L1x-5JCZSJ10/32990-10L1x-5JCZSJ10.bin')
+MASTER = os.path.join(ROOT, 'stock/master/master-v9.xdf')
+REF_BIN = os.path.join(ROOT, 'stock/5JCZSJ10/5JCZSJ10.bin')
 REF_SW = '5JCZSJ10'
+# ECM part number of each stock read (folders are named by software only, to keep paths short)
+PARTS = {'5JCZSJ00': '32990-10L0', '5JCZSJ10': '32990-10L1', '5JCZSJ20': '32990-10L2', '5JCZSJ30': '32990-10L3',
+         '5JCZSJ40': '32990-10L4', '5JCZSJA0': '32920-10LA', '5JCZSJB0': '32920-10LB', '5JCZSNC0': '32920-10LC'}
 
 # LIMITS - from the race XDFs: SD-v5 (2,373-char header with line breaks) crashed TunerPro on open;
 # test26 (same items, 490-char single-line header, item descriptions up to 1,372 chars) opens.
 # Stay inside what test26 proves.
 HEADER_MAX = 480
 DESC_MAX = 1300
-SHORTENED = ' [Shortened for TunerPro - full text in stock/xdf-master.]'
+SHORTENED = ' [Shortened for TunerPro - full text in stock/master.]'
 DIFFERS = 'DIFFERS FROM 5JCZSJ10 in this read: free-text "stock" remarks above describe 5JCZSJ10.'
 # paragraphs dropped first, then trimmed, when a description is too long
 DROP_FIRST = ('CONFIDENCE', 'Previous title')
@@ -306,9 +309,9 @@ def check(root):
 def main():
     master_text = open(MASTER, encoding='utf-8').read()
     ref = open(REF_BIN, 'rb').read()
-    for path in sorted(glob.glob(os.path.join(ROOT, 'stock/*-5JCZ*/*-5JCZ*.bin'))):
-        name = os.path.basename(path)[:-4]
-        part, sw = name.split('-', 2)[0] + '-' + name.split('-', 2)[1][:-1], name.split('-', 2)[2]
+    for path in sorted(glob.glob(os.path.join(ROOT, 'stock/5JCZ*/5JCZ*.bin'))):
+        sw = os.path.basename(path)[:-4]
+        part = PARTS[sw]
         b = open(path, 'rb').read()
         text, n_diff = build(master_text, ref, b, sw, part)
         check(ET.fromstring(text))  # valid XML, every description within LIMITS

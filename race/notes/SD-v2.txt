@@ -1,6 +1,6 @@
-SPEED-DENSITY v2  —  Hayabusa-5JCZSJ40-race-software-SD-v2.bin   (built on SD-v1)
+SPEED-DENSITY v2  —  SD-v2.bin   (built on SD-v1)
 UNVERIFIED. Bench ECM only, and only after CKTEST boots and SD-v1 has been logged.
-Use with: Hayabusa-Gen3-5JCZSJ40-5JCZSJ10-race-software-SD.xdf
+Use with: old/SD-v2.xdf
 ================================================================================
 
 WHY v2: in stock logic the fuel pulse is MAP_path*(256-w) + THROTTLE_path*w, with the

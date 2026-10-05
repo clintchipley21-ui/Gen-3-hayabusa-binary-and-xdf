@@ -2,7 +2,7 @@
 """Apply the code trace of the AUTO-DEFINED constants (docs/autodef-trace.csv) to an XDF, in place (v9.3).
 
 The CSV was produced by tracing every auto-defined calibration constant through the decompiled
-5JCZSJ40 code (reverse-engineering/Hayabusa-5JCZSJ40-decompiled.zip):
+5JCZSJ40 code (re/decompiled.zip):
   - which RAM variable it is compared with, written to, filtered, counted against or passed to,
   - the meaning of that RAM variable, proven from the code that writes it (sensor ADC channel,
     copies, filters and clamps of verified variables), and

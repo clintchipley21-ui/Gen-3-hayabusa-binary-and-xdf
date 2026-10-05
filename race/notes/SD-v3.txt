@@ -1,6 +1,6 @@
-SPEED-DENSITY v3  —  Hayabusa-5JCZSJ40-race-software-SD-v3.bin   (built on SD-v2)
+SPEED-DENSITY v3  —  SD-v3.bin   (built on SD-v2)
 UNVERIFIED. Bench ECM only, and only after CKTEST boots. Keep the stock read for recovery.
-Use with: Hayabusa-Gen3-5JCZSJ40-5JCZSJ10-race-software-SD-v3.xdf
+Use with: old/SD-v3.xdf
 ================================================================================
 
 WHY v3: in SD-v1/v2, rescaling the AP and IAP sensors to 200 counts/kPa changed the pressure scale for the

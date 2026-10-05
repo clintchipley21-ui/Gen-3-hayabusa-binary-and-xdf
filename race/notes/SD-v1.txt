@@ -1,4 +1,4 @@
-SPEED-DENSITY v1  —  Hayabusa-5JCZSJ40-race-software-SD-v1.bin
+SPEED-DENSITY v1  —  SD-v1.bin
 UNVERIFIED v1 CODE. BENCH ECM ONLY, and ONLY after the CKTEST bin boots.
 Keep the stock read for recovery. Do not run on the engine until logged and validated.
 ================================================================================

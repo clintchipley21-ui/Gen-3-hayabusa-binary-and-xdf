@@ -14746,7 +14746,7 @@ SD-v4.1 VALUES: 20.04 to 28.83 deg RETARD (64 raw = 0).
 DIFFERS FROM STOCK 5JCZSJ40 in the SD-v4.1 bin (changed by the race software): free-text ""stock"" remarks above describe the stock calibration."
 race SD-v6 (SD-v4.1 values),0x188598,table,Boost Spark Retard (MAP x RPM),"20 Race - SD Fuel, Boost Spark, Anti-Lag","BOOST IGNITION RETARD vs manifold absolute pressure and RPM. SD-v4: used in gear AND in neutral/clutch-in whenever rolling anti-lag is not active. Repurposed stock ""Trim B"" map (stock values were all 64 = unused).
 
-HOW THE ECU USES IT (SD-v3): FUN_525EE looks it up with X = RAW IAP sensor ADC fef02574 (code patch at 0x52600; stock X was throttle angle) and Y = RPM fef0155C; this table when in gear with clutch out. Output fef01671 -> weighted by fef01674 (enable weight, see ""Boost Spark Retard - Enable Weight"") -> fef01575 -> FUN_5171C takes the MAX of all retard...
+HOW THE ECU USES IT (SD-v3): FUN_525EE looks it up with X = RAW IAP sensor ADC fef02574 (code patch at 0x52600; stock X was throttle angle) and Y = RPM fef0155C; this table when in gear with clutch out. Output fef01671 -> weighted by fef01674 (enable weight, see ""Boost Spark Retard - Enable Weight"") -> fef01575 -> FUN_5171C takes the MAX of all retard requests...
 
 DEFAULT IN SD-v3: 0 retard up to 100 kPa, then ~1 deg per psi of boost (all RPM rows identical) - a conservative starting point, not a tune. Note: the idle/neutral timing path (fef01544, weighted by fef0157A) does not include this retard; it matters only in neutral/clutch-in with the idle path active.
 
@@ -14754,7 +14754,7 @@ REFERENCE: data @0x188598, X axis @0x18492C, Y axis @0x186F54, descriptor @0x183
 
 SD-v4.1 VALUES: 0.00 to 28.83 deg RETARD (64 raw = 0).
 
-DIFFERS FROM STOCK 5JCZSJ40 in the SD-v4.1 bin (changed by the race software): free-text ""stock"" remarks above describe the stock calibration. [Shortened for TunerPro - full text in stock/xdf-master.] [Shortened for TunerPro - full text in stock/xdf-master.]"
+DIFFERS FROM STOCK 5JCZSJ40 in the SD-v4.1 bin (changed by the race software): free-text ""stock"" remarks above describe the stock calibration. [Shortened for TunerPro - full text in stock/master.] [Shortened for TunerPro - full text in stock/master.]"
 race SD-v6 (SD-v4.1 values),0x1828C0,table,Boost Spark Retard - Enable Weight (vs ECT),"20 Race - SD Fuel, Boost Spark, Anti-Lag","Enable weight for the Boost Spark Retard maps. FUN_520E0 ramps fef01674 toward (this curve value) at 0x18B747/0x18B748 per 0x18B746 cycles, clamped 0..128; FUN_5271E: fef01575 = 64 + (map-64) x weight/128. Stock = 0 at all ECT (stock trim B unused). SD-v3 = 128 (100%) at all coolant temps so the boost retard map always applies.
 
 REFERENCE: data @0x1828C0 (5 x 8-bit), X axis @0x1828B8 (ECT), descriptor @0x182E84, code FUN_520e0.
