@@ -1,6 +1,7 @@
 SPEED-DENSITY v4.1 + ROLLING ANTI-LAG  —  Hayabusa-5JCZSJ40-race-software-SD-v4.1.bin   (built on SD-v4)
 UNVERIFIED ON HARDWARE. Bench ECM first. Keep the stock read for recovery.
-Use with: Hayabusa-Gen3-5JCZSJ40-5JCZSJ10-race-software-SD-v5-test26.xdf (opens in TunerPro; same definitions as
+Use with: Hayabusa-Gen3-race-software-SD-v6.xdf (current; superseded the SD-v5-test26.xdf named below)
+Originally: Hayabusa-Gen3-5JCZSJ40-5JCZSJ10-race-software-SD-v5-test26.xdf (opens in TunerPro; same definitions as
           SD-v5 with the header description shortened, since the full one crashes TunerPro)
 SHA-256: 5af12da86686cd6441b1d8a319f99bd2b92521daf50c4d3f762eedeebc6fa7c0
 ================================================================================

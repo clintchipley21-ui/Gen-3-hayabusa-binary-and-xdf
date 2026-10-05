@@ -25,6 +25,9 @@ import sys
 import xml.etree.ElementTree as ET
 from html import escape
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import xdf_userfriendly as uf  # noqa: E402
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MASTER = os.path.join(ROOT, 'stock/xdf-master/Hayabusa-Gen3-5JCZSJ10-stock-v9.xdf')
 REF_BIN = os.path.join(ROOT, 'stock/32990-10L1x-5JCZSJ10/32990-10L1x-5JCZSJ10.bin')
@@ -112,7 +115,7 @@ def item_bytes(b, kind, el):
 SAME_SUFFIX = ' - every cell the same, so the function is probably disabled or unused in this calibration.'
 VALUES_LINE = re.compile(r'^VALUES \(stock ' + REF_SW + r'\): (\S+) to (\S+) (.*?)(\.|' + re.escape(SAME_SUFFIX) + r')$')
 STOCK_CONST = re.compile(r'^STOCK \(' + REF_SW + r'\): (\S+) (.*?)\(raw (\S+) / 0x[0-9A-F]+\)\.(.*)$')
-STOCK_FLAG = re.compile(r'^STOCK \(' + REF_SW + r'\): 0x[0-9A-F]{2} \(monitor (ON|OFF)\)\.(.*)$')
+STOCK_FLAG = re.compile(r'^STOCK \(' + REF_SW + r'\): 0x[0-9A-F]{2} \((monitor )?(ON|OFF)\)\.(.*)$')
 
 
 def rewrite_desc(desc, kind, el, b, sw, differs):
@@ -139,8 +142,8 @@ def rewrite_desc(desc, kind, el, b, sw, differs):
             a = int(el.find('EMBEDDEDDATA').get('mmedaddress'), 16)
             mask = int(el.findtext('mask'), 16)
             on = b[a] & mask
-            tail = m.group(2).replace('Stock %s already has' % REF_SW, 'Several stock calibrations ship with')
-            lines[i] = 'STOCK (%s): 0x%02X (monitor %s).%s' % (sw, b[a], 'ON' if on else 'OFF', tail)
+            tail = m.group(3).replace('Stock %s already has' % REF_SW, 'Several stock calibrations ship with')
+            lines[i] = 'STOCK (%s): 0x%02X (%s%s).%s' % (sw, b[a], m.group(1) or '', 'ON' if on else 'OFF', tail)
             continue
     out = '\n'.join(lines)
     if differs:
@@ -187,7 +190,7 @@ def header(sw, part, n_diff):
     h = ('Hayabusa Gen 3 stock read %s (ECM %s), stock fuel strategy, no patches. Values in descriptions are '
          'from this read; %d items are marked DIFFERS FROM 5JCZSJ10. RPM=X/2.56, deg=X/364.08, '
          'kPa=(X-7862)/393.14, C=X*0.9375-30, ign=(X-64)*0.3516. Re-stamp field-1 CRC after editing '
-         '(tools/fix_field1_crc.py). AUTO-DEFINED items: log before changing.' % (sw, part, n_diff))
+         '(tools/fix_field1_crc.py). Start in folder 00; full item notes: docs/xdf-notes.csv.' % (sw, part, n_diff))
     assert len(h) <= HEADER_MAX and '\n' not in h, len(h)
     return h
 
@@ -278,7 +281,7 @@ def build(master_text, ref, b, sw, part):
 
     hdr = re.search(r'<deftitle>.*?</deftitle>\s*<description>.*?</description>', text, re.S)
     text = (text[:hdr.start()]
-            + '<deftitle>Hayabusa Gen3 %s (%s) - Stock - v9</deftitle>\n    <description>%s</description>'
+            + '<deftitle>Hayabusa Gen3 %s (%s) - Stock - v9.3</deftitle>\n    <description>%s</description>'
             % (sw, part, escape(header(sw, part, n_diff), quote=False))
             + text[hdr.end():])
 
@@ -309,6 +312,8 @@ def main():
         b = open(path, 'rb').read()
         text, n_diff = build(master_text, ref, b, sw, part)
         check(ET.fromstring(text))  # valid XML, every description within LIMITS
+        text = uf.finalize(text)    # workflow folders, short descriptions (full text: docs/xdf-notes.csv)
+        uf.check(ET.fromstring(text))
         out = path[:-4] + '.xdf'
         open(out, 'w', encoding='utf-8').write(text)
         print('%-10s %-11s %4d items differ from %s -> %s' % (sw, part, n_diff, REF_SW, os.path.relpath(out, ROOT)))

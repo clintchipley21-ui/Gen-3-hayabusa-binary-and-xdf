@@ -11,7 +11,7 @@ rolling anti-lag.
 | I want to… | Use |
 |---|---|
 | Flash the current race build | [`race-software-sd/current/Hayabusa-5JCZSJ40-race-software-SD-v4.1.bin`](race-software-sd/current/) |
-| Edit the race build in TunerPro | [`race-software-sd/current/…-race-software-SD-v5-test26.xdf`](race-software-sd/current/) |
+| Edit the race build in TunerPro | [`race-software-sd/current/Hayabusa-Gen3-race-software-SD-v6.xdf`](race-software-sd/current/) |
 | Edit a stock read | Open the folder for your read under [`stock/`](stock/): it holds the `.bin` and its matching `.xdf` |
 | Fix the checksum after editing | `python3 tools/fix_field1_crc.py tuned.bin` |
 
@@ -19,19 +19,21 @@ rolling anti-lag.
 
 ```
 race-software-sd/          custom speed-density + anti-lag build (see its README)
-  current/                 SD-v4.1 bin and the SD-v5 XDFs
+  current/                 SD-v4.1 bin and the race XDF v6
   manifests/               change list for every SD version, SD-v1 to SD-v4.1
   als/                     anti-lag assembly source and simulator harness
   history/bins/            SD-v1 to SD-v4 bins
-  history/xdfs/            the XDFs that went with SD-v1/v2, v3 and v4
+  history/xdfs/            the XDFs that went with SD-v1/v2, v3, v4 and v5 (incl. test26)
 stock/
   <ECM>-<software>/        one folder per stock read: <name>.bin and the matching <name>.xdf
   other-software/          reads from other software families (see below)
   xdf-master/              stock XDF v9 (full-length master the per-read XDFs are built from) and its manifest
   xdf-master/history/      stock XDFs v2 to v8 (there is no v6)
 reverse-engineering/       Ghidra project and decompiled C for 5JCZSJ40
-docs/                      RAM variable list, DTC table, decoded index of the SD-v5 XDF
-tools/                     fix_field1_crc.py, make_stock_xdfs.py
+docs/                      xdf-notes.csv (full text of every XDF item), RAM variable list, DTC table,
+                           decoded index of the SD-v5 XDF, autodef-trace.csv
+tools/                     fix_field1_crc.py, make_stock_xdfs.py, make_race_xdf.py, xdf_userfriendly.py,
+                           xdf_corrections.py, xdf_autodef_trace.py
 ```
 
 ## Stock reads
@@ -41,16 +43,36 @@ byte-identical code (0x10000–0x14FFFF) and a valid field-1 CRC. Every byte tha
 inside an item the XDF defines (apart from an ID string and one variant word, which the XDFs add), so map
 descriptors, addresses and sizes are the same in all of them.
 
-Each XDF has 758 tables, 2,801 constants and 163 flags. The VALUES / STOCK line in every description is that
+Each XDF has 758 tables, 2,769 constants and 195 flags. The VALUES / STOCK line in every description is that
 read's own value, and items whose data differs from 5JCZSJ10 are marked "DIFFERS FROM 5JCZSJ10".
 
-**TunerPro limits.** The SD-v5 race XDF crashed TunerPro on open because of its long, multi-line header; the
-same file with a 490-character header (`test26`) opens, with item descriptions up to 1,372 characters. The
-per-read XDFs stay inside that: single-line headers of about 355 characters and every item description at
-most 1,300 characters. 32 long descriptions are shortened (least important paragraphs first; values, axes and
-addresses are always kept) and say so. The full text is in `stock/xdf-master/`, whose 1,611-character header
-and longer descriptions may be too long for TunerPro, so treat it as reference. Regenerate the per-read XDFs
-with `python3 tools/make_stock_xdfs.py` after changing the master.
+**Folders.** Every XDF you open in TunerPro (the eight stock ones and the race XDF) uses the same numbered
+folders, in the order you would normally work:
+
+| Folder | What is in it |
+|---|---|
+| 00 Start Here | The maps most tunes start with: main fuel maps, ignition advance, injector dead time, rev and top-speed limiters, launch RPM, quickshifter on/off, PWR 1 throttle maps (race file: SD maps, ALS on/off). These items are also in their own folder. |
+| 01–06 Fuel | Main maps; strategy and blend; injectors; start / warm-up / air temp / baro; accel enrichment and decel cut; closed loop (O2) |
+| 07–08 Ignition | Base advance maps; trims and corrections |
+| 09–19 | Throttle (ETV) and power modes, ride mode presets, limiters, launch, quickshifter, traction, anti-lift / pitch / engine brake, cruise, IMU / wheel speed / gear, idle and fan, sensors and scaling |
+| 20 Race | SD fuel maps, boost and ALS spark maps, ALS settings (race XDF only) |
+| 30–32 Diagnostics | DTC on/off; DTC thresholds and MIL; OBD / CAN / meter / EVAP |
+| 40–41 | Other ECU settings; ETV safety monitor (do not edit) |
+| 80, 88, 89 | Extra views: low-confidence items (log before changing), every on/off switch, unused / flat maps |
+| 99 | IDs, variant bytes and check fields (do not edit) |
+
+Each item sits in one main folder; folders 00, 20, 80, 88 and 89 are extra views of items that also live in
+their main folder.
+
+**TunerPro limits.** The SD-v5 race XDF crashed TunerPro on open because of its long, multi-line header. The
+XDFs here keep a single-line header (under 480 characters) and **short item descriptions (at most 420
+characters, about 210 on average)**: what the item does, this bin's value, a confidence / "differs" tag and
+its address. Descriptions take about 0.8 MB per file, down from 1.6 MB. The full text of every item (how the
+ECU uses it, axes, tuning notes, the code it was traced through) is in
+[`docs/xdf-notes.csv`](docs/xdf-notes.csv): search it by title or address. The stock master in
+`stock/xdf-master/` keeps the full text inline and may be too large for TunerPro, so treat it as reference.
+Regenerate with `python3 tools/make_stock_xdfs.py`, `python3 tools/make_race_xdf.py` and
+`python3 tools/xdf_userfriendly.py` (notes CSV) after changing the master.
 
 Calibration bytes differ from 5JCZSJ40 by the amounts below.
 
@@ -71,6 +93,29 @@ Calibration bytes differ from 5JCZSJ40 by the amounts below.
   (see [NOTICE.md](NOTICE.md)). Roughly 700 KB of code differs from 5JCZSJ10, and the field-1 CRC method
   below does not match it.
 - `32990-10L4-5JCUSJ40.ori` — software 5JCUSJ40 in a 2,031,679-byte container, not a plain 2 MB read.
+
+## Race-relevant settings (stock XDFs, no code patch)
+
+| Setting | Where in the XDF | Stock |
+|---|---|---|
+| Top-speed limiter (~299 km/h) | `Per-Gear Limiter \| 6th` — a 6th-gear RPM limit, enable 0x15444B | 10,450 soft / 10,550 rpm hard |
+| Per-gear rev limits 3rd–5th | `Per-Gear Limiter \| 3rd/4th/5th` | parked at 25,000 rpm (off) |
+| Quickshifter cut strategy | `Quickshifter :: Shift Actions` (checkboxes: spark cut, retard, fuel cut + throttle, fuel factor per phase, on- and off-throttle) | see each read's XDF |
+| Launch control RPM | `Launch Control \| Level 1-3` and `Launch Control - Throttle Limit` | Level 1 hard cut 3,700 rpm |
+
+## XDF accuracy (v9.2 audit)
+
+Every RAM variable the XDFs use for units was re-checked against the code that writes it, every constant
+against the code that compares it, and every table against the ECU's own map descriptors. Five variables
+had been mislabelled (two wheel speeds shown as throttle position, throttle rate shown as throttle position,
+traction-control slip error shown as grip %, a wheel-derived RPM shown as engine RPM), which put wrong
+units on about 120 items. All are fixed in the stock and current race XDFs; details and the method are in
+`stock/xdf-master/v9-manifest.txt` and `tools/xdf_corrections.py`.
+
+v9.3 traced every auto-defined constant through the decompiled code: each one's title and description now say
+what the code does with it (threshold on which signal, debounce count, switch, filter strength...) with a
+confidence level and the line of code. The full trace is `docs/autodef-trace.csv`. Notably **0x1824C6 is a tip-in rate
+gate (1.41 deg / 4 samples), not a 91.4 deg WOT gate.**
 
 ## Checksums
 

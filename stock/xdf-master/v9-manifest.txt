@@ -80,3 +80,68 @@ FLASHING NOTES
  - Re-stamp field-1 CRC after editing: python3 fix_field1_crc.py tuned.bin
  - Field 3 (0x1FFEF8) is not recomputed by anything here (same status as every earlier bin).
  - Keep the stock read for recovery.
+
+V9.1 (decoded quickshifter, top-speed limiter, speed windows)
+ - Quickshifter :: Shift Actions - the 32 bytes at 0x154454-0x154473 are now on/off checkboxes. Two profiles
+   (On-Throttle / Off-Throttle, picked by "Quickshifter :: Max Load vs RPM x Final Ignition" plus the
+   On-Throttle Detect Debounce pair), 4 phases each, 4 actions per phase: A Spark Cut, B Ignition Retard,
+   C Fuel Cut + Throttle (close on upshift, blip on downshift), D Phase Fuel Factor. The same table serves
+   upshifts and downshifts (row = current up or down phase).
+ - Quickshifter switches named: Master Disable (0x154450), Force QS On (0x154451), Live Profile Switching
+   up/down (0x154474/75), Live On-Throttle Flag down (0x154476), Phase-4 Ignition Retard Scale (0x154477/78),
+   Phase Fuel Factors (0x15431A-0x15432A). Shift Detection Options A/B (0x154452/53) left as "leave 0x80".
+ - Fixed: the threshold-map description had the on/off-throttle test inverted.
+ - TOP SPEED: the ~299 km/h governor is "Per-Gear Limiter | 6th" (10,450 soft / 10,550 rpm hard, enabled by
+   0x15444B = 0x80) - an RPM limit in 6th gear, same in all eight stock reads. Titles now say so.
+ - Cruise Control :: Max Set Speed Cap (0x154438, 300 km/h) - cruise only, not the governor.
+ - HO2 / Closed Loop speed gates (0x1825CC-D2) and the seven settings-interlock wheel-speed limits
+   (0x18F054-0x18F072) were labelled as throttle angles; they are wheel speeds (X/128 km/h).
+
+V9.2 (full unit / axis audit - tools/xdf_corrections.py)
+ Cause: AUTO-DEFINED items took their unit from the RAM variable they were "compared with". That RAM list
+ was built by guessing each variable from the tables that use it, and some items were tied to the wrong
+ variable of a multi-variable comparison.
+ Audit:
+  - All 38 RAM variables the XDF uses for units re-checked against the code that writes them: 33 correct,
+    5 wrong - fef02634 / fef02636 are front / rear WHEEL SPEED (were "throttle position"), fef02604 is
+    throttle opening RATE (TP now - TP 4 samples ago, 0x8000 = 0), fef01562 is the traction-control slip
+    error (was "grip %"), fef0264C is RPM expected from wheel speed x gear (was "engine speed copy").
+  - Every constant re-paired with the variable the code actually compares it with (one pass over the
+    decompiled 5JCZSJ40): 100 constants re-scaled / renamed (e.g. DTC P0410 gate was 6,210 C -> 2,600 rpm,
+    OBD gates -> 800 rpm, many "throttle thresholds" -> wheel-speed thresholds in km/h).
+  - Every table checked against the ECU map descriptors (all 749 descriptor-backed tables match: address,
+    size, count, axis pointers) and every axis input against the code: 16 axes re-scaled (cruise and
+    speed-monitor axes were shown as RPM, are km/h; throttle-rate, throttle and rear-speed axes were raw).
+  - Range check of every axis and sensor-scaled constant: no axis out of range; remaining out-of-range
+    constants are 0xFFxx "disabled" sentinels.
+ Important: 0x1824C6 ("Fuel Blend - WOT Throttle-Path Gate", 91.4 deg) is compared with fef02604, so it
+ is a TIP-IN RATE GATE: a TP rise of >= 1.41 deg within 4 samples forces 100% TPS-map fuel for 4 cycles.
+ It is not a WOT angle. The fuel-strategy text above ("forced to 256 at/above the WOT gate 91.4 deg") is
+ superseded by this.
+
+V9.3 (every AUTO-DEFINED constant traced through the decompiled code - docs/autodef-trace.csv)
+ Each of the 2272 remaining auto-defined constants (the 89 fixed by hand in v9.1/v9.2 excluded) was traced
+ through the decompiled 5JCZSJ40 code: what the code does with it, and the meaning of the RAM value on the
+ other side. RAM meanings are proven from the code that writes them (sensor ADC channels, then copies,
+ filters and clamps of verified variables): 497 variables, plus 391 counters.
+ Roles found:
+     375  use not resolved (indirect / structure access)
+     363  threshold on a RAM value not yet identified
+     333  threshold on a verified signal (RPM, throttle, grip, wheel speed, pressure, temperature, voltage, gear...)
+     234  factor in a calculation
+     222  threshold on a value computed inside the function
+     218  debounce / timer cycle count
+     159  argument passed to another function
+     108  value written straight into a RAM variable
+     105  on/off switch (0x80 = on)
+      59  clamp / limit value
+      50  filter strength
+      40  element of an indexed table
+       6  function pointer - NOT tunable
+ Confidence: HIGH 820, MEDIUM 1077, LOW 375. Each item's title now names its role, and its description starts
+ "TRACED (v9.3, confidence ...)" with the role, one line of code and the STOCK value.
+ Units changed only where the trace proves them (28 items), e.g. the "Per-Gear RPM Flag gear mask" words
+ 0x1542F4-0x154302 are RPM thresholds (25,400/25,500 rpm = disabled), the DTC lamp battery window is 8 V / 16 V,
+ the ride-mode timing variant uses 11,000-14,800 rpm and 20-60 km/h bands. No raw value changed.
+ Six items are entries of a function-pointer table, not calibration - titled "NOT tunable".
+ Tools: tools/xdf_autodef_trace.py applies docs/autodef-trace.csv (idempotent).
