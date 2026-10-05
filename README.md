@@ -10,31 +10,34 @@ rolling anti-lag.
 
 | I want to… | Use |
 |---|---|
-| Flash the current race build | [`race-software-sd/current/Hayabusa-5JCZSJ40-race-software-SD-v4.1.bin`](race-software-sd/current/) |
-| Edit the race build in TunerPro | [`race-software-sd/current/Hayabusa-Gen3-race-software-SD-v6.xdf`](race-software-sd/current/) |
-| Edit a stock read | Open the folder for your read under [`stock/`](stock/): it holds the `.bin` and its matching `.xdf` |
+| Flash the current race build | [`race/Busa-SD-v4.1.bin`](race/) |
+| Edit the race build in TunerPro | [`race/Busa-SD-v6.xdf`](race/) |
+| Edit a stock read | Open `stock/<software>/` for your read (for example `stock/5JCZSJ40/`): it holds the `.bin` and its matching `.xdf` |
 | Fix the checksum after editing | `python3 tools/fix_field1_crc.py tuned.bin` |
 
 ## Layout
 
 ```
-race-software-sd/          custom speed-density + anti-lag build (see its README)
-  current/                 SD-v4.1 bin and the race XDF v6
-  manifests/               change list for every SD version, SD-v1 to SD-v4.1
-  als/                     anti-lag assembly source and simulator harness
-  history/bins/            SD-v1 to SD-v4 bins
-  history/xdfs/            the XDFs that went with SD-v1/v2, v3, v4 and v5 (incl. test26)
+race/                  custom speed-density + anti-lag build (see its README)
+  Busa-SD-v4.1.bin     current race bin
+  Busa-SD-v6.xdf       race XDF v6 for it
+  notes/               change list for every SD version, SD-v1 to SD-v4.1
+  als/                 anti-lag assembly source and simulator harness
+  old/                 SD-v1 to SD-v4 bins and the XDFs that went with them (SD-v2 to SD-v5, test26)
 stock/
-  <ECM>-<software>/        one folder per stock read: <name>.bin and the matching <name>.xdf
-  other-software/          reads from other software families (see below)
-  xdf-master/              stock XDF v9 (full-length master the per-read XDFs are built from) and its manifest
-  xdf-master/history/      stock XDFs v2 to v8 (there is no v6)
-reverse-engineering/       Ghidra project and decompiled C for 5JCZSJ40
-docs/                      xdf-notes.csv (full text of every XDF item), RAM variable list, DTC table,
-                           decoded index of the SD-v5 XDF, autodef-trace.csv
-tools/                     fix_field1_crc.py, make_stock_xdfs.py, make_race_xdf.py, xdf_userfriendly.py,
-                           xdf_corrections.py, xdf_autodef_trace.py
+  <software>/          one folder per stock read, e.g. 5JCZSJ40/: 5JCZSJ40.bin and 5JCZSJ40.xdf
+  other/               reads from other software families (see below)
+  master/              master-v9.xdf (full-length master the per-read XDFs are built from), v9-notes.txt
+  master/old/          stock XDFs v2 to v8 (there is no v6)
+re/                    Ghidra project and decompiled C for 5JCZSJ40
+docs/                  xdf-notes.csv (full text of every XDF item), ram-variables.csv, dtc-table.csv,
+                       v5-index.csv (decoded index of the SD-v5 XDF), autodef-trace.csv
+tools/                 fix_field1_crc.py, make_stock_xdfs.py, make_race_xdf.py, xdf_userfriendly.py,
+                       xdf_corrections.py, xdf_autodef_trace.py
 ```
+
+All paths are kept short (at most 27 characters inside the repo) so the folder can be copied into Dropbox
+or a Windows folder without hitting path-length limits.
 
 ## Stock reads
 
@@ -70,29 +73,29 @@ characters, about 210 on average)**: what the item does, this bin's value, a con
 its address. Descriptions take about 0.8 MB per file, down from 1.6 MB. The full text of every item (how the
 ECU uses it, axes, tuning notes, the code it was traced through) is in
 [`docs/xdf-notes.csv`](docs/xdf-notes.csv): search it by title or address. The stock master in
-`stock/xdf-master/` keeps the full text inline and may be too large for TunerPro, so treat it as reference.
+`stock/master/` keeps the full text inline and may be too large for TunerPro, so treat it as reference.
 Regenerate with `python3 tools/make_stock_xdfs.py`, `python3 tools/make_race_xdf.py` and
 `python3 tools/xdf_userfriendly.py` (notes CSV) after changing the master.
 
 Calibration bytes differ from 5JCZSJ40 by the amounts below.
 
-| Folder | ECM | Software | Calibration bytes different from 5JCZSJ40 |
+| Folder | ECM part | Software | Calibration bytes different from 5JCZSJ40 |
 |---|---|---|---|
-| [`32990-10L0x-5JCZSJ00/`](stock/32990-10L0x-5JCZSJ00/) | 32990-10L0 | 5JCZSJ00 | 22 |
-| [`32990-10L1x-5JCZSJ10/`](stock/32990-10L1x-5JCZSJ10/) | 32990-10L1 | 5JCZSJ10 | 1,032 (stock v9 XDF verified on this read) |
-| [`32990-10L2x-5JCZSJ20/`](stock/32990-10L2x-5JCZSJ20/) | 32990-10L2 | 5JCZSJ20 | 5 |
-| [`32990-10L3x-5JCZSJ30/`](stock/32990-10L3x-5JCZSJ30/) | 32990-10L3 | 5JCZSJ30 | 1,029 |
-| [`32990-10L4x-5JCZSJ40/`](stock/32990-10L4x-5JCZSJ40/) | 32990-10L4 | 5JCZSJ40 | — (base for every SD bin) |
-| [`32920-10LAx-5JCZSJA0/`](stock/32920-10LAx-5JCZSJA0/) | 32920-10LA | 5JCZSJA0 | 18 |
-| [`32920-10LBx-5JCZSJB0/`](stock/32920-10LBx-5JCZSJB0/) | 32920-10LB | 5JCZSJB0 | 123,307 |
-| [`32920-10LCx-5JCZSNC0/`](stock/32920-10LCx-5JCZSNC0/) | 32920-10LC | 5JCZSNC0 | 252 |
+| [`5JCZSJ00/`](stock/5JCZSJ00/) | 32990-10L0 | 5JCZSJ00 | 22 |
+| [`5JCZSJ10/`](stock/5JCZSJ10/) | 32990-10L1 | 5JCZSJ10 | 1,032 (stock v9 XDF verified on this read) |
+| [`5JCZSJ20/`](stock/5JCZSJ20/) | 32990-10L2 | 5JCZSJ20 | 5 |
+| [`5JCZSJ30/`](stock/5JCZSJ30/) | 32990-10L3 | 5JCZSJ30 | 1,029 |
+| [`5JCZSJ40/`](stock/5JCZSJ40/) | 32990-10L4 | 5JCZSJ40 | — (base for every SD bin) |
+| [`5JCZSJA0/`](stock/5JCZSJA0/) | 32920-10LA | 5JCZSJA0 | 18 |
+| [`5JCZSJB0/`](stock/5JCZSJB0/) | 32920-10LB | 5JCZSJB0 | 123,307 |
+| [`5JCZSNC0/`](stock/5JCZSNC0/) | 32920-10LC | 5JCZSNC0 | 252 |
 
-`stock/other-software/` holds files the XDFs here do **not** fit:
+`stock/other/` holds files the XDFs here do **not** fit:
 
-- `Hayabusa-Gen3-stock-5JCXSJ10.bin` — software 5JCXSJ10, from the original DanCycles HayabusaGen3 project
+- `5JCXSJ10.bin` — software 5JCXSJ10, from the original DanCycles HayabusaGen3 project
   (see [NOTICE.md](NOTICE.md)). Roughly 700 KB of code differs from 5JCZSJ10, and the field-1 CRC method
   below does not match it.
-- `32990-10L4-5JCUSJ40.ori` — software 5JCUSJ40 in a 2,031,679-byte container, not a plain 2 MB read.
+- `5JCUSJ40.ori` (ECM 32990-10L4) — software 5JCUSJ40 in a 2,031,679-byte container, not a plain 2 MB read.
 
 ## Race-relevant settings (stock XDFs, no code patch)
 
@@ -110,7 +113,7 @@ against the code that compares it, and every table against the ECU's own map des
 had been mislabelled (two wheel speeds shown as throttle position, throttle rate shown as throttle position,
 traction-control slip error shown as grip %, a wheel-derived RPM shown as engine RPM), which put wrong
 units on about 120 items. All are fixed in the stock and current race XDFs; details and the method are in
-`stock/xdf-master/v9-manifest.txt` and `tools/xdf_corrections.py`.
+`stock/master/v9-notes.txt` and `tools/xdf_corrections.py`.
 
 v9.3 traced every auto-defined constant through the decompiled code: each one's title and description now say
 what the code does with it (threshold on which signal, debounce count, switch, filter strength...) with a

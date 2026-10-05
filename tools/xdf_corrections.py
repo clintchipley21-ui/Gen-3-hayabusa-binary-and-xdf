@@ -19,7 +19,7 @@ with fef02604, so it is a TIP-IN RATE gate: a TP rise of >= 1.41 deg within 4 sa
 TPS-map fuel for 4 cycles (0x18267A). It is not a 91.4 deg WOT threshold.
 
 usage: python3 tools/xdf_corrections.py <file.xdf> <reference.bin> <sw label in STOCK lines>
-       (the stock master uses 5JCZSJ10 and stock/32990-10L1x-5JCZSJ10/32990-10L1x-5JCZSJ10.bin)
+       (the stock master uses 5JCZSJ10 and stock/5JCZSJ10/5JCZSJ10.bin)
 Running it twice is harmless: every edit checks for the old text first.
 """
 import re

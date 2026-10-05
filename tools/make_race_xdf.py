@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Build the race-software XDF (v6) from the stock master XDF plus the race-specific definitions.
 
-Race XDF v6 = everything in stock/xdf-master (v9.3: quickshifter decode, top-speed limiter, unit audit,
+Race XDF v6 = everything in stock/master (v9.3: quickshifter decode, top-speed limiter, unit audit,
 traced auto-defined items) + the definitions that only make sense on the SD bins, taken from the SD-v5
-race XDF (race-software-sd/history/xdfs):
+race XDF (race/old/SD-v5.xdf):
   - the 8 speed-density fuel maps (X = raw IAP ADC shown as kPa for the 3-bar sensor),
   - the ALS timing-retard and boost spark-retard maps (ex Trim B) and the boost-spark enable weight,
   - the SD description of the blend-threshold curve,
@@ -25,10 +25,10 @@ import make_stock_xdfs as ms  # noqa: E402
 import xdf_userfriendly as uf  # noqa: E402
 
 ROOT = ms.ROOT
-RACE_SRC = os.path.join(ROOT, 'race-software-sd/history/xdfs/Hayabusa-Gen3-5JCZSJ40-5JCZSJ10-race-software-SD-v5.xdf')
-SD_BIN = os.path.join(ROOT, 'race-software-sd/current/Hayabusa-5JCZSJ40-race-software-SD-v4.1.bin')
-STOCK_J40 = os.path.join(ROOT, 'stock/32990-10L4x-5JCZSJ40/32990-10L4x-5JCZSJ40.bin')
-OUT = os.path.join(ROOT, 'race-software-sd/current/Hayabusa-Gen3-race-software-SD-v6.xdf')
+RACE_SRC = os.path.join(ROOT, 'race/old/SD-v5.xdf')
+SD_BIN = os.path.join(ROOT, 'race/Busa-SD-v4.1.bin')
+STOCK_J40 = os.path.join(ROOT, 'stock/5JCZSJ40/5JCZSJ40.bin')
+OUT = os.path.join(ROOT, 'race/Busa-SD-v6.xdf')
 
 # race-specific definitions, keyed by data address (tables: Z data address)
 OVERRIDE_TABLES = {0x159BB8, 0x15E460, 0x162D08, 0x1675B0, 0x16BEB8, 0x16CAD4, 0x16D6F0, 0x16E30C,
@@ -37,7 +37,7 @@ OVERRIDE_CONSTS = {0x18EF58, 0x18EF5A, 0x18EF5E, 0x18EF60, 0x182626, 0x1547E0, 0
 ADD_CONSTS = {0xBF000, 0xBF001, 0xBF002, 0xBF004, 0xBF006, 0xBF008, 0xBF00A, 0xBF00C, 0xBF00E}
 
 HEADER = ('Hayabusa Gen 3 race software SD (speed density on a 3-bar MAP, boost spark retard, rolling anti-lag) '
-          'for Hayabusa-5JCZSJ40-race-software-SD-v4.1.bin. XDF v6 = stock XDF v9.3 + race definitions. SD fuel and '
+          'for race/Busa-SD-v4.1.bin. XDF v6 = stock XDF v9.3 + race definitions. SD fuel and '
           'boost/ALS spark maps: X = raw IAP ADC, kPa = X*0.307429-12.6 (provisional 3-bar). Values are from SD-v4.1; '
           'items the race software changed are marked. Re-stamp field-1 CRC after editing. Start in folder 00; '
           'full item notes: docs/xdf-notes.csv.')
