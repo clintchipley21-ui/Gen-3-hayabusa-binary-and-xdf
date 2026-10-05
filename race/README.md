@@ -29,7 +29,7 @@ across the eight reads). Both ship **disabled** and both are **unverified on har
 
 | Patch | What it adds |
 |---|---|
-| Rolling anti-lag | The SD-v4.1 anti-lag (code 0xBE000, settings 0xBF000, retard map, three hooks). Enable/tune with the ALS items in the race XDF. |
+| Rolling anti-lag | The SD-v4.1 anti-lag (code 0xBE000, settings 0xBF000, retard map, three hooks). Enable/tune with the `ALS ...` items, which are in every XDF (folder `22 Patches & Air-Shifter`). |
 | Auto-upshift (air-shifter) | At a per-gear RPM target, pulses the PAIR-valve output to drive a relay → MAC valve → air ram. No spark cut (the factory quickshifter does that). Tune with the `Auto-Shift ::` items. See [`notes/autoshift.txt`](notes/autoshift.txt). |
 
 Two ways to apply them:

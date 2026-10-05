@@ -78675,6 +78675,132 @@ STOCK (this read): raw 2281701377 / 0x88000001.
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE00A" flags="0x0">
+    <title>ALS Enable</title>
+    <description>0x80 = rolling anti-lag ON; anything else = OFF (START button behaves stock). Ships OFF on a patched bin. @0xBF000</description>
+    <CATEGORYMEM index="0" category="30" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF000" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>raw</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE00B" flags="0x0">
+    <title>ALS Min Coolant Temp</title>
+    <description>ALS will not arm below this coolant temperature (RAM 0xFEF026BD). Default 60 C. @0xBF001</description>
+    <CATEGORYMEM index="0" category="30" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF001" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>deg C</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X*0.9375-30">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE00C" flags="0x0">
+    <title>ALS Min Rolling Speed</title>
+    <description>ALS arms only while FRONT wheel speed (0xFEF0263A) is at or above this; below it START stays stock. Default 20. @0xBF002</description>
+    <CATEGORYMEM index="0" category="30" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF002" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>km/h</units>
+    <decimalpl>1</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/128">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE00D" flags="0x0">
+    <title>ALS Capture Grip Angle (WOT)</title>
+    <description>With START held and rolling, when grip (0xFEF025EC, ~107 deg = full) reaches this the current RPM is captured. Default 90. @0xBF004</description>
+    <CATEGORYMEM index="0" category="30" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF004" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>deg grip</units>
+    <decimalpl>1</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/364.08">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE00E" flags="0x0">
+    <title>ALS Release Grip Angle</title>
+    <description>Grip below this while active releases ALS; re-opening past the capture angle re-captures. Keep below capture. Default 60. @0xBF006</description>
+    <CATEGORYMEM index="0" category="30" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF006" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>deg grip</units>
+    <decimalpl>1</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/364.08">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE00F" flags="0x0">
+    <title>ALS Min Capture RPM</title>
+    <description>ALS will not engage if RPM at capture is below this. Default 3000. Must be greater than the hysteresis. @0xBF008</description>
+    <CATEGORYMEM index="0" category="30" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF008" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>RPM</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/2.56">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE010" flags="0x0">
+    <title>ALS Max Capture RPM</title>
+    <description>Captured RPM is clamped to this. Keep below the fuel-cut (11,200) and ignition-cut (12,000) limiters. Default 10500. @0xBF00A</description>
+    <CATEGORYMEM index="0" category="30" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF00A" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>RPM</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/2.56">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE011" flags="0x0">
+    <title>ALS Hold Hysteresis</title>
+    <description>Spark returns when RPM falls this far below the captured RPM. Smaller = tighter, harsher cut. Default 150. @0xBF00C</description>
+    <CATEGORYMEM index="0" category="30" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF00C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>RPM</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/2.56">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE012" flags="0x0">
+    <title>ALS Max Active Time</title>
+    <description>Safety timer: after this long continuously active, ALS drops out until START is released. Default 2000 counts = 10 s. @0xBF00E</description>
+    <CATEGORYMEM index="0" category="30" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF00E" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>s</units>
+    <decimalpl>1</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X*0.005">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
   <XDFPATCH uniqueid="0xE100" flags="0x0">
     <title>Patch :: Install Rolling Anti-Lag</title>
     <description>Writes the rolling anti-lag code (0xBE000), its settings (0xBF000) and retard map, and three hooks, onto a stock bin. Ships DISABLED - enable with "ALS Enable". After applying in TunerPro, re-stamp the field-1 CRC (tools/fix_field1_crc.py) or the ECU may reject the bin. UNVERIFIED.</description>
