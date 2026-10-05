@@ -1,0 +1,57 @@
+AUTO-UPSHIFT (AIR-SHIFTER)  —  code patch, applies to any stock 5JCZ read
+UNVERIFIED ON HARDWARE. Bench an ECM first and keep a stock read for recovery.
+Source:   autoshift.s (GNU as -mv850e3v5), build with race/als/build.sh
+Apply:    python3 tools/apply_patches.py stock.bin out.bin autoshift     (re-stamps CRC)
+          or TunerPro Patch Manager -> "Install Auto-Upshift (air-shifter)" (then re-stamp CRC)
+================================================================================
+
+WHAT IT DOES (rider's view)
+ Under power (twist grip at/above the WOT gate), when engine RPM reaches the target you set for the
+ current gear, the ECU pulses the PAIR-valve output for a set time. Wire that output -> relay -> MAC
+ valve -> air ram on the shift lever and it kicks a clutchless upshift. The factory quickshifter sees
+ the lever load and makes the ignition cut, so this patch does NOT cut spark itself. Upshift only
+ (1->2 .. 5->6); 6th and neutral never fire. It fires once per gear and re-arms only after RPM has
+ dropped back below the gear target (so it will not chatter). Ships DISABLED.
+
+*** OUTPUT PIN IS UNVERIFIED — BENCH IT FIRST ***
+ The exact PAIR drive bit/polarity is not provable from the decompile alone, so confirm it on the bench
+ before trusting the shifter:
+   1. Flash a CKTEST/bench bin with the patch applied.
+   2. In the XDF set "Auto-Shift :: Bench Test Output" = 0x80 (leave "Auto-Shift :: Enable" OFF).
+   3. Confirm the PAIR control-solenoid ECM terminal goes active (relay clicks) and nothing else moves.
+   4. If it is inverted (active when it should be off) or silent, tell the tuner — the drive is a single
+      spot in autoshift.s (OUT_ON / OUT_OFF macros, candidate fef020e0 bit2 + enable fef020e1 bit0) and
+      is a two-line change. Re-assemble (race/als/build.sh) and re-apply.
+   5. Once confirmed, set Bench Test Output back to 0.
+
+HOW IT WORKS (code)
+ CODE (free flash 0xBE148-0xBE27D, 310 bytes, previously 0xFF; sits right after the anti-lag block):
+   AUTOSHIFT_TICK  runs once per cycle immediately AFTER the stock PAIR/EVAP output mapper FUN_5DB5E,
+                   so a forced pulse has the last word on the output that cycle.
+ HOOK (1):
+   0x5DC9E  jarl 0x5DB5E  ->  jarl AUTOSHIFT_TICK   (AUTOSHIFT_TICK calls FUN_5DB5E first, then returns)
+ INPUTS (all verified): rpm fef0258C (X/2.56), grip fef025EC (X/364.08), gear bitmask fef026C2
+   (1=N,2=1st,4=2nd,8=3rd,0x10=4th,0x20=5th,0x40=6th).
+ RAM: 3 bytes at 0xFEBFE008 (state + pulse timer), in the zero-init local RAM above the stack, clear of
+   the anti-lag scratch at 0xFEBFE000.
+ CALIBRATION 0xBF010-0xBF021 (18 bytes, previously 0xFF), all exposed in the XDF folder
+   "22 Patches & Air-Shifter":
+     +0  u8  Enable            0x80 = on                         (default 0 = OFF)
+     +1  u8  Bench Test Output 0x80 = hold output on             (default 0)
+     +2  u16 Pulse Length      task ticks (~5 ms each), def 20 (~100 ms)
+     +4  u16 Min Grip (WOT)    X/364.08 deg, def ~30 deg
+     +6  u16 Re-arm RPM Drop   X/2.56, def ~500 rpm
+     +8  u16 Target 1->2       X/2.56, def 9500 rpm
+     +10 u16 Target 2->3       def 9500
+     +12 u16 Target 3->4       def 9500
+     +14 u16 Target 4->5       def 9500
+     +16 u16 Target 5->6       def 9500
+
+NOTES / WATCH
+ - Task period is the same ~5 ms family as the anti-lag hook; time it on the bench and size Pulse Length
+   to your ram's travel. Pulse lasts about (Pulse Length + 1) ticks.
+ - No spark cut here by design. If you do NOT run the factory quickshifter, the shift will be made
+   against drive and will be harsh — that is not what this patch is for.
+ - Independent of the anti-lag patch: either can be applied alone or both together (no overlap).
+ - Field 3 (0x1FFEF8) is not recomputed (same as all SD bins). Field-1 CRC is re-stamped by
+   apply_patches.py; re-stamp it yourself if you patch inside TunerPro.

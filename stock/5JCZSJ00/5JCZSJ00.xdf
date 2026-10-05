@@ -36,6 +36,7 @@
     <CATEGORY index="0x1A" name="88 All On/Off Switches (0x80 = ON)" />
     <CATEGORY index="0x1B" name="89 Unused / Flat / Inactive - leave stock" />
     <CATEGORY index="0x1C" name="99 IDs, Variant, Checksums - do not edit" />
+    <CATEGORY index="0x1D" name="22 Patches &amp; Air-Shifter (apply to a stock bin)" />
   </XDFHEADER>
   <XDFTABLE uniqueid="0x1001" flags="0x0">
     <title>Quickshifter :: GP-Sensor Upshift Window A Offset vs Gear</title>
@@ -64224,11 +64225,11 @@ Confidence LOW. @0x18EFD6 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x20703" flags="0x0">
-    <title>ECU Info :: FUN_5627E threshold (computed input) #1</title>
-    <description>Compared with a value computed inside the function (not a single RAM variable).
+    <title>Wheel Speed :: Rear Scaling Divisor - Fine Term (pairs with 0x18F0F4)</title>
+    <description>Fine term of the rear wheel-speed scaling divisor. FUN_770A8 divides the rear pulse by (0x18F0F4 x this) when forming rear raw wheel speed fef02636 (output X/128 km/h)...
 STOCK (5JCZSJ00): 64 raw (raw 64 / 0x40).
-Confidence MEDIUM. @0x18EFD8 - full notes: docs/xdf-notes.csv</description>
-    <CATEGORYMEM index="0" category="24" />
+Confidence HIGH. @0x18EFD8 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="18" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18EFD8" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
@@ -66486,11 +66487,11 @@ Confidence HIGH. @0x18F0F2 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2078E" flags="0x0">
-    <title>Traction Control :: FUN_76F44 threshold (computed input) #3</title>
-    <description>Compared with a value computed inside the function (not a single RAM variable).
+    <title>Wheel Speed :: Front Scaling Divisor (front tire size / tone-ring teeth)</title>
+    <description>Front wheel-speed scaling divisor: sets distance per front ABS pulse, so it carries front tire rolling circumference and the tone-ring tooth count.
 STOCK (5JCZSJ00): 48 raw (raw 48 / 0x30).
-Confidence MEDIUM. @0x18F0F3 - full notes: docs/xdf-notes.csv</description>
-    <CATEGORYMEM index="0" category="15" />
+Confidence HIGH. @0x18F0F3 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="18" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18F0F3" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
@@ -66502,11 +66503,11 @@ Confidence MEDIUM. @0x18F0F3 - full notes: docs/xdf-notes.csv</description>
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x2078F" flags="0x0">
-    <title>ECU Info :: FUN_5627E threshold vs fef01880 #2</title>
-    <description>Compared with RAM fef01880, whose meaning is not identified yet (written by FUN_56310 (alias of fef01880)).
+    <title>Wheel Speed :: Rear Scaling Divisor (rear tire size / tone-ring teeth)</title>
+    <description>Rear wheel-speed scaling divisor, main term: with the fine term 0x18EFD8 it sets distance per rear ABS pulse, carrying rear tire rolling circumference and the tone-ring tooth count.
 STOCK (5JCZSJ00): 50 raw (raw 50 / 0x32).
-Confidence MEDIUM. @0x18F0F4 - full notes: docs/xdf-notes.csv</description>
-    <CATEGORYMEM index="0" category="24" />
+Confidence HIGH. @0x18F0F4 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="18" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x18F0F4" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
@@ -78548,4 +78549,275 @@ STOCK (this read): raw 2281701377 / 0x88000001.
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xE000">
+    <title>Auto-Shift :: Enable</title>
+    <description>0x80 = auto-upshift ON. At each per-gear RPM target it pulses the PAIR output to kick the air ram; no spark cut (the factory quickshifter handles that). Ships OFF. UNVERIFIED - bench first. @0xBF010</description>
+    <CATEGORYMEM index="0" category="30" />
+    <EMBEDDEDDATA mmedaddress="0xBF010" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0xE001">
+    <title>Auto-Shift :: Bench Test Output</title>
+    <description>0x80 = hold the PAIR output asserted (no shifting) so you can confirm on the bench which pin / relay it drives. Set back to 0 for normal use. @0xBF011</description>
+    <CATEGORYMEM index="0" category="30" />
+    <EMBEDDEDDATA mmedaddress="0xBF011" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFCONSTANT uniqueid="0xE002" flags="0x0">
+    <title>Auto-Shift :: Pulse Length</title>
+    <description>How long the PAIR output is held per shift, in ~5 ms task ticks (20 ~= 100 ms). Tune to your air ram. @0xBF012</description>
+    <CATEGORYMEM index="0" category="30" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF012" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>ticks</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE003" flags="0x0">
+    <title>Auto-Shift :: Min Grip (WOT gate)</title>
+    <description>Only auto-shift at or above this twist-grip angle, so it fires under power, not when rolling off. @0xBF014</description>
+    <CATEGORYMEM index="0" category="30" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF014" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>deg</units>
+    <decimalpl>1</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/364.08">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE004" flags="0x0">
+    <title>Auto-Shift :: Re-arm RPM Drop</title>
+    <description>After a shift, engine RPM must fall this far below the gear target before the next gear can fire. @0xBF016</description>
+    <CATEGORYMEM index="0" category="30" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF016" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>RPM</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/2.56">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE005" flags="0x0">
+    <title>Auto-Shift :: Target 1 to 2</title>
+    <description>Upshift when RPM reaches this in 1st gear. @0xBF018</description>
+    <CATEGORYMEM index="0" category="30" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF018" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>RPM</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/2.56">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE006" flags="0x0">
+    <title>Auto-Shift :: Target 2 to 3</title>
+    <description>Upshift when RPM reaches this in 2nd gear. @0xBF01A</description>
+    <CATEGORYMEM index="0" category="30" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF01A" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>RPM</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/2.56">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE007" flags="0x0">
+    <title>Auto-Shift :: Target 3 to 4</title>
+    <description>Upshift when RPM reaches this in 3rd gear. @0xBF01C</description>
+    <CATEGORYMEM index="0" category="30" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF01C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>RPM</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/2.56">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE008" flags="0x0">
+    <title>Auto-Shift :: Target 4 to 5</title>
+    <description>Upshift when RPM reaches this in 4th gear. @0xBF01E</description>
+    <CATEGORYMEM index="0" category="30" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF01E" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>RPM</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/2.56">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE009" flags="0x0">
+    <title>Auto-Shift :: Target 5 to 6</title>
+    <description>Upshift when RPM reaches this in 5th gear. @0xBF020</description>
+    <CATEGORYMEM index="0" category="30" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF020" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>RPM</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/2.56">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE00A" flags="0x0">
+    <title>ALS Enable</title>
+    <description>0x80 = rolling anti-lag ON; anything else = OFF (START button behaves stock). Ships OFF on a patched bin. @0xBF000</description>
+    <CATEGORYMEM index="0" category="30" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF000" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>raw</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE00B" flags="0x0">
+    <title>ALS Min Coolant Temp</title>
+    <description>ALS will not arm below this coolant temperature (RAM 0xFEF026BD). Default 60 C. @0xBF001</description>
+    <CATEGORYMEM index="0" category="30" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF001" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>deg C</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X*0.9375-30">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE00C" flags="0x0">
+    <title>ALS Min Rolling Speed</title>
+    <description>ALS arms only while FRONT wheel speed (0xFEF0263A) is at or above this; below it START stays stock. Default 20. @0xBF002</description>
+    <CATEGORYMEM index="0" category="30" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF002" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>km/h</units>
+    <decimalpl>1</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/128">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE00D" flags="0x0">
+    <title>ALS Capture Grip Angle (WOT)</title>
+    <description>With START held and rolling, when grip (0xFEF025EC, ~107 deg = full) reaches this the current RPM is captured. Default 90. @0xBF004</description>
+    <CATEGORYMEM index="0" category="30" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF004" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>deg grip</units>
+    <decimalpl>1</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/364.08">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE00E" flags="0x0">
+    <title>ALS Release Grip Angle</title>
+    <description>Grip below this while active releases ALS; re-opening past the capture angle re-captures. Keep below capture. Default 60. @0xBF006</description>
+    <CATEGORYMEM index="0" category="30" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF006" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>deg grip</units>
+    <decimalpl>1</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/364.08">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE00F" flags="0x0">
+    <title>ALS Min Capture RPM</title>
+    <description>ALS will not engage if RPM at capture is below this. Default 3000. Must be greater than the hysteresis. @0xBF008</description>
+    <CATEGORYMEM index="0" category="30" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF008" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>RPM</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/2.56">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE010" flags="0x0">
+    <title>ALS Max Capture RPM</title>
+    <description>Captured RPM is clamped to this. Keep below the fuel-cut (11,200) and ignition-cut (12,000) limiters. Default 10500. @0xBF00A</description>
+    <CATEGORYMEM index="0" category="30" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF00A" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>RPM</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/2.56">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE011" flags="0x0">
+    <title>ALS Hold Hysteresis</title>
+    <description>Spark returns when RPM falls this far below the captured RPM. Smaller = tighter, harsher cut. Default 150. @0xBF00C</description>
+    <CATEGORYMEM index="0" category="30" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF00C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>RPM</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/2.56">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE012" flags="0x0">
+    <title>ALS Max Active Time</title>
+    <description>Safety timer: after this long continuously active, ALS drops out until START is released. Default 2000 counts = 10 s. @0xBF00E</description>
+    <CATEGORYMEM index="0" category="30" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF00E" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>s</units>
+    <decimalpl>1</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X*0.005">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFPATCH uniqueid="0xE100" flags="0x0">
+    <title>Patch :: Install Rolling Anti-Lag</title>
+    <description>Writes the rolling anti-lag code (0xBE000), its settings (0xBF000) and retard map, and three hooks, onto a stock bin. Ships DISABLED - enable with "ALS Enable". After applying in TunerPro, re-stamp the field-1 CRC (tools/fix_field1_crc.py) or the ECU may reject the bin. UNVERIFIED.</description>
+    <CATEGORYMEM index="0" category="30" />
+    <XDFPATCHENTRY name="0x2C700" address="0x2C700" datasize="0x4" patchdata="8907D619" basedata="80072100" />
+    <XDFPATCHENTRY name="0x525F2" address="0x525F2" datasize="0x4" patchdata="86FF46BB" basedata="82FF781E" />
+    <XDFPATCHENTRY name="0x5BE02" address="0x5BE02" datasize="0x4" patchdata="86FFFE21" basedata="BFFFB2FF" />
+    <XDFPATCHENTRY name="0xBE000" address="0xBE000" datasize="0x148" patchdata="2A0600E0BFFE2B0600F00B008B670100206E8000ED61AA5D2D06DE24F0FECDC70000C2552D063A26F0FEED6F0100EB770300EE69B14D2D06BD26F0FE8D6F0100AB770100EE69A1452D061E07F0FE6D070000CACF0000C205CA870000B53D2D06EC25F0FEED6F0100CAC70000AA1DEB770500EE69F12D2F068C25F0FEEF7F0100EB770900EE79E125EB770B00EE79A1050E786A7F020000000000CA070000A51DEB770700EE69F10DEA7F0500417A6A7F0400EB770F00EE79D10D207E02004A7F0000850DCA870000D5054A0700006A070400B907E2DC80072100C6002A0600E0BFFECAC70000D20DEA9F03002B0600F00B00EB670D001390AC91B90D0090950D40961500F297D142409E1500F39FD34221061E0AF0FEF231E105F331E105C10F0000B505C18F0000C1CF0000EA370000B6FF66E240063F002A0600E0BFFE8A570100CA5601007F00" basedata="FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" />
+    <XDFPATCHENTRY name="0xBF000" address="0xBF000" datasize="0x10" patchdata="0060000AFF7F5555001E00698001D007" basedata="FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" />
+    <XDFPATCHENTRY name="0x188214" address="0x188214" datasize="0x37C" patchdata="797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979797F868C92797979797979797979797979797979797979" basedata="40404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040404040" />
+  </XDFPATCH>
+  <XDFPATCH uniqueid="0xE101" flags="0x0">
+    <title>Patch :: Install Auto-Upshift (air-shifter)</title>
+    <description>Writes the auto-upshift code (0xBE148), its settings (0xBF010) and one hook, onto a stock bin. Ships DISABLED - enable with "Auto-Shift :: Enable" after confirming the PAIR output on the bench. Re-stamp the field-1 CRC after applying (tools/fix_field1_crc.py). UNVERIFIED.</description>
+    <CATEGORYMEM index="0" category="30" />
+    <XDFPATCHENTRY name="0xBE148" address="0xBE148" datasize="0x136" patchdata="80072100B9FF12FA2A0608E0BFFE2B0610F00B00AB670100206E8000ED61CA0D3006E120F0FED00700003006E020F0FED0170000F57D8B670100ED61BA7D2D06C226F0FE8D6701006262F2156462D2156862B21520761000EE61F20D20762000EE61B20D4A0700006A0702003006E020F0FED0970000E55DEA7F0300607A821D3006E120F0FED00700003006E020F0FED01700005F7A6A7F0200607ABA4D3006E020F0FED0970000CA070000B5456262CA05EB770900C5156462CA05EB770B00F50D6862CA05EB770D00A50D206E1000ED61CA05EB770F00B505EB7711002D068C25F0FEED7F0100CAC70000A20DEB6F07000E60AD61EC79D91DCA870000A51D2D06EC25F0FEED6F0100EB670500EC699115EE79F10DEB7F03006A7F02003006E120F0FED00700003006E020F0FED017000040063F00" basedata="FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" />
+    <XDFPATCHENTRY name="0x5DC9E" address="0x5DC9E" datasize="0x4" patchdata="86FFAA04" basedata="BFFFC0FE" />
+    <XDFPATCHENTRY name="0xBF010" address="0xBF010" datasize="0x12" patchdata="00001400AA2A0005005F005F005F005F005F" basedata="FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" />
+  </XDFPATCH>
 </XDFFORMAT>
