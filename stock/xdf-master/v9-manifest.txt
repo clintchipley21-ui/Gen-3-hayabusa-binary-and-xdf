@@ -118,3 +118,30 @@ V9.2 (full unit / axis audit - tools/xdf_corrections.py)
  is a TIP-IN RATE GATE: a TP rise of >= 1.41 deg within 4 samples forces 100% TPS-map fuel for 4 cycles.
  It is not a WOT angle. The fuel-strategy text above ("forced to 256 at/above the WOT gate 91.4 deg") is
  superseded by this.
+
+V9.3 (every AUTO-DEFINED constant traced through the decompiled code - docs/autodef-trace.csv)
+ Each of the 2272 remaining auto-defined constants (the 89 fixed by hand in v9.1/v9.2 excluded) was traced
+ through the decompiled 5JCZSJ40 code: what the code does with it, and the meaning of the RAM value on the
+ other side. RAM meanings are proven from the code that writes them (sensor ADC channels, then copies,
+ filters and clamps of verified variables): 497 variables, plus 391 counters.
+ Roles found:
+     375  use not resolved (indirect / structure access)
+     363  threshold on a RAM value not yet identified
+     333  threshold on a verified signal (RPM, throttle, grip, wheel speed, pressure, temperature, voltage, gear...)
+     234  factor in a calculation
+     222  threshold on a value computed inside the function
+     218  debounce / timer cycle count
+     159  argument passed to another function
+     108  value written straight into a RAM variable
+     105  on/off switch (0x80 = on)
+      59  clamp / limit value
+      50  filter strength
+      40  element of an indexed table
+       6  function pointer - NOT tunable
+ Confidence: HIGH 820, MEDIUM 1077, LOW 375. Each item's title now names its role, and its description starts
+ "TRACED (v9.3, confidence ...)" with the role, one line of code and the STOCK value.
+ Units changed only where the trace proves them (28 items), e.g. the "Per-Gear RPM Flag gear mask" words
+ 0x1542F4-0x154302 are RPM thresholds (25,400/25,500 rpm = disabled), the DTC lamp battery window is 8 V / 16 V,
+ the ride-mode timing variant uses 11,000-14,800 rpm and 20-60 km/h bands. No raw value changed.
+ Six items are entries of a function-pointer table, not calibration - titled "NOT tunable".
+ Tools: tools/xdf_autodef_trace.py applies docs/autodef-trace.csv (idempotent).

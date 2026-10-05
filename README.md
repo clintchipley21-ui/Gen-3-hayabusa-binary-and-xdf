@@ -30,8 +30,8 @@ stock/
   xdf-master/              stock XDF v9 (full-length master the per-read XDFs are built from) and its manifest
   xdf-master/history/      stock XDFs v2 to v8 (there is no v6)
 reverse-engineering/       Ghidra project and decompiled C for 5JCZSJ40
-docs/                      RAM variable list, DTC table, decoded index of the SD-v5 XDF
-tools/                     fix_field1_crc.py, make_stock_xdfs.py, xdf_corrections.py
+docs/                      RAM variable list, DTC table, decoded index of the SD-v5 XDF, autodef-trace.csv
+tools/                     fix_field1_crc.py, make_stock_xdfs.py, xdf_corrections.py, xdf_autodef_trace.py
 ```
 
 ## Stock reads
@@ -88,7 +88,11 @@ against the code that compares it, and every table against the ECU's own map des
 had been mislabelled (two wheel speeds shown as throttle position, throttle rate shown as throttle position,
 traction-control slip error shown as grip %, a wheel-derived RPM shown as engine RPM), which put wrong
 units on about 120 items. All are fixed in the stock and current race XDFs; details and the method are in
-`stock/xdf-master/v9-manifest.txt` and `tools/xdf_corrections.py`. Notably **0x1824C6 is a tip-in rate
+`stock/xdf-master/v9-manifest.txt` and `tools/xdf_corrections.py`.
+
+v9.3 traced every auto-defined constant through the decompiled code: each one's title and description now say
+what the code does with it (threshold on which signal, debounce count, switch, filter strength...) with a
+confidence level and the line of code. The full trace is `docs/autodef-trace.csv`. Notably **0x1824C6 is a tip-in rate
 gate (1.41 deg / 4 samples), not a 91.4 deg WOT gate.**
 
 ## Checksums
