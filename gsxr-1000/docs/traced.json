@@ -1956,6 +1956,58 @@
   "0x1691B0": {
    "x": "0xFEBF63C0",
    "y": "0xFEBF637A"
+  },
+  "0x174710": {
+   "x": "0xFEBF637C"
+  },
+  "0x193E84": {
+   "x": "0xFEBF6436",
+   "y": "0xFEBF637E"
+  },
+  "0x193EB4": {
+   "x": "0xFEBF6436",
+   "y": "0xFEBF637E"
+  },
+  "0x193EE4": {
+   "x": "0xFEBF6436",
+   "y": "0xFEBF637E"
+  },
+  "0x192D78": {
+   "x": "0xFEBF637E"
+  },
+  "0x192D8C": {
+   "x": "0xFEBF637E"
+  },
+  "0x15134C": {
+   "x": "0xFEBF5E86"
+  },
+  "0x151360": {
+   "x": "0xFEBF5E86"
+  },
+  "0x151374": {
+   "x": "0xFEBF5E86"
+  },
+  "0x151388": {
+   "x": "0xFEBF5E86"
+  },
+  "0x15139C": {
+   "x": "0xFEBF5E86"
+  },
+  "0x174DFC": {
+   "x": "0xFEF02E2C",
+   "y": "0xFEBF6169"
+  },
+  "0x174E48": {
+   "x": "0xFEF02E2C",
+   "y": "0xFEBF6169"
+  },
+  "0x174EE0": {
+   "x": "0xFEF02E2C",
+   "y": "0xFEBF6169"
+  },
+  "0x174F2C": {
+   "x": "0xFEF02E2C",
+   "y": "0xFEBF6169"
   }
  },
  "constants": {
@@ -2076,5 +2128,6 @@
   "ready_flags": "byte at gp-0x5ED6 (idle ready/enable bit-mask), feedback state fef00f48/fef00f49",
   "note": "Idle target itself is in the ported ECT curves; these scalars gate and tune the closed-loop correction."
  },
- "fuel_inputs_note": "Fuel map inputs traced from reader decompiles (docs/trace-fuel.c): gp-relative sensor reads in each a1fca/a201e/a2344 call. gp=0xFEBFC000 -> gp-0x5bc0=ECT, gp-0x5c3c=TP, gp-0x5c86=RPM, gp-0x5c40=TP2, gp-0x5bbe=gear, gp-0x5c0a=speed. Per-gear maps are pointer-table selected by the gear bitmask (gp-0x5bbe); their lookup axis is the gp-read sensor shown."
+ "fuel_inputs_note": "Fuel map inputs traced from reader decompiles (docs/trace-fuel.c): gp-relative sensor reads in each a1fca/a201e/a2344 call. gp=0xFEBFC000 -> gp-0x5bc0=ECT, gp-0x5c3c=TP, gp-0x5c86=RPM, gp-0x5c40=TP2, gp-0x5bbe=gear, gp-0x5c0a=speed. Per-gear maps are pointer-table selected by the gear bitmask (gp-0x5bbe); their lookup axis is the gp-read sensor shown.",
+ "etv_pwr_note": "ETV/cruise/anti-lift map inputs from reader decompiles (docs/trace-etv.c). ETV monitor air/torque = IAP(gp-0x5bca=0xFEBF6436) x RPM(gp-0x5c82=0xFEBF637E); ETV gain = RPM(gp-0x5c84=0xFEBF637C); cruise correction indexed by computed speed error (set - 0xFEBF5E86 actual); LF throttle-limit = derived demand 0xFEF02E2C x load 0xFEBF6169. The 42 'ETV - PWR/Slot' power-mode maps are pointer-table selected (table 0x192BC0/0x192BCC by SDMS mode 0xFEF0267D) with no directly decompilable reader - left unresolved."
 }
