@@ -36912,8 +36912,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x100165" flags="0x0">
-    <title>Scalar @0x154E15 (u8)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u8 read by ECU code (1 ref/1 fn fn 0x028BF0). VALUE 32990-48L00: 2.</description>
+    <title>Engine-brake decel throttle param (FUN_00028bf0)</title>
+    <description>TRACED FROM GSX-R CODE: Engine-brake decel throttle param (FUN_00028bf0). VALUE 32990-48L00: 2 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154E15" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -36924,8 +36924,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x100166" flags="0x0">
-    <title>Quickshifter :: Scalar @0x154E16 (u8)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u8 read by ECU code (2 ref/2 fn fn 0x028CA6). VALUE 32990-48L00: 25. Near maps: Quickshifter :: GP-Sensor Upshift Window A Offset vs Gear.</description>
+    <title>Downshift/decel auto-blip duration (FUN_00028de0: ETV decel-</title>
+    <description>TRACED FROM GSX-R CODE: Downshift/decel auto-blip duration (FUN_00028de0: ETV decel-entry throttle-opening held while counter fef00526 &lt; this; 25 counts). VALUE 32990-48L00: 25 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154E16" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -36935,13 +36935,18 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <DALINK index="0" />
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
-  <XDFFLAG uniqueid="0x100167">
-    <title>Quickshifter :: Flag @0x154E17 (bit7)</title>
-    <description>Decompiler-found flag (UNVERIFIED): 0x80 toggle read by ECU code (1 ref/1 fn fn 0x028DE0). 32990-48L00: 0x00. Near maps: Quickshifter :: GP-Sensor Upshift Window A Offset vs Gear.</description>
+  <XDFCONSTANT uniqueid="0x100167" flags="0x0">
+    <title>Engine-brake/decel throttle mode select (FUN_00028de0; 0 = d</title>
+    <description>TRACED FROM GSX-R CODE: Engine-brake/decel throttle mode select (FUN_00028de0; 0 = decel-entry blip path). VALUE 32990-48L00: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
-    <EMBEDDEDDATA mmedaddress="0x154E17" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <mask>0x80</mask>
-  </XDFFLAG>
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154E17" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>raw</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X"><VAR id="X" /></MATH>
+  </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x100168" flags="0x0">
     <title>Quickshifter :: Scalar @0x154E18 (u8)</title>
     <description>Decompiler-found scalar (UNVERIFIED): u8 read by ECU code (1 ref/1 fn fn 0x02C8FE). VALUE 32990-48L00: 10. Near maps: Quickshifter :: GP-Sensor Upshift Window A Offset vs Gear.</description>

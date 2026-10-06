@@ -111,6 +111,24 @@ Cut-vs-**Slip Error** / **Slip Rate** / **Slip History** maps, all indexed by th
 So to tune TC: the 10 levels are the `TC -` maps already in the XDF; `0xFEBF6459` is the live level
 and `0xFEBF6164` the live slip (both now named in every map's TRACED INPUTS line).
 
+## 3f. Downshift auto-blip / engine-brake throttle (traced)
+The GSX-R1000 opens the ETV on a closed-throttle downshift/decel through the **engine-brake throttle
+controller**, not a separate quickshifter-blip map:
+
+- `FUN_00028de0` (dispatcher) → `FUN_00028ca6` (EB throttle controller) write the ETV throttle-opening
+  demand **`0xFEF005C0`**.
+- On decel/downshift entry it applies the **decel-entry blip map `0x151210`** ("Engine Brake Control
+  :: Throttle Opening … neutral/clutch/decel-entry") for a duration — a counter `fef00526` runs up to
+  **`0x154E16` (= 25 counts, the blip duration)**, mode `0x154E17`.
+- Once engine-braking proper, it uses the **EB-Level 1/2/3 throttle-opening maps** `0x15122C` /
+  `0x151248` / `0x151264` (RPM × gear), indexed by RPM `0xFEF0262C` and gear.
+- Shift detection that triggers it: `FUN_0002a2ba` reads the GP-sensor low/high thresholds
+  `0x150ED8`/`0x150F48` (or `0x150EA0`/`0x150F10`, mode `fef0267f`) vs RPM × gear.
+
+So to tune the downshift blip / engine-braking throttle: the opening amounts are the **Engine Brake
+Control :: Throttle Opening** maps (already in the XDF) and the entry blip is `0x151210` + duration
+`0x154E16`; the live demand is `0xFEF005C0`. Decompile in `trace-engine-brake-blip.c`.
+
 ## 4. How this feeds the XDF
 `traced.json` carries the RPM variable + scale, the lookup routines, the 48 resolved map inputs and
 the traced constants. `make_gsxr_xdf.py` stamps a **“GSX-R TRACED INPUTS”** line onto each resolved
