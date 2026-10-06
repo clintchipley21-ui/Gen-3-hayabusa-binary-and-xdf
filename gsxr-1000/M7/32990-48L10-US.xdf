@@ -14500,6 +14500,7 @@ REFERENCE: descriptor @0x167D94, data @0x1697C0, X @0x16B6F0.</description>
     <title>TC - Target Slip | Level 1 | 1st</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 5.50 to 16.00 % target slip.
 REFERENCE: descriptor @0x167DA8, data @0x169804, X @0x1697D8.</description>
@@ -14541,6 +14542,7 @@ REFERENCE: descriptor @0x167DA8, data @0x169804, X @0x1697D8.</description>
     <title>TC - Target Slip | Level 1 | 2nd</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 5.50 to 16.00 % target slip.
 REFERENCE: descriptor @0x167DBC, data @0x16985C, X @0x169830.</description>
@@ -14582,6 +14584,7 @@ REFERENCE: descriptor @0x167DBC, data @0x16985C, X @0x169830.</description>
     <title>TC - Target Slip | Level 1 | 3rd</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 5.50 to 16.00 % target slip.
 REFERENCE: descriptor @0x167DD0, data @0x1698B4, X @0x169888.</description>
@@ -14623,6 +14626,7 @@ REFERENCE: descriptor @0x167DD0, data @0x1698B4, X @0x169888.</description>
     <title>TC - Target Slip | Level 1 | 4th</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 5.50 to 16.00 % target slip.
 REFERENCE: descriptor @0x167DE4, data @0x16990C, X @0x1698E0.</description>
@@ -14664,6 +14668,7 @@ REFERENCE: descriptor @0x167DE4, data @0x16990C, X @0x1698E0.</description>
     <title>TC - Target Slip | Level 1 | 5th</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 5.50 to 16.00 % target slip.
 REFERENCE: descriptor @0x167DF8, data @0x169964, X @0x169938.</description>
@@ -14747,6 +14752,7 @@ REFERENCE: descriptor @0x167E0C, data @0x1699BC, X @0x169990.</description>
     <title>TC - Target Slip | Level 2 | 1st</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 5.03 to 14.84 % target slip.
 REFERENCE: descriptor @0x167E20, data @0x169A14, X @0x1699E8.</description>
@@ -14788,6 +14794,7 @@ REFERENCE: descriptor @0x167E20, data @0x169A14, X @0x1699E8.</description>
     <title>TC - Target Slip | Level 2 | 2nd</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 5.03 to 14.84 % target slip.
 REFERENCE: descriptor @0x167E34, data @0x169A6C, X @0x169A40.</description>
@@ -14829,6 +14836,7 @@ REFERENCE: descriptor @0x167E34, data @0x169A6C, X @0x169A40.</description>
     <title>TC - Target Slip | Level 2 | 3rd</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 5.03 to 14.84 % target slip.
 REFERENCE: descriptor @0x167E48, data @0x169AC4, X @0x169A98.</description>
@@ -14870,6 +14878,7 @@ REFERENCE: descriptor @0x167E48, data @0x169AC4, X @0x169A98.</description>
     <title>TC - Target Slip | Level 2 | 4th</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 5.03 to 14.84 % target slip.
 REFERENCE: descriptor @0x167E5C, data @0x169B1C, X @0x169AF0.</description>
@@ -14911,6 +14920,7 @@ REFERENCE: descriptor @0x167E5C, data @0x169B1C, X @0x169AF0.</description>
     <title>TC - Target Slip | Level 2 | 5th</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 5.03 to 14.84 % target slip.
 REFERENCE: descriptor @0x167E70, data @0x169B74, X @0x169B48.</description>
@@ -14952,6 +14962,7 @@ REFERENCE: descriptor @0x167E70, data @0x169B74, X @0x169B48.</description>
     <title>TC - Target Slip | Level 2 | 6th/N</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 5.03 to 14.84 % target slip.
 REFERENCE: descriptor @0x167E84, data @0x169BCC, X @0x169BA0.</description>
@@ -14993,6 +15004,7 @@ REFERENCE: descriptor @0x167E84, data @0x169BCC, X @0x169BA0.</description>
     <title>TC - Target Slip | Level 3 | 1st</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 4.75 to 11.60 % target slip.
 REFERENCE: descriptor @0x167E98, data @0x169C24, X @0x169BF8.</description>
@@ -15034,6 +15046,7 @@ REFERENCE: descriptor @0x167E98, data @0x169C24, X @0x169BF8.</description>
     <title>TC - Target Slip | Level 3 | 2nd</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 4.75 to 11.60 % target slip.
 REFERENCE: descriptor @0x167EAC, data @0x169C7C, X @0x169C50.</description>
@@ -15075,6 +15088,7 @@ REFERENCE: descriptor @0x167EAC, data @0x169C7C, X @0x169C50.</description>
     <title>TC - Target Slip | Level 3 | 3rd</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 4.75 to 11.60 % target slip.
 REFERENCE: descriptor @0x167EC0, data @0x169CD4, X @0x169CA8.</description>
@@ -15116,6 +15130,7 @@ REFERENCE: descriptor @0x167EC0, data @0x169CD4, X @0x169CA8.</description>
     <title>TC - Target Slip | Level 3 | 4th</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 4.75 to 11.60 % target slip.
 REFERENCE: descriptor @0x167ED4, data @0x169D2C, X @0x169D00.</description>
@@ -15157,6 +15172,7 @@ REFERENCE: descriptor @0x167ED4, data @0x169D2C, X @0x169D00.</description>
     <title>TC - Target Slip | Level 3 | 5th</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 4.75 to 11.60 % target slip.
 REFERENCE: descriptor @0x167EE8, data @0x169D84, X @0x169D58.</description>
@@ -15198,6 +15214,7 @@ REFERENCE: descriptor @0x167EE8, data @0x169D84, X @0x169D58.</description>
     <title>TC - Target Slip | Level 3 | 6th/N</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 4.75 to 11.60 % target slip.
 REFERENCE: descriptor @0x167EFC, data @0x169DDC, X @0x169DB0.</description>
@@ -15239,6 +15256,7 @@ REFERENCE: descriptor @0x167EFC, data @0x169DDC, X @0x169DB0.</description>
     <title>TC - Target Slip | Level 4 | 1st</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 4.00 to 11.60 % target slip.
 REFERENCE: descriptor @0x167F10, data @0x169E34, X @0x169E08.</description>
@@ -15280,6 +15298,7 @@ REFERENCE: descriptor @0x167F10, data @0x169E34, X @0x169E08.</description>
     <title>TC - Target Slip | Level 4 | 2nd</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 4.00 to 11.60 % target slip.
 REFERENCE: descriptor @0x167F24, data @0x169E8C, X @0x169E60.</description>
@@ -15321,6 +15340,7 @@ REFERENCE: descriptor @0x167F24, data @0x169E8C, X @0x169E60.</description>
     <title>TC - Target Slip | Level 4 | 3rd</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 4.00 to 11.60 % target slip.
 REFERENCE: descriptor @0x167F38, data @0x169EE4, X @0x169EB8.</description>
@@ -15362,6 +15382,7 @@ REFERENCE: descriptor @0x167F38, data @0x169EE4, X @0x169EB8.</description>
     <title>TC - Target Slip | Level 4 | 4th</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 4.00 to 11.60 % target slip.
 REFERENCE: descriptor @0x167F4C, data @0x169F3C, X @0x169F10.</description>
@@ -15403,6 +15424,7 @@ REFERENCE: descriptor @0x167F4C, data @0x169F3C, X @0x169F10.</description>
     <title>TC - Target Slip | Level 4 | 5th</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 4.00 to 11.60 % target slip.
 REFERENCE: descriptor @0x167F60, data @0x169F94, X @0x169F68.</description>
@@ -15444,6 +15466,7 @@ REFERENCE: descriptor @0x167F60, data @0x169F94, X @0x169F68.</description>
     <title>TC - Target Slip | Level 4 | 6th/N</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 4.00 to 11.60 % target slip.
 REFERENCE: descriptor @0x167F74, data @0x169FEC, X @0x169FC0.</description>
@@ -15485,6 +15508,7 @@ REFERENCE: descriptor @0x167F74, data @0x169FEC, X @0x169FC0.</description>
     <title>TC - Target Slip | Level 5 | 1st</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 4.00 to 8.30 % target slip.
 REFERENCE: descriptor @0x167F88, data @0x16A044, X @0x16A018.</description>
@@ -15526,6 +15550,7 @@ REFERENCE: descriptor @0x167F88, data @0x16A044, X @0x16A018.</description>
     <title>TC - Target Slip | Level 5 | 2nd</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 4.00 to 8.30 % target slip.
 REFERENCE: descriptor @0x167F9C, data @0x16A09C, X @0x16A070.</description>
@@ -15567,6 +15592,7 @@ REFERENCE: descriptor @0x167F9C, data @0x16A09C, X @0x16A070.</description>
     <title>TC - Target Slip | Level 5 | 3rd</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 4.00 to 8.30 % target slip.
 REFERENCE: descriptor @0x167FB0, data @0x16A0F4, X @0x16A0C8.</description>
@@ -15608,6 +15634,7 @@ REFERENCE: descriptor @0x167FB0, data @0x16A0F4, X @0x16A0C8.</description>
     <title>TC - Target Slip | Level 5 | 4th</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 4.00 to 8.30 % target slip.
 REFERENCE: descriptor @0x167FC4, data @0x16A14C, X @0x16A120.</description>
@@ -15649,6 +15676,7 @@ REFERENCE: descriptor @0x167FC4, data @0x16A14C, X @0x16A120.</description>
     <title>TC - Target Slip | Level 5 | 5th</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 4.00 to 8.30 % target slip.
 REFERENCE: descriptor @0x167FD8, data @0x16A1A4, X @0x16A178.</description>
@@ -15690,6 +15718,7 @@ REFERENCE: descriptor @0x167FD8, data @0x16A1A4, X @0x16A178.</description>
     <title>TC - Target Slip | Level 5 | 6th/N</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 4.00 to 8.30 % target slip.
 REFERENCE: descriptor @0x167FEC, data @0x16A1FC, X @0x16A1D0.</description>
@@ -15731,6 +15760,7 @@ REFERENCE: descriptor @0x167FEC, data @0x16A1FC, X @0x16A1D0.</description>
     <title>TC - Target Slip | Level 6 | 1st</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 4.00 to 7.50 % target slip.
 REFERENCE: descriptor @0x168000, data @0x16A254, X @0x16A228.</description>
@@ -15772,6 +15802,7 @@ REFERENCE: descriptor @0x168000, data @0x16A254, X @0x16A228.</description>
     <title>TC - Target Slip | Level 6 | 2nd</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 4.00 to 7.50 % target slip.
 REFERENCE: descriptor @0x168014, data @0x16A2AC, X @0x16A280.</description>
@@ -15813,6 +15844,7 @@ REFERENCE: descriptor @0x168014, data @0x16A2AC, X @0x16A280.</description>
     <title>TC - Target Slip | Level 6 | 3rd</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 4.00 to 7.50 % target slip.
 REFERENCE: descriptor @0x168028, data @0x16A304, X @0x16A2D8.</description>
@@ -15854,6 +15886,7 @@ REFERENCE: descriptor @0x168028, data @0x16A304, X @0x16A2D8.</description>
     <title>TC - Target Slip | Level 6 | 4th</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 4.00 to 7.50 % target slip.
 REFERENCE: descriptor @0x16803C, data @0x16A35C, X @0x16A330.</description>
@@ -15895,6 +15928,7 @@ REFERENCE: descriptor @0x16803C, data @0x16A35C, X @0x16A330.</description>
     <title>TC - Target Slip | Level 6 | 5th</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 4.00 to 7.50 % target slip.
 REFERENCE: descriptor @0x168050, data @0x16A3B4, X @0x16A388.</description>
@@ -15936,6 +15970,7 @@ REFERENCE: descriptor @0x168050, data @0x16A3B4, X @0x16A388.</description>
     <title>TC - Target Slip | Level 6 | 6th/N</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 4.00 to 7.50 % target slip.
 REFERENCE: descriptor @0x168064, data @0x16A40C, X @0x16A3E0.</description>
@@ -15977,6 +16012,7 @@ REFERENCE: descriptor @0x168064, data @0x16A40C, X @0x16A3E0.</description>
     <title>TC - Target Slip | Level 7 | 1st</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 4.05 to 6.51 % target slip.
 REFERENCE: descriptor @0x168078, data @0x16A464, X @0x16A438.</description>
@@ -16018,6 +16054,7 @@ REFERENCE: descriptor @0x168078, data @0x16A464, X @0x16A438.</description>
     <title>TC - Target Slip | Level 7 | 2nd</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 4.05 to 6.51 % target slip.
 REFERENCE: descriptor @0x16808C, data @0x16A4BC, X @0x16A490.</description>
@@ -16059,6 +16096,7 @@ REFERENCE: descriptor @0x16808C, data @0x16A4BC, X @0x16A490.</description>
     <title>TC - Target Slip | Level 7 | 3rd</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 4.05 to 6.51 % target slip.
 REFERENCE: descriptor @0x1680A0, data @0x16A514, X @0x16A4E8.</description>
@@ -16100,6 +16138,7 @@ REFERENCE: descriptor @0x1680A0, data @0x16A514, X @0x16A4E8.</description>
     <title>TC - Target Slip | Level 7 | 4th</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 4.05 to 6.51 % target slip.
 REFERENCE: descriptor @0x1680B4, data @0x16A56C, X @0x16A540.</description>
@@ -16141,6 +16180,7 @@ REFERENCE: descriptor @0x1680B4, data @0x16A56C, X @0x16A540.</description>
     <title>TC - Target Slip | Level 7 | 5th</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 4.05 to 6.51 % target slip.
 REFERENCE: descriptor @0x1680C8, data @0x16A5C4, X @0x16A598.</description>
@@ -16182,6 +16222,7 @@ REFERENCE: descriptor @0x1680C8, data @0x16A5C4, X @0x16A598.</description>
     <title>TC - Target Slip | Level 7 | 6th/N</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 4.05 to 6.51 % target slip.
 REFERENCE: descriptor @0x1680DC, data @0x16A61C, X @0x16A5F0.</description>
@@ -16223,6 +16264,7 @@ REFERENCE: descriptor @0x1680DC, data @0x16A61C, X @0x16A5F0.</description>
     <title>TC - Target Slip | Level 8 | 1st</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 2.80 to 5.50 % target slip.
 REFERENCE: descriptor @0x1680F0, data @0x16A674, X @0x16A648.</description>
@@ -16264,6 +16306,7 @@ REFERENCE: descriptor @0x1680F0, data @0x16A674, X @0x16A648.</description>
     <title>TC - Target Slip | Level 8 | 2nd</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 2.80 to 5.50 % target slip.
 REFERENCE: descriptor @0x168104, data @0x16A6CC, X @0x16A6A0.</description>
@@ -16305,6 +16348,7 @@ REFERENCE: descriptor @0x168104, data @0x16A6CC, X @0x16A6A0.</description>
     <title>TC - Target Slip | Level 8 | 3rd</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 2.80 to 5.50 % target slip.
 REFERENCE: descriptor @0x168118, data @0x16A724, X @0x16A6F8.</description>
@@ -16346,6 +16390,7 @@ REFERENCE: descriptor @0x168118, data @0x16A724, X @0x16A6F8.</description>
     <title>TC - Target Slip | Level 8 | 4th</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 2.80 to 5.50 % target slip.
 REFERENCE: descriptor @0x16812C, data @0x16A77C, X @0x16A750.</description>
@@ -16387,6 +16432,7 @@ REFERENCE: descriptor @0x16812C, data @0x16A77C, X @0x16A750.</description>
     <title>TC - Target Slip | Level 8 | 5th</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 2.80 to 5.50 % target slip.
 REFERENCE: descriptor @0x168140, data @0x16A7D4, X @0x16A7A8.</description>
@@ -16428,6 +16474,7 @@ REFERENCE: descriptor @0x168140, data @0x16A7D4, X @0x16A7A8.</description>
     <title>TC - Target Slip | Level 8 | 6th/N</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 2.80 to 5.50 % target slip.
 REFERENCE: descriptor @0x168154, data @0x16A82C, X @0x16A800.</description>
@@ -16469,6 +16516,7 @@ REFERENCE: descriptor @0x168154, data @0x16A82C, X @0x16A800.</description>
     <title>TC - Target Slip | Level 9 | 1st</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 2.90 to 6.80 % target slip.
 REFERENCE: descriptor @0x168168, data @0x16A884, X @0x16A858.</description>
@@ -16510,6 +16558,7 @@ REFERENCE: descriptor @0x168168, data @0x16A884, X @0x16A858.</description>
     <title>TC - Target Slip | Level 9 | 2nd</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 2.40 to 6.80 % target slip.
 REFERENCE: descriptor @0x16817C, data @0x16A8DC, X @0x16A8B0.</description>
@@ -16551,6 +16600,7 @@ REFERENCE: descriptor @0x16817C, data @0x16A8DC, X @0x16A8B0.</description>
     <title>TC - Target Slip | Level 9 | 3rd</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 VALUES (32990-48L10-US): 2.40 to 6.80 % target slip.
 REFERENCE: descriptor @0x1681BC, data @0x168190, X @0x16A908.</description>
     <CATEGORYMEM index="0" category="46" />
@@ -16591,6 +16641,7 @@ REFERENCE: descriptor @0x1681BC, data @0x168190, X @0x16A908.</description>
     <title>TC - Target Slip | Level 9 | 4th</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 VALUES (32990-48L10-US): 2.40 to 6.80 % target slip.
 REFERENCE: descriptor @0x1681FC, data @0x1681D0, X @0x16A934.</description>
     <CATEGORYMEM index="0" category="46" />
@@ -16631,6 +16682,7 @@ REFERENCE: descriptor @0x1681FC, data @0x1681D0, X @0x16A934.</description>
     <title>TC - Target Slip | Level 9 | 5th</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 VALUES (32990-48L10-US): 2.40 to 6.80 % target slip.
 REFERENCE: descriptor @0x16823C, data @0x168210, X @0x16A960.</description>
     <CATEGORYMEM index="0" category="46" />
@@ -16671,6 +16723,7 @@ REFERENCE: descriptor @0x16823C, data @0x168210, X @0x16A960.</description>
     <title>TC - Target Slip | Level 9 | 6th/N</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 VALUES (32990-48L10-US): 2.40 to 6.80 % target slip.
 REFERENCE: descriptor @0x16827C, data @0x168250, X @0x16A98C.</description>
     <CATEGORYMEM index="0" category="46" />
@@ -16711,6 +16764,7 @@ REFERENCE: descriptor @0x16827C, data @0x168250, X @0x16A98C.</description>
     <title>TC - Target Slip | Level 10 | 1st</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 2.90 to 6.00 % target slip.
 REFERENCE: descriptor @0x168290, data @0x16A9E4, X @0x16A9B8.</description>
@@ -16752,6 +16806,7 @@ REFERENCE: descriptor @0x168290, data @0x16A9E4, X @0x16A9B8.</description>
     <title>TC - Target Slip | Level 10 | 2nd</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 2.40 to 6.00 % target slip.
 REFERENCE: descriptor @0x1682A4, data @0x16AA3C, X @0x16AA10.</description>
@@ -16793,6 +16848,7 @@ REFERENCE: descriptor @0x1682A4, data @0x16AA3C, X @0x16AA10.</description>
     <title>TC - Target Slip | Level 10 | 3rd</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 2.40 to 6.00 % target slip.
 REFERENCE: descriptor @0x1682B8, data @0x16AA94, X @0x16AA68.</description>
@@ -16834,6 +16890,7 @@ REFERENCE: descriptor @0x1682B8, data @0x16AA94, X @0x16AA68.</description>
     <title>TC - Target Slip | Level 10 | 4th</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 2.40 to 6.00 % target slip.
 REFERENCE: descriptor @0x1682CC, data @0x16AAEC, X @0x16AAC0.</description>
@@ -16875,6 +16932,7 @@ REFERENCE: descriptor @0x1682CC, data @0x16AAEC, X @0x16AAC0.</description>
     <title>TC - Target Slip | Level 10 | 5th</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 2.40 to 6.00 % target slip.
 REFERENCE: descriptor @0x1682E0, data @0x16AB44, X @0x16AB18.</description>
@@ -16916,6 +16974,7 @@ REFERENCE: descriptor @0x1682E0, data @0x16AB44, X @0x16AB18.</description>
     <title>TC - Target Slip | Level 10 | 6th/N</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 2.40 to 6.00 % target slip.
 REFERENCE: descriptor @0x1682F4, data @0x16AB9C, X @0x16AB70.</description>
@@ -16957,6 +17016,7 @@ REFERENCE: descriptor @0x1682F4, data @0x16AB9C, X @0x16AB70.</description>
     <title>TC - Target Slip | Launch | 1st</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 5.50 to 16.00 % target slip.
 REFERENCE: descriptor @0x168308, data @0x16ABF4, X @0x16ABC8.</description>
@@ -16998,6 +17058,7 @@ REFERENCE: descriptor @0x168308, data @0x16ABF4, X @0x16ABC8.</description>
     <title>TC - Target Slip | Launch | 2nd</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 5.50 to 16.00 % target slip.
 REFERENCE: descriptor @0x16831C, data @0x16AC4C, X @0x16AC20.</description>
@@ -17039,6 +17100,7 @@ REFERENCE: descriptor @0x16831C, data @0x16AC4C, X @0x16AC20.</description>
     <title>TC - Target Slip | Launch | 3rd</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 5.50 to 16.00 % target slip.
 REFERENCE: descriptor @0x168330, data @0x16ACA4, X @0x16AC78.</description>
@@ -17080,6 +17142,7 @@ REFERENCE: descriptor @0x168330, data @0x16ACA4, X @0x16AC78.</description>
     <title>TC - Target Slip | Launch | 4th</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 5.50 to 16.00 % target slip.
 REFERENCE: descriptor @0x168344, data @0x16ACFC, X @0x16ACD0.</description>
@@ -17121,6 +17184,7 @@ REFERENCE: descriptor @0x168344, data @0x16ACFC, X @0x16ACD0.</description>
     <title>TC - Target Slip | Launch | 5th</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 5.50 to 16.00 % target slip.
 REFERENCE: descriptor @0x168358, data @0x16AD54, X @0x16AD28.</description>
@@ -17162,6 +17226,7 @@ REFERENCE: descriptor @0x168358, data @0x16AD54, X @0x16AD28.</description>
     <title>TC - Target Slip | Launch | 6th/N</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 21 pts -1606..14460 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E7A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d602.
 VALUES (32990-48L10-US): 5.50 to 16.00 % target slip.
 REFERENCE: descriptor @0x16836C, data @0x16ADAC, X @0x16AD80.</description>
@@ -17287,6 +17352,7 @@ REFERENCE: descriptor @0x168394, data @0x16ADEC, X @0x16ADD8.</description>
     <title>TC - Lean Slip Offset | Level 2</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 0..60.00 deg (est.)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6430 (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d9de.
 VALUES (32990-48L10-US): 32768 to 35881 raw.
 REFERENCE: descriptor @0x1683A8, data @0x16AE14, X @0x16AE00.</description>
@@ -17328,6 +17394,7 @@ REFERENCE: descriptor @0x1683A8, data @0x16AE14, X @0x16AE00.</description>
     <title>TC - Lean Slip Offset | Level 3</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 0..60.00 deg (est.)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6430 (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d9de.
 VALUES (32990-48L10-US): 32768 to 35881 raw.
 REFERENCE: descriptor @0x1683BC, data @0x16AE3C, X @0x16AE28.</description>
@@ -17369,6 +17436,7 @@ REFERENCE: descriptor @0x1683BC, data @0x16AE3C, X @0x16AE28.</description>
     <title>TC - Lean Slip Offset | Level 4</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 0..60.00 deg (est.)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6430 (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d9de.
 VALUES (32990-48L10-US): 32768 to 35881 raw.
 REFERENCE: descriptor @0x1683D0, data @0x16AE64, X @0x16AE50.</description>
@@ -17410,6 +17478,7 @@ REFERENCE: descriptor @0x1683D0, data @0x16AE64, X @0x16AE50.</description>
     <title>TC - Lean Slip Offset | Level 5</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 0..60.00 deg (est.)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6430 (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d9de.
 VALUES (32990-48L10-US): 32768 to 34817 raw.
 REFERENCE: descriptor @0x1683E4, data @0x16AE8C, X @0x16AE78.</description>
@@ -17451,6 +17520,7 @@ REFERENCE: descriptor @0x1683E4, data @0x16AE8C, X @0x16AE78.</description>
     <title>TC - Lean Slip Offset | Level 6</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 0..60.00 deg (est.)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6430 (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d9de.
 VALUES (32990-48L10-US): 32768 to 34918 raw.
 REFERENCE: descriptor @0x1683F8, data @0x16AEB4, X @0x16AEA0.</description>
@@ -17492,6 +17562,7 @@ REFERENCE: descriptor @0x1683F8, data @0x16AEB4, X @0x16AEA0.</description>
     <title>TC - Lean Slip Offset | Level 7</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 0..60.00 deg (est.)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6430 (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d9de.
 VALUES (32990-48L10-US): 32768 to 35133 raw.
 REFERENCE: descriptor @0x16840C, data @0x16AEDC, X @0x16AEC8.</description>
@@ -17533,6 +17604,7 @@ REFERENCE: descriptor @0x16840C, data @0x16AEDC, X @0x16AEC8.</description>
     <title>TC - Lean Slip Offset | Level 8</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 0..60.00 deg (est.)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6430 (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d9de.
 VALUES (32990-48L10-US): 32154 to 35320 raw.
 REFERENCE: descriptor @0x168420, data @0x16AF04, X @0x16AEF0.</description>
@@ -17574,6 +17646,7 @@ REFERENCE: descriptor @0x168420, data @0x16AF04, X @0x16AEF0.</description>
     <title>TC - Lean Slip Offset | Level 9</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 0..60.00 deg (est.)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6430 (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d9de.
 VALUES (32990-48L10-US): 32154 to 35882 raw.
 REFERENCE: descriptor @0x168434, data @0x16AF2C, X @0x16AF18.</description>
@@ -17615,6 +17688,7 @@ REFERENCE: descriptor @0x168434, data @0x16AF2C, X @0x16AF18.</description>
     <title>TC - Lean Slip Offset | Level 10</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 0..60.00 deg (est.)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6430 (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d9de.
 VALUES (32990-48L10-US): 32154 to 35882 raw.
 REFERENCE: descriptor @0x168448, data @0x16AF54, X @0x16AF40.</description>
@@ -17656,6 +17730,7 @@ REFERENCE: descriptor @0x168448, data @0x16AF54, X @0x16AF40.</description>
     <title>TC - Lean Slip Offset | Launch</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 0..60.00 deg (est.)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6430 (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004d9de.
 VALUES (32990-48L10-US): 32768 to 32768 raw - every cell the same.
 REFERENCE: descriptor @0x16845C, data @0x16AF7C, X @0x16AF68.</description>
@@ -17697,6 +17772,7 @@ REFERENCE: descriptor @0x16845C, data @0x16AF7C, X @0x16AF68.</description>
     <title>Traction Control :: Slip Gain vs RPM | 1st Gear</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 15 pts 1000..12000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF637E (engine RPM (main map axis) [title-anchored]).
 INPUTS (Hayabusa decompile): X = engine RPM. Read by FUN_0004da8e.
 VALUES (32990-48L10-US): 49 to 128 raw.
 REFERENCE: descriptor @0x168470, data @0x16B6FC, X @0x16AF90.</description>
@@ -17738,6 +17814,7 @@ REFERENCE: descriptor @0x168470, data @0x16B6FC, X @0x16AF90.</description>
     <title>Traction Control :: Slip Gain vs RPM | 2nd Gear</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 15 pts 1000..12000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF637E (engine RPM (main map axis) [title-anchored]).
 INPUTS (Hayabusa decompile): X = engine RPM. Read by FUN_0004da8e.
 VALUES (32990-48L10-US): 49 to 128 raw.
 REFERENCE: descriptor @0x168484, data @0x16B70C, X @0x16AFB0.</description>
@@ -17779,6 +17856,7 @@ REFERENCE: descriptor @0x168484, data @0x16B70C, X @0x16AFB0.</description>
     <title>Traction Control :: Slip Gain vs RPM | 3rd Gear</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 15 pts 1000..12000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF637E (engine RPM (main map axis) [title-anchored]).
 INPUTS (Hayabusa decompile): X = engine RPM. Read by FUN_0004da8e.
 VALUES (32990-48L10-US): 49 to 128 raw.
 REFERENCE: descriptor @0x168498, data @0x16B71C, X @0x16AFD0.</description>
@@ -17820,6 +17898,7 @@ REFERENCE: descriptor @0x168498, data @0x16B71C, X @0x16AFD0.</description>
     <title>Traction Control :: Slip Gain vs RPM | 4th Gear</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 15 pts 1000..12000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF637E (engine RPM (main map axis) [title-anchored]).
 INPUTS (Hayabusa decompile): X = engine RPM. Read by FUN_0004da8e.
 VALUES (32990-48L10-US): 49 to 128 raw.
 REFERENCE: descriptor @0x1684AC, data @0x16B72C, X @0x16AFF0.</description>
@@ -17861,6 +17940,7 @@ REFERENCE: descriptor @0x1684AC, data @0x16B72C, X @0x16AFF0.</description>
     <title>Traction Control :: Slip Gain vs RPM | 5th Gear</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 15 pts 1000..12000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF637E (engine RPM (main map axis) [title-anchored]).
 INPUTS (Hayabusa decompile): X = engine RPM. Read by FUN_0004da8e.
 VALUES (32990-48L10-US): 49 to 128 raw.
 REFERENCE: descriptor @0x1684C0, data @0x16B73C, X @0x16B010.</description>
@@ -18112,6 +18192,7 @@ REFERENCE: descriptor @0x16858C, data @0x16B0B4, X @0x16B0A0.</description>
     <title>TC - Cut vs Slip Error | Level 2</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 26 pts 0..500 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6164 (traction-control slip (indexes TC cut maps) [traced]).
 INPUTS (Hayabusa decompile): X = grip / APS %. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 0 to 100 cut demand (raw).
 REFERENCE: descriptor @0x168608, data @0x1685D4, X @0x1685A0.</description>
@@ -18153,6 +18234,7 @@ REFERENCE: descriptor @0x168608, data @0x1685D4, X @0x1685A0.</description>
     <title>TC - Cut vs Slip Rate | Level 2</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 205..860 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF60F4 (traction-control slip / wheel [title-anchored]).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 32768 to 37028 raw.
 REFERENCE: descriptor @0x16861C, data @0x16B0DC, X @0x16B0C8.</description>
@@ -18194,6 +18276,7 @@ REFERENCE: descriptor @0x16861C, data @0x16B0DC, X @0x16B0C8.</description>
     <title>TC - Cut vs Slip History | Level 2</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 32973..33628 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63FA (engine RPM (high range) (12880-13136 rpm)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 32768 to 37028 raw.
 REFERENCE: descriptor @0x168630, data @0x16B104, X @0x16B0F0.</description>
@@ -18235,6 +18318,7 @@ REFERENCE: descriptor @0x168630, data @0x16B104, X @0x16B0F0.</description>
     <title>TC - Lean Gain | Level 2</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 0..60.00 deg (est.)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6430 (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 100 to 100 % of slip-error cut - every cell the same.
 REFERENCE: descriptor @0x168644, data @0x16B12C, X @0x16B118.</description>
@@ -18276,6 +18360,7 @@ REFERENCE: descriptor @0x168644, data @0x16B12C, X @0x16B118.</description>
     <title>TC - Cut vs Slip Error | Level 3</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 26 pts 0..500 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6164 (traction-control slip (indexes TC cut maps) [traced]).
 INPUTS (Hayabusa decompile): X = grip / APS %. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 0 to 100 cut demand (raw).
 REFERENCE: descriptor @0x1686C0, data @0x16868C, X @0x168658.</description>
@@ -18317,6 +18402,7 @@ REFERENCE: descriptor @0x1686C0, data @0x16868C, X @0x168658.</description>
     <title>TC - Cut vs Slip Rate | Level 3</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 205..860 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF60F4 (traction-control slip / wheel [title-anchored]).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 32768 to 37028 raw.
 REFERENCE: descriptor @0x1686D4, data @0x16B154, X @0x16B140.</description>
@@ -18358,6 +18444,7 @@ REFERENCE: descriptor @0x1686D4, data @0x16B154, X @0x16B140.</description>
     <title>TC - Cut vs Slip History | Level 3</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 32973..33628 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63FA (engine RPM (high range) (12880-13136 rpm)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 32768 to 37028 raw.
 REFERENCE: descriptor @0x1686E8, data @0x16B17C, X @0x16B168.</description>
@@ -18399,6 +18486,7 @@ REFERENCE: descriptor @0x1686E8, data @0x16B17C, X @0x16B168.</description>
     <title>TC - Lean Gain | Level 3</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 0..60.00 deg (est.)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6430 (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 70 to 100 % of slip-error cut.
 REFERENCE: descriptor @0x1686FC, data @0x16B1A4, X @0x16B190.</description>
@@ -18440,6 +18528,7 @@ REFERENCE: descriptor @0x1686FC, data @0x16B1A4, X @0x16B190.</description>
     <title>TC - Cut vs Slip Error | Level 4</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 26 pts 0..500 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6164 (traction-control slip (indexes TC cut maps) [traced]).
 INPUTS (Hayabusa decompile): X = grip / APS %. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 0 to 100 cut demand (raw).
 REFERENCE: descriptor @0x168778, data @0x168744, X @0x168710.</description>
@@ -18481,6 +18570,7 @@ REFERENCE: descriptor @0x168778, data @0x168744, X @0x168710.</description>
     <title>TC - Cut vs Slip Rate | Level 4</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 205..860 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF60F4 (traction-control slip / wheel [title-anchored]).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 32768 to 37028 raw.
 REFERENCE: descriptor @0x16878C, data @0x16B1CC, X @0x16B1B8.</description>
@@ -18522,6 +18612,7 @@ REFERENCE: descriptor @0x16878C, data @0x16B1CC, X @0x16B1B8.</description>
     <title>TC - Cut vs Slip History | Level 4</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 32973..33628 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63FA (engine RPM (high range) (12880-13136 rpm)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 32768 to 37028 raw.
 REFERENCE: descriptor @0x1687A0, data @0x16B1F4, X @0x16B1E0.</description>
@@ -18563,6 +18654,7 @@ REFERENCE: descriptor @0x1687A0, data @0x16B1F4, X @0x16B1E0.</description>
     <title>TC - Lean Gain | Level 4</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 0..60.00 deg (est.)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6430 (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 70 to 100 % of slip-error cut.
 REFERENCE: descriptor @0x1687B4, data @0x16B21C, X @0x16B208.</description>
@@ -18604,6 +18696,7 @@ REFERENCE: descriptor @0x1687B4, data @0x16B21C, X @0x16B208.</description>
     <title>TC - Cut vs Slip Error | Level 5</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 26 pts 0..500 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6164 (traction-control slip (indexes TC cut maps) [traced]).
 INPUTS (Hayabusa decompile): X = grip / APS %. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 0 to 100 cut demand (raw).
 REFERENCE: descriptor @0x168830, data @0x1687FC, X @0x1687C8.</description>
@@ -18645,6 +18738,7 @@ REFERENCE: descriptor @0x168830, data @0x1687FC, X @0x1687C8.</description>
     <title>TC - Cut vs Slip Rate | Level 5</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 205..860 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF60F4 (traction-control slip / wheel [title-anchored]).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 32768 to 37028 raw.
 REFERENCE: descriptor @0x168844, data @0x16B244, X @0x16B230.</description>
@@ -18686,6 +18780,7 @@ REFERENCE: descriptor @0x168844, data @0x16B244, X @0x16B230.</description>
     <title>TC - Cut vs Slip History | Level 5</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 32973..33628 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63FA (engine RPM (high range) (12880-13136 rpm)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 32768 to 37028 raw.
 REFERENCE: descriptor @0x168858, data @0x16B26C, X @0x16B258.</description>
@@ -18727,6 +18822,7 @@ REFERENCE: descriptor @0x168858, data @0x16B26C, X @0x16B258.</description>
     <title>TC - Lean Gain | Level 5</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 0..60.00 deg (est.)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6430 (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 70 to 100 % of slip-error cut.
 REFERENCE: descriptor @0x16886C, data @0x16B294, X @0x16B280.</description>
@@ -18768,6 +18864,7 @@ REFERENCE: descriptor @0x16886C, data @0x16B294, X @0x16B280.</description>
     <title>TC - Cut vs Slip Error | Level 6</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 26 pts 0..500 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6164 (traction-control slip (indexes TC cut maps) [traced]).
 INPUTS (Hayabusa decompile): X = grip / APS %. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 0 to 100 cut demand (raw).
 REFERENCE: descriptor @0x1688E8, data @0x1688B4, X @0x168880.</description>
@@ -18809,6 +18906,7 @@ REFERENCE: descriptor @0x1688E8, data @0x1688B4, X @0x168880.</description>
     <title>TC - Cut vs Slip Rate | Level 6</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 205..860 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF60F4 (traction-control slip / wheel [title-anchored]).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 32768 to 37683 raw.
 REFERENCE: descriptor @0x1688FC, data @0x16B2BC, X @0x16B2A8.</description>
@@ -18850,6 +18948,7 @@ REFERENCE: descriptor @0x1688FC, data @0x16B2BC, X @0x16B2A8.</description>
     <title>TC - Cut vs Slip History | Level 6</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 32973..33628 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63FA (engine RPM (high range) (12880-13136 rpm)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 32768 to 37683 raw.
 REFERENCE: descriptor @0x168910, data @0x16B2E4, X @0x16B2D0.</description>
@@ -18891,6 +18990,7 @@ REFERENCE: descriptor @0x168910, data @0x16B2E4, X @0x16B2D0.</description>
     <title>TC - Lean Gain | Level 6</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 0..60.00 deg (est.)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6430 (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 100 to 100 % of slip-error cut - every cell the same.
 REFERENCE: descriptor @0x168924, data @0x16B30C, X @0x16B2F8.</description>
@@ -18932,6 +19032,7 @@ REFERENCE: descriptor @0x168924, data @0x16B30C, X @0x16B2F8.</description>
     <title>TC - Cut vs Slip Error | Level 7</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 26 pts 0..500 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6164 (traction-control slip (indexes TC cut maps) [traced]).
 INPUTS (Hayabusa decompile): X = grip / APS %. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 0 to 100 cut demand (raw).
 REFERENCE: descriptor @0x1689A0, data @0x16896C, X @0x168938.</description>
@@ -18973,6 +19074,7 @@ REFERENCE: descriptor @0x1689A0, data @0x16896C, X @0x168938.</description>
     <title>TC - Cut vs Slip Rate | Level 7</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 205..860 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF60F4 (traction-control slip / wheel [title-anchored]).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 32768 to 37683 raw.
 REFERENCE: descriptor @0x1689B4, data @0x16B334, X @0x16B320.</description>
@@ -19014,6 +19116,7 @@ REFERENCE: descriptor @0x1689B4, data @0x16B334, X @0x16B320.</description>
     <title>TC - Cut vs Slip History | Level 7</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 32973..33628 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63FA (engine RPM (high range) (12880-13136 rpm)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 32768 to 37683 raw.
 REFERENCE: descriptor @0x1689C8, data @0x16B35C, X @0x16B348.</description>
@@ -19055,6 +19158,7 @@ REFERENCE: descriptor @0x1689C8, data @0x16B35C, X @0x16B348.</description>
     <title>TC - Lean Gain | Level 7</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 0..60.00 deg (est.)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6430 (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 100 to 100 % of slip-error cut - every cell the same.
 REFERENCE: descriptor @0x1689DC, data @0x16B384, X @0x16B370.</description>
@@ -19096,6 +19200,7 @@ REFERENCE: descriptor @0x1689DC, data @0x16B384, X @0x16B370.</description>
     <title>TC - Cut vs Slip Error | Level 8</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 26 pts 0..500 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6164 (traction-control slip (indexes TC cut maps) [traced]).
 INPUTS (Hayabusa decompile): X = grip / APS %. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 0 to 100 cut demand (raw).
 REFERENCE: descriptor @0x168A58, data @0x168A24, X @0x1689F0.</description>
@@ -19137,6 +19242,7 @@ REFERENCE: descriptor @0x168A58, data @0x168A24, X @0x1689F0.</description>
     <title>TC - Cut vs Slip Rate | Level 8</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 205..860 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF60F4 (traction-control slip / wheel [title-anchored]).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 32768 to 37683 raw.
 REFERENCE: descriptor @0x168A6C, data @0x16B3AC, X @0x16B398.</description>
@@ -19178,6 +19284,7 @@ REFERENCE: descriptor @0x168A6C, data @0x16B3AC, X @0x16B398.</description>
     <title>TC - Cut vs Slip History | Level 8</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 32973..33628 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63FA (engine RPM (high range) (12880-13136 rpm)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 32768 to 37683 raw.
 REFERENCE: descriptor @0x168A80, data @0x16B3D4, X @0x16B3C0.</description>
@@ -19219,6 +19326,7 @@ REFERENCE: descriptor @0x168A80, data @0x16B3D4, X @0x16B3C0.</description>
     <title>TC - Lean Gain | Level 8</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 0..60.00 deg (est.)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6430 (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 50 to 100 % of slip-error cut.
 REFERENCE: descriptor @0x168A94, data @0x16B3FC, X @0x16B3E8.</description>
@@ -19260,6 +19368,7 @@ REFERENCE: descriptor @0x168A94, data @0x16B3FC, X @0x16B3E8.</description>
     <title>TC - Cut vs Slip Error | Level 9</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 26 pts 0..500 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6164 (traction-control slip (indexes TC cut maps) [traced]).
 INPUTS (Hayabusa decompile): X = grip / APS %. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 0 to 100 cut demand (raw).
 REFERENCE: descriptor @0x168B10, data @0x168ADC, X @0x168AA8.</description>
@@ -19301,6 +19410,7 @@ REFERENCE: descriptor @0x168B10, data @0x168ADC, X @0x168AA8.</description>
     <title>TC - Cut vs Slip Rate | Level 9</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 205..860 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF60F4 (traction-control slip / wheel [title-anchored]).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 32768 to 35225 raw.
 REFERENCE: descriptor @0x168B24, data @0x16B424, X @0x16B410.</description>
@@ -19342,6 +19452,7 @@ REFERENCE: descriptor @0x168B24, data @0x16B424, X @0x16B410.</description>
     <title>TC - Cut vs Slip History | Level 9</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 32973..33628 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63FA (engine RPM (high range) (12880-13136 rpm)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 32768 to 35225 raw.
 REFERENCE: descriptor @0x168B38, data @0x16B44C, X @0x16B438.</description>
@@ -19383,6 +19494,7 @@ REFERENCE: descriptor @0x168B38, data @0x16B44C, X @0x16B438.</description>
     <title>TC - Lean Gain | Level 9</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 0..60.00 deg (est.)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6430 (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 50 to 100 % of slip-error cut.
 REFERENCE: descriptor @0x168B4C, data @0x16B474, X @0x16B460.</description>
@@ -19424,6 +19536,7 @@ REFERENCE: descriptor @0x168B4C, data @0x16B474, X @0x16B460.</description>
     <title>TC - Cut vs Slip Error | Level 10</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 26 pts 0..500 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6164 (traction-control slip (indexes TC cut maps) [traced]).
 INPUTS (Hayabusa decompile): X = grip / APS %. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 0 to 100 cut demand (raw).
 REFERENCE: descriptor @0x168BC8, data @0x168B94, X @0x168B60.</description>
@@ -19465,6 +19578,7 @@ REFERENCE: descriptor @0x168BC8, data @0x168B94, X @0x168B60.</description>
     <title>TC - Cut vs Slip Rate | Level 10</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 205..860 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF60F4 (traction-control slip / wheel [title-anchored]).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 32768 to 33996 raw.
 REFERENCE: descriptor @0x168BDC, data @0x16B49C, X @0x16B488.</description>
@@ -19506,6 +19620,7 @@ REFERENCE: descriptor @0x168BDC, data @0x16B49C, X @0x16B488.</description>
     <title>TC - Cut vs Slip History | Level 10</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 32973..33628 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63FA (engine RPM (high range) (12880-13136 rpm)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 32768 to 33996 raw.
 REFERENCE: descriptor @0x168BF0, data @0x16B4C4, X @0x16B4B0.</description>
@@ -19547,6 +19662,7 @@ REFERENCE: descriptor @0x168BF0, data @0x16B4C4, X @0x16B4B0.</description>
     <title>TC - Lean Gain | Level 10</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 0..60.00 deg (est.)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6430 (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 50 to 100 % of slip-error cut.
 REFERENCE: descriptor @0x168C04, data @0x16B4EC, X @0x16B4D8.</description>
@@ -19588,6 +19704,7 @@ REFERENCE: descriptor @0x168C04, data @0x16B4EC, X @0x16B4D8.</description>
     <title>TC - Cut vs Slip Error | Launch</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 26 pts 0..500 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6164 (traction-control slip (indexes TC cut maps) [traced]).
 INPUTS (Hayabusa decompile): X = grip / APS %. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 0 to 10 cut demand (raw).
 REFERENCE: descriptor @0x168C80, data @0x168C4C, X @0x168C18.</description>
@@ -19629,6 +19746,7 @@ REFERENCE: descriptor @0x168C80, data @0x168C4C, X @0x168C18.</description>
     <title>TC - Cut vs Slip Rate | Launch</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 205..860 raw (0x8000=0)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF60F4 (traction-control slip / wheel [title-anchored]).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 32768 to 32768 raw - every cell the same.
 REFERENCE: descriptor @0x168C94, data @0x16B514, X @0x16B500.</description>
@@ -19670,6 +19788,7 @@ REFERENCE: descriptor @0x168C94, data @0x16B514, X @0x16B500.</description>
     <title>TC - Cut vs Slip History | Launch</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 32973..33628 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63FA (engine RPM (high range) (12880-13136 rpm)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 32768 to 32768 raw - every cell the same.
 REFERENCE: descriptor @0x168CA8, data @0x16B53C, X @0x16B528.</description>
@@ -19711,6 +19830,7 @@ REFERENCE: descriptor @0x168CA8, data @0x16B53C, X @0x16B528.</description>
     <title>TC - Lean Gain | Launch</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 0..80.00 deg (est.)
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6430 (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 100 to 100 % of slip-error cut - every cell the same.
 REFERENCE: descriptor @0x168CBC, data @0x16B564, X @0x16B550.</description>
@@ -20134,6 +20254,7 @@ REFERENCE: descriptor @0x168DF0, data @0x168DB4, X @0x168D94, Y @0x168DA8.</desc
     <title>TC - Ignition Retard | Band 2  [UNCONFIRMED]</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own.
 X: 10 pts 2.16..111.60 deg (abs. TP angle); Y: 6 pts 2000..11000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63C0 (throttle position TP [title-anchored]); Y = 0xFEBF637A (engine RPM [title-anchored]).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0004e2b4.
 VALUES (32990-48L10-US): 1.76 to 20.74 deg retard.
 REFERENCE: descriptor @0x168E68, data @0x168E2C, X @0x168E0C, Y @0x168E20.</description>
@@ -20178,6 +20299,7 @@ REFERENCE: descriptor @0x168E68, data @0x168E2C, X @0x168E0C, Y @0x168E20.</desc
     <title>TC - Ignition Retard | Band 3  [UNCONFIRMED]</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own.
 X: 10 pts 2.16..111.60 deg (abs. TP angle); Y: 6 pts 2000..11000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63C0 (throttle position TP [title-anchored]); Y = 0xFEBF637A (engine RPM [title-anchored]).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0004e2b4.
 VALUES (32990-48L10-US): 2.81 to 26.37 deg retard.
 REFERENCE: descriptor @0x168EE0, data @0x168EA4, X @0x168E84, Y @0x168E98.</description>
@@ -20222,6 +20344,7 @@ REFERENCE: descriptor @0x168EE0, data @0x168EA4, X @0x168E84, Y @0x168E98.</desc
     <title>TC - Ignition Retard | Band 4  [UNCONFIRMED]</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own.
 X: 10 pts 2.16..111.60 deg (abs. TP angle); Y: 6 pts 2000..11000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63C0 (throttle position TP [title-anchored]); Y = 0xFEBF637A (engine RPM [title-anchored]).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0004e2b4.
 VALUES (32990-48L10-US): 3.87 to 32.35 deg retard.
 REFERENCE: descriptor @0x168F58, data @0x168F1C, X @0x168EFC, Y @0x168F10.</description>
@@ -20266,6 +20389,7 @@ REFERENCE: descriptor @0x168F58, data @0x168F1C, X @0x168EFC, Y @0x168F10.</desc
     <title>TC - Ignition Retard | Band 5  [UNCONFIRMED]</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own.
 X: 10 pts 2.16..111.60 deg (abs. TP angle); Y: 6 pts 2000..11000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63C0 (throttle position TP [title-anchored]); Y = 0xFEBF637A (engine RPM [title-anchored]).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0004e2b4.
 VALUES (32990-48L10-US): 4.92 to 39.03 deg retard.
 REFERENCE: descriptor @0x168FD0, data @0x168F94, X @0x168F74, Y @0x168F88.</description>
@@ -20310,6 +20434,7 @@ REFERENCE: descriptor @0x168FD0, data @0x168F94, X @0x168F74, Y @0x168F88.</desc
     <title>TC - Ignition Retard | Band 6  [UNCONFIRMED]</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own.
 X: 10 pts 2.16..111.60 deg (abs. TP angle); Y: 6 pts 2000..11000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63C0 (throttle position TP [title-anchored]); Y = 0xFEBF637A (engine RPM [title-anchored]).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0004e2b4.
 VALUES (32990-48L10-US): 5.98 to 45.71 deg retard.
 REFERENCE: descriptor @0x169048, data @0x16900C, X @0x168FEC, Y @0x169000.</description>
@@ -20354,6 +20479,7 @@ REFERENCE: descriptor @0x169048, data @0x16900C, X @0x168FEC, Y @0x169000.</desc
     <title>TC - Ignition Retard | Band 7  [UNCONFIRMED]</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own.
 X: 10 pts 2.16..111.60 deg (abs. TP angle); Y: 6 pts 2000..11000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63C0 (throttle position TP [title-anchored]); Y = 0xFEBF637A (engine RPM [title-anchored]).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0004e2b4.
 VALUES (32990-48L10-US): 7.03 to 52.39 deg retard.
 REFERENCE: descriptor @0x1690C0, data @0x169084, X @0x169064, Y @0x169078.</description>
@@ -20398,6 +20524,7 @@ REFERENCE: descriptor @0x1690C0, data @0x169084, X @0x169064, Y @0x169078.</desc
     <title>TC - Ignition Retard | Band 8  [UNCONFIRMED]</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own.
 X: 10 pts 2.16..111.60 deg (abs. TP angle); Y: 6 pts 2000..11000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63C0 (throttle position TP [title-anchored]); Y = 0xFEBF637A (engine RPM [title-anchored]).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0004e2b4.
 VALUES (32990-48L10-US): 8.09 to 59.07 deg retard.
 REFERENCE: descriptor @0x169138, data @0x1690FC, X @0x1690DC, Y @0x1690F0.</description>
@@ -20442,6 +20569,7 @@ REFERENCE: descriptor @0x169138, data @0x1690FC, X @0x1690DC, Y @0x1690F0.</desc
     <title>TC - Ignition Retard | Band 9  [UNCONFIRMED]</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own.
 X: 10 pts 2.16..111.60 deg (abs. TP angle); Y: 6 pts 2000..11000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63C0 (throttle position TP [title-anchored]); Y = 0xFEBF637A (engine RPM [title-anchored]).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0004e2b4.
 VALUES (32990-48L10-US): 9.14 to 65.75 deg retard.
 REFERENCE: descriptor @0x1691B0, data @0x169174, X @0x169154, Y @0x169168.</description>
@@ -20486,6 +20614,7 @@ REFERENCE: descriptor @0x1691B0, data @0x169174, X @0x169154, Y @0x169168.</desc
     <title>TC - Ignition Retard | Band 10  [UNCONFIRMED]</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own.
 X: 10 pts 2.16..111.60 deg (abs. TP angle); Y: 6 pts 2000..11000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63C0 (throttle position TP [title-anchored]); Y = 0xFEBF637A (engine RPM [title-anchored]).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0004e2b4.
 VALUES (32990-48L10-US): 10.55 to 72.78 deg retard.
 REFERENCE: descriptor @0x169228, data @0x1691EC, X @0x1691CC, Y @0x1691E0.</description>
