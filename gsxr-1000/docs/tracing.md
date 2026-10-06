@@ -105,6 +105,26 @@ the traced constants. `make_gsxr_xdf.py` stamps a **“GSX-R TRACED INPUTS”** 
 map and gives the traced constants real names. Regenerate with `extract_scalars.py` already run;
 re-run `make_traced.py`-equivalent steps from the scripts above if you re-analyse.
 
+## 3b-ii. Sensor variable block (title-anchored, contiguous in sdata)
+Cross-referencing each traced input against the ported map title that names its axis
+(`vs RPM x TP`, `x Gear`, `vs ECT`, …) pins the core sensor variables — and they fall in one
+contiguous `0xFEBF64xx` sdata array, which corroborates them:
+
+| RAM | Sensor | Maps anchored |
+|---|---|---|
+| `0xFEBF637A`, `0xFEBF637E` | engine RPM (map axis) | 32+ |
+| `0xFEBF6436` | **IAP / intake pressure** (main load axis) | 85 |
+| `0xFEBF6440` | **ECT** engine coolant temp | 23 |
+| `0xFEBF6442` | **gear position** | 17 |
+| `0xFEBF6443` | **IAT** intake air temp | 1 |
+| `0xFEBF63C4`, `0xFEBF63C0` | **TP** throttle position | 13 |
+| `0xFEBF6394` | barometric pressure | 2 |
+| `0xFEBF6164`, `0xFEBF60F4` | traction-control slip | 2 |
+
+These names flow into every map's `GSX-R TRACED INPUTS` line (so even some generic curves now read
+`X = gear position`, etc.). The `0xFEF02622`/`0xFEF02E2C` RPM sensor variables (section 2) sit in the
+other sensor RAM bank.
+
 ## 3c. gp base resolved → rev-cut engage signal named
 The V850 global pointer is set in crt0, disassembled directly from the image:
 
