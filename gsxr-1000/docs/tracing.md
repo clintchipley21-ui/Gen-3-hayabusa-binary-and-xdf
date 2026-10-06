@@ -333,7 +333,7 @@ the axes. So every PWR/Slot map shares **X = APS `0xFEBF63AE` × Y = RPM `0xFEBF
 (`docs/trace-pwr.c`). Map-input coverage is now **617 / 791**; the remainder are advance-timing
 per-cyl, ride-mode ECT-retard and small inline curves with no single decompilable reader.
 
-## 3m. Global sweep — every code-read map resolved (655/791)
+## 3m. Global sweep — every code-read map resolved (659/791)
 
 A final pass decompiled **every** function that references an as-yet-unresolved descriptor (46
 functions) and bound descriptor→input two ways: (a) direct `&DAT`/pointer-var first argument to an
@@ -342,7 +342,7 @@ consistent** lookup-index signature (the table only selects the map; the axes ar
 Both are code facts, not guesses; functions with more than one index signature were skipped rather
 than guessed (none occurred).
 
-**Final coverage: 655 / 791.** The 136 remaining are **not sensor-indexed calibration maps**: 5 are
+**Final coverage: 659 / 791** (655 here + 4 from the ride-mode / ETV-monitor cluster re-reads in §3 above and the diagnostics pass in §3n). The 132 remaining are **not sensor-indexed calibration maps**: 5 are
 ASCII hardware-ID strings, and ~131 are regions the code reads by raw/computed indexing (data tables,
 counters, ID/compare blocks) with no interpolated sensor axis — there is no X/Y input to report, so
 they are left without a `GSX-R TRACED INPUTS` line rather than given a fabricated one.

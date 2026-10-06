@@ -120,7 +120,7 @@ descriptor. These were found by **decompiling the GSX-R's own code** and taking 
 In TunerPro they appear under **"ZZ Decompiler-discovered scalars (unverified)"**. Where the reading
 function also reads a named map, the title is prefixed with that **subsystem** — a reliable area tag
 from the decompile (not a value guess), e.g. `Quickshifter :: Scalar @0x154C0E (u16)`,
-`Ignition :: Scalar @0x167458 (u32)`. **351** scalars are tagged this way (Quickshifter, Fuel,
+`Ignition :: Scalar @0x167458 (u32)`. **320** scalars are tagged this way (Quickshifter, Fuel,
 Ignition, Throttle/ETV, Speed/Wheel, Sensors, O2/Closed-Loop, Idle/Fan); the rest stay
 `Scalar @0xADDR`. Either way the description carries the value, usage and the specific context maps.
 Treat every one as a lead to confirm, not a known setting. `docs/scalar-index.csv` lists all of them
@@ -140,7 +140,7 @@ manual/SDS/pinout — see **[`docs/tracing.md`](docs/tracing.md)** for the full 
   `0x172EA8` (**~14,933 rpm hard cut** — matches the GSX-R1000) and `0x172EAA` (~1,500 rpm running
   gate). These are named in the XDF and listed in `docs/scalar-index.csv`.
 - **659 of the 791 maps** carry a **“GSX-R TRACED INPUTS”** line naming the actual X/Y variable from the code (raised from 378 by per-subsystem reader decompiles — fuel, ignition, traction control, ETV)
-  (`docs/map-inputs.csv`); a 74-entry **variable dictionary** (`docs/variables.csv`) classifies each
+  (`docs/map-inputs.csv`); a 78-entry **variable dictionary** (`docs/variables.csv`) classifies each
   traced RAM input (RPM / throttle-load / gear index / signed chassis sensor); `docs/traced.json` is
   the machine-readable result the generator consumes.
 
@@ -180,7 +180,7 @@ maps.
    cross-reference pass in Ghidra: find the engine-RPM RAM variable (the one indexed by every
    RPM-axis map lookup), then the function that compares it against a constant and triggers a
    fuel/ignition cut — that constant is the limiter. This resolves them from the GSX-R's own code
-   instead of guessing by value. (Subsystem area tags on 351 scalars are already in place.)
+   instead of guessing by value. (Subsystem area tags on 320 scalars are already in place.)
 2. Review `docs/map-index.csv`; sanity-check the 234 MED titles against the maps' axes and values.
 3. Confirm sensor scalings (RPM, TPS/ETV angle, pressure, temperature) against the GSX-R service
    data — if any differ from the Hayabusa, update the ported equations.

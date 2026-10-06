@@ -41,7 +41,9 @@ descriptor,dims,x_ram,x_meaning,y_ram,y_meaning
 0x150E10,7x0,0xFEBF6442,gear position [title-anchored],,
 0x150E5C,14x0,0xFEF005E0,engine RPM (1500-12000 rpm),,
 0x150E70,9x0,0xFEBF6430,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x150EA0,14x7,0xFEBF637A,engine RPM [title-anchored],0xFEBF6442,gear position [title-anchored]
 0x150ED8,14x7,0xFEBF637A,engine RPM [title-anchored],0xFEBF6442,gear position [title-anchored]
+0x150F10,14x7,0xFEBF637A,engine RPM [title-anchored],0xFEBF6442,gear position [title-anchored]
 0x150F48,14x7,0xFEBF637A,engine RPM [title-anchored],0xFEBF6442,gear position [title-anchored]
 0x150F94,14x10,0xFEBF637A,engine RPM [title-anchored],0xFEBF6169,throttle / load (map Y-axis)
 0x150FCC,14x7,0xFEBF637A,engine RPM [title-anchored],0xFEBF6442,gear position [title-anchored]
@@ -62,11 +64,18 @@ descriptor,dims,x_ram,x_meaning,y_ram,y_meaning
 0x15122C,39x7,0xFEF0262C,engine RPM (axis ~800..3200),0xFEBF6442,gear position [title-anchored]
 0x151248,39x7,0xFEF0262C,engine RPM (axis ~800..3200),0xFEBF6442,gear position [title-anchored]
 0x151264,39x7,0xFEF0262C,engine RPM (axis ~800..3200),0xFEBF6442,gear position [title-anchored]
+0x151280,39x7,0xFEF0262C,engine RPM (axis ~800..3200),0xFEBF6442,gear position [title-anchored]
+0x15129C,39x7,0xFEF0262C,engine RPM (axis ~800..3200),0xFEBF6442,gear position [title-anchored]
 0x1512B8,39x7,0xFEF0262C,engine RPM (axis ~800..3200),0xFEBF6442,gear position [title-anchored]
 0x1512D4,37x0,0xFEBF63F0,monotonic axis (unit TBD) (raw 0..44800),,
 0x1512E8,37x0,0xFEBF63F0,monotonic axis (unit TBD) (raw 0..44800),,
 0x1512FC,36x0,0xFEF0060A,monotonic axis (unit TBD) (raw 0..44800),,
 0x151338,10x0,0xFEBF63F4,engine RPM (500-8000 rpm),,
+0x15134C,16x0,0xFEBF5E86,engine RPM (1500-12000 rpm),,
+0x151360,16x0,0xFEBF5E86,engine RPM (1500-12000 rpm),,
+0x151374,16x0,0xFEBF5E86,engine RPM (1500-12000 rpm),,
+0x151388,16x0,0xFEBF5E86,engine RPM (1500-12000 rpm),,
+0x15139C,16x0,0xFEBF5E86,engine RPM (1500-12000 rpm),,
 0x1513B0,11x0,0xFEF0267D,gear / mode index [title-anchored],,
 0x1513C4,37x0,0xFEBF642E,"signed sensor (lean/pitch/rate, centered 0x8000)",,
 0x151410,14x0,0xFEBF5E86,engine RPM (1500-12000 rpm),,
@@ -104,8 +113,12 @@ descriptor,dims,x_ram,x_meaning,y_ram,y_meaning
 0x15637C,22x0,0xFEBF6440,engine coolant temp ECT [title-anchored],,
 0x156390,22x0,0xFEBF6440,engine coolant temp ECT [title-anchored],,
 0x1563A4,11x0,0xFEBF6388,monotonic axis (unit TBD) (raw 614..3174),,
+0x1563C4,6x0,0xFEBF63C0,throttle position TP [title-anchored],,
 0x1563D8,8x0,0xFEBF6394,barometric pressure [title-anchored],,
 0x1563EC,22x0,0xFEBF6440,engine coolant temp ECT [title-anchored],,
+0x156400,22x0,0xFEBF6440,engine coolant temp ECT [title-anchored],,
+0x156414,21x0,0xFEBF6394,barometric pressure [title-anchored],,
+0x156428,21x0,0xFEBF6394,barometric pressure [title-anchored],,
 0x15643C,21x0,0xFEBF6443,intake air temp IAT [title-anchored],,
 0x15647C,22x0,0xFEBF60C0,throttle / load (raw 11..149),,
 0x1564BC,22x0,0xFEBF60C0,throttle / load (raw 11..149),,
@@ -114,17 +127,41 @@ descriptor,dims,x_ram,x_meaning,y_ram,y_meaning
 0x156524,22x0,0xFEBF6440,engine coolant temp ECT [title-anchored],,
 0x156538,22x0,0xFEBF6440,engine coolant temp ECT [title-anchored],,
 0x15654C,7x0,0xFEBF6442,gear position [title-anchored],,
+0x156560,17x0,0xFEBF637A,engine RPM [title-anchored],,
 0x156574,14x0,0xFEBF6440,engine coolant temp ECT [title-anchored],,
+0x156588,14x0,0xFEBF6440,engine coolant temp ECT [title-anchored],,
+0x15659C,17x0,0xFEBF637A,engine RPM [title-anchored],,
+0x1565B0,17x0,0xFEBF637A,engine RPM [title-anchored],,
 0x1565EC,10x0,0xFEBF637A,engine RPM [title-anchored],,
 0x156600,39x0,0xFEBF637A,engine RPM [title-anchored],,
 0x156614,39x0,0xFEBF637A,engine RPM [title-anchored],,
 0x156654,22x0,0xFEBF6440,engine coolant temp ECT [title-anchored],,
 0x156708,7x0,0xFEBF637A,engine RPM [title-anchored],,
+0x15671C,7x0,0xFEBF637A,engine RPM [title-anchored],,
 0x156730,7x0,0xFEBF637A,engine RPM [title-anchored],,
+0x156744,7x0,0xFEBF637A,engine RPM [title-anchored],,
 0x15695C,17x14,0xFEBF63C4,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
 0x1569D8,7x7,0xFEBF6443,intake air temp IAT [title-anchored],0xFEBF60BF,non-monotonic (bitmask/enum?)
-0x156A98,6x17,0xFEBF63C4,throttle position TP [title-anchored],,
+0x156A98,6x17,0xFEBF63C4,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
+0x156AC0,6x17,0xFEBF63C4,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
+0x156B10,26x38,0xFEBF63C4,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
 0x156B2C,13x19,0xFEBF63C4,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
+0x156B78,10x14,0xFEBF63EC,non-monotonic (bitmask/enum?),0xFEBF637A,engine RPM [title-anchored]
+0x156B94,10x14,0xFEBF63EC,non-monotonic (bitmask/enum?),0xFEBF637A,engine RPM [title-anchored]
+0x156BE0,10x14,0xFEBF63EC,non-monotonic (bitmask/enum?),0xFEBF637A,engine RPM [title-anchored]
+0x156BFC,10x14,0xFEBF63EC,non-monotonic (bitmask/enum?),0xFEBF637A,engine RPM [title-anchored]
+0x156C48,10x14,0xFEBF63EC,non-monotonic (bitmask/enum?),0xFEBF637A,engine RPM [title-anchored]
+0x156C64,10x14,0xFEBF63EC,non-monotonic (bitmask/enum?),0xFEBF637A,engine RPM [title-anchored]
+0x156CB0,10x14,0xFEBF63EC,non-monotonic (bitmask/enum?),0xFEBF637A,engine RPM [title-anchored]
+0x156CCC,10x14,0xFEBF63EC,non-monotonic (bitmask/enum?),0xFEBF637A,engine RPM [title-anchored]
+0x156D18,10x14,0xFEBF63EC,non-monotonic (bitmask/enum?),0xFEBF637A,engine RPM [title-anchored]
+0x156D34,10x14,0xFEBF63EC,non-monotonic (bitmask/enum?),0xFEBF637A,engine RPM [title-anchored]
+0x156D80,10x14,0xFEBF63EC,non-monotonic (bitmask/enum?),0xFEBF637A,engine RPM [title-anchored]
+0x156D9C,10x14,0xFEBF63EC,non-monotonic (bitmask/enum?),0xFEBF637A,engine RPM [title-anchored]
+0x156DE8,10x14,0xFEBF63EC,non-monotonic (bitmask/enum?),0xFEBF637A,engine RPM [title-anchored]
+0x156E04,10x14,0xFEBF63EC,non-monotonic (bitmask/enum?),0xFEBF637A,engine RPM [title-anchored]
+0x156E50,10x14,0xFEBF63EC,non-monotonic (bitmask/enum?),0xFEBF637A,engine RPM [title-anchored]
+0x156E6C,10x14,0xFEBF63EC,non-monotonic (bitmask/enum?),0xFEBF637A,engine RPM [title-anchored]
 0x156E88,7x7,0xFEBF65E6,throttle / load (raw 5..100),0xFEBF637A,engine RPM [title-anchored]
 0x156EA4,7x7,0xFEBF65E8,throttle / load (raw 5..100),0xFEBF637A,engine RPM [title-anchored]
 0x156EC0,7x7,0xFEBF65EA,throttle / load (raw 5..100),0xFEBF637A,engine RPM [title-anchored]
@@ -134,27 +171,44 @@ descriptor,dims,x_ram,x_meaning,y_ram,y_meaning
 0x156F30,7x7,0xFEBF65EA,throttle / load (raw 5..100),0xFEBF637A,engine RPM [title-anchored]
 0x156F4C,7x7,0xFEBF65EC,throttle / load (raw 5..100),0xFEBF637A,engine RPM [title-anchored]
 0x156F68,7x7,0xFEBF63EC,non-monotonic (bitmask/enum?),0xFEBF637A,engine RPM [title-anchored]
+0x156F84,7x7,0xFEBF63EC,non-monotonic (bitmask/enum?),0xFEBF637A,engine RPM [title-anchored]
 0x156FA0,7x7,0xFEBF63EC,non-monotonic (bitmask/enum?),0xFEBF637A,engine RPM [title-anchored]
+0x156FBC,7x7,0xFEBF63EC,non-monotonic (bitmask/enum?),0xFEBF637A,engine RPM [title-anchored]
 0x156FD8,10x20,0xFEBF63C4,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
 0x156FF4,10x20,0xFEBF63C4,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
 0x157010,10x20,0xFEBF63C4,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
 0x15702C,10x20,0xFEBF63C4,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
-0x157588,39x7,0xFEBF63F6,,0xFEBF6442,gear position [title-anchored]
+0x157588,39x7,0xFEBF63F6,vehicle speed [code-traced: EB fuel-cut],0xFEBF6442,gear position [title-anchored]
+0x1575A4,39x7,0xFEBF63F6,vehicle speed [code-traced: EB fuel-cut],0xFEBF6442,gear position [title-anchored]
+0x1575C0,39x7,0xFEBF63F6,vehicle speed [code-traced: EB fuel-cut],0xFEBF6442,gear position [title-anchored]
+0x1575DC,15x0,0xFEBF637A,engine RPM [title-anchored],,
+0x1575F0,15x0,0xFEBF637A,engine RPM [title-anchored],,
+0x157604,15x0,0xFEBF637A,engine RPM [title-anchored],,
 0x157618,15x0,0xFEBF637A,engine RPM [title-anchored],,
 0x15762C,7x0,0xFEBF638C,monotonic axis (unit TBD) (raw 360..840),,
 0x157640,7x0,0xFEBF638C,monotonic axis (unit TBD) (raw 360..840),,
 0x157654,23x9,,,0xFEBF62CC,throttle / load (raw 0..255)
 0x157670,23x9,,,0xFEBF62CC,throttle / load (raw 0..255)
-0x1577C0,25x10,0xFEBF637A,engine RPM [title-anchored],,
+0x1576A0,25x10,0xFEBF637A,engine RPM [title-anchored],0xFEBF63C4,throttle position TP [title-anchored]
+0x1576D0,25x10,0xFEBF637A,engine RPM [title-anchored],0xFEBF63C4,throttle position TP [title-anchored]
+0x157700,25x10,0xFEBF637A,engine RPM [title-anchored],0xFEBF63C4,throttle position TP [title-anchored]
+0x157730,25x10,0xFEBF637A,engine RPM [title-anchored],0xFEBF63C4,throttle position TP [title-anchored]
+0x157760,25x10,0xFEBF637A,engine RPM [title-anchored],0xFEBF63C4,throttle position TP [title-anchored]
+0x157790,25x10,0xFEBF637A,engine RPM [title-anchored],0xFEBF63C4,throttle position TP [title-anchored]
+0x1577C0,25x10,0xFEBF637A,engine RPM [title-anchored],0xFEBF63C4,throttle position TP [title-anchored]
 0x1577F8,14x0,0xFEBF6440,engine coolant temp ECT [title-anchored],,
 0x15780C,9x0,0xFEF00F2A,engine RPM (4000-10400 rpm),,
 0x15783C,14x0,0xFEBF6440,engine coolant temp ECT [title-anchored],,
 0x157850,16x0,0xFEBF637A,engine RPM [title-anchored],,
 0x1578AC,18x0,0xFEBF637A,engine RPM [title-anchored],,
 0x157908,18x0,0xFEBF637A,engine RPM [title-anchored],,
+0x157964,18x0,0xFEBF637A,engine RPM [title-anchored],,
 0x1579C0,18x0,0xFEBF637A,engine RPM [title-anchored],,
+0x157A1C,18x0,0xFEBF637A,engine RPM [title-anchored],,
+0x157A78,18x0,0xFEBF637A,engine RPM [title-anchored],,
 0x157AD4,18x0,0xFEBF637A,engine RPM [title-anchored],,
 0x157B30,18x0,0xFEBF637A,engine RPM [title-anchored],,
+0x157B8C,18x0,0xFEBF637A,engine RPM [title-anchored],,
 0x157BE8,18x0,0xFEBF637A,engine RPM [title-anchored],,
 0x157C44,18x0,0xFEBF637A,engine RPM [title-anchored],,
 0x157C90,10x18,0xFEBF63C4,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
@@ -166,6 +220,7 @@ descriptor,dims,x_ram,x_meaning,y_ram,y_meaning
 0x157D88,10x0,0xFEF01E52,monotonic axis (unit TBD) (raw 0..3000),,
 0x157DC4,10x0,0xFEF01E52,monotonic axis (unit TBD) (raw 0..3000),,
 0x157DD8,11x0,0xFEF00DB2,throttle / load (raw 0..205),,
+0x157DEC,11x0,0xFEF00DB2,throttle / load (raw 0..205),,
 0x157E28,10x0,0xFEF01E52,monotonic axis (unit TBD) (raw 0..3000),,
 0x157E3C,12x0,0xFEBF63A4,monotonic axis (unit TBD) (raw 0..27500),,
 0x157E50,12x0,0xFEBF63A4,monotonic axis (unit TBD) (raw 0..27500),,
@@ -176,38 +231,193 @@ descriptor,dims,x_ram,x_meaning,y_ram,y_meaning
 0x16785C,27x0,0xFEBF6394,barometric pressure [title-anchored],,
 0x167870,22x0,0xFEBF6440,engine coolant temp ECT [title-anchored],,
 0x167884,5x0,0xFEBF6440,engine coolant temp ECT [title-anchored],,
+0x167898,8x0,0xFEBF615E,engine RPM [title-anchored],,
+0x1678AC,8x0,0xFEBF615E,engine RPM [title-anchored],,
+0x1678C0,8x0,0xFEBF615E,engine RPM [title-anchored],,
+0x1678D4,8x0,0xFEBF615E,engine RPM [title-anchored],,
+0x1678E8,8x0,0xFEBF615E,engine RPM [title-anchored],,
+0x1678FC,8x0,0xFEBF615E,engine RPM [title-anchored],,
+0x167910,8x0,0xFEBF615E,engine RPM [title-anchored],,
+0x167924,8x0,0xFEBF615E,engine RPM [title-anchored],,
+0x167938,8x0,0xFEBF615E,engine RPM [title-anchored],,
+0x16794C,8x0,0xFEBF615E,engine RPM [title-anchored],,
 0x167960,8x0,0xFEBF615E,engine RPM [title-anchored],,
 0x167974,8x0,0xFEBF615E,engine RPM [title-anchored],,
 0x167988,5x0,0xFEBF6440,engine coolant temp ECT [title-anchored],,
 0x1679B8,14x0,0xFEBF6440,engine coolant temp ECT [title-anchored],,
 0x1679CC,14x0,0xFEBF6440,engine coolant temp ECT [title-anchored],,
 0x167A30,10x0,0xFEBF6443,intake air temp IAT [title-anchored],,
+0x167A44,9x20,0xFEBF638C,monotonic axis (unit TBD) (raw 360..840),0xFEBF637A,engine RPM [title-anchored]
 0x167A60,9x20,0xFEBF638C,monotonic axis (unit TBD) (raw 360..840),0xFEBF637A,engine RPM [title-anchored]
 0x167A7C,23x39,0xFEBF63C6,monotonic axis (unit TBD) (raw 584..42729),0xFEBF615E,engine RPM [title-anchored]
+0x167A98,23x39,0xFEBF63C6,monotonic axis (unit TBD) (raw 584..42729),0xFEBF615E,engine RPM [title-anchored]
+0x167AB4,23x39,0xFEBF63C6,monotonic axis (unit TBD) (raw 584..42729),0xFEBF615E,engine RPM [title-anchored]
+0x167AD0,23x39,0xFEBF63C6,monotonic axis (unit TBD) (raw 584..42729),0xFEBF615E,engine RPM [title-anchored]
 0x167AEC,23x39,0xFEBF63C6,monotonic axis (unit TBD) (raw 584..42729),0xFEBF615E,engine RPM [title-anchored]
+0x167B08,23x39,0xFEBF63C6,monotonic axis (unit TBD) (raw 584..42729),0xFEBF615E,engine RPM [title-anchored]
+0x167B24,23x39,0xFEBF63C6,monotonic axis (unit TBD) (raw 584..42729),0xFEBF615E,engine RPM [title-anchored]
+0x167B40,23x39,0xFEBF63C6,monotonic axis (unit TBD) (raw 584..42729),0xFEBF615E,engine RPM [title-anchored]
 0x167B5C,23x39,0xFEBF63C6,monotonic axis (unit TBD) (raw 584..42729),0xFEBF615E,engine RPM [title-anchored]
 0x167B78,23x39,0xFEBF63C6,monotonic axis (unit TBD) (raw 584..42729),0xFEBF615E,engine RPM [title-anchored]
+0x167B94,23x39,0xFEBF63C6,monotonic axis (unit TBD) (raw 584..42729),0xFEBF615E,engine RPM [title-anchored]
+0x167BB0,23x39,0xFEBF63C6,monotonic axis (unit TBD) (raw 584..42729),0xFEBF615E,engine RPM [title-anchored]
+0x167BCC,23x39,0xFEBF63C6,monotonic axis (unit TBD) (raw 584..42729),0xFEBF615E,engine RPM [title-anchored]
 0x167BE8,23x39,0xFEBF63C6,monotonic axis (unit TBD) (raw 584..42729),0xFEBF615E,engine RPM [title-anchored]
 0x167C58,15x5,0xFEBF6440,engine coolant temp ECT [title-anchored],0xFEBF637E,engine RPM (main map axis) [title-anchored]
 0x167C74,15x5,0xFEBF6440,engine coolant temp ECT [title-anchored],0xFEBF637E,engine RPM (main map axis) [title-anchored]
 0x167C90,15x5,0xFEBF6440,engine coolant temp ECT [title-anchored],0xFEBF637E,engine RPM (main map axis) [title-anchored]
 0x167CAC,15x5,0xFEBF6440,engine coolant temp ECT [title-anchored],0xFEBF637E,engine RPM (main map axis) [title-anchored]
 0x167CDC,5x10,0xFEBF63C2,monotonic axis (unit TBD) (raw 26240..41985),0xFEBF637A,engine RPM [title-anchored]
+0x167D0C,5x10,0xFEBF63C2,monotonic axis (unit TBD) (raw 26240..41985),0xFEBF637A,engine RPM [title-anchored]
+0x167D3C,5x10,0xFEBF63C2,monotonic axis (unit TBD) (raw 26240..41985),0xFEBF637A,engine RPM [title-anchored]
 0x167D58,39x0,0xFEBF637A,engine RPM [title-anchored],,
 0x167D6C,39x0,0xFEBF637A,engine RPM [title-anchored],,
 0x167D80,8x0,0xFEBF6440,engine coolant temp ECT [title-anchored],,
 0x167D94,11x0,0xFEBF6459,traction-control level (1-10; rider setting) [traced FUN_00055016],,
+0x167DA8,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x167DBC,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x167DD0,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x167DE4,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x167DF8,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
 0x167E0C,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x167E20,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x167E34,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x167E48,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x167E5C,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x167E70,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x167E84,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x167E98,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x167EAC,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x167EC0,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x167ED4,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x167EE8,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x167EFC,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x167F10,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x167F24,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x167F38,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x167F4C,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x167F60,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x167F74,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x167F88,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x167F9C,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x167FB0,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x167FC4,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x167FD8,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x167FEC,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x168000,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x168014,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x168028,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x16803C,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x168050,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x168064,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x168078,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x16808C,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x1680A0,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x1680B4,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x1680C8,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x1680DC,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x1680F0,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x168104,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x168118,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x16812C,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x168140,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x168154,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x168168,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x16817C,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x1681BC,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x1681FC,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x16823C,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x16827C,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x168290,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x1682A4,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x1682B8,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x1682CC,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x1682E0,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x1682F4,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x168308,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x16831C,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x168330,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x168344,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x168358,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x16836C,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
 0x168380,12x0,0xFEBF63F8,monotonic axis (unit TBD) (raw 2560..40960),,
 0x168394,9x0,0xFEBF6430,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x1683A8,9x0,0xFEBF6430,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x1683BC,9x0,0xFEBF6430,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x1683D0,9x0,0xFEBF6430,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x1683E4,9x0,0xFEBF6430,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x1683F8,9x0,0xFEBF6430,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x16840C,9x0,0xFEBF6430,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x168420,9x0,0xFEBF6430,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x168434,9x0,0xFEBF6430,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x168448,9x0,0xFEBF6430,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x16845C,9x0,0xFEBF6430,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x168470,15x0,0xFEBF637E,engine RPM (main map axis) [title-anchored],,
+0x168484,15x0,0xFEBF637E,engine RPM (main map axis) [title-anchored],,
+0x168498,15x0,0xFEBF637E,engine RPM (main map axis) [title-anchored],,
+0x1684AC,15x0,0xFEBF637E,engine RPM (main map axis) [title-anchored],,
+0x1684C0,15x0,0xFEBF637E,engine RPM (main map axis) [title-anchored],,
 0x1684D4,15x0,0xFEBF637E,engine RPM (main map axis) [title-anchored],,
 0x168550,26x0,0xFEBF6164,traction-control slip (indexes TC cut maps) [traced],,
 0x168564,9x0,0xFEBF60F4,traction-control slip / wheel [title-anchored],,
 0x168578,9x0,0xFEBF63FA,engine RPM (high range) (12880-13136 rpm),,
 0x16858C,9x0,0xFEBF6430,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x168608,26x0,0xFEBF6164,traction-control slip (indexes TC cut maps) [traced],,
+0x16861C,9x0,0xFEBF60F4,traction-control slip / wheel [title-anchored],,
+0x168630,9x0,0xFEBF63FA,engine RPM (high range) (12880-13136 rpm),,
+0x168644,9x0,0xFEBF6430,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x1686C0,26x0,0xFEBF6164,traction-control slip (indexes TC cut maps) [traced],,
+0x1686D4,9x0,0xFEBF60F4,traction-control slip / wheel [title-anchored],,
+0x1686E8,9x0,0xFEBF63FA,engine RPM (high range) (12880-13136 rpm),,
+0x1686FC,9x0,0xFEBF6430,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x168778,26x0,0xFEBF6164,traction-control slip (indexes TC cut maps) [traced],,
+0x16878C,9x0,0xFEBF60F4,traction-control slip / wheel [title-anchored],,
+0x1687A0,9x0,0xFEBF63FA,engine RPM (high range) (12880-13136 rpm),,
+0x1687B4,9x0,0xFEBF6430,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x168830,26x0,0xFEBF6164,traction-control slip (indexes TC cut maps) [traced],,
+0x168844,9x0,0xFEBF60F4,traction-control slip / wheel [title-anchored],,
+0x168858,9x0,0xFEBF63FA,engine RPM (high range) (12880-13136 rpm),,
+0x16886C,9x0,0xFEBF6430,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x1688E8,26x0,0xFEBF6164,traction-control slip (indexes TC cut maps) [traced],,
+0x1688FC,9x0,0xFEBF60F4,traction-control slip / wheel [title-anchored],,
+0x168910,9x0,0xFEBF63FA,engine RPM (high range) (12880-13136 rpm),,
+0x168924,9x0,0xFEBF6430,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x1689A0,26x0,0xFEBF6164,traction-control slip (indexes TC cut maps) [traced],,
+0x1689B4,9x0,0xFEBF60F4,traction-control slip / wheel [title-anchored],,
+0x1689C8,9x0,0xFEBF63FA,engine RPM (high range) (12880-13136 rpm),,
+0x1689DC,9x0,0xFEBF6430,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x168A58,26x0,0xFEBF6164,traction-control slip (indexes TC cut maps) [traced],,
+0x168A6C,9x0,0xFEBF60F4,traction-control slip / wheel [title-anchored],,
+0x168A80,9x0,0xFEBF63FA,engine RPM (high range) (12880-13136 rpm),,
+0x168A94,9x0,0xFEBF6430,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x168B10,26x0,0xFEBF6164,traction-control slip (indexes TC cut maps) [traced],,
+0x168B24,9x0,0xFEBF60F4,traction-control slip / wheel [title-anchored],,
+0x168B38,9x0,0xFEBF63FA,engine RPM (high range) (12880-13136 rpm),,
+0x168B4C,9x0,0xFEBF6430,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x168BC8,26x0,0xFEBF6164,traction-control slip (indexes TC cut maps) [traced],,
+0x168BDC,9x0,0xFEBF60F4,traction-control slip / wheel [title-anchored],,
+0x168BF0,9x0,0xFEBF63FA,engine RPM (high range) (12880-13136 rpm),,
+0x168C04,9x0,0xFEBF6430,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x168C80,26x0,0xFEBF6164,traction-control slip (indexes TC cut maps) [traced],,
+0x168C94,9x0,0xFEBF60F4,traction-control slip / wheel [title-anchored],,
+0x168CA8,9x0,0xFEBF63FA,engine RPM (high range) (12880-13136 rpm),,
+0x168CBC,9x0,0xFEBF6430,"signed sensor (lean/pitch/rate, centered 0x8000)",,
 0x168CD0,8x0,0xFEBF6166,monotonic axis (unit TBD) (raw 0..3000),,
+0x168D34,9x40,0xFEBF63C4,throttle position TP [title-anchored],0xFEBF615E,engine RPM [title-anchored]
+0x168D50,9x40,0xFEBF63C4,throttle position TP [title-anchored],0xFEBF615E,engine RPM [title-anchored]
+0x168D6C,9x40,0xFEBF63C4,throttle position TP [title-anchored],0xFEBF615E,engine RPM [title-anchored]
 0x168DF0,10x6,0xFEBF63C0,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
+0x168E68,10x6,0xFEBF63C0,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
+0x168EE0,10x6,0xFEBF63C0,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
+0x168F58,10x6,0xFEBF63C0,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
+0x168FD0,10x6,0xFEBF63C0,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
+0x169048,10x6,0xFEBF63C0,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
+0x1690C0,10x6,0xFEBF63C0,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
+0x169138,10x6,0xFEBF63C0,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
+0x1691B0,10x6,0xFEBF63C0,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
+0x169228,10x6,0xFEBF63C0,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
 0x169244,27x0,0xFEBF6394,barometric pressure [title-anchored],,
+0x169258,27x0,0xFEBF6394,barometric pressure [title-anchored],,
 0x17037C,14x0,0xFEBF6443,intake air temp IAT [title-anchored],,
 0x1703E4,22x0,0xFEBF6440,engine coolant temp ECT [title-anchored],,
 0x1703F8,12x0,0xFEBF6380,engine RPM (800-5200 rpm),,
@@ -220,6 +430,8 @@ descriptor,dims,x_ram,x_meaning,y_ram,y_meaning
 0x170584,22x0,0xFEBF6440,engine coolant temp ECT [title-anchored],,
 0x170598,22x0,0xFEBF6440,engine coolant temp ECT [title-anchored],,
 0x1705D8,22x0,0xFEBF6440,engine coolant temp ECT [title-anchored],,
+0x170644,22x0,0xFEBF637A,engine RPM [title-anchored],,
+0x1706B0,22x0,0xFEBF637A,engine RPM [title-anchored],,
 0x17071C,22x0,0xFEBF637A,engine RPM [title-anchored],,
 0x17075C,22x0,0xFEBF6440,engine coolant temp ECT [title-anchored],,
 0x17081C,22x0,0xFEBF6440,engine coolant temp ECT [title-anchored],,
@@ -230,7 +442,9 @@ descriptor,dims,x_ram,x_meaning,y_ram,y_meaning
 0x17095C,22x0,0xFEBF6440,engine coolant temp ECT [title-anchored],,
 0x17099C,22x0,0xFEBF6440,engine coolant temp ECT [title-anchored],,
 0x1709DC,22x0,0xFEBF6440,engine coolant temp ECT [title-anchored],,
+0x170A1C,22x9,0xFEBF637A,engine RPM [title-anchored],0xFEBF6440,engine coolant temp ECT [title-anchored]
 0x170A64,22x9,0xFEBF637A,engine RPM [title-anchored],0xFEBF6440,engine coolant temp ECT [title-anchored]
+0x170AAC,22x9,0xFEBF637A,engine RPM [title-anchored],0xFEBF6440,engine coolant temp ECT [title-anchored]
 0x1711F0,15x0,0xFEBF637A,engine RPM [title-anchored],,
 0x171204,16x0,0xFEBF6443,intake air temp IAT [title-anchored],,
 0x171410,11x0,0xFEF01E3E,engine RPM (axis 500..4000),,
@@ -246,9 +460,14 @@ descriptor,dims,x_ram,x_meaning,y_ram,y_meaning
 0x171554,15x0,0xFEBF637A,engine RPM [title-anchored],,
 0x171598,10x14,0xFEBF63EC,non-monotonic (bitmask/enum?),0xFEBF637A,engine RPM [title-anchored]
 0x1715B4,8x0,0xFEF025EC,monotonic axis (unit TBD) (raw 461..819),,
+0x1715F8,10x14,0xFEF025EC,monotonic axis (unit TBD) (raw 461..819),,
 0x171644,10x14,0xFEBF63EC,non-monotonic (bitmask/enum?),0xFEBF637A,engine RPM [title-anchored]
 0x1716AC,16x0,0xFEBF63F4,engine RPM (500-8000 rpm),,
+0x1716C0,16x0,0xFEBF63F4,engine RPM (500-8000 rpm),,
+0x1716D4,16x0,0xFEBF63F4,engine RPM (500-8000 rpm),,
 0x1716E8,37x0,0xFEBF642A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x1716FC,37x0,0xFEBF642A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x171710,37x0,0xFEBF642A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
 0x171724,31x0,0xFEBF642E,"signed sensor (lean/pitch/rate, centered 0x8000)",,
 0x171738,7x0,0xFEBF6442,gear position [title-anchored],,
 0x17174C,7x0,0xFEBF6442,gear position [title-anchored],,
@@ -257,7 +476,15 @@ descriptor,dims,x_ram,x_meaning,y_ram,y_meaning
 0x1717D4,10x14,0xFEBF63C4,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
 0x171820,10x14,0xFEBF63C4,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
 0x171898,6x25,0xFEBF63C4,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
+0x1718C0,6x25,0xFEBF63C4,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
+0x1718E8,6x25,0xFEBF63C4,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
+0x171910,6x25,0xFEBF63C4,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
+0x171938,6x25,0xFEBF63C4,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
+0x171960,6x25,0xFEBF63C4,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
+0x171988,6x25,0xFEBF63C4,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
+0x1719B0,6x25,0xFEBF63C4,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
 0x172FA4,31x0,0xFEF025F4,monotonic axis (unit TBD) (raw 1024..62464),,
+0x172FB8,29x0,0xFEF025F2,axis/sensor input 0xFEF025F2 [code-traced],,
 0x173008,30x0,0xFEF025DC,monotonic axis (unit TBD) (raw 13..1000),,
 0x17301C,29x0,0xFEBF6394,barometric pressure [title-anchored],,
 0x1730A8,7x0,0xFEBF6442,gear position [title-anchored],,
@@ -278,13 +505,62 @@ descriptor,dims,x_ram,x_meaning,y_ram,y_meaning
 0x1746D4,7x0,0xFEBF6442,gear position [title-anchored],,
 0x1746E8,5x0,0xFEBF63BA,monotonic axis (unit TBD) (raw 512..921),,
 0x1746FC,5x0,0xFEF02D8A,engine RPM (high range) (12805-13107 rpm),,
+0x174710,39x0,0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)",,
 0x174724,39x0,0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x174738,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x174754,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x174770,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x17478C,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x1747A8,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x1747C4,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x1747E0,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x1747FC,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x174818,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x174834,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x174850,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x17486C,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x174888,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x1748A4,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x1748C0,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x1748DC,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x1748F8,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x174914,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x174930,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x17494C,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x174968,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x174984,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x1749A0,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x1749BC,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x1749D8,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x1749F4,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x174A10,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x174A2C,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x174A48,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x174A64,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x174A80,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x174A9C,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x174AB8,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x174AD4,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x174AF0,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x174B0C,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x174B28,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x174B44,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x174B60,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x174B7C,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x174B98,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
+0x174BB4,23x39,0xFEBF63AE,rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8],0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)"
 0x174BD0,23x39,0xFEF02E44,monotonic axis (unit TBD) (raw 0..38876),0xFEF02E46,"signed sensor (lean/pitch/rate, centered 0x8000)"
 0x174D18,14x10,0xFEF02E2C,engine RPM (fuel/ign control) [title-anchored],0xFEBF6169,throttle / load (map Y-axis)
 0x174D64,14x10,0xFEF02E2C,engine RPM (fuel/ign control) [title-anchored],0xFEBF6169,throttle / load (map Y-axis)
 0x174DB0,14x10,0xFEF02E2C,engine RPM (fuel/ign control) [title-anchored],0xFEBF6169,throttle / load (map Y-axis)
+0x174DFC,14x10,0xFEF02E2C,engine RPM (fuel/ign control) [title-anchored],0xFEBF6169,throttle / load (map Y-axis)
+0x174E48,14x10,0xFEF02E2C,engine RPM (fuel/ign control) [title-anchored],0xFEBF6169,throttle / load (map Y-axis)
 0x174E94,14x10,0xFEF02E2C,engine RPM (fuel/ign control) [title-anchored],0xFEBF6169,throttle / load (map Y-axis)
+0x174EE0,14x10,0xFEF02E2C,engine RPM (fuel/ign control) [title-anchored],0xFEBF6169,throttle / load (map Y-axis)
+0x174F2C,14x10,0xFEF02E2C,engine RPM (fuel/ign control) [title-anchored],0xFEBF6169,throttle / load (map Y-axis)
 0x174F78,14x10,0xFEF02E2C,engine RPM (fuel/ign control) [title-anchored],0xFEBF6169,throttle / load (map Y-axis)
+0x192D78,21x0,0xFEBF637E,engine RPM (main map axis) [title-anchored],,
+0x192D8C,21x0,0xFEBF637E,engine RPM (main map axis) [title-anchored],,
 0x192DA0,16x0,0xFEBF6440,engine coolant temp ECT [title-anchored],,
 0x192DB4,11x0,0xFEBF67AC,throttle / load (raw 0..20),,
 0x192DC8,5x21,0xFEBF6394,barometric pressure [title-anchored],0xFEBF637E,engine RPM (main map axis) [title-anchored]
@@ -308,11 +584,13 @@ descriptor,dims,x_ram,x_meaning,y_ram,y_meaning
 0x193120,10x21,0xFEBF6436,intake air pressure IAP / load (main load axis) [title-anchored],0xFEBF637E,engine RPM (main map axis) [title-anchored]
 0x193150,10x21,0xFEBF6436,intake air pressure IAP / load (main load axis) [title-anchored],0xFEBF637E,engine RPM (main map axis) [title-anchored]
 0x193180,10x21,0xFEBF6436,intake air pressure IAP / load (main load axis) [title-anchored],0xFEBF637E,engine RPM (main map axis) [title-anchored]
+0x1931B0,10x21,0xFEBF6436,intake air pressure IAP / load (main load axis) [title-anchored],0xFEBF637E,engine RPM (main map axis) [title-anchored]
 0x1931E0,10x21,0xFEBF6436,intake air pressure IAP / load (main load axis) [title-anchored],0xFEBF637E,engine RPM (main map axis) [title-anchored]
 0x193210,10x21,0xFEBF6436,intake air pressure IAP / load (main load axis) [title-anchored],0xFEBF637E,engine RPM (main map axis) [title-anchored]
 0x193240,10x21,0xFEBF6436,intake air pressure IAP / load (main load axis) [title-anchored],0xFEBF637E,engine RPM (main map axis) [title-anchored]
 0x193270,10x21,0xFEBF6436,intake air pressure IAP / load (main load axis) [title-anchored],0xFEBF637E,engine RPM (main map axis) [title-anchored]
 0x1932A0,10x21,0xFEBF6436,intake air pressure IAP / load (main load axis) [title-anchored],0xFEBF637E,engine RPM (main map axis) [title-anchored]
+0x1932D0,10x21,0xFEBF6436,intake air pressure IAP / load (main load axis) [title-anchored],0xFEBF637E,engine RPM (main map axis) [title-anchored]
 0x193300,10x21,0xFEBF6436,intake air pressure IAP / load (main load axis) [title-anchored],0xFEBF637E,engine RPM (main map axis) [title-anchored]
 0x193330,10x21,0xFEBF6436,intake air pressure IAP / load (main load axis) [title-anchored],0xFEBF637E,engine RPM (main map axis) [title-anchored]
 0x193360,10x21,0xFEBF6436,intake air pressure IAP / load (main load axis) [title-anchored],0xFEBF637E,engine RPM (main map axis) [title-anchored]
@@ -371,6 +649,9 @@ descriptor,dims,x_ram,x_meaning,y_ram,y_meaning
 0x193DF4,10x21,0xFEBF6436,intake air pressure IAP / load (main load axis) [title-anchored],0xFEBF637E,engine RPM (main map axis) [title-anchored]
 0x193E24,10x21,0xFEBF6436,intake air pressure IAP / load (main load axis) [title-anchored],0xFEBF637E,engine RPM (main map axis) [title-anchored]
 0x193E54,10x21,0xFEBF6436,intake air pressure IAP / load (main load axis) [title-anchored],0xFEBF637E,engine RPM (main map axis) [title-anchored]
+0x193E84,10x21,0xFEBF6436,intake air pressure IAP / load (main load axis) [title-anchored],0xFEBF637E,engine RPM (main map axis) [title-anchored]
+0x193EB4,10x21,0xFEBF6436,intake air pressure IAP / load (main load axis) [title-anchored],0xFEBF637E,engine RPM (main map axis) [title-anchored]
+0x193EE4,10x21,0xFEBF6436,intake air pressure IAP / load (main load axis) [title-anchored],0xFEBF637E,engine RPM (main map axis) [title-anchored]
 0x193F14,10x21,0xFEBF6436,intake air pressure IAP / load (main load axis) [title-anchored],0xFEBF637E,engine RPM (main map axis) [title-anchored]
 0x193F44,10x21,0xFEBF6436,intake air pressure IAP / load (main load axis) [title-anchored],0xFEBF637E,engine RPM (main map axis) [title-anchored]
 0x193F74,10x21,0xFEBF6436,intake air pressure IAP / load (main load axis) [title-anchored],0xFEBF637E,engine RPM (main map axis) [title-anchored]
