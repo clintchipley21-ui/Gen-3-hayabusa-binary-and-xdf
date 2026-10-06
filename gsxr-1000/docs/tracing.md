@@ -289,3 +289,29 @@ variables*. For the remaining maps the input **domain** is already carried by th
 (e.g. *"… vs RPM × TP"*, *"… vs ECT"*), which is accurate; only the exact RAM variable is
 undetermined, and assigning one automatically would be ~50 % wrong. Raising the number further is
 per-map manual decompile reading — now cheap via the workflow above, but not safely automatable.
+
+## 3k. Per-family reader decompiles — coverage raised 378 → 575
+
+§3j showed bulk automation can't resolve the tail accurately. The accurate-and-fast route is the
+persistent-project workflow applied **per subsystem**: pull each family's reader functions from the
+cal-xrefs, batch-decompile them (~8–100 s), and read the gp-relative sensor in each lookup call. Done
+for four families the user prioritised:
+
+- **Fuel (+21).** Readers in `docs/trace-fuel.c`: decel-cut/recovery (ECT `0xFEBF6440`), per-gear
+  enrichment/trim (RPM `0xFEBF637A` × TP), air-charge main (TP `0xFEBF63C4` × RPM), EB fuel-cut
+  (speed `0xFEBF63F6` × gear), baro corrections (`0xFEBF6394`).
+- **Ignition (+32).** `docs/trace-ignition.c`: throttle/second thresholds (RPM axis `0xFEBF615E`),
+  dwell (battery `0xFEBF638C` × RPM), transient rate curves (RPM), Trim A–D + mode maps
+  (TP `0xFEBF63C2/63C6` × RPM), per-gear retard (TP × RPM), EB ignition trim (`0xFEF0262C` × gear).
+- **Traction control (+129).** `docs/trace-tc-controller.c`: `FUN_00055016` gives the per-level block
+  order — Cut-vs-Slip Error (slip `0xFEBF6164`) / Rate (`0xFEBF60F4`) / History (`0xFEBF63FA`) / Lean
+  Gain (lean `0xFEBF6430`); target-slip reader (`0xFEBF5E7A`), slip-gain reader (RPM `0xFEBF637E`).
+- **ETV / cruise / anti-lift (+15).** `docs/trace-etv.c`: ETV monitor (IAP `0xFEBF6436` × RPM),
+  ETV gain (RPM `0xFEBF637C`), cruise correction (computed speed error vs `0xFEBF5E86`), LF
+  throttle-limit (demand `0xFEF02E2C` × load `0xFEBF6169`).
+
+**Now 575 / 791.** Every entry is a gp-relative sensor read in the map's own lookup call — same
+confidence as the original 378. What's still unresolved is genuinely pointer-table-selected (the 42
+`ETV-PWR/Slot` power-mode maps via table `0x192BC0`, the advance-timing and ride-mode ECT-retard
+maps) or small inline curves — these have no single decompilable reader, so they stay unlabelled
+rather than guessed.
