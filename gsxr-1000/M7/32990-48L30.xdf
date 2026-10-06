@@ -51128,8 +51128,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x100659" flags="0x0">
-    <title>Scalar @0x1702C0 (u8)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u8 read by ECU code (1 ref/1 fn fn 0x053DC6). VALUE 32990-48L30: 255.</description>
+    <title>Idle airflow-correction enable (FUN_00053DC6 skips the block</title>
+    <description>TRACED FROM GSX-R CODE: Idle airflow-correction enable (FUN_00053DC6 skips the block when ==0x80; stock 0xFF = active). VALUE 32990-48L30: 255 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1702C0" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -51140,8 +51140,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x10065A" flags="0x0">
-    <title>Scalar @0x1702C1 (u8)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u8 read by ECU code (1 ref/1 fn fn 0x053C0C). VALUE 32990-48L30: 13.</description>
+    <title>Idle feedback-step debounce count (FUN_00053C0C: fef00f4c co</title>
+    <description>TRACED FROM GSX-R CODE: Idle feedback-step debounce count (FUN_00053C0C: fef00f4c counts to this; stock 13). VALUE 32990-48L30: 13 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1702C1" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -60104,8 +60104,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x10096D" flags="0x0">
-    <title>Scalar @0x1744AE (u8)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u8 read by ECU code (3 ref/3 fn fn 0x053F3E). VALUE 32990-48L30: 3.</description>
+    <title>Idle decel-airflow moving-average window length (FUN_00053F3</title>
+    <description>TRACED FROM GSX-R CODE: Idle decel-airflow moving-average window length (FUN_00053F3E, clamped &lt;=19; stock 3). VALUE 32990-48L30: 3 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1744AE" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>

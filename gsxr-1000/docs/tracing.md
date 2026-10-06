@@ -220,3 +220,45 @@ The upshift cut is the spark-side mirror of the downshift auto-blip (§3f). Trac
 So the full upshift path is: *master-enable → GP-sensor window detect → arm flags → phase sequencer →
 3-phase ignition retard → cut actuator*. Tune feel via the Phase 1/2/3 retard maps and the window
 offset curves; disable with `0x154DD2`. Decompile in `docs/trace-upshift.c`.
+
+## 3i. Idle air-control (traced)
+
+The idle system is the ECT-indexed airflow/target curve set (base airflow `0x170558`, target A/B
+`0x170870`/`0x1708B0`, ECT curves `0x1708F0..`) driven by a closed-loop corrector:
+
+- `FUN_00053DC6` gates the correction on a ready-flag mask (byte `gp−0x5ED6`); the whole
+  airflow-correction block is skipped when the **enable byte `0x1702C0` == 0x80** (stock `0xFF` = active).
+- `FUN_00053C0C` runs the feedback step with a **debounce count `0x1702C1` = 13**.
+- `FUN_00053F3E` keeps a moving average of the airflow/slip signal `0xFEBF6166` over a window of
+  **`0x1744AE` = 3** samples (clamped ≤19).
+- `FUN_0004FF2E` is the per-channel servo update; feedback state lives in `0xFEF00F48/0xFEF00F49`.
+
+The idle *target* is the ported ECT curves; these three scalars gate and tune the closed loop.
+
+## Efficient re-tracing workflow (persistent Ghidra project)
+
+Earlier traces each re-imported the 2 MB image and re-ran full auto-analysis (~6 min/run). That
+analysis is identical every time, so it is now done **once** and reused:
+
+```
+# one-time (~5 min): import + analyze, keep the project (no -deleteProject)
+analyzeHeadless ./proj gsxrAll -import gsxr_48L00.bin -processor V850:LE:32:default \
+  -loader BinaryLoader -loader-baseAddr 0x0
+
+# every subsequent dump (~8 s): reopen WITHOUT re-analysis, batch-decompile a function list
+analyzeHeadless ./proj gsxrAll -process gsxr_48L00.bin -noanalysis \
+  -scriptPath . -postScript DumpFunc.py 52a2c,52f74,53c2e,...  out.c
+```
+
+Measured: **~8 s** to decompile a batch of ~11 functions vs ~6 min before — same decompiler, same
+output, ~45× faster. `DumpRam2.py <out> <LO> <HI>` sweeps any RAM window for cross-references the
+same way. This is the tool for extending the trace further.
+
+## Coverage ceiling (map inputs)
+
+`GSX-R TRACED INPUTS` is resolved for **378 / 791** maps. Of the rest, ~199 cite a reader function
+but index their lookup with a **computed expression** (not a direct sensor read), and the balance are
+read through inlined interpolation. Neither can be attributed to a single input variable at the same
+confidence as the sensor-block-anchored 378, so they are intentionally left unlabelled rather than
+filled with low-confidence guesses. Raising this number further means reading each reader's decompile
+by hand (now cheap via the workflow above) — accurate, but per-map manual work.

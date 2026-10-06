@@ -1402,7 +1402,10 @@
   "0x154C7C": "Quickshifter upshift cut debounce/threshold low (FUN_0002A96E; stock 2)",
   "0x154C7E": "Quickshifter upshift cut debounce/threshold high (FUN_0002A96E; stock 23)",
   "0x1559BA": "Quickshifter upshift valid shift-signal window upper (FUN_0002A96E: fef02630 <= this x64; stock 236 -> 15104)",
-  "0x1559BC": "Quickshifter upshift valid shift-signal window lower (FUN_0002A96E: fef02630 >= this x64; stock 20 -> 1280)"
+  "0x1559BC": "Quickshifter upshift valid shift-signal window lower (FUN_0002A96E: fef02630 >= this x64; stock 20 -> 1280)",
+  "0x1702C0": "Idle airflow-correction enable (FUN_00053DC6 skips the block when ==0x80; stock 0xFF = active)",
+  "0x1702C1": "Idle feedback-step debounce count (FUN_00053C0C: fef00f4c counts to this; stock 13)",
+  "0x1744AE": "Idle decel-airflow moving-average window length (FUN_00053F3E, clamped <=19; stock 3)"
  },
  "gp": "0xFEBFC000 (V850 global pointer; set in crt0 at 0x10C82: mov 0xFEBFC000,gp)",
  "rev_cut_signal": "0xFEBF642E (gp-0x5BD2; RPM-domain, in the 0xFEBF6xxx sdata sensor block next to RPM 0xFEBF615E)",
@@ -1479,5 +1482,13 @@
   "retard_maps": "0x15234C / 0x1523BC / phase3 (3-phase upshift ignition retard vs RPM x TP)",
   "window_maps": "0x150944 (A) / 0x1509A8 (B) / 0x1509BC (C) GP-sensor upshift window offsets vs gear; 0x15096C per-gear window target",
   "note": "Mirror of the downshift auto-blip chain (3f) but for upshift: upshift cuts spark via retard, downshift opens the ETV via the engine-brake controller."
+ },
+ "idle_control": {
+  "summary": "Idle air-control is the ECT-indexed Target/Airflow curve set (0x170558 base airflow, 0x170870/0x1708B0 target A/B, 0x1708F0.. ECT curves) driven by a feedback integrator. FUN_00053DC6 gates the correction on a mask of ready-flags (byte gp-0x5ED6); FUN_00053C0C runs the feedback step with debounce count 0x1702C1; FUN_00053F3E keeps a moving average of the slip/airflow signal febf6166 over a window of 0x1744AE samples; FUN_0004FF2E is the per-channel servo update.",
+  "airflow_correction_enable": "0x1702C0 (==0x80 disables the idle airflow-correction block; stock 0xFF = active)",
+  "feedback_debounce": "0x1702C1 (idle feedback-step debounce count; stock 13)",
+  "avg_window": "0x1744AE (decel-airflow moving-average window length, clamped <=19; stock 3)",
+  "ready_flags": "byte at gp-0x5ED6 (idle ready/enable bit-mask), feedback state fef00f48/fef00f49",
+  "note": "Idle target itself is in the ported ECT curves; these scalars gate and tune the closed-loop correction."
  }
 }
