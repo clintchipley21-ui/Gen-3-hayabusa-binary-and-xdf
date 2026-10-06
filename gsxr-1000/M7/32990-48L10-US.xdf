@@ -25255,6 +25255,7 @@ REFERENCE: descriptor @0x174724, data @0x175E38, X @0x175F50.</description>
     <title>ETV - PWR 1 | Neutral</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..106.78 deg (abs. accel angle); Y: 39 pts 400..15600 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 119.38 target throttle angle (deg).
 REFERENCE: descriptor @0x174738, data @0x175FF0, X @0x1751E0, Y @0x175FA0.</description>
@@ -25300,6 +25301,7 @@ REFERENCE: descriptor @0x174738, data @0x175FF0, X @0x1751E0, Y @0x175FA0.</desc
     <title>ETV - PWR 1 | Gear 1</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..106.78 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 119.38 target throttle angle (deg).
 REFERENCE: descriptor @0x174754, data @0x176744, X @0x175210, Y @0x1766F4.</description>
@@ -25345,6 +25347,7 @@ REFERENCE: descriptor @0x174754, data @0x176744, X @0x175210, Y @0x1766F4.</desc
     <title>ETV - PWR 1 | Gear 2</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..106.78 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 119.38 target throttle angle (deg).
 REFERENCE: descriptor @0x174770, data @0x176E98, X @0x175240, Y @0x176E48.</description>
@@ -25390,6 +25393,7 @@ REFERENCE: descriptor @0x174770, data @0x176E98, X @0x175240, Y @0x176E48.</desc
     <title>ETV - PWR 1 | Gear 3</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..106.78 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 119.38 target throttle angle (deg).
 REFERENCE: descriptor @0x17478C, data @0x1775EC, X @0x175270, Y @0x17759C.</description>
@@ -25435,6 +25439,7 @@ REFERENCE: descriptor @0x17478C, data @0x1775EC, X @0x175270, Y @0x17759C.</desc
     <title>ETV - PWR 1 | Gear 4</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..106.78 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 119.38 target throttle angle (deg).
 REFERENCE: descriptor @0x1747A8, data @0x177D40, X @0x1752A0, Y @0x177CF0.</description>
@@ -25480,6 +25485,7 @@ REFERENCE: descriptor @0x1747A8, data @0x177D40, X @0x1752A0, Y @0x177CF0.</desc
     <title>ETV - PWR 1 | Gear 5</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..106.78 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 119.38 target throttle angle (deg).
 REFERENCE: descriptor @0x1747C4, data @0x178494, X @0x1752D0, Y @0x178444.</description>
@@ -25525,6 +25531,7 @@ REFERENCE: descriptor @0x1747C4, data @0x178494, X @0x1752D0, Y @0x178444.</desc
     <title>ETV - PWR 1 | Gear 6</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..106.78 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 119.38 target throttle angle (deg).
 REFERENCE: descriptor @0x1747E0, data @0x178BE8, X @0x175300, Y @0x178B98.</description>
@@ -25570,6 +25577,7 @@ REFERENCE: descriptor @0x1747E0, data @0x178BE8, X @0x175300, Y @0x178B98.</desc
     <title>ETV - PWR 2 | Neutral</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..106.78 deg (abs. accel angle); Y: 39 pts 400..15600 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 119.38 target throttle angle (deg).
 REFERENCE: descriptor @0x1747FC, data @0x17933C, X @0x175330, Y @0x1792EC.</description>
@@ -25615,6 +25623,7 @@ REFERENCE: descriptor @0x1747FC, data @0x17933C, X @0x175330, Y @0x1792EC.</desc
     <title>ETV - PWR 2 | Gear 1</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..106.78 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 119.38 target throttle angle (deg).
 REFERENCE: descriptor @0x174818, data @0x179A90, X @0x175360, Y @0x179A40.</description>
@@ -25660,6 +25669,7 @@ REFERENCE: descriptor @0x174818, data @0x179A90, X @0x175360, Y @0x179A40.</desc
     <title>ETV - PWR 2 | Gear 2</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..106.78 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 119.38 target throttle angle (deg).
 REFERENCE: descriptor @0x174834, data @0x17A1E4, X @0x175390, Y @0x17A194.</description>
@@ -25705,6 +25715,7 @@ REFERENCE: descriptor @0x174834, data @0x17A1E4, X @0x175390, Y @0x17A194.</desc
     <title>ETV - PWR 2 | Gear 3</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..106.78 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 119.38 target throttle angle (deg).
 REFERENCE: descriptor @0x174850, data @0x17A938, X @0x1753C0, Y @0x17A8E8.</description>
@@ -25750,6 +25761,7 @@ REFERENCE: descriptor @0x174850, data @0x17A938, X @0x1753C0, Y @0x17A8E8.</desc
     <title>ETV - PWR 2 | Gear 4</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..106.78 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 119.38 target throttle angle (deg).
 REFERENCE: descriptor @0x17486C, data @0x17B08C, X @0x1753F0, Y @0x17B03C.</description>
@@ -25795,6 +25807,7 @@ REFERENCE: descriptor @0x17486C, data @0x17B08C, X @0x1753F0, Y @0x17B03C.</desc
     <title>ETV - PWR 2 | Gear 5</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..106.78 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 119.38 target throttle angle (deg).
 REFERENCE: descriptor @0x174888, data @0x17B7E0, X @0x175420, Y @0x17B790.</description>
@@ -25840,6 +25853,7 @@ REFERENCE: descriptor @0x174888, data @0x17B7E0, X @0x175420, Y @0x17B790.</desc
     <title>ETV - PWR 2 | Gear 6</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..106.78 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 119.38 target throttle angle (deg).
 REFERENCE: descriptor @0x1748A4, data @0x17BF34, X @0x175450, Y @0x17BEE4.</description>
@@ -25885,6 +25899,7 @@ REFERENCE: descriptor @0x1748A4, data @0x17BF34, X @0x175450, Y @0x17BEE4.</desc
     <title>ETV - PWR 3 | Neutral</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..106.78 deg (abs. accel angle); Y: 39 pts 400..15600 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 119.38 target throttle angle (deg).
 REFERENCE: descriptor @0x1748C0, data @0x17C688, X @0x175480, Y @0x17C638.</description>
@@ -25930,6 +25945,7 @@ REFERENCE: descriptor @0x1748C0, data @0x17C688, X @0x175480, Y @0x17C638.</desc
     <title>ETV - PWR 3 | Gear 1</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..106.78 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 119.38 target throttle angle (deg).
 REFERENCE: descriptor @0x1748DC, data @0x17CDDC, X @0x1754B0, Y @0x17CD8C.</description>
@@ -25975,6 +25991,7 @@ REFERENCE: descriptor @0x1748DC, data @0x17CDDC, X @0x1754B0, Y @0x17CD8C.</desc
     <title>ETV - PWR 3 | Gear 2</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..106.78 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 119.38 target throttle angle (deg).
 REFERENCE: descriptor @0x1748F8, data @0x17D530, X @0x1754E0, Y @0x17D4E0.</description>
@@ -26020,6 +26037,7 @@ REFERENCE: descriptor @0x1748F8, data @0x17D530, X @0x1754E0, Y @0x17D4E0.</desc
     <title>ETV - PWR 3 | Gear 3</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..106.78 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 119.38 target throttle angle (deg).
 REFERENCE: descriptor @0x174914, data @0x17DC84, X @0x175510, Y @0x17DC34.</description>
@@ -26065,6 +26083,7 @@ REFERENCE: descriptor @0x174914, data @0x17DC84, X @0x175510, Y @0x17DC34.</desc
     <title>ETV - PWR 3 | Gear 4</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..106.78 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 119.38 target throttle angle (deg).
 REFERENCE: descriptor @0x174930, data @0x17E3D8, X @0x175540, Y @0x17E388.</description>
@@ -26110,6 +26129,7 @@ REFERENCE: descriptor @0x174930, data @0x17E3D8, X @0x175540, Y @0x17E388.</desc
     <title>ETV - PWR 3 | Gear 5</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..106.78 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 119.38 target throttle angle (deg).
 REFERENCE: descriptor @0x17494C, data @0x17EB2C, X @0x175570, Y @0x17EADC.</description>
@@ -26155,6 +26175,7 @@ REFERENCE: descriptor @0x17494C, data @0x17EB2C, X @0x175570, Y @0x17EADC.</desc
     <title>ETV - PWR 3 | Gear 6</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..106.78 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 119.38 target throttle angle (deg).
 REFERENCE: descriptor @0x174968, data @0x17F280, X @0x1755A0, Y @0x17F230.</description>
@@ -26200,6 +26221,7 @@ REFERENCE: descriptor @0x174968, data @0x17F280, X @0x1755A0, Y @0x17F230.</desc
     <title>ETV - Slot 4 | Neutral (unused stock)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..118.08 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 0 throttle angle (deg) - every cell the same.
 REFERENCE: descriptor @0x174984, data @0x17F9D4, X @0x1755D0, Y @0x17F984.</description>
@@ -26246,6 +26268,7 @@ REFERENCE: descriptor @0x174984, data @0x17F9D4, X @0x1755D0, Y @0x17F984.</desc
     <title>ETV - Slot 4 | Gear 1 (unused stock)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..118.08 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 0 throttle angle (deg) - every cell the same.
 REFERENCE: descriptor @0x1749A0, data @0x180128, X @0x175600, Y @0x1800D8.</description>
@@ -26292,6 +26315,7 @@ REFERENCE: descriptor @0x1749A0, data @0x180128, X @0x175600, Y @0x1800D8.</desc
     <title>ETV - Slot 4 | Gear 2 (unused stock)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..118.08 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 0 throttle angle (deg) - every cell the same.
 REFERENCE: descriptor @0x1749BC, data @0x18087C, X @0x175630, Y @0x18082C.</description>
@@ -26338,6 +26362,7 @@ REFERENCE: descriptor @0x1749BC, data @0x18087C, X @0x175630, Y @0x18082C.</desc
     <title>ETV - Slot 4 | Gear 3 (unused stock)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..118.08 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 0 throttle angle (deg) - every cell the same.
 REFERENCE: descriptor @0x1749D8, data @0x180FD0, X @0x175660, Y @0x180F80.</description>
@@ -26384,6 +26409,7 @@ REFERENCE: descriptor @0x1749D8, data @0x180FD0, X @0x175660, Y @0x180F80.</desc
     <title>ETV - Slot 4 | Gear 4 (unused stock)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..118.08 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 0 throttle angle (deg) - every cell the same.
 REFERENCE: descriptor @0x1749F4, data @0x181724, X @0x175690, Y @0x1816D4.</description>
@@ -26430,6 +26456,7 @@ REFERENCE: descriptor @0x1749F4, data @0x181724, X @0x175690, Y @0x1816D4.</desc
     <title>ETV - Slot 4 | Gear 5 (unused stock)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..118.08 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 0 throttle angle (deg) - every cell the same.
 REFERENCE: descriptor @0x174A10, data @0x181E78, X @0x1756C0, Y @0x181E28.</description>
@@ -26476,6 +26503,7 @@ REFERENCE: descriptor @0x174A10, data @0x181E78, X @0x1756C0, Y @0x181E28.</desc
     <title>ETV - Slot 4 | Gear 6 (unused stock)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..118.08 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 0 throttle angle (deg) - every cell the same.
 REFERENCE: descriptor @0x174A2C, data @0x1825CC, X @0x1756F0, Y @0x18257C.</description>
@@ -26522,6 +26550,7 @@ REFERENCE: descriptor @0x174A2C, data @0x1825CC, X @0x1756F0, Y @0x18257C.</desc
     <title>ETV - Slot 5 | Neutral (unused stock)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..118.08 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 0 throttle angle (deg) - every cell the same.
 REFERENCE: descriptor @0x174A48, data @0x182D20, X @0x175720, Y @0x182CD0.</description>
@@ -26568,6 +26597,7 @@ REFERENCE: descriptor @0x174A48, data @0x182D20, X @0x175720, Y @0x182CD0.</desc
     <title>ETV - Slot 5 | Gear 1 (unused stock)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..118.08 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 0 throttle angle (deg) - every cell the same.
 REFERENCE: descriptor @0x174A64, data @0x183474, X @0x175750, Y @0x183424.</description>
@@ -26614,6 +26644,7 @@ REFERENCE: descriptor @0x174A64, data @0x183474, X @0x175750, Y @0x183424.</desc
     <title>ETV - Slot 5 | Gear 2 (unused stock)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..118.08 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 0 throttle angle (deg) - every cell the same.
 REFERENCE: descriptor @0x174A80, data @0x183BC8, X @0x175780, Y @0x183B78.</description>
@@ -26660,6 +26691,7 @@ REFERENCE: descriptor @0x174A80, data @0x183BC8, X @0x175780, Y @0x183B78.</desc
     <title>ETV - Slot 5 | Gear 3 (unused stock)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..118.08 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 0 throttle angle (deg) - every cell the same.
 REFERENCE: descriptor @0x174A9C, data @0x18431C, X @0x1757B0, Y @0x1842CC.</description>
@@ -26706,6 +26738,7 @@ REFERENCE: descriptor @0x174A9C, data @0x18431C, X @0x1757B0, Y @0x1842CC.</desc
     <title>ETV - Slot 5 | Gear 4 (unused stock)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..118.08 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 0 throttle angle (deg) - every cell the same.
 REFERENCE: descriptor @0x174AB8, data @0x184A70, X @0x1757E0, Y @0x184A20.</description>
@@ -26752,6 +26785,7 @@ REFERENCE: descriptor @0x174AB8, data @0x184A70, X @0x1757E0, Y @0x184A20.</desc
     <title>ETV - Slot 5 | Gear 5 (unused stock)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..118.08 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 0 throttle angle (deg) - every cell the same.
 REFERENCE: descriptor @0x174AD4, data @0x1851C4, X @0x175810, Y @0x185174.</description>
@@ -26798,6 +26832,7 @@ REFERENCE: descriptor @0x174AD4, data @0x1851C4, X @0x175810, Y @0x185174.</desc
     <title>ETV - Slot 5 | Gear 6 (unused stock)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..118.08 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 0 throttle angle (deg) - every cell the same.
 REFERENCE: descriptor @0x174AF0, data @0x185918, X @0x175840, Y @0x1858C8.</description>
@@ -26844,6 +26879,7 @@ REFERENCE: descriptor @0x174AF0, data @0x185918, X @0x175840, Y @0x1858C8.</desc
     <title>ETV - Slot 6 | Neutral (unused stock)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..118.08 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 0 throttle angle (deg) - every cell the same.
 REFERENCE: descriptor @0x174B0C, data @0x18606C, X @0x175870, Y @0x18601C.</description>
@@ -26890,6 +26926,7 @@ REFERENCE: descriptor @0x174B0C, data @0x18606C, X @0x175870, Y @0x18601C.</desc
     <title>ETV - Slot 6 | Gear 1 (unused stock)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..118.08 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 0 throttle angle (deg) - every cell the same.
 REFERENCE: descriptor @0x174B28, data @0x1867C0, X @0x1758A0, Y @0x186770.</description>
@@ -26936,6 +26973,7 @@ REFERENCE: descriptor @0x174B28, data @0x1867C0, X @0x1758A0, Y @0x186770.</desc
     <title>ETV - Slot 6 | Gear 2 (unused stock)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..118.08 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 0 throttle angle (deg) - every cell the same.
 REFERENCE: descriptor @0x174B44, data @0x186F14, X @0x1758D0, Y @0x186EC4.</description>
@@ -26982,6 +27020,7 @@ REFERENCE: descriptor @0x174B44, data @0x186F14, X @0x1758D0, Y @0x186EC4.</desc
     <title>ETV - Slot 6 | Gear 3 (unused stock)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..118.08 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 0 throttle angle (deg) - every cell the same.
 REFERENCE: descriptor @0x174B60, data @0x187668, X @0x175900, Y @0x187618.</description>
@@ -27028,6 +27067,7 @@ REFERENCE: descriptor @0x174B60, data @0x187668, X @0x175900, Y @0x187618.</desc
     <title>ETV - Slot 6 | Gear 4 (unused stock)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..118.08 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 0 throttle angle (deg) - every cell the same.
 REFERENCE: descriptor @0x174B7C, data @0x187DBC, X @0x175930, Y @0x187D6C.</description>
@@ -27074,6 +27114,7 @@ REFERENCE: descriptor @0x174B7C, data @0x187DBC, X @0x175930, Y @0x187D6C.</desc
     <title>ETV - Slot 6 | Gear 5 (unused stock)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..118.08 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 0 throttle angle (deg) - every cell the same.
 REFERENCE: descriptor @0x174B98, data @0x188510, X @0x175960, Y @0x1884C0.</description>
@@ -27120,6 +27161,7 @@ REFERENCE: descriptor @0x174B98, data @0x188510, X @0x175960, Y @0x1884C0.</desc
     <title>ETV - Slot 6 | Gear 6 (unused stock)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 23 pts 0..118.08 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63AE (rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]); Y = 0xFEBF637C (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c4ce.
 VALUES (32990-48L10-US): 0 to 0 throttle angle (deg) - every cell the same.
 REFERENCE: descriptor @0x174BB4, data @0x188C64, X @0x175990, Y @0x188C14.</description>

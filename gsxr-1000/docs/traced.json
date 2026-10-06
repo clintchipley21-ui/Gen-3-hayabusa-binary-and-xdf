@@ -81,7 +81,8 @@
   "0xFEBF6436": "intake air pressure IAP / load (main load axis) [title-anchored]",
   "0xFEBF67AC": "throttle / load (raw 0..20)",
   "0xFEF005C0": "ETV throttle-opening demand on decel/downshift (auto-blip / engine-brake output) [traced]",
-  "0xFEBF63F6": "vehicle speed [code-traced: EB fuel-cut]"
+  "0xFEBF63F6": "vehicle speed [code-traced: EB fuel-cut]",
+  "0xFEBF63AE": "rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]"
  },
  "map_inputs": {
   "0x1513C4": {
@@ -2008,6 +2009,174 @@
   "0x174F2C": {
    "x": "0xFEF02E2C",
    "y": "0xFEBF6169"
+  },
+  "0x174754": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174770": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x17478C": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x1747A8": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x1747C4": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x1747E0": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174738": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174818": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174834": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174850": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x17486C": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174888": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x1748A4": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x1747FC": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x1748DC": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x1748F8": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174914": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174930": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x17494C": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174968": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x1748C0": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x1749A0": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x1749BC": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x1749D8": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x1749F4": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174A10": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174A2C": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174984": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174A64": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174A80": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174A9C": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174AB8": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174AD4": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174AF0": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174A48": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174B28": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174B44": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174B60": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174B7C": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174B98": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174BB4": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174B0C": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
   }
  },
  "constants": {
@@ -2129,5 +2298,6 @@
   "note": "Idle target itself is in the ported ECT curves; these scalars gate and tune the closed-loop correction."
  },
  "fuel_inputs_note": "Fuel map inputs traced from reader decompiles (docs/trace-fuel.c): gp-relative sensor reads in each a1fca/a201e/a2344 call. gp=0xFEBFC000 -> gp-0x5bc0=ECT, gp-0x5c3c=TP, gp-0x5c86=RPM, gp-0x5c40=TP2, gp-0x5bbe=gear, gp-0x5c0a=speed. Per-gear maps are pointer-table selected by the gear bitmask (gp-0x5bbe); their lookup axis is the gp-read sensor shown.",
- "etv_pwr_note": "ETV/cruise/anti-lift map inputs from reader decompiles (docs/trace-etv.c). ETV monitor air/torque = IAP(gp-0x5bca=0xFEBF6436) x RPM(gp-0x5c82=0xFEBF637E); ETV gain = RPM(gp-0x5c84=0xFEBF637C); cruise correction indexed by computed speed error (set - 0xFEBF5E86 actual); LF throttle-limit = derived demand 0xFEF02E2C x load 0xFEBF6169. The 42 'ETV - PWR/Slot' power-mode maps are pointer-table selected (table 0x192BC0/0x192BCC by SDMS mode 0xFEF0267D) with no directly decompilable reader - left unresolved."
+ "etv_pwr_note": "ETV/cruise/anti-lift map inputs from reader decompiles (docs/trace-etv.c). ETV monitor air/torque = IAP(gp-0x5bca=0xFEBF6436) x RPM(gp-0x5c82=0xFEBF637E); ETV gain = RPM(gp-0x5c84=0xFEBF637C); cruise correction indexed by computed speed error (set - 0xFEBF5E86 actual); LF throttle-limit = derived demand 0xFEF02E2C x load 0xFEBF6169. The 42 'ETV - PWR/Slot' power-mode maps are pointer-table selected (table 0x192BC0/0x192BCC by SDMS mode 0xFEF0267D) with no directly decompilable reader - left unresolved.",
+ "power_mode_etv_note": "ETV power-mode (PWR) and Slot target maps: selected from pointer table 0x192BA8[gear(fef02e51)*6 + mode(fef0267c)] by FUN_0008BE2C, then interpolated a201e(map, X=fef02e44, Y=fef02e46). FUN_0008BDC8 sets X=gp-0x5c52=0xFEBF63AE (rider throttle demand/APS) and Y=gp-0x5c84=0xFEBF637C (engine RPM). So all PWR/Slot maps share axes APS x RPM; gear+mode only pick which map. docs/trace-pwr.c."
 }

@@ -315,3 +315,20 @@ confidence as the original 378. What's still unresolved is genuinely pointer-tab
 `ETV-PWR/Slot` power-mode maps via table `0x192BC0`, the advance-timing and ride-mode ECT-retard
 maps) or small inline curves — these have no single decompilable reader, so they stay unlabelled
 rather than guessed.
+
+## 3l. Power-mode (PWR/Slot) ETV maps — pointer-table dispatch resolved (+42 → 617)
+
+The 42 `ETV - PWR`/`ETV - Slot` maps §3k left unresolved are pointer-table selected, so they needed
+the dispatcher traced rather than a direct reader. `FUN_0008BE2C`:
+
+```
+_DAT_fef02e0c = (&PTR_DAT_00192ba8)[ gear(fef02e51)*6 + mode(fef0267c) ];   // pick the map
+_DAT_fef02e26 = a201e(_DAT_fef02e0c, _DAT_fef02e44, _DAT_fef02e46);         // interpolate it
+```
+
+`FUN_0008BDC8` sets the two axis values: `_DAT_fef02e44 = *(gp−0x5c52)` = **`0xFEBF63AE`** (rider
+throttle demand / APS) and `_DAT_fef02e46 = *(gp−0x5c84)` = **`0xFEBF637C`** (engine RPM); `fef02e51`
+is the gear (bitmask→0..5) and `fef0267c` the power-mode column — these only choose *which* map, not
+the axes. So every PWR/Slot map shares **X = APS `0xFEBF63AE` × Y = RPM `0xFEBF637C`**
+(`docs/trace-pwr.c`). Map-input coverage is now **617 / 791**; the remainder are advance-timing
+per-cyl, ride-mode ECT-retard and small inline curves with no single decompilable reader.
