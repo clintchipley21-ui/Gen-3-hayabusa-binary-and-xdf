@@ -49080,8 +49080,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005A1" flags="0x0">
-    <title>Ignition :: Scalar @0x1701E4 (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x055016). VALUE 32990-48L30: 240. Near maps: Ignition :: Ride-Mode Retard vs ECT | Mode A (flat 0).</description>
+    <title>Traction control slip gate (FUN_00055016: if slip 0xFEBF6164</title>
+    <description>TRACED FROM GSX-R CODE: Traction control slip gate (FUN_00055016: if slip 0xFEBF6164 below this, cut factor forced to 100; =240). VALUE 32990-48L30: 240 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1701E4" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -49128,8 +49128,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005A5" flags="0x0">
-    <title>Ignition :: Scalar @0x1701EC (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x055016). VALUE 32990-48L30: 0. Near maps: Ignition :: Ride-Mode Retard vs ECT | Mode A (flat 0).</description>
+    <title>Traction control per-level hysteresis/history count | Level </title>
+    <description>TRACED FROM GSX-R CODE: Traction control per-level hysteresis/history count | Level 1 (FUN_00055016; 0 = off in stock). VALUE 32990-48L30: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1701EC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -49140,8 +49140,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005A6" flags="0x0">
-    <title>Ignition :: Scalar @0x1701EE (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x055016). VALUE 32990-48L30: 0. Near maps: Ignition :: Ride-Mode Retard vs ECT | Mode A (flat 0).</description>
+    <title>Traction control per-level hysteresis/history count | Level </title>
+    <description>TRACED FROM GSX-R CODE: Traction control per-level hysteresis/history count | Level 2 (FUN_00055016; 0 = off in stock). VALUE 32990-48L30: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1701EE" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -49152,8 +49152,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005A7" flags="0x0">
-    <title>Ignition :: Scalar @0x1701F0 (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x055016). VALUE 32990-48L30: 0. Near maps: Ignition :: Ride-Mode Retard vs ECT | Mode A (flat 0).</description>
+    <title>Traction control per-level hysteresis/history count | Level </title>
+    <description>TRACED FROM GSX-R CODE: Traction control per-level hysteresis/history count | Level 3 (FUN_00055016; 0 = off in stock). VALUE 32990-48L30: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1701F0" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -49164,8 +49164,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005A8" flags="0x0">
-    <title>Ignition :: Scalar @0x1701F2 (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x055016). VALUE 32990-48L30: 0. Near maps: Ignition :: Ride-Mode Retard vs ECT | Mode A (flat 0).</description>
+    <title>Traction control per-level hysteresis/history count | Level </title>
+    <description>TRACED FROM GSX-R CODE: Traction control per-level hysteresis/history count | Level 4 (FUN_00055016; 0 = off in stock). VALUE 32990-48L30: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1701F2" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -49176,8 +49176,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005A9" flags="0x0">
-    <title>Ignition :: Scalar @0x1701F4 (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x055016). VALUE 32990-48L30: 0. Near maps: Ignition :: Ride-Mode Retard vs ECT | Mode A (flat 0).</description>
+    <title>Traction control per-level hysteresis/history count | Level </title>
+    <description>TRACED FROM GSX-R CODE: Traction control per-level hysteresis/history count | Level 5 (FUN_00055016; 0 = off in stock). VALUE 32990-48L30: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1701F4" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -49188,8 +49188,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005AA" flags="0x0">
-    <title>Ignition :: Scalar @0x1701F6 (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x055016). VALUE 32990-48L30: 0. Near maps: Ignition :: Ride-Mode Retard vs ECT | Mode A (flat 0).</description>
+    <title>Traction control per-level hysteresis/history count | Level </title>
+    <description>TRACED FROM GSX-R CODE: Traction control per-level hysteresis/history count | Level 6 (FUN_00055016; 0 = off in stock). VALUE 32990-48L30: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1701F6" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -49200,8 +49200,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005AB" flags="0x0">
-    <title>Ignition :: Scalar @0x1701F8 (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x055016). VALUE 32990-48L30: 0. Near maps: Ignition :: Ride-Mode Retard vs ECT | Mode A (flat 0).</description>
+    <title>Traction control per-level hysteresis/history count | Level </title>
+    <description>TRACED FROM GSX-R CODE: Traction control per-level hysteresis/history count | Level 7 (FUN_00055016; 0 = off in stock). VALUE 32990-48L30: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1701F8" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -49212,8 +49212,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005AC" flags="0x0">
-    <title>Ignition :: Scalar @0x1701FA (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x055016). VALUE 32990-48L30: 0. Near maps: Ignition :: Ride-Mode Retard vs ECT | Mode A (flat 0).</description>
+    <title>Traction control per-level hysteresis/history count | Level </title>
+    <description>TRACED FROM GSX-R CODE: Traction control per-level hysteresis/history count | Level 8 (FUN_00055016; 0 = off in stock). VALUE 32990-48L30: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1701FA" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -49224,8 +49224,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005AD" flags="0x0">
-    <title>Ignition :: Scalar @0x1701FC (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x055016). VALUE 32990-48L30: 0. Near maps: Ignition :: Ride-Mode Retard vs ECT | Mode A (flat 0).</description>
+    <title>Traction control per-level hysteresis/history count | Level </title>
+    <description>TRACED FROM GSX-R CODE: Traction control per-level hysteresis/history count | Level 9 (FUN_00055016; 0 = off in stock). VALUE 32990-48L30: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1701FC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -49236,8 +49236,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005AE" flags="0x0">
-    <title>Ignition :: Scalar @0x1701FE (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x055016). VALUE 32990-48L30: 0. Near maps: Ignition :: Ride-Mode Retard vs ECT | Mode A (flat 0).</description>
+    <title>Traction control per-level hysteresis/history count | Level </title>
+    <description>TRACED FROM GSX-R CODE: Traction control per-level hysteresis/history count | Level 10 (FUN_00055016; 0 = off in stock). VALUE 32990-48L30: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1701FE" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -49248,8 +49248,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005AF" flags="0x0">
-    <title>Ignition :: Scalar @0x170200 (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (2 ref/1 fn fn 0x055016). VALUE 32990-48L30: 0. Near maps: Ignition :: Ride-Mode Retard vs ECT | Mode A (flat 0).</description>
+    <title>Traction control per-level hysteresis/history count | Launch</title>
+    <description>TRACED FROM GSX-R CODE: Traction control per-level hysteresis/history count | Launch (FUN_00055016; 0 = off in stock). VALUE 32990-48L30: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x170200" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
