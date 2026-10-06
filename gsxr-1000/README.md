@@ -33,6 +33,14 @@ Build ID embedded in the reads: `8J16ST01` (`ECM-010L0`). All four reads are ful
 valid field-1 CRC. Each XDF is ~3.3 MB with **4,078 items** (791 maps/curves + 3,287 scalars/flags);
 if TunerPro is slow to open it, regenerate without scalars by renaming `docs/scalars.json`.
 
+Items are organised into **53 populated TunerPro categories** (folders). Empty categories inherited
+from the Hayabusa master are pruned automatically at generate time, the Hayabusa-only
+`Unidentified - Cluster` / `(legacy, empty)` names are scrubbed, and the decompiler-discovered scalars
+are filed under per-subsystem `Scalars - …` folders (Ignition, Quickshifter, Fuel, HO2, Idle, …) rather
+than one bucket. Maps the Hayabusa master itself mis-filed (e.g. Ride-Mode/Idle tables parked in its
+"DTC Lamp Control" / "Meter CAN" folders) are re-filed to match their own titles. Nothing in the XDF is
+a placeholder — every folder has real members, and no folder claims a system that was not actually found.
+
 ## How to use it in TunerPro
 
 1. Open the `.xdf` that matches your read (e.g. `32990-48L20-EU.xdf` for `32990-48L20-EU.bin`).
@@ -112,7 +120,7 @@ descriptor. These were found by **decompiling the GSX-R's own code** and taking 
 In TunerPro they appear under **"ZZ Decompiler-discovered scalars (unverified)"**. Where the reading
 function also reads a named map, the title is prefixed with that **subsystem** — a reliable area tag
 from the decompile (not a value guess), e.g. `Quickshifter :: Scalar @0x154C0E (u16)`,
-`Ignition :: Scalar @0x167458 (u32)`. **351** scalars are tagged this way (Quickshifter, Fuel,
+`Ignition :: Scalar @0x167458 (u32)`. **320** scalars are tagged this way (Quickshifter, Fuel,
 Ignition, Throttle/ETV, Speed/Wheel, Sensors, O2/Closed-Loop, Idle/Fan); the rest stay
 `Scalar @0xADDR`. Either way the description carries the value, usage and the specific context maps.
 Treat every one as a lead to confirm, not a known setting. `docs/scalar-index.csv` lists all of them
@@ -131,8 +139,8 @@ manual/SDS/pinout — see **[`docs/tracing.md`](docs/tracing.md)** for the full 
 - **Rev-limit cut `FUN_00064506`** reads engine RPM and gates on constants `0x172EA6` (~13,155 rpm),
   `0x172EA8` (**~14,933 rpm hard cut** — matches the GSX-R1000) and `0x172EAA` (~1,500 rpm running
   gate). These are named in the XDF and listed in `docs/scalar-index.csv`.
-- **374 of the 791 maps** carry a **“GSX-R TRACED INPUTS”** line naming the actual X/Y variable from the code
-  (`docs/map-inputs.csv`); a 74-entry **variable dictionary** (`docs/variables.csv`) classifies each
+- **659 of the 791 maps** carry a **“GSX-R TRACED INPUTS”** line naming the actual X/Y variable from the code (raised from 378 by per-subsystem reader decompiles — fuel, ignition, traction control, ETV)
+  (`docs/map-inputs.csv`); a 78-entry **variable dictionary** (`docs/variables.csv`) classifies each
   traced RAM input (RPM / throttle-load / gear index / signed chassis sensor); `docs/traced.json` is
   the machine-readable result the generator consumes.
 
@@ -172,7 +180,7 @@ maps.
    cross-reference pass in Ghidra: find the engine-RPM RAM variable (the one indexed by every
    RPM-axis map lookup), then the function that compares it against a constant and triggers a
    fuel/ignition cut — that constant is the limiter. This resolves them from the GSX-R's own code
-   instead of guessing by value. (Subsystem area tags on 351 scalars are already in place.)
+   instead of guessing by value. (Subsystem area tags on 320 scalars are already in place.)
 2. Review `docs/map-index.csv`; sanity-check the 234 MED titles against the maps' axes and values.
 3. Confirm sensor scalings (RPM, TPS/ETV angle, pressure, temperature) against the GSX-R service
    data — if any differ from the Hayabusa, update the ported equations.

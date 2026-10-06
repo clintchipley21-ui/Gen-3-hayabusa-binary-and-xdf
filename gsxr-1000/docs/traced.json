@@ -6,12 +6,12 @@
   "0x0a201e (2D bilinear)"
  ],
  "ram_meaning": {
-  "0xFEF02622": "engine RPM (primary; raw/2.56=rpm, axis 1000..8000 proven)",
-  "0xFEF02E2C": "engine RPM (fuel/ign control; axis 1000..8000 proven)",
+  "0xFEF02622": "engine RPM (primary sensor) [title-anchored]",
+  "0xFEF02E2C": "engine RPM (fuel/ign control) [title-anchored]",
   "0xFEF01E3E": "engine RPM (axis 500..4000)",
   "0xFEF0262C": "engine RPM (axis ~800..3200)",
   "0xFEBF6169": "throttle / load (map Y-axis)",
-  "0xFEF0267D": "index 0..7 (gear/mode/cyl)",
+  "0xFEF0267D": "gear / mode index [title-anchored]",
   "0xFEF006BC": "signed sensor (lean/pitch/rate, centered 0x8000)",
   "0xFEF00544": "signed sensor (lean/pitch/rate, centered 0x8000)",
   "0xFEF0267E": "non-monotonic (bitmask/enum?)",
@@ -26,8 +26,8 @@
   "0xFEF00F2A": "engine RPM (4000-10400 rpm)",
   "0xFEBF6166": "monotonic axis (unit TBD) (raw 0..3000)",
   "0xFEBF5E7A": "signed sensor (lean/pitch/rate, centered 0x8000)",
-  "0xFEBF6164": "monotonic axis (unit TBD) (raw 0..500)",
-  "0xFEBF615E": "engine RPM (1000-9000 rpm)",
+  "0xFEBF6164": "traction-control slip (indexes TC cut maps) [traced]",
+  "0xFEBF615E": "engine RPM [title-anchored]",
   "0xFEF01FEA": "monotonic axis (unit TBD) (raw 0..540)",
   "0xFEF025EC": "monotonic axis (unit TBD) (raw 461..819)",
   "0xFEF025DC": "monotonic axis (unit TBD) (raw 13..1000)",
@@ -40,20 +40,20 @@
   "0xFEF02E46": "signed sensor (lean/pitch/rate, centered 0x8000)",
   "0xFEBF642E": "signed sensor (lean/pitch/rate, centered 0x8000)",
   "0xFEBF63E4": "monotonic axis (unit TBD) (raw 0..42048)",
-  "0xFEBF637A": "monotonic axis (unit TBD) (raw 1280..49920)",
+  "0xFEBF637A": "engine RPM [title-anchored]",
   "0xFEBF63F8": "monotonic axis (unit TBD) (raw 2560..40960)",
   "0xFEBF5E68": "throttle / load (raw 3..20)",
-  "0xFEBF6442": "throttle / load (raw 1..64)",
+  "0xFEBF6442": "gear position [title-anchored]",
   "0xFEBF645A": "index (gear/cyl/mode) 0..3",
   "0xFEBF63F0": "monotonic axis (unit TBD) (raw 0..44800)",
-  "0xFEBF63C0": "monotonic axis (unit TBD) (raw 0..42992)",
-  "0xFEBF6440": "throttle / load (raw 11..139)",
+  "0xFEBF63C0": "throttle position TP [title-anchored]",
+  "0xFEBF6440": "engine coolant temp ECT [title-anchored]",
   "0xFEBF63F4": "engine RPM (500-8000 rpm)",
   "0xFEBF6430": "signed sensor (lean/pitch/rate, centered 0x8000)",
   "0xFEBF643C": "monotonic axis (unit TBD) (raw 614..819)",
   "0xFEBF62BC": "signed sensor (lean/pitch/rate, centered 0x8000)",
-  "0xFEBF6394": "signed sensor (lean/pitch/rate, centered 0x8000)",
-  "0xFEBF6443": "non-monotonic (bitmask/enum?)",
+  "0xFEBF6394": "barometric pressure [title-anchored]",
+  "0xFEBF6443": "intake air temp IAT [title-anchored]",
   "0xFEBF65E6": "throttle / load (raw 5..100)",
   "0xFEBF65E8": "throttle / load (raw 5..100)",
   "0xFEBF65EA": "throttle / load (raw 5..100)",
@@ -65,12 +65,12 @@
   "0xFEBF638C": "monotonic axis (unit TBD) (raw 360..840)",
   "0xFEBF6388": "monotonic axis (unit TBD) (raw 614..3174)",
   "0xFEBF63C8": "engine RPM (high range) (12800-14000 rpm)",
-  "0xFEBF63C4": "monotonic axis (unit TBD) (raw 734..36520)",
+  "0xFEBF63C4": "throttle position TP [title-anchored]",
   "0xFEBF60C0": "throttle / load (raw 11..149)",
   "0xFEBF60BF": "non-monotonic (bitmask/enum?)",
-  "0xFEBF6459": "non-monotonic (bitmask/enum?)",
-  "0xFEBF637E": "engine RPM (1000-12000 rpm)",
-  "0xFEBF60F4": "engine RPM (high range) (12880-13136 rpm)",
+  "0xFEBF6459": "traction-control level (1-10; rider setting) [traced FUN_00055016]",
+  "0xFEBF637E": "engine RPM (main map axis) [title-anchored]",
+  "0xFEBF60F4": "traction-control slip / wheel [title-anchored]",
   "0xFEBF63FA": "engine RPM (high range) (12880-13136 rpm)",
   "0xFEBF63C2": "monotonic axis (unit TBD) (raw 26240..41985)",
   "0xFEBF63C6": "monotonic axis (unit TBD) (raw 584..42729)",
@@ -78,8 +78,12 @@
   "0xFEBF642A": "signed sensor (lean/pitch/rate, centered 0x8000)",
   "0xFEBF637C": "signed sensor (lean/pitch/rate, centered 0x8000)",
   "0xFEBF63BA": "monotonic axis (unit TBD) (raw 512..921)",
-  "0xFEBF6436": "monotonic axis (unit TBD) (raw 21623..45211)",
-  "0xFEBF67AC": "throttle / load (raw 0..20)"
+  "0xFEBF6436": "intake air pressure IAP / load (main load axis) [title-anchored]",
+  "0xFEBF67AC": "throttle / load (raw 0..20)",
+  "0xFEF005C0": "ETV throttle-opening demand on decel/downshift (auto-blip / engine-brake output) [traced]",
+  "0xFEBF63F6": "vehicle speed [code-traced: EB fuel-cut]",
+  "0xFEBF63AE": "rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]",
+  "0xFEF025F2": "axis/sensor input 0xFEF025F2 [code-traced]"
  },
  "map_inputs": {
   "0x1513C4": {
@@ -464,7 +468,8 @@
    "x": "0xFEBF637A"
   },
   "0x1577C0": {
-   "x": "0xFEBF637A"
+   "x": "0xFEBF637A",
+   "y": "0xFEBF63C4"
   },
   "0x157654": {
    "y": "0xFEBF62CC"
@@ -565,7 +570,8 @@
    "x": "0xFEBF6442"
   },
   "0x156A98": {
-   "x": "0xFEBF63C4"
+   "x": "0xFEBF63C4",
+   "y": "0xFEBF637A"
   },
   "0x156574": {
    "x": "0xFEBF6440"
@@ -1354,13 +1360,1123 @@
   "0x193F44": {
    "x": "0xFEBF6436",
    "y": "0xFEBF637E"
+  },
+  "0x15508C": {
+   "x": "0xFEBF63E0",
+   "y": "0xFEBF637A"
+  },
+  "0x1550BC": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x157588": {
+   "x": "0xFEBF63F6",
+   "y": "0xFEBF6442"
+  },
+  "0x1717D4": {
+   "x": "0xFEBF63C4",
+   "y": "0xFEBF637A"
+  },
+  "0x156588": {
+   "x": "0xFEBF6440"
+  },
+  "0x156400": {
+   "x": "0xFEBF6440"
+  },
+  "0x1575DC": {
+   "x": "0xFEBF637A"
+  },
+  "0x1575F0": {
+   "x": "0xFEBF637A"
+  },
+  "0x157604": {
+   "x": "0xFEBF637A"
+  },
+  "0x1563C4": {
+   "x": "0xFEBF63C0"
+  },
+  "0x156B10": {
+   "x": "0xFEBF63C4",
+   "y": "0xFEBF637A"
+  },
+  "0x1575A4": {
+   "x": "0xFEBF63F6",
+   "y": "0xFEBF6442"
+  },
+  "0x1575C0": {
+   "x": "0xFEBF63F6",
+   "y": "0xFEBF6442"
+  },
+  "0x1576A0": {
+   "x": "0xFEBF637A",
+   "y": "0xFEBF63C4"
+  },
+  "0x1576D0": {
+   "x": "0xFEBF637A",
+   "y": "0xFEBF63C4"
+  },
+  "0x157700": {
+   "x": "0xFEBF637A",
+   "y": "0xFEBF63C4"
+  },
+  "0x157730": {
+   "x": "0xFEBF637A",
+   "y": "0xFEBF63C4"
+  },
+  "0x157760": {
+   "x": "0xFEBF637A",
+   "y": "0xFEBF63C4"
+  },
+  "0x157790": {
+   "x": "0xFEBF637A",
+   "y": "0xFEBF63C4"
+  },
+  "0x156AC0": {
+   "x": "0xFEBF63C4",
+   "y": "0xFEBF637A"
+  },
+  "0x15659C": {
+   "x": "0xFEBF637A"
+  },
+  "0x1565B0": {
+   "x": "0xFEBF637A"
+  },
+  "0x156560": {
+   "x": "0xFEBF637A"
+  },
+  "0x156428": {
+   "x": "0xFEBF6394"
+  },
+  "0x156414": {
+   "x": "0xFEBF6394"
+  },
+  "0x167898": {
+   "x": "0xFEBF615E"
+  },
+  "0x1678C0": {
+   "x": "0xFEBF615E"
+  },
+  "0x1678E8": {
+   "x": "0xFEBF615E"
+  },
+  "0x167910": {
+   "x": "0xFEBF615E"
+  },
+  "0x167938": {
+   "x": "0xFEBF615E"
+  },
+  "0x1678AC": {
+   "x": "0xFEBF615E"
+  },
+  "0x1678D4": {
+   "x": "0xFEBF615E"
+  },
+  "0x1678FC": {
+   "x": "0xFEBF615E"
+  },
+  "0x167924": {
+   "x": "0xFEBF615E"
+  },
+  "0x16794C": {
+   "x": "0xFEBF615E"
+  },
+  "0x167A44": {
+   "x": "0xFEBF638C",
+   "y": "0xFEBF637A"
+  },
+  "0x157B8C": {
+   "x": "0xFEBF637A"
+  },
+  "0x157964": {
+   "x": "0xFEBF637A"
+  },
+  "0x157A1C": {
+   "x": "0xFEBF637A"
+  },
+  "0x157A78": {
+   "x": "0xFEBF637A"
+  },
+  "0x169258": {
+   "x": "0xFEBF6394"
+  },
+  "0x167D0C": {
+   "x": "0xFEBF63C2",
+   "y": "0xFEBF637A"
+  },
+  "0x167D3C": {
+   "x": "0xFEBF63C2",
+   "y": "0xFEBF637A"
+  },
+  "0x167A98": {
+   "x": "0xFEBF63C6",
+   "y": "0xFEBF615E"
+  },
+  "0x167AB4": {
+   "x": "0xFEBF63C6",
+   "y": "0xFEBF615E"
+  },
+  "0x167AD0": {
+   "x": "0xFEBF63C6",
+   "y": "0xFEBF615E"
+  },
+  "0x167B24": {
+   "x": "0xFEBF63C6",
+   "y": "0xFEBF615E"
+  },
+  "0x167B40": {
+   "x": "0xFEBF63C6",
+   "y": "0xFEBF615E"
+  },
+  "0x167B08": {
+   "x": "0xFEBF63C6",
+   "y": "0xFEBF615E"
+  },
+  "0x167B94": {
+   "x": "0xFEBF63C6",
+   "y": "0xFEBF615E"
+  },
+  "0x167BB0": {
+   "x": "0xFEBF63C6",
+   "y": "0xFEBF615E"
+  },
+  "0x167BCC": {
+   "x": "0xFEBF63C6",
+   "y": "0xFEBF615E"
+  },
+  "0x168D34": {
+   "x": "0xFEBF63C4",
+   "y": "0xFEBF615E"
+  },
+  "0x168D50": {
+   "x": "0xFEBF63C4",
+   "y": "0xFEBF615E"
+  },
+  "0x168D6C": {
+   "x": "0xFEBF63C4",
+   "y": "0xFEBF615E"
+  },
+  "0x151280": {
+   "x": "0xFEF0262C",
+   "y": "0xFEBF6442"
+  },
+  "0x15129C": {
+   "x": "0xFEF0262C",
+   "y": "0xFEBF6442"
+  },
+  "0x168C80": {
+   "x": "0xFEBF6164"
+  },
+  "0x168BC8": {
+   "x": "0xFEBF6164"
+  },
+  "0x168608": {
+   "x": "0xFEBF6164"
+  },
+  "0x1686C0": {
+   "x": "0xFEBF6164"
+  },
+  "0x168778": {
+   "x": "0xFEBF6164"
+  },
+  "0x168830": {
+   "x": "0xFEBF6164"
+  },
+  "0x1688E8": {
+   "x": "0xFEBF6164"
+  },
+  "0x1689A0": {
+   "x": "0xFEBF6164"
+  },
+  "0x168A58": {
+   "x": "0xFEBF6164"
+  },
+  "0x168B10": {
+   "x": "0xFEBF6164"
+  },
+  "0x168CA8": {
+   "x": "0xFEBF63FA"
+  },
+  "0x168BF0": {
+   "x": "0xFEBF63FA"
+  },
+  "0x168630": {
+   "x": "0xFEBF63FA"
+  },
+  "0x1686E8": {
+   "x": "0xFEBF63FA"
+  },
+  "0x1687A0": {
+   "x": "0xFEBF63FA"
+  },
+  "0x168858": {
+   "x": "0xFEBF63FA"
+  },
+  "0x168910": {
+   "x": "0xFEBF63FA"
+  },
+  "0x1689C8": {
+   "x": "0xFEBF63FA"
+  },
+  "0x168A80": {
+   "x": "0xFEBF63FA"
+  },
+  "0x168B38": {
+   "x": "0xFEBF63FA"
+  },
+  "0x168C94": {
+   "x": "0xFEBF60F4"
+  },
+  "0x168BDC": {
+   "x": "0xFEBF60F4"
+  },
+  "0x16861C": {
+   "x": "0xFEBF60F4"
+  },
+  "0x1686D4": {
+   "x": "0xFEBF60F4"
+  },
+  "0x16878C": {
+   "x": "0xFEBF60F4"
+  },
+  "0x168844": {
+   "x": "0xFEBF60F4"
+  },
+  "0x1688FC": {
+   "x": "0xFEBF60F4"
+  },
+  "0x1689B4": {
+   "x": "0xFEBF60F4"
+  },
+  "0x168A6C": {
+   "x": "0xFEBF60F4"
+  },
+  "0x168B24": {
+   "x": "0xFEBF60F4"
+  },
+  "0x168CBC": {
+   "x": "0xFEBF6430"
+  },
+  "0x168C04": {
+   "x": "0xFEBF6430"
+  },
+  "0x168644": {
+   "x": "0xFEBF6430"
+  },
+  "0x1686FC": {
+   "x": "0xFEBF6430"
+  },
+  "0x1687B4": {
+   "x": "0xFEBF6430"
+  },
+  "0x16886C": {
+   "x": "0xFEBF6430"
+  },
+  "0x168924": {
+   "x": "0xFEBF6430"
+  },
+  "0x1689DC": {
+   "x": "0xFEBF6430"
+  },
+  "0x168A94": {
+   "x": "0xFEBF6430"
+  },
+  "0x168B4C": {
+   "x": "0xFEBF6430"
+  },
+  "0x16845C": {
+   "x": "0xFEBF6430"
+  },
+  "0x168448": {
+   "x": "0xFEBF6430"
+  },
+  "0x1683A8": {
+   "x": "0xFEBF6430"
+  },
+  "0x1683BC": {
+   "x": "0xFEBF6430"
+  },
+  "0x1683D0": {
+   "x": "0xFEBF6430"
+  },
+  "0x1683E4": {
+   "x": "0xFEBF6430"
+  },
+  "0x1683F8": {
+   "x": "0xFEBF6430"
+  },
+  "0x16840C": {
+   "x": "0xFEBF6430"
+  },
+  "0x168420": {
+   "x": "0xFEBF6430"
+  },
+  "0x168434": {
+   "x": "0xFEBF6430"
+  },
+  "0x168308": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x16831C": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x168330": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x168344": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x168358": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x16836C": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x167DA8": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x167DBC": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x167DD0": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x167DE4": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x167DF8": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x168290": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x1682A4": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x1682B8": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x1682CC": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x1682E0": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x1682F4": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x167E20": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x167E34": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x167E48": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x167E5C": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x167E70": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x167E84": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x167E98": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x167EAC": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x167EC0": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x167ED4": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x167EE8": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x167EFC": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x167F10": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x167F24": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x167F38": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x167F4C": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x167F60": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x167F74": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x167F88": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x167F9C": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x167FB0": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x167FC4": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x167FD8": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x167FEC": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x168000": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x168014": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x168028": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x16803C": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x168050": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x168064": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x168078": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x16808C": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x1680A0": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x1680B4": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x1680C8": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x1680DC": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x1680F0": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x168104": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x168118": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x16812C": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x168140": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x168154": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x168168": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x16817C": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x1681BC": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x1681FC": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x16823C": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x16827C": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x168470": {
+   "x": "0xFEBF637E"
+  },
+  "0x168484": {
+   "x": "0xFEBF637E"
+  },
+  "0x168498": {
+   "x": "0xFEBF637E"
+  },
+  "0x1684AC": {
+   "x": "0xFEBF637E"
+  },
+  "0x1684C0": {
+   "x": "0xFEBF637E"
+  },
+  "0x169228": {
+   "x": "0xFEBF63C0",
+   "y": "0xFEBF637A"
+  },
+  "0x168E68": {
+   "x": "0xFEBF63C0",
+   "y": "0xFEBF637A"
+  },
+  "0x168EE0": {
+   "x": "0xFEBF63C0",
+   "y": "0xFEBF637A"
+  },
+  "0x168F58": {
+   "x": "0xFEBF63C0",
+   "y": "0xFEBF637A"
+  },
+  "0x168FD0": {
+   "x": "0xFEBF63C0",
+   "y": "0xFEBF637A"
+  },
+  "0x169048": {
+   "x": "0xFEBF63C0",
+   "y": "0xFEBF637A"
+  },
+  "0x1690C0": {
+   "x": "0xFEBF63C0",
+   "y": "0xFEBF637A"
+  },
+  "0x169138": {
+   "x": "0xFEBF63C0",
+   "y": "0xFEBF637A"
+  },
+  "0x1691B0": {
+   "x": "0xFEBF63C0",
+   "y": "0xFEBF637A"
+  },
+  "0x174710": {
+   "x": "0xFEBF637C"
+  },
+  "0x193E84": {
+   "x": "0xFEBF6436",
+   "y": "0xFEBF637E"
+  },
+  "0x193EB4": {
+   "x": "0xFEBF6436",
+   "y": "0xFEBF637E"
+  },
+  "0x193EE4": {
+   "x": "0xFEBF6436",
+   "y": "0xFEBF637E"
+  },
+  "0x192D78": {
+   "x": "0xFEBF637E"
+  },
+  "0x192D8C": {
+   "x": "0xFEBF637E"
+  },
+  "0x15134C": {
+   "x": "0xFEBF5E86"
+  },
+  "0x151360": {
+   "x": "0xFEBF5E86"
+  },
+  "0x151374": {
+   "x": "0xFEBF5E86"
+  },
+  "0x151388": {
+   "x": "0xFEBF5E86"
+  },
+  "0x15139C": {
+   "x": "0xFEBF5E86"
+  },
+  "0x174DFC": {
+   "x": "0xFEF02E2C",
+   "y": "0xFEBF6169"
+  },
+  "0x174E48": {
+   "x": "0xFEF02E2C",
+   "y": "0xFEBF6169"
+  },
+  "0x174EE0": {
+   "x": "0xFEF02E2C",
+   "y": "0xFEBF6169"
+  },
+  "0x174F2C": {
+   "x": "0xFEF02E2C",
+   "y": "0xFEBF6169"
+  },
+  "0x174754": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174770": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x17478C": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x1747A8": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x1747C4": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x1747E0": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174738": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174818": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174834": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174850": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x17486C": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174888": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x1748A4": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x1747FC": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x1748DC": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x1748F8": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174914": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174930": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x17494C": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174968": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x1748C0": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x1749A0": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x1749BC": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x1749D8": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x1749F4": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174A10": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174A2C": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174984": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174A64": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174A80": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174A9C": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174AB8": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174AD4": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174AF0": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174A48": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174B28": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174B44": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174B60": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174B7C": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174B98": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174BB4": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x174B0C": {
+   "x": "0xFEBF63AE",
+   "y": "0xFEBF637C"
+  },
+  "0x15671C": {
+   "x": "0xFEBF637A"
+  },
+  "0x156744": {
+   "x": "0xFEBF637A"
+  },
+  "0x170A1C": {
+   "x": "0xFEBF637A",
+   "y": "0xFEBF6440"
+  },
+  "0x1716FC": {
+   "x": "0xFEBF642A"
+  },
+  "0x171710": {
+   "x": "0xFEBF642A"
+  },
+  "0x1716D4": {
+   "x": "0xFEBF63F4"
+  },
+  "0x1716C0": {
+   "x": "0xFEBF63F4"
+  },
+  "0x156C48": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156C64": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156D18": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156D34": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156D80": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156D9C": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156DE8": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156E04": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156CB0": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156CCC": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156E50": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156E6C": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156B78": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156B94": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156BE0": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156BFC": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156F84": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156FBC": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x170644": {
+   "x": "0xFEBF637A"
+  },
+  "0x1706B0": {
+   "x": "0xFEBF637A"
+  },
+  "0x172FB8": {
+   "x": "0xFEF025F2"
+  },
+  "0x1715F8": {
+   "x": "0xFEF025EC"
+  },
+  "0x170AAC": {
+   "x": "0xFEBF637A",
+   "y": "0xFEBF6440"
+  },
+  "0x1718C0": {
+   "x": "0xFEBF63C4",
+   "y": "0xFEBF637A"
+  },
+  "0x1718E8": {
+   "x": "0xFEBF63C4",
+   "y": "0xFEBF637A"
+  },
+  "0x171910": {
+   "x": "0xFEBF63C4",
+   "y": "0xFEBF637A"
+  },
+  "0x171938": {
+   "x": "0xFEBF63C4",
+   "y": "0xFEBF637A"
+  },
+  "0x171960": {
+   "x": "0xFEBF63C4",
+   "y": "0xFEBF637A"
+  },
+  "0x171988": {
+   "x": "0xFEBF63C4",
+   "y": "0xFEBF637A"
+  },
+  "0x1719B0": {
+   "x": "0xFEBF63C4",
+   "y": "0xFEBF637A"
+  },
+  "0x157DEC": {
+   "x": "0xFEF00DB2"
+  },
+  "0x1931B0": {
+   "x": "0xFEBF6436",
+   "y": "0xFEBF637E"
+  },
+  "0x1932D0": {
+   "x": "0xFEBF6436",
+   "y": "0xFEBF637E"
+  },
+  "0x150EA0": {
+   "x": "0xFEBF637A",
+   "y": "0xFEBF6442"
+  },
+  "0x150F10": {
+   "x": "0xFEBF637A",
+   "y": "0xFEBF6442"
   }
  },
  "constants": {
   "0x172EA6": "Rev-limit soft threshold (FUN_00064506 compares the RPM signal 0xFEBF642E; ~13,155 rpm @ raw/2.56)",
   "0x172EA8": "Rev-limit hard threshold (FUN_00064506; RPM signal 0xFEBF642E > this clears the cut; ~14,933 rpm - matches the GSX-R1000 fuel cut)",
-  "0x172EAA": "Rev-limit engine-running gate (FUN_00064506 needs engine RPM 0xFEF02622 above this; ~1,500 rpm)"
+  "0x172EAA": "Rev-limit engine-running gate (FUN_00064506 needs engine RPM 0xFEF02622 above this; ~1,500 rpm)",
+  "0x154CF6": "Launch Control timer/debounce threshold (FUN_0002885e: counts fef0031a up to this before FUN_00028382; value 13 counts)",
+  "0x154E16": "Downshift/decel auto-blip duration (FUN_00028de0: ETV decel-entry throttle-opening held while counter fef00526 < this; 25 counts)",
+  "0x154E17": "Engine-brake/decel throttle mode select (FUN_00028de0; 0 = decel-entry blip path)",
+  "0x154E15": "Engine-brake decel throttle param (FUN_00028bf0)",
+  "0x1701E4": "Traction control slip gate (FUN_00055016: if slip 0xFEBF6164 below this, cut factor forced to 100; =240)",
+  "0x1701EC": "Traction control per-level hysteresis/history count | Level 1 (FUN_00055016; 0 = off in stock)",
+  "0x1701EE": "Traction control per-level hysteresis/history count | Level 2 (FUN_00055016; 0 = off in stock)",
+  "0x1701F0": "Traction control per-level hysteresis/history count | Level 3 (FUN_00055016; 0 = off in stock)",
+  "0x1701F2": "Traction control per-level hysteresis/history count | Level 4 (FUN_00055016; 0 = off in stock)",
+  "0x1701F4": "Traction control per-level hysteresis/history count | Level 5 (FUN_00055016; 0 = off in stock)",
+  "0x1701F6": "Traction control per-level hysteresis/history count | Level 6 (FUN_00055016; 0 = off in stock)",
+  "0x1701F8": "Traction control per-level hysteresis/history count | Level 7 (FUN_00055016; 0 = off in stock)",
+  "0x1701FA": "Traction control per-level hysteresis/history count | Level 8 (FUN_00055016; 0 = off in stock)",
+  "0x1701FC": "Traction control per-level hysteresis/history count | Level 9 (FUN_00055016; 0 = off in stock)",
+  "0x1701FE": "Traction control per-level hysteresis/history count | Level 10 (FUN_00055016; 0 = off in stock)",
+  "0x170200": "Traction control per-level hysteresis/history count | Launch (FUN_00055016; 0 = off in stock)",
+  "0x154D6E": "Cruise/speed-governor set-speed gate low (FUN_0002DA0E: uVar1<=speed signal febf5e86 enables tracking; raw 640)",
+  "0x154D70": "Cruise/speed-governor set-speed gate high (FUN_0002DA0E pairs with 0x154D6E; raw 640)",
+  "0x154D8C": "Cruise/speed-governor ramp scale denominator (FUN_0002E0AE divides by this; raw 161)",
+  "0x154DD2": "Quickshifter MASTER ENABLE (FUN_0002B720 runs the QS pipeline only when this == 0; stock 0 = enabled)",
+  "0x154DD4": "Quickshifter upshift armed-mode byte A (FUN_0002A96E; stock 0x80)",
+  "0x154DD5": "Quickshifter upshift armed-mode byte B (FUN_0002A96E; stock 0x80)",
+  "0x154C7C": "Quickshifter upshift cut debounce/threshold low (FUN_0002A96E; stock 2)",
+  "0x154C7E": "Quickshifter upshift cut debounce/threshold high (FUN_0002A96E; stock 23)",
+  "0x1559BA": "Quickshifter upshift valid shift-signal window upper (FUN_0002A96E: fef02630 <= this x64; stock 236 -> 15104)",
+  "0x1559BC": "Quickshifter upshift valid shift-signal window lower (FUN_0002A96E: fef02630 >= this x64; stock 20 -> 1280)",
+  "0x1702C0": "Idle airflow-correction enable (FUN_00053DC6 skips the block when ==0x80; stock 0xFF = active)",
+  "0x1702C1": "Idle feedback-step debounce count (FUN_00053C0C: fef00f4c counts to this; stock 13)",
+  "0x1744AE": "Idle decel-airflow moving-average window length (FUN_00053F3E, clamped <=19; stock 3)",
+  "0x155AB2": "Catalyst/O2 monitor completion threshold (FUN_00040BAC: latches monitor-complete when the counter < this; stock 3)",
+  "0x155A62": "HO2 monitor reference voltage A (FUN_0003F8B2 closed-loop/monitor target; stock 36766 raw)",
+  "0x155A64": "HO2 monitor reference voltage B (FUN_0003F8B2; stock 36766 raw)",
+  "0x170216": "HO2 monitor baro-correction enable window, RPM low (FUN_0005721A; stock 0)",
+  "0x170218": "HO2 monitor baro-correction enable window, RPM high (FUN_0005721A; stock 256)",
+  "0x17021A": "HO2 monitor baro-correction enable, signal max (FUN_0005721A; stock 0)",
+  "0x192CEA": "ETV Level-2 safety torque-monitor output clamp, low (FUN_0008AE3E; stock 0)",
+  "0x192CEC": "ETV Level-2 safety torque-monitor output clamp, high (FUN_0008AE3E; stock 65535)"
  },
  "gp": "0xFEBFC000 (V850 global pointer; set in crt0 at 0x10C82: mov 0xFEBFC000,gp)",
- "rev_cut_signal": "0xFEBF642E (gp-0x5BD2; RPM-domain, in the 0xFEBF6xxx sdata sensor block next to RPM 0xFEBF615E)"
+ "rev_cut_signal": "0xFEBF642E (gp-0x5BD2; RPM-domain, in the 0xFEBF6xxx sdata sensor block next to RPM 0xFEBF615E)",
+ "launch_control": {
+  "summary": "GSX-R1000 launch limits THROTTLE per gear (maps 0x174FB0-0x175020), not a fixed RPM hold.",
+  "functions": {
+   "0x2862a": "post-launch RPM margin (lookup 0x1511C4)",
+   "0x286b6": "release phase-out duration (lookup 0x1511D8)",
+   "0x286f4": "launch state machine / release counter (fef0030c)",
+   "0x2885e": "launch timer/debounce (threshold 0x154CF6, counter fef0031a)"
+  },
+  "active_flag": "0xFEBF5E6A bit3 (gp-0x6196)"
+ },
+ "sensor_block": {
+  "0xFEBF637A": "engine RPM",
+  "0xFEBF637E": "engine RPM (main map axis)",
+  "0xFEBF6436": "intake air pressure IAP / load (main load axis)",
+  "0xFEBF6440": "engine coolant temp ECT",
+  "0xFEBF6442": "gear position",
+  "0xFEBF6443": "intake air temp IAT",
+  "0xFEBF63C4": "throttle position TP",
+  "0xFEBF63C0": "throttle position TP",
+  "0xFEBF6394": "barometric pressure",
+  "0xFEBF6164": "traction-control slip",
+  "0xFEBF60F4": "traction-control slip / wheel",
+  "0xFEBF615E": "engine RPM"
+ },
+ "traction_control": {
+  "summary": "10-level + Launch TC. FUN_00055016 switches on the TC level byte 0xFEBF6459 (gp-0x5ba7) to pick each level's Cut-vs-Slip Error/Rate/History maps, indexed by slip 0xFEBF6164.",
+  "controller": "0x55016",
+  "level_var": "0xFEBF6459 (1..10)",
+  "slip_var": "0xFEBF6164",
+  "per_level_threshold_array": "0x1701EC..0x170200 (u16 per level) + 0x1701E4 slip gate"
+ },
+ "auto_blip": {
+  "summary": "GSX-R1000 downshift/decel throttle opening (auto-blip) runs through the engine-brake ETV controller, not a separate QS-blip map.",
+  "dispatcher": "0x28e2a (FUN_00028de0)",
+  "eb_controller": "0x28ca6 (FUN_00028ca6)",
+  "output_var": "0xFEF005C0 (ETV throttle-opening demand)",
+  "entry_blip_map": "0x151210 (Engine Brake Control :: Throttle Opening ... neutral/clutch/decel-entry)",
+  "sustained_eb_maps": "0x15122C/0x151248/0x151264 (EB Level 1/2/3, RPM x Gear)",
+  "blip_duration": "0x154E16 (=25 counts)",
+  "mode": "0x154E17",
+  "shift_detect_thresholds": "0x150ED8/0x150F48/0x150EA0/0x150F10 (GP-sensor low/high, mode fef0267f), via FUN_0002a2ba"
+ },
+ "power_mode": {
+  "summary": "SDMS (Suzuki Drive Mode Selector) power-mode level is byte 0xFEF0267D (0-10). A dedicated switch controller cluster (0x07BEF-0x07D9) reads/writes/latches it; FUN_00029198 reads it as the index into the 11-point mode-gain curve 0x1513B0 (ported axis label 'SDMS Field-3 Level (0-10)') and scales the ETV throttle/torque target (2D map 0x1511A8, 23x39, indexed by rider-demand fef00530 x engine RPM).",
+  "mode_var": "0xFEF0267D (SDMS level 0-10)",
+  "mode_gain_curve": "0x1513B0 (1D 8-bit, 11 pts 0..10)",
+  "etv_target_map": "0x1511A8 (2D 16-bit 23x39; X=rider demand fef00530, Y=engine RPM)",
+  "fallback_curve": "0x150BCC (1D 16-bit, 36 pts; used when FUN_00028EE4 != 0)",
+  "throttle_target_fn": "0x29198 (FUN_00029198) -> fef00532 ETV target, fef00534/fef00536 components",
+  "note": "Confirmed by the map's own ported axis breakpoints (0..10). This is the A/B/C-equivalent power-mode level on the GSX-R1000R M7; verify exact per-level gains on a bench."
+ },
+ "cruise": {
+  "summary": "The M7 image contains Suzuki's speed-governor / cruise calibration and code (shared platform - the GSX-S1000/GT siblings use cruise; the GSX-R1000R has no cruise switch, so this is likely dormant but present). FUN_0002DA0E computes set-speed tracking from accel-rate-gain curve 0x150DAC and speed-correction-vs-set-speed table 0x150E5C (14 pts 30..240 km/h). FUN_0002E0AE and the state machine FUN_0002D95E manage the governor state (state byte fef005f8 values 0x0B/0x0E/0x11/0x12, mode gate fef00652).",
+  "functions": {
+   "0x2da0e": "set-speed tracking: curves 0x150DAC (accel rate gain), 0x150DC0, 0x150E5C (speed correction vs 30-240 km/h set speed), 0x150E70",
+   "0x2e0ae": "governor target/ramp: curves 0x150DD4/0x150DE8/0x150DFC/0x150E10, scale denom 0x154D8C",
+   "0x2d95e": "governor state machine: state byte fef005f8, gate byte fef00652"
+  },
+  "state_var": "0xFEF005F8 (governor state: 0x0B/0x0E/0x11/0x12)",
+  "set_speed_table": "0x150E5C (14 pts, 30..240 km/h)",
+  "note": "Low confidence that this is active on the GSX-R1000R; labels are ported from the cruise-capable Hayabusa/GSX-S map set. Treat as 'speed-governor code present', not a confirmed working feature."
+ },
+ "quickshifter_upshift": {
+  "summary": "Upshift ignition-cut, traced end to end. Dispatcher FUN_0002B720 runs the whole QS pipeline only while the master-enable byte 0x154DD2 == 0. Detection FUN_0002A96E arms the cut when the GP (gear-position) sensor (gp-0x5C86) crosses from the Window-B offset curve 0x1509A8 up to the Window-C curve 0x1509BC, with the shift signal fef02630 inside the valid window 0x1559BC..0x1559BA (x64) and gears 1-2 excluded; it sets the cut-state flags in 0xFEF005A3 (bit0 armed, bit2 cut-active) and calls the cut actuator FUN_00029F22. Phase sequencer FUN_0002A698 steps the cut through phases 1-4 in byte 0xFEF005F6, applying the 3-phase ignition-retard maps (0x15234C/0x1523BC/phase3 vs RPM x TP). Window target FUN_0002A652 builds the per-gear window threshold fef00570 from base febf5e78 + per-gear offset curve 0x15096C.",
+  "master_enable": "0x154DD2 (0 = quickshifter active)",
+  "detector": "0x2AA62 (FUN_0002A96E)",
+  "phase_sequencer": "0x2A6E8 (FUN_0002A698) -> phase byte 0xFEF005F6 (1..4)",
+  "cut_actuator": "0x29F22 (FUN_00029F22)",
+  "cut_state_flags": "0xFEF005A3 (bit0 armed, bit2 cut active)",
+  "gp_sensor_input": "gp-0x5C86 (gear-position sensor), gear index gp-0x5BBE",
+  "retard_maps": "0x15234C / 0x1523BC / phase3 (3-phase upshift ignition retard vs RPM x TP)",
+  "window_maps": "0x150944 (A) / 0x1509A8 (B) / 0x1509BC (C) GP-sensor upshift window offsets vs gear; 0x15096C per-gear window target",
+  "note": "Mirror of the downshift auto-blip chain (3f) but for upshift: upshift cuts spark via retard, downshift opens the ETV via the engine-brake controller."
+ },
+ "idle_control": {
+  "summary": "Idle air-control is the ECT-indexed Target/Airflow curve set (0x170558 base airflow, 0x170870/0x1708B0 target A/B, 0x1708F0.. ECT curves) driven by a feedback integrator. FUN_00053DC6 gates the correction on a mask of ready-flags (byte gp-0x5ED6); FUN_00053C0C runs the feedback step with debounce count 0x1702C1; FUN_00053F3E keeps a moving average of the slip/airflow signal febf6166 over a window of 0x1744AE samples; FUN_0004FF2E is the per-channel servo update.",
+  "airflow_correction_enable": "0x1702C0 (==0x80 disables the idle airflow-correction block; stock 0xFF = active)",
+  "feedback_debounce": "0x1702C1 (idle feedback-step debounce count; stock 13)",
+  "avg_window": "0x1744AE (decel-airflow moving-average window length, clamped <=19; stock 3)",
+  "ready_flags": "byte at gp-0x5ED6 (idle ready/enable bit-mask), feedback state fef00f48/fef00f49",
+  "note": "Idle target itself is in the ported ECT curves; these scalars gate and tune the closed-loop correction."
+ },
+ "fuel_inputs_note": "Fuel map inputs traced from reader decompiles (docs/trace-fuel.c): gp-relative sensor reads in each a1fca/a201e/a2344 call. gp=0xFEBFC000 -> gp-0x5bc0=ECT, gp-0x5c3c=TP, gp-0x5c86=RPM, gp-0x5c40=TP2, gp-0x5bbe=gear, gp-0x5c0a=speed. Per-gear maps are pointer-table selected by the gear bitmask (gp-0x5bbe); their lookup axis is the gp-read sensor shown.",
+ "etv_pwr_note": "ETV/cruise/anti-lift map inputs from reader decompiles (docs/trace-etv.c). ETV monitor air/torque = IAP(gp-0x5bca=0xFEBF6436) x RPM(gp-0x5c82=0xFEBF637E); ETV gain = RPM(gp-0x5c84=0xFEBF637C); cruise correction indexed by computed speed error (set - 0xFEBF5E86 actual); LF throttle-limit = derived demand 0xFEF02E2C x load 0xFEBF6169. The 42 'ETV - PWR/Slot' power-mode maps are pointer-table selected (table 0x192BC0/0x192BCC by SDMS mode 0xFEF0267D) with no directly decompilable reader - left unresolved.",
+ "power_mode_etv_note": "ETV power-mode (PWR) and Slot target maps: selected from pointer table 0x192BA8[gear(fef02e51)*6 + mode(fef0267c)] by FUN_0008BE2C, then interpolated a201e(map, X=fef02e44, Y=fef02e46). FUN_0008BDC8 sets X=gp-0x5c52=0xFEBF63AE (rider throttle demand/APS) and Y=gp-0x5c84=0xFEBF637C (engine RPM). So all PWR/Slot maps share axes APS x RPM; gear+mode only pick which map. docs/trace-pwr.c.",
+ "ho2_note": "HO2/O2 closed-loop inputs from docs/trace-ho2.c. Monitor baro 0xFEBF6394, IAT 0xFEBF6443, heater/enable ECT 0xFEBF6440; cyl-balance bias = per-cyl O2 0xFEBF65E6/E8/EA/EC x RPM; closed-loop zone maps (FUN_00049b6e a2344) = TP 0xFEBF63EC x RPM, pointer-table selected so axes fixed per call.",
+ "diagnostics": {
+  "summary": "The diagnostic MONITORS are real and traced: HO2/catalyst O2 monitor (FUN_00040BAC + FUN_0003F8B2), the ETV Level-2 torque/air safety monitor (FUN_0008AE3E/0008E3B8 with the 0x193xxx IAP x RPM estimate maps), the EVAP purge monitor, and the wheel/speed monitor - all gate on enable/threshold constants now named (0x155AB2, 0x155A62/64, 0x170216/18/1A, 0x192CEA/CEC) plus the monitor maps already carrying TRACED INPUTS.",
+  "monitors_traced": [
+   "HO2/catalyst O2 (0x40BAC/0x3F8B2)",
+   "ETV Level-2 safety (0x8AE3E/0x8E3B8)",
+   "EVAP purge",
+   "wheel/speed"
+  ],
+  "mil_lamp": "NOT individually decoded. The MIL / warning lamp is driven through the RH850 port I/O space (0xFFFF_xxxx register writes) by logic that aggregates the monitor-result flags; identifying the exact port bit requires the specific RH850 variant's port datasheet, which is not in hand, so no lamp bit is labelled (would be a guess).",
+  "can_meter_outputs": "NOT individually decoded. The instrument-cluster/CAN frames (tach, temp, gear, warning lamps) are assembled in code and written to the RS-CAN peripheral (0xFFE6_xxxx / 0xFFC6_xxxx region); the only calibration here is the Meter Fuel Consumption RPM/IAT scaling (already in the XDF). Per-frame field decode needs the Suzuki CAN DBC, not in hand, so no CAN field is labelled.",
+  "note": "Monitors = calibration (named). MIL lamp + CAN dash output = code/peripheral logic with no per-bit calibration; left unlabelled rather than guessed."
+ }
 }

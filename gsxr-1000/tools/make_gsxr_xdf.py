@@ -350,9 +350,19 @@ def ported_block(b, d, m, conf, sw, ml=None):
 
 
 # ---------------------------------------------------------------- categories
+def clean_cat_name(name):
+    """Scrub Hayabusa-specific artifacts from an inherited category name: the Hayabusa ID-range
+    'Unidentified - Cluster X' buckets mean nothing on the GSX-R, and '(legacy, empty)' is stale."""
+    if 'Unidentified - Cluster' in name:
+        return 'Uncategorized (auto-ported, verify)'
+    return name.replace(' (legacy, empty)', '')
+
+
 def category_block():
     txt = open(HAYA_MASTER).read()
     cats = re.findall(r'    <CATEGORY index="0x[0-9A-Fa-f]+" name="[^"]*" />\n', txt)
+    cats = [re.sub(r'name="[^"]*"',
+                   lambda m: 'name="%s"' % clean_cat_name(m.group(0)[6:-1]), c) for c in cats]
     maxidx = max(int(re.search(r'index="(0x[0-9A-Fa-f]+)"', c).group(1), 16) for c in cats)
     unmatched = maxidx + 1
     scalarcat = maxidx + 2
@@ -360,7 +370,93 @@ def category_block():
                 % unmatched)
     cats.append('    <CATEGORY index="0x%X" name="ZZ Decompiler-discovered scalars (unverified)" />\n'
                 % scalarcat)
-    return ''.join(cats), unmatched, scalarcat
+    # name -> index map so scalars can be filed under their real subsystem "Scalars - X" folder
+    name2idx = {}
+    for c in cats:
+        mm = re.search(r'index="(0x[0-9A-Fa-f]+)" name="([^"]*)"', c)
+        if mm:
+            name2idx[mm.group(2)] = int(mm.group(1), 16)
+    return ''.join(cats), unmatched, scalarcat, name2idx
+
+
+# SUBSYS tag -> the "Scalars - X" category name in the master (unescaped). Untagged scalars, or
+# tags with no dedicated folder, fall back to the generic decompiler-scalar category.
+SCALAR_CAT_NAME = {
+    'Ignition': 'Scalars - Ignition', 'Quickshifter': 'Scalars - Quickshifter',
+    'Launch Control': 'Scalars - Launch Control', 'Traction Control': 'Scalars - Traction Control',
+    'Anti-Lift': 'Scalars - Anti-Lift Control', 'Cruise Control': 'Scalars - Cruise Control',
+    'Engine Brake': 'Scalars - Engine Brake Control', 'Fuel': 'Scalars - Fuel',
+    'Idle/Fan': 'Scalars - Idle Control', 'O2/Closed-Loop': 'Scalars - HO2 / Closed Loop',
+    'Rev/Speed Limiter': 'Scalars - Limiters', 'Throttle/ETV': 'Scalars - Throttle By Wire',
+    'Diagnostics': 'Scalars - Diagnostics - Monitors', 'IMU/Chassis': 'Scalars - IMU / Wheel Speed',
+    'Speed/Wheel': 'Scalars - IMU / Wheel Speed', 'Ride Modes': 'Scalars - Ride Mode Presets',
+    'Sensors': 'Scalars - Sensor Scaling (MAP/baro)',
+}
+
+
+# Title-prefix -> correct category NAME, for decoded GSX-R maps the Hayabusa master mis-filed
+# (e.g. it parks "Ride Mode" and "Mode-Setting Limit" tables in its "DTC Lamp Control" folder, and
+# "Idle/Heat-Soak" tables in "Meter / CAN Outputs"). Only titles matching a rule are re-filed; every
+# other map keeps the category it inherited, so the already-correct folders (TPS, IAP, Ignition
+# Advance, PWR-n, Launch Control, Anti-Lift ...) are untouched. Ground truth is the map's own title.
+RECAT = [
+    ('Ride Mode ::', 'Ride Mode Presets'), ('Mode-Setting Limit ::', 'Ride Mode Presets'),
+    ('Idle/Heat-Soak ::', 'Idle Control (decoded)'), ('Idle Control ::', 'Idle Control (decoded)'),
+    ('ETV Monitor ::', 'ETV Monitor / Level-2 Safety (decoded)'),
+    ('Meter / CAN Outputs ::', 'Meter / CAN Outputs (decoded)'),
+    ('Meter Fuel Consumption ::', 'Meter / CAN Outputs (decoded)'),
+    ('EVAP Purge ::', 'EVAP Purge (decoded)'),
+    ('Catalyst/HO2 Monitor ::', 'HO2 / Closed Loop (decoded)'), ('HO2 ', 'HO2 / Closed Loop (decoded)'),
+    ('Cruise Control ::', 'Cruise Control (decoded)'),
+    ('Engine Brake Control ::', 'Engine Brake Control (decoded)'),
+    ('Pitch Control ::', 'Anti-Lift Control'), ('Anti-Lift ::', 'Anti-Lift Control'),
+    ('Speed Monitor ::', 'IMU / Wheel Speed (decoded)'),
+    ('Diagnostics - DTC Lamp Control ::', 'Diagnostics - DTC Lamp Control'),
+]
+
+
+def recategorize(body, name2idx):
+    """Re-file only the decoded maps the Hayabusa master mis-categorised, by matching the map's own
+    title prefix to the correct existing category. Returns (body, n_moved)."""
+    rules = [(p, name2idx[n]) for p, n in RECAT if n in name2idx]
+    moved = [0]
+
+    def fix(block):
+        mt = re.search(r'<title>([^<]*)</title>', block)
+        if not mt:
+            return block
+        title = mt.group(1)
+        for pre, newcat in rules:
+            if title.startswith(pre) or pre in title:
+                new = re.sub(r'(<CATEGORYMEM index="0" category=")\d+(")',
+                             r'\g<1>%d\g<2>' % newcat, block, count=1)
+                if new != block:
+                    moved[0] += 1
+                return new
+        return block
+
+    body = re.sub(r'<XDFTABLE\b.*?</XDFTABLE>\n', lambda m: fix(m.group(0)), body, flags=re.S)
+    return body, moved[0]
+
+
+def prune_and_renumber(cats_xml, body):
+    """Drop categories with no members (Hayabusa-inherited leftovers) and compact-renumber the rest,
+    rewriting every CATEGORYMEM reference. Category 0 (root) is always kept."""
+    used = set(int(n) for n in re.findall(r'category="(\d+)"', body))
+    used.add(0)
+    old = [(int(re.search(r'index="(0x[0-9A-Fa-f]+)"', c).group(1), 16), c)
+           for c in re.findall(r'    <CATEGORY [^\n]*\n', cats_xml)]
+    remap = {}
+    new_cats = []
+    for oldidx, line in old:
+        if oldidx not in used:
+            continue
+        newidx = len(new_cats)
+        remap[oldidx] = newidx
+        new_cats.append(re.sub(r'index="0x[0-9A-Fa-f]+"', 'index="0x%X"' % newidx, line))
+    body = re.sub(r'category="(\d+)"',
+                  lambda m: 'category="%d"' % remap[int(m.group(1))], body)
+    return ''.join(new_cats), body, len(old) - len(new_cats)
 
 
 # ---------------------------------------------------------------- scalar constants
@@ -465,12 +561,19 @@ def subsystem(ctx):
     return ''
 
 
-def scalar_blocks(b, scalars, cat, sw):
+def scalar_blocks(b, scalars, cat, sw, name2idx=None):
     """Emit XDFCONSTANT/XDFFLAG for each decompiler-discovered scalar, valued from this read.
 
     Where the reading function also reads a named (Hayabusa-ported) map, the scalar's title is
-    prefixed with that subsystem - a reliable area tag from the decompile, not a value guess.
+    prefixed with that subsystem - a reliable area tag from the decompile, not a value guess - and
+    the scalar is filed under that subsystem's "Scalars - X" folder (falling back to the generic
+    decompiler-scalar category when the tag has no dedicated folder).
     """
+    name2idx = name2idx or {}
+
+    def scalar_cat(sub):
+        return name2idx.get(SCALAR_CAT_NAME.get(sub, ''), cat)
+
     out = []
     uid = 0x100000
     tagged = 0
@@ -490,6 +593,7 @@ def scalar_blocks(b, scalars, cat, sw):
         sub = subsystem(s.get('context') or [])
         if sub:
             tagged += 1
+        thiscat = scalar_cat(sub)
         pre = ('%s :: ' % sub) if sub else ''
         ctx_line = (' Near maps: %s.' % '; '.join(ctx)) if ctx else ''
         func = (' fn %s' % s['func']) if s.get('func') else ''
@@ -499,14 +603,14 @@ def scalar_blocks(b, scalars, cat, sw):
                     '(%d ref/%d fn%s). %s: 0x%02X.%s'
                     % (s['refs'], s['nfuncs'], func, sw, b[addr], ctx_line))
             out.append(SCALAR_FLAG % dict(uid=uid, title=escape('%sFlag @0x%X (bit7)' % (pre, addr)),
-                                          desc=escape(desc), cat=cat, addr=addr))
+                                          desc=escape(desc), cat=thiscat, addr=addr))
         else:
             desc = ('Decompiler-found scalar (UNVERIFIED): u%d read by ECU code (%d ref/%d fn%s). '
                     'VALUE %s: %d.%s'
                     % (bits, s['refs'], s['nfuncs'], func, sw, val, ctx_line))
             out.append(SCALAR_CONST % dict(uid=uid,
                                            title=escape('%sScalar @0x%X (u%d)' % (pre, addr, bits)),
-                                           desc=escape(desc), cat=cat, addr=addr, bits=bits))
+                                           desc=escape(desc), cat=thiscat, addr=addr, bits=bits))
         uid += 1
     return out, uid - 0x100000, tagged
 
@@ -538,7 +642,7 @@ def generate(binpath, outpath, sw, part):
         for k in range(size):
             g2h[bi + k] = ai + k
 
-    cats_xml, UNMATCHED, SCALARCAT = category_block()
+    cats_xml, UNMATCHED, SCALARCAT, NAME2IDX = category_block()
 
     stats = dict(HIGH=0, MED=0, GENERIC=0)
     blocks = []
@@ -567,7 +671,7 @@ def generate(binpath, outpath, sw, part):
 
     # decompiler-discovered scalar constants / flags (code cross-reference analysis)
     scalars = load_scalars()
-    sblocks, nscalar, ntagged = scalar_blocks(b, scalars, SCALARCAT, sw)
+    sblocks, nscalar, ntagged = scalar_blocks(b, scalars, SCALARCAT, sw, NAME2IDX)
     blocks.extend(sblocks)
 
     deftitle = 'Suzuki GSX-R1000 M7 %s (%s) - ported from Hayabusa Gen3 (auto)' % (sw, part)
@@ -577,6 +681,12 @@ def generate(binpath, outpath, sw, part):
             'UNVERIFIED). Scaling is the Hayabusa\'s, unverified here. Re-stamp field-1 CRC '
             '(0x10000-0x1FFAFB @0x1FFAFE) with tools/fix_field1_crc.py. UNVERIFIED ON HARDWARE.'
             % (sw, part, len(gd), stats['HIGH'], stats['MED'], stats['GENERIC'], nscalar))
+
+    body = ''.join(blocks)
+    # re-file the decoded maps the Hayabusa master mis-categorised so folder names match contents
+    body, nmoved = recategorize(body, NAME2IDX)
+    # drop categories with no members (Hayabusa-inherited empty folders) and compact-renumber
+    cats_xml, body, npruned = prune_and_renumber(cats_xml, body)
 
     header = '''<!-- Written by make_gsxr_xdf.py - GSX-R1000 M7, ported from Hayabusa Gen3 -->
 <XDFFORMAT version="1.70">
@@ -593,9 +703,9 @@ def generate(binpath, outpath, sw, part):
 
     with open(outpath, 'w') as f:
         f.write(header)
-        f.write(''.join(blocks))
+        f.write(body)
         f.write('</XDFFORMAT>\n')
-    return stats, len(gd), nscalar
+    return stats, len(gd), nscalar, npruned
 
 
 if __name__ == '__main__':
@@ -603,7 +713,8 @@ if __name__ == '__main__':
         print(__doc__)
         sys.exit(1)
     _, binpath, outpath, sw, part = sys.argv
-    st, n, nsc = generate(binpath, outpath, sw, part)
+    st, n, nsc, npruned = generate(binpath, outpath, sw, part)
     print('%s: %d descriptors + %d scalars -> %s'
           % (os.path.basename(binpath), n, nsc, os.path.basename(outpath)))
     print('   HIGH=%(HIGH)d  MED=%(MED)d  GENERIC=%(GENERIC)d' % st)
+    print('   pruned %d empty categories' % npruned)
