@@ -2,8 +2,8 @@
 <XDFFORMAT version="1.70">
   <XDFHEADER>
     <flags>0x1</flags>
-    <deftitle>Suzuki GSX-R1000 M7 32990-48L20-EU (32920-48L2x) - ported from Hayabusa Gen3 (auto)</deftitle>
-    <description>Suzuki GSX-R1000 M7 (RH850), 2 MB read, sw 32990-48L20-EU (ECM 32920-48L2x). 791 maps auto-ported from Hayabusa Gen3 via on-bin descriptors (420 HIGH, 234 MED=verify, 137 unknown) + 3287 scalars/flags found by Ghidra V850 decompile (generic titles + context hints, UNVERIFIED). Scaling is the Hayabusa&#x27;s, unverified here. Re-stamp field-1 CRC (0x10000-0x1FFAFB @0x1FFAFE) with tools/fix_field1_crc.py. UNVERIFIED ON HARDWARE.</description>
+    <deftitle>Suzuki GSX-R1000 M7 32990-48L20-EU (32990-48L20-EU) - ported from Hayabusa Gen3 (auto)</deftitle>
+    <description>Suzuki GSX-R1000 M7 (RH850), 2 MB read, sw 32990-48L20-EU (ECM 32990-48L20-EU). 791 maps auto-ported from Hayabusa Gen3 via on-bin descriptors (420 HIGH, 234 MED=verify, 137 unknown) + 3287 scalars/flags found by Ghidra V850 decompile (generic titles + context hints, UNVERIFIED). Scaling is the Hayabusa&#x27;s, unverified here. Re-stamp field-1 CRC (0x10000-0x1FFAFB @0x1FFAFE) with tools/fix_field1_crc.py. UNVERIFIED ON HARDWARE.</description>
     <author>Clint Chipley / Claude</author>
     <BASEOFFSET offset="0" subtract="0" />
     <DEFAULTS datasizeinbits="8" sigdigits="2" outputtype="1" signed="0" lsbfirst="1" float="0" />
@@ -35662,8 +35662,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1000E8" flags="0x0">
-    <title>Quickshifter :: Scalar @0x154D6E (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x02DA0E). VALUE 32990-48L20-EU: 640. Near maps: Quickshifter :: GP-Sensor Upshift Window A Offset vs Gear.</description>
+    <title>Cruise/speed-governor set-speed gate low (FUN_0002DA0E: uVar</title>
+    <description>TRACED FROM GSX-R CODE: Cruise/speed-governor set-speed gate low (FUN_0002DA0E: uVar1&lt;=speed signal febf5e86 enables tracking; raw 640). VALUE 32990-48L20-EU: 640 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154D6E" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -35674,8 +35674,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1000E9" flags="0x0">
-    <title>Quickshifter :: Scalar @0x154D70 (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x02DA0E). VALUE 32990-48L20-EU: 640. Near maps: Quickshifter :: GP-Sensor Upshift Window A Offset vs Gear.</description>
+    <title>Cruise/speed-governor set-speed gate high (FUN_0002DA0E pair</title>
+    <description>TRACED FROM GSX-R CODE: Cruise/speed-governor set-speed gate high (FUN_0002DA0E pairs with 0x154D6E; raw 640). VALUE 32990-48L20-EU: 640 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154D70" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -35842,8 +35842,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1000F7" flags="0x0">
-    <title>Quickshifter :: Scalar @0x154D8C (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (4 ref/4 fn fn 0x02D118). VALUE 32990-48L20-EU: 161. Near maps: Quickshifter :: GP-Sensor Upshift Window A Offset vs Gear.</description>
+    <title>Cruise/speed-governor ramp scale denominator (FUN_0002E0AE d</title>
+    <description>TRACED FROM GSX-R CODE: Cruise/speed-governor ramp scale denominator (FUN_0002E0AE divides by this; raw 161). VALUE 32990-48L20-EU: 161 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154D8C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>

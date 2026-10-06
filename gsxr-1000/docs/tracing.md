@@ -174,3 +174,25 @@ gates on engine RPM `0xFEF02622` > ~1,500 rpm — i.e. the rev limiter, end to e
   now that `gp = 0xFEBFC000` is known, gp-relative axis inputs can be resolved too).
 - Launch-RPM: the per-gear launch throttle-limit maps are present (ported, HIGH); the launch RPM
   hold value is a scalar not yet isolated from the clutch/mode gating.
+
+## 3g. SDMS power-mode selector + cruise/speed-governor code (traced)
+
+**Power mode (SDMS drive mode).** The drive-mode level is the byte **`0xFEF0267D`**, range **0–10**.
+A dedicated switch controller cluster (`0x07BEF–0x07D9`, matched `ld.bu`/`st.b` pairs) reads, latches and
+writes it — i.e. the mode-button debounce/state. `FUN_00029198` (`0x29198`) loads it as the **index into
+the 11-point mode-gain curve `0x1513B0`** and scales the electronic-throttle target: the 2D target map is
+`0x1511A8` (16-bit, 23×39, X = rider demand `0xFEF00530`, Y = engine RPM), with a 1D fallback curve
+`0x150BCC` (36 pts) when `FUN_00028EE4 != 0`. The identity is self-confirming: the curve `0x1513B0`'s own
+ported axis is labelled **"SDMS Field-3 Level (0–10)"** and its breakpoints are exactly 0..10 — the same
+range the mode byte takes. This is the A/B/C-equivalent power level on the GSX-R1000R M7. Per-level gains
+are in `0x1513B0`; verify on a bench.
+
+**Cruise / speed-governor.** The M7 image carries Suzuki's **speed-governor (cruise) calibration and code**
+even though the GSX-R1000R has no cruise switch — shared platform code (the GSX-S1000/GT siblings run
+cruise). `FUN_0002DA0E` (`0x2DA0E`) computes set-speed tracking from the accel-rate-gain curve `0x150DAC`
+and the **speed-correction-vs-set-speed table `0x150E5C` (14 pts, 30–240 km/h)**; `FUN_0002E0AE` ramps the
+governor target (curves `0x150DD4/0x150DE8/0x150DFC/0x150E10`, scale denominator `0x154D8C` = 161); and the
+state machine `FUN_0002D95E` (`0x2D95E`) drives the governor state byte **`0xFEF005F8`** (codes
+0x0B/0x0E/0x11/0x12) gated by the mode byte `0xFEF00652`. The set-speed enable gates are `0x154D6E` /
+`0x154D70` (raw 640). **Confidence: low that this is live on the GSX-R1000R** — the labels are ported from
+the cruise-capable map set; treat it as "speed-governor code present", not a confirmed working feature.

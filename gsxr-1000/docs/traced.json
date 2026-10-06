@@ -1392,7 +1392,10 @@
   "0x1701FA": "Traction control per-level hysteresis/history count | Level 8 (FUN_00055016; 0 = off in stock)",
   "0x1701FC": "Traction control per-level hysteresis/history count | Level 9 (FUN_00055016; 0 = off in stock)",
   "0x1701FE": "Traction control per-level hysteresis/history count | Level 10 (FUN_00055016; 0 = off in stock)",
-  "0x170200": "Traction control per-level hysteresis/history count | Launch (FUN_00055016; 0 = off in stock)"
+  "0x170200": "Traction control per-level hysteresis/history count | Launch (FUN_00055016; 0 = off in stock)",
+  "0x154D6E": "Cruise/speed-governor set-speed gate low (FUN_0002DA0E: uVar1<=speed signal febf5e86 enables tracking; raw 640)",
+  "0x154D70": "Cruise/speed-governor set-speed gate high (FUN_0002DA0E pairs with 0x154D6E; raw 640)",
+  "0x154D8C": "Cruise/speed-governor ramp scale denominator (FUN_0002E0AE divides by this; raw 161)"
  },
  "gp": "0xFEBFC000 (V850 global pointer; set in crt0 at 0x10C82: mov 0xFEBFC000,gp)",
  "rev_cut_signal": "0xFEBF642E (gp-0x5BD2; RPM-domain, in the 0xFEBF6xxx sdata sensor block next to RPM 0xFEBF615E)",
@@ -1437,5 +1440,25 @@
   "blip_duration": "0x154E16 (=25 counts)",
   "mode": "0x154E17",
   "shift_detect_thresholds": "0x150ED8/0x150F48/0x150EA0/0x150F10 (GP-sensor low/high, mode fef0267f), via FUN_0002a2ba"
+ },
+ "power_mode": {
+  "summary": "SDMS (Suzuki Drive Mode Selector) power-mode level is byte 0xFEF0267D (0-10). A dedicated switch controller cluster (0x07BEF-0x07D9) reads/writes/latches it; FUN_00029198 reads it as the index into the 11-point mode-gain curve 0x1513B0 (ported axis label 'SDMS Field-3 Level (0-10)') and scales the ETV throttle/torque target (2D map 0x1511A8, 23x39, indexed by rider-demand fef00530 x engine RPM).",
+  "mode_var": "0xFEF0267D (SDMS level 0-10)",
+  "mode_gain_curve": "0x1513B0 (1D 8-bit, 11 pts 0..10)",
+  "etv_target_map": "0x1511A8 (2D 16-bit 23x39; X=rider demand fef00530, Y=engine RPM)",
+  "fallback_curve": "0x150BCC (1D 16-bit, 36 pts; used when FUN_00028EE4 != 0)",
+  "throttle_target_fn": "0x29198 (FUN_00029198) -> fef00532 ETV target, fef00534/fef00536 components",
+  "note": "Confirmed by the map's own ported axis breakpoints (0..10). This is the A/B/C-equivalent power-mode level on the GSX-R1000R M7; verify exact per-level gains on a bench."
+ },
+ "cruise": {
+  "summary": "The M7 image contains Suzuki's speed-governor / cruise calibration and code (shared platform - the GSX-S1000/GT siblings use cruise; the GSX-R1000R has no cruise switch, so this is likely dormant but present). FUN_0002DA0E computes set-speed tracking from accel-rate-gain curve 0x150DAC and speed-correction-vs-set-speed table 0x150E5C (14 pts 30..240 km/h). FUN_0002E0AE and the state machine FUN_0002D95E manage the governor state (state byte fef005f8 values 0x0B/0x0E/0x11/0x12, mode gate fef00652).",
+  "functions": {
+   "0x2da0e": "set-speed tracking: curves 0x150DAC (accel rate gain), 0x150DC0, 0x150E5C (speed correction vs 30-240 km/h set speed), 0x150E70",
+   "0x2e0ae": "governor target/ramp: curves 0x150DD4/0x150DE8/0x150DFC/0x150E10, scale denom 0x154D8C",
+   "0x2d95e": "governor state machine: state byte fef005f8, gate byte fef00652"
+  },
+  "state_var": "0xFEF005F8 (governor state: 0x0B/0x0E/0x11/0x12)",
+  "set_speed_table": "0x150E5C (14 pts, 30..240 km/h)",
+  "note": "Low confidence that this is active on the GSX-R1000R; labels are ported from the cruise-capable Hayabusa/GSX-S map set. Treat as 'speed-governor code present', not a confirmed working feature."
  }
 }
