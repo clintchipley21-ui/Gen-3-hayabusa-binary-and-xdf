@@ -6,6 +6,11 @@ rolling anti-lag.
 
 > **Everything here is unverified on hardware.** Bench an ECM first and keep a stock read for recovery.
 
+> **Sibling model:** [`gsxr-1000/`](gsxr-1000/) holds four Suzuki GSX-R1000 (M7) reads and TunerPro
+> XDFs for them. The GSX-R uses the same ECU family, the same map-descriptor format and the same
+> field-1 CRC, so its XDFs were built by porting these Hayabusa map definitions onto the GSX-R's own
+> descriptors (confidence-tagged). See [`gsxr-1000/README.md`](gsxr-1000/README.md).
+
 ## Where to start
 
 | I want to… | Use |
