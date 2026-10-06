@@ -2199,6 +2199,70 @@
   },
   "0x1716C0": {
    "x": "0xFEBF63F4"
+  },
+  "0x156C48": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156C64": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156D18": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156D34": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156D80": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156D9C": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156DE8": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156E04": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156CB0": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156CCC": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156E50": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156E6C": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156B78": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156B94": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156BE0": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156BFC": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
   }
  },
  "constants": {
@@ -2321,5 +2385,6 @@
  },
  "fuel_inputs_note": "Fuel map inputs traced from reader decompiles (docs/trace-fuel.c): gp-relative sensor reads in each a1fca/a201e/a2344 call. gp=0xFEBFC000 -> gp-0x5bc0=ECT, gp-0x5c3c=TP, gp-0x5c86=RPM, gp-0x5c40=TP2, gp-0x5bbe=gear, gp-0x5c0a=speed. Per-gear maps are pointer-table selected by the gear bitmask (gp-0x5bbe); their lookup axis is the gp-read sensor shown.",
  "etv_pwr_note": "ETV/cruise/anti-lift map inputs from reader decompiles (docs/trace-etv.c). ETV monitor air/torque = IAP(gp-0x5bca=0xFEBF6436) x RPM(gp-0x5c82=0xFEBF637E); ETV gain = RPM(gp-0x5c84=0xFEBF637C); cruise correction indexed by computed speed error (set - 0xFEBF5E86 actual); LF throttle-limit = derived demand 0xFEF02E2C x load 0xFEBF6169. The 42 'ETV - PWR/Slot' power-mode maps are pointer-table selected (table 0x192BC0/0x192BCC by SDMS mode 0xFEF0267D) with no directly decompilable reader - left unresolved.",
- "power_mode_etv_note": "ETV power-mode (PWR) and Slot target maps: selected from pointer table 0x192BA8[gear(fef02e51)*6 + mode(fef0267c)] by FUN_0008BE2C, then interpolated a201e(map, X=fef02e44, Y=fef02e46). FUN_0008BDC8 sets X=gp-0x5c52=0xFEBF63AE (rider throttle demand/APS) and Y=gp-0x5c84=0xFEBF637C (engine RPM). So all PWR/Slot maps share axes APS x RPM; gear+mode only pick which map. docs/trace-pwr.c."
+ "power_mode_etv_note": "ETV power-mode (PWR) and Slot target maps: selected from pointer table 0x192BA8[gear(fef02e51)*6 + mode(fef0267c)] by FUN_0008BE2C, then interpolated a201e(map, X=fef02e44, Y=fef02e46). FUN_0008BDC8 sets X=gp-0x5c52=0xFEBF63AE (rider throttle demand/APS) and Y=gp-0x5c84=0xFEBF637C (engine RPM). So all PWR/Slot maps share axes APS x RPM; gear+mode only pick which map. docs/trace-pwr.c.",
+ "ho2_note": "HO2/O2 closed-loop inputs from docs/trace-ho2.c. Monitor baro 0xFEBF6394, IAT 0xFEBF6443, heater/enable ECT 0xFEBF6440; cyl-balance bias = per-cyl O2 0xFEBF65E6/E8/EA/EC x RPM; closed-loop zone maps (FUN_00049b6e a2344) = TP 0xFEBF63EC x RPM, pointer-table selected so axes fixed per call."
 }

@@ -7823,6 +7823,7 @@ REFERENCE: descriptor @0x156B2C, data @0x159C50, X @0x1584F8, Y @0x158514.</desc
     <title>HO2 Feedback :: Closed-Loop Zone Map | Set 1 Map 1 (TP x RPM)  [UNCONFIRMED]</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own.
 X: 10 pts 419..26214 raw; Y: 14 pts 1300..10000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63EC (non-monotonic (bitmask/enum?)); Y = 0xFEBF637A (engine RPM [title-anchored]).
 VALUES (32990-48L30): 0 to 2 zone (0/1/2).
 REFERENCE: descriptor @0x156B78, data @0x159E40, X @0x156B48, Y @0x156B5C.</description>
     <CATEGORYMEM index="0" category="59" />
@@ -7869,6 +7870,7 @@ REFERENCE: descriptor @0x156B78, data @0x159E40, X @0x156B48, Y @0x156B5C.</desc
     <title>HO2 Feedback :: Closed-Loop Zone Map | Set 1 Map 2 (TP x RPM)  [UNCONFIRMED]</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own.
 X: 10 pts 419..26214 raw; Y: 14 pts 1300..10000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63EC (non-monotonic (bitmask/enum?)); Y = 0xFEBF637A (engine RPM [title-anchored]).
 VALUES (32990-48L30): 0 to 0 zone (0/1/2) - every cell the same.
 REFERENCE: descriptor @0x156B94, data @0x159ECC, X @0x156B48, Y @0x156B5C.</description>
     <CATEGORYMEM index="0" category="59" />
@@ -7915,6 +7917,7 @@ REFERENCE: descriptor @0x156B94, data @0x159ECC, X @0x156B48, Y @0x156B5C.</desc
     <title>HO2 Feedback :: Closed-Loop Zone Map | Set 1 Map 3 (TP x RPM)  [UNCONFIRMED]</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own.
 X: 10 pts 131..20972 raw; Y: 14 pts 1500..10000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63EC (non-monotonic (bitmask/enum?)); Y = 0xFEBF637A (engine RPM [title-anchored]).
 VALUES (32990-48L30): 0 to 0 zone (0/1/2) - every cell the same.
 REFERENCE: descriptor @0x156BE0, data @0x159F58, X @0x156BB0, Y @0x156BC4.</description>
     <CATEGORYMEM index="0" category="59" />
@@ -7961,6 +7964,7 @@ REFERENCE: descriptor @0x156BE0, data @0x159F58, X @0x156BB0, Y @0x156BC4.</desc
     <title>HO2 Feedback :: Closed-Loop Zone Map | Set 1 Map 4 (TP x RPM)  [UNCONFIRMED]</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own.
 X: 10 pts 131..20972 raw; Y: 14 pts 1500..10000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63EC (non-monotonic (bitmask/enum?)); Y = 0xFEBF637A (engine RPM [title-anchored]).
 VALUES (32990-48L30): 0 to 0 zone (0/1/2) - every cell the same.
 REFERENCE: descriptor @0x156BFC, data @0x159FE4, X @0x156BB0, Y @0x156BC4.</description>
     <CATEGORYMEM index="0" category="59" />
@@ -8007,6 +8011,7 @@ REFERENCE: descriptor @0x156BFC, data @0x159FE4, X @0x156BB0, Y @0x156BC4.</desc
     <title>HO2 Feedback :: Closed-Loop Zone Map | Set 1 Map 5 (TP x RPM)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 10 pts 419..20972 raw; Y: 14 pts 1700..10000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63EC (non-monotonic (bitmask/enum?)); Y = 0xFEBF637A (engine RPM [title-anchored]).
 VALUES (32990-48L30): 0 to 0 zone (0/1/2) - every cell the same.
 REFERENCE: descriptor @0x156C48, data @0x15A070, X @0x156C18, Y @0x156C2C.</description>
     <CATEGORYMEM index="0" category="59" />
@@ -8053,6 +8058,7 @@ REFERENCE: descriptor @0x156C48, data @0x15A070, X @0x156C18, Y @0x156C2C.</desc
     <title>HO2 Feedback :: Closed-Loop Zone Map | Set 1 Map 6 (TP x RPM)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 10 pts 419..20972 raw; Y: 14 pts 1700..10000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63EC (non-monotonic (bitmask/enum?)); Y = 0xFEBF637A (engine RPM [title-anchored]).
 VALUES (32990-48L30): 0 to 0 zone (0/1/2) - every cell the same.
 REFERENCE: descriptor @0x156C64, data @0x15A0FC, X @0x156C18, Y @0x156C2C.</description>
     <CATEGORYMEM index="0" category="59" />
@@ -8099,6 +8105,7 @@ REFERENCE: descriptor @0x156C64, data @0x15A0FC, X @0x156C18, Y @0x156C2C.</desc
     <title>HO2 Feedback :: Closed-Loop Zone Map | IAP Set 1 Map 1 (vacuum x RPM)  [UNCONFIRMED]</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own.
 X: 10 pts 65.00..0.00 vacuum kPa; Y: 14 pts 2000..10000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63EC (non-monotonic (bitmask/enum?)); Y = 0xFEBF637A (engine RPM [title-anchored]).
 VALUES (32990-48L30): 0 to 1 zone (0/1/2).
 REFERENCE: descriptor @0x156CB0, data @0x15A188, X @0x156C80, Y @0x156C94.</description>
     <CATEGORYMEM index="0" category="59" />
@@ -8145,6 +8152,7 @@ REFERENCE: descriptor @0x156CB0, data @0x15A188, X @0x156C80, Y @0x156C94.</desc
     <title>HO2 Feedback :: Closed-Loop Zone Map | IAP Set 1 Map 2 (vacuum x RPM)  [UNCONFIRMED]</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own.
 X: 10 pts 65.00..0.00 vacuum kPa; Y: 14 pts 2000..10000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63EC (non-monotonic (bitmask/enum?)); Y = 0xFEBF637A (engine RPM [title-anchored]).
 VALUES (32990-48L30): 0 to 0 zone (0/1/2) - every cell the same.
 REFERENCE: descriptor @0x156CCC, data @0x15A214, X @0x156C80, Y @0x156C94.</description>
     <CATEGORYMEM index="0" category="59" />
@@ -8191,6 +8199,7 @@ REFERENCE: descriptor @0x156CCC, data @0x15A214, X @0x156C80, Y @0x156C94.</desc
     <title>HO2 Feedback :: Closed-Loop Zone Map | Set 2 Map 1 (TP x RPM, all open-loop)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 10 pts 419..20972 raw; Y: 14 pts 1300..10000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63EC (non-monotonic (bitmask/enum?)); Y = 0xFEBF637A (engine RPM [title-anchored]).
 VALUES (32990-48L30): 0 to 2 zone (0/1/2).
 REFERENCE: descriptor @0x156D18, data @0x15A2A0, X @0x156CE8, Y @0x156CFC.</description>
     <CATEGORYMEM index="0" category="59" />
@@ -8238,6 +8247,7 @@ REFERENCE: descriptor @0x156D18, data @0x15A2A0, X @0x156CE8, Y @0x156CFC.</desc
     <title>HO2 Feedback :: Closed-Loop Zone Map | Set 2 Map 2 (TP x RPM, all open-loop)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 10 pts 419..20972 raw; Y: 14 pts 1300..10000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63EC (non-monotonic (bitmask/enum?)); Y = 0xFEBF637A (engine RPM [title-anchored]).
 VALUES (32990-48L30): 0 to 0 zone (0/1/2) - every cell the same.
 REFERENCE: descriptor @0x156D34, data @0x15A32C, X @0x156CE8, Y @0x156CFC.</description>
     <CATEGORYMEM index="0" category="59" />
@@ -8285,6 +8295,7 @@ REFERENCE: descriptor @0x156D34, data @0x15A32C, X @0x156CE8, Y @0x156CFC.</desc
     <title>HO2 Feedback :: Closed-Loop Zone Map | Set 2 Map 3 (TP x RPM)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 10 pts 419..20972 raw; Y: 14 pts 1700..10000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63EC (non-monotonic (bitmask/enum?)); Y = 0xFEBF637A (engine RPM [title-anchored]).
 VALUES (32990-48L30): 0 to 0 zone (0/1/2) - every cell the same.
 REFERENCE: descriptor @0x156D80, data @0x15A3B8, X @0x156D50, Y @0x156D64.</description>
     <CATEGORYMEM index="0" category="59" />
@@ -8331,6 +8342,7 @@ REFERENCE: descriptor @0x156D80, data @0x15A3B8, X @0x156D50, Y @0x156D64.</desc
     <title>HO2 Feedback :: Closed-Loop Zone Map | Set 2 Map 4 (TP x RPM)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 10 pts 419..20972 raw; Y: 14 pts 1700..10000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63EC (non-monotonic (bitmask/enum?)); Y = 0xFEBF637A (engine RPM [title-anchored]).
 VALUES (32990-48L30): 0 to 0 zone (0/1/2) - every cell the same.
 REFERENCE: descriptor @0x156D9C, data @0x15A444, X @0x156D50, Y @0x156D64.</description>
     <CATEGORYMEM index="0" category="59" />
@@ -8377,6 +8389,7 @@ REFERENCE: descriptor @0x156D9C, data @0x15A444, X @0x156D50, Y @0x156D64.</desc
     <title>HO2 Feedback :: Closed-Loop Zone Map | Set 2 Map 5 (TP x RPM)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 10 pts 419..20972 raw; Y: 14 pts 1700..10000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63EC (non-monotonic (bitmask/enum?)); Y = 0xFEBF637A (engine RPM [title-anchored]).
 VALUES (32990-48L30): 0 to 0 zone (0/1/2) - every cell the same.
 REFERENCE: descriptor @0x156DE8, data @0x15A4D0, X @0x156DB8, Y @0x156DCC.</description>
     <CATEGORYMEM index="0" category="59" />
@@ -8423,6 +8436,7 @@ REFERENCE: descriptor @0x156DE8, data @0x15A4D0, X @0x156DB8, Y @0x156DCC.</desc
     <title>HO2 Feedback :: Closed-Loop Zone Map | Set 2 Map 6 (TP x RPM)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 10 pts 419..20972 raw; Y: 14 pts 1700..10000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63EC (non-monotonic (bitmask/enum?)); Y = 0xFEBF637A (engine RPM [title-anchored]).
 VALUES (32990-48L30): 0 to 0 zone (0/1/2) - every cell the same.
 REFERENCE: descriptor @0x156E04, data @0x15A55C, X @0x156DB8, Y @0x156DCC.</description>
     <CATEGORYMEM index="0" category="59" />
@@ -8469,6 +8483,7 @@ REFERENCE: descriptor @0x156E04, data @0x15A55C, X @0x156DB8, Y @0x156DCC.</desc
     <title>HO2 Feedback :: Closed-Loop Zone Map | IAP Set 2 Map 1 (vacuum x RPM)  [UNCONFIRMED]</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own.
 X: 10 pts 65.00..0.00 vacuum kPa; Y: 14 pts 2000..10000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63EC (non-monotonic (bitmask/enum?)); Y = 0xFEBF637A (engine RPM [title-anchored]).
 VALUES (32990-48L30): 0 to 1 zone (0/1/2).
 REFERENCE: descriptor @0x156E50, data @0x15A5E8, X @0x156E20, Y @0x156E34.</description>
     <CATEGORYMEM index="0" category="59" />
@@ -8515,6 +8530,7 @@ REFERENCE: descriptor @0x156E50, data @0x15A5E8, X @0x156E20, Y @0x156E34.</desc
     <title>HO2 Feedback :: Closed-Loop Zone Map | IAP Set 2 Map 2 (vacuum x RPM)  [UNCONFIRMED]</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own.
 X: 10 pts 65.00..0.00 vacuum kPa; Y: 14 pts 2000..10000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63EC (non-monotonic (bitmask/enum?)); Y = 0xFEBF637A (engine RPM [title-anchored]).
 VALUES (32990-48L30): 0 to 0 zone (0/1/2) - every cell the same.
 REFERENCE: descriptor @0x156E6C, data @0x15A674, X @0x156E20, Y @0x156E34.</description>
     <CATEGORYMEM index="0" category="59" />
