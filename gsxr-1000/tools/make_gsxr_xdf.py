@@ -370,13 +370,15 @@ def category_block():
                 % unmatched)
     cats.append('    <CATEGORY index="0x%X" name="ZZ Decompiler-discovered scalars (unverified)" />\n'
                 % scalarcat)
-    # name -> index map so scalars can be filed under their real subsystem "Scalars - X" folder
-    name2idx = {}
+    # TunerPro CATEGORYMEM category="N" is 1-BASED: it selects CATEGORY index N-1 (verified against
+    # the Hayabusa master, which the ported maps inherit their 1-based values from). So every category
+    # VALUE the generator emits is (0-based index + 1). name2val maps a category NAME to that value.
+    name2val = {}
     for c in cats:
         mm = re.search(r'index="(0x[0-9A-Fa-f]+)" name="([^"]*)"', c)
         if mm:
-            name2idx[mm.group(2)] = int(mm.group(1), 16)
-    return ''.join(cats), unmatched, scalarcat, name2idx
+            name2val[mm.group(2)] = int(mm.group(1), 16) + 1
+    return ''.join(cats), unmatched + 1, scalarcat + 1, name2val
 
 
 # SUBSYS tag -> the "Scalars - X" category name in the master (unescaped). Untagged scalars, or
@@ -415,10 +417,10 @@ RECAT = [
 ]
 
 
-def recategorize(body, name2idx):
+def recategorize(body, name2val):
     """Re-file only the decoded maps the Hayabusa master mis-categorised, by matching the map's own
-    title prefix to the correct existing category. Returns (body, n_moved)."""
-    rules = [(p, name2idx[n]) for p, n in RECAT if n in name2idx]
+    title prefix to the correct existing category. category values are 1-based. Returns (body,n)."""
+    rules = [(p, name2val[n]) for p, n in RECAT if n in name2val]
     moved = [0]
 
     def fix(block):
@@ -441,21 +443,23 @@ def recategorize(body, name2idx):
 
 def prune_and_renumber(cats_xml, body):
     """Drop categories with no members (Hayabusa-inherited leftovers) and compact-renumber the rest,
-    rewriting every CATEGORYMEM reference. Category 0 (root) is always kept."""
-    used = set(int(n) for n in re.findall(r'category="(\d+)"', body))
-    used.add(0)
+    rewriting every CATEGORYMEM reference. CATEGORYMEM category="N" is 1-BASED (CATEGORY index N-1);
+    category 0-index (root) is always kept."""
+    used_idx = set(int(n) - 1 for n in re.findall(r'category="(\d+)"', body))  # value N -> index N-1
+    used_idx.add(0)  # keep the TunerPro root category
     old = [(int(re.search(r'index="(0x[0-9A-Fa-f]+)"', c).group(1), 16), c)
            for c in re.findall(r'    <CATEGORY [^\n]*\n', cats_xml)]
-    remap = {}
+    remap = {}  # old 0-based index -> new 0-based index
     new_cats = []
     for oldidx, line in old:
-        if oldidx not in used:
+        if oldidx not in used_idx:
             continue
         newidx = len(new_cats)
         remap[oldidx] = newidx
         new_cats.append(re.sub(r'index="0x[0-9A-Fa-f]+"', 'index="0x%X"' % newidx, line))
+    # rewrite each 1-based value V: old index V-1 -> new index -> new 1-based value
     body = re.sub(r'category="(\d+)"',
-                  lambda m: 'category="%d"' % remap[int(m.group(1))], body)
+                  lambda m: 'category="%d"' % (remap[int(m.group(1)) - 1] + 1), body)
     return ''.join(new_cats), body, len(old) - len(new_cats)
 
 
@@ -642,7 +646,7 @@ def generate(binpath, outpath, sw, part):
         for k in range(size):
             g2h[bi + k] = ai + k
 
-    cats_xml, UNMATCHED, SCALARCAT, NAME2IDX = category_block()
+    cats_xml, UNMATCHED, SCALARCAT, NAME2VAL = category_block()
 
     stats = dict(HIGH=0, MED=0, GENERIC=0)
     blocks = []
@@ -671,7 +675,7 @@ def generate(binpath, outpath, sw, part):
 
     # decompiler-discovered scalar constants / flags (code cross-reference analysis)
     scalars = load_scalars()
-    sblocks, nscalar, ntagged = scalar_blocks(b, scalars, SCALARCAT, sw, NAME2IDX)
+    sblocks, nscalar, ntagged = scalar_blocks(b, scalars, SCALARCAT, sw, NAME2VAL)
     blocks.extend(sblocks)
 
     deftitle = 'Suzuki GSX-R1000 M7 %s (%s) - ported from Hayabusa Gen3 (auto)' % (sw, part)
@@ -684,7 +688,7 @@ def generate(binpath, outpath, sw, part):
 
     body = ''.join(blocks)
     # re-file the decoded maps the Hayabusa master mis-categorised so folder names match contents
-    body, nmoved = recategorize(body, NAME2IDX)
+    body, nmoved = recategorize(body, NAME2VAL)
     # drop categories with no members (Hayabusa-inherited empty folders) and compact-renumber
     cats_xml, body, npruned = prune_and_renumber(cats_xml, body)
 
