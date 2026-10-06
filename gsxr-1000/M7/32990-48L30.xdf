@@ -54643,8 +54643,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1007A6" flags="0x0">
-    <title>Rev-limit soft threshold (traced: FUN_00064506 RPM cut; ~13,</title>
-    <description>TRACED FROM GSX-R CODE: Rev-limit soft threshold (traced: FUN_00064506 RPM cut; ~13,155 rpm @ raw/2.56). VALUE 32990-48L30: 33678 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <title>Rev-limit soft threshold (FUN_00064506 compares the RPM sign</title>
+    <description>TRACED FROM GSX-R CODE: Rev-limit soft threshold (FUN_00064506 compares the RPM signal 0xFEBF642E; ~13,155 rpm @ raw/2.56). VALUE 32990-48L30: 33678 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x172EA6" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -54655,8 +54655,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1007A7" flags="0x0">
-    <title>Rev-limit hard threshold (traced: FUN_00064506 RPM cut; ~14,</title>
-    <description>TRACED FROM GSX-R CODE: Rev-limit hard threshold (traced: FUN_00064506 RPM cut; ~14,933 rpm - matches GSX-R1000 fuel cut). VALUE 32990-48L30: 38229 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <title>Rev-limit hard threshold (FUN_00064506; RPM signal 0xFEBF642</title>
+    <description>TRACED FROM GSX-R CODE: Rev-limit hard threshold (FUN_00064506; RPM signal 0xFEBF642E &gt; this clears the cut; ~14,933 rpm - matches the GSX-R1000 fuel cut). VALUE 32990-48L30: 38229 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x172EA8" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -54667,8 +54667,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1007A8" flags="0x0">
-    <title>Rev-limit engine-running gate (traced: FUN_00064506 needs en</title>
-    <description>TRACED FROM GSX-R CODE: Rev-limit engine-running gate (traced: FUN_00064506 needs engine RPM 0xFEF02622 above this; ~1,500 rpm). VALUE 32990-48L30: 3840 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <title>Rev-limit engine-running gate (FUN_00064506 needs engine RPM</title>
+    <description>TRACED FROM GSX-R CODE: Rev-limit engine-running gate (FUN_00064506 needs engine RPM 0xFEF02622 above this; ~1,500 rpm). VALUE 32990-48L30: 3840 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x172EAA" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>

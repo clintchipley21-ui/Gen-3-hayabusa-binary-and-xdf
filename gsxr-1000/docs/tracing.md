@@ -86,12 +86,22 @@ the traced constants. `make_gsxr_xdf.py` stamps a **“GSX-R TRACED INPUTS”** 
 map and gives the traced constants real names. Regenerate with `extract_scalars.py` already run;
 re-run `make_traced.py`-equivalent steps from the scripts above if you re-analyse.
 
+## 3c. gp base resolved → rev-cut engage signal named
+The V850 global pointer is set in crt0, disassembled directly from the image:
+
+```
+0x10C7C  mov 0xFEBFCD20, sp
+0x10C82  mov 0xFEBFC000, gp      <-- gp = 0xFEBFC000
+0x10C88  mov 0x00148000, tp
+```
+
+So the rev-cut engage signal `*(gp − 0x5BD2)` = **`0xFEBF642E`** — an RPM-domain value sitting in the
+`0xFEBF6xxx` sdata sensor block right next to the traced RPM axis variable `0xFEBF615E` and the load
+axis `0xFEBF6169`. That confirms `FUN_00064506` compares an RPM signal against the two thresholds and
+gates on engine RPM `0xFEF02622` > ~1,500 rpm — i.e. the rev limiter, end to end.
+
 ## Open items
-- **`gp` base.** The rev-limit engage signal is `*(gp − 0x5BD2)`, an RPM-domain value. Pinning its
-  exact address needs the V850 `gp` register value, which is set by the ROM startup — and Ghidra did
-  not recover an entry point from this raw image, so `gp` stayed symbolic. Offset clustering puts the
-  signal in the sensor-RAM block around `0xFEF024xx` (adjacent to RPM `0xFEF02622`), but the exact
-  address is unconfirmed. The rev-limit *constants* and the gating on RPM are not affected by this.
-- Extend input resolution past 62 maps (more lookup routines: `0x118b0`, `0xa2344`; inlined lookups).
+- Extend input resolution past 62 maps (more lookup routines: `0x118b0`, `0xa2344`; inlined lookups;
+  now that `gp = 0xFEBFC000` is known, gp-relative axis inputs can be resolved too).
 - Launch-RPM: the per-gear launch throttle-limit maps are present (ported, HIGH); the launch RPM
   hold value is a scalar not yet isolated from the clutch/mode gating.

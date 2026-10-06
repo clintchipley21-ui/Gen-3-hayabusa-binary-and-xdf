@@ -136,9 +136,10 @@ manual/SDS/pinout — see **[`docs/tracing.md`](docs/tracing.md)** for the full 
   traced RAM input (RPM / throttle-load / gear index / signed chassis sensor); `docs/traced.json` is
   the machine-readable result the generator consumes.
 
-The exact engage point of the rev cut runs through a derived RPM signal with hysteresis, so verify
-it on a bench before trusting the precise rpm — but the address and ballpark are code-confirmed, not
-a value guess.
+The engage signal is `*(gp−0x5BD2)` = **`0xFEBF642E`** — resolved by reading `gp = 0xFEBFC000`
+straight out of crt0 (`0x10C82: mov 0xFEBFC000,gp`). It's an RPM-domain value in the same sdata block
+as the traced RPM axis variable `0xFEBF615E`, which closes the loop on `FUN_00064506` being the rev
+limiter. Still, verify the exact cut rpm on a bench before trusting it to the digit.
 
 ## Regenerating
 

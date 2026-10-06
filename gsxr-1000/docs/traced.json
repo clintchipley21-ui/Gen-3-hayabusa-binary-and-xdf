@@ -234,8 +234,10 @@
   }
  },
  "constants": {
-  "0x172EA6": "Rev-limit soft threshold (traced: FUN_00064506 RPM cut; ~13,155 rpm @ raw/2.56)",
-  "0x172EA8": "Rev-limit hard threshold (traced: FUN_00064506 RPM cut; ~14,933 rpm - matches GSX-R1000 fuel cut)",
-  "0x172EAA": "Rev-limit engine-running gate (traced: FUN_00064506 needs engine RPM 0xFEF02622 above this; ~1,500 rpm)"
- }
+  "0x172EA6": "Rev-limit soft threshold (FUN_00064506 compares the RPM signal 0xFEBF642E; ~13,155 rpm @ raw/2.56)",
+  "0x172EA8": "Rev-limit hard threshold (FUN_00064506; RPM signal 0xFEBF642E > this clears the cut; ~14,933 rpm - matches the GSX-R1000 fuel cut)",
+  "0x172EAA": "Rev-limit engine-running gate (FUN_00064506 needs engine RPM 0xFEF02622 above this; ~1,500 rpm)"
+ },
+ "gp": "0xFEBFC000 (V850 global pointer; set in crt0 at 0x10C82: mov 0xFEBFC000,gp)",
+ "rev_cut_signal": "0xFEBF642E (gp-0x5BD2; RPM-domain, in the 0xFEBF6xxx sdata sensor block next to RPM 0xFEBF615E)"
 }
