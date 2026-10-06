@@ -262,3 +262,30 @@ read through inlined interpolation. Neither can be attributed to a single input 
 confidence as the sensor-block-anchored 378, so they are intentionally left unlabelled rather than
 filled with low-confidence guesses. Raising this number further means reading each reader's decompile
 by hand (now cheap via the workflow above) — accurate, but per-map manual work.
+
+## 3j. Why map-input coverage stops at 378/791 (three methods, all validated)
+
+With the fast persistent-project tooling (above) I tried to resolve the ~326 remaining maps that cite
+a reference but carry no input, **validating each method against the 378 already-traced maps as ground
+truth**. All three fall short of that accuracy bar, so the tail is left unlabelled rather than guessed:
+
+1. **Lookup-argument grouping.** Pair each map-descriptor pointer with the RAM var in the same
+   interpolator call. Result: the 326 tail maps are **never** passed to the dispatched interpolators
+   `a1fca`/`a201e` — only 6 descriptors appear there and all 6 are already resolved. The tail is read
+   through other helpers or open-coded indexing.
+2. **Decompile call-parsing.** Batch-decompile all 70 distinct reader functions (one ~100 s pass) and
+   parse each `FUN_…(&DAT_00<desc>, <index>)` call, back-tracing the index to a sensor via
+   `gp = 0xFEBFC000`. Result: the tail descriptors' addresses **do not appear as a call argument** in
+   their reader's C — the access is open-coded (computed base register Ghidra never folds to the
+   constant), and several cited "readers" are small flag-setters that don't do the lookup at all.
+3. **Axis-domain classification.** Classify each map by its own (GSX-R) axis breakpoints/units and map
+   the domain to the GSX-R-traced sensor var. Validated against the 378: **46 % domain precision**
+   overall — good for explicitly-RPM axes (**88 %**) but **0 %** for °C and gear-bit axes, because the
+   real inputs there are frequently *derived* signals (e.g. `0xFEF0262C`, an RPM-domain intermediate),
+   not the raw sensor the axis unit implies.
+
+**Conclusion.** 378 (sensor-block-anchored, call/gp-traced) is the reliable ceiling for *named input
+variables*. For the remaining maps the input **domain** is already carried by the map title and axis
+(e.g. *"… vs RPM × TP"*, *"… vs ECT"*), which is accurate; only the exact RAM variable is
+undetermined, and assigning one automatically would be ~50 % wrong. Raising the number further is
+per-map manual decompile reading — now cheap via the workflow above, but not safely automatable.
