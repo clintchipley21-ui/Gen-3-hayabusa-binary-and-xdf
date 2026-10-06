@@ -196,3 +196,27 @@ state machine `FUN_0002D95E` (`0x2D95E`) drives the governor state byte **`0xFEF
 0x0B/0x0E/0x11/0x12) gated by the mode byte `0xFEF00652`. The set-speed enable gates are `0x154D6E` /
 `0x154D70` (raw 640). **Confidence: low that this is live on the GSX-R1000R** — the labels are ported from
 the cruise-capable map set; treat it as "speed-governor code present", not a confirmed working feature.
+
+## 3h. Quickshifter upshift ignition-cut (traced)
+
+The upshift cut is the spark-side mirror of the downshift auto-blip (§3f). Traced end to end:
+
+- **Master enable `0x154DD2`.** The QS dispatcher `FUN_0002B720` runs the whole quickshifter pipeline
+  **only while `0x154DD2 == 0`** (stock 0 = enabled). When non-zero it resets every QS output
+  (`DAT_febf5e8d = 0x40`, `fef005f2 = 0xFFFF`, the ETV reset `*(gp−0x618A) = 0x100`). This is the
+  one byte that turns the quickshifter off.
+- **Detection `FUN_0002A96E` (`0x2AA62`).** Arms the cut when the gear-position (GP) sensor
+  (`gp−0x5C86`) crosses from the **Window-B offset curve `0x1509A8`** up past the **Window-C curve
+  `0x1509BC`**, with the shift signal `0xFEF02630` inside the valid window `0x1559BC..0x1559BA` (×64)
+  and gears 1–2 excluded. It latches the cut-state flags in **`0xFEF005A3`** (bit0 armed, bit2
+  cut-active) and calls the cut actuator `FUN_00029F22`. Arming thresholds: `0x154C7C`=2,
+  `0x154C7E`=23; armed-mode bytes `0x154DD4/0x154DD5`=0x80.
+- **Phase sequencer `FUN_0002A698` (`0x2A6E8`).** Steps the cut through phases 1–4 in byte
+  **`0xFEF005F6`**, which selects the 3-phase ignition-retard maps `0x15234C` / `0x1523BC` / phase-3
+  (retard vs RPM × TP) — the maps already carried as *Quickshifter :: Upshift Ignition Retard Phase 1/2/3*.
+- **Window target `FUN_0002A652` (`0x2A696`).** Builds the per-gear window threshold `fef00570` from
+  base `febf5e78` + the per-gear offset curve `0x15096C`.
+
+So the full upshift path is: *master-enable → GP-sensor window detect → arm flags → phase sequencer →
+3-phase ignition retard → cut actuator*. Tune feel via the Phase 1/2/3 retard maps and the window
+offset curves; disable with `0x154DD2`. Decompile in `docs/trace-upshift.c`.

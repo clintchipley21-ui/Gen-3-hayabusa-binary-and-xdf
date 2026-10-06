@@ -34210,8 +34210,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x10006F" flags="0x0">
-    <title>Quickshifter :: Scalar @0x154C7C (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x02A96E). VALUE 32990-48L20-EU: 2. Near maps: Quickshifter :: GP-Sensor Upshift Window A Offset vs Gear.</description>
+    <title>Quickshifter upshift cut debounce/threshold low (FUN_0002A96</title>
+    <description>TRACED FROM GSX-R CODE: Quickshifter upshift cut debounce/threshold low (FUN_0002A96E; stock 2). VALUE 32990-48L20-EU: 2 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154C7C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -34222,8 +34222,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x100070" flags="0x0">
-    <title>Quickshifter :: Scalar @0x154C7E (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (4 ref/4 fn fn 0x02A2BA). VALUE 32990-48L20-EU: 23. Near maps: Quickshifter :: GP-Sensor Upshift Window A Offset vs Gear.</description>
+    <title>Quickshifter upshift cut debounce/threshold high (FUN_0002A9</title>
+    <description>TRACED FROM GSX-R CODE: Quickshifter upshift cut debounce/threshold high (FUN_0002A96E; stock 23). VALUE 32990-48L20-EU: 23 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154C7E" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -36332,13 +36332,18 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <DALINK index="0" />
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
-  <XDFFLAG uniqueid="0x100122">
-    <title>Flag @0x154DD2 (bit7)</title>
-    <description>Decompiler-found flag (UNVERIFIED): 0x80 toggle read by ECU code (3 ref/3 fn fn 0x029F9A). 32990-48L20-EU: 0x00.</description>
+  <XDFCONSTANT uniqueid="0x100122" flags="0x0">
+    <title>Quickshifter MASTER ENABLE (FUN_0002B720 runs the QS pipelin</title>
+    <description>TRACED FROM GSX-R CODE: Quickshifter MASTER ENABLE (FUN_0002B720 runs the QS pipeline only when this == 0; stock 0 = enabled). VALUE 32990-48L20-EU: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
-    <EMBEDDEDDATA mmedaddress="0x154DD2" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <mask>0x80</mask>
-  </XDFFLAG>
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154DD2" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>raw</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X"><VAR id="X" /></MATH>
+  </XDFCONSTANT>
   <XDFFLAG uniqueid="0x100123">
     <title>Flag @0x154DD3 (bit7)</title>
     <description>Decompiler-found flag (UNVERIFIED): 0x80 toggle read by ECU code (1 ref/1 fn fn 0x02A0CA). 32990-48L20-EU: 0x00.</description>
@@ -36346,20 +36351,30 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <EMBEDDEDDATA mmedaddress="0x154DD3" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x80</mask>
   </XDFFLAG>
-  <XDFFLAG uniqueid="0x100124">
-    <title>Quickshifter :: Flag @0x154DD4 (bit7)</title>
-    <description>Decompiler-found flag (UNVERIFIED): 0x80 toggle read by ECU code (2 ref/2 fn fn 0x02A2BA). 32990-48L20-EU: 0x80. Near maps: Quickshifter :: GP-Sensor Upshift Window A Offset vs Gear.</description>
+  <XDFCONSTANT uniqueid="0x100124" flags="0x0">
+    <title>Quickshifter upshift armed-mode byte A (FUN_0002A96E; stock </title>
+    <description>TRACED FROM GSX-R CODE: Quickshifter upshift armed-mode byte A (FUN_0002A96E; stock 0x80). VALUE 32990-48L20-EU: 128 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
-    <EMBEDDEDDATA mmedaddress="0x154DD4" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <mask>0x80</mask>
-  </XDFFLAG>
-  <XDFFLAG uniqueid="0x100125">
-    <title>Quickshifter :: Flag @0x154DD5 (bit7)</title>
-    <description>Decompiler-found flag (UNVERIFIED): 0x80 toggle read by ECU code (5 ref/5 fn fn 0x02A2BA). 32990-48L20-EU: 0x80. Near maps: Quickshifter :: GP-Sensor Upshift Window A Offset vs Gear.</description>
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154DD4" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>raw</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X"><VAR id="X" /></MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0x100125" flags="0x0">
+    <title>Quickshifter upshift armed-mode byte B (FUN_0002A96E; stock </title>
+    <description>TRACED FROM GSX-R CODE: Quickshifter upshift armed-mode byte B (FUN_0002A96E; stock 0x80). VALUE 32990-48L20-EU: 128 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
-    <EMBEDDEDDATA mmedaddress="0x154DD5" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <mask>0x80</mask>
-  </XDFFLAG>
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154DD5" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>raw</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X"><VAR id="X" /></MATH>
+  </XDFCONSTANT>
   <XDFFLAG uniqueid="0x100126">
     <title>Flag @0x154DD6 (bit7)</title>
     <description>Decompiler-found flag (UNVERIFIED): 0x80 toggle read by ECU code (2 ref/2 fn fn 0x02A786). 32990-48L20-EU: 0x80.</description>
@@ -39046,8 +39061,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x10021B" flags="0x0">
-    <title>Quickshifter :: Scalar @0x1559BA (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (4 ref/4 fn fn 0x02A2BA). VALUE 32990-48L20-EU: 1004. Near maps: Quickshifter :: GP-Sensor Upshift Window A Offset vs Gear.</description>
+    <title>Quickshifter upshift valid shift-signal window upper (FUN_00</title>
+    <description>TRACED FROM GSX-R CODE: Quickshifter upshift valid shift-signal window upper (FUN_0002A96E: fef02630 &lt;= this x64; stock 236 -&gt; 15104). VALUE 32990-48L20-EU: 1004 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1559BA" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -39058,8 +39073,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x10021C" flags="0x0">
-    <title>Quickshifter :: Scalar @0x1559BC (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (4 ref/4 fn fn 0x02A2BA). VALUE 32990-48L20-EU: 20. Near maps: Quickshifter :: GP-Sensor Upshift Window A Offset vs Gear.</description>
+    <title>Quickshifter upshift valid shift-signal window lower (FUN_00</title>
+    <description>TRACED FROM GSX-R CODE: Quickshifter upshift valid shift-signal window lower (FUN_0002A96E: fef02630 &gt;= this x64; stock 20 -&gt; 1280). VALUE 32990-48L20-EU: 20 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1559BC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>

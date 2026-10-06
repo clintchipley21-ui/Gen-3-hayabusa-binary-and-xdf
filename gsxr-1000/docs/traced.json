@@ -1395,7 +1395,14 @@
   "0x170200": "Traction control per-level hysteresis/history count | Launch (FUN_00055016; 0 = off in stock)",
   "0x154D6E": "Cruise/speed-governor set-speed gate low (FUN_0002DA0E: uVar1<=speed signal febf5e86 enables tracking; raw 640)",
   "0x154D70": "Cruise/speed-governor set-speed gate high (FUN_0002DA0E pairs with 0x154D6E; raw 640)",
-  "0x154D8C": "Cruise/speed-governor ramp scale denominator (FUN_0002E0AE divides by this; raw 161)"
+  "0x154D8C": "Cruise/speed-governor ramp scale denominator (FUN_0002E0AE divides by this; raw 161)",
+  "0x154DD2": "Quickshifter MASTER ENABLE (FUN_0002B720 runs the QS pipeline only when this == 0; stock 0 = enabled)",
+  "0x154DD4": "Quickshifter upshift armed-mode byte A (FUN_0002A96E; stock 0x80)",
+  "0x154DD5": "Quickshifter upshift armed-mode byte B (FUN_0002A96E; stock 0x80)",
+  "0x154C7C": "Quickshifter upshift cut debounce/threshold low (FUN_0002A96E; stock 2)",
+  "0x154C7E": "Quickshifter upshift cut debounce/threshold high (FUN_0002A96E; stock 23)",
+  "0x1559BA": "Quickshifter upshift valid shift-signal window upper (FUN_0002A96E: fef02630 <= this x64; stock 236 -> 15104)",
+  "0x1559BC": "Quickshifter upshift valid shift-signal window lower (FUN_0002A96E: fef02630 >= this x64; stock 20 -> 1280)"
  },
  "gp": "0xFEBFC000 (V850 global pointer; set in crt0 at 0x10C82: mov 0xFEBFC000,gp)",
  "rev_cut_signal": "0xFEBF642E (gp-0x5BD2; RPM-domain, in the 0xFEBF6xxx sdata sensor block next to RPM 0xFEBF615E)",
@@ -1460,5 +1467,17 @@
   "state_var": "0xFEF005F8 (governor state: 0x0B/0x0E/0x11/0x12)",
   "set_speed_table": "0x150E5C (14 pts, 30..240 km/h)",
   "note": "Low confidence that this is active on the GSX-R1000R; labels are ported from the cruise-capable Hayabusa/GSX-S map set. Treat as 'speed-governor code present', not a confirmed working feature."
+ },
+ "quickshifter_upshift": {
+  "summary": "Upshift ignition-cut, traced end to end. Dispatcher FUN_0002B720 runs the whole QS pipeline only while the master-enable byte 0x154DD2 == 0. Detection FUN_0002A96E arms the cut when the GP (gear-position) sensor (gp-0x5C86) crosses from the Window-B offset curve 0x1509A8 up to the Window-C curve 0x1509BC, with the shift signal fef02630 inside the valid window 0x1559BC..0x1559BA (x64) and gears 1-2 excluded; it sets the cut-state flags in 0xFEF005A3 (bit0 armed, bit2 cut-active) and calls the cut actuator FUN_00029F22. Phase sequencer FUN_0002A698 steps the cut through phases 1-4 in byte 0xFEF005F6, applying the 3-phase ignition-retard maps (0x15234C/0x1523BC/phase3 vs RPM x TP). Window target FUN_0002A652 builds the per-gear window threshold fef00570 from base febf5e78 + per-gear offset curve 0x15096C.",
+  "master_enable": "0x154DD2 (0 = quickshifter active)",
+  "detector": "0x2AA62 (FUN_0002A96E)",
+  "phase_sequencer": "0x2A6E8 (FUN_0002A698) -> phase byte 0xFEF005F6 (1..4)",
+  "cut_actuator": "0x29F22 (FUN_00029F22)",
+  "cut_state_flags": "0xFEF005A3 (bit0 armed, bit2 cut active)",
+  "gp_sensor_input": "gp-0x5C86 (gear-position sensor), gear index gp-0x5BBE",
+  "retard_maps": "0x15234C / 0x1523BC / phase3 (3-phase upshift ignition retard vs RPM x TP)",
+  "window_maps": "0x150944 (A) / 0x1509A8 (B) / 0x1509BC (C) GP-sensor upshift window offsets vs gear; 0x15096C per-gear window target",
+  "note": "Mirror of the downshift auto-blip chain (3f) but for upshift: upshift cuts spark via retard, downshift opens the ETV via the engine-brake controller."
  }
 }
