@@ -82,6 +82,23 @@ the RAM variable feeding each axis. Classifying those variables by their axis br
 Each of the 374 maps carries a **“GSX-R TRACED INPUTS”** line in the XDF; the full list is
 `map-inputs.csv`, the machine-readable form is `traced.json`.
 
+## 3d. Launch control (traced)
+Decompiling the launch cluster shows the GSX-R1000 launch limits **throttle per gear**, not a fixed
+RPM hold:
+
+- `FUN_0002862a` — post-launch RPM margin, 1D lookup on map `0x1511C4`, indexed by RPM.
+- `FUN_000286b6` — release phase-out duration, 2D lookup on `0x1511D8` (launch counter × speed),
+  gated by the launch-active flag.
+- `FUN_000286f4` — launch state machine: sets/clears the active flag and runs the release counter
+  (`fef0030c`).
+- `FUN_0002885e` — launch timer/debounce: counts `fef0031a` up to threshold **`0x154CF6` (= 13)**.
+- Active flag: `0xFEBF5E6A` bit 3 (`gp − 0x6196`).
+
+The actual launch *limit* is the per-gear **“Launch Control – Throttle Limit | Gear 2…6/Neutral”**
+maps (`0x174FB0`–`0x175020`, `0x18E6D8`) — already in the XDF. So there is no single “launch RPM”
+scalar to tune; raise/lower launch aggressiveness via those throttle maps. The timer constant
+`0x154CF6` is named in the XDF.
+
 ## 4. How this feeds the XDF
 `traced.json` carries the RPM variable + scale, the lookup routines, the 48 resolved map inputs and
 the traced constants. `make_gsxr_xdf.py` stamps a **“GSX-R TRACED INPUTS”** line onto each resolved

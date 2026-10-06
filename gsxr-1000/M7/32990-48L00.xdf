@@ -34938,8 +34938,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1000AC" flags="0x0">
-    <title>Scalar @0x154CF6 (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x02885E). VALUE 32990-48L00: 13.</description>
+    <title>Launch Control timer/debounce threshold (FUN_0002885e: count</title>
+    <description>TRACED FROM GSX-R CODE: Launch Control timer/debounce threshold (FUN_0002885e: counts fef0031a up to this before FUN_00028382; value 13 counts). VALUE 32990-48L00: 13 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154CF6" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>

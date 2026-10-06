@@ -1359,8 +1359,19 @@
  "constants": {
   "0x172EA6": "Rev-limit soft threshold (FUN_00064506 compares the RPM signal 0xFEBF642E; ~13,155 rpm @ raw/2.56)",
   "0x172EA8": "Rev-limit hard threshold (FUN_00064506; RPM signal 0xFEBF642E > this clears the cut; ~14,933 rpm - matches the GSX-R1000 fuel cut)",
-  "0x172EAA": "Rev-limit engine-running gate (FUN_00064506 needs engine RPM 0xFEF02622 above this; ~1,500 rpm)"
+  "0x172EAA": "Rev-limit engine-running gate (FUN_00064506 needs engine RPM 0xFEF02622 above this; ~1,500 rpm)",
+  "0x154CF6": "Launch Control timer/debounce threshold (FUN_0002885e: counts fef0031a up to this before FUN_00028382; value 13 counts)"
  },
  "gp": "0xFEBFC000 (V850 global pointer; set in crt0 at 0x10C82: mov 0xFEBFC000,gp)",
- "rev_cut_signal": "0xFEBF642E (gp-0x5BD2; RPM-domain, in the 0xFEBF6xxx sdata sensor block next to RPM 0xFEBF615E)"
+ "rev_cut_signal": "0xFEBF642E (gp-0x5BD2; RPM-domain, in the 0xFEBF6xxx sdata sensor block next to RPM 0xFEBF615E)",
+ "launch_control": {
+  "summary": "GSX-R1000 launch limits THROTTLE per gear (maps 0x174FB0-0x175020), not a fixed RPM hold.",
+  "functions": {
+   "0x2862a": "post-launch RPM margin (lookup 0x1511C4)",
+   "0x286b6": "release phase-out duration (lookup 0x1511D8)",
+   "0x286f4": "launch state machine / release counter (fef0030c)",
+   "0x2885e": "launch timer/debounce (threshold 0x154CF6, counter fef0031a)"
+  },
+  "active_flag": "0xFEBF5E6A bit3 (gp-0x6196)"
+ }
 }
