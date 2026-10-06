@@ -11,7 +11,33 @@
   "0xFEF01E3E": "engine RPM (axis 500..4000)",
   "0xFEF0262C": "engine RPM (axis ~800..3200)",
   "0xFEBF6169": "throttle / load (map Y-axis)",
-  "0xFEF0267D": "index 0..7 (gear/mode/cyl)"
+  "0xFEF0267D": "index 0..7 (gear/mode/cyl)",
+  "0xFEF006BC": "signed sensor (lean/pitch/rate, centered 0x8000)",
+  "0xFEF00544": "signed sensor (lean/pitch/rate, centered 0x8000)",
+  "0xFEF0267E": "non-monotonic (bitmask/enum?)",
+  "0xFEF0055A": "engine RPM (high range) (8894-15144 rpm)",
+  "0xFEF0060A": "monotonic axis (unit TBD) (raw 0..44800)",
+  "0xFEF00656": "non-monotonic (bitmask/enum?)",
+  "0xFEF005E0": "engine RPM (1500-12000 rpm)",
+  "0xFEBF5E86": "engine RPM (1500-12000 rpm)",
+  "0xFEF02674": "non-monotonic (bitmask/enum?)",
+  "0xFEF01E52": "monotonic axis (unit TBD) (raw 0..3000)",
+  "0xFEF00DB2": "throttle / load (raw 0..205)",
+  "0xFEF00F2A": "engine RPM (4000-10400 rpm)",
+  "0xFEBF6166": "monotonic axis (unit TBD) (raw 0..3000)",
+  "0xFEBF5E7A": "signed sensor (lean/pitch/rate, centered 0x8000)",
+  "0xFEBF6164": "monotonic axis (unit TBD) (raw 0..500)",
+  "0xFEBF615E": "engine RPM (1000-9000 rpm)",
+  "0xFEF01FEA": "monotonic axis (unit TBD) (raw 0..540)",
+  "0xFEF025EC": "monotonic axis (unit TBD) (raw 461..819)",
+  "0xFEF025DC": "monotonic axis (unit TBD) (raw 13..1000)",
+  "0xFEF025F4": "monotonic axis (unit TBD) (raw 1024..62464)",
+  "0xFEF02646": "monotonic axis (unit TBD) (raw 0..14563)",
+  "0xFEF0287E": "signed sensor (lean/pitch/rate, centered 0x8000)",
+  "0xFEF0287C": "signed sensor (lean/pitch/rate, centered 0x8000)",
+  "0xFEF02D8A": "engine RPM (high range) (12805-13107 rpm)",
+  "0xFEF02E44": "monotonic axis (unit TBD) (raw 0..38876)",
+  "0xFEF02E46": "signed sensor (lean/pitch/rate, centered 0x8000)"
  },
  "map_inputs": {
   "0x151264": {
@@ -21,6 +47,9 @@
    "x": "0xFEF0262C"
   },
   "0x151248": {
+   "x": "0xFEF0262C"
+  },
+  "0x1512B8": {
    "x": "0xFEF0262C"
   },
   "0x15118C": {
@@ -110,11 +139,41 @@
   "0x157E28": {
    "x": "0xFEF01E52"
   },
+  "0x157DD8": {
+   "x": "0xFEF00DB2"
+  },
   "0x15780C": {
    "x": "0xFEF00F2A"
   },
   "0x168CD0": {
    "x": "0xFEBF6166"
+  },
+  "0x167E0C": {
+   "x": "0xFEBF5E7A"
+  },
+  "0x168550": {
+   "x": "0xFEBF6164"
+  },
+  "0x167960": {
+   "x": "0xFEBF615E"
+  },
+  "0x167974": {
+   "x": "0xFEBF615E"
+  },
+  "0x167A7C": {
+   "y": "0xFEBF615E"
+  },
+  "0x167B5C": {
+   "y": "0xFEBF615E"
+  },
+  "0x167AEC": {
+   "y": "0xFEBF615E"
+  },
+  "0x167B78": {
+   "y": "0xFEBF615E"
+  },
+  "0x167BE8": {
+   "y": "0xFEBF615E"
   },
   "0x17149C": {
    "x": "0xFEF01FEA"
@@ -133,6 +192,9 @@
   },
   "0x173008": {
    "x": "0xFEF025DC"
+  },
+  "0x172FA4": {
+   "x": "0xFEF025F4"
   },
   "0x1731D8": {
    "x": "0xFEF02646"
@@ -155,6 +217,14 @@
    "y": "0xFEBF6169"
   },
   "0x174D64": {
+   "x": "0xFEF02E2C",
+   "y": "0xFEBF6169"
+  },
+  "0x174DB0": {
+   "x": "0xFEF02E2C",
+   "y": "0xFEBF6169"
+  },
+  "0x174E94": {
    "x": "0xFEF02E2C",
    "y": "0xFEBF6169"
   },

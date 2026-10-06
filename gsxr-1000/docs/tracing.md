@@ -62,6 +62,24 @@ with hysteresis, so **confirm the exact cut point on a bench** before trusting i
 These three are labelled in the XDF (folder "ZZ Decompiler-discovered scalars"), as is
 the RPM-reading quickshifter/launch cut `FUN_0002c8fe` (QS maps `0x1512e8`/`0x1512d4`).
 
+## 3b. Variable dictionary (axis inputs traced from the code)
+Resolving the two lookup routines' call arguments (`DumpLookups.py`, deeper chasing) linked **62
+maps** to the RAM variable feeding each axis. Classifying those variables by their axis breakpoints
+(rpm = raw/2.56) gives the dictionary in **`variables.csv`** — 32 variables so far. Highlights:
+
+| RAM | Role (from axis shape) | Evidence |
+|---|---|---|
+| `0xFEF02622` | **engine RPM (primary)** | most-referenced sensor var (48 fns); RPM-stepped axes |
+| `0xFEF02E2C` | engine RPM (fuel/ign control) | axis 1000,2000,…,14000 rpm |
+| `0xFEBF615E` | engine RPM | axis 1000…9000 rpm (7 maps) |
+| `0xFEF01E3E`, `0xFEBF5E86`, `0xFEF005E0`, `0xFEF00F2A`, `0xFEF0262C` | engine RPM (sub-range) | clean rpm axes (one shows 4000,4800,… — the manual's 4800-rpm 2nd-injector point) |
+| `0xFEBF6169` | throttle / load (fuel-map Y) | raw 36…192, the RPM×load Y-axis |
+| `0xFEF0267D` | gear / mode index | axis 0…10 |
+| several `0xFEF028xx`, `0xFEBF5E7A` | signed sensor (lean/pitch/rate, centred 0x8000) | — |
+
+Each of the 62 maps carries a **“GSX-R TRACED INPUTS”** line in the XDF; the full list is
+`map-inputs.csv`, the machine-readable form is `traced.json`.
+
 ## 4. How this feeds the XDF
 `traced.json` carries the RPM variable + scale, the lookup routines, the 48 resolved map inputs and
 the traced constants. `make_gsxr_xdf.py` stamps a **“GSX-R TRACED INPUTS”** line onto each resolved
@@ -69,6 +87,11 @@ map and gives the traced constants real names. Regenerate with `extract_scalars.
 re-run `make_traced.py`-equivalent steps from the scripts above if you re-analyse.
 
 ## Open items
-- Resolve the `gp` base to name the `gp-0x5bd2` rev-limit engage signal precisely.
-- Extend input resolution beyond the 48 maps (deeper arg chasing in `DumpLookups.py`).
-- Trace launch-RPM and the per-gear/speed limits from the same lookup + RAM-xref data.
+- **`gp` base.** The rev-limit engage signal is `*(gp − 0x5BD2)`, an RPM-domain value. Pinning its
+  exact address needs the V850 `gp` register value, which is set by the ROM startup — and Ghidra did
+  not recover an entry point from this raw image, so `gp` stayed symbolic. Offset clustering puts the
+  signal in the sensor-RAM block around `0xFEF024xx` (adjacent to RPM `0xFEF02622`), but the exact
+  address is unconfirmed. The rev-limit *constants* and the gating on RPM are not affected by this.
+- Extend input resolution past 62 maps (more lookup routines: `0x118b0`, `0xa2344`; inlined lookups).
+- Launch-RPM: the per-gear launch throttle-limit maps are present (ported, HIGH); the launch RPM
+  hold value is a scalar not yet isolated from the clutch/mode gating.

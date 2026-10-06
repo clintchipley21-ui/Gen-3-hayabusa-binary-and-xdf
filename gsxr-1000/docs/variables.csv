@@ -1,0 +1,33 @@
+ram_addr,maps_fed,role,detail,axis_roles
+0xFEBF615E,7,engine RPM,1000-9000 rpm,"{'x': 2, 'y': 5}"
+0xFEBF6169,6,throttle / load,raw 36..192,{'y': 6}
+0xFEF01E52,6,monotonic axis (unit TBD),raw 0..3000,{'x': 6}
+0xFEF02622,5,monotonic axis (unit TBD),raw 0..44800,{'x': 5}
+0xFEF02E2C,5,engine RPM,1000-14000 rpm,{'x': 5}
+0xFEF0262C,4,engine RPM,800-14800 rpm,{'x': 4}
+0xFEF0267E,4,non-monotonic (bitmask/enum?),,{'x': 4}
+0xFEF01E3E,3,engine RPM,1000-8000 rpm,{'x': 3}
+0xFEF0267D,2,throttle / load,raw 0..10,"{'y': 1, 'x': 1}"
+0xFEF00544,2,"signed sensor (lean/pitch/rate, centered 0x8000)",,{'x': 2}
+0xFEF00656,2,non-monotonic (bitmask/enum?),,{'x': 2}
+0xFEBF5E86,2,engine RPM,1500-12000 rpm,{'x': 2}
+0xFEF006BC,1,"signed sensor (lean/pitch/rate, centered 0x8000)",,{'x': 1}
+0xFEF0055A,1,engine RPM (high range),8894-15144 rpm,{'x': 1}
+0xFEF0060A,1,monotonic axis (unit TBD),raw 0..44800,{'x': 1}
+0xFEF005E0,1,engine RPM,1500-12000 rpm,{'x': 1}
+0xFEF02674,1,non-monotonic (bitmask/enum?),,{'x': 1}
+0xFEF00DB2,1,throttle / load,raw 0..205,{'x': 1}
+0xFEF00F2A,1,engine RPM,4000-10400 rpm,{'x': 1}
+0xFEBF6166,1,monotonic axis (unit TBD),raw 0..3000,{'x': 1}
+0xFEBF5E7A,1,"signed sensor (lean/pitch/rate, centered 0x8000)",,{'x': 1}
+0xFEBF6164,1,monotonic axis (unit TBD),raw 0..500,{'x': 1}
+0xFEF01FEA,1,monotonic axis (unit TBD),raw 0..540,{'x': 1}
+0xFEF025EC,1,monotonic axis (unit TBD),raw 461..819,{'x': 1}
+0xFEF025DC,1,monotonic axis (unit TBD),raw 13..1000,{'x': 1}
+0xFEF025F4,1,monotonic axis (unit TBD),raw 1024..62464,{'x': 1}
+0xFEF02646,1,monotonic axis (unit TBD),raw 0..14563,{'x': 1}
+0xFEF0287E,1,"signed sensor (lean/pitch/rate, centered 0x8000)",,{'x': 1}
+0xFEF0287C,1,"signed sensor (lean/pitch/rate, centered 0x8000)",,{'x': 1}
+0xFEF02D8A,1,engine RPM (high range),12805-13107 rpm,{'x': 1}
+0xFEF02E44,1,monotonic axis (unit TBD),raw 0..38876,{'x': 1}
+0xFEF02E46,1,"signed sensor (lean/pitch/rate, centered 0x8000)",,{'y': 1}
