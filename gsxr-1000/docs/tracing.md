@@ -99,6 +99,18 @@ maps (`0x174FB0`–`0x175020`, `0x18E6D8`) — already in the XDF. So there is n
 scalar to tune; raise/lower launch aggressiveness via those throttle maps. The timer constant
 `0x154CF6` is named in the XDF.
 
+## 3e. Traction control (traced)
+`FUN_00055016` is the TC controller. It reads the **TC level byte `0xFEBF6459`** (`gp − 0x5ba7`,
+value 1–10) and switches on it to select that level's map set — level 1 → `0x168550`, level 2 →
+`0x168608`, … level 10 → `0x168bc8` — which is **exactly** the ported `TC - Cut vs Slip Error |
+Level N` descriptor addresses, so the TC map labelling is validated against the code. Each set has
+Cut-vs-**Slip Error** / **Slip Rate** / **Slip History** maps, all indexed by the **slip variable
+`0xFEBF6164`**, plus a per-level threshold array at `0x1701EC…0x170200` (u16/level) and a slip gate
+`0x1701E4`. Full decompile in `trace-tc.c`.
+
+So to tune TC: the 10 levels are the `TC -` maps already in the XDF; `0xFEBF6459` is the live level
+and `0xFEBF6164` the live slip (both now named in every map's TRACED INPUTS line).
+
 ## 4. How this feeds the XDF
 `traced.json` carries the RPM variable + scale, the lookup routines, the 48 resolved map inputs and
 the traced constants. `make_gsxr_xdf.py` stamps a **“GSX-R TRACED INPUTS”** line onto each resolved

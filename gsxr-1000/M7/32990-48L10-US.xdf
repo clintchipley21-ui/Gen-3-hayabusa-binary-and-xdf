@@ -14421,7 +14421,7 @@ REFERENCE: descriptor @0x167D80, data @0x1672A8, X @0x1672A0.</description>
     <title>Unknown Curve 11 @0x1697C0</title>
     <description>AUTO-DISCOVERED from the ECU map descriptor; no Hayabusa map aligned here, role unknown - log before changing.
 X: 11 pts 0..10 raw
-GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6459 (non-monotonic (bitmask/enum?)).
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6459 (traction-control level (1-10; rider setting) [traced FUN_00055016]).
 VALUES (32990-48L10-US): 1106 to 1106 raw - every cell the same.
 REFERENCE: descriptor @0x167D94, data @0x1697C0, X @0x16B6F0.</description>
     <CATEGORYMEM index="0" category="94" />
@@ -17892,7 +17892,7 @@ REFERENCE: descriptor @0x1684D4, data @0x16B74C, X @0x16B030.</description>
     <title>TC - Cut vs Slip Error | Level 1</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 26 pts 0..500 raw
-GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6164 (traction-control slip [title-anchored]).
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6164 (traction-control slip (indexes TC cut maps) [traced]).
 INPUTS (Hayabusa decompile): X = grip / APS %. Read by FUN_0004ddfc.
 VALUES (32990-48L10-US): 0 to 100 cut demand (raw).
 REFERENCE: descriptor @0x168550, data @0x16851C, X @0x1684E8.</description>

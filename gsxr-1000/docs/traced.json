@@ -26,7 +26,7 @@
   "0xFEF00F2A": "engine RPM (4000-10400 rpm)",
   "0xFEBF6166": "monotonic axis (unit TBD) (raw 0..3000)",
   "0xFEBF5E7A": "signed sensor (lean/pitch/rate, centered 0x8000)",
-  "0xFEBF6164": "traction-control slip [title-anchored]",
+  "0xFEBF6164": "traction-control slip (indexes TC cut maps) [traced]",
   "0xFEBF615E": "engine RPM [title-anchored]",
   "0xFEF01FEA": "monotonic axis (unit TBD) (raw 0..540)",
   "0xFEF025EC": "monotonic axis (unit TBD) (raw 461..819)",
@@ -68,7 +68,7 @@
   "0xFEBF63C4": "throttle position TP [title-anchored]",
   "0xFEBF60C0": "throttle / load (raw 11..149)",
   "0xFEBF60BF": "non-monotonic (bitmask/enum?)",
-  "0xFEBF6459": "non-monotonic (bitmask/enum?)",
+  "0xFEBF6459": "traction-control level (1-10; rider setting) [traced FUN_00055016]",
   "0xFEBF637E": "engine RPM (main map axis) [title-anchored]",
   "0xFEBF60F4": "traction-control slip / wheel [title-anchored]",
   "0xFEBF63FA": "engine RPM (high range) (12880-13136 rpm)",
@@ -1387,5 +1387,12 @@
   "0xFEBF6164": "traction-control slip",
   "0xFEBF60F4": "traction-control slip / wheel",
   "0xFEBF615E": "engine RPM"
+ },
+ "traction_control": {
+  "summary": "10-level + Launch TC. FUN_00055016 switches on the TC level byte 0xFEBF6459 (gp-0x5ba7) to pick each level's Cut-vs-Slip Error/Rate/History maps, indexed by slip 0xFEBF6164.",
+  "controller": "0x55016",
+  "level_var": "0xFEBF6459 (1..10)",
+  "slip_var": "0xFEBF6164",
+  "per_level_threshold_array": "0x1701EC..0x170200 (u16 per level) + 0x1701E4 slip gate"
  }
 }
