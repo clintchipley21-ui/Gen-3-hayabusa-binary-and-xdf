@@ -346,3 +346,30 @@ than guessed (none occurred).
 ASCII hardware-ID strings, and ~131 are regions the code reads by raw/computed indexing (data tables,
 counters, ID/compare blocks) with no interpolated sensor axis — there is no X/Y input to report, so
 they are left without a `GSX-R TRACED INPUTS` line rather than given a fabricated one.
+
+## 3n. Diagnostics, MIL lamp, and CAN/meter outputs
+
+**Diagnostic monitors — traced (calibration).** The OBD monitors are real functions and their
+enable/threshold calibration is now named:
+- **HO2 / catalyst O2 monitor** — `FUN_00040BAC` (completion threshold `0x155AB2`) and `FUN_0003F8B2`
+  (reference voltages `0x155A62`/`0x155A64`); baro-correction enable window `0x170216/0x170218/0x17021A`
+  (`FUN_0005721A`).
+- **ETV Level-2 torque/air safety monitor** — `FUN_0008AE3E`/`FUN_0008E3B8`, output clamp
+  `0x192CEA`/`0x192CEC`, plus the `0x193xxx` air/torque-estimate maps (IAP × RPM, already input-traced).
+- **EVAP purge monitor** and the **wheel/speed monitor** are present with their maps.
+
+**MIL / warning lamp — NOT individually decoded (deliberately).** The lamp is driven through the
+RH850 port I/O space (`0xFFFF_xxxx` register writes — 1008 such refs in the image) by logic that
+aggregates the monitor-result flags. Pinning the exact port bit for the MIL needs the specific RH850
+variant's port datasheet, which isn't in hand, so no lamp bit is labelled — labelling one would be a
+guess. The upstream monitors that *would* light it are the ones named above.
+
+**CAN / meter (dash) outputs — NOT individually decoded (deliberately).** The instrument-cluster
+frames (tach, coolant, gear, warning lamps) are assembled in code and written to the RS-CAN peripheral
+(`0xFFE6_xxxx` / `0xFFC6_xxxx`). The only calibration in this path is the **Meter Fuel Consumption
+RPM/IAT scaling** (in the XDF). Decoding individual CAN frame fields needs the Suzuki CAN DBC, which
+isn't in hand, so no CAN field is labelled.
+
+Bottom line: the diagnostic **monitors** are calibration and are covered; the **MIL lamp** and **CAN
+dash output** are peripheral/logic with no per-bit calibration, so they're documented but not
+fabricated into fake maps or flags.

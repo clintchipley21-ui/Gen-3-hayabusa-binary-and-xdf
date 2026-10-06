@@ -2369,7 +2369,15 @@
   "0x1559BC": "Quickshifter upshift valid shift-signal window lower (FUN_0002A96E: fef02630 >= this x64; stock 20 -> 1280)",
   "0x1702C0": "Idle airflow-correction enable (FUN_00053DC6 skips the block when ==0x80; stock 0xFF = active)",
   "0x1702C1": "Idle feedback-step debounce count (FUN_00053C0C: fef00f4c counts to this; stock 13)",
-  "0x1744AE": "Idle decel-airflow moving-average window length (FUN_00053F3E, clamped <=19; stock 3)"
+  "0x1744AE": "Idle decel-airflow moving-average window length (FUN_00053F3E, clamped <=19; stock 3)",
+  "0x155AB2": "Catalyst/O2 monitor completion threshold (FUN_00040BAC: latches monitor-complete when the counter < this; stock 3)",
+  "0x155A62": "HO2 monitor reference voltage A (FUN_0003F8B2 closed-loop/monitor target; stock 36766 raw)",
+  "0x155A64": "HO2 monitor reference voltage B (FUN_0003F8B2; stock 36766 raw)",
+  "0x170216": "HO2 monitor baro-correction enable window, RPM low (FUN_0005721A; stock 0)",
+  "0x170218": "HO2 monitor baro-correction enable window, RPM high (FUN_0005721A; stock 256)",
+  "0x17021A": "HO2 monitor baro-correction enable, signal max (FUN_0005721A; stock 0)",
+  "0x192CEA": "ETV Level-2 safety torque-monitor output clamp, low (FUN_0008AE3E; stock 0)",
+  "0x192CEC": "ETV Level-2 safety torque-monitor output clamp, high (FUN_0008AE3E; stock 65535)"
  },
  "gp": "0xFEBFC000 (V850 global pointer; set in crt0 at 0x10C82: mov 0xFEBFC000,gp)",
  "rev_cut_signal": "0xFEBF642E (gp-0x5BD2; RPM-domain, in the 0xFEBF6xxx sdata sensor block next to RPM 0xFEBF615E)",
@@ -2458,5 +2466,17 @@
  "fuel_inputs_note": "Fuel map inputs traced from reader decompiles (docs/trace-fuel.c): gp-relative sensor reads in each a1fca/a201e/a2344 call. gp=0xFEBFC000 -> gp-0x5bc0=ECT, gp-0x5c3c=TP, gp-0x5c86=RPM, gp-0x5c40=TP2, gp-0x5bbe=gear, gp-0x5c0a=speed. Per-gear maps are pointer-table selected by the gear bitmask (gp-0x5bbe); their lookup axis is the gp-read sensor shown.",
  "etv_pwr_note": "ETV/cruise/anti-lift map inputs from reader decompiles (docs/trace-etv.c). ETV monitor air/torque = IAP(gp-0x5bca=0xFEBF6436) x RPM(gp-0x5c82=0xFEBF637E); ETV gain = RPM(gp-0x5c84=0xFEBF637C); cruise correction indexed by computed speed error (set - 0xFEBF5E86 actual); LF throttle-limit = derived demand 0xFEF02E2C x load 0xFEBF6169. The 42 'ETV - PWR/Slot' power-mode maps are pointer-table selected (table 0x192BC0/0x192BCC by SDMS mode 0xFEF0267D) with no directly decompilable reader - left unresolved.",
  "power_mode_etv_note": "ETV power-mode (PWR) and Slot target maps: selected from pointer table 0x192BA8[gear(fef02e51)*6 + mode(fef0267c)] by FUN_0008BE2C, then interpolated a201e(map, X=fef02e44, Y=fef02e46). FUN_0008BDC8 sets X=gp-0x5c52=0xFEBF63AE (rider throttle demand/APS) and Y=gp-0x5c84=0xFEBF637C (engine RPM). So all PWR/Slot maps share axes APS x RPM; gear+mode only pick which map. docs/trace-pwr.c.",
- "ho2_note": "HO2/O2 closed-loop inputs from docs/trace-ho2.c. Monitor baro 0xFEBF6394, IAT 0xFEBF6443, heater/enable ECT 0xFEBF6440; cyl-balance bias = per-cyl O2 0xFEBF65E6/E8/EA/EC x RPM; closed-loop zone maps (FUN_00049b6e a2344) = TP 0xFEBF63EC x RPM, pointer-table selected so axes fixed per call."
+ "ho2_note": "HO2/O2 closed-loop inputs from docs/trace-ho2.c. Monitor baro 0xFEBF6394, IAT 0xFEBF6443, heater/enable ECT 0xFEBF6440; cyl-balance bias = per-cyl O2 0xFEBF65E6/E8/EA/EC x RPM; closed-loop zone maps (FUN_00049b6e a2344) = TP 0xFEBF63EC x RPM, pointer-table selected so axes fixed per call.",
+ "diagnostics": {
+  "summary": "The diagnostic MONITORS are real and traced: HO2/catalyst O2 monitor (FUN_00040BAC + FUN_0003F8B2), the ETV Level-2 torque/air safety monitor (FUN_0008AE3E/0008E3B8 with the 0x193xxx IAP x RPM estimate maps), the EVAP purge monitor, and the wheel/speed monitor - all gate on enable/threshold constants now named (0x155AB2, 0x155A62/64, 0x170216/18/1A, 0x192CEA/CEC) plus the monitor maps already carrying TRACED INPUTS.",
+  "monitors_traced": [
+   "HO2/catalyst O2 (0x40BAC/0x3F8B2)",
+   "ETV Level-2 safety (0x8AE3E/0x8E3B8)",
+   "EVAP purge",
+   "wheel/speed"
+  ],
+  "mil_lamp": "NOT individually decoded. The MIL / warning lamp is driven through the RH850 port I/O space (0xFFFF_xxxx register writes) by logic that aggregates the monitor-result flags; identifying the exact port bit requires the specific RH850 variant's port datasheet, which is not in hand, so no lamp bit is labelled (would be a guess).",
+  "can_meter_outputs": "NOT individually decoded. The instrument-cluster/CAN frames (tach, temp, gear, warning lamps) are assembled in code and written to the RS-CAN peripheral (0xFFE6_xxxx / 0xFFC6_xxxx region); the only calibration here is the Meter Fuel Consumption RPM/IAT scaling (already in the XDF). Per-frame field decode needs the Suzuki CAN DBC, not in hand, so no CAN field is labelled.",
+  "note": "Monitors = calibration (named). MIL lamp + CAN dash output = code/peripheral logic with no per-bit calibration; left unlabelled rather than guessed."
+ }
 }

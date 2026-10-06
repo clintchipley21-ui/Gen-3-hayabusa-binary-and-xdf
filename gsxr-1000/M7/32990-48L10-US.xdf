@@ -40309,9 +40309,9 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x100270" flags="0x0">
-    <title>O2/Closed-Loop :: Scalar @0x155A62 (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x03F8B2). VALUE 32990-48L10-US: 36766. Near maps: HO2 Monitor :: Enable Max Vacuum vs Baro x RPM (flat).</description>
-    <CATEGORYMEM index="0" category="46" />
+    <title>HO2 monitor reference voltage A (FUN_0003F8B2 closed-loop/mo</title>
+    <description>TRACED FROM GSX-R CODE: HO2 monitor reference voltage A (FUN_0003F8B2 closed-loop/monitor target; stock 36766 raw). VALUE 32990-48L10-US: 36766 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <CATEGORYMEM index="0" category="52" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x155A62" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
@@ -40321,9 +40321,9 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x100271" flags="0x0">
-    <title>O2/Closed-Loop :: Scalar @0x155A64 (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x03F8B2). VALUE 32990-48L10-US: 36766. Near maps: HO2 Monitor :: Enable Max Vacuum vs Baro x RPM (flat).</description>
-    <CATEGORYMEM index="0" category="46" />
+    <title>HO2 monitor reference voltage B (FUN_0003F8B2; stock 36766 r</title>
+    <description>TRACED FROM GSX-R CODE: HO2 monitor reference voltage B (FUN_0003F8B2; stock 36766 raw). VALUE 32990-48L10-US: 36766 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <CATEGORYMEM index="0" category="52" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x155A64" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
@@ -40789,9 +40789,9 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x100298" flags="0x0">
-    <title>O2/Closed-Loop :: Scalar @0x155AB2 (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (3 ref/3 fn fn 0x040B86). VALUE 32990-48L10-US: 3. Near maps: HO2 Monitor :: Enable Max Vacuum vs Baro x RPM (flat).</description>
-    <CATEGORYMEM index="0" category="46" />
+    <title>Catalyst/O2 monitor completion threshold (FUN_00040BAC: latc</title>
+    <description>TRACED FROM GSX-R CODE: Catalyst/O2 monitor completion threshold (FUN_00040BAC: latches monitor-complete when the counter &lt; this; stock 3). VALUE 32990-48L10-US: 3 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <CATEGORYMEM index="0" category="52" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x155AB2" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
@@ -49633,9 +49633,9 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005BA" flags="0x0">
-    <title>Ignition :: Scalar @0x170216 (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x05721A). VALUE 32990-48L10-US: 0. Near maps: Ignition :: Ride-Mode Retard vs ECT | Mode A (flat 0).</description>
-    <CATEGORYMEM index="0" category="43" />
+    <title>HO2 monitor baro-correction enable window, RPM low (FUN_0005</title>
+    <description>TRACED FROM GSX-R CODE: HO2 monitor baro-correction enable window, RPM low (FUN_0005721A; stock 0). VALUE 32990-48L10-US: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <CATEGORYMEM index="0" category="52" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x170216" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
@@ -49645,9 +49645,9 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005BB" flags="0x0">
-    <title>Ignition :: Scalar @0x170218 (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x05721A). VALUE 32990-48L10-US: 256. Near maps: Ignition :: Ride-Mode Retard vs ECT | Mode A (flat 0).</description>
-    <CATEGORYMEM index="0" category="43" />
+    <title>HO2 monitor baro-correction enable window, RPM high (FUN_000</title>
+    <description>TRACED FROM GSX-R CODE: HO2 monitor baro-correction enable window, RPM high (FUN_0005721A; stock 256). VALUE 32990-48L10-US: 256 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <CATEGORYMEM index="0" category="52" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x170218" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
@@ -49657,9 +49657,9 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005BC" flags="0x0">
-    <title>Ignition :: Scalar @0x17021A (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x05721A). VALUE 32990-48L10-US: 0. Near maps: Ignition :: Ride-Mode Retard vs ECT | Mode A (flat 0).</description>
-    <CATEGORYMEM index="0" category="43" />
+    <title>HO2 monitor baro-correction enable, signal max (FUN_0005721A</title>
+    <description>TRACED FROM GSX-R CODE: HO2 monitor baro-correction enable, signal max (FUN_0005721A; stock 0). VALUE 32990-48L10-US: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <CATEGORYMEM index="0" category="52" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x17021A" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
@@ -63328,9 +63328,9 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x100A7E" flags="0x0">
-    <title>Throttle/ETV :: Scalar @0x192CEA (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x08AE3E). VALUE 32990-48L10-US: 0. Near maps: ETV :: QS RPM Scaling vs Ride Mode.</description>
-    <CATEGORYMEM index="0" category="50" />
+    <title>ETV Level-2 safety torque-monitor output clamp, low (FUN_000</title>
+    <description>TRACED FROM GSX-R CODE: ETV Level-2 safety torque-monitor output clamp, low (FUN_0008AE3E; stock 0). VALUE 32990-48L10-US: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <CATEGORYMEM index="0" category="52" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x192CEA" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
@@ -63340,9 +63340,9 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x100A7F" flags="0x0">
-    <title>Throttle/ETV :: Scalar @0x192CEC (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x08AE3E). VALUE 32990-48L10-US: 65535. Near maps: ETV :: QS RPM Scaling vs Ride Mode.</description>
-    <CATEGORYMEM index="0" category="50" />
+    <title>ETV Level-2 safety torque-monitor output clamp, high (FUN_00</title>
+    <description>TRACED FROM GSX-R CODE: ETV Level-2 safety torque-monitor output clamp, high (FUN_0008AE3E; stock 65535). VALUE 32990-48L10-US: 65535 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <CATEGORYMEM index="0" category="52" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x192CEC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
