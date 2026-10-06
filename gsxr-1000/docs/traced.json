@@ -82,7 +82,8 @@
   "0xFEBF67AC": "throttle / load (raw 0..20)",
   "0xFEF005C0": "ETV throttle-opening demand on decel/downshift (auto-blip / engine-brake output) [traced]",
   "0xFEBF63F6": "vehicle speed [code-traced: EB fuel-cut]",
-  "0xFEBF63AE": "rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]"
+  "0xFEBF63AE": "rider throttle demand / APS (ETV power-mode target X-axis) [code-traced: FUN_0008bdc8]",
+  "0xFEF025F2": "axis/sensor input 0xFEF025F2 [code-traced]"
  },
  "map_inputs": {
   "0x1513C4": {
@@ -2263,6 +2264,61 @@
   "0x156BFC": {
    "x": "0xFEBF63EC",
    "y": "0xFEBF637A"
+  },
+  "0x156F84": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x156FBC": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x170644": {
+   "x": "0xFEBF637A"
+  },
+  "0x1706B0": {
+   "x": "0xFEBF637A"
+  },
+  "0x172FB8": {
+   "x": "0xFEF025F2"
+  },
+  "0x1715F8": {
+   "x": "0xFEF025EC"
+  },
+  "0x170AAC": {
+   "x": "0xFEBF637A",
+   "y": "0xFEBF6440"
+  },
+  "0x1718C0": {
+   "x": "0xFEBF63C4",
+   "y": "0xFEBF637A"
+  },
+  "0x1718E8": {
+   "x": "0xFEBF63C4",
+   "y": "0xFEBF637A"
+  },
+  "0x171910": {
+   "x": "0xFEBF63C4",
+   "y": "0xFEBF637A"
+  },
+  "0x171938": {
+   "x": "0xFEBF63C4",
+   "y": "0xFEBF637A"
+  },
+  "0x171960": {
+   "x": "0xFEBF63C4",
+   "y": "0xFEBF637A"
+  },
+  "0x171988": {
+   "x": "0xFEBF63C4",
+   "y": "0xFEBF637A"
+  },
+  "0x1719B0": {
+   "x": "0xFEBF63C4",
+   "y": "0xFEBF637A"
+  },
+  "0x157DEC": {
+   "x": "0xFEF00DB2"
   }
  },
  "constants": {
