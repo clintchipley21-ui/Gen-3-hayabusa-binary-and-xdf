@@ -32,8 +32,9 @@ from html import escape
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))              # repo root
-HAYA_MASTER = os.path.join(ROOT, 'stock/master/master-v9.xdf')
-HAYA_REF_BIN = os.path.join(ROOT, 'stock/5JCZSJ10/5JCZSJ10.bin')
+HAYA = os.path.join(ROOT, 'hayabusa')                      # parent-repo Hayabusa tree
+HAYA_MASTER = os.path.join(HAYA, 'stock/master/master-v9.xdf')
+HAYA_REF_BIN = os.path.join(HAYA, 'stock/5JCZSJ10/5JCZSJ10.bin')
 REF_SW = '5JCZSJ10'
 
 # ---------------------------------------------------------------- descriptor scan
@@ -98,7 +99,7 @@ def master_blocks():
 
 # Decompiled Hayabusa map metadata (re/decompiled.zip): per descriptor, the X/Y RAM-input
 # meanings and the function that reads the map. Ported onto aligned GSX-R maps as context.
-HAYA_DECOMP = os.path.join(ROOT, 're/decompiled.zip')
+HAYA_DECOMP = os.path.join(HAYA, 're/decompiled.zip')
 
 
 def map_links():

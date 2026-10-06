@@ -22,6 +22,7 @@ tools/
   make_gsxr_xdf.py            regenerates an XDF from a read (descriptor + scalar driven; see below)
   extract_scalars.py          rebuilds docs/scalars.json from the Ghidra cal-xref dumps
   DumpCalXrefs.py             Ghidra headless postscript: dump code->calibration references
+  fix_field1_crc.py           re-stamp the field-1 CRC after editing a read
 docs/
   map-index.csv               every map in the XDF: confidence, title, dims, address, axes, values
   scalar-index.csv            every decompiler-discovered scalar: address, width, value, refs, context
@@ -37,8 +38,8 @@ if TunerPro is slow to open it, regenerate without scalars by renaming `docs/sca
 1. Open the `.xdf` that matches your read (e.g. `32990-48L20-EU.xdf` for `32990-48L20-EU.bin`).
 2. Load the matching `.bin`.
 3. After editing, re-stamp the checksum:
-   `python3 tools/fix_field1_crc.py your-tuned.bin` — the parent repo's tool works on these reads
-   **unchanged** (identical CRC method; verified on all four).
+   `python3 tools/fix_field1_crc.py your-tuned.bin` — identical CRC method to the Hayabusa; verified
+   valid on all four reads.
 
 One XDF per read is provided, but the map layout (addresses, sizes, axes) is identical across all
 four reads, so any of these XDFs will open any of the four reads; only the stock-value text in the
@@ -70,8 +71,8 @@ are likely shared across the platform, but confirm against the service data befo
 
 Each ported map also carries an **INPUTS (Hayabusa decompile)** line in its description, giving the
 X/Y signal meaning (engine RPM, throttle position, IAP, gear/mode index, …) and the Hayabusa
-function that reads it. That metadata comes from the parent repo's decompilation
-(`re/decompiled.zip` → `map_links.csv`) and is a strong hint, not a GSX-R-verified fact.
+function that reads it. That metadata comes from the Hayabusa decompilation
+(`../hayabusa/re/decompiled.zip` → `map_links.csv`) and is a strong hint, not a GSX-R-verified fact.
 
 ### Validation (quadruple-check pass)
 
@@ -119,8 +120,9 @@ confirm, not a known setting. `docs/scalar-index.csv` lists them all (351 carry 
 python3 gsxr-1000/tools/make_gsxr_xdf.py M7/32990-48L00.bin M7/32990-48L00.xdf 32990-48L00 32990-48L00
 ```
 
-The tool reads the Hayabusa master (`../stock/master/master-v9.xdf`) and reference read
-(`../stock/5JCZSJ10/5JCZSJ10.bin`) from the parent repo to source the definitions.
+The tool reads the Hayabusa master (`../hayabusa/stock/master/master-v9.xdf`) and reference read
+(`../hayabusa/stock/5JCZSJ10/5JCZSJ10.bin`) from the sibling `hayabusa/` folder to source the
+map definitions; the scalars come from `docs/scalars.json`.
 
 ## Checksums
 
