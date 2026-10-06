@@ -80,7 +80,8 @@
   "0xFEBF63BA": "monotonic axis (unit TBD) (raw 512..921)",
   "0xFEBF6436": "intake air pressure IAP / load (main load axis) [title-anchored]",
   "0xFEBF67AC": "throttle / load (raw 0..20)",
-  "0xFEF005C0": "ETV throttle-opening demand on decel/downshift (auto-blip / engine-brake output) [traced]"
+  "0xFEF005C0": "ETV throttle-opening demand on decel/downshift (auto-blip / engine-brake output) [traced]",
+  "0xFEBF63F6": "vehicle speed [code-traced: EB fuel-cut]"
  },
  "map_inputs": {
   "0x1513C4": {
@@ -465,7 +466,8 @@
    "x": "0xFEBF637A"
   },
   "0x1577C0": {
-   "x": "0xFEBF637A"
+   "x": "0xFEBF637A",
+   "y": "0xFEBF63C4"
   },
   "0x157654": {
    "y": "0xFEBF62CC"
@@ -566,7 +568,8 @@
    "x": "0xFEBF6442"
   },
   "0x156A98": {
-   "x": "0xFEBF63C4"
+   "x": "0xFEBF63C4",
+   "y": "0xFEBF637A"
   },
   "0x156574": {
    "x": "0xFEBF6440"
@@ -1371,6 +1374,79 @@
   "0x1717D4": {
    "x": "0xFEBF63C4",
    "y": "0xFEBF637A"
+  },
+  "0x156588": {
+   "x": "0xFEBF6440"
+  },
+  "0x156400": {
+   "x": "0xFEBF6440"
+  },
+  "0x1575DC": {
+   "x": "0xFEBF637A"
+  },
+  "0x1575F0": {
+   "x": "0xFEBF637A"
+  },
+  "0x157604": {
+   "x": "0xFEBF637A"
+  },
+  "0x1563C4": {
+   "x": "0xFEBF63C0"
+  },
+  "0x156B10": {
+   "x": "0xFEBF63C4",
+   "y": "0xFEBF637A"
+  },
+  "0x1575A4": {
+   "x": "0xFEBF63F6",
+   "y": "0xFEBF6442"
+  },
+  "0x1575C0": {
+   "x": "0xFEBF63F6",
+   "y": "0xFEBF6442"
+  },
+  "0x1576A0": {
+   "x": "0xFEBF637A",
+   "y": "0xFEBF63C4"
+  },
+  "0x1576D0": {
+   "x": "0xFEBF637A",
+   "y": "0xFEBF63C4"
+  },
+  "0x157700": {
+   "x": "0xFEBF637A",
+   "y": "0xFEBF63C4"
+  },
+  "0x157730": {
+   "x": "0xFEBF637A",
+   "y": "0xFEBF63C4"
+  },
+  "0x157760": {
+   "x": "0xFEBF637A",
+   "y": "0xFEBF63C4"
+  },
+  "0x157790": {
+   "x": "0xFEBF637A",
+   "y": "0xFEBF63C4"
+  },
+  "0x156AC0": {
+   "x": "0xFEBF63C4",
+   "y": "0xFEBF637A"
+  },
+  "0x15659C": {
+   "x": "0xFEBF637A"
+  },
+  "0x1565B0": {
+   "x": "0xFEBF637A"
+  },
+  "0x156560": {
+   "x": "0xFEBF637A"
+  },
+  "0x156428": {
+   "x": "0xFEBF6394"
+  },
+  "0x156414": {
+   "x": "0xFEBF6394"
   }
  },
  "constants": {
@@ -1490,5 +1566,6 @@
   "avg_window": "0x1744AE (decel-airflow moving-average window length, clamped <=19; stock 3)",
   "ready_flags": "byte at gp-0x5ED6 (idle ready/enable bit-mask), feedback state fef00f48/fef00f49",
   "note": "Idle target itself is in the ported ECT curves; these scalars gate and tune the closed-loop correction."
- }
+ },
+ "fuel_inputs_note": "Fuel map inputs traced from reader decompiles (docs/trace-fuel.c): gp-relative sensor reads in each a1fca/a201e/a2344 call. gp=0xFEBFC000 -> gp-0x5bc0=ECT, gp-0x5c3c=TP, gp-0x5c86=RPM, gp-0x5c40=TP2, gp-0x5bbe=gear, gp-0x5c0a=speed. Per-gear maps are pointer-table selected by the gear bitmask (gp-0x5bbe); their lookup axis is the gp-read sensor shown."
 }
