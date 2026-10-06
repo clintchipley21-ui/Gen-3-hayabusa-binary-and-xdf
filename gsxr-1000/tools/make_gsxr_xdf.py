@@ -96,6 +96,33 @@ def master_blocks():
     return out
 
 
+# Decompiled Hayabusa map metadata (re/decompiled.zip): per descriptor, the X/Y RAM-input
+# meanings and the function that reads the map. Ported onto aligned GSX-R maps as context.
+HAYA_DECOMP = os.path.join(ROOT, 're/decompiled.zip')
+
+
+def map_links():
+    """haya descriptor addr -> dict(xin, yin, func) from the Hayabusa decompile, if present."""
+    import csv
+    import zipfile
+    out = {}
+    if not os.path.exists(HAYA_DECOMP):
+        return out
+    try:
+        with zipfile.ZipFile(HAYA_DECOMP) as z:
+            rows = csv.DictReader(z.read('map_links.csv').decode().splitlines())
+            for r in rows:
+                if not r.get('descriptor'):
+                    continue
+                out[int(r['descriptor'], 16)] = dict(
+                    xin=r.get('x_input_meaning', '').strip(),
+                    yin=r.get('y_input_meaning', '').strip(),
+                    func=r.get('function', '').strip())
+    except Exception:
+        pass
+    return out
+
+
 # ---------------------------------------------------------------- value reads
 def read_axis(b, addr, n, bits, signed=False):
     step = bits // 8
@@ -269,7 +296,22 @@ def generic_block(b, d, uid, cat):
 
 
 # ---------------------------------------------------------------- ported block
-def ported_block(b, d, m, conf, sw):
+def inputs_line(ml):
+    """One line of decompile-derived X/Y signal meanings + reading function, or ''."""
+    if not ml:
+        return ''
+    bits = []
+    if ml.get('xin'):
+        bits.append('X = %s' % ml['xin'])
+    if ml.get('yin'):
+        bits.append('Y = %s' % ml['yin'])
+    tail = (' Read by %s.' % ml['func']) if ml.get('func') else ''
+    if not bits and not tail:
+        return ''
+    return 'INPUTS (Hayabusa decompile): %s.%s' % ('; '.join(bits) if bits else 'n/a', tail)
+
+
+def ported_block(b, d, m, conf, sw, ml=None):
     blk = m['block']
     is2d = d['r'] > 0
     xi = axis_info(blk, 'x')
@@ -293,9 +335,12 @@ def ported_block(b, d, m, conf, sw):
                 'but breakpoints differ - title is a strong guess, VERIFY before trusting). '
                 'Units/scaling carried over; GSX-R addresses & values are this read\'s own.' % REF_SW)
         title = base + '  [UNCONFIRMED]'
-    desc = '%s\n%s\n%s\n%s' % (head, axes_line(b, d, xi, yi), values_line(b, d, zi, sw),
-                               reference_line(d))
-    return retitle(blk, title, desc)
+    parts = [head, axes_line(b, d, xi, yi)]
+    il = inputs_line(ml)
+    if il:
+        parts.append(il)
+    parts += [values_line(b, d, zi, sw), reference_line(d)]
+    return retitle(blk, title, '\n'.join(parts))
 
 
 # ---------------------------------------------------------------- categories
@@ -316,11 +361,13 @@ def generate(binpath, outpath, sw, part):
     b = open(binpath, 'rb').read()
     ref = open(HAYA_REF_BIN, 'rb').read()
     mb = master_blocks()
+    ml = map_links()
 
     gd = scan(b)
     hd = scan(ref)
     for h in hd:
         h['m'] = mb.get(h['a'])
+        h['ml'] = ml.get(h['a'])
 
     hs = [(h['t'], h['c'], h['r']) for h in hd]
     gs = [(g['t'], g['c'], g['r']) for g in gd]
@@ -349,7 +396,7 @@ def generate(binpath, outpath, sw, part):
                 ybits = yb['bits'] if yb else 16
                 same_y = read_axis(b, d['yp'], d['r'], ybits) == read_axis(ref, hh['yp'], hh['r'], ybits)
             conf = 'HIGH' if (same_x and same_y) else 'MED'
-            blocks.append(ported_block(b, d, m, conf, sw))
+            blocks.append(ported_block(b, d, m, conf, sw, hd[hi].get('ml')))
             stats[conf] += 1
         else:
             blocks.append(generic_block(b, d, uid, UNMATCHED))
