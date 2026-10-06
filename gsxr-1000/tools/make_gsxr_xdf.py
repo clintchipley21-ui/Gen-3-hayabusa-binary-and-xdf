@@ -395,15 +395,50 @@ SCALAR_FLAG = '''  <XDFFLAG uniqueid="0x%(uid)X">
 '''
 
 
+# Map a context map title to a short, reliable subsystem tag (from the reading function).
+SUBSYS = [
+    ('Launch Control', 'Launch Control'), ('Quickshifter', 'Quickshifter'),
+    ('TC -', 'Traction Control'), ('Traction', 'Traction Control'),
+    ('Rev Limiter', 'Rev/Speed Limiter'), ('Per-Gear Limiter', 'Rev/Speed Limiter'),
+    ('Anti-Lift', 'Anti-Lift'), ('Pitch', 'Anti-Lift'), ('Cruise', 'Cruise Control'),
+    ('ETV', 'Throttle/ETV'), ('Throttle', 'Throttle/ETV'), ('PWR', 'Throttle/ETV'),
+    ('Ignition', 'Ignition'), ('Fuel', 'Fuel'), ('Accel Enrich', 'Fuel'),
+    ('Injector', 'Fuel'), ('Idle', 'Idle/Fan'), ('Fan', 'Idle/Fan'),
+    ('HO2', 'O2/Closed-Loop'), ('Closed Loop', 'O2/Closed-Loop'),
+    ('Sensor', 'Sensors'), ('Speed Monitor', 'Speed/Wheel'), ('Wheel', 'Speed/Wheel'),
+    ('IMU', 'IMU/Chassis'), ('Lean', 'IMU/Chassis'), ('Gear', 'Gear'),
+    ('DTC', 'Diagnostics'), ('Monitor', 'Diagnostics'), ('EVAP', 'Diagnostics'),
+    ('Engine Brake', 'Engine Brake'), ('Ride Mode', 'Ride Modes'),
+]
+
+
+def subsystem(ctx):
+    """Reliable subsystem tag from the context-map titles (the function's named maps), or ''."""
+    for title in ctx:
+        for key, tag in SUBSYS:
+            if key.lower() in title.lower():
+                return tag
+    return ''
+
+
 def scalar_blocks(b, scalars, cat, sw):
-    """Emit XDFCONSTANT/XDFFLAG for each decompiler-discovered scalar, valued from this read."""
+    """Emit XDFCONSTANT/XDFFLAG for each decompiler-discovered scalar, valued from this read.
+
+    Where the reading function also reads a named (Hayabusa-ported) map, the scalar's title is
+    prefixed with that subsystem - a reliable area tag from the decompile, not a value guess.
+    """
     out = []
     uid = 0x100000
+    tagged = 0
     for s in scalars:
         addr = s['addr']
         bits = s['width'] * 8
         val = int.from_bytes(b[addr:addr + s['width']], 'little')
         ctx = (s.get('context') or [])[:2]
+        sub = subsystem(s.get('context') or [])
+        if sub:
+            tagged += 1
+        pre = ('%s :: ' % sub) if sub else ''
         ctx_line = (' Near maps: %s.' % '; '.join(ctx)) if ctx else ''
         func = (' fn %s' % s['func']) if s.get('func') else ''
         is_flag = s.get('is_flag') and (b[addr] & 0x7f) == 0  # a clean 0x80/0x00 toggle in THIS read
@@ -411,16 +446,17 @@ def scalar_blocks(b, scalars, cat, sw):
             desc = ('Decompiler-found flag (UNVERIFIED): 0x80 toggle read by ECU code '
                     '(%d ref/%d fn%s). %s: 0x%02X.%s'
                     % (s['refs'], s['nfuncs'], func, sw, b[addr], ctx_line))
-            out.append(SCALAR_FLAG % dict(uid=uid, title=escape('Flag @0x%X (bit7)' % addr),
+            out.append(SCALAR_FLAG % dict(uid=uid, title=escape('%sFlag @0x%X (bit7)' % (pre, addr)),
                                           desc=escape(desc), cat=cat, addr=addr))
         else:
             desc = ('Decompiler-found scalar (UNVERIFIED): u%d read by ECU code (%d ref/%d fn%s). '
                     'VALUE %s: %d.%s'
                     % (bits, s['refs'], s['nfuncs'], func, sw, val, ctx_line))
-            out.append(SCALAR_CONST % dict(uid=uid, title=escape('Scalar @0x%X (u%d)' % (addr, bits)),
+            out.append(SCALAR_CONST % dict(uid=uid,
+                                           title=escape('%sScalar @0x%X (u%d)' % (pre, addr, bits)),
                                            desc=escape(desc), cat=cat, addr=addr, bits=bits))
         uid += 1
-    return out, uid - 0x100000
+    return out, uid - 0x100000, tagged
 
 
 # ---------------------------------------------------------------- generate
@@ -474,7 +510,7 @@ def generate(binpath, outpath, sw, part):
 
     # decompiler-discovered scalar constants / flags (code cross-reference analysis)
     scalars = load_scalars()
-    sblocks, nscalar = scalar_blocks(b, scalars, SCALARCAT, sw)
+    sblocks, nscalar, ntagged = scalar_blocks(b, scalars, SCALARCAT, sw)
     blocks.extend(sblocks)
 
     deftitle = 'Suzuki GSX-R1000 M7 %s (%s) - ported from Hayabusa Gen3 (auto)' % (sw, part)

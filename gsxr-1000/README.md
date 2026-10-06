@@ -109,10 +109,20 @@ descriptor. These were found by **decompiling the GSX-R's own code** and taking 
   XDF's known constants/flags as scalars (≈99% of those inside the calibration region), so the
   GSX-R scalar set is near-complete.
 
-In TunerPro they appear under **"ZZ Decompiler-discovered scalars (unverified)"**, titled generically
-(`Scalar @0xADDR (u16)`, `Flag @0xADDR (bit7)`) because no Hayabusa label aligns to a bare scalar
-reliably; the description carries the value, usage and context hint. Treat every one as a lead to
-confirm, not a known setting. `docs/scalar-index.csv` lists them all (351 carry a context hint).
+In TunerPro they appear under **"ZZ Decompiler-discovered scalars (unverified)"**. Where the reading
+function also reads a named map, the title is prefixed with that **subsystem** — a reliable area tag
+from the decompile (not a value guess), e.g. `Quickshifter :: Scalar @0x154C0E (u16)`,
+`Ignition :: Scalar @0x167458 (u32)`. **351** scalars are tagged this way (Quickshifter, Fuel,
+Ignition, Throttle/ETV, Speed/Wheel, Sensors, O2/Closed-Loop, Idle/Fan); the rest stay
+`Scalar @0xADDR`. Either way the description carries the value, usage and the specific context maps.
+Treat every one as a lead to confirm, not a known setting. `docs/scalar-index.csv` lists all of them
+with their subsystem and context.
+
+The exact *headline numeric limits* (rev/speed-limiter RPM, launch hard-cut) are deliberately **not**
+pinned to specific addresses: the Hayabusa's limiter block (gears parked at 25,000 rpm, 6th at the
+~299 km/h top-speed cut) has no structural twin in the GSX-R, and many GSX-R values land in the
+plausible RPM band (plus `0x8000` = a common default, not RPM), so a value-only guess would risk
+mislabelling a safety-critical setting. Pinning them correctly needs the next step below.
 
 ## Regenerating
 
@@ -141,10 +151,11 @@ maps.
 
 ## Next steps to raise confidence
 
-1. **Label the scalars.** They are discovered and valued but titled generically. The highest-value
-   next step is matching the headline ones (rev/speed limiters, launch RPMs, quickshifter/traction
-   enables) to their role — start from the 351 with a context hint and from the reading function's
-   decompiled C, or align per-function scalar lists to the Hayabusa master more aggressively.
+1. **Pin the headline numeric limits (rev/speed limiter, launch hard-cut).** The safe way is a RAM
+   cross-reference pass in Ghidra: find the engine-RPM RAM variable (the one indexed by every
+   RPM-axis map lookup), then the function that compares it against a constant and triggers a
+   fuel/ignition cut — that constant is the limiter. This resolves them from the GSX-R's own code
+   instead of guessing by value. (Subsystem area tags on 351 scalars are already in place.)
 2. Review `docs/map-index.csv`; sanity-check the 234 MED titles against the maps' axes and values.
 3. Confirm sensor scalings (RPM, TPS/ETV angle, pressure, temperature) against the GSX-R service
    data — if any differ from the Hayabusa, update the ported equations.
