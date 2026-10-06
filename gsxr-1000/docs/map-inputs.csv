@@ -82,6 +82,8 @@ descriptor,dims,x_ram,x_meaning,y_ram,y_meaning
 0x15502C,8x0,0xFEBF6394,barometric pressure [title-anchored],,
 0x155040,11x7,0xFEF01E52,monotonic axis (unit TBD) (raw 0..3000),0xFEBF6443,intake air temp IAT [title-anchored]
 0x15505C,5x21,0xFEBF6394,barometric pressure [title-anchored],0xFEBF637A,engine RPM [title-anchored]
+0x15508C,10x20,0xFEBF63E0,,0xFEBF637A,engine RPM [title-anchored]
+0x1550BC,10x20,0xFEBF63EC,non-monotonic (bitmask/enum?),0xFEBF637A,engine RPM [title-anchored]
 0x1550EC,10x0,0xFEBF6443,intake air temp IAT [title-anchored],,
 0x155100,5x0,0xFEF01E52,monotonic axis (unit TBD) (raw 0..3000),,
 0x155114,5x0,0xFEF01E52,monotonic axis (unit TBD) (raw 0..3000),,
@@ -137,6 +139,7 @@ descriptor,dims,x_ram,x_meaning,y_ram,y_meaning
 0x156FF4,10x20,0xFEBF63C4,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
 0x157010,10x20,0xFEBF63C4,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
 0x15702C,10x20,0xFEBF63C4,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
+0x157588,39x7,0xFEBF63F6,,0xFEBF6442,gear position [title-anchored]
 0x157618,15x0,0xFEBF637A,engine RPM [title-anchored],,
 0x15762C,7x0,0xFEBF638C,monotonic axis (unit TBD) (raw 360..840),,
 0x157640,7x0,0xFEBF638C,monotonic axis (unit TBD) (raw 360..840),,
@@ -251,6 +254,7 @@ descriptor,dims,x_ram,x_meaning,y_ram,y_meaning
 0x17174C,7x0,0xFEBF6442,gear position [title-anchored],,
 0x171760,5x0,0xFEBF643C,monotonic axis (unit TBD) (raw 614..819),,
 0x171788,10x21,0xFEBF63C4,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
+0x1717D4,10x14,0xFEBF63C4,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
 0x171820,10x14,0xFEBF63C4,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
 0x171898,6x25,0xFEBF63C4,throttle position TP [title-anchored],0xFEBF637A,engine RPM [title-anchored]
 0x172FA4,31x0,0xFEF025F4,monotonic axis (unit TBD) (raw 1024..62464),,

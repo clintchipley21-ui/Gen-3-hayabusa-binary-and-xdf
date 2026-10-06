@@ -4058,6 +4058,7 @@ REFERENCE: descriptor @0x15505C, data @0x155620, X @0x155298, Y @0x1552A4.</desc
     <title>Unknown Map 10x20 @0x1556F4</title>
     <description>AUTO-DISCOVERED from the ECU map descriptor; no Hayabusa map aligned here, role unknown - log before changing.
 X: 10 pts 262..20972 raw; Y: 20 pts 1280..25600 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63E0; Y = 0xFEBF637A (engine RPM [title-anchored]).
 VALUES (32990-48L00): 0 to 1 raw.
 REFERENCE: descriptor @0x15508C, data @0x1556F4, X @0x155078, Y @0x154EBC.</description>
     <CATEGORYMEM index="0" category="94" />
@@ -4095,6 +4096,7 @@ REFERENCE: descriptor @0x15508C, data @0x1556F4, X @0x155078, Y @0x154EBC.</desc
     <title>Unknown Map 10x20 @0x1557BC</title>
     <description>AUTO-DISCOVERED from the ECU map descriptor; no Hayabusa map aligned here, role unknown - log before changing.
 X: 10 pts 9435..39314 raw; Y: 20 pts 1280..25600 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63EC (non-monotonic (bitmask/enum?)); Y = 0xFEBF637A (engine RPM [title-anchored]).
 VALUES (32990-48L00): 0 to 1 raw.
 REFERENCE: descriptor @0x1550BC, data @0x1557BC, X @0x1550A8, Y @0x154EE4.</description>
     <CATEGORYMEM index="0" category="94" />
@@ -9972,6 +9974,7 @@ REFERENCE: descriptor @0x15756C, data @0x165538, X @0x157538, Y @0x1654D4.</desc
     <title>Engine Brake Control :: Fuel-Cut Cylinder Pattern vs Speed x Gear | EB Level 1 (flat)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 39 pts 800..16000 RPM; Y: 7 pts 1..64 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63F6; Y = 0xFEBF6442 (gear position [title-anchored]).
 VALUES (32990-48L00): 30 to 30 raw - every cell the same.
 REFERENCE: descriptor @0x157588, data @0x165FB0, X @0x165F60, Y @0x1586BC.</description>
     <CATEGORYMEM index="0" category="57" />
@@ -23358,6 +23361,7 @@ REFERENCE: descriptor @0x171788, data @0x1724D8, X @0x171774, Y @0x171C68.</desc
     <title>EVAP Purge :: Enable Map vs TP x RPM  [UNCONFIRMED]</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own.
 X: 10 pts 786..20736 raw; Y: 14 pts 1500..7000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63C4 (throttle position TP [title-anchored]); Y = 0xFEBF637A (engine RPM [title-anchored]).
 VALUES (32990-48L00): 0 to 1 raw.
 REFERENCE: descriptor @0x1717D4, data @0x1725AC, X @0x1717A4, Y @0x1717B8.</description>
     <CATEGORYMEM index="0" category="63" />

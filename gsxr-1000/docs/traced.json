@@ -1354,6 +1354,22 @@
   "0x193F44": {
    "x": "0xFEBF6436",
    "y": "0xFEBF637E"
+  },
+  "0x15508C": {
+   "x": "0xFEBF63E0",
+   "y": "0xFEBF637A"
+  },
+  "0x1550BC": {
+   "x": "0xFEBF63EC",
+   "y": "0xFEBF637A"
+  },
+  "0x157588": {
+   "x": "0xFEBF63F6",
+   "y": "0xFEBF6442"
+  },
+  "0x1717D4": {
+   "x": "0xFEBF63C4",
+   "y": "0xFEBF637A"
   }
  },
  "constants": {
