@@ -1913,6 +1913,7 @@ REFERENCE: descriptor @0x150E70, data @0x1516B4, X @0x1516A0.</description>
     <title>Unknown Map 14x7 @0x151D9C</title>
     <description>AUTO-DISCOVERED from the ECU map descriptor; no Hayabusa map aligned here, role unknown - log before changing.
 X: 14 pts 2560..35840 raw; Y: 7 pts 1..64 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF637A (engine RPM [title-anchored]); Y = 0xFEBF6442 (gear position [title-anchored]).
 VALUES (32990-48L20-EU): 17039 to 22282 raw.
 REFERENCE: descriptor @0x150EA0, data @0x151D9C, X @0x150E84, Y @0x1516C8.</description>
     <CATEGORYMEM index="0" category="94" />
@@ -1988,6 +1989,7 @@ REFERENCE: descriptor @0x150ED8, data @0x151E60, X @0x150EBC, Y @0x1516D8.</desc
     <title>Unknown Map 14x7 @0x151F24</title>
     <description>AUTO-DISCOVERED from the ECU map descriptor; no Hayabusa map aligned here, role unknown - log before changing.
 X: 14 pts 2560..35840 raw; Y: 7 pts 1..64 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF637A (engine RPM [title-anchored]); Y = 0xFEBF6442 (gear position [title-anchored]).
 VALUES (32990-48L20-EU): 49807 to 53740 raw.
 REFERENCE: descriptor @0x150F10, data @0x151F24, X @0x150EF4, Y @0x1516E8.</description>
     <CATEGORYMEM index="0" category="94" />
@@ -29797,6 +29799,7 @@ REFERENCE: descriptor @0x193180, data @0x197064, X @0x19316C, Y @0x19452C.</desc
     <title>Unknown Map 10x21 @0x197208</title>
     <description>AUTO-DISCOVERED from the ECU map descriptor; no Hayabusa map aligned here, role unknown - log before changing.
 X: 10 pts 21623..45211 raw; Y: 21 pts 5632..18560 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6436 (intake air pressure IAP / load (main load axis) [title-anchored]); Y = 0xFEBF637E (engine RPM (main map axis) [title-anchored]).
 VALUES (32990-48L20-EU): 3000 to 3000 raw - every cell the same.
 REFERENCE: descriptor @0x1931B0, data @0x197208, X @0x19319C, Y @0x194558.</description>
     <CATEGORYMEM index="0" category="94" />
@@ -30024,6 +30027,7 @@ REFERENCE: descriptor @0x1932A0, data @0x197A3C, X @0x19328C, Y @0x194634.</desc
     <title>Unknown Map 10x21 @0x197BE0</title>
     <description>AUTO-DISCOVERED from the ECU map descriptor; no Hayabusa map aligned here, role unknown - log before changing.
 X: 10 pts 21623..45211 raw; Y: 21 pts 5632..18560 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6436 (intake air pressure IAP / load (main load axis) [title-anchored]); Y = 0xFEBF637E (engine RPM (main map axis) [title-anchored]).
 VALUES (32990-48L20-EU): 1100 to 1756 raw.
 REFERENCE: descriptor @0x1932D0, data @0x197BE0, X @0x1932BC, Y @0x194660.</description>
     <CATEGORYMEM index="0" category="94" />
