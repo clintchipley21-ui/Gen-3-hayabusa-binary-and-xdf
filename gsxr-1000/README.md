@@ -33,11 +33,13 @@ Build ID embedded in the reads: `8J16ST01` (`ECM-010L0`). All four reads are ful
 valid field-1 CRC. Each XDF is ~3.3 MB with **4,078 items** (791 maps/curves + 3,287 scalars/flags);
 if TunerPro is slow to open it, regenerate without scalars by renaming `docs/scalars.json`.
 
-Items are organised into **55 populated TunerPro categories** (folders). Empty categories inherited
+Items are organised into **53 populated TunerPro categories** (folders). Empty categories inherited
 from the Hayabusa master are pruned automatically at generate time, the Hayabusa-only
 `Unidentified - Cluster` / `(legacy, empty)` names are scrubbed, and the decompiler-discovered scalars
 are filed under per-subsystem `Scalars - …` folders (Ignition, Quickshifter, Fuel, HO2, Idle, …) rather
-than one bucket. Nothing in the XDF is a placeholder — every folder has real members.
+than one bucket. Maps the Hayabusa master itself mis-filed (e.g. Ride-Mode/Idle tables parked in its
+"DTC Lamp Control" / "Meter CAN" folders) are re-filed to match their own titles. Nothing in the XDF is
+a placeholder — every folder has real members, and no folder claims a system that was not actually found.
 
 ## How to use it in TunerPro
 

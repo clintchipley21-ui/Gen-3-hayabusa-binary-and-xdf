@@ -394,6 +394,51 @@ SCALAR_CAT_NAME = {
 }
 
 
+# Title-prefix -> correct category NAME, for decoded GSX-R maps the Hayabusa master mis-filed
+# (e.g. it parks "Ride Mode" and "Mode-Setting Limit" tables in its "DTC Lamp Control" folder, and
+# "Idle/Heat-Soak" tables in "Meter / CAN Outputs"). Only titles matching a rule are re-filed; every
+# other map keeps the category it inherited, so the already-correct folders (TPS, IAP, Ignition
+# Advance, PWR-n, Launch Control, Anti-Lift ...) are untouched. Ground truth is the map's own title.
+RECAT = [
+    ('Ride Mode ::', 'Ride Mode Presets'), ('Mode-Setting Limit ::', 'Ride Mode Presets'),
+    ('Idle/Heat-Soak ::', 'Idle Control (decoded)'), ('Idle Control ::', 'Idle Control (decoded)'),
+    ('ETV Monitor ::', 'ETV Monitor / Level-2 Safety (decoded)'),
+    ('Meter / CAN Outputs ::', 'Meter / CAN Outputs (decoded)'),
+    ('Meter Fuel Consumption ::', 'Meter / CAN Outputs (decoded)'),
+    ('EVAP Purge ::', 'EVAP Purge (decoded)'),
+    ('Catalyst/HO2 Monitor ::', 'HO2 / Closed Loop (decoded)'), ('HO2 ', 'HO2 / Closed Loop (decoded)'),
+    ('Cruise Control ::', 'Cruise Control (decoded)'),
+    ('Engine Brake Control ::', 'Engine Brake Control (decoded)'),
+    ('Pitch Control ::', 'Anti-Lift Control'), ('Anti-Lift ::', 'Anti-Lift Control'),
+    ('Speed Monitor ::', 'IMU / Wheel Speed (decoded)'),
+    ('Diagnostics - DTC Lamp Control ::', 'Diagnostics - DTC Lamp Control'),
+]
+
+
+def recategorize(body, name2idx):
+    """Re-file only the decoded maps the Hayabusa master mis-categorised, by matching the map's own
+    title prefix to the correct existing category. Returns (body, n_moved)."""
+    rules = [(p, name2idx[n]) for p, n in RECAT if n in name2idx]
+    moved = [0]
+
+    def fix(block):
+        mt = re.search(r'<title>([^<]*)</title>', block)
+        if not mt:
+            return block
+        title = mt.group(1)
+        for pre, newcat in rules:
+            if title.startswith(pre) or pre in title:
+                new = re.sub(r'(<CATEGORYMEM index="0" category=")\d+(")',
+                             r'\g<1>%d\g<2>' % newcat, block, count=1)
+                if new != block:
+                    moved[0] += 1
+                return new
+        return block
+
+    body = re.sub(r'<XDFTABLE\b.*?</XDFTABLE>\n', lambda m: fix(m.group(0)), body, flags=re.S)
+    return body, moved[0]
+
+
 def prune_and_renumber(cats_xml, body):
     """Drop categories with no members (Hayabusa-inherited leftovers) and compact-renumber the rest,
     rewriting every CATEGORYMEM reference. Category 0 (root) is always kept."""
@@ -638,6 +683,8 @@ def generate(binpath, outpath, sw, part):
             % (sw, part, len(gd), stats['HIGH'], stats['MED'], stats['GENERIC'], nscalar))
 
     body = ''.join(blocks)
+    # re-file the decoded maps the Hayabusa master mis-categorised so folder names match contents
+    body, nmoved = recategorize(body, NAME2IDX)
     # drop categories with no members (Hayabusa-inherited empty folders) and compact-renumber
     cats_xml, body, npruned = prune_and_renumber(cats_xml, body)
 
