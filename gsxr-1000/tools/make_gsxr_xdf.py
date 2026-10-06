@@ -287,9 +287,11 @@ def generic_block(b, d, uid, cat):
     kind = 'Map %dx%d' % (d['c'], d['r']) if is2d else 'Curve %d' % d['c']
     zaddr = d['dp'] if is2d else d['yp']
     title = 'Unknown %s @0x%X' % (kind, zaddr)
+    tl = traced_inputs_line(d['a'], TRACED_MAP)
     desc = ('AUTO-DISCOVERED from the ECU map descriptor; no Hayabusa map aligned here, role '
-            'unknown - log before changing.\n%s\n%s\n%s'
-            % (axes_line(b, d, None, None), values_line(b, d, None, SW), reference_line(d)))
+            'unknown - log before changing.\n%s\n%s%s\n%s'
+            % (axes_line(b, d, None, None), (tl + '\n') if tl else '',
+               values_line(b, d, None, SW), reference_line(d)))
     yaxis = (GENERIC_Y % dict(yp=d['yp'], yb=yb, r=d['r'])) if is2d else ''
     return GENERIC % dict(uid=uid, title=escape(title), desc=escape(desc), cat=cat,
                           xp=d['xp'], xb=xb, c=d['c'], r=d['r'], zr=(d['r'] or 1),
@@ -337,6 +339,9 @@ def ported_block(b, d, m, conf, sw, ml=None):
                 'Units/scaling carried over; GSX-R addresses & values are this read\'s own.' % REF_SW)
         title = base + '  [UNCONFIRMED]'
     parts = [head, axes_line(b, d, xi, yi)]
+    tl = traced_inputs_line(d['a'], TRACED_MAP)
+    if tl:
+        parts.append(tl)
     il = inputs_line(ml)
     if il:
         parts.append(il)
@@ -370,6 +375,45 @@ def load_scalars():
         return json.load(open(SCALARS_JSON))
     except Exception:
         return []
+
+
+# Native trace results (gsxr-1000/docs/traced.json): engine-RPM variable + scale, the map
+# input variables resolved from the GSX-R's own lookup calls, and constants traced in the code.
+# All derived from the GSX-R binary + Ghidra, NOT from the Hayabusa.
+TRACED_JSON = os.path.join(ROOT, 'gsxr-1000/docs/traced.json')
+
+
+def load_traced():
+    import json
+    try:
+        t = json.load(open(TRACED_JSON))
+    except Exception:
+        return {}, {}, {}
+    mi = {}
+    for d, r in t.get('map_inputs', {}).items():
+        mi[int(d, 16)] = r
+    meaning = t.get('ram_meaning', {})
+    consts = {}
+    for a, title in t.get('constants', {}).items():
+        consts[int(a, 16)] = title
+    # attach meaning lookups onto each map's inputs
+    for d, r in mi.items():
+        r['_meaning'] = meaning
+    return mi, consts, meaning
+
+
+def traced_inputs_line(desc_addr, traced_map):
+    r = traced_map.get(desc_addr)
+    if not r:
+        return ''
+    meaning = r.get('_meaning', {})
+    bits = []
+    for role in ('x', 'y'):
+        if role in r:
+            ram = r[role]
+            m = meaning.get(ram, '')
+            bits.append('%s = %s%s' % (role.upper(), ram, (' (%s)' % m) if m else ''))
+    return ('GSX-R TRACED INPUTS (from this ECU\'s lookup calls): %s.' % '; '.join(bits)) if bits else ''
 
 
 SCALAR_CONST = '''  <XDFCONSTANT uniqueid="0x%(uid)X" flags="0x0">
@@ -434,6 +478,14 @@ def scalar_blocks(b, scalars, cat, sw):
         addr = s['addr']
         bits = s['width'] * 8
         val = int.from_bytes(b[addr:addr + s['width']], 'little')
+        # a code-traced constant: emit with its real name + evidence, skip the generic path
+        if addr in TRACED_CONSTS:
+            desc = ('TRACED FROM GSX-R CODE: %s. VALUE %s: %d (raw). Confirm the exact engage '
+                    'point on a bench before relying on it.' % (TRACED_CONSTS[addr], sw, val))
+            out.append(SCALAR_CONST % dict(uid=uid, title=escape(TRACED_CONSTS[addr][:60]),
+                                           desc=escape(desc), cat=cat, addr=addr, bits=bits))
+            uid += 1
+            continue
         ctx = (s.get('context') or [])[:2]
         sub = subsystem(s.get('context') or [])
         if sub:
@@ -460,9 +512,14 @@ def scalar_blocks(b, scalars, cat, sw):
 
 
 # ---------------------------------------------------------------- generate
+TRACED_MAP = {}
+TRACED_CONSTS = {}
+
+
 def generate(binpath, outpath, sw, part):
-    global SW
+    global SW, TRACED_MAP, TRACED_CONSTS
     SW = sw
+    TRACED_MAP, TRACED_CONSTS, _ = load_traced()
     b = open(binpath, 'rb').read()
     ref = open(HAYA_REF_BIN, 'rb').read()
     mb = master_blocks()

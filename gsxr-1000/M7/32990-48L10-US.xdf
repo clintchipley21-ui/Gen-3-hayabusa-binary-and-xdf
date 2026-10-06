@@ -1094,6 +1094,7 @@ REFERENCE: descriptor @0x150BCC, data @0x1519F4, X @0x1519AC.</description>
     <title>LF - Level Threshold vs LF Level</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 11 pts 0..10 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF0267E.
 INPUTS (Hayabusa decompile): X = index (gear/mode/cyl). Read by FUN_00029bc4.
 VALUES (32990-48L10-US): 166 to 255 raw.
 REFERENCE: descriptor @0x150BE0, data @0x1518D4, X @0x1518C8.</description>
@@ -1135,6 +1136,7 @@ REFERENCE: descriptor @0x150BE0, data @0x1518D4, X @0x1518C8.</description>
     <title>LF - Level Parameter 2 vs LF Level</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 11 pts 0..10 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF0267E.
 INPUTS (Hayabusa decompile): X = index (gear/mode/cyl). Read by FUN_00029bc4.
 VALUES (32990-48L10-US): 205 to 205 raw - every cell the same.
 REFERENCE: descriptor @0x150BF4, data @0x1518EC, X @0x1518E0.</description>
@@ -1176,6 +1178,7 @@ REFERENCE: descriptor @0x150BF4, data @0x1518EC, X @0x1518E0.</description>
     <title>LF - Level Parameter 3 vs LF Level</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 11 pts 0..10 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF0267E.
 INPUTS (Hayabusa decompile): X = index (gear/mode/cyl). Read by FUN_00029bc4.
 VALUES (32990-48L10-US): 32768 to 32768 raw - every cell the same.
 REFERENCE: descriptor @0x150C08, data @0x151628, X @0x1518F8.</description>
@@ -1258,6 +1261,7 @@ REFERENCE: descriptor @0x150C94, data @0x150C58, X @0x150C1C.</description>
     <title>Anti-Lift :: Pitch-Angle Correction Curve (stage 2)  [UNCONFIRMED]</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own.
 X: 30 pts 22768..38768 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF0055A.
 INPUTS (Hayabusa decompile): n/a. Read by FUN_00029e7c.
 VALUES (32990-48L10-US): 0 to 32768 raw.
 REFERENCE: descriptor @0x150D20, data @0x150CE4, X @0x150CA8.</description>
@@ -1340,6 +1344,7 @@ REFERENCE: descriptor @0x150D34, data @0x151A84, X @0x151A3C.</description>
     <title>Cruise Control :: Cancel-Switch Plausibility Low Limit vs Speed (flat 0)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 36 pts 0..350 km/h
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF02622 (engine RPM (primary; raw/2.56=rpm, axis 1000..8000 proven)).
 INPUTS (Hayabusa decompile): X = throttle position. Read by FUN_0002f9ce.
 VALUES (32990-48L10-US): 0 to 0 raw - every cell the same.
 REFERENCE: descriptor @0x150D48, data @0x151B14, X @0x151ACC.</description>
@@ -1382,6 +1387,7 @@ REFERENCE: descriptor @0x150D48, data @0x151B14, X @0x151ACC.</description>
     <title>Cruise Control :: Cancel-Switch Plausibility High Limit vs Speed (flat)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 36 pts 0..350 km/h
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF02622 (engine RPM (primary; raw/2.56=rpm, axis 1000..8000 proven)).
 INPUTS (Hayabusa decompile): X = throttle position. Read by FUN_0002f9ce.
 VALUES (32990-48L10-US): 32268 to 32268 raw - every cell the same.
 REFERENCE: descriptor @0x150D5C, data @0x151BA4, X @0x151B5C.</description>
@@ -1424,6 +1430,7 @@ REFERENCE: descriptor @0x150D5C, data @0x151BA4, X @0x151B5C.</description>
     <title>Cruise Control :: Cancel-Switch Stuck Time Limit vs Speed (flat 65535)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 36 pts 0..350 km/h
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF02622 (engine RPM (primary; raw/2.56=rpm, axis 1000..8000 proven)).
 INPUTS (Hayabusa decompile): X = throttle position. Read by FUN_0002fd0c.
 VALUES (32990-48L10-US): 65535 to 65535 raw - every cell the same.
 REFERENCE: descriptor @0x150D70, data @0x151C34, X @0x151BEC.</description>
@@ -1466,6 +1473,7 @@ REFERENCE: descriptor @0x150D70, data @0x151C34, X @0x151BEC.</description>
     <title>Cruise Control :: Cancel-Switch 2 Plausibility Low Limit vs Speed (flat)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 36 pts 0..350 km/h
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF02622 (engine RPM (primary; raw/2.56=rpm, axis 1000..8000 proven)).
 INPUTS (Hayabusa decompile): X = throttle position. Read by FUN_0002fba8.
 VALUES (32990-48L10-US): 33268 to 33268 raw - every cell the same.
 REFERENCE: descriptor @0x150D84, data @0x151CC4, X @0x151C7C.</description>
@@ -1508,6 +1516,7 @@ REFERENCE: descriptor @0x150D84, data @0x151CC4, X @0x151C7C.</description>
     <title>Cruise Control :: Cancel-Switch 2 Plausibility High Limit vs Speed (flat 65535)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 36 pts 0..350 km/h
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF02622 (engine RPM (primary; raw/2.56=rpm, axis 1000..8000 proven)).
 INPUTS (Hayabusa decompile): X = throttle position. Read by FUN_0002fba8.
 VALUES (32990-48L10-US): 65535 to 65535 raw - every cell the same.
 REFERENCE: descriptor @0x150D98, data @0x151D54, X @0x151D0C.</description>
@@ -1550,6 +1559,7 @@ REFERENCE: descriptor @0x150D98, data @0x151D54, X @0x151D0C.</description>
     <title>Cruise Control :: Accel Rate Gain vs Throttle Step (up)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 7 pts 1..64 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF00656.
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0002dde8.
 VALUES (32990-48L10-US): 14669 to 26842 raw.
 REFERENCE: descriptor @0x150DAC, data @0x151640, X @0x1506B4.</description>
@@ -1591,6 +1601,7 @@ REFERENCE: descriptor @0x150DAC, data @0x151640, X @0x1506B4.</description>
     <title>Cruise Control :: Accel Rate Gain vs Throttle Step (down)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 7 pts 1..64 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF00656.
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0002dde8.
 VALUES (32990-48L10-US): 3597 to 7066 raw.
 REFERENCE: descriptor @0x150DC0, data @0x151650, X @0x1506BC.</description>
@@ -1804,6 +1815,7 @@ REFERENCE: descriptor @0x150E10, data @0x151690, X @0x1506DC.</description>
     <title>Cruise Control :: Speed Correction (per mille) vs Set Speed</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 14 pts 30..240 km/h
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF005E0.
 INPUTS (Hayabusa decompile): X = engine RPM. Read by FUN_0002f046.
 VALUES (32990-48L10-US): 36 to 74 raw.
 REFERENCE: descriptor @0x150E5C, data @0x150E40, X @0x150E24.</description>
@@ -2019,6 +2031,7 @@ REFERENCE: descriptor @0x150F48, data @0x151FE8, X @0x150F2C, Y @0x1516F8.</desc
     <title>Quickshifter :: Max Load vs RPM x Final Ignition  [UNCONFIRMED]</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own.
 X: 14 pts 1000..14000 RPM; Y: 10 pts -2.84..52.00 deg
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): Y = 0xFEBF6169 (throttle / load (map Y-axis)).
 INPUTS (Hayabusa decompile): X = engine RPM. Read by FUN_0002a5b8.
 VALUES (32990-48L10-US): 50 to 57400 raw.
 REFERENCE: descriptor @0x150F94, data @0x1520AC, X @0x150F64, Y @0x150F80.</description>
@@ -2461,6 +2474,7 @@ REFERENCE: descriptor @0x151170, data @0x15263C, X @0x151728, Y @0x1525EC.</desc
     <title>Pitch Control :: Setting Gain vs |Pitch| x SDMS Field-3 Level (flat 64)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 13 pts 32768..43690 raw; Y: 11 pts 0..10 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): Y = 0xFEF0267D (index 0..7 (gear/mode/cyl)).
 INPUTS (Hayabusa decompile): Y = index (gear/mode/cyl). Read by FUN_00029438.
 VALUES (32990-48L10-US): 48 to 128 raw.
 REFERENCE: descriptor @0x15118C, data @0x152D40, X @0x151758, Y @0x151774.</description>
@@ -2506,6 +2520,7 @@ REFERENCE: descriptor @0x15118C, data @0x152D40, X @0x151758, Y @0x151774.</desc
     <title>LF - Threshold Map  [UNCONFIRMED]</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own.
 X: 23 pts 22768..43768 raw; Y: 39 pts 500..19500 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF006BC.
 INPUTS (Hayabusa decompile): Y = engine RPM. Read by FUN_0002f6f8.
 VALUES (32990-48L10-US): 1068 to 57672 raw.
 REFERENCE: descriptor @0x1511A8, data @0x152E20, X @0x15178C, Y @0x152DD0.</description>
@@ -2717,6 +2732,7 @@ REFERENCE: descriptor @0x151210, data @0x153CC8, X @0x153C78, Y @0x150614.</desc
     <title>Engine Brake Control :: Throttle Opening vs RPM x Gear | EB Level 1  [UNCONFIRMED]</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own.
 X: 39 pts 800..14800 RPM; Y: 7 pts 1..64 gear bit
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF0262C (engine RPM (axis ~800..3200)).
 INPUTS (Hayabusa decompile): X = engine RPM; Y = index (gear/mode/cyl). Read by FUN_000290ea.
 VALUES (32990-48L10-US): 682 to 8965 raw.
 REFERENCE: descriptor @0x15122C, data @0x153E50, X @0x153E00, Y @0x151838.</description>
@@ -2762,6 +2778,7 @@ REFERENCE: descriptor @0x15122C, data @0x153E50, X @0x153E00, Y @0x151838.</desc
     <title>Engine Brake Control :: Throttle Opening vs RPM x Gear | EB Level 2  [UNCONFIRMED]</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own.
 X: 39 pts 800..14800 RPM; Y: 7 pts 1..64 gear bit
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF0262C (engine RPM (axis ~800..3200)).
 INPUTS (Hayabusa decompile): X = engine RPM; Y = index (gear/mode/cyl). Read by FUN_000290ea.
 VALUES (32990-48L10-US): 682 to 8965 raw.
 REFERENCE: descriptor @0x151248, data @0x1540C4, X @0x154074, Y @0x151848.</description>
@@ -2807,6 +2824,7 @@ REFERENCE: descriptor @0x151248, data @0x1540C4, X @0x154074, Y @0x151848.</desc
     <title>Engine Brake Control :: Throttle Opening vs RPM x Gear | EB Level 3  [UNCONFIRMED]</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own.
 X: 39 pts 800..14800 RPM; Y: 7 pts 1..64 gear bit
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF0262C (engine RPM (axis ~800..3200)).
 INPUTS (Hayabusa decompile): X = engine RPM; Y = index (gear/mode/cyl). Read by FUN_000290ea.
 VALUES (32990-48L10-US): 682 to 8965 raw.
 REFERENCE: descriptor @0x151264, data @0x154338, X @0x1542E8, Y @0x151858.</description>
@@ -3072,6 +3090,7 @@ REFERENCE: descriptor @0x1512E8, data @0x154A6C, X @0x154A20.</description>
     <title>Cruise Control :: Throttle Feed-Forward vs Target Angle</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 36 pts 0..44800 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF0060A.
 INPUTS (Hayabusa decompile): X = throttle position. Read by FUN_0002d0f0.
 VALUES (32990-48L10-US): 32848 to 42563 raw.
 REFERENCE: descriptor @0x1512FC, data @0x154B00, X @0x154AB8.</description>
@@ -3359,6 +3378,7 @@ REFERENCE: descriptor @0x15139C, data @0x1508A4, X @0x150884.</description>
     <title>Pitch Control :: Level Scaling vs SDMS Field-3 Level (0-10, all 0)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 11 pts 0..10 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF0267D (index 0..7 (gear/mode/cyl)).
 INPUTS (Hayabusa decompile): X = index (gear/mode/cyl). Read by FUN_00029582.
 VALUES (32990-48L10-US): 51 to 51 raw - every cell the same.
 REFERENCE: descriptor @0x1513B0, data @0x151904, X @0x151898.</description>
@@ -3442,6 +3462,7 @@ REFERENCE: descriptor @0x1513C4, data @0x154B94, X @0x154B48.</description>
     <title>Cruise Control :: Speedometer Correction (per mille) vs Vehicle Speed</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 14 pts 30..240 km/h
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E86.
 INPUTS (Hayabusa decompile): X = engine RPM. Read by FUN_0002f2e0.
 VALUES (32990-48L10-US): 36 to 74 raw.
 REFERENCE: descriptor @0x151410, data @0x1513F4, X @0x1513D8.</description>
@@ -3483,6 +3504,7 @@ REFERENCE: descriptor @0x151410, data @0x1513F4, X @0x1513D8.</description>
     <title>Cruise Control :: Throttle Correction vs Vehicle Speed (flat 0)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 16 pts 30..180 km/h
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF5E86.
 INPUTS (Hayabusa decompile): X = engine RPM. Read by FUN_0002f508.
 VALUES (32990-48L10-US): 0 to 0 raw - every cell the same.
 REFERENCE: descriptor @0x151424, data @0x1508E4, X @0x1508C4.</description>
@@ -3567,6 +3589,7 @@ REFERENCE: descriptor @0x151438, data @0x150924, X @0x150904.</description>
     <title>Unknown Curve 11 @0x1518B0</title>
     <description>AUTO-DISCOVERED from the ECU map descriptor; no Hayabusa map aligned here, role unknown - log before changing.
 X: 11 pts 0..10 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF0267E.
 VALUES (32990-48L10-US): 0 to 0 raw - every cell the same.
 REFERENCE: descriptor @0x15144C, data @0x1518B0, X @0x151910.</description>
     <CATEGORYMEM index="0" category="94" />
@@ -3724,6 +3747,7 @@ REFERENCE: descriptor @0x154F94, data @0x15546C, X @0x154F64, Y @0x154F78.</desc
     <title>Catalyst/HO2 Monitor :: Threshold vs fef026BE (flat 6000)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 22 pts 11..235 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF02674.
 VALUES (32990-48L10-US): 6000 to 6000 raw - every cell the same.
 REFERENCE: descriptor @0x154FDC, data @0x154FB0, X @0x155240.</description>
     <CATEGORYMEM index="0" category="59" />
@@ -3901,6 +3925,7 @@ REFERENCE: descriptor @0x15502C, data @0x154EAC, X @0x154E9C.</description>
     <title>Unknown Map 11x7 @0x155584</title>
     <description>AUTO-DISCOVERED from the ECU map descriptor; no Hayabusa map aligned here, role unknown - log before changing.
 X: 11 pts 0..3000 raw; Y: 7 pts 16..112 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF01E52.
 VALUES (32990-48L10-US): 29995 to 30100 raw.
 REFERENCE: descriptor @0x155040, data @0x155584, X @0x155270, Y @0x155288.</description>
     <CATEGORYMEM index="0" category="94" />
@@ -4075,6 +4100,7 @@ REFERENCE: descriptor @0x1550EC, data @0x1550D8, X @0x1552D0.</description>
     <title>Unknown Curve 5 @0x1552E8</title>
     <description>AUTO-DISCOVERED from the ECU map descriptor; no Hayabusa map aligned here, role unknown - log before changing.
 X: 5 pts 1300..2400 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF01E52.
 VALUES (32990-48L10-US): 94 to 217 raw.
 REFERENCE: descriptor @0x155100, data @0x1552E8, X @0x1552DC.</description>
     <CATEGORYMEM index="0" category="94" />
@@ -4101,6 +4127,7 @@ REFERENCE: descriptor @0x155100, data @0x1552E8, X @0x1552DC.</description>
     <title>Unknown Curve 5 @0x155300</title>
     <description>AUTO-DISCOVERED from the ECU map descriptor; no Hayabusa map aligned here, role unknown - log before changing.
 X: 5 pts 1300..2400 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF01E52.
 VALUES (32990-48L10-US): 157 to 361 raw.
 REFERENCE: descriptor @0x155114, data @0x155300, X @0x1552F4.</description>
     <CATEGORYMEM index="0" category="94" />
@@ -10651,6 +10678,7 @@ REFERENCE: descriptor @0x1577F8, data @0x1577DC, X @0x1589A0.</description>
     <title>Ignition Transient :: Input Factor (Correction-1)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 9 pts 4000..10400 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF00F2A.
 INPUTS (Hayabusa decompile): X = engine RPM. Read by FUN_0004c5ac.
 VALUES (32990-48L10-US): 24576 to 24576 raw - every cell the same.
 REFERENCE: descriptor @0x15780C, data @0x1589C4, X @0x1589B0.</description>
@@ -11419,6 +11447,7 @@ REFERENCE: descriptor @0x157D4C, data @0x1561AC, X @0x156194.</description>
     <title>Unknown Curve 10 @0x157D74</title>
     <description>AUTO-DISCOVERED from the ECU map descriptor; no Hayabusa map aligned here, role unknown - log before changing.
 X: 10 pts 0..6000 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF01E52.
 VALUES (32990-48L10-US): 0 to 0 raw - every cell the same.
 REFERENCE: descriptor @0x157D88, data @0x157D74, X @0x157D60.</description>
     <CATEGORYMEM index="0" category="94" />
@@ -11445,6 +11474,7 @@ REFERENCE: descriptor @0x157D88, data @0x157D74, X @0x157D60.</description>
     <title>Unknown Curve 10 @0x157DB0</title>
     <description>AUTO-DISCOVERED from the ECU map descriptor; no Hayabusa map aligned here, role unknown - log before changing.
 X: 10 pts 0..6000 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF01E52.
 VALUES (32990-48L10-US): 0 to 32768 raw.
 REFERENCE: descriptor @0x157DC4, data @0x157DB0, X @0x157D9C.</description>
     <CATEGORYMEM index="0" category="94" />
@@ -11523,6 +11553,7 @@ REFERENCE: descriptor @0x157DEC, data @0x158A68, X @0x158A50.</description>
     <title>Unknown Curve 10 @0x157E14</title>
     <description>AUTO-DISCOVERED from the ECU map descriptor; no Hayabusa map aligned here, role unknown - log before changing.
 X: 10 pts 0..7000 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF01E52.
 VALUES (32990-48L10-US): 320 to 3200 raw.
 REFERENCE: descriptor @0x157E28, data @0x157E14, X @0x157E00.</description>
     <CATEGORYMEM index="0" category="94" />
@@ -19497,6 +19528,7 @@ REFERENCE: descriptor @0x168CBC, data @0x16B564, X @0x16B550.</description>
     <title>Traction Control :: Launch Value vs fef01564  [UNCONFIRMED]</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own.
 X: 8 pts 0..3000 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6166.
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0004cf3c.
 VALUES (32990-48L10-US): 0 to 200 raw.
 REFERENCE: descriptor @0x168CD0, data @0x167548, X @0x167538.</description>
@@ -22037,6 +22069,7 @@ REFERENCE: descriptor @0x171268, data @0x1711E0, X @0x1711D0.</description>
     <title>Speed Monitor :: Threshold vs Rear Wheel Speed</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 11 pts 10..110 km/h
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF01E3E (engine RPM (axis 500..4000)).
 VALUES (32990-48L10-US): 77 to 219 raw.
 REFERENCE: descriptor @0x171410, data @0x171A00, X @0x1719E8.</description>
     <CATEGORYMEM index="0" category="58" />
@@ -22077,6 +22110,7 @@ REFERENCE: descriptor @0x171410, data @0x171A00, X @0x1719E8.</description>
     <title>Speed Monitor :: Upper Threshold vs Rear Wheel Speed</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 15 pts 20..160 km/h
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF01E3E (engine RPM (axis 500..4000)).
 INPUTS (Hayabusa decompile): X = engine RPM. Read by FUN_0005e564.
 VALUES (32990-48L10-US): 30848 to 31488 raw.
 REFERENCE: descriptor @0x171424, data @0x171A38, X @0x171A18.</description>
@@ -22118,6 +22152,7 @@ REFERENCE: descriptor @0x171424, data @0x171A38, X @0x171A18.</description>
     <title>Speed Monitor :: Hysteresis Threshold vs Rear Wheel Speed (flat)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 15 pts 20..160 km/h
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF01E3E (engine RPM (axis 500..4000)).
 INPUTS (Hayabusa decompile): X = engine RPM. Read by FUN_0005e564.
 VALUES (32990-48L10-US): 32128 to 32128 raw - every cell the same.
 REFERENCE: descriptor @0x171438, data @0x171A78, X @0x171A58.</description>
@@ -22289,6 +22324,7 @@ REFERENCE: descriptor @0x171474, data @0x1712DC, X @0x1712F4.</description>
     <title>EVAP Purge :: Ramp Factor (flat)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 10 pts 0..540 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF01FEA.
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0005d494.
 VALUES (32990-48L10-US): 128 to 128 raw - every cell the same.
 REFERENCE: descriptor @0x17149C, data @0x171AD4, X @0x171488.</description>
@@ -22512,6 +22548,7 @@ REFERENCE: descriptor @0x171598, data @0x171EB0, X @0x171568, Y @0x17157C.</desc
     <title>Unknown Curve 8 @0x171314</title>
     <description>AUTO-DISCOVERED from the ECU map descriptor; no Hayabusa map aligned here, role unknown - log before changing.
 X: 8 pts 461..819 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF025EC.
 VALUES (32990-48L10-US): 1000 to 1000 raw - every cell the same.
 REFERENCE: descriptor @0x1715B4, data @0x171314, X @0x171304.</description>
     <CATEGORYMEM index="0" category="94" />
@@ -23714,6 +23751,7 @@ REFERENCE: descriptor @0x172FB8, data @0x173514, X @0x17322C.</description>
     <title>Sensor :: ADC fef0257C Conversion -&amp;gt; fef026C0</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 30 pts 13..1000 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF025DC.
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0006d2c0.
 VALUES (32990-48L10-US): 0 to 255 raw.
 REFERENCE: descriptor @0x173008, data @0x173268, X @0x172FCC.</description>
@@ -24211,6 +24249,7 @@ REFERENCE: descriptor @0x173158, data @0x17313C, X @0x173120.</description>
     <title>IMU :: Axis Correction A vs fef0296A</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 37 pts 22769..42768 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF0287E.
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0007a5a8.
 VALUES (32990-48L10-US): 16384 to 49152 raw.
 REFERENCE: descriptor @0x17316C, data @0x1735A0, X @0x173554.</description>
@@ -24252,6 +24291,7 @@ REFERENCE: descriptor @0x17316C, data @0x1735A0, X @0x173554.</description>
     <title>IMU :: Axis Correction B vs fef0296C</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 37 pts 22769..42768 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF0287C.
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0007a43e.
 VALUES (32990-48L10-US): 32768 to 65535 raw.
 REFERENCE: descriptor @0x173180, data @0x173638, X @0x1735EC.</description>
@@ -24293,6 +24333,7 @@ REFERENCE: descriptor @0x173180, data @0x173638, X @0x1735EC.</description>
     <title>ETV :: IMU Pitch/Lean Gain vs fef0268C</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 37 pts 16384..49152 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF00544.
 INPUTS (Hayabusa decompile): n/a. Read by FUN_00029c5a.
 VALUES (32990-48L10-US): 22769 to 42768 raw.
 REFERENCE: descriptor @0x173194, data @0x1736D0, X @0x173684.</description>
@@ -24334,6 +24375,7 @@ REFERENCE: descriptor @0x173194, data @0x1736D0, X @0x173684.</description>
     <title>Anti-Lift :: Pitch-Rate Gain Curve (vs fef0094E)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 37 pts 32768..65535 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF00544.
 INPUTS (Hayabusa decompile): n/a. Read by FUN_00029c5a.
 VALUES (32990-48L10-US): 22769 to 42768 raw.
 REFERENCE: descriptor @0x1731A8, data @0x173768, X @0x17371C.</description>
@@ -24421,6 +24463,7 @@ REFERENCE: descriptor @0x1731BC, data @0x173848, X @0x1737B4, Y @0x173800.</desc
     <title>ETV :: IMU Gain vs fef02690 (Helper 2, flat)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 17 pts 0..14563 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF02646.
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0007a0d6.
 VALUES (32990-48L10-US): 32768 to 32768 raw - every cell the same.
 REFERENCE: descriptor @0x1731D8, data @0x1734D0, X @0x1734AC.</description>
@@ -24658,6 +24701,7 @@ REFERENCE: descriptor @0x1746E8, data @0x1751BC, X @0x1751B0.</description>
     <title>ETV :: Direction-Change Gain vs fef02A2E (Helper 6, flat)</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 5 pts 32781..33554 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF02D8A.
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0007af06.
 VALUES (32990-48L10-US): 32768 to 32768 raw - every cell the same.
 REFERENCE: descriptor @0x1746FC, data @0x1751D4, X @0x1751C8.</description>
@@ -26698,6 +26742,7 @@ REFERENCE: descriptor @0x174BB4, data @0x188C64, X @0x175990, Y @0x188C14.</desc
     <title>ETV Limit A | Spare (unreferenced)  [UNCONFIRMED]</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own.
 X: 23 pts 0..106.78 deg (abs. accel angle); Y: 39 pts 800..16000 RPM
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF02E44; Y = 0xFEF02E46.
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0007c50e.
 VALUES (32990-48L10-US): 0 to 119.38 throttle angle (deg).
 REFERENCE: descriptor @0x174BD0, data @0x1893B8, X @0x1759C0, Y @0x189368.</description>
@@ -27154,6 +27199,7 @@ REFERENCE: descriptor @0x174CCC, data @0x18D5AC, X @0x175B70, Y @0x18D55C.</desc
     <title>LF - Throttle Limit | Stage A Entry  [UNCONFIRMED]</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own.
 X: 14 pts 1000..14000 RPM; Y: 10 pts -2.84..52.00 deg
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF02E2C (engine RPM (fuel/ign control; axis 1000..8000 proven)); Y = 0xFEBF6169 (throttle / load (map Y-axis)).
 INPUTS (Hayabusa decompile): X = engine RPM. Read by FUN_0007c62a.
 VALUES (32990-48L10-US): 0.96 to 98.69 throttle angle (deg).
 REFERENCE: descriptor @0x174D18, data @0x18DCB0, X @0x174CE8, Y @0x174D04.</description>
@@ -27200,6 +27246,7 @@ REFERENCE: descriptor @0x174D18, data @0x18DCB0, X @0x174CE8, Y @0x174D04.</desc
     <title>LF - Throttle Limit | Stage A Hold  [UNCONFIRMED]</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own.
 X: 14 pts 1000..14000 RPM; Y: 10 pts -2.84..52.00 deg
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF02E2C (engine RPM (fuel/ign control; axis 1000..8000 proven)); Y = 0xFEBF6169 (throttle / load (map Y-axis)).
 INPUTS (Hayabusa decompile): X = engine RPM. Read by FUN_0007c62a.
 VALUES (32990-48L10-US): 0 to 0 throttle angle (deg) - every cell the same.
 REFERENCE: descriptor @0x174D64, data @0x18DDC8, X @0x174D34, Y @0x174D50.</description>
@@ -27522,6 +27569,7 @@ REFERENCE: descriptor @0x174F2C, data @0x18E458, X @0x174EFC, Y @0x174F18.</desc
     <title>LF - Throttle Limit | Special  [UNCONFIRMED]</title>
     <description>PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own.
 X: 14 pts 1000..14000 RPM; Y: 10 pts -2.84..52.00 deg
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEF02E2C (engine RPM (fuel/ign control; axis 1000..8000 proven)); Y = 0xFEBF6169 (throttle / load (map Y-axis)).
 INPUTS (Hayabusa decompile): X = engine RPM. Read by FUN_0007c62a.
 VALUES (32990-48L10-US): 0 to 0 throttle angle (deg) - every cell the same.
 REFERENCE: descriptor @0x174F78, data @0x18E570, X @0x174F48, Y @0x174F64.</description>
@@ -54581,8 +54629,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1007A6" flags="0x0">
-    <title>Scalar @0x172EA6 (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x064506). VALUE 32990-48L10-US: 33678.</description>
+    <title>Rev-limit soft threshold (traced: FUN_00064506 RPM cut; ~13,</title>
+    <description>TRACED FROM GSX-R CODE: Rev-limit soft threshold (traced: FUN_00064506 RPM cut; ~13,155 rpm @ raw/2.56). VALUE 32990-48L10-US: 33678 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x172EA6" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -54593,8 +54641,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1007A7" flags="0x0">
-    <title>Scalar @0x172EA8 (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x064506). VALUE 32990-48L10-US: 38229.</description>
+    <title>Rev-limit hard threshold (traced: FUN_00064506 RPM cut; ~14,</title>
+    <description>TRACED FROM GSX-R CODE: Rev-limit hard threshold (traced: FUN_00064506 RPM cut; ~14,933 rpm - matches GSX-R1000 fuel cut). VALUE 32990-48L10-US: 38229 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x172EA8" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -54605,8 +54653,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1007A8" flags="0x0">
-    <title>Scalar @0x172EAA (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x064506). VALUE 32990-48L10-US: 3840.</description>
+    <title>Rev-limit engine-running gate (traced: FUN_00064506 needs en</title>
+    <description>TRACED FROM GSX-R CODE: Rev-limit engine-running gate (traced: FUN_00064506 needs engine RPM 0xFEF02622 above this; ~1,500 rpm). VALUE 32990-48L10-US: 3840 (raw). Confirm the exact engage point on a bench before relying on it.</description>
     <CATEGORYMEM index="0" category="95" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x172EAA" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>

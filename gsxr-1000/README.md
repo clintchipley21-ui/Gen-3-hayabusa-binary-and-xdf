@@ -118,11 +118,25 @@ Ignition, Throttle/ETV, Speed/Wheel, Sensors, O2/Closed-Loop, Idle/Fan); the res
 Treat every one as a lead to confirm, not a known setting. `docs/scalar-index.csv` lists all of them
 with their subsystem and context.
 
-The exact *headline numeric limits* (rev/speed-limiter RPM, launch hard-cut) are deliberately **not**
-pinned to specific addresses: the Hayabusa's limiter block (gears parked at 25,000 rpm, 6th at the
-~299 km/h top-speed cut) has no structural twin in the GSX-R, and many GSX-R values land in the
-plausible RPM band (plus `0x8000` = a common default, not RPM), so a value-only guess would risk
-mislabelling a safety-critical setting. Pinning them correctly needs the next step below.
+### Traced from the GSX-R's own code (not ported)
+
+The headline items were then traced from the GSX-R binary itself (Ghidra V850E3) + the service
+manual/SDS/pinout — see **[`docs/tracing.md`](docs/tracing.md)** for the full evidence trail:
+
+- The two **interpolation routines** (`0x0a1fca` 1D, `0x0a201e` 2D) are decompiled and match the
+  descriptor struct exactly, confirming the whole map model.
+- **Engine RPM = `0xFEF02622`**, scale **`rpm = raw/2.56`**, proven from an RPM axis whose
+  breakpoints are exactly 1000–8000 rpm (and it's the most-referenced sensor variable). This also
+  independently *confirms* the RPM scaling the ported maps already use.
+- **Rev-limit cut `FUN_00064506`** reads engine RPM and gates on constants `0x172EA6` (~13,155 rpm),
+  `0x172EA8` (**~14,933 rpm hard cut** — matches the GSX-R1000) and `0x172EAA` (~1,500 rpm running
+  gate). These are named in the XDF and listed in `docs/scalar-index.csv`.
+- 48 maps carry a **“GSX-R TRACED INPUTS”** line naming the actual X/Y variable from the code
+  (`docs/map-inputs.csv`); `docs/traced.json` is the machine-readable result the generator consumes.
+
+The exact engage point of the rev cut runs through a derived RPM signal with hysteresis, so verify
+it on a bench before trusting the precise rpm — but the address and ballpark are code-confirmed, not
+a value guess.
 
 ## Regenerating
 

@@ -1,0 +1,171 @@
+{
+ "rpm_var": "0xFEF02622",
+ "rpm_scale": "rpm = raw / 2.56 (proven from axis breakpoints 1000..8000)",
+ "lookup_fns": [
+  "0x0a1fca (1D)",
+  "0x0a201e (2D bilinear)"
+ ],
+ "ram_meaning": {
+  "0xFEF02622": "engine RPM (primary; raw/2.56=rpm, axis 1000..8000 proven)",
+  "0xFEF02E2C": "engine RPM (fuel/ign control; axis 1000..8000 proven)",
+  "0xFEF01E3E": "engine RPM (axis 500..4000)",
+  "0xFEF0262C": "engine RPM (axis ~800..3200)",
+  "0xFEBF6169": "throttle / load (map Y-axis)",
+  "0xFEF0267D": "index 0..7 (gear/mode/cyl)"
+ },
+ "map_inputs": {
+  "0x151264": {
+   "x": "0xFEF0262C"
+  },
+  "0x15122C": {
+   "x": "0xFEF0262C"
+  },
+  "0x151248": {
+   "x": "0xFEF0262C"
+  },
+  "0x15118C": {
+   "y": "0xFEF0267D"
+  },
+  "0x1511A8": {
+   "x": "0xFEF006BC"
+  },
+  "0x1513B0": {
+   "x": "0xFEF0267D"
+  },
+  "0x173194": {
+   "x": "0xFEF00544"
+  },
+  "0x150BE0": {
+   "x": "0xFEF0267E"
+  },
+  "0x150BF4": {
+   "x": "0xFEF0267E"
+  },
+  "0x150C08": {
+   "x": "0xFEF0267E"
+  },
+  "0x1731A8": {
+   "x": "0xFEF00544"
+  },
+  "0x150D20": {
+   "x": "0xFEF0055A"
+  },
+  "0x15144C": {
+   "x": "0xFEF0267E"
+  },
+  "0x150F94": {
+   "y": "0xFEBF6169"
+  },
+  "0x1512FC": {
+   "x": "0xFEF0060A"
+  },
+  "0x150DAC": {
+   "x": "0xFEF00656"
+  },
+  "0x150DC0": {
+   "x": "0xFEF00656"
+  },
+  "0x150E5C": {
+   "x": "0xFEF005E0"
+  },
+  "0x151410": {
+   "x": "0xFEBF5E86"
+  },
+  "0x151424": {
+   "x": "0xFEBF5E86"
+  },
+  "0x150D48": {
+   "x": "0xFEF02622"
+  },
+  "0x150D5C": {
+   "x": "0xFEF02622"
+  },
+  "0x150D70": {
+   "x": "0xFEF02622"
+  },
+  "0x150D84": {
+   "x": "0xFEF02622"
+  },
+  "0x150D98": {
+   "x": "0xFEF02622"
+  },
+  "0x154FDC": {
+   "x": "0xFEF02674"
+  },
+  "0x155040": {
+   "x": "0xFEF01E52"
+  },
+  "0x155100": {
+   "x": "0xFEF01E52"
+  },
+  "0x155114": {
+   "x": "0xFEF01E52"
+  },
+  "0x157D88": {
+   "x": "0xFEF01E52"
+  },
+  "0x157DC4": {
+   "x": "0xFEF01E52"
+  },
+  "0x157E28": {
+   "x": "0xFEF01E52"
+  },
+  "0x15780C": {
+   "x": "0xFEF00F2A"
+  },
+  "0x168CD0": {
+   "x": "0xFEBF6166"
+  },
+  "0x17149C": {
+   "x": "0xFEF01FEA"
+  },
+  "0x171424": {
+   "x": "0xFEF01E3E"
+  },
+  "0x171438": {
+   "x": "0xFEF01E3E"
+  },
+  "0x171410": {
+   "x": "0xFEF01E3E"
+  },
+  "0x1715B4": {
+   "x": "0xFEF025EC"
+  },
+  "0x173008": {
+   "x": "0xFEF025DC"
+  },
+  "0x1731D8": {
+   "x": "0xFEF02646"
+  },
+  "0x17316C": {
+   "x": "0xFEF0287E"
+  },
+  "0x173180": {
+   "x": "0xFEF0287C"
+  },
+  "0x1746FC": {
+   "x": "0xFEF02D8A"
+  },
+  "0x174BD0": {
+   "x": "0xFEF02E44",
+   "y": "0xFEF02E46"
+  },
+  "0x174D18": {
+   "x": "0xFEF02E2C",
+   "y": "0xFEBF6169"
+  },
+  "0x174D64": {
+   "x": "0xFEF02E2C",
+   "y": "0xFEBF6169"
+  },
+  "0x174F78": {
+   "x": "0xFEF02E2C",
+   "y": "0xFEBF6169"
+  }
+ },
+ "constants": {
+  "0x172EA6": "Rev-limit soft threshold (traced: FUN_00064506 RPM cut; ~13,155 rpm @ raw/2.56)",
+  "0x172EA8": "Rev-limit hard threshold (traced: FUN_00064506 RPM cut; ~14,933 rpm - matches GSX-R1000 fuel cut)",
+  "0x172EAA": "Rev-limit engine-running gate (traced: FUN_00064506 needs engine RPM 0xFEF02622 above this; ~1,500 rpm)"
+ }
+}
