@@ -349,9 +349,77 @@ def category_block():
     cats = re.findall(r'    <CATEGORY index="0x[0-9A-Fa-f]+" name="[^"]*" />\n', txt)
     maxidx = max(int(re.search(r'index="(0x[0-9A-Fa-f]+)"', c).group(1), 16) for c in cats)
     unmatched = maxidx + 1
+    scalarcat = maxidx + 2
     cats.append('    <CATEGORY index="0x%X" name="ZZ Unmatched / Auto-discovered (verify)" />\n'
                 % unmatched)
-    return ''.join(cats), unmatched
+    cats.append('    <CATEGORY index="0x%X" name="ZZ Decompiler-discovered scalars (unverified)" />\n'
+                % scalarcat)
+    return ''.join(cats), unmatched, scalarcat
+
+
+# ---------------------------------------------------------------- scalar constants
+SCALARS_JSON = os.path.join(ROOT, 'gsxr-1000/docs/scalars.json')
+
+
+def load_scalars():
+    import json
+    if not os.path.exists(SCALARS_JSON):
+        return []
+    try:
+        return json.load(open(SCALARS_JSON))
+    except Exception:
+        return []
+
+
+SCALAR_CONST = '''  <XDFCONSTANT uniqueid="0x%(uid)X" flags="0x0">
+    <title>%(title)s</title>
+    <description>%(desc)s</description>
+    <CATEGORYMEM index="0" category="%(cat)d" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x%(addr)X" mmedelementsizebits="%(bits)d" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>raw</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X"><VAR id="X" /></MATH>
+  </XDFCONSTANT>
+'''
+SCALAR_FLAG = '''  <XDFFLAG uniqueid="0x%(uid)X">
+    <title>%(title)s</title>
+    <description>%(desc)s</description>
+    <CATEGORYMEM index="0" category="%(cat)d" />
+    <EMBEDDEDDATA mmedaddress="0x%(addr)X" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+'''
+
+
+def scalar_blocks(b, scalars, cat, sw):
+    """Emit XDFCONSTANT/XDFFLAG for each decompiler-discovered scalar, valued from this read."""
+    out = []
+    uid = 0x100000
+    for s in scalars:
+        addr = s['addr']
+        bits = s['width'] * 8
+        val = int.from_bytes(b[addr:addr + s['width']], 'little')
+        ctx = (s.get('context') or [])[:2]
+        ctx_line = (' Near maps: %s.' % '; '.join(ctx)) if ctx else ''
+        func = (' fn %s' % s['func']) if s.get('func') else ''
+        is_flag = s.get('is_flag') and (b[addr] & 0x7f) == 0  # a clean 0x80/0x00 toggle in THIS read
+        if is_flag:
+            desc = ('Decompiler-found flag (UNVERIFIED): 0x80 toggle read by ECU code '
+                    '(%d ref/%d fn%s). %s: 0x%02X.%s'
+                    % (s['refs'], s['nfuncs'], func, sw, b[addr], ctx_line))
+            out.append(SCALAR_FLAG % dict(uid=uid, title=escape('Flag @0x%X (bit7)' % addr),
+                                          desc=escape(desc), cat=cat, addr=addr))
+        else:
+            desc = ('Decompiler-found scalar (UNVERIFIED): u%d read by ECU code (%d ref/%d fn%s). '
+                    'VALUE %s: %d.%s'
+                    % (bits, s['refs'], s['nfuncs'], func, sw, val, ctx_line))
+            out.append(SCALAR_CONST % dict(uid=uid, title=escape('Scalar @0x%X (u%d)' % (addr, bits)),
+                                           desc=escape(desc), cat=cat, addr=addr, bits=bits))
+        uid += 1
+    return out, uid - 0x100000
 
 
 # ---------------------------------------------------------------- generate
@@ -376,7 +444,7 @@ def generate(binpath, outpath, sw, part):
         for k in range(size):
             g2h[bi + k] = ai + k
 
-    cats_xml, UNMATCHED = category_block()
+    cats_xml, UNMATCHED, SCALARCAT = category_block()
 
     stats = dict(HIGH=0, MED=0, GENERIC=0)
     blocks = []
@@ -403,17 +471,18 @@ def generate(binpath, outpath, sw, part):
             uid += 1
             stats['GENERIC'] += 1
 
+    # decompiler-discovered scalar constants / flags (code cross-reference analysis)
+    scalars = load_scalars()
+    sblocks, nscalar = scalar_blocks(b, scalars, SCALARCAT, sw)
+    blocks.extend(sblocks)
+
     deftitle = 'Suzuki GSX-R1000 M7 %s (%s) - ported from Hayabusa Gen3 (auto)' % (sw, part)
-    desc = ('Suzuki GSX-R1000 (M7, Renesas RH850), full 2 MB read, software %s (ECM %s). '
-            'Map/curve definitions AUTO-PORTED from the Gen-3 Hayabusa master by aligning this '
-            'bin\'s own ECU map descriptors (%d found) to the Hayabusa\'s. %d maps carried over '
-            'from the Hayabusa (%d HIGH = breakpoints identical, %d MED = verify), %d auto-'
-            'discovered with unknown role. Units/scaling are the Hayabusa\'s and UNVERIFIED on '
-            'this ECU. Scalar constants/flags are NOT included (no descriptor). Field-1 CRC-16 '
-            '(0x10000-0x1FFAFB, big-endian at 0x1FFAFE) must be re-stamped with '
-            'tools/fix_field1_crc.py after editing. UNVERIFIED ON HARDWARE - bench first.'
-            % (sw, part, len(gd), stats['HIGH'] + stats['MED'], stats['HIGH'], stats['MED'],
-               stats['GENERIC']))
+    desc = ('Suzuki GSX-R1000 M7 (RH850), 2 MB read, sw %s (ECM %s). %d maps auto-ported from '
+            'Hayabusa Gen3 via on-bin descriptors (%d HIGH, %d MED=verify, %d unknown) + %d '
+            'scalars/flags found by Ghidra V850 decompile (generic titles + context hints, '
+            'UNVERIFIED). Scaling is the Hayabusa\'s, unverified here. Re-stamp field-1 CRC '
+            '(0x10000-0x1FFAFB @0x1FFAFE) with tools/fix_field1_crc.py. UNVERIFIED ON HARDWARE.'
+            % (sw, part, len(gd), stats['HIGH'], stats['MED'], stats['GENERIC'], nscalar))
 
     header = '''<!-- Written by make_gsxr_xdf.py - GSX-R1000 M7, ported from Hayabusa Gen3 -->
 <XDFFORMAT version="1.70">
@@ -432,7 +501,7 @@ def generate(binpath, outpath, sw, part):
         f.write(header)
         f.write(''.join(blocks))
         f.write('</XDFFORMAT>\n')
-    return stats, len(gd)
+    return stats, len(gd), nscalar
 
 
 if __name__ == '__main__':
@@ -440,6 +509,7 @@ if __name__ == '__main__':
         print(__doc__)
         sys.exit(1)
     _, binpath, outpath, sw, part = sys.argv
-    st, n = generate(binpath, outpath, sw, part)
-    print('%s: %d descriptors -> %s' % (os.path.basename(binpath), n, os.path.basename(outpath)))
+    st, n, nsc = generate(binpath, outpath, sw, part)
+    print('%s: %d descriptors + %d scalars -> %s'
+          % (os.path.basename(binpath), n, nsc, os.path.basename(outpath)))
     print('   HIGH=%(HIGH)d  MED=%(MED)d  GENERIC=%(GENERIC)d' % st)

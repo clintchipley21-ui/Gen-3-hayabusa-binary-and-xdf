@@ -1,8 +1,9 @@
 # Suzuki GSX-R1000 (M7) — binaries and XDF
 
 Suzuki GSX-R1000 / GSX-R1000R, "M7" generation ECM (Renesas RH850, same family as the Gen 3
-Hayabusa in the parent repo). Four stock 2 MB reads and a TunerPro XDF for each, built by porting
-the Hayabusa map definitions onto the GSX-R's own on-bin map descriptors.
+Hayabusa in the parent repo). Four stock 2 MB reads and a TunerPro XDF for each. The maps/curves are
+ported from the Hayabusa definitions via the GSX-R's own on-bin map descriptors; the scalar
+constants/flags were recovered by decompiling the GSX-R code in Ghidra. Each XDF has 4,078 items.
 
 > **Everything here is unverified on hardware, and the map *labels* are ported from a different
 > model (the Hayabusa) — they are informed guesses, not confirmed on this ECU.** Bench an ECM
@@ -18,13 +19,18 @@ M7/
   32990-48L30.bin / .xdf      read      (~4,100 calibration bytes different from 48L00)
   <service manuals / SDS / pinout PDFs live in Dropbox, not committed here — see "Reference material">
 tools/
-  make_gsxr_xdf.py            regenerates an XDF from a read (descriptor-driven; see below)
+  make_gsxr_xdf.py            regenerates an XDF from a read (descriptor + scalar driven; see below)
+  extract_scalars.py          rebuilds docs/scalars.json from the Ghidra cal-xref dumps
+  DumpCalXrefs.py             Ghidra headless postscript: dump code->calibration references
 docs/
   map-index.csv               every map in the XDF: confidence, title, dims, address, axes, values
+  scalar-index.csv            every decompiler-discovered scalar: address, width, value, refs, context
+  scalars.json                the scalar list the generator injects (addresses are variant-independent)
 ```
 
 Build ID embedded in the reads: `8J16ST01` (`ECM-010L0`). All four reads are full 2 MB and have a
-valid field-1 CRC.
+valid field-1 CRC. Each XDF is ~3.3 MB with **4,078 items** (791 maps/curves + 3,287 scalars/flags);
+if TunerPro is slow to open it, regenerate without scalars by renaming `docs/scalars.json`.
 
 ## How to use it in TunerPro
 
@@ -84,15 +90,28 @@ The descriptor set and all four XDFs were checked exhaustively:
 - **HIGH spot-checks** — decoded maps read physically (RPM × gear-bit quickshifter durations,
   ignition-retard-vs-TP-angle, accel-enrichment vs IAT in °C, etc.).
 
-### What is NOT in this XDF
+## Scalar constants and flags (from decompiling the GSX-R)
 
-The Hayabusa XDFs also define ~2,900 scalar **constants and flags** (limiter RPMs, enable
-switches, gates, …). Those have no map descriptor — they were found by per-address code analysis
-that does not carry over to a different model — so they are **not** included here. Finding them on
-the GSX-R needs a fresh decompilation of *its* code (Ghidra with an RH850 processor module, like
-the parent repo's `re/` pipeline). That toolchain is not set up in the environment this XDF was
-built in, so it is the main open item — see "Next steps". The maps and curves in this XDF are the
-main fuelling / ignition / quickshifter / limiter tables.
+Beyond the descriptor-backed maps, the XDF now contains **3,287 scalar constants/flags** — the
+individual calibration values (limiter thresholds, gates, enable bytes, gains) that have no map
+descriptor. These were found by **decompiling the GSX-R's own code** and taking cross-references:
+
+- Each read was analysed in **Ghidra headless** with processor `V850:LE:32:default` (the RH850 G3
+  core is the V850E3; base V850 decodes the standard address-forming code, leaving only a handful of
+  RH850-only instructions undecoded), base address `0x0`, via `tools/DumpCalXrefs.py`.
+- A "scalar" is a calibration address (`0x150000–0x1B0000`) that code **loads or stores** but which
+  is **not** inside any map descriptor's data/axes span. `tools/extract_scalars.py` derives them and
+  records width (from the load mnemonic: `ld.bu`→u8, `ld.hu`→u16, `ld.w`→u32), value, reference
+  count, the reading function, and a **context hint** — the named (Hayabusa-ported) maps the same
+  function also reads.
+- **Validation:** run on the Hayabusa reference read, this method recovers **96%** of the master
+  XDF's known constants/flags as scalars (≈99% of those inside the calibration region), so the
+  GSX-R scalar set is near-complete.
+
+In TunerPro they appear under **"ZZ Decompiler-discovered scalars (unverified)"**, titled generically
+(`Scalar @0xADDR (u16)`, `Flag @0xADDR (bit7)`) because no Hayabusa label aligns to a bare scalar
+reliably; the description carries the value, usage and context hint. Treat every one as a lead to
+confirm, not a known setting. `docs/scalar-index.csv` lists them all (351 carry a context hint).
 
 ## Regenerating
 
@@ -120,11 +139,13 @@ maps.
 
 ## Next steps to raise confidence
 
-1. **Decompile the GSX-R code (main open item).** Run Ghidra + an RH850 processor module on each
-   read to (a) recover the ~2,900 scalar **constants and flags** that have no descriptor — the
-   rev/speed limiters, launch RPMs, quickshifter/traction enables — and (b) confirm, on GSX-R code,
-   the role of the 234 MED and 137 GENERIC maps and the ported X/Y inputs. This replicates the
-   parent repo's `re/` pipeline (`all_functions.c`, `cal_xrefs.tsv`, `map_links.csv`) for the GSX-R.
+1. **Label the scalars.** They are discovered and valued but titled generically. The highest-value
+   next step is matching the headline ones (rev/speed limiters, launch RPMs, quickshifter/traction
+   enables) to their role — start from the 351 with a context hint and from the reading function's
+   decompiled C, or align per-function scalar lists to the Hayabusa master more aggressively.
 2. Review `docs/map-index.csv`; sanity-check the 234 MED titles against the maps' axes and values.
 3. Confirm sensor scalings (RPM, TPS/ETV angle, pressure, temperature) against the GSX-R service
    data — if any differ from the Hayabusa, update the ported equations.
+4. Deepen the decompile: an RH850-accurate Ghidra processor variant (the `v850e3v5` the parent
+   project used) would decode the handful of instructions base V850 misses and push scalar/xref
+   coverage above the current 96%.
