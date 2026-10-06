@@ -131,8 +131,8 @@ manual/SDS/pinout — see **[`docs/tracing.md`](docs/tracing.md)** for the full 
 - **Rev-limit cut `FUN_00064506`** reads engine RPM and gates on constants `0x172EA6` (~13,155 rpm),
   `0x172EA8` (**~14,933 rpm hard cut** — matches the GSX-R1000) and `0x172EAA` (~1,500 rpm running
   gate). These are named in the XDF and listed in `docs/scalar-index.csv`.
-- 62 maps carry a **“GSX-R TRACED INPUTS”** line naming the actual X/Y variable from the code
-  (`docs/map-inputs.csv`); a 32-entry **variable dictionary** (`docs/variables.csv`) classifies each
+- **374 of the 791 maps** carry a **“GSX-R TRACED INPUTS”** line naming the actual X/Y variable from the code
+  (`docs/map-inputs.csv`); a 74-entry **variable dictionary** (`docs/variables.csv`) classifies each
   traced RAM input (RPM / throttle-load / gear index / signed chassis sensor); `docs/traced.json` is
   the machine-readable result the generator consumes.
 

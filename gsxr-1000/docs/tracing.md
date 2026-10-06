@@ -63,21 +63,23 @@ These three are labelled in the XDF (folder "ZZ Decompiler-discovered scalars"),
 the RPM-reading quickshifter/launch cut `FUN_0002c8fe` (QS maps `0x1512e8`/`0x1512d4`).
 
 ## 3b. Variable dictionary (axis inputs traced from the code)
-Resolving the two lookup routines' call arguments (`DumpLookups.py`, deeper chasing) linked **62
-maps** to the RAM variable feeding each axis. Classifying those variables by their axis breakpoints
-(rpm = raw/2.56) gives the dictionary in **`variables.csv`** — 32 variables so far. Highlights:
+Resolving the two lookup routines' call arguments — and, once `gp = 0xFEBFC000` was known (see 3c),
+setting it as context so gp-relative sdata accesses resolve too — linked **374 of the 791 maps** to
+the RAM variable feeding each axis. Classifying those variables by their axis breakpoints
+(rpm = raw/2.56) gives the dictionary in **`variables.csv`** — 74 variables. Highlights:
 
 | RAM | Role (from axis shape) | Evidence |
 |---|---|---|
-| `0xFEF02622` | **engine RPM (primary)** | most-referenced sensor var (48 fns); RPM-stepped axes |
-| `0xFEF02E2C` | engine RPM (fuel/ign control) | axis 1000,2000,…,14000 rpm |
-| `0xFEBF615E` | engine RPM | axis 1000…9000 rpm (7 maps) |
-| `0xFEF01E3E`, `0xFEBF5E86`, `0xFEF005E0`, `0xFEF00F2A`, `0xFEF0262C` | engine RPM (sub-range) | clean rpm axes (one shows 4000,4800,… — the manual's 4800-rpm 2nd-injector point) |
-| `0xFEBF6169` | throttle / load (fuel-map Y) | raw 36…192, the RPM×load Y-axis |
+| `0xFEBF637E` | **engine RPM (main map axis)** | the X axis of **95 maps**; breakpoints 1000…12000 rpm |
+| `0xFEBF6436` | **main load axis (airflow/TP)** | the axis of **85 maps** |
+| `0xFEF02622` | engine RPM (primary sensor) | most-referenced sensor var (48 fns); RPM-stepped axes |
+| `0xFEF02E2C`, `0xFEBF615E` | engine RPM (control / sub-range) | axes 1000…14000 / 1000…9000 rpm |
+| `0xFEBF63C8`, `0xFEBF60F4`, `0xFEBF63FA`, `0xFEF02D8A` | engine RPM (high range) | 12800–14000 rpm (limiter region) |
+| `0xFEBF6169`, `0xFEBF62CC`, `0xFEBF60C0`, `0xFEF00DB2` | throttle / load | raw 0…255, RPM×load Y-axes |
 | `0xFEF0267D` | gear / mode index | axis 0…10 |
-| several `0xFEF028xx`, `0xFEBF5E7A` | signed sensor (lean/pitch/rate, centred 0x8000) | — |
+| `0xFEBF5E7A`, `0xFEF028xx`, `0xFEBF637C` | signed sensor (lean/pitch/rate, centred 0x8000) | — |
 
-Each of the 62 maps carries a **“GSX-R TRACED INPUTS”** line in the XDF; the full list is
+Each of the 374 maps carries a **“GSX-R TRACED INPUTS”** line in the XDF; the full list is
 `map-inputs.csv`, the machine-readable form is `traced.json`.
 
 ## 4. How this feeds the XDF

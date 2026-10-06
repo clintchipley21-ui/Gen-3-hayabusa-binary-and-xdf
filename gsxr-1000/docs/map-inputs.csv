@@ -1,8 +1,33 @@
 descriptor,dims,x_ram,x_meaning,y_ram,y_meaning
+0x150944,7x0,0xFEBF6442,throttle / load (raw 1..64),,
+0x150958,7x0,0xFEBF6442,throttle / load (raw 1..64),,
+0x15096C,7x0,0xFEBF6442,throttle / load (raw 1..64),,
+0x150980,7x0,0xFEBF6442,throttle / load (raw 1..64),,
+0x150994,7x0,0xFEBF6442,throttle / load (raw 1..64),,
+0x1509A8,7x0,0xFEBF6442,throttle / load (raw 1..64),,
+0x1509BC,7x0,0xFEBF6442,throttle / load (raw 1..64),,
+0x1509D0,7x0,0xFEBF6442,throttle / load (raw 1..64),,
+0x1509E4,7x0,0xFEBF6442,throttle / load (raw 1..64),,
+0x1509F8,7x0,0xFEBF6442,throttle / load (raw 1..64),,
+0x150A0C,7x0,0xFEBF6442,throttle / load (raw 1..64),,
+0x150A58,14x0,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),,
+0x150A6C,7x0,0xFEBF6442,throttle / load (raw 1..64),,
+0x150A80,7x0,0xFEBF6442,throttle / load (raw 1..64),,
+0x150A94,7x0,0xFEBF6442,throttle / load (raw 1..64),,
+0x150AE0,14x0,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),,
+0x150AF4,7x0,0xFEBF6442,throttle / load (raw 1..64),,
+0x150B24,14x0,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),,
+0x150B54,14x0,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),,
+0x150B68,13x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x150B7C,36x0,0xFEBF63F0,monotonic axis (unit TBD) (raw 0..44800),,
+0x150B90,7x0,0xFEBF6442,throttle / load (raw 1..64),,
+0x150BB8,7x0,0xFEBF6442,throttle / load (raw 1..64),,
+0x150BCC,36x0,0xFEBF63F0,monotonic axis (unit TBD) (raw 0..44800),,
 0x150BE0,11x0,0xFEF0267E,non-monotonic (bitmask/enum?),,
 0x150BF4,11x0,0xFEF0267E,non-monotonic (bitmask/enum?),,
 0x150C08,11x0,0xFEF0267E,non-monotonic (bitmask/enum?),,
 0x150D20,30x0,0xFEF0055A,engine RPM (high range) (8894-15144 rpm),,
+0x150D34,36x0,0xFEBF63F0,monotonic axis (unit TBD) (raw 0..44800),,
 0x150D48,36x0,0xFEF02622,"engine RPM (primary; raw/2.56=rpm, axis 1000..8000 proven)",,
 0x150D5C,36x0,0xFEF02622,"engine RPM (primary; raw/2.56=rpm, axis 1000..8000 proven)",,
 0x150D70,36x0,0xFEF02622,"engine RPM (primary; raw/2.56=rpm, axis 1000..8000 proven)",,
@@ -10,54 +35,341 @@ descriptor,dims,x_ram,x_meaning,y_ram,y_meaning
 0x150D98,36x0,0xFEF02622,"engine RPM (primary; raw/2.56=rpm, axis 1000..8000 proven)",,
 0x150DAC,7x0,0xFEF00656,non-monotonic (bitmask/enum?),,
 0x150DC0,7x0,0xFEF00656,non-monotonic (bitmask/enum?),,
+0x150DD4,7x0,0xFEBF6442,throttle / load (raw 1..64),,
+0x150DE8,7x0,0xFEBF6442,throttle / load (raw 1..64),,
+0x150DFC,7x0,0xFEBF6442,throttle / load (raw 1..64),,
+0x150E10,7x0,0xFEBF6442,throttle / load (raw 1..64),,
 0x150E5C,14x0,0xFEF005E0,engine RPM (1500-12000 rpm),,
-0x150F94,14x10,,,0xFEBF6169,throttle / load (map Y-axis)
+0x150E70,9x0,0xFEBF6430,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x150ED8,14x7,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),0xFEBF6442,throttle / load (raw 1..64)
+0x150F48,14x7,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),0xFEBF6442,throttle / load (raw 1..64)
+0x150F94,14x10,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),0xFEBF6169,throttle / load (map Y-axis)
+0x150FCC,14x7,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),0xFEBF6442,throttle / load (raw 1..64)
+0x151004,14x7,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),0xFEBF6442,throttle / load (raw 1..64)
+0x15103C,14x8,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),0xFEBF63C0,monotonic axis (unit TBD) (raw 0..42992)
+0x151074,14x8,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),0xFEBF63C0,monotonic axis (unit TBD) (raw 0..42992)
+0x1510AC,14x8,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),0xFEBF63C0,monotonic axis (unit TBD) (raw 0..42992)
+0x1510E4,14x8,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),0xFEBF63C0,monotonic axis (unit TBD) (raw 0..42992)
+0x15111C,14x8,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),0xFEBF63C0,monotonic axis (unit TBD) (raw 0..42992)
+0x151154,14x8,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),0xFEBF63C0,monotonic axis (unit TBD) (raw 0..42992)
+0x151170,23x39,0xFEBF63C0,monotonic axis (unit TBD) (raw 0..42992),0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920)
 0x15118C,13x11,,,0xFEF0267D,index 0..7 (gear/mode/cyl)
-0x1511A8,23x39,0xFEF006BC,"signed sensor (lean/pitch/rate, centered 0x8000)",,
-0x15122C,39x7,0xFEF0262C,engine RPM (axis ~800..3200),,
-0x151248,39x7,0xFEF0262C,engine RPM (axis ~800..3200),,
-0x151264,39x7,0xFEF0262C,engine RPM (axis ~800..3200),,
-0x1512B8,39x7,0xFEF0262C,engine RPM (axis ~800..3200),,
+0x1511A8,23x39,0xFEF006BC,"signed sensor (lean/pitch/rate, centered 0x8000)",0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920)
+0x1511C4,16x0,0xFEBF63F8,monotonic axis (unit TBD) (raw 2560..40960),,
+0x1511D8,5x5,,,0xFEBF5E68,throttle / load (raw 3..20)
+0x1511F4,23x39,0xFEBF63E4,monotonic axis (unit TBD) (raw 0..42048),0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920)
+0x151210,39x4,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),0xFEBF645A,index (gear/cyl/mode) 0..3
+0x15122C,39x7,0xFEF0262C,engine RPM (axis ~800..3200),0xFEBF6442,throttle / load (raw 1..64)
+0x151248,39x7,0xFEF0262C,engine RPM (axis ~800..3200),0xFEBF6442,throttle / load (raw 1..64)
+0x151264,39x7,0xFEF0262C,engine RPM (axis ~800..3200),0xFEBF6442,throttle / load (raw 1..64)
+0x1512B8,39x7,0xFEF0262C,engine RPM (axis ~800..3200),0xFEBF6442,throttle / load (raw 1..64)
+0x1512D4,37x0,0xFEBF63F0,monotonic axis (unit TBD) (raw 0..44800),,
+0x1512E8,37x0,0xFEBF63F0,monotonic axis (unit TBD) (raw 0..44800),,
 0x1512FC,36x0,0xFEF0060A,monotonic axis (unit TBD) (raw 0..44800),,
+0x151338,10x0,0xFEBF63F4,engine RPM (500-8000 rpm),,
 0x1513B0,11x0,0xFEF0267D,index 0..7 (gear/mode/cyl),,
+0x1513C4,37x0,0xFEBF642E,"signed sensor (lean/pitch/rate, centered 0x8000)",,
 0x151410,14x0,0xFEBF5E86,engine RPM (1500-12000 rpm),,
 0x151424,16x0,0xFEBF5E86,engine RPM (1500-12000 rpm),,
 0x15144C,11x0,0xFEF0267E,non-monotonic (bitmask/enum?),,
+0x154F24,6x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x154F50,6x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x154F94,10x14,0xFEBF6394,"signed sensor (lean/pitch/rate, centered 0x8000)",0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920)
 0x154FDC,22x0,0xFEF02674,non-monotonic (bitmask/enum?),,
-0x155040,11x7,0xFEF01E52,monotonic axis (unit TBD) (raw 0..3000),,
+0x154FF0,8x0,0xFEBF6394,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x155004,10x0,0xFEBF6443,non-monotonic (bitmask/enum?),,
+0x155018,8x0,0xFEBF6394,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x15502C,8x0,0xFEBF6394,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x155040,11x7,0xFEF01E52,monotonic axis (unit TBD) (raw 0..3000),0xFEBF6443,non-monotonic (bitmask/enum?)
+0x15505C,5x21,0xFEBF6394,"signed sensor (lean/pitch/rate, centered 0x8000)",0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920)
+0x1550EC,10x0,0xFEBF6443,non-monotonic (bitmask/enum?),,
 0x155100,5x0,0xFEF01E52,monotonic axis (unit TBD) (raw 0..3000),,
 0x155114,5x0,0xFEF01E52,monotonic axis (unit TBD) (raw 0..3000),,
+0x155218,7x0,0xFEBF62BC,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x15522C,7x0,0xFEBF62BC,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x15628C,10x0,0xFEBF6388,monotonic axis (unit TBD) (raw 614..3174),,
+0x1562A0,16x0,0xFEBF6388,monotonic axis (unit TBD) (raw 614..3174),,
+0x1562B4,16x0,0xFEBF6388,monotonic axis (unit TBD) (raw 614..3174),,
+0x1562C8,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x1562DC,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x1562F0,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x156304,8x0,0xFEBF63C8,engine RPM (high range) (12800-14000 rpm),,
+0x156318,9x0,0xFEBF63C0,monotonic axis (unit TBD) (raw 0..42992),,
+0x15632C,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x156340,21x0,0xFEBF6394,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x156354,13x0,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),,
+0x156368,25x0,0xFEBF6443,non-monotonic (bitmask/enum?),,
+0x15637C,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x156390,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x1563A4,11x0,0xFEBF6388,monotonic axis (unit TBD) (raw 614..3174),,
+0x1563D8,8x0,0xFEBF6394,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x1563EC,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x15643C,21x0,0xFEBF6443,non-monotonic (bitmask/enum?),,
+0x15647C,22x0,0xFEBF60C0,throttle / load (raw 11..149),,
+0x1564BC,22x0,0xFEBF60C0,throttle / load (raw 11..149),,
+0x1564FC,22x0,0xFEBF60C0,throttle / load (raw 11..149),,
+0x156510,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x156524,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x156538,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x15654C,7x0,0xFEBF6442,throttle / load (raw 1..64),,
+0x156574,14x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x1565EC,10x0,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),,
+0x156600,39x0,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),,
+0x156614,39x0,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),,
+0x156654,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x156708,7x0,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),,
+0x156730,7x0,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),,
+0x15695C,17x14,0xFEBF63C4,monotonic axis (unit TBD) (raw 734..36520),0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920)
+0x1569D8,7x7,0xFEBF6443,non-monotonic (bitmask/enum?),0xFEBF60BF,non-monotonic (bitmask/enum?)
+0x156A98,6x17,0xFEBF63C4,monotonic axis (unit TBD) (raw 734..36520),,
+0x156B2C,13x19,0xFEBF63C4,monotonic axis (unit TBD) (raw 734..36520),0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920)
+0x156E88,7x7,0xFEBF65E6,throttle / load (raw 5..100),0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920)
+0x156EA4,7x7,0xFEBF65E8,throttle / load (raw 5..100),0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920)
+0x156EC0,7x7,0xFEBF65EA,throttle / load (raw 5..100),0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920)
+0x156EDC,7x7,0xFEBF65EC,throttle / load (raw 5..100),0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920)
+0x156EF8,7x7,0xFEBF65E6,throttle / load (raw 5..100),0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920)
+0x156F14,7x7,0xFEBF65E8,throttle / load (raw 5..100),0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920)
+0x156F30,7x7,0xFEBF65EA,throttle / load (raw 5..100),0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920)
+0x156F4C,7x7,0xFEBF65EC,throttle / load (raw 5..100),0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920)
+0x156F68,7x7,0xFEBF63EC,non-monotonic (bitmask/enum?),0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920)
+0x156FA0,7x7,0xFEBF63EC,non-monotonic (bitmask/enum?),0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920)
+0x156FD8,10x20,0xFEBF63C4,monotonic axis (unit TBD) (raw 734..36520),0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920)
+0x156FF4,10x20,0xFEBF63C4,monotonic axis (unit TBD) (raw 734..36520),0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920)
+0x157010,10x20,0xFEBF63C4,monotonic axis (unit TBD) (raw 734..36520),0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920)
+0x15702C,10x20,0xFEBF63C4,monotonic axis (unit TBD) (raw 734..36520),0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920)
+0x157618,15x0,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),,
+0x15762C,7x0,0xFEBF638C,monotonic axis (unit TBD) (raw 360..840),,
+0x157640,7x0,0xFEBF638C,monotonic axis (unit TBD) (raw 360..840),,
+0x157654,23x9,,,0xFEBF62CC,throttle / load (raw 0..255)
+0x157670,23x9,,,0xFEBF62CC,throttle / load (raw 0..255)
+0x1577C0,25x10,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),,
+0x1577F8,14x0,0xFEBF6440,throttle / load (raw 11..139),,
 0x15780C,9x0,0xFEF00F2A,engine RPM (4000-10400 rpm),,
+0x15783C,14x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x157850,16x0,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),,
+0x1578AC,18x0,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),,
+0x157908,18x0,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),,
+0x1579C0,18x0,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),,
+0x157AD4,18x0,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),,
+0x157B30,18x0,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),,
+0x157BE8,18x0,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),,
+0x157C44,18x0,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),,
+0x157C90,10x18,0xFEBF63C4,monotonic axis (unit TBD) (raw 734..36520),0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920)
+0x157CAC,13x0,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),,
+0x157CE8,10x0,0xFEBF6441,throttle / load (raw 53..160),,
+0x157CFC,16x0,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),,
+0x157D38,10x0,0xFEBF63F0,monotonic axis (unit TBD) (raw 0..44800),,
+0x157D4C,12x0,0xFEBF63A4,monotonic axis (unit TBD) (raw 0..27500),,
 0x157D88,10x0,0xFEF01E52,monotonic axis (unit TBD) (raw 0..3000),,
 0x157DC4,10x0,0xFEF01E52,monotonic axis (unit TBD) (raw 0..3000),,
 0x157DD8,11x0,0xFEF00DB2,throttle / load (raw 0..205),,
 0x157E28,10x0,0xFEF01E52,monotonic axis (unit TBD) (raw 0..3000),,
+0x157E3C,12x0,0xFEBF63A4,monotonic axis (unit TBD) (raw 0..27500),,
+0x157E50,12x0,0xFEBF63A4,monotonic axis (unit TBD) (raw 0..27500),,
+0x157E8C,10x10,0xFEBF63EC,non-monotonic (bitmask/enum?),0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920)
+0x1677F8,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x167820,10x0,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),,
+0x167834,21x0,0xFEBF6443,non-monotonic (bitmask/enum?),,
+0x16785C,27x0,0xFEBF6394,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x167870,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x167884,5x0,0xFEBF6440,throttle / load (raw 11..139),,
 0x167960,8x0,0xFEBF615E,engine RPM (1000-9000 rpm),,
 0x167974,8x0,0xFEBF615E,engine RPM (1000-9000 rpm),,
-0x167A7C,23x39,,,0xFEBF615E,engine RPM (1000-9000 rpm)
-0x167AEC,23x39,,,0xFEBF615E,engine RPM (1000-9000 rpm)
-0x167B5C,23x39,,,0xFEBF615E,engine RPM (1000-9000 rpm)
-0x167B78,23x39,,,0xFEBF615E,engine RPM (1000-9000 rpm)
-0x167BE8,23x39,,,0xFEBF615E,engine RPM (1000-9000 rpm)
+0x167988,5x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x1679B8,14x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x1679CC,14x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x167A30,10x0,0xFEBF6443,non-monotonic (bitmask/enum?),,
+0x167A60,9x20,0xFEBF638C,monotonic axis (unit TBD) (raw 360..840),0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920)
+0x167A7C,23x39,0xFEBF63C6,monotonic axis (unit TBD) (raw 584..42729),0xFEBF615E,engine RPM (1000-9000 rpm)
+0x167AEC,23x39,0xFEBF63C6,monotonic axis (unit TBD) (raw 584..42729),0xFEBF615E,engine RPM (1000-9000 rpm)
+0x167B5C,23x39,0xFEBF63C6,monotonic axis (unit TBD) (raw 584..42729),0xFEBF615E,engine RPM (1000-9000 rpm)
+0x167B78,23x39,0xFEBF63C6,monotonic axis (unit TBD) (raw 584..42729),0xFEBF615E,engine RPM (1000-9000 rpm)
+0x167BE8,23x39,0xFEBF63C6,monotonic axis (unit TBD) (raw 584..42729),0xFEBF615E,engine RPM (1000-9000 rpm)
+0x167C58,15x5,0xFEBF6440,throttle / load (raw 11..139),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x167C74,15x5,0xFEBF6440,throttle / load (raw 11..139),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x167C90,15x5,0xFEBF6440,throttle / load (raw 11..139),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x167CAC,15x5,0xFEBF6440,throttle / load (raw 11..139),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x167CDC,5x10,0xFEBF63C2,monotonic axis (unit TBD) (raw 26240..41985),0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920)
+0x167D58,39x0,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),,
+0x167D6C,39x0,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),,
+0x167D80,8x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x167D94,11x0,0xFEBF6459,non-monotonic (bitmask/enum?),,
 0x167E0C,21x0,0xFEBF5E7A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x168380,12x0,0xFEBF63F8,monotonic axis (unit TBD) (raw 2560..40960),,
+0x168394,9x0,0xFEBF6430,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x1684D4,15x0,0xFEBF637E,engine RPM (1000-12000 rpm),,
 0x168550,26x0,0xFEBF6164,monotonic axis (unit TBD) (raw 0..500),,
+0x168564,9x0,0xFEBF60F4,engine RPM (high range) (12880-13136 rpm),,
+0x168578,9x0,0xFEBF63FA,engine RPM (high range) (12880-13136 rpm),,
+0x16858C,9x0,0xFEBF6430,"signed sensor (lean/pitch/rate, centered 0x8000)",,
 0x168CD0,8x0,0xFEBF6166,monotonic axis (unit TBD) (raw 0..3000),,
+0x168DF0,10x6,0xFEBF63C0,monotonic axis (unit TBD) (raw 0..42992),0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920)
+0x169244,27x0,0xFEBF6394,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x17037C,14x0,0xFEBF6443,non-monotonic (bitmask/enum?),,
+0x1703E4,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x1703F8,12x0,0xFEBF6380,engine RPM (800-5200 rpm),,
+0x170434,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x170474,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x1704B4,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x1704C8,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x170508,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x17051C,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x170584,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x170598,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x1705D8,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x17071C,22x0,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),,
+0x17075C,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x17081C,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x17085C,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x17089C,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x1708DC,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x17091C,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x17095C,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x17099C,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x1709DC,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x170A64,22x9,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),0xFEBF6440,throttle / load (raw 11..139)
+0x1711F0,15x0,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),,
+0x171204,16x0,0xFEBF6443,non-monotonic (bitmask/enum?),,
 0x171410,11x0,0xFEF01E3E,engine RPM (axis 500..4000),,
 0x171424,15x0,0xFEF01E3E,engine RPM (axis 500..4000),,
 0x171438,15x0,0xFEF01E3E,engine RPM (axis 500..4000),,
+0x17144C,17x0,0xFEBF63EC,non-monotonic (bitmask/enum?),,
+0x171460,22x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x171474,8x0,0xFEBF6394,"signed sensor (lean/pitch/rate, centered 0x8000)",,
 0x17149C,10x0,0xFEF01FEA,monotonic axis (unit TBD) (raw 0..540),,
+0x1714E0,15x0,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),,
+0x1714F4,15x0,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),,
+0x171540,14x0,0xFEBF6441,throttle / load (raw 53..160),,
+0x171554,15x0,0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920),,
+0x171598,10x14,0xFEBF63EC,non-monotonic (bitmask/enum?),0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920)
 0x1715B4,8x0,0xFEF025EC,monotonic axis (unit TBD) (raw 461..819),,
+0x171644,10x14,0xFEBF63EC,non-monotonic (bitmask/enum?),0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920)
+0x1716AC,16x0,0xFEBF63F4,engine RPM (500-8000 rpm),,
+0x1716E8,37x0,0xFEBF642A,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x171724,31x0,0xFEBF642E,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x171738,7x0,0xFEBF6442,throttle / load (raw 1..64),,
+0x17174C,7x0,0xFEBF6442,throttle / load (raw 1..64),,
+0x171760,5x0,0xFEBF643C,monotonic axis (unit TBD) (raw 614..819),,
+0x171788,10x21,0xFEBF63C4,monotonic axis (unit TBD) (raw 734..36520),0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920)
+0x171820,10x14,0xFEBF63C4,monotonic axis (unit TBD) (raw 734..36520),0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920)
+0x171898,6x25,0xFEBF63C4,monotonic axis (unit TBD) (raw 734..36520),0xFEBF637A,monotonic axis (unit TBD) (raw 1280..49920)
 0x172FA4,31x0,0xFEF025F4,monotonic axis (unit TBD) (raw 1024..62464),,
 0x173008,30x0,0xFEF025DC,monotonic axis (unit TBD) (raw 13..1000),,
+0x17301C,29x0,0xFEBF6394,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x1730A8,7x0,0xFEBF6442,throttle / load (raw 1..64),,
+0x1730BC,7x0,0xFEBF6442,throttle / load (raw 1..64),,
+0x1730D0,9x0,0xFEBF6430,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x1730E4,9x0,0xFEBF6430,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x1730F8,9x0,0xFEBF6430,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x17310C,7x0,0xFEBF6442,throttle / load (raw 1..64),,
 0x17316C,37x0,0xFEF0287E,"signed sensor (lean/pitch/rate, centered 0x8000)",,
 0x173180,37x0,0xFEF0287C,"signed sensor (lean/pitch/rate, centered 0x8000)",,
-0x173194,37x0,0xFEF00544,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x173194,37x0,0xFEBF642E,"signed sensor (lean/pitch/rate, centered 0x8000)",,
 0x1731A8,37x0,0xFEF00544,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x1731BC,37x36,0xFEBF642E,"signed sensor (lean/pitch/rate, centered 0x8000)",,
 0x1731D8,17x0,0xFEF02646,monotonic axis (unit TBD) (raw 0..14563),,
+0x174698,7x0,0xFEBF6442,throttle / load (raw 1..64),,
+0x1746AC,14x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x1746C0,39x0,0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)",,
+0x1746D4,7x0,0xFEBF6442,throttle / load (raw 1..64),,
+0x1746E8,5x0,0xFEBF63BA,monotonic axis (unit TBD) (raw 512..921),,
 0x1746FC,5x0,0xFEF02D8A,engine RPM (high range) (12805-13107 rpm),,
+0x174724,39x0,0xFEBF637C,"signed sensor (lean/pitch/rate, centered 0x8000)",,
 0x174BD0,23x39,0xFEF02E44,monotonic axis (unit TBD) (raw 0..38876),0xFEF02E46,"signed sensor (lean/pitch/rate, centered 0x8000)"
 0x174D18,14x10,0xFEF02E2C,engine RPM (fuel/ign control; axis 1000..8000 proven),0xFEBF6169,throttle / load (map Y-axis)
 0x174D64,14x10,0xFEF02E2C,engine RPM (fuel/ign control; axis 1000..8000 proven),0xFEBF6169,throttle / load (map Y-axis)
 0x174DB0,14x10,0xFEF02E2C,engine RPM (fuel/ign control; axis 1000..8000 proven),0xFEBF6169,throttle / load (map Y-axis)
 0x174E94,14x10,0xFEF02E2C,engine RPM (fuel/ign control; axis 1000..8000 proven),0xFEBF6169,throttle / load (map Y-axis)
 0x174F78,14x10,0xFEF02E2C,engine RPM (fuel/ign control; axis 1000..8000 proven),0xFEBF6169,throttle / load (map Y-axis)
+0x192DA0,16x0,0xFEBF6440,throttle / load (raw 11..139),,
+0x192DB4,11x0,0xFEBF67AC,throttle / load (raw 0..20),,
+0x192DC8,5x21,0xFEBF6394,"signed sensor (lean/pitch/rate, centered 0x8000)",0xFEBF637E,engine RPM (1000-12000 rpm)
+0x192DF8,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x192E14,21x0,0xFEBF637E,engine RPM (1000-12000 rpm),,
+0x192E28,8x12,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x192E44,21x0,0xFEBF637E,engine RPM (1000-12000 rpm),,
+0x192E58,21x0,0xFEBF637E,engine RPM (1000-12000 rpm),,
+0x192E80,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x192EB0,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x192EE0,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x192F10,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x192F40,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x192FA0,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x192FD0,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193000,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193030,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193060,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x1930C0,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x1930F0,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193120,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193150,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193180,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x1931E0,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193210,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193240,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193270,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x1932A0,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193300,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193330,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193360,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193390,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x1933C0,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193420,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193450,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193480,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x1934B0,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x1934E0,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193540,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193570,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x1935A0,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x1935D0,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193600,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193660,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193690,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x1936C0,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x1936F0,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193720,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193780,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x1937B0,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x1937E0,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193810,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193840,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193870,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x1938A0,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x1938D0,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193900,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193930,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193960,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193990,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x1939C0,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x1939F0,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193A20,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193A50,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193A80,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193AB0,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193AE0,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193B10,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193B40,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193B70,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193BA0,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193BD0,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193C00,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193C30,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193C60,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193C90,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193CC0,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193CF0,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193D20,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193D50,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193D6C,21x0,0xFEBF637E,engine RPM (1000-12000 rpm),,
+0x193D94,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193DC4,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193DF4,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193E24,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193E54,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193F14,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193F44,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193F74,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193FA4,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x193FD4,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
+0x194004,10x21,0xFEBF6436,monotonic axis (unit TBD) (raw 21623..45211),0xFEBF637E,engine RPM (1000-12000 rpm)
