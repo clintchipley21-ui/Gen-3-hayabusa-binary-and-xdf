@@ -629,6 +629,37 @@ def split_oversized_categories(cats_xml, body, cap=CAT_MEMBER_CAP):
     return cats_xml + ''.join(extra_lines), body, len(extra_lines)
 
 
+def renumber_item_uniqueids(body):
+    """Keep every item's uniqueid inside the magnitude the known-good Hayabusa master uses (its ids
+    top out at 0x20A69). The ported TABLE ids already sit in that range; only the decompiler
+    scalar/flag ids were emitted at 0x100000+ (far outside it), which is the clearest structural
+    difference from any XDF TunerPro opens. Give every XDFCONSTANT/XDFFLAG a small free id instead,
+    reusing none a table holds, so the file's maximum uniqueid equals the max ported-table id - the
+    same ceiling the Hayabusa master loads with. Returns (body, how_many_renumbered)."""
+    table_ids = set()
+    for blk in re.findall(r'<XDFTABLE\b.*?</XDFTABLE>', body, re.S):
+        mm = re.search(r'uniqueid="(0x[0-9A-Fa-f]+)"', blk)
+        if mm:
+            table_ids.add(int(mm.group(1), 16))
+    nxt = [1]
+    n = [0]
+
+    def free():
+        while nxt[0] in table_ids:
+            nxt[0] += 1
+        v = nxt[0]
+        nxt[0] += 1
+        return v
+
+    def repl(m):
+        n[0] += 1
+        return re.sub(r'uniqueid="0x[0-9A-Fa-f]+"', 'uniqueid="0x%X"' % free(), m.group(0), count=1)
+
+    body = re.sub(r'<XDFCONSTANT\b.*?</XDFCONSTANT>', repl, body, flags=re.S)
+    body = re.sub(r'<XDFFLAG\b.*?</XDFFLAG>', repl, body, flags=re.S)
+    return body, n[0]
+
+
 # ---------------------------------------------------------------- scalar constants
 SCALARS_JSON = os.path.join(ROOT, 'gsxr-1000/docs/scalars.json')
 
@@ -861,6 +892,8 @@ def generate(binpath, outpath, sw, part):
     cats_xml, body, npruned = prune_and_renumber(cats_xml, body)
     # cap each category's member count so TunerPro does not overrun its fixed per-category buffer
     cats_xml, body, nsplit = split_oversized_categories(cats_xml, body)
+    # keep every uniqueid within the Hayabusa master's proven-good magnitude (scalars were 0x100000+)
+    body, nrenum = renumber_item_uniqueids(body)
 
     header = '''<!-- Written by make_gsxr_xdf.py - GSX-R1000 M7, ported from Hayabusa Gen3 -->
 <XDFFORMAT version="1.70">
@@ -879,7 +912,7 @@ def generate(binpath, outpath, sw, part):
         f.write(header)
         f.write(body)
         f.write('</XDFFORMAT>\n')
-    return stats, len(gd), nscalar, npruned, nsplit
+    return stats, len(gd), nscalar, npruned, nsplit, nrenum
 
 
 if __name__ == '__main__':
@@ -887,9 +920,9 @@ if __name__ == '__main__':
         print(__doc__)
         sys.exit(1)
     _, binpath, outpath, sw, part = sys.argv
-    st, n, nsc, npruned, nsplit = generate(binpath, outpath, sw, part)
+    st, n, nsc, npruned, nsplit, nrenum = generate(binpath, outpath, sw, part)
     print('%s: %d descriptors + %d scalars -> %s'
           % (os.path.basename(binpath), n, nsc, os.path.basename(outpath)))
     print('   HIGH=%(HIGH)d  MED=%(MED)d  GENERIC=%(GENERIC)d' % st)
-    print('   pruned %d empty categories; split %d overflow sub-categories (cap %d/folder)'
-          % (npruned, nsplit, CAT_MEMBER_CAP))
+    print('   pruned %d empty categories; split %d overflow sub-categories (cap %d/folder); '
+          'renumbered %d item uniqueids into Hayabusa range' % (npruned, nsplit, CAT_MEMBER_CAP, nrenum))
