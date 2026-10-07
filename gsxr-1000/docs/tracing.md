@@ -411,6 +411,18 @@ raw speed and estimates vehicle state (e.g. `FUN_000870c8` selects/stores a filt
 `fef0262c`; `FUN_0008a118`/`898b2`/`89f1c` derive further state). So the input half of the loop is
 present and identified.
 
+**Service-manual check (all GSX-R M7 docs in the Dropbox read).** The ESD's entire documented
+footprint is: the ECM terminal table (`T53 B/G` solenoid (−), ~0 V always; `T54* G/W` solenoid (+),
+battery-voltage↕~0 V pulse at ignition ON — the `*` marks an oscilloscope-only pulse), and one Service
+Data line, *"Steering damper solenoid valve resistance 20 °C = 12.5 Ω."* Two things that confirms: (1)
+it is a **single-coil PWM solenoid** (one coil, +/− pins), not an H-bridge like the EXCV exhaust valve
+(`T61/T67` "EXCVA-Strom −/+") or the throttle motor (`T75/T84`), so damping force is a monotonic
+function of average current = PWM duty; (2) it is **not** in the SDS-II "active control" actuator list —
+the pinout flags the PAIR valve (`T94`) and EVAP valve (`T101`) as SDS-II-drivable for bench tests, but
+the damper has no such note and **no current-vs-speed spec**. So even the factory tool exposes only a
+coil-resistance check, never a drive command or a calibration — consistent with a fully autonomous,
+firmware-internal speed→duty law with nothing surfaced to tune.
+
 **Control OUTPUT — physically confirmed, register not pinnable from the image.** T54 is a PWM-driven
 low-side solenoid output (pinout + the ignition-ON voltage pulse). The duty is computed in firmware
 (a speed→duty law feeding a PWM ISR), *not* read from a calibration descriptor — all nine speed-keyed
