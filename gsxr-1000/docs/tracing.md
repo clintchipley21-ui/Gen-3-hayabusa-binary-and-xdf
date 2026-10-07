@@ -373,3 +373,42 @@ isn't in hand, so no CAN field is labelled.
 Bottom line: the diagnostic **monitors** are calibration and are covered; the **MIL lamp** and **CAN
 dash output** are peripheral/logic with no per-bit calibration, so they're documented but not
 fabricated into fake maps or flags.
+
+## 3o. Electronic steering damper (ESD) — ECM-driven, but no calibration table exists
+
+**Hardware (confirmed).** The ECM drives the steering-damper solenoid directly: ECU pinout
+`T53 B/G Lenkungsdämpfer-Magnetventil (–)` and `T54 G/W Lenkungsdämpfer-Magnetventil (+)`, which the
+service sheet describes as pulsing between battery voltage and 0 V with ignition ON (i.e. a PWM-driven
+solenoid). Service data: *steering-damper solenoid valve resistance, 20 °C = 12.5 Ω.* So this bike has
+a genuine ECM-controlled speed-sensitive damper — unlike the Gen3 Hayabusa (mechanical damper, so the
+master XDF carries no reference label to port from; this had to be traced from the GSX-R's own code).
+
+**Search for a speed→damping calibration map — exhaustive, negative.** Every calibration descriptor
+in the image that is keyed on a speed RAM variable (main speed `0xFEBF63F0` or vehicle speed
+`0xFEBF63F6`) was located and its consumer function decompiled. All nine are accounted for, and **none
+drives the damper**:
+
+| descriptor | dims | axis | consumer | what it actually is |
+|---|---|---|---|---|
+| `0x150B7C` `0x150BCC` `0x150D34` | 36–37 pt 1D | main speed | `FUN_000290fe`/`29444`/`29198`/`29bea` | engine torque/airflow speed corrections (write `fef0053x`) |
+| `0x1512E8` `0x1512D4` | 37 pt 1D | main speed | `FUN_0002c8fe` | debounce/monitor speed thresholds (counters `fef00602/603`) |
+| `0x157D38` | 10 pt 1D | main speed | `FUN_0004becc` | adds to a 2D term → `fef00da8` (engine model) |
+| `0x157588` `0x1575A4` `0x1575C0` | 39×7 2D | speed × gear | `FUN_000518b2` | **engine-brake cylinder-cut pattern**, 3 EB levels (see below) |
+
+The last three deserve a note because they are speed×gear and could superficially look like a damper
+curve: `FUN_000518b2` looks up the selected EB-level pattern by speed×gear, then for each cylinder
+(`param_1` 0–3) extracts one bit of the looked-up byte and sets that cylinder's fuel-cut enable bit via
+`FUN_00051860` into the output byte `0xFEBF60A7`. They are the engine-brake cut-pattern maps (already
+labelled as such in the XDF), **on/off cylinder bits, not an analog damping duty.**
+
+**Output side — also negative.** The only varying-PWM timer channel reachable in code
+(`0xFFCB202C`, TAU) is written once with a constant (`FUN_000cd6c0(0x12)` from the init sequence
+`FUN_00027650`); no function computes a speed-dependent duty into it. No function both reads a speed
+variable and writes a solenoid/PWM output register with a speed-derived value.
+
+**Conclusion (not fabricated).** The steering damper is ECM-driven (hardware confirmed), but this ECU
+image exposes **no tunable speed→damping calibration table** — there is nothing for a tuner to edit.
+The drive is firmware-determined; the fixed-duty PWM init above is the most likely mechanism, but the
+TAU channel cannot be mapped to pin T54 without the specific RH850 variant's port/timer mux datasheet,
+which isn't in hand. Rather than invent a damper map, the honest result is recorded here: searched the
+whole speed-keyed descriptor space and the PWM output path, found no ESD calibration.
