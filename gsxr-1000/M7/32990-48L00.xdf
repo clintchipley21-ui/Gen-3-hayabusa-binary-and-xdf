@@ -40935,8 +40935,8 @@ CODE: uVar4 = DAT_00155a60;</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x100270" flags="0x0">
-    <title>HO2 monitor reference voltage A (FUN_0003F8B2 closed-loop/mo</title>
-    <description>TRACED FROM GSX-R CODE: HO2 monitor reference voltage A (FUN_0003F8B2 closed-loop/monitor target; stock 36766 raw). VALUE 32990-48L00: 36766 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <title>Diagnostics - HO2 :: O2 monitor reference voltage A</title>
+    <description>CURATED (code-proven): HO2 monitor (FUN_0003F8B2): O2 sensor reference/switch voltage A.</description>
     <CATEGORYMEM index="0" category="53" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x155A62" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -40947,8 +40947,8 @@ CODE: uVar4 = DAT_00155a60;</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x100271" flags="0x0">
-    <title>HO2 monitor reference voltage B (FUN_0003F8B2; stock 36766 r</title>
-    <description>TRACED FROM GSX-R CODE: HO2 monitor reference voltage B (FUN_0003F8B2; stock 36766 raw). VALUE 32990-48L00: 36766 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <title>Diagnostics - HO2 :: O2 monitor reference voltage B</title>
+    <description>CURATED (code-proven): HO2 monitor (FUN_0003F8B2): O2 sensor reference/switch voltage B.</description>
     <CATEGORYMEM index="0" category="53" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x155A64" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -41453,8 +41453,8 @@ CODE: uVar5 = DAT_00155ab0;</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x100298" flags="0x0">
-    <title>Catalyst/O2 monitor completion threshold (FUN_00040BAC: latc</title>
-    <description>TRACED FROM GSX-R CODE: Catalyst/O2 monitor completion threshold (FUN_00040BAC: latches monitor-complete when the counter &lt; this; stock 3). VALUE 32990-48L00: 3 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <title>Diagnostics - HO2 :: Catalyst/O2 monitor completion threshold</title>
+    <description>CURATED (code-proven): HO2/catalyst O2 monitor (FUN_00040BAC): completion/decision threshold for the O2 monitor result.</description>
     <CATEGORYMEM index="0" category="53" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x155AB2" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -51075,8 +51075,8 @@ CODE: uVar3 = DAT_00170214;</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005BA" flags="0x0">
-    <title>HO2 monitor baro-correction enable window, RPM low (FUN_0005</title>
-    <description>TRACED FROM GSX-R CODE: HO2 monitor baro-correction enable window, RPM low (FUN_0005721A; stock 0). VALUE 32990-48L00: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <title>Diagnostics :: Monitor baro-enable window - low</title>
+    <description>CURATED (code-proven): Barometric enable window for the emissions monitors (FUN_0005721A): low bound.</description>
     <CATEGORYMEM index="0" category="53" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x170216" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -51087,8 +51087,8 @@ CODE: uVar3 = DAT_00170214;</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005BB" flags="0x0">
-    <title>HO2 monitor baro-correction enable window, RPM high (FUN_000</title>
-    <description>TRACED FROM GSX-R CODE: HO2 monitor baro-correction enable window, RPM high (FUN_0005721A; stock 256). VALUE 32990-48L00: 256 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <title>Diagnostics :: Monitor baro-enable window - mid</title>
+    <description>CURATED (code-proven): Baro enable window (FUN_0005721A): middle point.</description>
     <CATEGORYMEM index="0" category="53" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x170218" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -51099,8 +51099,8 @@ CODE: uVar3 = DAT_00170214;</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005BC" flags="0x0">
-    <title>HO2 monitor baro-correction enable, signal max (FUN_0005721A</title>
-    <description>TRACED FROM GSX-R CODE: HO2 monitor baro-correction enable, signal max (FUN_0005721A; stock 0). VALUE 32990-48L00: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <title>Diagnostics :: Monitor baro-enable window - high</title>
+    <description>CURATED (code-proven): Baro enable window (FUN_0005721A): high bound.</description>
     <CATEGORYMEM index="0" category="53" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x17021A" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>

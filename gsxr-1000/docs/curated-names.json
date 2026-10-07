@@ -88,6 +88,30 @@
   "0x170200": [
    "Traction Control :: Slip threshold - Level 11",
    "Per-level slip-intervention threshold (u16), TC level 11. FUN_00055016 switches on the TC level byte 0xFEBF6459 (1..10) and compares slip 0xFEBF6164 against this array (0x1701EC..0x170200)."
+  ],
+  "0x155AB2": [
+   "Diagnostics - HO2 :: Catalyst/O2 monitor completion threshold",
+   "HO2/catalyst O2 monitor (FUN_00040BAC): completion/decision threshold for the O2 monitor result."
+  ],
+  "0x155A62": [
+   "Diagnostics - HO2 :: O2 monitor reference voltage A",
+   "HO2 monitor (FUN_0003F8B2): O2 sensor reference/switch voltage A."
+  ],
+  "0x155A64": [
+   "Diagnostics - HO2 :: O2 monitor reference voltage B",
+   "HO2 monitor (FUN_0003F8B2): O2 sensor reference/switch voltage B."
+  ],
+  "0x170216": [
+   "Diagnostics :: Monitor baro-enable window - low",
+   "Barometric enable window for the emissions monitors (FUN_0005721A): low bound."
+  ],
+  "0x170218": [
+   "Diagnostics :: Monitor baro-enable window - mid",
+   "Baro enable window (FUN_0005721A): middle point."
+  ],
+  "0x17021A": [
+   "Diagnostics :: Monitor baro-enable window - high",
+   "Baro enable window (FUN_0005721A): high bound."
   ]
  },
  "tables": {
