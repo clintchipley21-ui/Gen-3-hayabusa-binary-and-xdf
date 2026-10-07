@@ -373,3 +373,177 @@ isn't in hand, so no CAN field is labelled.
 Bottom line: the diagnostic **monitors** are calibration and are covered; the **MIL lamp** and **CAN
 dash output** are peripheral/logic with no per-bit calibration, so they're documented but not
 fabricated into fake maps or flags.
+
+## 3o. Electronic steering damper (ESD) — FOUND: speed→modulation maps + enable flag
+
+**This is the headline correction to earlier drafts of this section.** An exhaustive first pass
+concluded "no tunable damper table exists." That was **wrong**. The full ESD control module, its
+speed→damping calibration curves, and its enable/disable byte are all in the image and are now located.
+The earlier miss had one cause: the damper indexes a **third** vehicle-speed variable, rear-wheel speed
+`0xFEBF63F4` (`gp-0x5c0c`), which was not in the speed-variable set used for the first scan (that set had
+only `0xFEBF63F0`/`63F6`), and the maps carried generic auto-decoded names, so they were not recognised.
+
+**Hardware.** ECM-driven solenoid: pinout `T53 B/G Lenkungsdämpfer-Magnetventil (−)` (~0 V always) and
+`T54* G/W (+)` (battery-voltage↕~0 V pulse at ignition ON — `*` = oscilloscope-only pulse). Service data:
+*solenoid resistance 20 °C = 12.5 Ω.* Single-coil PWM solenoid (not an H-bridge like EXCV `T61/T67` or
+the throttle motor `T75/T84`), so damping force ∝ average current = PWM duty.
+
+**The control module.** `FUN_000784dc` (run from the `FUN_000655d0` task) is the ESD controller — ~20
+sub-functions in `0x077A8C–0x0784A8`. The loop:
+- **Input:** rear-wheel speed `0xFEBF63F4`, a mode byte `0xFEBF6480` (`gp-0x5b80`, values 1/2/3), gear
+  `0xFEBF6442`, and a few state vars. `FUN_00077A8C` gates activation on speed vs threshold `0x172E3A`.
+- **Speed→modulation lookup (`FUN_00078006`):** picks one of three 16-point curves by the mode byte and
+  interpolates it on rear-wheel speed → `fef02222`.
+- **Combine (`FUN_00077F88`/`77FD2`/`78058`):** mixes in secondary curves and corrections.
+- **Output (`FUN_000784A8`):** scales the result to 0–500 and calls `FUN_00024cb4(0x500, 500, duty, 0)`,
+  the PWM actuator driver (`→ FUN_00024c5a` sets duty, `→ FUN_0001df42` enables the output). This is the
+  solenoid drive on T54. So the full loop is pinned end to end: **rear-wheel speed → curve → PWM solenoid.**
+
+**The maps (all 1D, in the `0x1716xx` block; currently auto-labelled "Mode-Setting Limit" in cat 32):**
+
+| descriptor | pts | axis (X) | role |
+|---|---|---|---|
+| `0x1716AC` `0x1716C0` `0x1716D4` | 16 | **rear-wheel speed `0xFEBF63F4`** | **damping % vs speed, modes 1/2/3** — the headline curves |
+| `0x1716E8` `0x1716FC` `0x171710` | 37 | `fef0267A` | secondary damper curve, modes 1/2/3 |
+| `0x171724` | 31 | `fef0268C` (`gp-0x5bd2`) | correction factor |
+| `0x171738` `0x17174C` | 7 | ride-mode / state | small correction tables |
+| `0x171760` | 5 | `0xFEBF643C` (filtered sensor, likely supply voltage) | **output-compensation gain** — shared within the ESD subsystem (see diagnostic below) |
+
+**ESD solenoid diagnostic (newly traced).** `0x171760` is referenced by the controller *and* by four
+functions in the `0x3A0xx` cluster — `FUN_0003A062` / `FUN_0003A0BE` / `FUN_0003A1B6` / `FUN_0003A32E`.
+These are the **steering-damper solenoid diagnostic/monitor**: they read the damper command accumulator
+`0xFEBF62BC` (`gp-0x5d44`), compute expected feedback from threshold tables `0x155218` / `0x15522C`
+scaled by the `0x171760` compensation gain, compare against the measured feedback `0xFEBF6422`, and set
+ESD fault/status bits in `fef009c9` / `fef009ca`. This is the self-check behind the solenoid DTC
+(disconnecting the damper sets a code — riders fit a resistor/eliminator). So `0x171760` is not shared
+with any unrelated module: both consumers — the duty-output path (`FUN_00078308`) and the fault monitor
+— are the steering damper itself. The output-compensation curve (5-pt, gain centred on `0x8000` = 1.0,
+stock 1.17 → 0.88) corrects the damper drive for `0xFEBF643C` — an **IMU/chassis-derived signed signal**
+(0x8000 = neutral, rate-limited, from the `fef0265A–2668` block that also feeds the secondary inputs
+`0xFEBF642A/C/E`). So the GSX-R ESD is **speed-primary with IMU-based secondary modulation** — it adjusts
+damping on vehicle attitude/dynamics, not speed alone (exact IMU axis — lean/pitch/rate — not yet pinned).
+
+The three 16-point speed curves are byte-identical in the stock image and decode exactly as the known
+GSX-R ESD map: axis `0,2560,5120,…,38400` raw = **0,20,40,…,300 km/h** (2560 raw = 20 km/h), data
+`[0,0,0,0,1311,2916,…,16351]` = **zero damping below 60 km/h rising to ~full (`0x4000` ≈ 100 %) at
+300 km/h** — i.e. light/nimble at low speed, firm at high speed. This matches, to the point and the
+increment, the "speed-vs-modulation %, 0–300 km/h in 20 km/h steps" map riders describe.
+
+**The enable/disable byte: `0x172F28` (u8, `0xFF` in all four stock reads).** In `FUN_00078058` /
+`FUN_00078534` the logic is: `== 0x00` → output forced to 0 (damper **off**); `== 0x80` → alternate
+branch; `0xFF` (stock) → full control. This is the single element Woolich Racing exposes for the
+2017–2026 GSX-R1000/R as **"Disable Steering Damper"** — set it to `0x00` to disable. Related control
+bytes: `0x172F26` (0x00 stock), `0x172F29` (0x03 stock). Activation/threshold constants live in
+`0x172E38–0x172E8E`.
+
+**Cross-checks that confirm identity.**
+- Woolich Racing exposes exactly one ESD element for this ECU — a **Disable Steering Damper** toggle —
+  which is `0x172F28`. It does **not** expose the speed curves as editable (they are present but Woolich
+  chose not to surface them); the riders' editable "0–300 km/h modulation" map is the same structure,
+  documented on older GSX-R1000 ECUs.
+- Disconnecting the solenoid sets a DTC (riders fit a resistor/eliminator), consistent with the 12.5 Ω
+  coil diagnostic.
+
+**Correction retained from the earlier draft:** `0xFFCB202C` is **not** a PWM channel. The `0xA5` +
+value/inverse/value writes are the RH850 **protected-register write-command** sequence; the
+`0xCCxxx–0xCDxxx` cluster is the functional-safety / register-protection / watchdog module, unrelated to
+the damper. (The real damper PWM goes through `FUN_00024cb4`, channel `0x500`.)
+
+**For the XDF.** These are real, tunable tables and a real enable flag — they are relabelled from the
+generic "Mode-Setting Limit" names to a dedicated **Steering Damper (ESD)** folder: the three 16-point
+`Damping % vs Speed — Mode 1/2/3` curves, the secondary curves/corrections, the `Disable Steering Damper`
+flag (`0x172F28`), and the activation-speed threshold. Axis labels for the two secondary inputs
+(`fef0267A`, `fef0268C`) are marked unverified pending their own trace; the headline speed curves and the
+enable flag are confirmed.
+
+## 3p. Generic (no-Hayabusa-match) maps — traced and verified
+
+The 137 descriptors with no aligned Hayabusa map ("GENERIC" at generate time) were traced from their
+own reader functions. Method: for each, find the code that references the descriptor
+(`gsxr_calxrefs.tsv`), decompile the reader, and read the axis variable(s) off the interpolation call.
+Full per-map record: **`docs/generic-map-trace.csv`** (descriptor, dims, reader fn, traced axes,
+subsystem). Summary:
+
+| count | subsystem | axes |
+|---|---|---|
+| 48 | **Air/Torque Model** (ETV Level-2 air estimate) | IAP (`0xFEBF6436`) × RPM (`0xFEBF637E`), via `FUN_0009023x`–`0905c6` |
+| 15 | unreferenced | data-only tables, not read by any code — left unlabelled (honest) |
+| 13 | referenced indirectly | reached only from non-function code; axis not resolvable |
+| 21 | reader known, axis indirect | reader identified; axis passed via a local/pointer (needs data-flow) |
+| 6 | Gear-indexed correction | gear (`0xFEBF6442`) |
+| 4 | Warmup/Temp correction | ECT (`0xFEBF6440`) × RPM |
+| 4 | RPM-indexed correction | RPM |
+| 3 | Baro/Altitude correction | baro (`0xFEBF6394`) |
+| 2 | **Steering Damper diagnostic** | `0x155218/15522C` threshold pair — relabelled into the ESD folder |
+| 2 | IAT correction | IAT (`0xFEBF6443`) |
+| ... | (sensor-scaled, speed-model, TC, thresholds) | see CSV |
+
+Every generic map whose axis resolved to a concrete RAM variable now carries a **GSX-R TRACED INPUTS**
+line in its XDF description (the `map_inputs` set feeds the generator). The 15 unreferenced tables are
+reported as data-only rather than guessed. Nothing here is fabricated: a map is labelled with a
+subsystem only where its reader function identifies one.
+
+## 3q. Every constant, flag and map role-traced from the code
+
+To leave nothing generic, every reference into the calibration region (`0x150000–0x1A6000`) was traced
+through the decompiled V850 code: all 2,222 functions that touch calibration were decompiled, and each
+item's **referencing statement** was classified. Record: **`docs/autodef-trace.csv`** (address, type,
+subsystem, role, detail, reader function, confidence, one real code line) — 4,078 items. Applied to the
+XDFs by **`tools/apply_autodef.py`** (build order: `make_gsxr_xdf.py` → `apply_autodef.py`; idempotent).
+
+Result: **no item is left "Scalar @0x.." / "Flag @0x.." / "Unknown"** where the code resolves it.
+Every constant/flag title is now its **role** — Threshold, Gain/Factor, Offset, Divisor, Bit mask,
+Flag (tested), or Operand — with a description giving the role, the reader function (and subsystem
+where the reader also reads a known map), a confidence, and the decompiled line showing the use. 105 of
+the 135 "Unknown" map titles were renamed to their traced axis (e.g. *Map vs IAP × RPM*).
+
+Honesty note (consistent with the rest of this project): a **specific functional name is given only
+where the code proves one**. ~2,300 of the constants are bare arithmetic operands (a value used in one
+expression); for those the verified answer is the role + the exact code line, not an invented name —
+fabricating "Fuel Enrichment Factor" onto an un-named multiplier would be a guess. Confidence breakdown:
+HIGH = role read directly (comparison with a named variable, table axis, switch); MED = role known, the
+other operand not identified; LOW = referenced but the use did not resolve. 30 map tables and ~130
+constants are **data-only / indirect** (no direct code reader, or reached via a pointer table) and are
+labelled as such rather than guessed.
+
+## 3r. Curated (hand-verified) names for headline tunable parameters
+
+On top of the automatic role-trace (§3q), the control functions of each subsystem were read and the
+**tunable parameters the code proves** were given functional names in `docs/curated-names.json` (applied
+by `apply_autodef.py` ahead of the role-trace). These are code-proven only — a parameter gets a specific
+name solely where the decompiled function shows its use; bare operands stay role-traced, never guessed.
+
+- **ETV / Throttle-by-Wire:** demand output clamp hi/lo (`0x192CEA/CEC`), correction bias (`0x192CAA`),
+  rate-change increments (`0x192CCE/CD0/CD2`); confirmed ECT (`0x1746AC`) and baro (`0x17301C`) factors.
+- **Rider aids:** TC per-level slip thresholds (`0x1701EC..0x170200`, levels 1–11), TC slip gate
+  (`0x1701E4`) and enable flag (`0x1702CB`), quickshifter master enable (`0x154DD2`), auto-blip duration
+  (`0x154E16`) and mode (`0x154E17`).
+- **Diagnostics:** HO2/catalyst monitor completion threshold (`0x155AB2`) + O2 reference voltages
+  (`0x155A62/64`), emissions-monitor baro enable window (`0x170216/18/1A`).
+- **Ignition:** two ignition-correction operating windows — Correction-A (`0x17019A/9C/9E/A0`, `0x1702AA`,
+  output `febf616c` via map `0x167834`) and Correction-B (`0x17013C/3E`, `0x170140/42`, `0x17023D/3E`,
+  output `febf616e`).
+- **Fuel:** fuel enable/cut condition gates (`0x166FF8` speed, `0x166FF2`, `0x167104`).
+
+Build order unchanged: `make_gsxr_xdf.py` → `apply_autodef.py` (which now also reads
+`docs/curated-names.json`). To add more verified names, append to that file — no code change needed.
+
+## 3s. Educated-guess (INFERRED) names for the remainder — nothing left generic
+
+At the user's explicit request, every item that the code did not resolve to a specific function was
+given a best-effort **INFERRED** name, so no "Scalar @0x.."/"Flag @0x.."/"Unknown" title remains. These
+are clearly tiered and marked so they are never confused with the verified names:
+
+1. **CURATED (code-proven)** — 48 items. Read directly from the decompiled control function (§3o, §3r).
+2. **INFERRED (educated guess)** — 3,223 items. Name built from the item's traced role + the variable in
+   its decompiled code line, and its subsystem (where known from a referencing function, else the
+   nearest named subsystem by address — Suzuki groups a subsystem's constants together, so proximity is
+   a reasonable guess). Every such title ends with `(inferred)` (and `subsystem by proximity` when the
+   subsystem itself was guessed), and the description opens with `INFERRED (educated guess, NOT
+   code-proven) … verify before trusting`, followed by the underlying role trace + code line.
+3. The 30 maps whose axis could not be resolved get `Map/Curve (inferred, axis unresolved)`.
+
+So a tuner sees a plausible name on every parameter, and can tell at a glance how much to trust it: no
+`(inferred)` = code-proven; `(inferred)` = educated guess to verify. The machine-readable basis is in
+`docs/autodef-trace.csv`, `docs/autodef-roles.json` (with `inferred_title`), `docs/curated-names.json`
+(code-proven) and `docs/table-inferred.json`.

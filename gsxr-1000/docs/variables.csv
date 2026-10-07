@@ -1,7 +1,7 @@
 ram_addr,maps_fed,role,detail,axis_roles
 0xFEBF637A,141,engine RPM [title-anchored],,"{""y"": 74, ""x"": 67}"
-0xFEBF637E,107,engine RPM (main map axis) [title-anchored],,"{""x"": 12, ""y"": 95}"
-0xFEBF6436,90,intake air pressure IAP / load (main load axis) [title-anchored],,"{""x"": 90}"
+0xFEBF637E,113,engine RPM (main map axis) [title-anchored],,"{""x"": 12, ""y"": 101}"
+0xFEBF6436,96,intake air pressure IAP / load (main load axis) [title-anchored],,"{""x"": 96}"
 0xFEBF5E7A,66,"signed sensor (lean/pitch/rate, centered 0x8000)",,"{""x"": 66}"
 0xFEBF6440,55,engine coolant temp ECT [title-anchored],,"{""x"": 52, ""y"": 3}"
 0xFEBF637C,45,"signed sensor (lean/pitch/rate, centered 0x8000)",,"{""x"": 3, ""y"": 42}"

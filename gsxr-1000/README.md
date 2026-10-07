@@ -33,7 +33,9 @@ Build ID embedded in the reads: `8J16ST01` (`ECM-010L0`). All four reads are ful
 valid field-1 CRC. Each XDF is ~3.3 MB with **4,078 items** (791 maps/curves + 3,287 scalars/flags);
 if TunerPro is slow to open it, regenerate without scalars by renaming `docs/scalars.json`.
 
-Items are organised into **53 populated TunerPro categories** (folders). Empty categories inherited
+Items are organised into **54 populated TunerPro categories** (folders), including a dedicated
+**Steering Damper (ESD)** folder (the decompile-confirmed electronic-steering-damper speed→modulation
+curves, enable flag and activation threshold — see `docs/tracing.md` §3o). Empty categories inherited
 from the Hayabusa master are pruned automatically at generate time, the Hayabusa-only
 `Unidentified - Cluster` / `(legacy, empty)` names are scrubbed, and the decompiler-discovered scalars
 are filed under per-subsystem `Scalars - …` folders (Ignition, Quickshifter, Fuel, HO2, Idle, …) rather
@@ -139,6 +141,8 @@ manual/SDS/pinout — see **[`docs/tracing.md`](docs/tracing.md)** for the full 
 - **Rev-limit cut `FUN_00064506`** reads engine RPM and gates on constants `0x172EA6` (~13,155 rpm),
   `0x172EA8` (**~14,933 rpm hard cut** — matches the GSX-R1000) and `0x172EAA` (~1,500 rpm running
   gate). These are named in the XDF and listed in `docs/scalar-index.csv`.
+- **Every constant, flag and map is role-traced from the decompiled code** — no item is left "Scalar @0x.."/"Flag @0x.."/"Unknown". See `docs/autodef-trace.csv` (4,078 items: role, reader fn, confidence, code line). Applied by `tools/apply_autodef.py` (build order: `make_gsxr_xdf.py` then `apply_autodef.py`). Specific names only where the code proves them; bare operands are labelled by role + code line, not guessed.
+- **Generic (no-Hayabusa-match) maps are traced from their own readers** — see `docs/generic-map-trace.csv` (137 maps: 48 air/torque IAP×RPM, ESD diagnostic, warmup, baro, gear-indexed, etc.; 15 are unreferenced data-only).
 - **659 of the 791 maps** carry a **“GSX-R TRACED INPUTS”** line naming the actual X/Y variable from the code (raised from 378 by per-subsystem reader decompiles — fuel, ignition, traction control, ETV)
   (`docs/map-inputs.csv`); a 78-entry **variable dictionary** (`docs/variables.csv`) classifies each
   traced RAM input (RPM / throttle-load / gear index / signed chassis sensor); `docs/traced.json` is

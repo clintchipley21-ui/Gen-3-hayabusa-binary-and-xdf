@@ -370,13 +370,17 @@ def category_block():
                 % unmatched)
     cats.append('    <CATEGORY index="0x%X" name="ZZ Decompiler-discovered scalars (unverified)" />\n'
                 % scalarcat)
-    # name -> index map so scalars can be filed under their real subsystem "Scalars - X" folder
-    name2idx = {}
+    cats.append('    <CATEGORY index="0x%X" name="Steering Damper (ESD) (decoded)" />\n'
+                % (maxidx + 3))
+    # TunerPro CATEGORYMEM category="N" is 1-BASED: it selects CATEGORY index N-1 (verified against
+    # the Hayabusa master, which the ported maps inherit their 1-based values from). So every category
+    # VALUE the generator emits is (0-based index + 1). name2val maps a category NAME to that value.
+    name2val = {}
     for c in cats:
         mm = re.search(r'index="(0x[0-9A-Fa-f]+)" name="([^"]*)"', c)
         if mm:
-            name2idx[mm.group(2)] = int(mm.group(1), 16)
-    return ''.join(cats), unmatched, scalarcat, name2idx
+            name2val[mm.group(2)] = int(mm.group(1), 16) + 1
+    return ''.join(cats), unmatched + 1, scalarcat + 1, name2val
 
 
 # SUBSYS tag -> the "Scalars - X" category name in the master (unescaped). Untagged scalars, or
@@ -415,10 +419,117 @@ RECAT = [
 ]
 
 
-def recategorize(body, name2idx):
+# Electronic steering damper (ESD) module - decompile-confirmed (see docs/tracing.md 3o).
+# Controller FUN_000784dc: rear-wheel speed 0xFEBF63F4 -> one of three 16-pt curves -> modulation
+# chain -> FUN_00024cb4 (PWM channel 0x500) -> T54 solenoid. These descriptors are referenced ONLY
+# by the ESD module's own functions. Titles get a "Steering Damper ::" prefix so the RECAT rule below
+# re-files them into the dedicated folder.
+DAMPER_CAT = 'Steering Damper (ESD) (decoded)'
+DAMPER_TABLES = {
+    0x1716AC: 'Steering Damper :: Damping vs Speed - Mode 1',
+    0x1716C0: 'Steering Damper :: Damping vs Speed - Mode 2',
+    0x1716D4: 'Steering Damper :: Damping vs Speed - Mode 3',
+    0x1716E8: 'Steering Damper :: Secondary Curve - Mode 1 (axis unverified)',
+    0x1716FC: 'Steering Damper :: Secondary Curve - Mode 2 (axis unverified)',
+    0x171710: 'Steering Damper :: Secondary Curve - Mode 3 (axis unverified)',
+    0x171724: 'Steering Damper :: Correction Factor (axis unverified)',
+    0x171738: 'Steering Damper :: Correction Table A (verify)',
+    0x17174C: 'Steering Damper :: Correction Table B (verify)',
+    0x171760: 'Steering Damper :: Output compensation (vs 0xFEBF643C, axis unverified)',
+    0x155218: 'Steering Damper :: Diagnostic threshold (lo)',
+    0x15522C: 'Steering Damper :: Diagnostic threshold (hi)',
+}
+# Per-table description overrides (default note used otherwise).
+DAMPER_NOTES = {
+    0x171760: ('Electronic steering damper output-compensation gain (5-pt, centred on 0x8000 = 1.0; '
+               'stock 1.17 at low end -> 0.88 at high end). Indexed by 0xFEBF643C, an IMU/chassis-'
+               'derived signed signal (0x8000 = neutral, rate-limited) from the fef0265A-2668 block '
+               'that also feeds the damper secondary inputs 0xFEBF642A/C/E - i.e. the ESD modulates '
+               'on vehicle attitude/dynamics, not just speed (exact IMU axis not yet pinned). SHARED '
+               'within the ESD subsystem: the controller FUN_00078308 '
+               'multiplies the damper modulation by this gain, and the damper solenoid DIAGNOSTIC '
+               '(FUN_0003a062 / 0003a0be / 0003a1b6 / 0003a32e, which set fault bits in fef009c9 / '
+               'fef009ca from the damper command 0xFEBF62BC) scales its expected-feedback thresholds '
+               'by it. Not shared with any non-damper module.'),
+    0x155218: ('ESD solenoid-diagnostic threshold, lower bound. The damper fault monitor '
+               '(FUN_0003a062/0003a1b6/0003a32e) looks this up on the damper command 0xFEBF62BC, '
+               'scales it by the 0x171760 compensation gain, and flags a fault if the measured '
+               'feedback 0xFEBF6422 falls outside [lo,hi]. Backs the steering-damper solenoid DTC.'),
+    0x15522C: ('ESD solenoid-diagnostic threshold, upper bound (pair of 0x155218). See 0x155218.'),
+}
+# The three Damping-vs-Speed curves share one note; it is only correct for them.
+DAMPER_SPEED_NOTE = (
+    'ELECTRONIC STEERING DAMPER modulation curve (decompile-confirmed). X axis = rear-wheel speed '
+    '0xFEBF63F4: raw 2560 = 20 km/h, so the 16 breakpoints are 0,20,40,...,300 km/h. Output = damping '
+    'modulation (stock: 0 below ~60 km/h, rising to ~0x4000 = full at 300 km/h = light steering at low '
+    'speed, firm at high speed). Three mode curves (1/2/3) selected by 0xFEBF6480. Read by FUN_00078006; '
+    'feeds the PWM solenoid on T54 via FUN_00024cb4 (ch 0x500). This is the "steering damper map" that '
+    'commercial tools edit; set the enable byte 0x172F28 to 0x00 to disable the damper entirely.')
+DAMPER_SCALARS = {
+    0x172F28: ('Steering Damper :: Enable (0xFF=on, 0x00=disable)',
+               'MASTER ESD ENABLE byte (u8). 0xFF (all stock reads) = damper active; 0x00 = output '
+               'forced to zero (this is the commercial "Disable Steering Damper" setting); 0x80 = '
+               'alternate branch. Read by FUN_00078058 / FUN_00078534.'),
+    0x172E3A: ('Steering Damper :: Activation speed threshold',
+               'Rear-wheel-speed threshold (u16) gating ESD activation in FUN_00077A8C.'),
+}
+
+
+def label_damper(body, name2val):
+    """Relabel the decompile-confirmed steering-damper descriptors and scalars, and re-file them into
+    the Steering Damper folder. Operates on the emitted block text, matching tables by their
+    'descriptor @0xADDR' reference line and scalars by mmedaddress."""
+    dval = name2val[DAMPER_CAT]
+    n = 0
+
+    def retitle_cat(block, new_title, note):
+        b2 = re.sub(r'<title>[^<]*</title>', '<title>%s</title>' % escape(new_title), block, count=1)
+        b2 = re.sub(r'<description>', '<description>%s\n\n' % escape(note), b2, count=1)
+        b2 = re.sub(r'(<CATEGORYMEM index="0" category=")\d+(")',
+                    r'\g<1>%d\g<2>' % dval, b2, count=1)
+        # drop any extra CATEGORYMEM so the item sits only in the damper folder
+        b2 = re.sub(r'\s*<CATEGORYMEM index="[1-9][0-9]*"[^/]*/>', '', b2)
+        return b2
+
+    # tables (XDFTABLE): locate by the "descriptor @0xADDR" reference line in the description
+    def repl_table(m):
+        nonlocal n
+        blk = m.group(0)
+        for addr, title in DAMPER_TABLES.items():
+            if ('descriptor @0x%X' % addr) in blk:
+                n += 1
+                if addr in (0x1716AC, 0x1716C0, 0x1716D4):
+                    note = DAMPER_SPEED_NOTE
+                elif addr in DAMPER_NOTES:
+                    note = DAMPER_NOTES[addr]
+                else:
+                    note = ('Electronic steering damper module table (decompile-confirmed; referenced '
+                            'only by the ESD controller FUN_000784dc). Role within the modulation '
+                            'chain not fully resolved - verify before changing.')
+                return retitle_cat(blk, title, note)
+        return blk
+    body = re.sub(r'<XDFTABLE\b.*?</XDFTABLE>\s*', repl_table, body, flags=re.S)
+
+    # scalars (XDFCONSTANT): locate by mmedaddress
+    def repl_scalar(m):
+        nonlocal n
+        blk = m.group(0)
+        am = re.search(r'mmedaddress="(0x[0-9A-Fa-f]+)"', blk)
+        if am:
+            addr = int(am.group(1), 16)
+            if addr in DAMPER_SCALARS:
+                n += 1
+                title, note = DAMPER_SCALARS[addr]
+                return retitle_cat(blk, title, note)
+        return blk
+    body = re.sub(r'<XDFCONSTANT\b.*?</XDFCONSTANT>\s*', repl_scalar, body, flags=re.S)
+    return body, n
+
+
+def recategorize(body, name2val):
     """Re-file only the decoded maps the Hayabusa master mis-categorised, by matching the map's own
-    title prefix to the correct existing category. Returns (body, n_moved)."""
-    rules = [(p, name2idx[n]) for p, n in RECAT if n in name2idx]
+    title prefix to the correct existing category. category values are 1-based. Returns (body,n)."""
+    rules = [(p, name2val[n]) for p, n in RECAT if n in name2val]
     moved = [0]
 
     def fix(block):
@@ -441,21 +552,23 @@ def recategorize(body, name2idx):
 
 def prune_and_renumber(cats_xml, body):
     """Drop categories with no members (Hayabusa-inherited leftovers) and compact-renumber the rest,
-    rewriting every CATEGORYMEM reference. Category 0 (root) is always kept."""
-    used = set(int(n) for n in re.findall(r'category="(\d+)"', body))
-    used.add(0)
+    rewriting every CATEGORYMEM reference. CATEGORYMEM category="N" is 1-BASED (CATEGORY index N-1);
+    category 0-index (root) is always kept."""
+    used_idx = set(int(n) - 1 for n in re.findall(r'category="(\d+)"', body))  # value N -> index N-1
+    used_idx.add(0)  # keep the TunerPro root category
     old = [(int(re.search(r'index="(0x[0-9A-Fa-f]+)"', c).group(1), 16), c)
            for c in re.findall(r'    <CATEGORY [^\n]*\n', cats_xml)]
-    remap = {}
+    remap = {}  # old 0-based index -> new 0-based index
     new_cats = []
     for oldidx, line in old:
-        if oldidx not in used:
+        if oldidx not in used_idx:
             continue
         newidx = len(new_cats)
         remap[oldidx] = newidx
         new_cats.append(re.sub(r'index="0x[0-9A-Fa-f]+"', 'index="0x%X"' % newidx, line))
+    # rewrite each 1-based value V: old index V-1 -> new index -> new 1-based value
     body = re.sub(r'category="(\d+)"',
-                  lambda m: 'category="%d"' % remap[int(m.group(1))], body)
+                  lambda m: 'category="%d"' % (remap[int(m.group(1)) - 1] + 1), body)
     return ''.join(new_cats), body, len(old) - len(new_cats)
 
 
@@ -642,7 +755,7 @@ def generate(binpath, outpath, sw, part):
         for k in range(size):
             g2h[bi + k] = ai + k
 
-    cats_xml, UNMATCHED, SCALARCAT, NAME2IDX = category_block()
+    cats_xml, UNMATCHED, SCALARCAT, NAME2VAL = category_block()
 
     stats = dict(HIGH=0, MED=0, GENERIC=0)
     blocks = []
@@ -671,7 +784,7 @@ def generate(binpath, outpath, sw, part):
 
     # decompiler-discovered scalar constants / flags (code cross-reference analysis)
     scalars = load_scalars()
-    sblocks, nscalar, ntagged = scalar_blocks(b, scalars, SCALARCAT, sw, NAME2IDX)
+    sblocks, nscalar, ntagged = scalar_blocks(b, scalars, SCALARCAT, sw, NAME2VAL)
     blocks.extend(sblocks)
 
     deftitle = 'Suzuki GSX-R1000 M7 %s (%s) - ported from Hayabusa Gen3 (auto)' % (sw, part)
@@ -684,7 +797,9 @@ def generate(binpath, outpath, sw, part):
 
     body = ''.join(blocks)
     # re-file the decoded maps the Hayabusa master mis-categorised so folder names match contents
-    body, nmoved = recategorize(body, NAME2IDX)
+    body, nmoved = recategorize(body, NAME2VAL)
+    # relabel the decompile-confirmed steering-damper maps/flag into their own folder
+    body, ndamper = label_damper(body, NAME2VAL)
     # drop categories with no members (Hayabusa-inherited empty folders) and compact-renumber
     cats_xml, body, npruned = prune_and_renumber(cats_xml, body)
 

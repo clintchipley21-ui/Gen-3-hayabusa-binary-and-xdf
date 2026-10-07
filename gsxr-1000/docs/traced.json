@@ -2335,6 +2335,30 @@
   "0x150F10": {
    "x": "0xFEBF637A",
    "y": "0xFEBF6442"
+  },
+  "0x192F70": {
+   "x": "0xFEBF6436",
+   "y": "0xFEBF637E"
+  },
+  "0x193090": {
+   "x": "0xFEBF6436",
+   "y": "0xFEBF637E"
+  },
+  "0x1933F0": {
+   "x": "0xFEBF6436",
+   "y": "0xFEBF637E"
+  },
+  "0x193510": {
+   "x": "0xFEBF6436",
+   "y": "0xFEBF637E"
+  },
+  "0x193630": {
+   "x": "0xFEBF6436",
+   "y": "0xFEBF637E"
+  },
+  "0x193750": {
+   "x": "0xFEBF6436",
+   "y": "0xFEBF637E"
   }
  },
  "constants": {
@@ -2478,5 +2502,50 @@
   "mil_lamp": "NOT individually decoded. The MIL / warning lamp is driven through the RH850 port I/O space (0xFFFF_xxxx register writes) by logic that aggregates the monitor-result flags; identifying the exact port bit requires the specific RH850 variant's port datasheet, which is not in hand, so no lamp bit is labelled (would be a guess).",
   "can_meter_outputs": "NOT individually decoded. The instrument-cluster/CAN frames (tach, temp, gear, warning lamps) are assembled in code and written to the RS-CAN peripheral (0xFFE6_xxxx / 0xFFC6_xxxx region); the only calibration here is the Meter Fuel Consumption RPM/IAT scaling (already in the XDF). Per-frame field decode needs the Suzuki CAN DBC, not in hand, so no CAN field is labelled.",
   "note": "Monitors = calibration (named). MIL lamp + CAN dash output = code/peripheral logic with no per-bit calibration; left unlabelled rather than guessed."
+ },
+ "steering_damper": {
+  "note": "Electronic steering damper (ESD). Confirmed by decompile: controller FUN_000784dc reads rear-wheel speed 0xFEBF63F4, looks up one of three 16-pt curves by mode byte 0xFEBF6480, runs a modulation chain, scales to 0-500 and calls FUN_00024cb4 (PWM ch 0x500) -> T54 solenoid. Matches the known GSX-R speed-vs-modulation damper map (0-300 km/h, 20 km/h steps) and Woolich's \"Disable Steering Damper\".",
+  "controller_fn": "0x784dc",
+  "output_driver": "0x24cb4 (PWM ch 0x500)",
+  "speed_lookup_fn": "0x78006",
+  "speed_axis_var": "0xFEBF63F4 (rear wheel speed; 2560 raw = 20 km/h)",
+  "mode_var": "0xFEBF6480",
+  "speed_curves": [
+   "0x1716AC",
+   "0x1716C0",
+   "0x1716D4"
+  ],
+  "secondary_curves": [
+   "0x1716E8",
+   "0x1716FC",
+   "0x171710"
+  ],
+  "correction_tables": [
+   "0x171724",
+   "0x171738",
+   "0x17174C"
+  ],
+  "enable_flag": "0x172F28 (u8; 0xFF stock = on, 0x00 = disable, 0x80 = alt)",
+  "activation_speed_threshold": "0x172E3A (u16)",
+  "output_compensation": "0x171760 (5-pt gain vs 0xFEBF643C; shared by controller FUN_00078308 and the solenoid diagnostic)",
+  "solenoid_diagnostic": {
+   "note": "ESD solenoid fault monitor: compares measured feedback 0xFEBF6422 against expected (threshold tables 0x155218/0x15522C scaled by the 0x171760 compensation gain) computed from the damper command 0xFEBF62BC; sets fault bits in fef009c9/fef009ca. Backs the solenoid DTC.",
+   "fns": [
+    "0x3a062",
+    "0x3a0be",
+    "0x3a1b6",
+    "0x3a32e"
+   ],
+   "command_var": "0xFEBF62BC",
+   "feedback_var": "0xFEBF6422",
+   "status_bytes": [
+    "fef009c9",
+    "fef009ca"
+   ],
+   "threshold_tables": [
+    "0x155218",
+    "0x15522C"
+   ]
+  }
  }
 }
