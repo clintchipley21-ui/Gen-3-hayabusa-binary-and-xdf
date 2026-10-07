@@ -437,10 +437,26 @@ register cannot be asserted.
 > (`FUN_000cc9ea`, `FUN_000cde24`, `FUN_000cddd0` are protected-write helpers), and `FUN_000cd6c0(0x12)`
 > is a protected *bit-set* (`1 << 0x12`), not a PWM duty. It is unrelated to the damper.
 
+**Cross-check against the tuning industry (web, 2026).** This is corroborated by what the commercial
+Suzuki tools actually expose:
+- **Woolich Racing** lists, for the **2017–2026 GSX-R1000 / 1000R (this L7/M7 ECU)**, a single
+  **"Disable Steering Damper"** feature — an on/off toggle, *not* an editable speed curve. That matches
+  the firmware exactly: there is no speed→damping descriptor to edit, only (at most) one enable/disable
+  calibration element gating the whole ESD function.
+- The editable **"speed-vs-modulation %" damper map** riders describe (0–300 km/h in 20 km/h steps,
+  "change the speed at which it gets tighter, but not the total resistance") is an **older-generation**
+  GSX-R1000 feature (the pre-2017 Mitsubishi/Denso ECUs), not this RH850 image. So that map is real, but
+  it belongs to a different ECU family — it is not evidence of a table in the M7.
+- Disconnecting the solenoid sets a DTC (riders fit a resistor / "eliminator"), consistent with the
+  12.5 Ω coil-resistance diagnostic.
+
 **Bottom line for the XDF (not fabricated).** The steering damper IS ECM-controlled: road speed in →
-firmware law → PWM solenoid out on T54. But that law is **code and firmware constants, not a
-tuner-editable calibration descriptor** — there is no speed→damping map/axis in the table space to
-expose, and the raw duty constants can't be isolated without pinning the output function, which is
-gated by the hardware docs above. So nothing is added to the XDF, and nothing is invented. If the
-RH850 variant pin-mux / ECU netlist (or a service-manual ESD current-vs-speed spec) can be obtained,
-the pinned output register would let the duty law and its constants be read out directly.
+firmware law → PWM solenoid out on T54. But on this ECU that law is **code + firmware constants, not a
+tuner-editable speed→damping map** — confirmed independently by Woolich exposing only a *disable* toggle
+here, never a modulation curve. The one tunable element that plausibly exists is that **enable/disable
+flag**; its address is not published (proprietary to the commercial flashers) and could not be pinned
+from the image, because the ESD driver itself can't be tied to pin T54 without the RH850 variant pin-mux
+/ ECU netlist. So nothing is added to the XDF and nothing is invented. Concrete unlocks, in order of
+payoff: (1) the RH850 device marking + its pin-mux, or the ECU PCB netlist → pins the output register →
+reveals the driver, its enable flag and any duty constants directly; (2) a byte-diff of a stock image vs
+a Woolich "steering-damper-disabled" image → isolates the enable flag address for an XDF flag.
