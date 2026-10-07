@@ -547,3 +547,28 @@ So a tuner sees a plausible name on every parameter, and can tell at a glance ho
 `(inferred)` = code-proven; `(inferred)` = educated guess to verify. The machine-readable basis is in
 `docs/autodef-trace.csv`, `docs/autodef-roles.json` (with `inferred_title`), `docs/curated-names.json`
 (code-proven) and `docs/table-inferred.json`.
+
+## 3t. TunerPro compatibility fix — apostrophe entities and description bloat
+
+The first fully role-traced XDFs (end of PR #10) crashed TunerPro on open. Diagnosis by comparison
+against XDFs TunerPro loads fine (the Hayabusa `master-v9.xdf`, 4.37 MB, and `5JCZSJ10.xdf`):
+
+- **Not** the cause — file size, item count, `&lt;`/`&gt;` entities, long descriptions, or the
+  `uniqueid="0x0"` repeated on every axis: the working Hayabusa master exceeds the GSX-R on all of
+  these (4.37 MB vs 3.62 MB, 1880-char max description vs 1286, 1514 axes at `uniqueid="0x0"`) and
+  still opens.
+- **The cause** — the numeric apostrophe entity `&#x27;`. The role-trace descriptions carried 1,314
+  of them (from `html.escape` with its default `quote=True`); every XDF TunerPro reads has **zero**.
+  TunerPro's hand-rolled XDF reader does not decode numeric character references and faults on them.
+
+Fix (both generators now guarantee `&#x27;`/`&quot;` = 0 in the output):
+- `tools/make_gsxr_xdf.py` wraps `html.escape` to force `quote=False` (every escape here is element
+  text — `<title>`/`<description>`/`<units>` — never an attribute value, so quotes stay literal and
+  valid). Matches the working Hayabusa generators.
+- `tools/apply_autodef.py` writes short, single-line, plain-ASCII descriptions via `oneline()` (it
+  strips `<`/`>`, turns `&` into "and", collapses whitespace, hard-caps length) and escapes with
+  `quote=False`. The full code trace with the raw `<`/`&`/pointer syntax stays in
+  `docs/autodef-trace.csv`, out of the XDF.
+
+Verified on all four reads: XML well-formed, `&#x27;` = 0, `&quot;` = 0, no non-ASCII/control bytes,
+every size and description length below the known-good Hayabusa master.

@@ -28,7 +28,16 @@ Checksums are NOT handled here: re-stamp the field-1 CRC with the repo's tools/f
 usage:  python3 gsxr-1000/tools/make_gsxr_xdf.py <read.bin> <out.xdf> <software> <partno>
 """
 import os, re, struct, sys, difflib
-from html import escape
+from html import escape as _escape
+
+
+def escape(s):
+    """XML-escape element text (&, <, >) but NOT quotes. Everything this module escapes goes
+    into element content (<title>/<description>/<units>), never an attribute value, so apostrophes
+    and double-quotes must stay as literal characters. TunerPro's XDF reader chokes on the numeric
+    apostrophe entity &#x27; that html.escape emits by default, so we must avoid it (the working
+    Hayabusa master XDF contains zero such entities)."""
+    return _escape(str(s), quote=False)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))              # repo root

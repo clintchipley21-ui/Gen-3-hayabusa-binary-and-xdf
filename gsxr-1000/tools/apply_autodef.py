@@ -44,21 +44,31 @@ def role_title(addr, info):
     return '%s%s @0x%06X' % (pre, ROLE_TITLE.get(info['role'], 'Item'), addr)
 
 
+def oneline(s, cap=400):
+    """Collapse to a single line of plain ASCII and hard-cap the length. TunerPro's XDF reader is
+    fragile with very long / multi-line / entity-heavy descriptions, so every description this tool
+    writes is kept short, single-line and free of raw decompiled code (the full code trace with the
+    `<`/`&`/pointer syntax stays in docs/autodef-trace.csv)."""
+    s = re.sub(r'\s+', ' ', s).strip()
+    s = s.replace('<', '').replace('>', '').replace('&', 'and')
+    return s[:cap].rstrip()
+
+
 def role_desc(addr, info, keep_tail):
-    conf = info['conf']
-    detail = info['detail']
-    who = (' Read by %s%s.' % (info['func'], (' (%s)' % info['sub']) if info.get('sub') else '')) \
-        if info.get('func') else ''
-    code = ('\nCODE: %s' % info['code']) if info.get('code') else ''
+    # SHORT, single-line, no raw code - keeps the file small and TunerPro-safe.
     if info.get('inferred_title'):
-        head = ('INFERRED (educated guess, NOT code-proven): name derived from the traced role'
-                '%s plus the variable in the code line below; verify before trusting. '
-                'Underlying role trace (confidence %s): %s.%s%s'
-                % (' and the nearest named subsystem by address' if 'proximity' in info['inferred_title'] else '',
-                   conf, detail, who, code))
+        bits = ['INFERRED name (educated guess - verify)']
     else:
-        head = ('%s (confidence %s): %s.%s%s' % (TRACED_TAG, conf, detail, who, code))
-    return head + ('\n\n' + keep_tail if keep_tail else '')
+        bits = ['Role-traced from code (confidence %s)' % info['conf']]
+    bits.append('role %s' % info['role'])
+    if info.get('func'):
+        bits.append('reader %s' % info['func'])
+    if info.get('sub'):
+        bits.append('subsystem %s' % info['sub'])
+    s = '; '.join(bits) + '. Full code trace: docs/autodef-trace.csv.'
+    if keep_tail:
+        s += ' ' + keep_tail
+    return oneline(s, 360)
 
 
 def apply_block(blk):
@@ -79,7 +89,7 @@ def apply_block(blk):
             mt = re.search(r'(STOCK|VALUES|Bit |Ticked)\b.*', dm.group(1), re.S)
             if mt:
                 tail = mt.group(0).strip()
-        nd = 'CURATED (code-proven): ' + cd + ('\n\n' + tail if tail else '')
+        nd = oneline('CURATED (code-proven): ' + cd + (' ' + tail if tail else ''), 480)
         blk = re.sub(r'<title>.*?</title>', lambda m: '<title>%s</title>' % escape(ct, quote=False), blk, count=1, flags=re.S)
         blk = re.sub(r'<description>.*?</description>', lambda m: '<description>%s</description>' % escape(nd, quote=False), blk, count=1, flags=re.S)
         return blk, True
@@ -141,7 +151,7 @@ def apply_curated_table(blk):
     ct, cd = CURATED_TABLE[addr]
     old = re.search(r'<description>(.*?)</description>', blk, re.S)
     tail = old.group(1).strip() if old else ''
-    nd = 'CURATED (code-proven): ' + cd + ('\n\n' + tail if tail else '')
+    nd = oneline('CURATED (code-proven): ' + cd + (' ' + tail if tail else ''), 480)
     blk = re.sub(r'<title>.*?</title>', lambda m: '<title>%s</title>' % escape(ct, quote=False), blk, count=1, flags=re.S)
     blk = re.sub(r'<description>.*?</description>', lambda m: '<description>%s</description>' % escape(nd, quote=False), blk, count=1, flags=re.S)
     return blk, True
