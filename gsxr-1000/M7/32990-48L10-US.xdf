@@ -61,6 +61,7 @@
     <CATEGORY index="0x32" name="Scalars - Throttle By Wire" />
     <CATEGORY index="0x33" name="ZZ Unmatched / Auto-discovered (verify)" />
     <CATEGORY index="0x34" name="ZZ Decompiler-discovered scalars (unverified)" />
+    <CATEGORY index="0x35" name="Steering Damper (ESD) (decoded)" />
   </XDFHEADER>
   <XDFTABLE uniqueid="0x1001" flags="0x0">
     <title>Quickshifter :: GP-Sensor Upshift Window A Offset vs Gear</title>
@@ -23066,14 +23067,16 @@ REFERENCE: descriptor @0x171690, data @0x1721F8, X @0x171660, Y @0x171674.</desc
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x1209" flags="0x0">
-    <title>Mode-Setting Limit :: Curve vs Rear Wheel Speed | Level 1</title>
-    <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
+    <title>Steering Damper :: Damping vs Speed - Mode 1</title>
+    <description>ELECTRONIC STEERING DAMPER modulation curve (decompile-confirmed). X axis = rear-wheel speed 0xFEBF63F4: raw 2560 = 20 km/h, so the 16 breakpoints are 0,20,40,...,300 km/h. Output = damping modulation (stock: 0 below ~60 km/h, rising to ~0x4000 = full at 300 km/h = light steering at low speed, firm at high speed). Three mode curves (1/2/3) selected by 0xFEBF6480. Read by FUN_00078006; feeds the PWM solenoid on T54 via FUN_00024cb4 (ch 0x500). This is the &quot;steering damper map&quot; that commercial tools edit; set the enable byte 0x172F28 to 0x00 to disable the damper entirely.
+
+PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 16 pts 0..300 km/h
 GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63F4 (engine RPM (500-8000 rpm)).
 INPUTS (Hayabusa decompile): X = throttle position. Read by FUN_0006a926.
 VALUES (32990-48L10-US): 0 to 16351 raw.
 REFERENCE: descriptor @0x1716AC, data @0x171344, X @0x171324.</description>
-    <CATEGORYMEM index="0" category="32" />
+    <CATEGORYMEM index="0" category="54" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x171324" mmedelementsizebits="16" mmedcolcount="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
       <units>km/h</units>
@@ -23108,14 +23111,16 @@ REFERENCE: descriptor @0x1716AC, data @0x171344, X @0x171324.</description>
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x120A" flags="0x0">
-    <title>Mode-Setting Limit :: Curve vs Rear Wheel Speed | Level 2</title>
-    <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
+    <title>Steering Damper :: Damping vs Speed - Mode 2</title>
+    <description>ELECTRONIC STEERING DAMPER modulation curve (decompile-confirmed). X axis = rear-wheel speed 0xFEBF63F4: raw 2560 = 20 km/h, so the 16 breakpoints are 0,20,40,...,300 km/h. Output = damping modulation (stock: 0 below ~60 km/h, rising to ~0x4000 = full at 300 km/h = light steering at low speed, firm at high speed). Three mode curves (1/2/3) selected by 0xFEBF6480. Read by FUN_00078006; feeds the PWM solenoid on T54 via FUN_00024cb4 (ch 0x500). This is the &quot;steering damper map&quot; that commercial tools edit; set the enable byte 0x172F28 to 0x00 to disable the damper entirely.
+
+PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 16 pts 0..300 km/h
 GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63F4 (engine RPM (500-8000 rpm)).
 INPUTS (Hayabusa decompile): X = throttle position. Read by FUN_0006a926.
 VALUES (32990-48L10-US): 0 to 16351 raw.
 REFERENCE: descriptor @0x1716C0, data @0x171384, X @0x171364.</description>
-    <CATEGORYMEM index="0" category="32" />
+    <CATEGORYMEM index="0" category="54" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x171364" mmedelementsizebits="16" mmedcolcount="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
       <units>km/h</units>
@@ -23150,14 +23155,16 @@ REFERENCE: descriptor @0x1716C0, data @0x171384, X @0x171364.</description>
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x120B" flags="0x0">
-    <title>Mode-Setting Limit :: Curve vs Rear Wheel Speed | Level 3</title>
-    <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
+    <title>Steering Damper :: Damping vs Speed - Mode 3</title>
+    <description>ELECTRONIC STEERING DAMPER modulation curve (decompile-confirmed). X axis = rear-wheel speed 0xFEBF63F4: raw 2560 = 20 km/h, so the 16 breakpoints are 0,20,40,...,300 km/h. Output = damping modulation (stock: 0 below ~60 km/h, rising to ~0x4000 = full at 300 km/h = light steering at low speed, firm at high speed). Three mode curves (1/2/3) selected by 0xFEBF6480. Read by FUN_00078006; feeds the PWM solenoid on T54 via FUN_00024cb4 (ch 0x500). This is the &quot;steering damper map&quot; that commercial tools edit; set the enable byte 0x172F28 to 0x00 to disable the damper entirely.
+
+PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 16 pts 0..300 km/h
 GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63F4 (engine RPM (500-8000 rpm)).
 INPUTS (Hayabusa decompile): X = throttle position. Read by FUN_0006a926.
 VALUES (32990-48L10-US): 0 to 16351 raw.
 REFERENCE: descriptor @0x1716D4, data @0x1713C4, X @0x1713A4.</description>
-    <CATEGORYMEM index="0" category="32" />
+    <CATEGORYMEM index="0" category="54" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1713A4" mmedelementsizebits="16" mmedcolcount="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
       <units>km/h</units>
@@ -23192,14 +23199,16 @@ REFERENCE: descriptor @0x1716D4, data @0x1713C4, X @0x1713A4.</description>
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x120C" flags="0x0">
-    <title>Mode-Setting Limit :: Curve vs fef0267A | Level 1</title>
-    <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
+    <title>Steering Damper :: Secondary Curve - Mode 1 (axis unverified)</title>
+    <description>Electronic steering damper module table (decompile-confirmed; referenced only by the ESD controller FUN_000784dc). Role within the modulation chain not fully resolved - verify before changing.
+
+PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 37 pts 12380..53156 raw
 GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF642A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0006a89c.
 VALUES (32990-48L10-US): 0 to 18350 raw.
 REFERENCE: descriptor @0x1716E8, data @0x17235C, X @0x172310.</description>
-    <CATEGORYMEM index="0" category="32" />
+    <CATEGORYMEM index="0" category="54" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x172310" mmedelementsizebits="16" mmedcolcount="37" mmedmajorstridebits="0" mmedminorstridebits="0" />
       <units>raw</units>
@@ -23234,14 +23243,16 @@ REFERENCE: descriptor @0x1716E8, data @0x17235C, X @0x172310.</description>
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x120D" flags="0x0">
-    <title>Mode-Setting Limit :: Curve vs fef0267A | Level 2</title>
-    <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
+    <title>Steering Damper :: Secondary Curve - Mode 2 (axis unverified)</title>
+    <description>Electronic steering damper module table (decompile-confirmed; referenced only by the ESD controller FUN_000784dc). Role within the modulation chain not fully resolved - verify before changing.
+
+PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 37 pts 12380..53156 raw
 GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF642A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0006a89c.
 VALUES (32990-48L10-US): 0 to 18350 raw.
 REFERENCE: descriptor @0x1716FC, data @0x1723F4, X @0x1723A8.</description>
-    <CATEGORYMEM index="0" category="32" />
+    <CATEGORYMEM index="0" category="54" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1723A8" mmedelementsizebits="16" mmedcolcount="37" mmedmajorstridebits="0" mmedminorstridebits="0" />
       <units>raw</units>
@@ -23276,14 +23287,16 @@ REFERENCE: descriptor @0x1716FC, data @0x1723F4, X @0x1723A8.</description>
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x120E" flags="0x0">
-    <title>Mode-Setting Limit :: Curve vs fef0267A | Level 3</title>
-    <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
+    <title>Steering Damper :: Secondary Curve - Mode 3 (axis unverified)</title>
+    <description>Electronic steering damper module table (decompile-confirmed; referenced only by the ESD controller FUN_000784dc). Role within the modulation chain not fully resolved - verify before changing.
+
+PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 37 pts 12380..53156 raw
 GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF642A (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0006a89c.
 VALUES (32990-48L10-US): 0 to 18350 raw.
 REFERENCE: descriptor @0x171710, data @0x17248C, X @0x172440.</description>
-    <CATEGORYMEM index="0" category="32" />
+    <CATEGORYMEM index="0" category="54" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x172440" mmedelementsizebits="16" mmedcolcount="37" mmedmajorstridebits="0" mmedminorstridebits="0" />
       <units>raw</units>
@@ -23318,14 +23331,16 @@ REFERENCE: descriptor @0x171710, data @0x17248C, X @0x172440.</description>
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x120F" flags="0x0">
-    <title>Mode-Setting Limit :: Factor vs fef0268C</title>
-    <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
+    <title>Steering Damper :: Correction Factor (axis unverified)</title>
+    <description>Electronic steering damper module table (decompile-confirmed; referenced only by the ESD controller FUN_000784dc). Role within the modulation chain not fully resolved - verify before changing.
+
+PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 31 pts 16384..49152 raw
 GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF642E (signed sensor (lean/pitch/rate, centered 0x8000)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0006a8ee.
 VALUES (32990-48L10-US): 0 to 0 raw - every cell the same.
 REFERENCE: descriptor @0x171724, data @0x171BF0, X @0x171BB0.</description>
-    <CATEGORYMEM index="0" category="32" />
+    <CATEGORYMEM index="0" category="54" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x171BB0" mmedelementsizebits="16" mmedcolcount="31" mmedmajorstridebits="0" mmedminorstridebits="0" />
       <units>raw</units>
@@ -23360,15 +23375,16 @@ REFERENCE: descriptor @0x171724, data @0x171BF0, X @0x171BB0.</description>
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x1210" flags="0x0">
-    <title>GP/Shift Window :: Upper Offset vs Ride Mode</title>
-    <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
+    <title>Steering Damper :: Correction Table A (verify)</title>
+    <description>Electronic steering damper module table (decompile-confirmed; referenced only by the ESD controller FUN_000784dc). Role within the modulation chain not fully resolved - verify before changing.
+
+PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 7 pts 0..6 gear bit
 GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6442 (gear position [title-anchored]).
 INPUTS (Hayabusa decompile): X = index (gear/mode/cyl). Read by FUN_0006a6ca.
 VALUES (32990-48L10-US): 108 to 16384 raw.
 REFERENCE: descriptor @0x171738, data @0x171C30, X @0x1712E4.</description>
-    <CATEGORYMEM index="0" category="17" />
-    <CATEGORYMEM index="1" category="27" />
+    <CATEGORYMEM index="0" category="54" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1712E4" mmedelementsizebits="8" mmedcolcount="7" mmedmajorstridebits="0" mmedminorstridebits="0" />
       <units>gear bit</units>
@@ -23403,16 +23419,16 @@ REFERENCE: descriptor @0x171738, data @0x171C30, X @0x1712E4.</description>
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x1211" flags="0x0">
-    <title>GP/Shift Window :: Lower Offset vs Ride Mode (flat)</title>
-    <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
+    <title>Steering Damper :: Correction Table B (verify)</title>
+    <description>Electronic steering damper module table (decompile-confirmed; referenced only by the ESD controller FUN_000784dc). Role within the modulation chain not fully resolved - verify before changing.
+
+PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 7 pts 0..6 gear bit
 GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6442 (gear position [title-anchored]).
 INPUTS (Hayabusa decompile): X = index (gear/mode/cyl). Read by FUN_0006a6ca.
 VALUES (32990-48L10-US): 164 to 164 raw - every cell the same.
 REFERENCE: descriptor @0x17174C, data @0x171C40, X @0x1712EC.</description>
-    <CATEGORYMEM index="0" category="17" />
-    <CATEGORYMEM index="1" category="27" />
-    <CATEGORYMEM index="2" category="22" />
+    <CATEGORYMEM index="0" category="54" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1712EC" mmedelementsizebits="8" mmedcolcount="7" mmedmajorstridebits="0" mmedminorstridebits="0" />
       <units>gear bit</units>
@@ -54569,9 +54585,11 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x100770" flags="0x0">
-    <title>Scalar @0x172E3A (u16)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x077A8C). VALUE 32990-48L10-US: 192.</description>
-    <CATEGORYMEM index="0" category="53" />
+    <title>Steering Damper :: Activation speed threshold</title>
+    <description>Rear-wheel-speed threshold (u16) gating ESD activation in FUN_00077A8C.
+
+Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x077A8C). VALUE 32990-48L10-US: 192.</description>
+    <CATEGORYMEM index="0" category="54" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x172E3A" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
@@ -56418,9 +56436,11 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x100817" flags="0x0">
-    <title>Scalar @0x172F28 (u8)</title>
-    <description>Decompiler-found scalar (UNVERIFIED): u8 read by ECU code (6 ref/6 fn fn 0x039F22). VALUE 32990-48L10-US: 255.</description>
-    <CATEGORYMEM index="0" category="53" />
+    <title>Steering Damper :: Enable (0xFF=on, 0x00=disable)</title>
+    <description>MASTER ESD ENABLE byte (u8). 0xFF (all stock reads) = damper active; 0x00 = output forced to zero (this is the commercial &quot;Disable Steering Damper&quot; setting); 0x80 = alternate branch. Read by FUN_00078058 / FUN_00078534.
+
+Decompiler-found scalar (UNVERIFIED): u8 read by ECU code (6 ref/6 fn fn 0x039F22). VALUE 32990-48L10-US: 255.</description>
+    <CATEGORYMEM index="0" category="54" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x172F28" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>

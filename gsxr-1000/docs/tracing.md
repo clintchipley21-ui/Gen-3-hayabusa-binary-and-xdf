@@ -374,89 +374,70 @@ Bottom line: the diagnostic **monitors** are calibration and are covered; the **
 dash output** are peripheral/logic with no per-bit calibration, so they're documented but not
 fabricated into fake maps or flags.
 
-## 3o. Electronic steering damper (ESD) — ECM-driven (speed → PWM), no tunable table
+## 3o. Electronic steering damper (ESD) — FOUND: speed→modulation maps + enable flag
 
-**Hardware (confirmed).** The ECM drives the steering-damper solenoid directly: ECU pinout
-`T53 B/G Lenkungsdämpfer-Magnetventil (–)` and `T54 G/W Lenkungsdämpfer-Magnetventil (+)`, which the
-service sheet describes as pulsing between battery voltage and 0 V with ignition ON (i.e. a PWM-driven
-solenoid). Service data: *steering-damper solenoid valve resistance, 20 °C = 12.5 Ω.* So this bike has
-a genuine ECM-controlled speed-sensitive damper — unlike the Gen3 Hayabusa (mechanical damper, so the
-master XDF carries no reference label to port from; this had to be traced from the GSX-R's own code).
+**This is the headline correction to earlier drafts of this section.** An exhaustive first pass
+concluded "no tunable damper table exists." That was **wrong**. The full ESD control module, its
+speed→damping calibration curves, and its enable/disable byte are all in the image and are now located.
+The earlier miss had one cause: the damper indexes a **third** vehicle-speed variable, rear-wheel speed
+`0xFEBF63F4` (`gp-0x5c0c`), which was not in the speed-variable set used for the first scan (that set had
+only `0xFEBF63F0`/`63F6`), and the maps carried generic auto-decoded names, so they were not recognised.
 
-**Search for a speed→damping calibration map — exhaustive, negative.** Every calibration descriptor
-in the image that is keyed on a speed RAM variable (main speed `0xFEBF63F0` or vehicle speed
-`0xFEBF63F6`) was located and its consumer function decompiled. All nine are accounted for, and **none
-drives the damper**:
+**Hardware.** ECM-driven solenoid: pinout `T53 B/G Lenkungsdämpfer-Magnetventil (−)` (~0 V always) and
+`T54* G/W (+)` (battery-voltage↕~0 V pulse at ignition ON — `*` = oscilloscope-only pulse). Service data:
+*solenoid resistance 20 °C = 12.5 Ω.* Single-coil PWM solenoid (not an H-bridge like EXCV `T61/T67` or
+the throttle motor `T75/T84`), so damping force ∝ average current = PWM duty.
 
-| descriptor | dims | axis | consumer | what it actually is |
-|---|---|---|---|---|
-| `0x150B7C` `0x150BCC` `0x150D34` | 36–37 pt 1D | main speed | `FUN_000290fe`/`29444`/`29198`/`29bea` | engine torque/airflow speed corrections (write `fef0053x`) |
-| `0x1512E8` `0x1512D4` | 37 pt 1D | main speed | `FUN_0002c8fe` | debounce/monitor speed thresholds (counters `fef00602/603`) |
-| `0x157D38` | 10 pt 1D | main speed | `FUN_0004becc` | adds to a 2D term → `fef00da8` (engine model) |
-| `0x157588` `0x1575A4` `0x1575C0` | 39×7 2D | speed × gear | `FUN_000518b2` | **engine-brake cylinder-cut pattern**, 3 EB levels (see below) |
+**The control module.** `FUN_000784dc` (run from the `FUN_000655d0` task) is the ESD controller — ~20
+sub-functions in `0x077A8C–0x0784A8`. The loop:
+- **Input:** rear-wheel speed `0xFEBF63F4`, a mode byte `0xFEBF6480` (`gp-0x5b80`, values 1/2/3), gear
+  `0xFEBF6442`, and a few state vars. `FUN_00077A8C` gates activation on speed vs threshold `0x172E3A`.
+- **Speed→modulation lookup (`FUN_00078006`):** picks one of three 16-point curves by the mode byte and
+  interpolates it on rear-wheel speed → `fef02222`.
+- **Combine (`FUN_00077F88`/`77FD2`/`78058`):** mixes in secondary curves and corrections.
+- **Output (`FUN_000784A8`):** scales the result to 0–500 and calls `FUN_00024cb4(0x500, 500, duty, 0)`,
+  the PWM actuator driver (`→ FUN_00024c5a` sets duty, `→ FUN_0001df42` enables the output). This is the
+  solenoid drive on T54. So the full loop is pinned end to end: **rear-wheel speed → curve → PWM solenoid.**
 
-The last three deserve a note because they are speed×gear and could superficially look like a damper
-curve: `FUN_000518b2` looks up the selected EB-level pattern by speed×gear, then for each cylinder
-(`param_1` 0–3) extracts one bit of the looked-up byte and sets that cylinder's fuel-cut enable bit via
-`FUN_00051860` into the output byte `0xFEBF60A7`. They are the engine-brake cut-pattern maps (already
-labelled as such in the XDF), **on/off cylinder bits, not an analog damping duty.**
+**The maps (all 1D, in the `0x1716xx` block; currently auto-labelled "Mode-Setting Limit" in cat 32):**
 
-**Control INPUT — confirmed and traced.** "The ECM has to get the speed somehow" — it does, as a
-first-class signal. Vehicle speed lives at `0xFEBF63F0` (main) / `0xFEBF63F6`, sourced from the front
-wheel-speed sensor and shared on CAN. A whole-image instruction scan (`SpeedReaders.py`) found **~130
-functions** that read a speed variable gp-relative; **77 of them read speed but never read engine RPM**
-(`0xFEBF637A/637E/615E`) — the engine-independent consumers, which is the class the damper law belongs
-to (the damper tracks road speed, not engine load). The chassis/IMU region `0x86xxx–0x9Cxxx` filters
-raw speed and estimates vehicle state (e.g. `FUN_000870c8` selects/stores a filtered speed into
-`fef0262c`; `FUN_0008a118`/`898b2`/`89f1c` derive further state). So the input half of the loop is
-present and identified.
+| descriptor | pts | axis (X) | role |
+|---|---|---|---|
+| `0x1716AC` `0x1716C0` `0x1716D4` | 16 | **rear-wheel speed `0xFEBF63F4`** | **damping % vs speed, modes 1/2/3** — the headline curves |
+| `0x1716E8` `0x1716FC` `0x171710` | 37 | `fef0267A` | secondary damper curve, modes 1/2/3 |
+| `0x171724` | 31 | `fef0268C` (`gp-0x5bd2`) | correction factor |
+| `0x171738` `0x17174C` | 7 | ride-mode / state | small correction tables |
+| `0x171760` | 5 | state | small correction table |
 
-**Service-manual check (all GSX-R M7 docs in the Dropbox read).** The ESD's entire documented
-footprint is: the ECM terminal table (`T53 B/G` solenoid (−), ~0 V always; `T54* G/W` solenoid (+),
-battery-voltage↕~0 V pulse at ignition ON — the `*` marks an oscilloscope-only pulse), and one Service
-Data line, *"Steering damper solenoid valve resistance 20 °C = 12.5 Ω."* Two things that confirms: (1)
-it is a **single-coil PWM solenoid** (one coil, +/− pins), not an H-bridge like the EXCV exhaust valve
-(`T61/T67` "EXCVA-Strom −/+") or the throttle motor (`T75/T84`), so damping force is a monotonic
-function of average current = PWM duty; (2) it is **not** in the SDS-II "active control" actuator list —
-the pinout flags the PAIR valve (`T94`) and EVAP valve (`T101`) as SDS-II-drivable for bench tests, but
-the damper has no such note and **no current-vs-speed spec**. So even the factory tool exposes only a
-coil-resistance check, never a drive command or a calibration — consistent with a fully autonomous,
-firmware-internal speed→duty law with nothing surfaced to tune.
+The three 16-point speed curves are byte-identical in the stock image and decode exactly as the known
+GSX-R ESD map: axis `0,2560,5120,…,38400` raw = **0,20,40,…,300 km/h** (2560 raw = 20 km/h), data
+`[0,0,0,0,1311,2916,…,16351]` = **zero damping below 60 km/h rising to ~full (`0x4000` ≈ 100 %) at
+300 km/h** — i.e. light/nimble at low speed, firm at high speed. This matches, to the point and the
+increment, the "speed-vs-modulation %, 0–300 km/h in 20 km/h steps" map riders describe.
 
-**Control OUTPUT — physically confirmed, register not pinnable from the image.** T54 is a PWM-driven
-low-side solenoid output (pinout + the ignition-ON voltage pulse). The duty is computed in firmware
-(a speed→duty law feeding a PWM ISR), *not* read from a calibration descriptor — all nine speed-keyed
-descriptors above are engine/EB maps. Mapping the duty-write to the specific RH850 timer/port register,
-and thence to connector pin T54, needs two things not in the materials: the exact RH850 variant's
-timer/port **pin-mux**, and the ECU PCB **netlist** (connector pin → MCU port). Without them the output
-register cannot be asserted.
+**The enable/disable byte: `0x172F28` (u8, `0xFF` in all four stock reads).** In `FUN_00078058` /
+`FUN_00078534` the logic is: `== 0x00` → output forced to 0 (damper **off**); `== 0x80` → alternate
+branch; `0xFF` (stock) → full control. This is the single element Woolich Racing exposes for the
+2017–2026 GSX-R1000/R as **"Disable Steering Damper"** — set it to `0x00` to disable. Related control
+bytes: `0x172F26` (0x00 stock), `0x172F29` (0x03 stock). Activation/threshold constants live in
+`0x172E38–0x172E8E`.
 
-> Correction to an earlier draft: `0xFFCB202C` is **not** a PWM channel. The `0xA5` write followed by
-> value / inverse-value / value is the RH850 **protected-register write-command** sequence; the whole
-> `0xCCxxx–0xCDxxx` cluster is the functional-safety / register-protection / watchdog module
-> (`FUN_000cc9ea`, `FUN_000cde24`, `FUN_000cddd0` are protected-write helpers), and `FUN_000cd6c0(0x12)`
-> is a protected *bit-set* (`1 << 0x12`), not a PWM duty. It is unrelated to the damper.
+**Cross-checks that confirm identity.**
+- Woolich Racing exposes exactly one ESD element for this ECU — a **Disable Steering Damper** toggle —
+  which is `0x172F28`. It does **not** expose the speed curves as editable (they are present but Woolich
+  chose not to surface them); the riders' editable "0–300 km/h modulation" map is the same structure,
+  documented on older GSX-R1000 ECUs.
+- Disconnecting the solenoid sets a DTC (riders fit a resistor/eliminator), consistent with the 12.5 Ω
+  coil diagnostic.
 
-**Cross-check against the tuning industry (web, 2026).** This is corroborated by what the commercial
-Suzuki tools actually expose:
-- **Woolich Racing** lists, for the **2017–2026 GSX-R1000 / 1000R (this L7/M7 ECU)**, a single
-  **"Disable Steering Damper"** feature — an on/off toggle, *not* an editable speed curve. That matches
-  the firmware exactly: there is no speed→damping descriptor to edit, only (at most) one enable/disable
-  calibration element gating the whole ESD function.
-- The editable **"speed-vs-modulation %" damper map** riders describe (0–300 km/h in 20 km/h steps,
-  "change the speed at which it gets tighter, but not the total resistance") is an **older-generation**
-  GSX-R1000 feature (the pre-2017 Mitsubishi/Denso ECUs), not this RH850 image. So that map is real, but
-  it belongs to a different ECU family — it is not evidence of a table in the M7.
-- Disconnecting the solenoid sets a DTC (riders fit a resistor / "eliminator"), consistent with the
-  12.5 Ω coil-resistance diagnostic.
+**Correction retained from the earlier draft:** `0xFFCB202C` is **not** a PWM channel. The `0xA5` +
+value/inverse/value writes are the RH850 **protected-register write-command** sequence; the
+`0xCCxxx–0xCDxxx` cluster is the functional-safety / register-protection / watchdog module, unrelated to
+the damper. (The real damper PWM goes through `FUN_00024cb4`, channel `0x500`.)
 
-**Bottom line for the XDF (not fabricated).** The steering damper IS ECM-controlled: road speed in →
-firmware law → PWM solenoid out on T54. But on this ECU that law is **code + firmware constants, not a
-tuner-editable speed→damping map** — confirmed independently by Woolich exposing only a *disable* toggle
-here, never a modulation curve. The one tunable element that plausibly exists is that **enable/disable
-flag**; its address is not published (proprietary to the commercial flashers) and could not be pinned
-from the image, because the ESD driver itself can't be tied to pin T54 without the RH850 variant pin-mux
-/ ECU netlist. So nothing is added to the XDF and nothing is invented. Concrete unlocks, in order of
-payoff: (1) the RH850 device marking + its pin-mux, or the ECU PCB netlist → pins the output register →
-reveals the driver, its enable flag and any duty constants directly; (2) a byte-diff of a stock image vs
-a Woolich "steering-damper-disabled" image → isolates the enable flag address for an XDF flag.
+**For the XDF.** These are real, tunable tables and a real enable flag — they are relabelled from the
+generic "Mode-Setting Limit" names to a dedicated **Steering Damper (ESD)** folder: the three 16-point
+`Damping % vs Speed — Mode 1/2/3` curves, the secondary curves/corrections, the `Disable Steering Damper`
+flag (`0x172F28`), and the activation-speed threshold. Axis labels for the two secondary inputs
+(`fef0267A`, `fef0268C`) are marked unverified pending their own trace; the headline speed curves and the
+enable flag are confirmed.
