@@ -1,0 +1,16 @@
+{
+  "_comment": "Hand-verified, code-proven names for headline tunable parameters, by subsystem. Consumed by tools/apply_autodef.py (takes precedence over the automatic role-trace). Each entry: title + description read directly from the decompiled control function named in the text.",
+  "scalars": {
+    "0x192CEA": ["ETV :: Demand output clamp - upper limit", "ETV throttle-demand clamp, HIGH bound. FUN_0008AE3E: _DAT_fef02d98 = clamp((torque_demand-0x8000)*RPM_gain/8 + 0x8000, hi=0x192CEA, lo=0x192CEC). RPM_gain from map 0x174710/0x174724 (pos/neg error)."],
+    "0x192CEC": ["ETV :: Demand output clamp - lower limit", "ETV throttle-demand clamp, LOW bound (pair of 0x192CEA). See FUN_0008AE3E."],
+    "0x192CAA": ["ETV :: Correction bias/center (0x8000 = neutral)", "FUN_0008AFE0: signed bias (0x8000 = neutral) folded into an ETV correction that also uses map 0x1746E8 and the signed sensor 0xFEBF6538; result -> fef02dce / throttle offset."],
+    "0x192CCE": ["ETV :: Rate-change increment A", "FUN_0008A91C: additive step in the ETV direction/rate-of-change logic (added to accumulator fef02dac); limits how fast the ETV demand moves."],
+    "0x192CD0": ["ETV :: Rate-change increment B", "FUN_0008A91C: additive step for the ETV rate logic (accumulator fef02dae)."],
+    "0x192CD2": ["ETV :: Rate-change increment C", "FUN_0008A91C: additive step for the ETV rate logic (accumulator fef02db0)."]
+  },
+  "tables": {
+    "0x1746AC": ["ETV :: ECT correction factor (vs ECT)", "CONFIRMED (was UNCONFIRMED Helper 3): FUN_0008C500 looks this up by engine coolant temp 0xFEBF6440 (gp-0x5bc0) -> fef02e50. ECT-based ETV correction."],
+    "0x17301C": ["ETV :: Baro airflow factor (vs baro)", "CONFIRMED (was UNCONFIRMED): FUN_00089064 looks this up by barometric pressure 0xFEBF6394 (gp-0x5c6c). Altitude/baro airflow correction into the ETV/air model."],
+    "0x1746E8": ["ETV :: Correction gain vs sensor 0xFEBF63BA (Helper 5)", "FUN_0008AFE0 looks this up by 0xFEBF63BA (gp-0x5c46), not fef025F8 as an earlier auto-name guessed. Feeds the 0x192CAA correction."]
+  }
+}

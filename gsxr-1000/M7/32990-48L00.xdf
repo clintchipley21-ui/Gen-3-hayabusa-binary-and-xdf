@@ -24218,10 +24218,12 @@ REFERENCE: descriptor @0x173008, data @0x173268, X @0x172FCC.</description>
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x1223" flags="0x0">
-    <title>ETV :: Baro Airflow Factor  [UNCONFIRMED]</title>
-    <description>PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own.
+    <title>ETV :: Baro airflow factor (vs baro)</title>
+    <description>CURATED (code-proven): CONFIRMED (was UNCONFIRMED): FUN_00089064 looks this up by barometric pressure 0xFEBF6394 (gp-0x5c6c). Altitude/baro airflow correction into the ETV/air model.
+
+PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp;amp; values are this read&amp;#x27;s own.
 X: 29 pts 125.00..50.00 kPa
-GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6394 (barometric pressure [title-anchored]).
+GSX-R TRACED INPUTS (from this ECU&amp;#x27;s lookup calls): X = 0xFEBF6394 (barometric pressure [title-anchored]).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_00079724.
 VALUES (32990-48L00): 15 to 255 raw.
 REFERENCE: descriptor @0x17301C, data @0x173534, X @0x173288.</description>
@@ -24982,10 +24984,12 @@ REFERENCE: descriptor @0x174698, data @0x175170, X @0x174570.</description>
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x1235" flags="0x0">
-    <title>ETV :: ECT Factor (Helper 3)  [UNCONFIRMED]</title>
-    <description>PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own.
+    <title>ETV :: ECT correction factor (vs ECT)</title>
+    <description>CURATED (code-proven): CONFIRMED (was UNCONFIRMED Helper 3): FUN_0008C500 looks this up by engine coolant temp 0xFEBF6440 (gp-0x5bc0) -&gt; fef02e50. ECT-based ETV correction.
+
+PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp;amp; values are this read&amp;#x27;s own.
 X: 14 pts -20.62..109.69 deg C
-GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6440 (engine coolant temp ECT [title-anchored]).
+GSX-R TRACED INPUTS (from this ECU&amp;#x27;s lookup calls): X = 0xFEBF6440 (engine coolant temp ECT [title-anchored]).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0007cbac.
 VALUES (32990-48L00): 128 to 128 raw - every cell the same.
 REFERENCE: descriptor @0x1746AC, data @0x175190, X @0x175180.</description>
@@ -25096,10 +25100,12 @@ REFERENCE: descriptor @0x1746D4, data @0x1751A0, X @0x174578.</description>
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x1237" flags="0x0">
-    <title>ETV :: Gain vs fef025F8 (Helper 5)</title>
-    <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
+    <title>ETV :: Correction gain vs sensor 0xFEBF63BA (Helper 5)</title>
+    <description>CURATED (code-proven): FUN_0008AFE0 looks this up by 0xFEBF63BA (gp-0x5c46), not fef025F8 as an earlier auto-name guessed. Feeds the 0x192CAA correction.
+
+PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp;amp; values are this read&amp;#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 5 pts 512..921 raw
-GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF63BA (monotonic axis (unit TBD) (raw 512..921)).
+GSX-R TRACED INPUTS (from this ECU&amp;#x27;s lookup calls): X = 0xFEBF63BA (monotonic axis (unit TBD) (raw 512..921)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0007b5d8.
 VALUES (32990-48L00): 100 to 179 raw.
 REFERENCE: descriptor @0x1746E8, data @0x1751BC, X @0x1751B0.</description>
@@ -65548,9 +65554,8 @@ CODE: uVar4 = DAT_00192ca8;</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x100A5E" flags="0x0">
-    <title>ETV / Throttle-by-Wire :: Operand @0x192CAA</title>
-    <description>ROLE-TRACED (confidence LOW): read in an expression (role unresolved). Read by 0x08AFE0 (ETV / Throttle-by-Wire).
-CODE: uVar5 = DAT_00192caa;</description>
+    <title>ETV :: Correction bias/center (0x8000 = neutral)</title>
+    <description>CURATED (code-proven): FUN_0008AFE0: signed bias (0x8000 = neutral) folded into an ETV correction that also uses map 0x1746E8 and the signed sensor 0xFEBF6538; result -&gt; fef02dce / throttle offset.</description>
     <CATEGORYMEM index="0" category="51" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x192CAA" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -65782,9 +65787,8 @@ CODE: uVar4 = DAT_00192ccc;</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x100A70" flags="0x0">
-    <title>ETV / Throttle-by-Wire :: Operand @0x192CCE</title>
-    <description>ROLE-TRACED (confidence LOW): read in an expression (role unresolved). Read by 0x08A91C (ETV / Throttle-by-Wire).
-CODE: uVar12 = (uint)DAT_00192cce;</description>
+    <title>ETV :: Rate-change increment A</title>
+    <description>CURATED (code-proven): FUN_0008A91C: additive step in the ETV direction/rate-of-change logic (added to accumulator fef02dac); limits how fast the ETV demand moves.</description>
     <CATEGORYMEM index="0" category="51" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x192CCE" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -65795,9 +65799,8 @@ CODE: uVar12 = (uint)DAT_00192cce;</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x100A71" flags="0x0">
-    <title>ETV / Throttle-by-Wire :: Operand @0x192CD0</title>
-    <description>ROLE-TRACED (confidence LOW): read in an expression (role unresolved). Read by 0x08A91C (ETV / Throttle-by-Wire).
-CODE: uVar4 = DAT_00192cd0;</description>
+    <title>ETV :: Rate-change increment B</title>
+    <description>CURATED (code-proven): FUN_0008A91C: additive step for the ETV rate logic (accumulator fef02dae).</description>
     <CATEGORYMEM index="0" category="51" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x192CD0" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -65808,9 +65811,8 @@ CODE: uVar4 = DAT_00192cd0;</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x100A72" flags="0x0">
-    <title>ETV / Throttle-by-Wire :: Operand @0x192CD2</title>
-    <description>ROLE-TRACED (confidence LOW): read in an expression (role unresolved). Read by 0x08A91C (ETV / Throttle-by-Wire).
-CODE: uVar5 = DAT_00192cd2;</description>
+    <title>ETV :: Rate-change increment C</title>
+    <description>CURATED (code-proven): FUN_0008A91C: additive step for the ETV rate logic (accumulator fef02db0).</description>
     <CATEGORYMEM index="0" category="51" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x192CD2" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -65964,8 +65966,8 @@ CODE: uVar3 = DAT_00192ce8;</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x100A7E" flags="0x0">
-    <title>ETV Level-2 safety torque-monitor output clamp, low (FUN_000</title>
-    <description>TRACED FROM GSX-R CODE: ETV Level-2 safety torque-monitor output clamp, low (FUN_0008AE3E; stock 0). VALUE 32990-48L00: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <title>ETV :: Demand output clamp - upper limit</title>
+    <description>CURATED (code-proven): ETV throttle-demand clamp, HIGH bound. FUN_0008AE3E: _DAT_fef02d98 = clamp((torque_demand-0x8000)*RPM_gain/8 + 0x8000, hi=0x192CEA, lo=0x192CEC). RPM_gain from map 0x174710/0x174724 (pos/neg error).</description>
     <CATEGORYMEM index="0" category="53" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x192CEA" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -65976,8 +65978,8 @@ CODE: uVar3 = DAT_00192ce8;</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x100A7F" flags="0x0">
-    <title>ETV Level-2 safety torque-monitor output clamp, high (FUN_00</title>
-    <description>TRACED FROM GSX-R CODE: ETV Level-2 safety torque-monitor output clamp, high (FUN_0008AE3E; stock 65535). VALUE 32990-48L00: 65535 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <title>ETV :: Demand output clamp - lower limit</title>
+    <description>CURATED (code-proven): ETV throttle-demand clamp, LOW bound (pair of 0x192CEA). See FUN_0008AE3E.</description>
     <CATEGORYMEM index="0" category="53" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x192CEC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>

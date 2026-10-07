@@ -21,6 +21,9 @@ from html import escape
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROLES = json.load(open(os.path.join(ROOT, 'docs', 'autodef-roles.json')))
+_cur = json.load(open(os.path.join(ROOT, 'docs', 'curated-names.json')))
+CURATED_SCALAR = {int(k, 16): v for k, v in _cur.get('scalars', {}).items()}
+CURATED_TABLE = {int(k, 16): v for k, v in _cur.get('tables', {}).items()}
 ROLE_TITLE = {'threshold': 'Threshold', 'gain': 'Gain/Factor', 'divisor': 'Divisor', 'offset': 'Offset',
               'bitmask': 'Bit mask', 'flag-test': 'Flag (tested)', 'operand': 'Operand',
               'unref': 'Data (unreferenced)', 'map': 'Map'}
@@ -51,11 +54,26 @@ def apply_block(blk):
     if not tm or not am:
         return blk, False
     title = tm.group(1)
+    addr = int(am.group(1), 16)
+    # curated (hand-verified, code-proven) names take precedence and bypass the generic check
+    if addr in CURATED_SCALAR:
+        if 'CURATED' in blk:
+            return blk, False
+        ct, cd = CURATED_SCALAR[addr]
+        dm = re.search(r'<description>(.*?)</description>', blk, re.S)
+        tail = ''
+        if dm:
+            mt = re.search(r'(STOCK|VALUES|Bit |Ticked)\b.*', dm.group(1), re.S)
+            if mt:
+                tail = mt.group(0).strip()
+        nd = 'CURATED (code-proven): ' + cd + ('\n\n' + tail if tail else '')
+        blk = re.sub(r'<title>.*?</title>', lambda m: '<title>%s</title>' % escape(ct, quote=False), blk, count=1, flags=re.S)
+        blk = re.sub(r'<description>.*?</description>', lambda m: '<description>%s</description>' % escape(nd, quote=False), blk, count=1, flags=re.S)
+        return blk, True
     if TRACED_TAG in blk:                 # already applied - idempotent
         return blk, False
     if not GENERIC.match(title):          # hand-named / already meaningful - leave it
         return blk, False
-    addr = int(am.group(1), 16)
     info = ROLES.get('0x%06X' % addr)
     if not info:
         return blk, False
@@ -93,13 +111,34 @@ def retitle_unknown_table(blk):
                   blk, count=1, flags=re.S), True
 
 
+def apply_curated_table(blk):
+    dm = re.search(r'descriptor @0x([0-9A-Fa-f]+)', blk)
+    if not dm:
+        return blk, False
+    addr = int(dm.group(1), 16)
+    if addr not in CURATED_TABLE or 'CURATED' in blk:
+        return blk, False
+    ct, cd = CURATED_TABLE[addr]
+    old = re.search(r'<description>(.*?)</description>', blk, re.S)
+    tail = old.group(1).strip() if old else ''
+    nd = 'CURATED (code-proven): ' + cd + ('\n\n' + tail if tail else '')
+    blk = re.sub(r'<title>.*?</title>', lambda m: '<title>%s</title>' % escape(ct, quote=False), blk, count=1, flags=re.S)
+    blk = re.sub(r'<description>.*?</description>', lambda m: '<description>%s</description>' % escape(nd, quote=False), blk, count=1, flags=re.S)
+    return blk, True
+
+
 def main(path):
     x = open(path).read()
     n = 0
     nt_tab = 0
+    nc_tab = 0
 
     def repl_tab(m):
-        nonlocal nt_tab
+        nonlocal nt_tab, nc_tab
+        blk, ch = apply_curated_table(m.group(0))
+        if ch:
+            nc_tab += 1
+            return blk
         blk, ch = retitle_unknown_table(m.group(0))
         if ch:
             nt_tab += 1
@@ -115,8 +154,8 @@ def main(path):
     x = re.sub(r'<XDFCONSTANT\b.*?</XDFCONSTANT>', repl, x, flags=re.S)
     x = re.sub(r'<XDFFLAG\b.*?</XDFFLAG>', repl, x, flags=re.S)
     open(path, 'w').write(x)
-    print('%s: role-traced %d constants/flags, renamed %d Unknown tables' % (
-        os.path.relpath(path, ROOT), n, nt_tab))
+    print('%s: role-traced %d constants/flags, %d curated tables, renamed %d Unknown tables' % (
+        os.path.relpath(path, ROOT), n, nc_tab, nt_tab))
 
 
 if __name__ == '__main__':
