@@ -36877,8 +36877,8 @@ CODE: bVar1 = (ushort)((ushort)DAT_00154dd1 * 0x100) &lt;= uVar3;</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x100122" flags="0x0">
-    <title>Quickshifter MASTER ENABLE (FUN_0002B720 runs the QS pipelin</title>
-    <description>TRACED FROM GSX-R CODE: Quickshifter MASTER ENABLE (FUN_0002B720 runs the QS pipeline only when this == 0; stock 0 = enabled). VALUE 32990-48L00: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <title>Quickshifter :: Master enable (0 = quickshifter active)</title>
+    <description>CURATED (code-proven): Traced end-to-end: QS pipeline dispatcher FUN_0002B720. This byte gates the whole upshift ignition-cut; 0 = active.</description>
     <CATEGORYMEM index="0" category="53" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154DD2" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -37547,8 +37547,8 @@ CODE: if (DAT_fef00308 &lt; DAT_00154e14) {</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x100166" flags="0x0">
-    <title>Downshift/decel auto-blip duration (FUN_00028de0: ETV decel-</title>
-    <description>TRACED FROM GSX-R CODE: Downshift/decel auto-blip duration (FUN_00028de0: ETV decel-entry throttle-opening held while counter fef00526 &lt; this; 25 counts). VALUE 32990-48L00: 25 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <title>Engine Brake / Auto-blip :: Blip duration (counts)</title>
+    <description>CURATED (code-proven): Downshift auto-blip throttle-opening duration, stock 25 counts. Used by the EB/auto-blip controller FUN_00028CA6 (output fef005c0).</description>
     <CATEGORYMEM index="0" category="53" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154E16" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -37559,8 +37559,8 @@ CODE: if (DAT_fef00308 &lt; DAT_00154e14) {</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x100167" flags="0x0">
-    <title>Engine-brake/decel throttle mode select (FUN_00028de0; 0 = d</title>
-    <description>TRACED FROM GSX-R CODE: Engine-brake/decel throttle mode select (FUN_00028de0; 0 = decel-entry blip path). VALUE 32990-48L00: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <title>Engine Brake / Auto-blip :: Blip mode</title>
+    <description>CURATED (code-proven): Mode selector for the downshift auto-blip (FUN_00028CA6 chain).</description>
     <CATEGORYMEM index="0" category="53" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x154E17" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -50762,8 +50762,8 @@ CODE: uVar13 = DAT_001701e2;</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005A1" flags="0x0">
-    <title>Traction control slip gate (FUN_00055016: if slip 0xFEBF6164</title>
-    <description>TRACED FROM GSX-R CODE: Traction control slip gate (FUN_00055016: if slip 0xFEBF6164 below this, cut factor forced to 100; =240). VALUE 32990-48L00: 240 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <title>Traction Control :: Slip entry gate</title>
+    <description>CURATED (code-proven): FUN_00055016: slip gate compared against slip 0xFEBF6164 before the per-level thresholds apply.</description>
     <CATEGORYMEM index="0" category="53" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1701E4" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -50813,8 +50813,8 @@ CODE: uVar2 = DAT_001701ea;</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005A5" flags="0x0">
-    <title>Traction control per-level hysteresis/history count | Level </title>
-    <description>TRACED FROM GSX-R CODE: Traction control per-level hysteresis/history count | Level 1 (FUN_00055016; 0 = off in stock). VALUE 32990-48L00: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <title>Traction Control :: Slip threshold - Level 1</title>
+    <description>CURATED (code-proven): Per-level slip-intervention threshold (u16), TC level 1. FUN_00055016 switches on the TC level byte 0xFEBF6459 (1..10) and compares slip 0xFEBF6164 against this array (0x1701EC..0x170200).</description>
     <CATEGORYMEM index="0" category="53" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1701EC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -50825,8 +50825,8 @@ CODE: uVar2 = DAT_001701ea;</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005A6" flags="0x0">
-    <title>Traction control per-level hysteresis/history count | Level </title>
-    <description>TRACED FROM GSX-R CODE: Traction control per-level hysteresis/history count | Level 2 (FUN_00055016; 0 = off in stock). VALUE 32990-48L00: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <title>Traction Control :: Slip threshold - Level 2</title>
+    <description>CURATED (code-proven): Per-level slip-intervention threshold (u16), TC level 2. FUN_00055016 switches on the TC level byte 0xFEBF6459 (1..10) and compares slip 0xFEBF6164 against this array (0x1701EC..0x170200).</description>
     <CATEGORYMEM index="0" category="53" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1701EE" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -50837,8 +50837,8 @@ CODE: uVar2 = DAT_001701ea;</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005A7" flags="0x0">
-    <title>Traction control per-level hysteresis/history count | Level </title>
-    <description>TRACED FROM GSX-R CODE: Traction control per-level hysteresis/history count | Level 3 (FUN_00055016; 0 = off in stock). VALUE 32990-48L00: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <title>Traction Control :: Slip threshold - Level 3</title>
+    <description>CURATED (code-proven): Per-level slip-intervention threshold (u16), TC level 3. FUN_00055016 switches on the TC level byte 0xFEBF6459 (1..10) and compares slip 0xFEBF6164 against this array (0x1701EC..0x170200).</description>
     <CATEGORYMEM index="0" category="53" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1701F0" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -50849,8 +50849,8 @@ CODE: uVar2 = DAT_001701ea;</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005A8" flags="0x0">
-    <title>Traction control per-level hysteresis/history count | Level </title>
-    <description>TRACED FROM GSX-R CODE: Traction control per-level hysteresis/history count | Level 4 (FUN_00055016; 0 = off in stock). VALUE 32990-48L00: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <title>Traction Control :: Slip threshold - Level 4</title>
+    <description>CURATED (code-proven): Per-level slip-intervention threshold (u16), TC level 4. FUN_00055016 switches on the TC level byte 0xFEBF6459 (1..10) and compares slip 0xFEBF6164 against this array (0x1701EC..0x170200).</description>
     <CATEGORYMEM index="0" category="53" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1701F2" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -50861,8 +50861,8 @@ CODE: uVar2 = DAT_001701ea;</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005A9" flags="0x0">
-    <title>Traction control per-level hysteresis/history count | Level </title>
-    <description>TRACED FROM GSX-R CODE: Traction control per-level hysteresis/history count | Level 5 (FUN_00055016; 0 = off in stock). VALUE 32990-48L00: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <title>Traction Control :: Slip threshold - Level 5</title>
+    <description>CURATED (code-proven): Per-level slip-intervention threshold (u16), TC level 5. FUN_00055016 switches on the TC level byte 0xFEBF6459 (1..10) and compares slip 0xFEBF6164 against this array (0x1701EC..0x170200).</description>
     <CATEGORYMEM index="0" category="53" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1701F4" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -50873,8 +50873,8 @@ CODE: uVar2 = DAT_001701ea;</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005AA" flags="0x0">
-    <title>Traction control per-level hysteresis/history count | Level </title>
-    <description>TRACED FROM GSX-R CODE: Traction control per-level hysteresis/history count | Level 6 (FUN_00055016; 0 = off in stock). VALUE 32990-48L00: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <title>Traction Control :: Slip threshold - Level 6</title>
+    <description>CURATED (code-proven): Per-level slip-intervention threshold (u16), TC level 6. FUN_00055016 switches on the TC level byte 0xFEBF6459 (1..10) and compares slip 0xFEBF6164 against this array (0x1701EC..0x170200).</description>
     <CATEGORYMEM index="0" category="53" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1701F6" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -50885,8 +50885,8 @@ CODE: uVar2 = DAT_001701ea;</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005AB" flags="0x0">
-    <title>Traction control per-level hysteresis/history count | Level </title>
-    <description>TRACED FROM GSX-R CODE: Traction control per-level hysteresis/history count | Level 7 (FUN_00055016; 0 = off in stock). VALUE 32990-48L00: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <title>Traction Control :: Slip threshold - Level 7</title>
+    <description>CURATED (code-proven): Per-level slip-intervention threshold (u16), TC level 7. FUN_00055016 switches on the TC level byte 0xFEBF6459 (1..10) and compares slip 0xFEBF6164 against this array (0x1701EC..0x170200).</description>
     <CATEGORYMEM index="0" category="53" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1701F8" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -50897,8 +50897,8 @@ CODE: uVar2 = DAT_001701ea;</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005AC" flags="0x0">
-    <title>Traction control per-level hysteresis/history count | Level </title>
-    <description>TRACED FROM GSX-R CODE: Traction control per-level hysteresis/history count | Level 8 (FUN_00055016; 0 = off in stock). VALUE 32990-48L00: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <title>Traction Control :: Slip threshold - Level 8</title>
+    <description>CURATED (code-proven): Per-level slip-intervention threshold (u16), TC level 8. FUN_00055016 switches on the TC level byte 0xFEBF6459 (1..10) and compares slip 0xFEBF6164 against this array (0x1701EC..0x170200).</description>
     <CATEGORYMEM index="0" category="53" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1701FA" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -50909,8 +50909,8 @@ CODE: uVar2 = DAT_001701ea;</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005AD" flags="0x0">
-    <title>Traction control per-level hysteresis/history count | Level </title>
-    <description>TRACED FROM GSX-R CODE: Traction control per-level hysteresis/history count | Level 9 (FUN_00055016; 0 = off in stock). VALUE 32990-48L00: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <title>Traction Control :: Slip threshold - Level 9</title>
+    <description>CURATED (code-proven): Per-level slip-intervention threshold (u16), TC level 9. FUN_00055016 switches on the TC level byte 0xFEBF6459 (1..10) and compares slip 0xFEBF6164 against this array (0x1701EC..0x170200).</description>
     <CATEGORYMEM index="0" category="53" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1701FC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -50921,8 +50921,8 @@ CODE: uVar2 = DAT_001701ea;</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005AE" flags="0x0">
-    <title>Traction control per-level hysteresis/history count | Level </title>
-    <description>TRACED FROM GSX-R CODE: Traction control per-level hysteresis/history count | Level 10 (FUN_00055016; 0 = off in stock). VALUE 32990-48L00: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <title>Traction Control :: Slip threshold - Level 10</title>
+    <description>CURATED (code-proven): Per-level slip-intervention threshold (u16), TC level 10. FUN_00055016 switches on the TC level byte 0xFEBF6459 (1..10) and compares slip 0xFEBF6164 against this array (0x1701EC..0x170200).</description>
     <CATEGORYMEM index="0" category="53" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1701FE" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -50933,8 +50933,8 @@ CODE: uVar2 = DAT_001701ea;</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005AF" flags="0x0">
-    <title>Traction control per-level hysteresis/history count | Launch</title>
-    <description>TRACED FROM GSX-R CODE: Traction control per-level hysteresis/history count | Launch (FUN_00055016; 0 = off in stock). VALUE 32990-48L00: 0 (raw). Confirm the exact engage point on a bench before relying on it.</description>
+    <title>Traction Control :: Slip threshold - Level 11</title>
+    <description>CURATED (code-proven): Per-level slip-intervention threshold (u16), TC level 11. FUN_00055016 switches on the TC level byte 0xFEBF6459 (1..10) and compares slip 0xFEBF6164 against this array (0x1701EC..0x170200).</description>
     <CATEGORYMEM index="0" category="53" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x170200" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -53085,9 +53085,8 @@ CODE: bVar9 = DAT_001702ca;</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x100664" flags="0x0">
-    <title>Rider Aids - Traction Control :: Threshold @0x1702CB</title>
-    <description>ROLE-TRACED (confidence MED): compared against a constant/value. Read by 0x0543CC (Rider Aids - Traction Control).
-CODE: if (DAT_001702cb == '\x01') {</description>
+    <title>Traction Control :: Enable/mode flag (==1)</title>
+    <description>CURATED (code-proven): FUN_00055706: branch taken when this byte == 1 (stock 1).</description>
     <CATEGORYMEM index="0" category="53" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1702CB" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
