@@ -374,7 +374,7 @@ Bottom line: the diagnostic **monitors** are calibration and are covered; the **
 dash output** are peripheral/logic with no per-bit calibration, so they're documented but not
 fabricated into fake maps or flags.
 
-## 3o. Electronic steering damper (ESD) — ECM-driven, but no calibration table exists
+## 3o. Electronic steering damper (ESD) — ECM-driven (speed → PWM), no tunable table
 
 **Hardware (confirmed).** The ECM drives the steering-damper solenoid directly: ECU pinout
 `T53 B/G Lenkungsdämpfer-Magnetventil (–)` and `T54 G/W Lenkungsdämpfer-Magnetventil (+)`, which the
@@ -401,14 +401,34 @@ curve: `FUN_000518b2` looks up the selected EB-level pattern by speed×gear, the
 `FUN_00051860` into the output byte `0xFEBF60A7`. They are the engine-brake cut-pattern maps (already
 labelled as such in the XDF), **on/off cylinder bits, not an analog damping duty.**
 
-**Output side — also negative.** The only varying-PWM timer channel reachable in code
-(`0xFFCB202C`, TAU) is written once with a constant (`FUN_000cd6c0(0x12)` from the init sequence
-`FUN_00027650`); no function computes a speed-dependent duty into it. No function both reads a speed
-variable and writes a solenoid/PWM output register with a speed-derived value.
+**Control INPUT — confirmed and traced.** "The ECM has to get the speed somehow" — it does, as a
+first-class signal. Vehicle speed lives at `0xFEBF63F0` (main) / `0xFEBF63F6`, sourced from the front
+wheel-speed sensor and shared on CAN. A whole-image instruction scan (`SpeedReaders.py`) found **~130
+functions** that read a speed variable gp-relative; **77 of them read speed but never read engine RPM**
+(`0xFEBF637A/637E/615E`) — the engine-independent consumers, which is the class the damper law belongs
+to (the damper tracks road speed, not engine load). The chassis/IMU region `0x86xxx–0x9Cxxx` filters
+raw speed and estimates vehicle state (e.g. `FUN_000870c8` selects/stores a filtered speed into
+`fef0262c`; `FUN_0008a118`/`898b2`/`89f1c` derive further state). So the input half of the loop is
+present and identified.
 
-**Conclusion (not fabricated).** The steering damper is ECM-driven (hardware confirmed), but this ECU
-image exposes **no tunable speed→damping calibration table** — there is nothing for a tuner to edit.
-The drive is firmware-determined; the fixed-duty PWM init above is the most likely mechanism, but the
-TAU channel cannot be mapped to pin T54 without the specific RH850 variant's port/timer mux datasheet,
-which isn't in hand. Rather than invent a damper map, the honest result is recorded here: searched the
-whole speed-keyed descriptor space and the PWM output path, found no ESD calibration.
+**Control OUTPUT — physically confirmed, register not pinnable from the image.** T54 is a PWM-driven
+low-side solenoid output (pinout + the ignition-ON voltage pulse). The duty is computed in firmware
+(a speed→duty law feeding a PWM ISR), *not* read from a calibration descriptor — all nine speed-keyed
+descriptors above are engine/EB maps. Mapping the duty-write to the specific RH850 timer/port register,
+and thence to connector pin T54, needs two things not in the materials: the exact RH850 variant's
+timer/port **pin-mux**, and the ECU PCB **netlist** (connector pin → MCU port). Without them the output
+register cannot be asserted.
+
+> Correction to an earlier draft: `0xFFCB202C` is **not** a PWM channel. The `0xA5` write followed by
+> value / inverse-value / value is the RH850 **protected-register write-command** sequence; the whole
+> `0xCCxxx–0xCDxxx` cluster is the functional-safety / register-protection / watchdog module
+> (`FUN_000cc9ea`, `FUN_000cde24`, `FUN_000cddd0` are protected-write helpers), and `FUN_000cd6c0(0x12)`
+> is a protected *bit-set* (`1 << 0x12`), not a PWM duty. It is unrelated to the damper.
+
+**Bottom line for the XDF (not fabricated).** The steering damper IS ECM-controlled: road speed in →
+firmware law → PWM solenoid out on T54. But that law is **code and firmware constants, not a
+tuner-editable calibration descriptor** — there is no speed→damping map/axis in the table space to
+expose, and the raw duty constants can't be isolated without pinning the output function, which is
+gated by the hardware docs above. So nothing is added to the XDF, and nothing is invented. If the
+RH850 variant pin-mux / ECU netlist (or a service-manual ESD current-vs-speed spec) can be obtained,
+the pinned output register would let the duty law and its constants be read out directly.
