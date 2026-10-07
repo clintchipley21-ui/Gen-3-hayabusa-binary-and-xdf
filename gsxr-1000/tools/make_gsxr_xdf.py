@@ -435,6 +435,18 @@ DAMPER_TABLES = {
     0x171724: 'Steering Damper :: Correction Factor (axis unverified)',
     0x171738: 'Steering Damper :: Correction Table A (verify)',
     0x17174C: 'Steering Damper :: Correction Table B (verify)',
+    0x171760: 'Steering Damper :: Output compensation (vs 0xFEBF643C, axis unverified)',
+}
+# Per-table description overrides (default note used otherwise).
+DAMPER_NOTES = {
+    0x171760: ('Electronic steering damper output-compensation gain (5-pt, centred on 0x8000 = 1.0; '
+               'stock 1.17 at low end -> 0.88 at high end). Indexed by filtered sensor 0xFEBF643C '
+               '(raw 614-819; shape is consistent with battery/supply-voltage compensation, axis '
+               'unit not yet confirmed). SHARED within the ESD subsystem: the controller FUN_00078308 '
+               'multiplies the damper modulation by this gain, and the damper solenoid DIAGNOSTIC '
+               '(FUN_0003a062 / 0003a0be / 0003a1b6 / 0003a32e, which set fault bits in fef009c9 / '
+               'fef009ca from the damper command 0xFEBF62BC) scales its expected-feedback thresholds '
+               'by it. Not shared with any non-damper module.'),
 }
 # The three Damping-vs-Speed curves share one note; it is only correct for them.
 DAMPER_SPEED_NOTE = (
@@ -477,10 +489,14 @@ def label_damper(body, name2val):
         for addr, title in DAMPER_TABLES.items():
             if ('descriptor @0x%X' % addr) in blk:
                 n += 1
-                note = DAMPER_SPEED_NOTE if addr in (0x1716AC, 0x1716C0, 0x1716D4) else \
-                    'Electronic steering damper module table (decompile-confirmed; referenced only by '\
-                    'the ESD controller FUN_000784dc). Role within the modulation chain not fully ' \
-                    'resolved - verify before changing.'
+                if addr in (0x1716AC, 0x1716C0, 0x1716D4):
+                    note = DAMPER_SPEED_NOTE
+                elif addr in DAMPER_NOTES:
+                    note = DAMPER_NOTES[addr]
+                else:
+                    note = ('Electronic steering damper module table (decompile-confirmed; referenced '
+                            'only by the ESD controller FUN_000784dc). Role within the modulation '
+                            'chain not fully resolved - verify before changing.')
                 return retitle_cat(blk, title, note)
         return blk
     body = re.sub(r'<XDFTABLE\b.*?</XDFTABLE>\s*', repl_table, body, flags=re.S)

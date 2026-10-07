@@ -407,7 +407,19 @@ sub-functions in `0x077A8C–0x0784A8`. The loop:
 | `0x1716E8` `0x1716FC` `0x171710` | 37 | `fef0267A` | secondary damper curve, modes 1/2/3 |
 | `0x171724` | 31 | `fef0268C` (`gp-0x5bd2`) | correction factor |
 | `0x171738` `0x17174C` | 7 | ride-mode / state | small correction tables |
-| `0x171760` | 5 | state | small correction table |
+| `0x171760` | 5 | `0xFEBF643C` (filtered sensor, likely supply voltage) | **output-compensation gain** — shared within the ESD subsystem (see diagnostic below) |
+
+**ESD solenoid diagnostic (newly traced).** `0x171760` is referenced by the controller *and* by four
+functions in the `0x3A0xx` cluster — `FUN_0003A062` / `FUN_0003A0BE` / `FUN_0003A1B6` / `FUN_0003A32E`.
+These are the **steering-damper solenoid diagnostic/monitor**: they read the damper command accumulator
+`0xFEBF62BC` (`gp-0x5d44`), compute expected feedback from threshold tables `0x155218` / `0x15522C`
+scaled by the `0x171760` compensation gain, compare against the measured feedback `0xFEBF6422`, and set
+ESD fault/status bits in `fef009c9` / `fef009ca`. This is the self-check behind the solenoid DTC
+(disconnecting the damper sets a code — riders fit a resistor/eliminator). So `0x171760` is not shared
+with any unrelated module: both consumers — the duty-output path (`FUN_00078308`) and the fault monitor
+— are the steering damper itself. The output-compensation curve (5-pt, gain centred on `0x8000` = 1.0,
+stock 1.17 → 0.88) corrects solenoid drive for the `0xFEBF643C` input, whose raw range (614–819) and
+inverse-gain shape fit battery/supply-voltage compensation (axis unit not yet confirmed).
 
 The three 16-point speed curves are byte-identical in the stock image and decode exactly as the known
 GSX-R ESD map: axis `0,2560,5120,…,38400` raw = **0,20,40,…,300 km/h** (2560 raw = 20 km/h), data

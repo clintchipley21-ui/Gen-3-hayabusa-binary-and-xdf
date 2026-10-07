@@ -23463,14 +23463,16 @@ REFERENCE: descriptor @0x17174C, data @0x171C40, X @0x1712EC.</description>
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x1212" flags="0x0">
-    <title>Mode-Setting Limit :: Scaling vs fef026B2</title>
-    <description>PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
+    <title>Steering Damper :: Output compensation (vs 0xFEBF643C, axis unverified)</title>
+    <description>Electronic steering damper output-compensation gain (5-pt, centred on 0x8000 = 1.0; stock 1.17 at low end -&gt; 0.88 at high end). Indexed by filtered sensor 0xFEBF643C (raw 614-819; shape is consistent with battery/supply-voltage compensation, axis unit not yet confirmed). SHARED within the ESD subsystem: the controller FUN_00078308 multiplies the damper modulation by this gain, and the damper solenoid DIAGNOSTIC (FUN_0003a062 / 0003a0be / 0003a1b6 / 0003a32e, which set fault bits in fef009c9 / fef009ca from the damper command 0xFEBF62BC) scales its expected-feedback thresholds by it. Not shared with any non-damper module.
+
+PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 5 pts 614..819 raw
 GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF643C (monotonic axis (unit TBD) (raw 614..819)).
 INPUTS (Hayabusa decompile): n/a. Read by FUN_0006abc6.
 VALUES (32990-48L20-EU): 28672 to 38229 raw.
 REFERENCE: descriptor @0x171760, data @0x171C5C, X @0x171C50.</description>
-    <CATEGORYMEM index="0" category="32" />
+    <CATEGORYMEM index="0" category="54" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x171C50" mmedelementsizebits="16" mmedcolcount="5" mmedmajorstridebits="0" mmedminorstridebits="0" />
       <units>raw</units>

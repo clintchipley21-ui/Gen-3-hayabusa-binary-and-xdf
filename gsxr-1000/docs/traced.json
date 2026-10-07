@@ -2502,6 +2502,26 @@
    "0x17174C"
   ],
   "enable_flag": "0x172F28 (u8; 0xFF stock = on, 0x00 = disable, 0x80 = alt)",
-  "activation_speed_threshold": "0x172E3A (u16)"
+  "activation_speed_threshold": "0x172E3A (u16)",
+  "output_compensation": "0x171760 (5-pt gain vs 0xFEBF643C; shared by controller FUN_00078308 and the solenoid diagnostic)",
+  "solenoid_diagnostic": {
+   "note": "ESD solenoid fault monitor: compares measured feedback 0xFEBF6422 against expected (threshold tables 0x155218/0x15522C scaled by the 0x171760 compensation gain) computed from the damper command 0xFEBF62BC; sets fault bits in fef009c9/fef009ca. Backs the solenoid DTC.",
+   "fns": [
+    "0x3a062",
+    "0x3a0be",
+    "0x3a1b6",
+    "0x3a32e"
+   ],
+   "command_var": "0xFEBF62BC",
+   "feedback_var": "0xFEBF6422",
+   "status_bytes": [
+    "fef009c9",
+    "fef009ca"
+   ],
+   "threshold_tables": [
+    "0x155218",
+    "0x15522C"
+   ]
+  }
  }
 }
