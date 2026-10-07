@@ -527,3 +527,23 @@ name solely where the decompiled function shows its use; bare operands stay role
 
 Build order unchanged: `make_gsxr_xdf.py` → `apply_autodef.py` (which now also reads
 `docs/curated-names.json`). To add more verified names, append to that file — no code change needed.
+
+## 3s. Educated-guess (INFERRED) names for the remainder — nothing left generic
+
+At the user's explicit request, every item that the code did not resolve to a specific function was
+given a best-effort **INFERRED** name, so no "Scalar @0x.."/"Flag @0x.."/"Unknown" title remains. These
+are clearly tiered and marked so they are never confused with the verified names:
+
+1. **CURATED (code-proven)** — 48 items. Read directly from the decompiled control function (§3o, §3r).
+2. **INFERRED (educated guess)** — 3,223 items. Name built from the item's traced role + the variable in
+   its decompiled code line, and its subsystem (where known from a referencing function, else the
+   nearest named subsystem by address — Suzuki groups a subsystem's constants together, so proximity is
+   a reasonable guess). Every such title ends with `(inferred)` (and `subsystem by proximity` when the
+   subsystem itself was guessed), and the description opens with `INFERRED (educated guess, NOT
+   code-proven) … verify before trusting`, followed by the underlying role trace + code line.
+3. The 30 maps whose axis could not be resolved get `Map/Curve (inferred, axis unresolved)`.
+
+So a tuner sees a plausible name on every parameter, and can tell at a glance how much to trust it: no
+`(inferred)` = code-proven; `(inferred)` = educated guess to verify. The machine-readable basis is in
+`docs/autodef-trace.csv`, `docs/autodef-roles.json` (with `inferred_title`), `docs/curated-names.json`
+(code-proven) and `docs/table-inferred.json`.

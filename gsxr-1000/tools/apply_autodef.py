@@ -24,6 +24,9 @@ ROLES = json.load(open(os.path.join(ROOT, 'docs', 'autodef-roles.json')))
 _cur = json.load(open(os.path.join(ROOT, 'docs', 'curated-names.json')))
 CURATED_SCALAR = {int(k, 16): v for k, v in _cur.get('scalars', {}).items()}
 CURATED_TABLE = {int(k, 16): v for k, v in _cur.get('tables', {}).items()}
+_tbl_inf_path = os.path.join(ROOT, 'docs', 'table-inferred.json')
+TABLE_INFERRED = {int(k, 16): v for k, v in json.load(open(_tbl_inf_path)).items()} \
+    if os.path.exists(_tbl_inf_path) else {}
 ROLE_TITLE = {'threshold': 'Threshold', 'gain': 'Gain/Factor', 'divisor': 'Divisor', 'offset': 'Offset',
               'bitmask': 'Bit mask', 'flag-test': 'Flag (tested)', 'operand': 'Operand',
               'unref': 'Data (unreferenced)', 'map': 'Map'}
@@ -34,6 +37,9 @@ GENERIC = re.compile(r'^(?:[^:]+ :: )?(?:Scalar|Flag|Constant) @0x[0-9A-Fa-f]+|^
 
 
 def role_title(addr, info):
+    # prefer the INFERRED (educated-guess) title when one was generated; else the bare role title
+    if info.get('inferred_title'):
+        return info['inferred_title']
     pre = ('%s :: ' % info['sub']) if info.get('sub') else ''
     return '%s%s @0x%06X' % (pre, ROLE_TITLE.get(info['role'], 'Item'), addr)
 
@@ -44,7 +50,14 @@ def role_desc(addr, info, keep_tail):
     who = (' Read by %s%s.' % (info['func'], (' (%s)' % info['sub']) if info.get('sub') else '')) \
         if info.get('func') else ''
     code = ('\nCODE: %s' % info['code']) if info.get('code') else ''
-    head = ('%s (confidence %s): %s.%s%s' % (TRACED_TAG, conf, detail, who, code))
+    if info.get('inferred_title'):
+        head = ('INFERRED (educated guess, NOT code-proven): name derived from the traced role'
+                '%s plus the variable in the code line below; verify before trusting. '
+                'Underlying role trace (confidence %s): %s.%s%s'
+                % (' and the nearest named subsystem by address' if 'proximity' in info['inferred_title'] else '',
+                   conf, detail, who, code))
+    else:
+        head = ('%s (confidence %s): %s.%s%s' % (TRACED_TAG, conf, detail, who, code))
     return head + ('\n\n' + keep_tail if keep_tail else '')
 
 
@@ -102,6 +115,13 @@ def retitle_unknown_table(blk):
     kind, zaddr = tm.group(2), tm.group(3)
     xi = re.search(r'TRACED INPUTS[^\n]*?X = (0x[0-9A-Fa-f]+) \(([^)\[]+?)[)\[]', blk)
     if not xi:
+        # no traced axis: fall back to an inferred (educated-guess) name by address proximity
+        dm = re.search(r'descriptor @0x([0-9A-Fa-f]+)', blk)
+        da = int(dm.group(1), 16) if dm else None
+        if da in TABLE_INFERRED:
+            nt = TABLE_INFERRED[da] + ' @0x%s' % zaddr
+            return re.sub(r'<title>.*?</title>', lambda m: '<title>%s</title>' % escape(nt, quote=False),
+                          blk, count=1, flags=re.S), True
         return blk, False
     xc = xi.group(2).strip()
     yi = re.search(r'Y = (0x[0-9A-Fa-f]+) \(([^)\[]+?)[)\[]', blk)

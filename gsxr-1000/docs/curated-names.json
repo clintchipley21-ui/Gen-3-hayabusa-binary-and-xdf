@@ -38,56 +38,56 @@
    "Mode selector for the downshift auto-blip (FUN_00028CA6 chain)."
   ],
   "0x1701E4": [
-   "Traction Control :: Slip entry gate",
-   "FUN_00055016: slip gate compared against slip 0xFEBF6164 before the per-level thresholds apply."
+   "Traction Control :: Slip gate (stock 240)",
+   "FUN_00055016: slip gate loaded with the per-level array; stock 240. Gates slip 0xFEBF6164 processing before the per-level map sets (0x168550+)."
   ],
   "0x1702CB": [
    "Traction Control :: Enable/mode flag (==1)",
    "FUN_00055706: branch taken when this byte == 1 (stock 1)."
   ],
   "0x1701EC": [
-   "Traction Control :: Slip threshold - Level 1",
-   "Per-level slip-intervention threshold (u16), TC level 1. FUN_00055016 switches on the TC level byte 0xFEBF6459 (1..10) and compares slip 0xFEBF6164 against this array (0x1701EC..0x170200)."
+   "Traction Control :: Per-level slip adjustment - Level 1 (stock 0)",
+   "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 1."
   ],
   "0x1701EE": [
-   "Traction Control :: Slip threshold - Level 2",
-   "Per-level slip-intervention threshold (u16), TC level 2. FUN_00055016 switches on the TC level byte 0xFEBF6459 (1..10) and compares slip 0xFEBF6164 against this array (0x1701EC..0x170200)."
+   "Traction Control :: Per-level slip adjustment - Level 2 (stock 0)",
+   "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 2."
   ],
   "0x1701F0": [
-   "Traction Control :: Slip threshold - Level 3",
-   "Per-level slip-intervention threshold (u16), TC level 3. FUN_00055016 switches on the TC level byte 0xFEBF6459 (1..10) and compares slip 0xFEBF6164 against this array (0x1701EC..0x170200)."
+   "Traction Control :: Per-level slip adjustment - Level 3 (stock 0)",
+   "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 3."
   ],
   "0x1701F2": [
-   "Traction Control :: Slip threshold - Level 4",
-   "Per-level slip-intervention threshold (u16), TC level 4. FUN_00055016 switches on the TC level byte 0xFEBF6459 (1..10) and compares slip 0xFEBF6164 against this array (0x1701EC..0x170200)."
+   "Traction Control :: Per-level slip adjustment - Level 4 (stock 0)",
+   "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 4."
   ],
   "0x1701F4": [
-   "Traction Control :: Slip threshold - Level 5",
-   "Per-level slip-intervention threshold (u16), TC level 5. FUN_00055016 switches on the TC level byte 0xFEBF6459 (1..10) and compares slip 0xFEBF6164 against this array (0x1701EC..0x170200)."
+   "Traction Control :: Per-level slip adjustment - Level 5 (stock 0)",
+   "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 5."
   ],
   "0x1701F6": [
-   "Traction Control :: Slip threshold - Level 6",
-   "Per-level slip-intervention threshold (u16), TC level 6. FUN_00055016 switches on the TC level byte 0xFEBF6459 (1..10) and compares slip 0xFEBF6164 against this array (0x1701EC..0x170200)."
+   "Traction Control :: Per-level slip adjustment - Level 6 (stock 0)",
+   "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 6."
   ],
   "0x1701F8": [
-   "Traction Control :: Slip threshold - Level 7",
-   "Per-level slip-intervention threshold (u16), TC level 7. FUN_00055016 switches on the TC level byte 0xFEBF6459 (1..10) and compares slip 0xFEBF6164 against this array (0x1701EC..0x170200)."
+   "Traction Control :: Per-level slip adjustment - Level 7 (stock 0)",
+   "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 7."
   ],
   "0x1701FA": [
-   "Traction Control :: Slip threshold - Level 8",
-   "Per-level slip-intervention threshold (u16), TC level 8. FUN_00055016 switches on the TC level byte 0xFEBF6459 (1..10) and compares slip 0xFEBF6164 against this array (0x1701EC..0x170200)."
+   "Traction Control :: Per-level slip adjustment - Level 8 (stock 0)",
+   "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 8."
   ],
   "0x1701FC": [
-   "Traction Control :: Slip threshold - Level 9",
-   "Per-level slip-intervention threshold (u16), TC level 9. FUN_00055016 switches on the TC level byte 0xFEBF6459 (1..10) and compares slip 0xFEBF6164 against this array (0x1701EC..0x170200)."
+   "Traction Control :: Per-level slip adjustment - Level 9 (stock 0)",
+   "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 9."
   ],
   "0x1701FE": [
-   "Traction Control :: Slip threshold - Level 10",
-   "Per-level slip-intervention threshold (u16), TC level 10. FUN_00055016 switches on the TC level byte 0xFEBF6459 (1..10) and compares slip 0xFEBF6164 against this array (0x1701EC..0x170200)."
+   "Traction Control :: Per-level slip adjustment - Level 10 (stock 0)",
+   "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 10."
   ],
   "0x170200": [
-   "Traction Control :: Slip threshold - Level 11",
-   "Per-level slip-intervention threshold (u16), TC level 11. FUN_00055016 switches on the TC level byte 0xFEBF6459 (1..10) and compares slip 0xFEBF6164 against this array (0x1701EC..0x170200)."
+   "Traction Control :: Per-level slip adjustment - Level 11 (stock 0)",
+   "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 11."
   ],
   "0x155AB2": [
    "Diagnostics - HO2 :: Catalyst/O2 monitor completion threshold",
@@ -115,7 +115,7 @@
   ],
   "0x17019A": [
    "Ignition :: Correction-A enable - TP min",
-   "FUN_00056EC4: ignition correction febf616c (lookup map 0x167834 vs IAT) is enabled only inside this window; outside it febf616c is forced to 0x40. Bound: throttle 0xFEBF63C2 >= this."
+   "FUN_00056EC4: ignition correction febf616c (lookup map 0x167834 vs IAT) is enabled only inside this window; outside it febf616c is forced to 0x40. Bound: throttle 0xFEBF63C2 >= this. febf616c is an ADDITIVE ignition timing correction (0x40=neutral), summed with febf616a into total advance (reader FUN_000420C8)."
   ],
   "0x17019C": [
    "Ignition :: Correction-A enable - RPM min",
@@ -168,6 +168,18 @@
   "0x167104": [
    "Fuel :: Condition threshold (vs fef00dcf)",
    "FUN_0004C6E8: part of a fuel enable/cut condition test. Compared with state fef00dcf as part of the fuel condition."
+  ],
+  "0x170241": [
+   "Ignition :: Correction-B ramp rate",
+   "FUN_00057082: febf616e (additive ignition timing correction, 0x40=neutral) ramps toward/away from 0x40 by this step each cycle (stock 255 = ~instant). Pair: delays 0x17023F/0x170240."
+  ],
+  "0x17023F": [
+   "Ignition :: Correction-B ramp entry delay",
+   "FUN_00057082: cycles (vs counter fef010ef) before the febf616e ramp starts (stock 1)."
+  ],
+  "0x170240": [
+   "Ignition :: Correction-B ramp step delay",
+   "FUN_00057082: cycles (vs counter fef010f0) between febf616e ramp steps (stock 1)."
   ]
  },
  "tables": {
