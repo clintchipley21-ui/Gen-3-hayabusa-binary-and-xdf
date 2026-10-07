@@ -436,17 +436,26 @@ DAMPER_TABLES = {
     0x171738: 'Steering Damper :: Correction Table A (verify)',
     0x17174C: 'Steering Damper :: Correction Table B (verify)',
     0x171760: 'Steering Damper :: Output compensation (vs 0xFEBF643C, axis unverified)',
+    0x155218: 'Steering Damper :: Diagnostic threshold (lo)',
+    0x15522C: 'Steering Damper :: Diagnostic threshold (hi)',
 }
 # Per-table description overrides (default note used otherwise).
 DAMPER_NOTES = {
     0x171760: ('Electronic steering damper output-compensation gain (5-pt, centred on 0x8000 = 1.0; '
-               'stock 1.17 at low end -> 0.88 at high end). Indexed by filtered sensor 0xFEBF643C '
-               '(raw 614-819; shape is consistent with battery/supply-voltage compensation, axis '
-               'unit not yet confirmed). SHARED within the ESD subsystem: the controller FUN_00078308 '
+               'stock 1.17 at low end -> 0.88 at high end). Indexed by 0xFEBF643C, an IMU/chassis-'
+               'derived signed signal (0x8000 = neutral, rate-limited) from the fef0265A-2668 block '
+               'that also feeds the damper secondary inputs 0xFEBF642A/C/E - i.e. the ESD modulates '
+               'on vehicle attitude/dynamics, not just speed (exact IMU axis not yet pinned). SHARED '
+               'within the ESD subsystem: the controller FUN_00078308 '
                'multiplies the damper modulation by this gain, and the damper solenoid DIAGNOSTIC '
                '(FUN_0003a062 / 0003a0be / 0003a1b6 / 0003a32e, which set fault bits in fef009c9 / '
                'fef009ca from the damper command 0xFEBF62BC) scales its expected-feedback thresholds '
                'by it. Not shared with any non-damper module.'),
+    0x155218: ('ESD solenoid-diagnostic threshold, lower bound. The damper fault monitor '
+               '(FUN_0003a062/0003a1b6/0003a32e) looks this up on the damper command 0xFEBF62BC, '
+               'scales it by the 0x171760 compensation gain, and flags a fault if the measured '
+               'feedback 0xFEBF6422 falls outside [lo,hi]. Backs the steering-damper solenoid DTC.'),
+    0x15522C: ('ESD solenoid-diagnostic threshold, upper bound (pair of 0x155218). See 0x155218.'),
 }
 # The three Damping-vs-Speed curves share one note; it is only correct for them.
 DAMPER_SPEED_NOTE = (

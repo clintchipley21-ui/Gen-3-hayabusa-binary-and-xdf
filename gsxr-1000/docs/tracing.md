@@ -418,8 +418,10 @@ ESD fault/status bits in `fef009c9` / `fef009ca`. This is the self-check behind 
 (disconnecting the damper sets a code — riders fit a resistor/eliminator). So `0x171760` is not shared
 with any unrelated module: both consumers — the duty-output path (`FUN_00078308`) and the fault monitor
 — are the steering damper itself. The output-compensation curve (5-pt, gain centred on `0x8000` = 1.0,
-stock 1.17 → 0.88) corrects solenoid drive for the `0xFEBF643C` input, whose raw range (614–819) and
-inverse-gain shape fit battery/supply-voltage compensation (axis unit not yet confirmed).
+stock 1.17 → 0.88) corrects the damper drive for `0xFEBF643C` — an **IMU/chassis-derived signed signal**
+(0x8000 = neutral, rate-limited, from the `fef0265A–2668` block that also feeds the secondary inputs
+`0xFEBF642A/C/E`). So the GSX-R ESD is **speed-primary with IMU-based secondary modulation** — it adjusts
+damping on vehicle attitude/dynamics, not speed alone (exact IMU axis — lean/pitch/rate — not yet pinned).
 
 The three 16-point speed curves are byte-identical in the stock image and decode exactly as the known
 GSX-R ESD map: axis `0,2560,5120,…,38400` raw = **0,20,40,…,300 km/h** (2560 raw = 20 km/h), data
@@ -453,3 +455,30 @@ generic "Mode-Setting Limit" names to a dedicated **Steering Damper (ESD)** fold
 flag (`0x172F28`), and the activation-speed threshold. Axis labels for the two secondary inputs
 (`fef0267A`, `fef0268C`) are marked unverified pending their own trace; the headline speed curves and the
 enable flag are confirmed.
+
+## 3p. Generic (no-Hayabusa-match) maps — traced and verified
+
+The 137 descriptors with no aligned Hayabusa map ("GENERIC" at generate time) were traced from their
+own reader functions. Method: for each, find the code that references the descriptor
+(`gsxr_calxrefs.tsv`), decompile the reader, and read the axis variable(s) off the interpolation call.
+Full per-map record: **`docs/generic-map-trace.csv`** (descriptor, dims, reader fn, traced axes,
+subsystem). Summary:
+
+| count | subsystem | axes |
+|---|---|---|
+| 48 | **Air/Torque Model** (ETV Level-2 air estimate) | IAP (`0xFEBF6436`) × RPM (`0xFEBF637E`), via `FUN_0009023x`–`0905c6` |
+| 15 | unreferenced | data-only tables, not read by any code — left unlabelled (honest) |
+| 13 | referenced indirectly | reached only from non-function code; axis not resolvable |
+| 21 | reader known, axis indirect | reader identified; axis passed via a local/pointer (needs data-flow) |
+| 6 | Gear-indexed correction | gear (`0xFEBF6442`) |
+| 4 | Warmup/Temp correction | ECT (`0xFEBF6440`) × RPM |
+| 4 | RPM-indexed correction | RPM |
+| 3 | Baro/Altitude correction | baro (`0xFEBF6394`) |
+| 2 | **Steering Damper diagnostic** | `0x155218/15522C` threshold pair — relabelled into the ESD folder |
+| 2 | IAT correction | IAT (`0xFEBF6443`) |
+| ... | (sensor-scaled, speed-model, TC, thresholds) | see CSV |
+
+Every generic map whose axis resolved to a concrete RAM variable now carries a **GSX-R TRACED INPUTS**
+line in its XDF description (the `map_inputs` set feeds the generator). The 15 unreferenced tables are
+reported as data-only rather than guessed. Nothing here is fabricated: a map is labelled with a
+subsystem only where its reader function identifies one.

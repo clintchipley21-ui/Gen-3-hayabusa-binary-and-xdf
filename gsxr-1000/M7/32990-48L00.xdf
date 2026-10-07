@@ -4491,13 +4491,15 @@ REFERENCE: descriptor @0x155204, data @0x155420, X @0x155414.</description>
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x4020" flags="0x0">
-    <title>Unknown Curve 7 @0x15543C</title>
-    <description>AUTO-DISCOVERED from the ECU map descriptor; no Hayabusa map aligned here, role unknown - log before changing.
+    <title>Steering Damper :: Diagnostic threshold (lo)</title>
+    <description>ESD solenoid-diagnostic threshold, lower bound. The damper fault monitor (FUN_0003a062/0003a1b6/0003a32e) looks this up on the damper command 0xFEBF62BC, scales it by the 0x171760 compensation gain, and flags a fault if the measured feedback 0xFEBF6422 falls outside [lo,hi]. Backs the steering-damper solenoid DTC.
+
+AUTO-DISCOVERED from the ECU map descriptor; no Hayabusa map aligned here, role unknown - log before changing.
 X: 7 pts 0..32768 raw
 GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF62BC (signed sensor (lean/pitch/rate, centered 0x8000)).
 VALUES (32990-48L00): 0 to 19926 raw.
 REFERENCE: descriptor @0x155218, data @0x15543C, X @0x15542C.</description>
-    <CATEGORYMEM index="0" category="52" />
+    <CATEGORYMEM index="0" category="54" />
     <XDFAXIS id="x">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x15542C" mmedelementsizebits="16" mmedcolcount="7" mmedmajorstridebits="0" mmedminorstridebits="0" />
       <units>raw</units>
@@ -4518,13 +4520,15 @@ REFERENCE: descriptor @0x155218, data @0x15543C, X @0x15542C.</description>
     </XDFAXIS>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x4021" flags="0x0">
-    <title>Unknown Curve 7 @0x15545C</title>
-    <description>AUTO-DISCOVERED from the ECU map descriptor; no Hayabusa map aligned here, role unknown - log before changing.
+    <title>Steering Damper :: Diagnostic threshold (hi)</title>
+    <description>ESD solenoid-diagnostic threshold, upper bound (pair of 0x155218). See 0x155218.
+
+AUTO-DISCOVERED from the ECU map descriptor; no Hayabusa map aligned here, role unknown - log before changing.
 X: 7 pts 0..32768 raw
 GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF62BC (signed sensor (lean/pitch/rate, centered 0x8000)).
 VALUES (32990-48L00): 1638 to 43644 raw.
 REFERENCE: descriptor @0x15522C, data @0x15545C, X @0x15544C.</description>
-    <CATEGORYMEM index="0" category="52" />
+    <CATEGORYMEM index="0" category="54" />
     <XDFAXIS id="x">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x15544C" mmedelementsizebits="16" mmedcolcount="7" mmedmajorstridebits="0" mmedminorstridebits="0" />
       <units>raw</units>
@@ -23464,7 +23468,7 @@ REFERENCE: descriptor @0x17174C, data @0x171C40, X @0x1712EC.</description>
   </XDFTABLE>
   <XDFTABLE uniqueid="0x1212" flags="0x0">
     <title>Steering Damper :: Output compensation (vs 0xFEBF643C, axis unverified)</title>
-    <description>Electronic steering damper output-compensation gain (5-pt, centred on 0x8000 = 1.0; stock 1.17 at low end -&gt; 0.88 at high end). Indexed by filtered sensor 0xFEBF643C (raw 614-819; shape is consistent with battery/supply-voltage compensation, axis unit not yet confirmed). SHARED within the ESD subsystem: the controller FUN_00078308 multiplies the damper modulation by this gain, and the damper solenoid DIAGNOSTIC (FUN_0003a062 / 0003a0be / 0003a1b6 / 0003a32e, which set fault bits in fef009c9 / fef009ca from the damper command 0xFEBF62BC) scales its expected-feedback thresholds by it. Not shared with any non-damper module.
+    <description>Electronic steering damper output-compensation gain (5-pt, centred on 0x8000 = 1.0; stock 1.17 at low end -&gt; 0.88 at high end). Indexed by 0xFEBF643C, an IMU/chassis-derived signed signal (0x8000 = neutral, rate-limited) from the fef0265A-2668 block that also feeds the damper secondary inputs 0xFEBF642A/C/E - i.e. the ESD modulates on vehicle attitude/dynamics, not just speed (exact IMU axis not yet pinned). SHARED within the ESD subsystem: the controller FUN_00078308 multiplies the damper modulation by this gain, and the damper solenoid DIAGNOSTIC (FUN_0003a062 / 0003a0be / 0003a1b6 / 0003a32e, which set fault bits in fef009c9 / fef009ca from the damper command 0xFEBF62BC) scales its expected-feedback thresholds by it. Not shared with any non-damper module.
 
 PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses &amp; values are this read&#x27;s own. Hayabusa code refs are not verified on GSX-R.
 X: 5 pts 614..819 raw
@@ -29320,6 +29324,7 @@ REFERENCE: descriptor @0x192F40, data @0x195CB4, X @0x192F2C, Y @0x19431C.</desc
     <title>Unknown Map 10x21 @0x195E58</title>
     <description>AUTO-DISCOVERED from the ECU map descriptor; no Hayabusa map aligned here, role unknown - log before changing.
 X: 10 pts 21623..45211 raw; Y: 21 pts 5632..18560 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6436 (intake air pressure IAP / load (main load axis) [title-anchored]); Y = 0xFEBF637E (engine RPM (main map axis) [title-anchored]).
 VALUES (32990-48L00): 3000 to 3000 raw - every cell the same.
 REFERENCE: descriptor @0x192F70, data @0x195E58, X @0x192F5C, Y @0x194348.</description>
     <CATEGORYMEM index="0" category="52" />
@@ -29547,6 +29552,7 @@ REFERENCE: descriptor @0x193060, data @0x19668C, X @0x19304C, Y @0x194424.</desc
     <title>Unknown Map 10x21 @0x196830</title>
     <description>AUTO-DISCOVERED from the ECU map descriptor; no Hayabusa map aligned here, role unknown - log before changing.
 X: 10 pts 21623..45211 raw; Y: 21 pts 5632..18560 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6436 (intake air pressure IAP / load (main load axis) [title-anchored]); Y = 0xFEBF637E (engine RPM (main map axis) [title-anchored]).
 VALUES (32990-48L00): 1000 to 1760 raw.
 REFERENCE: descriptor @0x193090, data @0x196830, X @0x19307C, Y @0x194450.</description>
     <CATEGORYMEM index="0" category="52" />
@@ -30230,6 +30236,7 @@ REFERENCE: descriptor @0x1933C0, data @0x198414, X @0x1933AC, Y @0x19473C.</desc
     <title>Unknown Map 10x21 @0x1985B8</title>
     <description>AUTO-DISCOVERED from the ECU map descriptor; no Hayabusa map aligned here, role unknown - log before changing.
 X: 10 pts 21623..45211 raw; Y: 21 pts 5632..18560 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6436 (intake air pressure IAP / load (main load axis) [title-anchored]); Y = 0xFEBF637E (engine RPM (main map axis) [title-anchored]).
 VALUES (32990-48L00): 600 to 1346 raw.
 REFERENCE: descriptor @0x1933F0, data @0x1985B8, X @0x1933DC, Y @0x194768.</description>
     <CATEGORYMEM index="0" category="52" />
@@ -30457,6 +30464,7 @@ REFERENCE: descriptor @0x1934E0, data @0x198DEC, X @0x1934CC, Y @0x194844.</desc
     <title>Unknown Map 10x21 @0x198F90</title>
     <description>AUTO-DISCOVERED from the ECU map descriptor; no Hayabusa map aligned here, role unknown - log before changing.
 X: 10 pts 21623..45211 raw; Y: 21 pts 5632..18560 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6436 (intake air pressure IAP / load (main load axis) [title-anchored]); Y = 0xFEBF637E (engine RPM (main map axis) [title-anchored]).
 VALUES (32990-48L00): 900 to 1900 raw.
 REFERENCE: descriptor @0x193510, data @0x198F90, X @0x1934FC, Y @0x194870.</description>
     <CATEGORYMEM index="0" category="52" />
@@ -30684,6 +30692,7 @@ REFERENCE: descriptor @0x193600, data @0x1997C4, X @0x1935EC, Y @0x19494C.</desc
     <title>Unknown Map 10x21 @0x199968</title>
     <description>AUTO-DISCOVERED from the ECU map descriptor; no Hayabusa map aligned here, role unknown - log before changing.
 X: 10 pts 21623..45211 raw; Y: 21 pts 5632..18560 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6436 (intake air pressure IAP / load (main load axis) [title-anchored]); Y = 0xFEBF637E (engine RPM (main map axis) [title-anchored]).
 VALUES (32990-48L00): 1120 to 1600 raw.
 REFERENCE: descriptor @0x193630, data @0x199968, X @0x19361C, Y @0x194978.</description>
     <CATEGORYMEM index="0" category="52" />
@@ -30911,6 +30920,7 @@ REFERENCE: descriptor @0x193720, data @0x19A19C, X @0x19370C, Y @0x194A54.</desc
     <title>Unknown Map 10x21 @0x19A340</title>
     <description>AUTO-DISCOVERED from the ECU map descriptor; no Hayabusa map aligned here, role unknown - log before changing.
 X: 10 pts 21623..45211 raw; Y: 21 pts 5632..18560 raw
+GSX-R TRACED INPUTS (from this ECU&#x27;s lookup calls): X = 0xFEBF6436 (intake air pressure IAP / load (main load axis) [title-anchored]); Y = 0xFEBF637E (engine RPM (main map axis) [title-anchored]).
 VALUES (32990-48L00): 900 to 1900 raw.
 REFERENCE: descriptor @0x193750, data @0x19A340, X @0x19373C, Y @0x194A80.</description>
     <CATEGORYMEM index="0" category="52" />
