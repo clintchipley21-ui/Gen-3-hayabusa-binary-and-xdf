@@ -1553,10 +1553,10 @@ address,name,references_in_notes
 0x924AE,unidentified,2
 0x924B8,unidentified,2
 0x93464,unidentified,4
-0x938A8,unidentified,80
+0x938A8,unidentified,120
 0x9393A,unidentified,10
 0x93E86,unidentified,4
-0x941AC,unidentified,80
+0x941AC,unidentified,120
 0x943D2,unidentified,1
 0x9446E,unidentified,4
 0x95EDC,unidentified,2
@@ -1589,7 +1589,7 @@ address,name,references_in_notes
 0x999F0,unidentified,3
 0x99AAA,unidentified,2
 0x99CF4,unidentified,3
-0x99E2A,unidentified,80
+0x99E2A,unidentified,120
 0x9A65A,unidentified,5
 0x9A752,unidentified,1
 0x9B3F4,unidentified,4
