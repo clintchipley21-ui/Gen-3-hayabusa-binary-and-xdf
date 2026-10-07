@@ -112,6 +112,62 @@
   "0x17021A": [
    "Diagnostics :: Monitor baro-enable window - high",
    "Baro enable window (FUN_0005721A): high bound."
+  ],
+  "0x17019A": [
+   "Ignition :: Correction-A enable - TP min",
+   "FUN_00056EC4: ignition correction febf616c (lookup map 0x167834 vs IAT) is enabled only inside this window; outside it febf616c is forced to 0x40. Bound: throttle 0xFEBF63C2 >= this."
+  ],
+  "0x17019C": [
+   "Ignition :: Correction-A enable - RPM min",
+   "FUN_00056EC4: ignition correction febf616c (lookup map 0x167834 vs IAT) is enabled only inside this window; outside it febf616c is forced to 0x40. Bound: RPM 0xFEBF637A >= this."
+  ],
+  "0x17019E": [
+   "Ignition :: Correction-A enable - RPM max",
+   "FUN_00056EC4: ignition correction febf616c (lookup map 0x167834 vs IAT) is enabled only inside this window; outside it febf616c is forced to 0x40. Bound: RPM 0xFEBF637A < this."
+  ],
+  "0x1701A0": [
+   "Ignition :: Correction-A enable - sensor 0xFEBF63EC max",
+   "FUN_00056EC4: ignition correction febf616c (lookup map 0x167834 vs IAT) is enabled only inside this window; outside it febf616c is forced to 0x40. Bound: 0xFEBF63EC <= this."
+  ],
+  "0x1702AA": [
+   "Ignition :: Correction-A enable - ECT min",
+   "FUN_00056EC4: ignition correction febf616c (lookup map 0x167834 vs IAT) is enabled only inside this window; outside it febf616c is forced to 0x40. Bound: coolant 0xFEBF6440 >= this."
+  ],
+  "0x17013C": [
+   "Ignition :: Correction-B enable - TPS2 min",
+   "FUN_00056F9E: ignition correction febf616e (lookup map 0x167848) enabled only inside this window; sets state flags fef010f1. Bound: 0xFEBF63C8 >= this."
+  ],
+  "0x17013E": [
+   "Ignition :: Correction-B enable - TPS2 max",
+   "FUN_00056F9E: ignition correction febf616e (lookup map 0x167848) enabled only inside this window; sets state flags fef010f1. Bound: 0xFEBF63C8 <= this."
+  ],
+  "0x170140": [
+   "Ignition :: Correction-B enable - TP min",
+   "FUN_00056F9E: ignition correction febf616e (lookup map 0x167848) enabled only inside this window; sets state flags fef010f1. Bound: 0xFEBF63C2 >= this."
+  ],
+  "0x170142": [
+   "Ignition :: Correction-B enable - TP max",
+   "FUN_00056F9E: ignition correction febf616e (lookup map 0x167848) enabled only inside this window; sets state flags fef010f1. Bound: 0xFEBF63C2 <= this."
+  ],
+  "0x17023D": [
+   "Ignition :: Correction-B enable - RPM min (x256)",
+   "FUN_00056F9E: ignition correction febf616e (lookup map 0x167848) enabled only inside this window; sets state flags fef010f1. Bound: RPM >= this*256."
+  ],
+  "0x17023E": [
+   "Ignition :: Correction-B enable - RPM max (x256)",
+   "FUN_00056F9E: ignition correction febf616e (lookup map 0x167848) enabled only inside this window; sets state flags fef010f1. Bound: RPM <= this*256."
+  ],
+  "0x166FF8": [
+   "Fuel :: Vehicle-speed gate (fuel condition)",
+   "FUN_0004C6E8: part of a fuel enable/cut condition test. Compared with main vehicle speed 0xFEBF63F0 and fef02622; the fuel condition requires speed below/above this."
+  ],
+  "0x166FF2": [
+   "Fuel :: Condition gate threshold",
+   "FUN_0004C6E8: part of a fuel enable/cut condition test. Threshold compared in the same fuel enable/cut condition."
+  ],
+  "0x167104": [
+   "Fuel :: Condition threshold (vs fef00dcf)",
+   "FUN_0004C6E8: part of a fuel enable/cut condition test. Compared with state fef00dcf as part of the fuel condition."
   ]
  },
  "tables": {

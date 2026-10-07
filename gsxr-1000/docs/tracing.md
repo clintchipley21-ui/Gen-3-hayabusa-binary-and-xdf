@@ -505,3 +505,25 @@ HIGH = role read directly (comparison with a named variable, table axis, switch)
 other operand not identified; LOW = referenced but the use did not resolve. 30 map tables and ~130
 constants are **data-only / indirect** (no direct code reader, or reached via a pointer table) and are
 labelled as such rather than guessed.
+
+## 3r. Curated (hand-verified) names for headline tunable parameters
+
+On top of the automatic role-trace (§3q), the control functions of each subsystem were read and the
+**tunable parameters the code proves** were given functional names in `docs/curated-names.json` (applied
+by `apply_autodef.py` ahead of the role-trace). These are code-proven only — a parameter gets a specific
+name solely where the decompiled function shows its use; bare operands stay role-traced, never guessed.
+
+- **ETV / Throttle-by-Wire:** demand output clamp hi/lo (`0x192CEA/CEC`), correction bias (`0x192CAA`),
+  rate-change increments (`0x192CCE/CD0/CD2`); confirmed ECT (`0x1746AC`) and baro (`0x17301C`) factors.
+- **Rider aids:** TC per-level slip thresholds (`0x1701EC..0x170200`, levels 1–11), TC slip gate
+  (`0x1701E4`) and enable flag (`0x1702CB`), quickshifter master enable (`0x154DD2`), auto-blip duration
+  (`0x154E16`) and mode (`0x154E17`).
+- **Diagnostics:** HO2/catalyst monitor completion threshold (`0x155AB2`) + O2 reference voltages
+  (`0x155A62/64`), emissions-monitor baro enable window (`0x170216/18/1A`).
+- **Ignition:** two ignition-correction operating windows — Correction-A (`0x17019A/9C/9E/A0`, `0x1702AA`,
+  output `febf616c` via map `0x167834`) and Correction-B (`0x17013C/3E`, `0x170140/42`, `0x17023D/3E`,
+  output `febf616e`).
+- **Fuel:** fuel enable/cut condition gates (`0x166FF8` speed, `0x166FF2`, `0x167104`).
+
+Build order unchanged: `make_gsxr_xdf.py` → `apply_autodef.py` (which now also reads
+`docs/curated-names.json`). To add more verified names, append to that file — no code change needed.

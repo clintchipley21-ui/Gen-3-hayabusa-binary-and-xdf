@@ -47030,9 +47030,8 @@ CODE: (((DAT_00166ff0 &lt; uVar1 || (iVar8 != 1)) || (bVar3 &lt; DAT_00167102)))
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x100471" flags="0x0">
-    <title>Fuel :: Threshold @0x166FF2</title>
-    <description>ROLE-TRACED (confidence MED): compared against a constant/value. Read by 0x04C6E8 (Fuel).
-CODE: ((((uVar2 &lt; DAT_00166ff2 ||</description>
+    <title>Fuel :: Condition gate threshold</title>
+    <description>CURATED (code-proven): FUN_0004C6E8: part of a fuel enable/cut condition test. Threshold compared in the same fuel enable/cut condition.</description>
     <CATEGORYMEM index="0" category="48" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x166FF2" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -47069,9 +47068,8 @@ CODE: cVar4 = (DAT_fef00dce &amp; 1) * (DAT_00166ff6 &lt;= uVar2);</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x100474" flags="0x0">
-    <title>Fuel :: Threshold @0x166FF8</title>
-    <description>ROLE-TRACED (confidence MED): compared against a constant/value. Read by 0x04C6E8 (Fuel).
-CODE: ((_DAT_fef02622 &lt; DAT_00166ff8 || (*(ushort *)(unaff_gp + -0x5c10) &lt; DAT_00166ff8)))) ||</description>
+    <title>Fuel :: Vehicle-speed gate (fuel condition)</title>
+    <description>CURATED (code-proven): FUN_0004C6E8: part of a fuel enable/cut condition test. Compared with main vehicle speed 0xFEBF63F0 and fef02622; the fuel condition requires speed below/above this.</description>
     <CATEGORYMEM index="0" category="48" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x166FF8" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -49119,9 +49117,8 @@ CODE: uVar1 = (uint)DAT_00167103;</description>
     <mask>0x80</mask>
   </XDFFLAG>
   <XDFCONSTANT uniqueid="0x100520" flags="0x0">
-    <title>Fuel :: Threshold @0x167104</title>
-    <description>ROLE-TRACED (confidence MED): compared against a constant/value. Read by 0x04C6E8 (Fuel).
-CODE: if ((((DAT_fef00dcf &lt;= DAT_00167104) &amp;&amp; (iVar5 == 1)) &amp;&amp; (cVar1 == '\x01')) ||</description>
+    <title>Fuel :: Condition threshold (vs fef00dcf)</title>
+    <description>CURATED (code-proven): FUN_0004C6E8: part of a fuel enable/cut condition test. Compared with state fef00dcf as part of the fuel condition.</description>
     <CATEGORYMEM index="0" category="48" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x167104" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -49670,9 +49667,8 @@ CODE: if (DAT_0017013a &lt;= _DAT_fef01182) {</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x10054D" flags="0x0">
-    <title>Ignition :: Threshold @0x17013C</title>
-    <description>ROLE-TRACED (confidence MED): compared against a constant/value. Read by 0x056F9E (Ignition).
-CODE: if (((((DAT_fef010f1 &amp; 1) == 0) || (*(ushort *)(unaff_gp + -0x5c38) &lt; DAT_0017013c)) ||</description>
+    <title>Ignition :: Correction-B enable - TPS2 min</title>
+    <description>CURATED (code-proven): FUN_00056F9E: ignition correction febf616e (lookup map 0x167848) enabled only inside this window; sets state flags fef010f1. Bound: 0xFEBF63C8 &gt;= this.</description>
     <CATEGORYMEM index="0" category="44" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x17013C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -49683,9 +49679,8 @@ CODE: if (((((DAT_fef010f1 &amp; 1) == 0) || (*(ushort *)(unaff_gp + -0x5c38) &l
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x10054E" flags="0x0">
-    <title>Ignition :: Operand @0x17013E</title>
-    <description>ROLE-TRACED (confidence LOW): read in an expression (role unresolved). Read by 0x056F9E (Ignition).
-CODE: (DAT_0017013e &lt; *(ushort *)(unaff_gp + -0x5c38))) ||</description>
+    <title>Ignition :: Correction-B enable - TPS2 max</title>
+    <description>CURATED (code-proven): FUN_00056F9E: ignition correction febf616e (lookup map 0x167848) enabled only inside this window; sets state flags fef010f1. Bound: 0xFEBF63C8 &lt;= this.</description>
     <CATEGORYMEM index="0" category="44" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x17013E" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -49696,9 +49691,8 @@ CODE: (DAT_0017013e &lt; *(ushort *)(unaff_gp + -0x5c38))) ||</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x10054F" flags="0x0">
-    <title>Ignition :: Threshold @0x170140</title>
-    <description>ROLE-TRACED (confidence MED): compared against a constant/value. Read by 0x056F9E (Ignition).
-CODE: (((*(ushort *)(unaff_gp + -0x5c3e) &lt; DAT_00170140 ||</description>
+    <title>Ignition :: Correction-B enable - TP min</title>
+    <description>CURATED (code-proven): FUN_00056F9E: ignition correction febf616e (lookup map 0x167848) enabled only inside this window; sets state flags fef010f1. Bound: 0xFEBF63C2 &gt;= this.</description>
     <CATEGORYMEM index="0" category="44" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x170140" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -49709,9 +49703,8 @@ CODE: (((*(ushort *)(unaff_gp + -0x5c3e) &lt; DAT_00170140 ||</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x100550" flags="0x0">
-    <title>Ignition :: Operand @0x170142</title>
-    <description>ROLE-TRACED (confidence LOW): read in an expression (role unresolved). Read by 0x056F9E (Ignition).
-CODE: (DAT_00170142 &lt; *(ushort *)(unaff_gp + -0x5c3e))) ||</description>
+    <title>Ignition :: Correction-B enable - TP max</title>
+    <description>CURATED (code-proven): FUN_00056F9E: ignition correction febf616e (lookup map 0x167848) enabled only inside this window; sets state flags fef010f1. Bound: 0xFEBF63C2 &lt;= this.</description>
     <CATEGORYMEM index="0" category="44" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x170142" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -50281,9 +50274,8 @@ CODE: if (DAT_00170198 &lt;= _DAT_fef01106) {</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x10057C" flags="0x0">
-    <title>Ignition :: Threshold @0x17019A</title>
-    <description>ROLE-TRACED (confidence MED): compared against a constant/value. Read by 0x056EC4 (Ignition).
-CODE: if ((((*(ushort *)(unaff_gp + -0x5c3e) &lt; DAT_0017019a) ||</description>
+    <title>Ignition :: Correction-A enable - TP min</title>
+    <description>CURATED (code-proven): FUN_00056EC4: ignition correction febf616c (lookup map 0x167834 vs IAT) is enabled only inside this window; outside it febf616c is forced to 0x40. Bound: throttle 0xFEBF63C2 &gt;= this.</description>
     <CATEGORYMEM index="0" category="44" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x17019A" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -50294,9 +50286,8 @@ CODE: if ((((*(ushort *)(unaff_gp + -0x5c3e) &lt; DAT_0017019a) ||</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x10057D" flags="0x0">
-    <title>Ignition :: Threshold @0x17019C</title>
-    <description>ROLE-TRACED (confidence MED): compared against a constant/value. Read by 0x056EC4 (Ignition).
-CODE: (*(ushort *)(unaff_gp + -0x5c86) &lt; DAT_0017019c)) ||</description>
+    <title>Ignition :: Correction-A enable - RPM min</title>
+    <description>CURATED (code-proven): FUN_00056EC4: ignition correction febf616c (lookup map 0x167834 vs IAT) is enabled only inside this window; outside it febf616c is forced to 0x40. Bound: RPM 0xFEBF637A &gt;= this.</description>
     <CATEGORYMEM index="0" category="44" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x17019C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -50307,9 +50298,8 @@ CODE: (*(ushort *)(unaff_gp + -0x5c86) &lt; DAT_0017019c)) ||</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x10057E" flags="0x0">
-    <title>Ignition :: Operand @0x17019E</title>
-    <description>ROLE-TRACED (confidence LOW): read in an expression (role unresolved). Read by 0x056EC4 (Ignition).
-CODE: (DAT_0017019e &lt;= *(ushort *)(unaff_gp + -0x5c86))) ||</description>
+    <title>Ignition :: Correction-A enable - RPM max</title>
+    <description>CURATED (code-proven): FUN_00056EC4: ignition correction febf616c (lookup map 0x167834 vs IAT) is enabled only inside this window; outside it febf616c is forced to 0x40. Bound: RPM 0xFEBF637A &lt; this.</description>
     <CATEGORYMEM index="0" category="44" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x17019E" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -50320,9 +50310,8 @@ CODE: (DAT_0017019e &lt;= *(ushort *)(unaff_gp + -0x5c86))) ||</description>
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x10057F" flags="0x0">
-    <title>Ignition :: Operand @0x1701A0</title>
-    <description>ROLE-TRACED (confidence LOW): read in an expression (role unresolved). Read by 0x056EC4 (Ignition).
-CODE: ((DAT_001701a0 &lt; *(ushort *)(unaff_gp + -0x5c14) ||</description>
+    <title>Ignition :: Correction-A enable - sensor 0xFEBF63EC max</title>
+    <description>CURATED (code-proven): FUN_00056EC4: ignition correction febf616c (lookup map 0x167834 vs IAT) is enabled only inside this window; outside it febf616c is forced to 0x40. Bound: 0xFEBF63EC &lt;= this.</description>
     <CATEGORYMEM index="0" category="44" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1701A0" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -51465,9 +51454,8 @@ CODE: if ((((DAT_0017023c &lt;= *(byte *)(unaff_gp + -0x5bc0)) &amp;&amp; (DAT_f
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005DE" flags="0x0">
-    <title>Ignition :: Gain/Factor @0x17023D</title>
-    <description>ROLE-TRACED (confidence MED): multiplier in a calc. Read by 0x056F9E (Ignition).
-CODE: ((*(ushort *)(unaff_gp + -0x5c86) &lt; (ushort)((ushort)DAT_0017023d * 0x100) ||</description>
+    <title>Ignition :: Correction-B enable - RPM min (x256)</title>
+    <description>CURATED (code-proven): FUN_00056F9E: ignition correction febf616e (lookup map 0x167848) enabled only inside this window; sets state flags fef010f1. Bound: RPM &gt;= this*256.</description>
     <CATEGORYMEM index="0" category="44" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x17023D" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -51478,9 +51466,8 @@ CODE: ((*(ushort *)(unaff_gp + -0x5c86) &lt; (ushort)((ushort)DAT_0017023d * 0x1
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x1005DF" flags="0x0">
-    <title>Ignition :: Gain/Factor @0x17023E</title>
-    <description>ROLE-TRACED (confidence MED): multiplier in a calc. Read by 0x056F9E (Ignition).
-CODE: ((ushort)((ushort)DAT_0017023e * 0x100) &lt; *(ushort *)(unaff_gp + -0x5c86))))))) {</description>
+    <title>Ignition :: Correction-B enable - RPM max (x256)</title>
+    <description>CURATED (code-proven): FUN_00056F9E: ignition correction febf616e (lookup map 0x167848) enabled only inside this window; sets state flags fef010f1. Bound: RPM &lt;= this*256.</description>
     <CATEGORYMEM index="0" category="44" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x17023E" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -52683,9 +52670,8 @@ CODE: ((iVar10 == 1 || ((DAT_001702a9 == -0x80 &amp;&amp; (*(char *)(unaff_gp + 
     <mask>0x80</mask>
   </XDFFLAG>
   <XDFCONSTANT uniqueid="0x100643" flags="0x0">
-    <title>Ignition :: Threshold @0x1702AA</title>
-    <description>ROLE-TRACED (confidence MED): compared against a constant/value. Read by 0x056EC4 (Ignition).
-CODE: (*(byte *)(unaff_gp + -0x5bc0) &lt; DAT_001702aa)))) {</description>
+    <title>Ignition :: Correction-A enable - ECT min</title>
+    <description>CURATED (code-proven): FUN_00056EC4: ignition correction febf616c (lookup map 0x167834 vs IAT) is enabled only inside this window; outside it febf616c is forced to 0x40. Bound: coolant 0xFEBF6440 &gt;= this.</description>
     <CATEGORYMEM index="0" category="44" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1702AA" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
