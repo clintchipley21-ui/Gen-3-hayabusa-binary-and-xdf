@@ -482,3 +482,26 @@ Every generic map whose axis resolved to a concrete RAM variable now carries a *
 line in its XDF description (the `map_inputs` set feeds the generator). The 15 unreferenced tables are
 reported as data-only rather than guessed. Nothing here is fabricated: a map is labelled with a
 subsystem only where its reader function identifies one.
+
+## 3q. Every constant, flag and map role-traced from the code
+
+To leave nothing generic, every reference into the calibration region (`0x150000–0x1A6000`) was traced
+through the decompiled V850 code: all 2,222 functions that touch calibration were decompiled, and each
+item's **referencing statement** was classified. Record: **`docs/autodef-trace.csv`** (address, type,
+subsystem, role, detail, reader function, confidence, one real code line) — 4,078 items. Applied to the
+XDFs by **`tools/apply_autodef.py`** (build order: `make_gsxr_xdf.py` → `apply_autodef.py`; idempotent).
+
+Result: **no item is left "Scalar @0x.." / "Flag @0x.." / "Unknown"** where the code resolves it.
+Every constant/flag title is now its **role** — Threshold, Gain/Factor, Offset, Divisor, Bit mask,
+Flag (tested), or Operand — with a description giving the role, the reader function (and subsystem
+where the reader also reads a known map), a confidence, and the decompiled line showing the use. 105 of
+the 135 "Unknown" map titles were renamed to their traced axis (e.g. *Map vs IAP × RPM*).
+
+Honesty note (consistent with the rest of this project): a **specific functional name is given only
+where the code proves one**. ~2,300 of the constants are bare arithmetic operands (a value used in one
+expression); for those the verified answer is the role + the exact code line, not an invented name —
+fabricating "Fuel Enrichment Factor" onto an un-named multiplier would be a guess. Confidence breakdown:
+HIGH = role read directly (comparison with a named variable, table axis, switch); MED = role known, the
+other operand not identified; LOW = referenced but the use did not resolve. 30 map tables and ~130
+constants are **data-only / indirect** (no direct code reader, or reached via a pointer table) and are
+labelled as such rather than guessed.
