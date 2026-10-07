@@ -581,6 +581,54 @@ def prune_and_renumber(cats_xml, body):
     return ''.join(new_cats), body, len(old) - len(new_cats)
 
 
+# TunerPro loads a category's member list into a fixed-size buffer and faults
+# (STATUS_STACK_BUFFER_OVERRUN, 0xc0000409) when a single category holds too many items. The largest
+# category in the known-good Hayabusa master is 412 members and opens fine, so we cap every category
+# well below that. The decompiler-discovered scalar catch-all alone is ~2,965 items, which crashed
+# TunerPro on open; splitting it into bounded "(part N)" folders is what actually fixes the crash.
+CAT_MEMBER_CAP = 300
+
+
+def split_oversized_categories(cats_xml, body, cap=CAT_MEMBER_CAP):
+    """Spill any category with more than `cap` members into extra "<name> (part N)" categories so no
+    single folder exceeds TunerPro's per-category limit. Members keep document order; the first `cap`
+    stay in the original folder, the next `cap` go to "(part 2)", and so on. Returns the (possibly
+    extended) category block, the rewritten body, and the number of extra folders created."""
+    from collections import Counter
+    cat_lines = re.findall(r'    <CATEGORY index="0x[0-9A-Fa-f]+" name="[^"]*" />\n', cats_xml)
+    counts = Counter(int(v) for v in re.findall(r'category="(\d+)"', body))   # 1-based value -> count
+    next_index = len(cat_lines)                                              # next free 0-based index
+    extra_lines = []
+    plan = {}                       # 1-based value V -> [1-based values for part2, part3, ...]
+    for v, c in sorted(counts.items()):
+        if c <= cap:
+            continue
+        name = re.search(r'name="([^"]*)"', cat_lines[v - 1]).group(1)
+        nparts = (c + cap - 1) // cap
+        newvals = []
+        for p in range(2, nparts + 1):
+            extra_lines.append('    <CATEGORY index="0x%X" name="%s (part %d)" />\n'
+                               % (next_index, name, p))
+            newvals.append(next_index + 1)
+            next_index += 1
+        plan[v] = newvals
+    if not plan:
+        return cats_xml, body, 0
+    running = Counter()
+
+    def repl(m):
+        v = int(m.group(1))
+        running[v] += 1
+        if v in plan:
+            part = (running[v] - 1) // cap          # 0 = original folder, 1 = part2, ...
+            if part >= 1:
+                return 'category="%d"' % plan[v][part - 1]
+        return m.group(0)
+
+    body = re.sub(r'category="(\d+)"', repl, body)
+    return cats_xml + ''.join(extra_lines), body, len(extra_lines)
+
+
 # ---------------------------------------------------------------- scalar constants
 SCALARS_JSON = os.path.join(ROOT, 'gsxr-1000/docs/scalars.json')
 
@@ -811,6 +859,8 @@ def generate(binpath, outpath, sw, part):
     body, ndamper = label_damper(body, NAME2VAL)
     # drop categories with no members (Hayabusa-inherited empty folders) and compact-renumber
     cats_xml, body, npruned = prune_and_renumber(cats_xml, body)
+    # cap each category's member count so TunerPro does not overrun its fixed per-category buffer
+    cats_xml, body, nsplit = split_oversized_categories(cats_xml, body)
 
     header = '''<!-- Written by make_gsxr_xdf.py - GSX-R1000 M7, ported from Hayabusa Gen3 -->
 <XDFFORMAT version="1.70">
@@ -829,7 +879,7 @@ def generate(binpath, outpath, sw, part):
         f.write(header)
         f.write(body)
         f.write('</XDFFORMAT>\n')
-    return stats, len(gd), nscalar, npruned
+    return stats, len(gd), nscalar, npruned, nsplit
 
 
 if __name__ == '__main__':
@@ -837,8 +887,9 @@ if __name__ == '__main__':
         print(__doc__)
         sys.exit(1)
     _, binpath, outpath, sw, part = sys.argv
-    st, n, nsc, npruned = generate(binpath, outpath, sw, part)
+    st, n, nsc, npruned, nsplit = generate(binpath, outpath, sw, part)
     print('%s: %d descriptors + %d scalars -> %s'
           % (os.path.basename(binpath), n, nsc, os.path.basename(outpath)))
     print('   HIGH=%(HIGH)d  MED=%(MED)d  GENERIC=%(GENERIC)d' % st)
-    print('   pruned %d empty categories' % npruned)
+    print('   pruned %d empty categories; split %d overflow sub-categories (cap %d/folder)'
+          % (npruned, nsplit, CAT_MEMBER_CAP))

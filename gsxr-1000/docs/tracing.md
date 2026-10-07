@@ -548,27 +548,46 @@ So a tuner sees a plausible name on every parameter, and can tell at a glance ho
 `docs/autodef-trace.csv`, `docs/autodef-roles.json` (with `inferred_title`), `docs/curated-names.json`
 (code-proven) and `docs/table-inferred.json`.
 
-## 3t. TunerPro compatibility fix — apostrophe entities and description bloat
+## 3t. TunerPro crash fix — oversized category (STATUS_STACK_BUFFER_OVERRUN)
 
-The first fully role-traced XDFs (end of PR #10) crashed TunerPro on open. Diagnosis by comparison
-against XDFs TunerPro loads fine (the Hayabusa `master-v9.xdf`, 4.37 MB, and `5JCZSJ10.xdf`):
+The first fully role-traced XDFs (end of PR #10) crashed TunerPro on open. The Windows fault report
+was the decisive clue:
 
-- **Not** the cause — file size, item count, `&lt;`/`&gt;` entities, long descriptions, or the
-  `uniqueid="0x0"` repeated on every axis: the working Hayabusa master exceeds the GSX-R on all of
-  these (4.37 MB vs 3.62 MB, 1880-char max description vs 1286, 1514 axes at `uniqueid="0x0"`) and
-  still opens.
-- **The cause** — the numeric apostrophe entity `&#x27;`. The role-trace descriptions carried 1,314
-  of them (from `html.escape` with its default `quote=True`); every XDF TunerPro reads has **zero**.
-  TunerPro's hand-rolled XDF reader does not decode numeric character references and faults on them.
+```
+Faulting application name: TunerPro.exe ...
+Faulting module name: ucrtbase.dll ...
+Exception code: 0xc0000409      <- STATUS_STACK_BUFFER_OVERRUN
+```
 
-Fix (both generators now guarantee `&#x27;`/`&quot;` = 0 in the output):
-- `tools/make_gsxr_xdf.py` wraps `html.escape` to force `quote=False` (every escape here is element
-  text — `<title>`/`<description>`/`<units>` — never an attribute value, so quotes stay literal and
-  valid). Matches the working Hayabusa generators.
-- `tools/apply_autodef.py` writes short, single-line, plain-ASCII descriptions via `oneline()` (it
-  strips `<`/`>`, turns `&` into "and", collapses whitespace, hard-caps length) and escapes with
-  `quote=False`. The full code trace with the raw `<`/`&`/pointer syntax stays in
-  `docs/autodef-trace.csv`, out of the XDF.
+`0xc0000409` is the C-runtime's fast-fail for a **stack buffer overrun**: TunerPro copied one of our
+lists into a fixed-size stack buffer and overran it. That reframes the search from "bad characters"
+to "a field that is too big." Diagnosis by comparison against XDFs TunerPro loads fine (the Hayabusa
+`master-v9.xdf`, 4.37 MB, and `5JCZSJ10.xdf`):
 
-Verified on all four reads: XML well-formed, `&#x27;` = 0, `&quot;` = 0, no non-ASCII/control bytes,
-every size and description length below the known-good Hayabusa master.
+- **Ruled out** — every per-string field is within the known-good envelope: file size (3.62 MB vs
+  4.37 MB), title length (106 vs 110), description length (1286 vs 1880), units length (35 = 35),
+  category-name length (45 vs 68), table dimensions (col/row/index max 50 = 50), the `uniqueid="0x0"`
+  repeated on every axis (both files do it), and — after a false lead — entity content (`&#x27;` was
+  cut to 0 but did **not** fix the crash; the Hayabusa master carries 2,538 `&lt;` and opens fine).
+- **Root cause** — **members in a single category**. The decompiler-discovered-scalar catch-all
+  ("ZZ Decompiler-discovered scalars (unverified)") held **2,965** items (2,517 constants + 448
+  flags). The largest category in the working Hayabusa master is **412** members. TunerPro loads a
+  category's member list into a fixed stack buffer somewhere above 412 and below 2,965, so our one
+  giant folder overran it on open.
+
+Fix — `tools/make_gsxr_xdf.py` gains `split_oversized_categories()`, run right after
+`prune_and_renumber()`. It caps every category at `CAT_MEMBER_CAP = 300` members (comfortably below
+the proven-working 412) by spilling the overflow, in document order, into extra `"<name> (part N)"`
+folders; it appends the new `<CATEGORY>` definitions and rewrites the overflowed items'
+`CATEGORYMEM` 1-based values. For the catch-all that is the original folder plus nine `(part 2..10)`
+folders, 63 categories in all. No item or value is lost — only its folder changes.
+
+Also kept, as hardening (not the crash cause): both generators now emit **zero** `&#x27;`/`&quot;`
+entities — `make_gsxr_xdf.py` wraps `html.escape` to force `quote=False` (every escape here is
+element text — `<title>`/`<description>`/`<units>` — never an attribute, so quotes stay literal and
+valid), and `apply_autodef.py` writes short single-line plain-ASCII descriptions via `oneline()`,
+keeping the raw `<`/`&`/pointer code trace in `docs/autodef-trace.csv` out of the XDF.
+
+Verified on all four reads: XML well-formed; **max category 300 members** (was 2,965); 63 categories
+with sequential indexes and every `CATEGORYMEM` value in range; `&#x27;` = 0, `&quot;` = 0; no
+non-ASCII/control bytes; every size and string-field length below the known-good Hayabusa master.
