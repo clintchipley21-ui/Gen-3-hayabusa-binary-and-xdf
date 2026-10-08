@@ -286,6 +286,18 @@ GENERIC_Y = '''    <XDFAXIS id="y">
       <MATH equation="X"><VAR id="X" /></MATH>
     </XDFAXIS>
 '''
+# A 1-D curve still needs a (degenerate) y-axis: TunerPro reads a fixed x/y/z triple per XDFTABLE and
+# faults when a table has only two axes. The known-good Hayabusa master gives every 1-D curve exactly
+# this dummy single-row y-axis (no address, indexcount 1), so we emit the identical shape.
+GENERIC_Y_DUMMY = '''    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X"><VAR id="X" /></MATH>
+    </XDFAXIS>
+'''
 
 
 def generic_block(b, d, uid, cat):
@@ -301,7 +313,7 @@ def generic_block(b, d, uid, cat):
             'unknown - log before changing.\n%s\n%s%s\n%s'
             % (axes_line(b, d, None, None), (tl + '\n') if tl else '',
                values_line(b, d, None, SW), reference_line(d)))
-    yaxis = (GENERIC_Y % dict(yp=d['yp'], yb=yb, r=d['r'])) if is2d else ''
+    yaxis = (GENERIC_Y % dict(yp=d['yp'], yb=yb, r=d['r'])) if is2d else GENERIC_Y_DUMMY
     return GENERIC % dict(uid=uid, title=escape(title), desc=escape(desc), cat=cat,
                           xp=d['xp'], xb=xb, c=d['c'], r=d['r'], zr=(d['r'] or 1),
                           zp=zaddr, zb=zb, yaxis=yaxis)
