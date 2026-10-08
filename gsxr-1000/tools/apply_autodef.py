@@ -30,6 +30,25 @@ TABLE_INFERRED = {int(k, 16): v for k, v in json.load(open(_tbl_inf_path)).items
 ROLE_TITLE = {'threshold': 'Threshold', 'gain': 'Gain/Factor', 'divisor': 'Divisor', 'offset': 'Offset',
               'bitmask': 'Bit mask', 'flag-test': 'Flag (tested)', 'operand': 'Operand',
               'unref': 'Data (unreferenced)', 'map': 'Map'}
+
+# Plain-language effect of each traced role: what the value does and which way to turn it. These are
+# the GENERIC meaning of the detected role (how a gain/threshold/offset/... behaves in code), not a
+# per-parameter claim - honest for items we have only role-classified, correct for the curated ones.
+ROLE_EFFECT = {
+    'gain': 'acts as a multiplier/scale on its input - a larger value increases the result in '
+            'proportion, a smaller value reduces it',
+    'threshold': 'is a compare/trigger point - the code tests a live input against it, so raising it '
+                 'makes the behaviour engage later (needs a higher input) and lowering it sooner',
+    'offset': 'is added to its input - raising it shifts the result up, lowering it shifts it down',
+    'divisor': 'divides its input - a larger value makes the result smaller, a smaller value larger',
+    'bitmask': 'is a bit mask selecting which bits are tested/set - change individual bits, not the '
+               'whole number',
+    'flag-test': 'is read as an on/off bit-7 flag - 0x80 = set/enabled, 0x00 = clear/disabled',
+    'operand': 'is a constant used inside the reader arithmetic; its precise effect depends on the '
+               'surrounding formula and is not individually proven here',
+    'unref': 'is not reached by any decoded code path in this read, so its effect is unknown',
+    'map': 'is lookup-table data',
+}
 TRACED_TAG = 'ROLE-TRACED'
 
 # a generator-generic title we are allowed to overwrite (never touch hand-named / role-traced items)
@@ -54,21 +73,68 @@ def oneline(s, cap=400):
     return s[:cap].rstrip()
 
 
-def role_desc(addr, info, keep_tail):
-    # SHORT, single-line, no raw code - keeps the file small and TunerPro-safe.
+def field_range(blk):
+    """Representable min/max for a constant's data width + signedness, read from its EMBEDDEDDATA.
+    Returns (lo, hi, label) e.g. (0, 255, 'u8'); (None, None, None) if no element-size is present
+    (e.g. a flag)."""
+    wm = re.search(r'mmedelementsizebits="(\d+)"', blk)
+    if not wm:
+        return None, None, None
+    w = int(wm.group(1))
+    fm = re.search(r'mmedtypeflags="(0x[0-9A-Fa-f]+)"', blk)
+    signed = bool(int(fm.group(1), 16) & 1) if fm else False
+    if signed:
+        return -(1 << (w - 1)), (1 << (w - 1)) - 1, 's%d' % w
+    return 0, (1 << w) - 1, 'u%d' % w
+
+
+def stock_range_str(blk, old_desc):
+    """One short clause giving the stock value (from the generator's STOCKVAL/STOCKBYTE token) and,
+    for a numeric constant, the representable field range. '' if neither is available."""
+    mb = re.search(r'STOCKBYTE=0x([0-9A-Fa-f]+)', old_desc)
+    if mb:
+        byte = int(mb.group(1), 16)
+        return 'Stock: bit7 %s (byte 0x%02X); 0x80 = set, 0x00 = clear.' % (
+            'SET (on)' if byte & 0x80 else 'CLEAR (off)', byte)
+    lo, hi, lab = field_range(blk)
+    mv = re.search(r'STOCKVAL=(-?\d+)', old_desc)
+    if mv and lo is not None:
+        return 'Stock %s raw; field range %d..%d (%s).' % (mv.group(1), lo, hi, lab)
+    if mv:
+        return 'Stock %s raw.' % mv.group(1)
+    if lo is not None:
+        return 'Field range %d..%d (%s).' % (lo, hi, lab)
+    return ''
+
+
+def near_maps(old_desc):
+    m = re.search(r'Near maps: ([^.]*)\.', old_desc)
+    return m.group(1).strip() if m else ''
+
+
+def role_desc(addr, info, blk, old_desc):
+    # SHORT, single-line, no raw code - keeps the file small and TunerPro-safe. Carries the stock
+    # value + field range and a plain-language effect of the traced role.
     if info.get('inferred_title'):
         bits = ['INFERRED name (educated guess - verify)']
     else:
         bits = ['Role-traced from code (confidence %s)' % info['conf']]
-    bits.append('role %s' % info['role'])
+    role = info['role']
+    eff = ROLE_EFFECT.get(role)
+    bits.append('role %s%s' % (role, (' - this value %s' % eff) if eff else ''))
     if info.get('func'):
         bits.append('reader %s' % info['func'])
     if info.get('sub'):
         bits.append('subsystem %s' % info['sub'])
-    s = '; '.join(bits) + '. Full code trace: docs/autodef-trace.csv.'
-    if keep_tail:
-        s += ' ' + keep_tail
-    return oneline(s, 360)
+    s = '; '.join(bits) + '.'
+    sv = stock_range_str(blk, old_desc)
+    if sv:
+        s += ' ' + sv
+    nm = near_maps(old_desc)
+    if nm:
+        s += ' Near maps: ' + nm + '.'
+    s += ' Full code trace: docs/autodef-trace.csv.'
+    return oneline(s, 600)
 
 
 def apply_block(blk):
@@ -84,12 +150,9 @@ def apply_block(blk):
             return blk, False
         ct, cd = CURATED_SCALAR[addr]
         dm = re.search(r'<description>(.*?)</description>', blk, re.S)
-        tail = ''
-        if dm:
-            mt = re.search(r'(STOCK|VALUES|Bit |Ticked)\b.*', dm.group(1), re.S)
-            if mt:
-                tail = mt.group(0).strip()
-        nd = oneline('CURATED (code-proven): ' + cd + (' ' + tail if tail else ''), 480)
+        old = dm.group(1) if dm else ''
+        sv = stock_range_str(blk, old)
+        nd = oneline('CURATED (code-proven): ' + cd + ((' ' + sv) if sv else ''), 520)
         blk = re.sub(r'<title>.*?</title>', lambda m: '<title>%s</title>' % escape(ct, quote=False), blk, count=1, flags=re.S)
         blk = re.sub(r'<description>.*?</description>', lambda m: '<description>%s</description>' % escape(nd, quote=False), blk, count=1, flags=re.S)
         return blk, True
@@ -100,16 +163,10 @@ def apply_block(blk):
     info = ROLES.get('0x%06X' % addr)
     if not info:
         return blk, False
-    # keep the stock-value tail of the old description (everything from "STOCK"/"VALUES"/"Bit " on)
     dm = re.search(r'<description>(.*?)</description>', blk, re.S)
-    tail = ''
-    if dm:
-        old = dm.group(1)
-        mt = re.search(r'(STOCK|VALUES|Bit |Ticked)\b.*', old, re.S)
-        if mt:
-            tail = mt.group(0).strip()
+    old = dm.group(1) if dm else ''
     nt = role_title(addr, info)
-    nd = role_desc(addr, info, tail)
+    nd = role_desc(addr, info, blk, old)
     blk = re.sub(r'<title>.*?</title>', lambda m: '<title>%s</title>' % escape(nt, quote=False), blk, count=1, flags=re.S)
     blk = re.sub(r'<description>.*?</description>',
                  lambda m: '<description>%s</description>' % escape(nd, quote=False), blk, count=1, flags=re.S)
@@ -183,6 +240,9 @@ def main(path):
         return blk
     x = re.sub(r'<XDFCONSTANT\b.*?</XDFCONSTANT>', repl, x, flags=re.S)
     x = re.sub(r'<XDFFLAG\b.*?</XDFFLAG>', repl, x, flags=re.S)
+    # strip the internal STOCKVAL/STOCKBYTE tokens the generator emits for this tool to consume -
+    # any item we did not rewrite (e.g. a code-traced constant with its own name) still carries one.
+    x = re.sub(r'\s*STOCK(?:VAL=-?\d+|BYTE=0x[0-9A-Fa-f]+)\.?', '', x)
     open(path, 'w').write(x)
     print('%s: role-traced %d constants/flags, %d curated tables, renamed %d Unknown tables' % (
         os.path.relpath(path, ROOT), n, nc_tab, nt_tab))
