@@ -45256,8 +45256,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x361" flags="0x0">
-    <title>Fuel :: factor (inferred; subsystem by proximity) @0x166E8C</title>
-    <description>INFERRED name (educated guess - verify); role operand - this value is a constant used inside the reader arithmetic; its precise effect depends on the surrounding formula and is not individually proven here; reader 0x04E5FA. Stock 600 raw; field range 0..65535 (u16). Full code trace: docs/autodef-trace.csv.</description>
+    <title>Fuel :: Injector size scaler K (global pulse multiplier)</title>
+    <description>CURATED (code-proven): Global injector size/quantity scaler. FUN_0004E5FA sets final injector time = deadtime + base_time*(K-400)/200 (K = this value) then saturates to 0..65535. Effective multiplier = (K-400)/200 (e.g. 600 = x1.00, 620 = x1.10, 400 = x0). Raise to richen ALL cylinders (primary and secondary) proportionally, lower to lean. Stock 600 raw; field range 0..65535 (u16).</description>
     <CATEGORYMEM index="0" category="57" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x166E8C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -46350,8 +46350,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x3BB" flags="0x0">
-    <title>Ignition :: factor (inferred; subsystem by proximity) @0x166FC4</title>
-    <description>INFERRED name (educated guess - verify); role operand - this value is a constant used inside the reader arithmetic; its precise effect depends on the surrounding formula and is not individually proven here; reader 0x04D68C. Stock 0 raw; field range 0..65535 (u16). Full code trace: docs/autodef-trace.csv.</description>
+    <title>Fuel :: Injector pulsewidth minimum (clamp)</title>
+    <description>CURATED (code-proven): Lower clamp on the computed base injection time, applied by FUN_0004D68C via FUN_000A1C86 (lo bound) BEFORE deadtime is added. Native base-time units. The base pulse cannot fall below this. Stock 0 raw; field range 0..65535 (u16).</description>
     <CATEGORYMEM index="0" category="57" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x166FC4" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -46362,8 +46362,8 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <MATH equation="X"><VAR id="X" /></MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0x3BC" flags="0x0">
-    <title>Ignition :: factor (inferred; subsystem by proximity) @0x166FC6</title>
-    <description>INFERRED name (educated guess - verify); role operand - this value is a constant used inside the reader arithmetic; its precise effect depends on the surrounding formula and is not individually proven here; reader 0x04D68C. Stock 25000 raw; field range 0..65535 (u16). Full code trace: docs/autodef-trace.csv.</description>
+    <title>Fuel :: Injector pulsewidth maximum (clamp)</title>
+    <description>CURATED (code-proven): Upper clamp on the computed base injection time, applied by FUN_0004D68C via FUN_000A1C86 (hi bound) BEFORE deadtime is added. Native base-time units (stock ~25000, about 25 ms if microseconds). Raise only if your max-RPM injection window allows the longer pulse. Stock 25000 raw; field range 0..65535 (u16).</description>
     <CATEGORYMEM index="0" category="57" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x166FC6" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
@@ -48241,36 +48241,36 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
     <mask>0x80</mask>
   </XDFFLAG>
   <XDFFLAG uniqueid="0xBBD">
-    <title>Cranking Fuel :: factor (inferred; subsystem by proximity) @0x1670EE</title>
-    <description>INFERRED name (educated guess - verify); role operand - this value is a constant used inside the reader arithmetic; its precise effect depends on the surrounding formula and is not individually proven here; reader 0x04D68C. Stock: bit7 SET (on) (byte 0x80); 0x80 = set, 0x00 = clear. Full code trace: docs/autodef-trace.csv.</description>
+    <title>Fuel :: Primary injector flow trim - Cyl 1</title>
+    <description>CURATED (code-proven): Per-cylinder PRIMARY injector flow trim (cylinder 1). FUN_0004D68C selects this byte by cylinder index and scales the primary pulse: primary_time = air_charge * split * trim / 2^23. Proportional - lower = less primary fuel on this cylinder, higher = more. Stock is equal across cylinders. Stock: bit7 SET (on) (byte 0x80); 0x80 = set, 0x00 = clear.</description>
     <CATEGORYMEM index="0" category="57" />
     <EMBEDDEDDATA mmedaddress="0x1670EE" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x80</mask>
   </XDFFLAG>
   <XDFFLAG uniqueid="0xBBE">
-    <title>Cranking Fuel :: factor (inferred; subsystem by proximity) @0x1670EF</title>
-    <description>INFERRED name (educated guess - verify); role operand - this value is a constant used inside the reader arithmetic; its precise effect depends on the surrounding formula and is not individually proven here; reader 0x04D68C. Stock: bit7 SET (on) (byte 0x80); 0x80 = set, 0x00 = clear. Full code trace: docs/autodef-trace.csv.</description>
+    <title>Fuel :: Primary injector flow trim - Cyl 2</title>
+    <description>CURATED (code-proven): Per-cylinder PRIMARY injector flow trim (cylinder 2). FUN_0004D68C selects this byte by cylinder index and scales the primary pulse: primary_time = air_charge * split * trim / 2^23. Lower = less primary fuel on this cylinder, higher = more. Stock: bit7 SET (on) (byte 0x80); 0x80 = set, 0x00 = clear.</description>
     <CATEGORYMEM index="0" category="57" />
     <EMBEDDEDDATA mmedaddress="0x1670EF" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x80</mask>
   </XDFFLAG>
   <XDFFLAG uniqueid="0xBBF">
-    <title>EVAP Purge :: factor (inferred; subsystem by proximity) @0x1670F0</title>
-    <description>INFERRED name (educated guess - verify); role operand - this value is a constant used inside the reader arithmetic; its precise effect depends on the surrounding formula and is not individually proven here; reader 0x04D68C. Stock: bit7 SET (on) (byte 0x80); 0x80 = set, 0x00 = clear. Full code trace: docs/autodef-trace.csv.</description>
+    <title>Fuel :: Primary injector flow trim - Cyl 3</title>
+    <description>CURATED (code-proven): Per-cylinder PRIMARY injector flow trim (cylinder 3). FUN_0004D68C selects this byte by cylinder index and scales the primary pulse: primary_time = air_charge * split * trim / 2^23. Lower = less primary fuel on this cylinder, higher = more. Stock: bit7 SET (on) (byte 0x80); 0x80 = set, 0x00 = clear.</description>
     <CATEGORYMEM index="0" category="57" />
     <EMBEDDEDDATA mmedaddress="0x1670F0" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x80</mask>
   </XDFFLAG>
   <XDFFLAG uniqueid="0xBC0">
-    <title>EVAP Purge :: factor (inferred; subsystem by proximity) @0x1670F1</title>
-    <description>INFERRED name (educated guess - verify); role operand - this value is a constant used inside the reader arithmetic; its precise effect depends on the surrounding formula and is not individually proven here; reader 0x04D68C. Stock: bit7 SET (on) (byte 0x80); 0x80 = set, 0x00 = clear. Full code trace: docs/autodef-trace.csv.</description>
+    <title>Fuel :: Primary injector flow trim - Cyl 4</title>
+    <description>CURATED (code-proven): Per-cylinder PRIMARY injector flow trim (cylinder 4). FUN_0004D68C selects this byte by cylinder index and scales the primary pulse: primary_time = air_charge * split * trim / 2^23. Lower = less primary fuel on this cylinder, higher = more. Stock: bit7 SET (on) (byte 0x80); 0x80 = set, 0x00 = clear.</description>
     <CATEGORYMEM index="0" category="57" />
     <EMBEDDEDDATA mmedaddress="0x1670F1" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x80</mask>
   </XDFFLAG>
   <XDFCONSTANT uniqueid="0x44A" flags="0x0">
-    <title>EVAP Purge :: factor (inferred; subsystem by proximity) @0x1670F2</title>
-    <description>INFERRED name (educated guess - verify); role operand - this value is a constant used inside the reader arithmetic; its precise effect depends on the surrounding formula and is not individually proven here; reader 0x04D68C. Stock 105 raw; field range 0..255 (u8). Full code trace: docs/autodef-trace.csv.</description>
+    <title>Fuel :: Secondary injector flow scaler</title>
+    <description>CURATED (code-proven): Secondary (showerhead) injector flow scaler. FUN_0004D68C applies it ONLY to the secondary-injector outputs: secondary_time = air_charge * this / 2^14 (and on the per-cyl path air_charge * trim * this). Scales all secondary-injector pulse time - lower = less secondary fuel, higher = more. Role (scales secondary injector time) is code-proven; the exact label 'flow scaler' is a strong inference - verify. Stock 105 raw; field range 0..255 (u8).</description>
     <CATEGORYMEM index="0" category="57" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1670F2" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
