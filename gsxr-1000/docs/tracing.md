@@ -548,7 +548,7 @@ So a tuner sees a plausible name on every parameter, and can tell at a glance ho
 `docs/autodef-trace.csv`, `docs/autodef-roles.json` (with `inferred_title`), `docs/curated-names.json`
 (code-proven) and `docs/table-inferred.json`.
 
-## 3t. TunerPro crash fix — oversized category (STATUS_STACK_BUFFER_OVERRUN)
+## 3t. TunerPro crash fix — 2-axis tables (STATUS_STACK_BUFFER_OVERRUN)
 
 The first fully role-traced XDFs (end of PR #10) crashed TunerPro on open. The Windows fault report
 was the decisive clue:
@@ -559,35 +559,48 @@ Faulting module name: ucrtbase.dll ...
 Exception code: 0xc0000409      <- STATUS_STACK_BUFFER_OVERRUN
 ```
 
-`0xc0000409` is the C-runtime's fast-fail for a **stack buffer overrun**: TunerPro copied one of our
-lists into a fixed-size stack buffer and overran it. That reframes the search from "bad characters"
-to "a field that is too big." Diagnosis by comparison against XDFs TunerPro loads fine (the Hayabusa
-`master-v9.xdf`, 4.37 MB, and `5JCZSJ10.xdf`):
+`0xc0000409` is the C-runtime's fast-fail for a **stack buffer overrun**: TunerPro wrote past a
+fixed-size stack buffer while loading the file. That reframes the search from "bad characters" to "a
+structure that is the wrong shape/size." The cause was found by **bisection on hardware**, after two
+plausible-but-wrong fixes; the full history is kept here because the dead ends are instructive.
 
-- **Ruled out** — every per-string field is within the known-good envelope: file size (3.62 MB vs
-  4.37 MB), title length (106 vs 110), description length (1286 vs 1880), units length (35 = 35),
-  category-name length (45 vs 68), table dimensions (col/row/index max 50 = 50), the `uniqueid="0x0"`
-  repeated on every axis (both files do it), and — after a false lead — entity content (`&#x27;` was
-  cut to 0 but did **not** fix the crash; the Hayabusa master carries 2,538 `&lt;` and opens fine).
-- **Root cause** — **members in a single category**. The decompiler-discovered-scalar catch-all
-  ("ZZ Decompiler-discovered scalars (unverified)") held **2,965** items (2,517 constants + 448
-  flags). The largest category in the working Hayabusa master is **412** members. TunerPro loads a
-  category's member list into a fixed stack buffer somewhere above 412 and below 2,965, so our one
-  giant folder overran it on open.
+**Root cause (confirmed): a table with only two axes.** Every one of the 757 tables in the known-good
+Hayabusa `master-v9.xdf` has **three** axes (x, y, z) — even a 1-D curve, which carries a *degenerate*
+single-row y-axis (`uniqueid="0x0"`, no `mmedaddress`, `indexcount=1`, `mmedmajorstridebits="-32"`).
+Our generator emitted **no y-axis at all** for 1-D "Unknown curve" tables, producing 67 two-axis
+tables. TunerPro reads a fixed x/y/z triple per `XDFTABLE` and overran the missing third axis.
 
-Fix — `tools/make_gsxr_xdf.py` gains `split_oversized_categories()`, run right after
-`prune_and_renumber()`. It caps every category at `CAT_MEMBER_CAP = 300` members (comfortably below
-the proven-working 412) by spilling the overflow, in document order, into extra `"<name> (part N)"`
-folders; it appends the new `<CATEGORY>` definitions and rewrites the overflowed items'
-`CATEGORYMEM` 1-based values. For the catch-all that is the original folder plus nine `(part 2..10)`
-folders, 63 categories in all. No item or value is lost — only its folder changes.
+How it was pinned down (two reduced test builds opened in TunerPro on the user's machine):
 
-Also kept, as hardening (not the crash cause): both generators now emit **zero** `&#x27;`/`&quot;`
-entities — `make_gsxr_xdf.py` wraps `html.escape` to force `quote=False` (every escape here is
-element text — `<title>`/`<description>`/`<units>` — never an attribute, so quotes stay literal and
-valid), and `apply_autodef.py` writes short single-line plain-ASCII descriptions via `oneline()`,
-keeping the raw `<`/`&`/pointer code trace in `docs/autodef-trace.csv` out of the XDF.
+1. *Full build, every fix below applied* → still crashed.
+2. *Lean build — 791 maps + 62 code-proven scalars only, no flags, no unverified scalars* → still
+   crashed. Both builds crashing ruled out everything they did **not** share (scalars, flags,
+   uniqueids, item count, categories) and isolated the fault to the table blocks + header, which both
+   contained. Comparing table structure against the Hayabusa master then showed the 2-axis anomaly:
+   Hayabusa 757/757 tables are 3-axis; the GSX-R had 67 two-axis tables.
+3. *3-axis build* (`generic_block()` now emits the degenerate y-axis for 1-D curves too, via the new
+   `GENERIC_Y_DUMMY` template) → **opens.** A full structural audit (item child-tag sequences,
+   per-axis child-tag sequences, `EMBEDDEDDATA` attribute sets) then confirmed the GSX-R XDF contains
+   **zero** shapes the working Hayabusa master does not also contain.
 
-Verified on all four reads: XML well-formed; **max category 300 members** (was 2,965); 63 categories
-with sequential indexes and every `CATEGORYMEM` value in range; `&#x27;` = 0, `&quot;` = 0; no
-non-ASCII/control bytes; every size and string-field length below the known-good Hayabusa master.
+### Dead ends (kept as hardening, none was the crash cause)
+
+These were each shipped and tested on hardware and each **failed** to stop the crash, but all are
+legitimate "stay inside the known-good envelope" improvements and remain in the generator:
+
+- **Apostrophe entities.** `html.escape` defaulted to `quote=True`, emitting 1,314 `&#x27;`; no XDF
+  TunerPro reads has any. Cut to 0 (`make_gsxr_xdf.py` forces `quote=False` — every escape is element
+  text, never an attribute; `apply_autodef.py` writes short single-line plain-ASCII descriptions via
+  `oneline()`, keeping the raw code trace in `docs/autodef-trace.csv`). Did **not** fix the crash
+  (the Hayabusa master carries 2,538 `&lt;` and opens fine).
+- **Oversized category.** One catch-all folder held 2,965 members vs the Hayabusa master's largest at
+  412. `split_oversized_categories()` caps every category at `CAT_MEMBER_CAP = 300` by spilling the
+  overflow into `"<name> (part N)"` folders. Did **not** fix the crash (confirmed by a fresh fault
+  report), so per-category count is not the limit — but the cap is kept as a safety margin.
+- **Out-of-range uniqueids.** The 3,287 decompiler scalars/flags were emitted at `uniqueid` 0x100000+
+  while the Hayabusa master tops out at 0x20A69. `renumber_item_uniqueids()` reassigns them to small
+  free ids (max now 0x4088). Did **not** fix the crash, but keeps ids inside the proven range.
+
+Verified on all four reads: **every table has 3 axes**; XML well-formed; no structural shape absent
+from the Hayabusa master; `&#x27;`/`&quot;` = 0; max category 300 members; max `uniqueid` 0x4088; no
+non-ASCII/control bytes. Confirmed opening in TunerPro 5.0 on the 48L00 read.
