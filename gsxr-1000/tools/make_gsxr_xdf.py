@@ -892,7 +892,8 @@ def generate(binpath, outpath, sw, part):
     desc = ('Suzuki GSX-R1000 M7 (RH850), 2 MB read, sw %s (ECM %s). %d maps auto-ported from '
             'Hayabusa Gen3 via on-bin descriptors (%d HIGH, %d MED=verify, %d unknown) + %d '
             'scalars/flags found by Ghidra V850 decompile (generic titles + context hints, '
-            'UNVERIFIED). Scaling is the Hayabusa\'s, unverified here. Re-stamp field-1 CRC '
+            'UNVERIFIED). Scaling is the Hayabusa\'s, unverified here. Full per-item code trace: '
+            'gsxr-1000/docs/autodef-trace.csv. Re-stamp field-1 CRC '
             '(0x10000-0x1FFAFB @0x1FFAFE) with tools/fix_field1_crc.py. UNVERIFIED ON HARDWARE.'
             % (sw, part, len(gd), stats['HIGH'], stats['MED'], stats['GENERIC'], nscalar))
 

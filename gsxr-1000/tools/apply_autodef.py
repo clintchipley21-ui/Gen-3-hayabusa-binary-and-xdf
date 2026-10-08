@@ -31,23 +31,18 @@ ROLE_TITLE = {'threshold': 'Threshold', 'gain': 'Gain/Factor', 'divisor': 'Divis
               'bitmask': 'Bit mask', 'flag-test': 'Flag (tested)', 'operand': 'Operand',
               'unref': 'Data (unreferenced)', 'map': 'Map'}
 
-# Plain-language effect of each traced role: what the value does and which way to turn it. These are
-# the GENERIC meaning of the detected role (how a gain/threshold/offset/... behaves in code), not a
-# per-parameter claim - honest for items we have only role-classified, correct for the curated ones.
+# Plain-language effect of each traced role: what the value does and which way to turn it. Kept
+# SHORT (these descriptions must stay compact so the whole XDF stays well under the size at which
+# TunerPro's loader fails). Only the roles with a genuinely known behaviour carry an effect; a bare
+# "operand" has no proven per-value effect so it gets none (the role word alone is honest). These are
+# the generic meaning of the detected role, not a per-parameter claim.
 ROLE_EFFECT = {
-    'gain': 'acts as a multiplier/scale on its input - a larger value increases the result in '
-            'proportion, a smaller value reduces it',
-    'threshold': 'is a compare/trigger point - the code tests a live input against it, so raising it '
-                 'makes the behaviour engage later (needs a higher input) and lowering it sooner',
-    'offset': 'is added to its input - raising it shifts the result up, lowering it shifts it down',
-    'divisor': 'divides its input - a larger value makes the result smaller, a smaller value larger',
-    'bitmask': 'is a bit mask selecting which bits are tested/set - change individual bits, not the '
-               'whole number',
-    'flag-test': 'is read as an on/off bit-7 flag - 0x80 = set/enabled, 0x00 = clear/disabled',
-    'operand': 'is a constant used inside the reader arithmetic; its precise effect depends on the '
-               'surrounding formula and is not individually proven here',
-    'unref': 'is not reached by any decoded code path in this read, so its effect is unknown',
-    'map': 'is lookup-table data',
+    'gain': 'multiplier - higher raises the result, lower reduces it',
+    'threshold': 'compare point - higher engages later, lower sooner',
+    'offset': 'added - higher shifts the result up, lower down',
+    'divisor': 'divides - higher gives a smaller result',
+    'bitmask': 'bit mask - change individual bits',
+    'flag-test': 'bit-7 on/off: 0x80 = set, 0x00 = clear',
 }
 TRACED_TAG = 'ROLE-TRACED'
 
@@ -89,21 +84,21 @@ def field_range(blk):
 
 
 def stock_range_str(blk, old_desc):
-    """One short clause giving the stock value (from the generator's STOCKVAL/STOCKBYTE token) and,
-    for a numeric constant, the representable field range. '' if neither is available."""
+    """One SHORT clause: stock value (from the generator's STOCKVAL/STOCKBYTE token) and, for a
+    numeric constant, the representable field range. '' if neither is available. Kept terse to keep
+    the file small."""
     mb = re.search(r'STOCKBYTE=0x([0-9A-Fa-f]+)', old_desc)
     if mb:
         byte = int(mb.group(1), 16)
-        return 'Stock: bit7 %s (byte 0x%02X); 0x80 = set, 0x00 = clear.' % (
-            'SET (on)' if byte & 0x80 else 'CLEAR (off)', byte)
+        return 'Stock bit7 %s (0x%02X); 0x80=set.' % ('on' if byte & 0x80 else 'off', byte)
     lo, hi, lab = field_range(blk)
     mv = re.search(r'STOCKVAL=(-?\d+)', old_desc)
     if mv and lo is not None:
-        return 'Stock %s raw; field range %d..%d (%s).' % (mv.group(1), lo, hi, lab)
+        return 'Stock %s (%s %d..%d).' % (mv.group(1), lab, lo, hi)
     if mv:
-        return 'Stock %s raw.' % mv.group(1)
+        return 'Stock %s.' % mv.group(1)
     if lo is not None:
-        return 'Field range %d..%d (%s).' % (lo, hi, lab)
+        return 'Range %d..%d (%s).' % (lo, hi, lab)
     return ''
 
 
@@ -116,12 +111,12 @@ def role_desc(addr, info, blk, old_desc):
     # SHORT, single-line, no raw code - keeps the file small and TunerPro-safe. Carries the stock
     # value + field range and a plain-language effect of the traced role.
     if info.get('inferred_title'):
-        bits = ['INFERRED name (educated guess - verify)']
+        bits = ['INFERRED (educated guess - verify)']
     else:
-        bits = ['Role-traced from code (confidence %s)' % info['conf']]
+        bits = ['code-traced (conf %s)' % info['conf']]
     role = info['role']
     eff = ROLE_EFFECT.get(role)
-    bits.append('role %s%s' % (role, (' - this value %s' % eff) if eff else ''))
+    bits.append('role %s%s' % (role, (': ' + eff) if eff else ''))
     if info.get('func'):
         bits.append('reader %s' % info['func'])
     if info.get('sub'):
@@ -133,8 +128,9 @@ def role_desc(addr, info, blk, old_desc):
     nm = near_maps(old_desc)
     if nm:
         s += ' Near maps: ' + nm + '.'
-    s += ' Full code trace: docs/autodef-trace.csv.'
-    return oneline(s, 600)
+    # NOTE: the per-item "Full code trace: docs/autodef-trace.csv" pointer is intentionally omitted
+    # here (it was identical boilerplate on every item); the CSV is referenced once in the header.
+    return oneline(s, 420)
 
 
 def apply_block(blk):
