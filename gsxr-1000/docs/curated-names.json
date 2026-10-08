@@ -187,23 +187,23 @@
     ],
     "0x1670EE": [
       "Fuel :: Primary injector flow trim - Cyl 1",
-      "Per-cylinder PRIMARY injector flow trim (cylinder 1). FUN_0004D68C selects this byte by cylinder index and scales the primary pulse: primary_time = air_charge * split * trim / 2^23. Proportional - lower = less primary fuel on this cylinder, higher = more. Stock is equal across cylinders."
+      "Per-cylinder PRIMARY injector flow trim (cylinder 1). FUN_0004D68C selects this byte by cylinder index and scales the primary pulse: primary_time = air_charge * split * trim / 8388608. Proportional - lower = less primary fuel on this cylinder, higher = more. Stock is equal across cylinders."
     ],
     "0x1670EF": [
       "Fuel :: Primary injector flow trim - Cyl 2",
-      "Per-cylinder PRIMARY injector flow trim (cylinder 2). FUN_0004D68C selects this byte by cylinder index and scales the primary pulse: primary_time = air_charge * split * trim / 2^23. Lower = less primary fuel on this cylinder, higher = more."
+      "Per-cylinder PRIMARY injector flow trim (cylinder 2). FUN_0004D68C selects this byte by cylinder index and scales the primary pulse: primary_time = air_charge * split * trim / 8388608. Lower = less primary fuel on this cylinder, higher = more."
     ],
     "0x1670F0": [
       "Fuel :: Primary injector flow trim - Cyl 3",
-      "Per-cylinder PRIMARY injector flow trim (cylinder 3). FUN_0004D68C selects this byte by cylinder index and scales the primary pulse: primary_time = air_charge * split * trim / 2^23. Lower = less primary fuel on this cylinder, higher = more."
+      "Per-cylinder PRIMARY injector flow trim (cylinder 3). FUN_0004D68C selects this byte by cylinder index and scales the primary pulse: primary_time = air_charge * split * trim / 8388608. Lower = less primary fuel on this cylinder, higher = more."
     ],
     "0x1670F1": [
       "Fuel :: Primary injector flow trim - Cyl 4",
-      "Per-cylinder PRIMARY injector flow trim (cylinder 4). FUN_0004D68C selects this byte by cylinder index and scales the primary pulse: primary_time = air_charge * split * trim / 2^23. Lower = less primary fuel on this cylinder, higher = more."
+      "Per-cylinder PRIMARY injector flow trim (cylinder 4). FUN_0004D68C selects this byte by cylinder index and scales the primary pulse: primary_time = air_charge * split * trim / 8388608. Lower = less primary fuel on this cylinder, higher = more."
     ],
     "0x1670F2": [
       "Fuel :: Secondary injector flow scaler",
-      "Secondary (showerhead) injector flow scaler. FUN_0004D68C applies it ONLY to the secondary-injector outputs: secondary_time = air_charge * this / 2^14 (and on the per-cyl path air_charge * trim * this). Scales all secondary-injector pulse time - lower = less secondary fuel, higher = more. Role (scales secondary injector time) is code-proven; the exact label 'flow scaler' is a strong inference - verify."
+      "Secondary (showerhead) injector flow scaler. FUN_0004D68C applies it ONLY to the secondary-injector outputs: secondary_time = air_charge * this / 16384 (and on the per-cyl path air_charge * trim * this). Scales all secondary-injector pulse time - lower = less secondary fuel, higher = more. Role (scales secondary injector time) is code-proven; the exact label 'flow scaler' is a strong inference - verify."
     ],
     "0x166FC4": [
       "Fuel :: Injector pulsewidth minimum (clamp)",

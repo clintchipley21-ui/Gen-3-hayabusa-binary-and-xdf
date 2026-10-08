@@ -60,11 +60,12 @@ def role_title(addr, info):
 
 def oneline(s, cap=400):
     """Collapse to a single line of plain ASCII and hard-cap the length. TunerPro's XDF reader is
-    fragile with very long / multi-line / entity-heavy descriptions, so every description this tool
-    writes is kept short, single-line and free of raw decompiled code (the full code trace with the
-    `<`/`&`/pointer syntax stays in docs/autodef-trace.csv)."""
+    fragile, so every description this tool writes is kept short, single-line and free of the
+    characters that break its loader. The caret '^' in particular crashes TunerPro on load (a
+    description containing '^', e.g. "2^23", reliably faulted it), so it is stripped here as well as
+    '<'/'>'/'&'; use a literal number or "x" for exponents instead."""
     s = re.sub(r'\s+', ' ', s).strip()
-    s = s.replace('<', '').replace('>', '').replace('&', 'and')
+    s = s.replace('<', '').replace('>', '').replace('&', 'and').replace('^', '')
     return s[:cap].rstrip()
 
 
