@@ -1,199 +1,231 @@
 {
- "_comment": "Hand-verified, code-proven names for headline tunable parameters, by subsystem. Consumed by tools/apply_autodef.py (takes precedence over the automatic role-trace). Each entry: title + description read directly from the decompiled control function named in the text.",
- "scalars": {
-  "0x192CEA": [
-   "ETV :: Demand output clamp - upper limit",
-   "ETV throttle-demand clamp, HIGH bound. FUN_0008AE3E: _DAT_fef02d98 = clamp((torque_demand-0x8000)*RPM_gain/8 + 0x8000, hi=0x192CEA, lo=0x192CEC). RPM_gain from map 0x174710/0x174724 (pos/neg error)."
-  ],
-  "0x192CEC": [
-   "ETV :: Demand output clamp - lower limit",
-   "ETV throttle-demand clamp, LOW bound (pair of 0x192CEA). See FUN_0008AE3E."
-  ],
-  "0x192CAA": [
-   "ETV :: Correction bias/center (0x8000 = neutral)",
-   "FUN_0008AFE0: signed bias (0x8000 = neutral) folded into an ETV correction that also uses map 0x1746E8 and the signed sensor 0xFEBF6538; result -> fef02dce / throttle offset."
-  ],
-  "0x192CCE": [
-   "ETV :: Rate-change increment A",
-   "FUN_0008A91C: additive step in the ETV direction/rate-of-change logic (added to accumulator fef02dac); limits how fast the ETV demand moves."
-  ],
-  "0x192CD0": [
-   "ETV :: Rate-change increment B",
-   "FUN_0008A91C: additive step for the ETV rate logic (accumulator fef02dae)."
-  ],
-  "0x192CD2": [
-   "ETV :: Rate-change increment C",
-   "FUN_0008A91C: additive step for the ETV rate logic (accumulator fef02db0)."
-  ],
-  "0x154DD2": [
-   "Quickshifter :: Master enable (0 = quickshifter active)",
-   "Traced end-to-end: QS pipeline dispatcher FUN_0002B720. This byte gates the whole upshift ignition-cut; 0 = active."
-  ],
-  "0x154E16": [
-   "Engine Brake / Auto-blip :: Blip duration (counts)",
-   "Downshift auto-blip throttle-opening duration, stock 25 counts. Used by the EB/auto-blip controller FUN_00028CA6 (output fef005c0)."
-  ],
-  "0x154E17": [
-   "Engine Brake / Auto-blip :: Blip mode",
-   "Mode selector for the downshift auto-blip (FUN_00028CA6 chain)."
-  ],
-  "0x1701E4": [
-   "Traction Control :: Slip gate (stock 240)",
-   "FUN_00055016: slip gate loaded with the per-level array; stock 240. Gates slip 0xFEBF6164 processing before the per-level map sets (0x168550+)."
-  ],
-  "0x1702CB": [
-   "Traction Control :: Enable/mode flag (==1)",
-   "FUN_00055706: branch taken when this byte == 1 (stock 1)."
-  ],
-  "0x1701EC": [
-   "Traction Control :: Per-level slip adjustment - Level 1 (stock 0)",
-   "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 1."
-  ],
-  "0x1701EE": [
-   "Traction Control :: Per-level slip adjustment - Level 2 (stock 0)",
-   "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 2."
-  ],
-  "0x1701F0": [
-   "Traction Control :: Per-level slip adjustment - Level 3 (stock 0)",
-   "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 3."
-  ],
-  "0x1701F2": [
-   "Traction Control :: Per-level slip adjustment - Level 4 (stock 0)",
-   "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 4."
-  ],
-  "0x1701F4": [
-   "Traction Control :: Per-level slip adjustment - Level 5 (stock 0)",
-   "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 5."
-  ],
-  "0x1701F6": [
-   "Traction Control :: Per-level slip adjustment - Level 6 (stock 0)",
-   "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 6."
-  ],
-  "0x1701F8": [
-   "Traction Control :: Per-level slip adjustment - Level 7 (stock 0)",
-   "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 7."
-  ],
-  "0x1701FA": [
-   "Traction Control :: Per-level slip adjustment - Level 8 (stock 0)",
-   "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 8."
-  ],
-  "0x1701FC": [
-   "Traction Control :: Per-level slip adjustment - Level 9 (stock 0)",
-   "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 9."
-  ],
-  "0x1701FE": [
-   "Traction Control :: Per-level slip adjustment - Level 10 (stock 0)",
-   "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 10."
-  ],
-  "0x170200": [
-   "Traction Control :: Per-level slip adjustment - Level 11 (stock 0)",
-   "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 11."
-  ],
-  "0x155AB2": [
-   "Diagnostics - HO2 :: Catalyst/O2 monitor completion threshold",
-   "HO2/catalyst O2 monitor (FUN_00040BAC): completion/decision threshold for the O2 monitor result."
-  ],
-  "0x155A62": [
-   "Diagnostics - HO2 :: O2 monitor reference voltage A",
-   "HO2 monitor (FUN_0003F8B2): O2 sensor reference/switch voltage A."
-  ],
-  "0x155A64": [
-   "Diagnostics - HO2 :: O2 monitor reference voltage B",
-   "HO2 monitor (FUN_0003F8B2): O2 sensor reference/switch voltage B."
-  ],
-  "0x170216": [
-   "Diagnostics :: Monitor baro-enable window - low",
-   "Barometric enable window for the emissions monitors (FUN_0005721A): low bound."
-  ],
-  "0x170218": [
-   "Diagnostics :: Monitor baro-enable window - mid",
-   "Baro enable window (FUN_0005721A): middle point."
-  ],
-  "0x17021A": [
-   "Diagnostics :: Monitor baro-enable window - high",
-   "Baro enable window (FUN_0005721A): high bound."
-  ],
-  "0x17019A": [
-   "Ignition :: Correction-A enable - TP min",
-   "FUN_00056EC4: ignition correction febf616c (lookup map 0x167834 vs IAT) is enabled only inside this window; outside it febf616c is forced to 0x40. Bound: throttle 0xFEBF63C2 >= this. febf616c is an ADDITIVE ignition timing correction (0x40=neutral), summed with febf616a into total advance (reader FUN_000420C8)."
-  ],
-  "0x17019C": [
-   "Ignition :: Correction-A enable - RPM min",
-   "FUN_00056EC4: ignition correction febf616c (lookup map 0x167834 vs IAT) is enabled only inside this window; outside it febf616c is forced to 0x40. Bound: RPM 0xFEBF637A >= this."
-  ],
-  "0x17019E": [
-   "Ignition :: Correction-A enable - RPM max",
-   "FUN_00056EC4: ignition correction febf616c (lookup map 0x167834 vs IAT) is enabled only inside this window; outside it febf616c is forced to 0x40. Bound: RPM 0xFEBF637A < this."
-  ],
-  "0x1701A0": [
-   "Ignition :: Correction-A enable - sensor 0xFEBF63EC max",
-   "FUN_00056EC4: ignition correction febf616c (lookup map 0x167834 vs IAT) is enabled only inside this window; outside it febf616c is forced to 0x40. Bound: 0xFEBF63EC <= this."
-  ],
-  "0x1702AA": [
-   "Ignition :: Correction-A enable - ECT min",
-   "FUN_00056EC4: ignition correction febf616c (lookup map 0x167834 vs IAT) is enabled only inside this window; outside it febf616c is forced to 0x40. Bound: coolant 0xFEBF6440 >= this."
-  ],
-  "0x17013C": [
-   "Ignition :: Correction-B enable - TPS2 min",
-   "FUN_00056F9E: ignition correction febf616e (lookup map 0x167848) enabled only inside this window; sets state flags fef010f1. Bound: 0xFEBF63C8 >= this."
-  ],
-  "0x17013E": [
-   "Ignition :: Correction-B enable - TPS2 max",
-   "FUN_00056F9E: ignition correction febf616e (lookup map 0x167848) enabled only inside this window; sets state flags fef010f1. Bound: 0xFEBF63C8 <= this."
-  ],
-  "0x170140": [
-   "Ignition :: Correction-B enable - TP min",
-   "FUN_00056F9E: ignition correction febf616e (lookup map 0x167848) enabled only inside this window; sets state flags fef010f1. Bound: 0xFEBF63C2 >= this."
-  ],
-  "0x170142": [
-   "Ignition :: Correction-B enable - TP max",
-   "FUN_00056F9E: ignition correction febf616e (lookup map 0x167848) enabled only inside this window; sets state flags fef010f1. Bound: 0xFEBF63C2 <= this."
-  ],
-  "0x17023D": [
-   "Ignition :: Correction-B enable - RPM min (x256)",
-   "FUN_00056F9E: ignition correction febf616e (lookup map 0x167848) enabled only inside this window; sets state flags fef010f1. Bound: RPM >= this*256."
-  ],
-  "0x17023E": [
-   "Ignition :: Correction-B enable - RPM max (x256)",
-   "FUN_00056F9E: ignition correction febf616e (lookup map 0x167848) enabled only inside this window; sets state flags fef010f1. Bound: RPM <= this*256."
-  ],
-  "0x166FF8": [
-   "Fuel :: Vehicle-speed gate (fuel condition)",
-   "FUN_0004C6E8: part of a fuel enable/cut condition test. Compared with main vehicle speed 0xFEBF63F0 and fef02622; the fuel condition requires speed below/above this."
-  ],
-  "0x166FF2": [
-   "Fuel :: Condition gate threshold",
-   "FUN_0004C6E8: part of a fuel enable/cut condition test. Threshold compared in the same fuel enable/cut condition."
-  ],
-  "0x167104": [
-   "Fuel :: Condition threshold (vs fef00dcf)",
-   "FUN_0004C6E8: part of a fuel enable/cut condition test. Compared with state fef00dcf as part of the fuel condition."
-  ],
-  "0x170241": [
-   "Ignition :: Correction-B ramp rate",
-   "FUN_00057082: febf616e (additive ignition timing correction, 0x40=neutral) ramps toward/away from 0x40 by this step each cycle (stock 255 = ~instant). Pair: delays 0x17023F/0x170240."
-  ],
-  "0x17023F": [
-   "Ignition :: Correction-B ramp entry delay",
-   "FUN_00057082: cycles (vs counter fef010ef) before the febf616e ramp starts (stock 1)."
-  ],
-  "0x170240": [
-   "Ignition :: Correction-B ramp step delay",
-   "FUN_00057082: cycles (vs counter fef010f0) between febf616e ramp steps (stock 1)."
-  ]
- },
- "tables": {
-  "0x1746AC": [
-   "ETV :: ECT correction factor (vs ECT)",
-   "CONFIRMED (was UNCONFIRMED Helper 3): FUN_0008C500 looks this up by engine coolant temp 0xFEBF6440 (gp-0x5bc0) -> fef02e50. ECT-based ETV correction."
-  ],
-  "0x17301C": [
-   "ETV :: Baro airflow factor (vs baro)",
-   "CONFIRMED (was UNCONFIRMED): FUN_00089064 looks this up by barometric pressure 0xFEBF6394 (gp-0x5c6c). Altitude/baro airflow correction into the ETV/air model."
-  ],
-  "0x1746E8": [
-   "ETV :: Correction gain vs sensor 0xFEBF63BA (Helper 5)",
-   "FUN_0008AFE0 looks this up by 0xFEBF63BA (gp-0x5c46), not fef025F8 as an earlier auto-name guessed. Feeds the 0x192CAA correction."
-  ]
- }
+  "_comment": "Hand-verified, code-proven names for headline tunable parameters, by subsystem. Consumed by tools/apply_autodef.py (takes precedence over the automatic role-trace). Each entry: title + description read directly from the decompiled control function named in the text.",
+  "scalars": {
+    "0x192CEA": [
+      "ETV :: Demand output clamp - upper limit",
+      "ETV throttle-demand clamp, HIGH bound. FUN_0008AE3E: _DAT_fef02d98 = clamp((torque_demand-0x8000)*RPM_gain/8 + 0x8000, hi=0x192CEA, lo=0x192CEC). RPM_gain from map 0x174710/0x174724 (pos/neg error)."
+    ],
+    "0x192CEC": [
+      "ETV :: Demand output clamp - lower limit",
+      "ETV throttle-demand clamp, LOW bound (pair of 0x192CEA). See FUN_0008AE3E."
+    ],
+    "0x192CAA": [
+      "ETV :: Correction bias/center (0x8000 = neutral)",
+      "FUN_0008AFE0: signed bias (0x8000 = neutral) folded into an ETV correction that also uses map 0x1746E8 and the signed sensor 0xFEBF6538; result -> fef02dce / throttle offset."
+    ],
+    "0x192CCE": [
+      "ETV :: Rate-change increment A",
+      "FUN_0008A91C: additive step in the ETV direction/rate-of-change logic (added to accumulator fef02dac); limits how fast the ETV demand moves."
+    ],
+    "0x192CD0": [
+      "ETV :: Rate-change increment B",
+      "FUN_0008A91C: additive step for the ETV rate logic (accumulator fef02dae)."
+    ],
+    "0x192CD2": [
+      "ETV :: Rate-change increment C",
+      "FUN_0008A91C: additive step for the ETV rate logic (accumulator fef02db0)."
+    ],
+    "0x154DD2": [
+      "Quickshifter :: Master enable (0 = quickshifter active)",
+      "Traced end-to-end: QS pipeline dispatcher FUN_0002B720. This byte gates the whole upshift ignition-cut; 0 = active."
+    ],
+    "0x154E16": [
+      "Engine Brake / Auto-blip :: Blip duration (counts)",
+      "Downshift auto-blip throttle-opening duration, stock 25 counts. Used by the EB/auto-blip controller FUN_00028CA6 (output fef005c0)."
+    ],
+    "0x154E17": [
+      "Engine Brake / Auto-blip :: Blip mode",
+      "Mode selector for the downshift auto-blip (FUN_00028CA6 chain)."
+    ],
+    "0x1701E4": [
+      "Traction Control :: Slip gate (stock 240)",
+      "FUN_00055016: slip gate loaded with the per-level array; stock 240. Gates slip 0xFEBF6164 processing before the per-level map sets (0x168550+)."
+    ],
+    "0x1702CB": [
+      "Traction Control :: Enable/mode flag (==1)",
+      "FUN_00055706: branch taken when this byte == 1 (stock 1)."
+    ],
+    "0x1701EC": [
+      "Traction Control :: Per-level slip adjustment - Level 1 (stock 0)",
+      "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 1."
+    ],
+    "0x1701EE": [
+      "Traction Control :: Per-level slip adjustment - Level 2 (stock 0)",
+      "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 2."
+    ],
+    "0x1701F0": [
+      "Traction Control :: Per-level slip adjustment - Level 3 (stock 0)",
+      "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 3."
+    ],
+    "0x1701F2": [
+      "Traction Control :: Per-level slip adjustment - Level 4 (stock 0)",
+      "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 4."
+    ],
+    "0x1701F4": [
+      "Traction Control :: Per-level slip adjustment - Level 5 (stock 0)",
+      "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 5."
+    ],
+    "0x1701F6": [
+      "Traction Control :: Per-level slip adjustment - Level 6 (stock 0)",
+      "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 6."
+    ],
+    "0x1701F8": [
+      "Traction Control :: Per-level slip adjustment - Level 7 (stock 0)",
+      "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 7."
+    ],
+    "0x1701FA": [
+      "Traction Control :: Per-level slip adjustment - Level 8 (stock 0)",
+      "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 8."
+    ],
+    "0x1701FC": [
+      "Traction Control :: Per-level slip adjustment - Level 9 (stock 0)",
+      "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 9."
+    ],
+    "0x1701FE": [
+      "Traction Control :: Per-level slip adjustment - Level 10 (stock 0)",
+      "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 10."
+    ],
+    "0x170200": [
+      "Traction Control :: Per-level slip adjustment - Level 11 (stock 0)",
+      "FUN_00055016 loads this 11-entry array (0x1701EC..0x170200) alongside the per-level slip map sets at 0x168550+ (4 maps per TC level, indexed by slip 0xFEBF6164). All zero in stock = no per-level offset; the primary per-level TC intervention is in those map sets. Level 11."
+    ],
+    "0x155AB2": [
+      "Diagnostics - HO2 :: Catalyst/O2 monitor completion threshold",
+      "HO2/catalyst O2 monitor (FUN_00040BAC): completion/decision threshold for the O2 monitor result."
+    ],
+    "0x155A62": [
+      "Diagnostics - HO2 :: O2 monitor reference voltage A",
+      "HO2 monitor (FUN_0003F8B2): O2 sensor reference/switch voltage A."
+    ],
+    "0x155A64": [
+      "Diagnostics - HO2 :: O2 monitor reference voltage B",
+      "HO2 monitor (FUN_0003F8B2): O2 sensor reference/switch voltage B."
+    ],
+    "0x170216": [
+      "Diagnostics :: Monitor baro-enable window - low",
+      "Barometric enable window for the emissions monitors (FUN_0005721A): low bound."
+    ],
+    "0x170218": [
+      "Diagnostics :: Monitor baro-enable window - mid",
+      "Baro enable window (FUN_0005721A): middle point."
+    ],
+    "0x17021A": [
+      "Diagnostics :: Monitor baro-enable window - high",
+      "Baro enable window (FUN_0005721A): high bound."
+    ],
+    "0x17019A": [
+      "Ignition :: Correction-A enable - TP min",
+      "FUN_00056EC4: ignition correction febf616c (lookup map 0x167834 vs IAT) is enabled only inside this window; outside it febf616c is forced to 0x40. Bound: throttle 0xFEBF63C2 >= this. febf616c is an ADDITIVE ignition timing correction (0x40=neutral), summed with febf616a into total advance (reader FUN_000420C8)."
+    ],
+    "0x17019C": [
+      "Ignition :: Correction-A enable - RPM min",
+      "FUN_00056EC4: ignition correction febf616c (lookup map 0x167834 vs IAT) is enabled only inside this window; outside it febf616c is forced to 0x40. Bound: RPM 0xFEBF637A >= this."
+    ],
+    "0x17019E": [
+      "Ignition :: Correction-A enable - RPM max",
+      "FUN_00056EC4: ignition correction febf616c (lookup map 0x167834 vs IAT) is enabled only inside this window; outside it febf616c is forced to 0x40. Bound: RPM 0xFEBF637A < this."
+    ],
+    "0x1701A0": [
+      "Ignition :: Correction-A enable - sensor 0xFEBF63EC max",
+      "FUN_00056EC4: ignition correction febf616c (lookup map 0x167834 vs IAT) is enabled only inside this window; outside it febf616c is forced to 0x40. Bound: 0xFEBF63EC <= this."
+    ],
+    "0x1702AA": [
+      "Ignition :: Correction-A enable - ECT min",
+      "FUN_00056EC4: ignition correction febf616c (lookup map 0x167834 vs IAT) is enabled only inside this window; outside it febf616c is forced to 0x40. Bound: coolant 0xFEBF6440 >= this."
+    ],
+    "0x17013C": [
+      "Ignition :: Correction-B enable - TPS2 min",
+      "FUN_00056F9E: ignition correction febf616e (lookup map 0x167848) enabled only inside this window; sets state flags fef010f1. Bound: 0xFEBF63C8 >= this."
+    ],
+    "0x17013E": [
+      "Ignition :: Correction-B enable - TPS2 max",
+      "FUN_00056F9E: ignition correction febf616e (lookup map 0x167848) enabled only inside this window; sets state flags fef010f1. Bound: 0xFEBF63C8 <= this."
+    ],
+    "0x170140": [
+      "Ignition :: Correction-B enable - TP min",
+      "FUN_00056F9E: ignition correction febf616e (lookup map 0x167848) enabled only inside this window; sets state flags fef010f1. Bound: 0xFEBF63C2 >= this."
+    ],
+    "0x170142": [
+      "Ignition :: Correction-B enable - TP max",
+      "FUN_00056F9E: ignition correction febf616e (lookup map 0x167848) enabled only inside this window; sets state flags fef010f1. Bound: 0xFEBF63C2 <= this."
+    ],
+    "0x17023D": [
+      "Ignition :: Correction-B enable - RPM min (x256)",
+      "FUN_00056F9E: ignition correction febf616e (lookup map 0x167848) enabled only inside this window; sets state flags fef010f1. Bound: RPM >= this*256."
+    ],
+    "0x17023E": [
+      "Ignition :: Correction-B enable - RPM max (x256)",
+      "FUN_00056F9E: ignition correction febf616e (lookup map 0x167848) enabled only inside this window; sets state flags fef010f1. Bound: RPM <= this*256."
+    ],
+    "0x166FF8": [
+      "Fuel :: Vehicle-speed gate (fuel condition)",
+      "FUN_0004C6E8: part of a fuel enable/cut condition test. Compared with main vehicle speed 0xFEBF63F0 and fef02622; the fuel condition requires speed below/above this."
+    ],
+    "0x166FF2": [
+      "Fuel :: Condition gate threshold",
+      "FUN_0004C6E8: part of a fuel enable/cut condition test. Threshold compared in the same fuel enable/cut condition."
+    ],
+    "0x167104": [
+      "Fuel :: Condition threshold (vs fef00dcf)",
+      "FUN_0004C6E8: part of a fuel enable/cut condition test. Compared with state fef00dcf as part of the fuel condition."
+    ],
+    "0x170241": [
+      "Ignition :: Correction-B ramp rate",
+      "FUN_00057082: febf616e (additive ignition timing correction, 0x40=neutral) ramps toward/away from 0x40 by this step each cycle (stock 255 = ~instant). Pair: delays 0x17023F/0x170240."
+    ],
+    "0x17023F": [
+      "Ignition :: Correction-B ramp entry delay",
+      "FUN_00057082: cycles (vs counter fef010ef) before the febf616e ramp starts (stock 1)."
+    ],
+    "0x170240": [
+      "Ignition :: Correction-B ramp step delay",
+      "FUN_00057082: cycles (vs counter fef010f0) between febf616e ramp steps (stock 1)."
+    ],
+    "0x166E8C": [
+      "Fuel :: Injector size scaler K (global pulse multiplier)",
+      "Global injector size/quantity scaler. FUN_0004E5FA sets final injector time = deadtime + base_time*(K-400)/200 (K = this value) then saturates to 0..65535. Effective multiplier = (K-400)/200 (e.g. 600 = x1.00, 620 = x1.10, 400 = x0). Raise to richen ALL cylinders (primary and secondary) proportionally, lower to lean."
+    ],
+    "0x1670EE": [
+      "Fuel :: Primary injector flow trim - Cyl 1",
+      "Per-cylinder PRIMARY injector flow trim (cylinder 1). FUN_0004D68C selects this byte by cylinder index and scales the primary pulse: primary_time = air_charge * split * trim / 8388608. Proportional - lower = less primary fuel on this cylinder, higher = more. Stock is equal across cylinders."
+    ],
+    "0x1670EF": [
+      "Fuel :: Primary injector flow trim - Cyl 2",
+      "Per-cylinder PRIMARY injector flow trim (cylinder 2). FUN_0004D68C selects this byte by cylinder index and scales the primary pulse: primary_time = air_charge * split * trim / 8388608. Lower = less primary fuel on this cylinder, higher = more."
+    ],
+    "0x1670F0": [
+      "Fuel :: Primary injector flow trim - Cyl 3",
+      "Per-cylinder PRIMARY injector flow trim (cylinder 3). FUN_0004D68C selects this byte by cylinder index and scales the primary pulse: primary_time = air_charge * split * trim / 8388608. Lower = less primary fuel on this cylinder, higher = more."
+    ],
+    "0x1670F1": [
+      "Fuel :: Primary injector flow trim - Cyl 4",
+      "Per-cylinder PRIMARY injector flow trim (cylinder 4). FUN_0004D68C selects this byte by cylinder index and scales the primary pulse: primary_time = air_charge * split * trim / 8388608. Lower = less primary fuel on this cylinder, higher = more."
+    ],
+    "0x1670F2": [
+      "Fuel :: Secondary injector flow scaler",
+      "Secondary (showerhead) injector flow scaler. FUN_0004D68C applies it ONLY to the secondary-injector outputs: secondary_time = air_charge * this / 16384 (and on the per-cyl path air_charge * trim * this). Scales all secondary-injector pulse time - lower = less secondary fuel, higher = more. Role (scales secondary injector time) is code-proven; the exact label 'flow scaler' is a strong inference - verify."
+    ],
+    "0x166FC4": [
+      "Fuel :: Injector pulsewidth minimum (clamp)",
+      "Lower clamp on the computed base injection time, applied by FUN_0004D68C via FUN_000A1C86 (lo bound) BEFORE deadtime is added. Native base-time units. The base pulse cannot fall below this."
+    ],
+    "0x166FC6": [
+      "Fuel :: Injector pulsewidth maximum (clamp)",
+      "Upper clamp on the computed base injection time, applied by FUN_0004D68C via FUN_000A1C86 (hi bound) BEFORE deadtime is added. Native base-time units (stock ~25000, about 25 ms if microseconds). Raise only if your max-RPM injection window allows the longer pulse."
+    ]
+  },
+  "tables": {
+    "0x1746AC": [
+      "ETV :: ECT correction factor (vs ECT)",
+      "CONFIRMED (was UNCONFIRMED Helper 3): FUN_0008C500 looks this up by engine coolant temp 0xFEBF6440 (gp-0x5bc0) -> fef02e50. ECT-based ETV correction."
+    ],
+    "0x17301C": [
+      "ETV :: Baro airflow factor (vs baro)",
+      "CONFIRMED (was UNCONFIRMED): FUN_00089064 looks this up by barometric pressure 0xFEBF6394 (gp-0x5c6c). Altitude/baro airflow correction into the ETV/air model."
+    ],
+    "0x1746E8": [
+      "ETV :: Correction gain vs sensor 0xFEBF63BA (Helper 5)",
+      "FUN_0008AFE0 looks this up by 0xFEBF63BA (gp-0x5c46), not fef025F8 as an earlier auto-name guessed. Feeds the 0x192CAA correction."
+    ]
+  }
 }

@@ -604,3 +604,31 @@ legitimate "stay inside the known-good envelope" improvements and remain in the 
 Verified on all four reads: **every table has 3 axes**; XML well-formed; no structural shape absent
 from the Hayabusa master; `&#x27;`/`&quot;` = 0; max category 300 members; max `uniqueid` 0x4088; no
 non-ASCII/control bytes. Confirmed opening in TunerPro 5.0 on the 48L00 read.
+
+## 3u. Injector fueling scalars (beyond deadtime) — traced in the GSX-R's own code
+
+The XDF showed injector **deadtime** (a ported table, vs battery voltage) but none of the injector
+**sizing** parameters a tuner expects. Those are scalars, not map-descriptors, so they did not port
+from the Hayabusa by address; they were sitting unnamed in the decompiler-scalar catch-all. Traced
+from the GSX-R's own pulse-time code and added as code-proven (CURATED) names.
+
+Two functions carry all the fueling math beyond deadtime:
+
+- **FUN_0004E5FA** — the universal combiner called by every injector output driver:
+  `final_time = saturate( deadtime + base_time*(DAT_00166e8c - 400)/200 , 0..0xFFFF )`.
+  This proves **`0x00166E8C` = global injector size scaler "K"** (effective multiplier = (K-400)/200;
+  stock 600 = x1.00).
+- **FUN_0004D68C** — computes the per-cylinder base time (air-charge x split x scaler) and clamps it
+  to [min,max] *before* deadtime, via `FUN_000A1C86(value, max, min)`. This proves:
+  - **`0x001670EE..0x001670F1`** = per-cylinder **primary flow trim** (one u8/cyl, selected by
+    cylinder index; `primary_time = air_charge * split * trim / 2^23`; stock all 0x80).
+  - **`0x001670F2`** = **secondary injector flow scaler** (applied only on the secondary outputs,
+    `/ 2^14`; stock 105). Role proven; exact label a strong inference.
+  - **`0x00166FC4`** = injector pulsewidth **minimum** clamp (stock 0).
+  - **`0x00166FC6`** = injector pulsewidth **maximum** clamp (stock 25000 ≈ 25 ms if µs).
+
+There is **no separate fuel-time offset/addend**: the only addend in the pulse-time path is the
+deadtime itself (table 0x15877C/0x15879C via descriptors 0x15762C/0x157640, interpolated by
+FUN_0004CA42 into `_DAT_febf6012`/`_DAT_febf602a`), added inside FUN_0004E5FA; the final saturate
+uses hard-coded 0/0xFFFF, not calibration. Verified against the 48L00 binary: K=600, trims=128 each,
+secondary=105, PW min=0, PW max=25000 — all internally consistent (K at unity, equal trims).

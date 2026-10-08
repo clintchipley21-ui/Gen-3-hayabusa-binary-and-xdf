@@ -30,6 +30,20 @@ TABLE_INFERRED = {int(k, 16): v for k, v in json.load(open(_tbl_inf_path)).items
 ROLE_TITLE = {'threshold': 'Threshold', 'gain': 'Gain/Factor', 'divisor': 'Divisor', 'offset': 'Offset',
               'bitmask': 'Bit mask', 'flag-test': 'Flag (tested)', 'operand': 'Operand',
               'unref': 'Data (unreferenced)', 'map': 'Map'}
+
+# Plain-language effect of each traced role: what the value does and which way to turn it. Kept
+# SHORT (these descriptions must stay compact so the whole XDF stays well under the size at which
+# TunerPro's loader fails). Only the roles with a genuinely known behaviour carry an effect; a bare
+# "operand" has no proven per-value effect so it gets none (the role word alone is honest). These are
+# the generic meaning of the detected role, not a per-parameter claim.
+ROLE_EFFECT = {
+    'gain': 'multiplier - higher raises the result, lower reduces it',
+    'threshold': 'compare point - higher engages later, lower sooner',
+    'offset': 'added - higher shifts the result up, lower down',
+    'divisor': 'divides - higher gives a smaller result',
+    'bitmask': 'bit mask - change individual bits',
+    'flag-test': 'bit-7 on/off: 0x80 = set, 0x00 = clear',
+}
 TRACED_TAG = 'ROLE-TRACED'
 
 # a generator-generic title we are allowed to overwrite (never touch hand-named / role-traced items)
@@ -46,29 +60,78 @@ def role_title(addr, info):
 
 def oneline(s, cap=400):
     """Collapse to a single line of plain ASCII and hard-cap the length. TunerPro's XDF reader is
-    fragile with very long / multi-line / entity-heavy descriptions, so every description this tool
-    writes is kept short, single-line and free of raw decompiled code (the full code trace with the
-    `<`/`&`/pointer syntax stays in docs/autodef-trace.csv)."""
+    fragile, so every description this tool writes is kept short, single-line and free of the
+    characters that break its loader. The caret '^' in particular crashes TunerPro on load (a
+    description containing '^', e.g. "2^23", reliably faulted it), so it is stripped here as well as
+    '<'/'>'/'&'; use a literal number or "x" for exponents instead."""
     s = re.sub(r'\s+', ' ', s).strip()
-    s = s.replace('<', '').replace('>', '').replace('&', 'and')
+    s = s.replace('<', '').replace('>', '').replace('&', 'and').replace('^', '')
     return s[:cap].rstrip()
 
 
-def role_desc(addr, info, keep_tail):
-    # SHORT, single-line, no raw code - keeps the file small and TunerPro-safe.
+def field_range(blk):
+    """Representable min/max for a constant's data width + signedness, read from its EMBEDDEDDATA.
+    Returns (lo, hi, label) e.g. (0, 255, 'u8'); (None, None, None) if no element-size is present
+    (e.g. a flag)."""
+    wm = re.search(r'mmedelementsizebits="(\d+)"', blk)
+    if not wm:
+        return None, None, None
+    w = int(wm.group(1))
+    fm = re.search(r'mmedtypeflags="(0x[0-9A-Fa-f]+)"', blk)
+    signed = bool(int(fm.group(1), 16) & 1) if fm else False
+    if signed:
+        return -(1 << (w - 1)), (1 << (w - 1)) - 1, 's%d' % w
+    return 0, (1 << w) - 1, 'u%d' % w
+
+
+def stock_range_str(blk, old_desc):
+    """One SHORT clause: stock value (from the generator's STOCKVAL/STOCKBYTE token) and, for a
+    numeric constant, the representable field range. '' if neither is available. Kept terse to keep
+    the file small."""
+    mb = re.search(r'STOCKBYTE=0x([0-9A-Fa-f]+)', old_desc)
+    if mb:
+        byte = int(mb.group(1), 16)
+        return 'Stock bit7 %s (0x%02X); 0x80=set.' % ('on' if byte & 0x80 else 'off', byte)
+    lo, hi, lab = field_range(blk)
+    mv = re.search(r'STOCKVAL=(-?\d+)', old_desc)
+    if mv and lo is not None:
+        return 'Stock %s (%s %d..%d).' % (mv.group(1), lab, lo, hi)
+    if mv:
+        return 'Stock %s.' % mv.group(1)
+    if lo is not None:
+        return 'Range %d..%d (%s).' % (lo, hi, lab)
+    return ''
+
+
+def near_maps(old_desc):
+    m = re.search(r'Near maps: ([^.]*)\.', old_desc)
+    return m.group(1).strip() if m else ''
+
+
+def role_desc(addr, info, blk, old_desc):
+    # SHORT, single-line, no raw code - keeps the file small and TunerPro-safe. Carries the stock
+    # value + field range and a plain-language effect of the traced role.
     if info.get('inferred_title'):
-        bits = ['INFERRED name (educated guess - verify)']
+        bits = ['INFERRED (educated guess - verify)']
     else:
-        bits = ['Role-traced from code (confidence %s)' % info['conf']]
-    bits.append('role %s' % info['role'])
+        bits = ['code-traced (conf %s)' % info['conf']]
+    role = info['role']
+    eff = ROLE_EFFECT.get(role)
+    bits.append('role %s%s' % (role, (': ' + eff) if eff else ''))
     if info.get('func'):
         bits.append('reader %s' % info['func'])
     if info.get('sub'):
         bits.append('subsystem %s' % info['sub'])
-    s = '; '.join(bits) + '. Full code trace: docs/autodef-trace.csv.'
-    if keep_tail:
-        s += ' ' + keep_tail
-    return oneline(s, 360)
+    s = '; '.join(bits) + '.'
+    sv = stock_range_str(blk, old_desc)
+    if sv:
+        s += ' ' + sv
+    nm = near_maps(old_desc)
+    if nm:
+        s += ' Near maps: ' + nm + '.'
+    # NOTE: the per-item "Full code trace: docs/autodef-trace.csv" pointer is intentionally omitted
+    # here (it was identical boilerplate on every item); the CSV is referenced once in the header.
+    return oneline(s, 420)
 
 
 def apply_block(blk):
@@ -84,12 +147,9 @@ def apply_block(blk):
             return blk, False
         ct, cd = CURATED_SCALAR[addr]
         dm = re.search(r'<description>(.*?)</description>', blk, re.S)
-        tail = ''
-        if dm:
-            mt = re.search(r'(STOCK|VALUES|Bit |Ticked)\b.*', dm.group(1), re.S)
-            if mt:
-                tail = mt.group(0).strip()
-        nd = oneline('CURATED (code-proven): ' + cd + (' ' + tail if tail else ''), 480)
+        old = dm.group(1) if dm else ''
+        sv = stock_range_str(blk, old)
+        nd = oneline('CURATED (code-proven): ' + cd + ((' ' + sv) if sv else ''), 520)
         blk = re.sub(r'<title>.*?</title>', lambda m: '<title>%s</title>' % escape(ct, quote=False), blk, count=1, flags=re.S)
         blk = re.sub(r'<description>.*?</description>', lambda m: '<description>%s</description>' % escape(nd, quote=False), blk, count=1, flags=re.S)
         return blk, True
@@ -100,16 +160,10 @@ def apply_block(blk):
     info = ROLES.get('0x%06X' % addr)
     if not info:
         return blk, False
-    # keep the stock-value tail of the old description (everything from "STOCK"/"VALUES"/"Bit " on)
     dm = re.search(r'<description>(.*?)</description>', blk, re.S)
-    tail = ''
-    if dm:
-        old = dm.group(1)
-        mt = re.search(r'(STOCK|VALUES|Bit |Ticked)\b.*', old, re.S)
-        if mt:
-            tail = mt.group(0).strip()
+    old = dm.group(1) if dm else ''
     nt = role_title(addr, info)
-    nd = role_desc(addr, info, tail)
+    nd = role_desc(addr, info, blk, old)
     blk = re.sub(r'<title>.*?</title>', lambda m: '<title>%s</title>' % escape(nt, quote=False), blk, count=1, flags=re.S)
     blk = re.sub(r'<description>.*?</description>',
                  lambda m: '<description>%s</description>' % escape(nd, quote=False), blk, count=1, flags=re.S)
@@ -183,6 +237,9 @@ def main(path):
         return blk
     x = re.sub(r'<XDFCONSTANT\b.*?</XDFCONSTANT>', repl, x, flags=re.S)
     x = re.sub(r'<XDFFLAG\b.*?</XDFFLAG>', repl, x, flags=re.S)
+    # strip the internal STOCKVAL/STOCKBYTE tokens the generator emits for this tool to consume -
+    # any item we did not rewrite (e.g. a code-traced constant with its own name) still carries one.
+    x = re.sub(r'\s*STOCK(?:VAL=-?\d+|BYTE=0x[0-9A-Fa-f]+)\.?', '', x)
     open(path, 'w').write(x)
     print('%s: role-traced %d constants/flags, %d curated tables, renamed %d Unknown tables' % (
         os.path.relpath(path, ROOT), n, nc_tab, nt_tab))

@@ -236,9 +236,9 @@ def values_line(b, d, zinfo, sw):
     n = (d['r'] or 1) * d['c']
     raw = read_axis(b, zaddr, n, zbits, zsigned)
     lo, hi = min(raw), max(raw)
-    return 'VALUES (%s): %s to %s %s%s.' % (
+    return 'MIN/MAX (%s): min %s, max %s %s%s.' % (
         sw, fmt(ev(zeq, lo)), fmt(ev(zeq, hi)), zu,
-        ' - every cell the same' if lo == hi else '')
+        ' (every cell the same)' if lo == hi else '')
 
 
 def reference_line(d):
@@ -797,7 +797,8 @@ def scalar_blocks(b, scalars, cat, sw, name2idx=None):
         # a code-traced constant: emit with its real name + evidence, skip the generic path
         if addr in TRACED_CONSTS:
             desc = ('TRACED FROM GSX-R CODE: %s. VALUE %s: %d (raw). Confirm the exact engage '
-                    'point on a bench before relying on it.' % (TRACED_CONSTS[addr], sw, val))
+                    'point on a bench before relying on it. STOCKVAL=%d.'
+                    % (TRACED_CONSTS[addr], sw, val, val))
             out.append(SCALAR_CONST % dict(uid=uid, title=escape(TRACED_CONSTS[addr][:60]),
                                            desc=escape(desc), cat=cat, addr=addr, bits=bits))
             uid += 1
@@ -813,14 +814,14 @@ def scalar_blocks(b, scalars, cat, sw, name2idx=None):
         is_flag = s.get('is_flag') and (b[addr] & 0x7f) == 0  # a clean 0x80/0x00 toggle in THIS read
         if is_flag:
             desc = ('Decompiler-found flag (UNVERIFIED): 0x80 toggle read by ECU code '
-                    '(%d ref/%d fn%s). %s: 0x%02X.%s'
-                    % (s['refs'], s['nfuncs'], func, sw, b[addr], ctx_line))
+                    '(%d ref/%d fn%s). %s: 0x%02X.%s STOCKBYTE=0x%02X.'
+                    % (s['refs'], s['nfuncs'], func, sw, b[addr], ctx_line, b[addr]))
             out.append(SCALAR_FLAG % dict(uid=uid, title=escape('%sFlag @0x%X (bit7)' % (pre, addr)),
                                           desc=escape(desc), cat=thiscat, addr=addr))
         else:
             desc = ('Decompiler-found scalar (UNVERIFIED): u%d read by ECU code (%d ref/%d fn%s). '
-                    'VALUE %s: %d.%s'
-                    % (bits, s['refs'], s['nfuncs'], func, sw, val, ctx_line))
+                    'VALUE %s: %d.%s STOCKVAL=%d.'
+                    % (bits, s['refs'], s['nfuncs'], func, sw, val, ctx_line, val))
             out.append(SCALAR_CONST % dict(uid=uid,
                                            title=escape('%sScalar @0x%X (u%d)' % (pre, addr, bits)),
                                            desc=escape(desc), cat=thiscat, addr=addr, bits=bits))
@@ -891,7 +892,8 @@ def generate(binpath, outpath, sw, part):
     desc = ('Suzuki GSX-R1000 M7 (RH850), 2 MB read, sw %s (ECM %s). %d maps auto-ported from '
             'Hayabusa Gen3 via on-bin descriptors (%d HIGH, %d MED=verify, %d unknown) + %d '
             'scalars/flags found by Ghidra V850 decompile (generic titles + context hints, '
-            'UNVERIFIED). Scaling is the Hayabusa\'s, unverified here. Re-stamp field-1 CRC '
+            'UNVERIFIED). Scaling is the Hayabusa\'s, unverified here. Full per-item code trace: '
+            'gsxr-1000/docs/autodef-trace.csv. Re-stamp field-1 CRC '
             '(0x10000-0x1FFAFB @0x1FFAFE) with tools/fix_field1_crc.py. UNVERIFIED ON HARDWARE.'
             % (sw, part, len(gd), stats['HIGH'], stats['MED'], stats['GENERIC'], nscalar))
 
