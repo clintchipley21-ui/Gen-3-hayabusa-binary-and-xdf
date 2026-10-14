@@ -393,6 +393,8 @@ def category_block():
                 % scalarcat)
     cats.append('    <CATEGORY index="0x%X" name="Steering Damper (ESD) (decoded)" />\n'
                 % (maxidx + 3))
+    cats.append('    <CATEGORY index="0x%X" name="Exhaust Control Valve (EXCV) (decoded)" />\n'
+                % (maxidx + 4))
     # TunerPro CATEGORYMEM category="N" is 1-BASED: it selects CATEGORY index N-1 (verified against
     # the Hayabusa master, which the ported maps inherit their 1-based values from). So every category
     # VALUE the generator emits is (0-based index + 1). name2val maps a category NAME to that value.
@@ -746,6 +748,50 @@ SCALAR_FLAG = '''  <XDFFLAG uniqueid="0x%(uid)X">
     <mask>0x80</mask>
   </XDFFLAG>
 '''
+# same, but with an explicit bit mask (the DTC lamp bytes use bit0 = MIL-enable, not bit7)
+SCALAR_FLAG_MASK = '''  <XDFFLAG uniqueid="0x%(uid)X">
+    <title>%(title)s</title>
+    <description>%(desc)s</description>
+    <CATEGORYMEM index="0" category="%(cat)d" />
+    <EMBEDDEDDATA mmedaddress="0x%(addr)X" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x%(mask)02X</mask>
+  </XDFFLAG>
+'''
+
+
+# Exhaust Control Valve (EXCV) P14xx diagnostic MIL-enable flags, decoded from the GSX-R's own DTC
+# table (24-byte records at 0x1A18EC+; lamp byte at the record start, bit0 = MIL-enable). The EXCV is
+# the cable-driven servo exhaust valve (Suzuki 2017-2023 GSX-R1000). Position feedback 0xFEF025DA
+# (ADC ch 0x33); H-bridge PWM out 0xFEBF603D/603E. Only P1400/P1402/P1404 are present in 48L00.
+EXCV_DTC_FLAGS = [
+    (0x1A1DE4, 'EXCV :: P1400 MIL enable - valve position sensor LOW (short-to-gnd)',
+     'DTC P1400, EXCV position-sensor voltage low / out-of-range low. Monitor FUN_0003986E vs '
+     'threshold 0x15597E (29). Lamp byte bit0 = MIL enable; clear to disable the MIL for this DTC.'),
+    (0x1A1DCC, 'EXCV :: P1402 MIL enable - valve position sensor HIGH (open/short-to-pwr)',
+     'DTC P1402, EXCV position-sensor voltage high / out-of-range high. Monitor FUN_00039972 vs '
+     'threshold 0x155980 (1004). Lamp byte bit0 = MIL enable.'),
+    (0x1A1DFC, 'EXCV :: P1404 MIL enable - valve range/stuck (#1)',
+     'DTC P1404, EXCV position range/stuck check (FUN_0003B190, window 0x1559A6-AC). Lamp bit0 = MIL.'),
+    (0x1A1E14, 'EXCV :: P1404 MIL enable - valve motion/stall (#2)',
+     'DTC P1404, EXCV motion/stall - valve did not reach commanded position within the time limit '
+     '0x155B1C (125). Monitor FUN_00041548. Lamp bit0 = MIL.'),
+    (0x1A2174, 'EXCV :: P1404 MIL enable - valve fault (#3, master-warning)',
+     'DTC P1404 variant, lamp byte = 0x40 (master-warning) stock. Lamp bit0 = MIL enable.'),
+    (0x1A218C, 'EXCV :: P1404 MIL enable - valve fault (#4)',
+     'DTC P1404 variant. Lamp byte bit0 = MIL enable.'),
+]
+
+
+def excv_dtc_blocks(name2val, uid0):
+    """Emit the EXCV P14xx DTC MIL-enable flags (bit0) into the EXCV category."""
+    cat = name2val.get('Exhaust Control Valve (EXCV) (decoded)')
+    out = []
+    uid = uid0
+    for addr, title, desc in EXCV_DTC_FLAGS:
+        out.append(SCALAR_FLAG_MASK % dict(uid=uid, title=escape(title), desc=escape(desc),
+                                            cat=cat, addr=addr, mask=0x01))
+        uid += 1
+    return out, uid - uid0
 
 
 # Map a context map title to a short, reliable subsystem tag (from the reading function).
@@ -887,6 +933,9 @@ def generate(binpath, outpath, sw, part):
     scalars = load_scalars()
     sblocks, nscalar, ntagged = scalar_blocks(b, scalars, SCALARCAT, sw, NAME2VAL)
     blocks.extend(sblocks)
+    # EXCV (exhaust control valve) P14xx DTC MIL-enable flags, decoded from the GSX-R's own DTC table
+    excv_blocks, nexcv = excv_dtc_blocks(NAME2VAL, 0x120000)
+    blocks.extend(excv_blocks)
 
     deftitle = 'Suzuki GSX-R1000 M7 %s (%s) - ported from Hayabusa Gen3 (auto)' % (sw, part)
     desc = ('Suzuki GSX-R1000 M7 (RH850), 2 MB read, sw %s (ECM %s). %d maps auto-ported from '

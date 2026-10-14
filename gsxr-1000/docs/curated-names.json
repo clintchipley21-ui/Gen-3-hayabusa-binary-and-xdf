@@ -212,6 +212,86 @@
     "0x166FC6": [
       "Fuel :: Injector pulsewidth maximum (clamp)",
       "Upper clamp on the computed base injection time, applied by FUN_0004D68C via FUN_000A1C86 (hi bound) BEFORE deadtime is added. Native base-time units (stock ~25000, about 25 ms if microseconds). Raise only if your max-RPM injection window allows the longer pulse."
+    ],
+    "0x172E9C": [
+      "EXCV :: Target position - CLOSED (raw 0-1023)",
+      "Exhaust Control Valve closed-position setpoint. The EXCV demand (0xFEBF62BE) is driven to this value when closed; scale matches the position-sensor feedback 0xFEF025DA (ADC ch 0x33). State-machine control (FUN_0007899C family), not an RPM curve. Stock 204."
+    ],
+    "0x172E9E": [
+      "EXCV :: Target position - OPEN (raw 0-1023)",
+      "Exhaust Control Valve open-position setpoint for the EXCV demand (0xFEBF62BE). Raw 0-1023, same scale as the position feedback. Stock 828."
+    ],
+    "0x172E96": [
+      "EXCV :: Target position - near-full open (raw)",
+      "Exhaust Control Valve near-full-open demand setpoint. Stock 1020 (~full open)."
+    ],
+    "0x172E98": [
+      "EXCV :: Open/close decision threshold (raw)",
+      "Threshold the EXCV state machine compares against to switch between open/closed demand. Stock 553."
+    ],
+    "0x172E9A": [
+      "EXCV :: Engage gate (speed/RPM condition, raw)",
+      "Gate value that enables EXCV motion based on the speed/RPM condition. Stock 463."
+    ],
+    "0x172F3A": [
+      "EXCV :: Active-drive time limit",
+      "EXCV active drive-time limit used by the motion/stall logic. Stock 1328."
+    ],
+    "0x15597E": [
+      "EXCV :: P1400 position-sensor LOW threshold",
+      "P1400 trips when EXCV position feedback 0xFEF025DA is at/below this (short-to-ground / out-of-range low). FUN_0003986E/0398F0, monitor id 0x35. Stock 29."
+    ],
+    "0x155980": [
+      "EXCV :: P1402 position-sensor HIGH threshold",
+      "P1402 trips when EXCV position feedback is at/above this (open / short-to-power / out-of-range high). FUN_00039972/0399F4, monitor id 0x34. Stock 1004."
+    ],
+    "0x1559A6": [
+      "EXCV :: P1404 range window - low-normal",
+      "P1404 range/stuck check lower-normal bound on EXCV position (FUN_0003B190/B21E, id 0x36). Stock 49."
+    ],
+    "0x1559A8": [
+      "EXCV :: P1404 range window - high-normal",
+      "P1404 range/stuck upper-normal bound on EXCV position. Stock 983."
+    ],
+    "0x1559AA": [
+      "EXCV :: P1404 range window - low-limit",
+      "P1404 range/stuck lower hard-limit on EXCV position. Stock 29."
+    ],
+    "0x1559AC": [
+      "EXCV :: P1404 range window - high-limit",
+      "P1404 range/stuck upper hard-limit on EXCV position. Stock 1004."
+    ],
+    "0x155B1C": [
+      "EXCV :: P1404 stall time limit",
+      "P1404 motion/stall: if the valve fails to reach commanded position within this time count (_DAT_fef00b1c vs this), set stall fault. FUN_00041548, id 0x37. Stock 125."
+    ],
+    "0x172F32": [
+      "EXCV :: Master enable (0x80 = on)",
+      "EXCV subsystem master-enable byte; output gate requires this == 0x80 (FUN_0004C8D0). Stock 0x80."
+    ],
+    "0x167105": [
+      "EXCV :: Output arm (0x80 = on)",
+      "Second EXCV output-enable/arm byte required (==0x80) for the H-bridge PWM to drive. Stock 0x80."
+    ],
+    "0x172F3B": [
+      "EXCV :: Direction hysteresis A",
+      "EXCV motor open/close direction hysteresis/debounce constant. Stock 5."
+    ],
+    "0x172F3C": [
+      "EXCV :: Direction hysteresis B",
+      "EXCV motor open/close direction hysteresis/debounce constant. Stock 5."
+    ],
+    "0x172F3D": [
+      "EXCV :: Direction hysteresis C",
+      "EXCV motor direction logic constant. Stock 1."
+    ],
+    "0x172F3E": [
+      "EXCV :: Direction hysteresis D",
+      "EXCV motor direction logic constant. Stock 26."
+    ],
+    "0x172F48": [
+      "EXCV :: Drive clamp/limit",
+      "EXCV motor drive clamp/limit constant. Stock 255."
     ]
   },
   "tables": {
@@ -226,6 +306,14 @@
     "0x1746E8": [
       "ETV :: Correction gain vs sensor 0xFEBF63BA (Helper 5)",
       "FUN_0008AFE0 looks this up by 0xFEBF63BA (gp-0x5c46), not fef025F8 as an earlier auto-name guessed. Feeds the 0x192CAA correction."
+    ],
+    "0x157654": [
+      "EXCV :: Motor drive voltage-comp map A (duty x battery V)",
+      "EXCV H-bridge drive voltage-compensation, bank A. FUN_0004C8D0 looks this up by commanded duty (0-255) x battery voltage (0xFEBF63C4) to scale PWM so valve speed is constant across Vbatt; feeds fef00dd2/dd3, final H-bridge PWM at 0xFEBF603D/603E. Previously mislabeled 'Fuel :: Primary Trim'; stock cells near-neutral (0x80)."
+    ],
+    "0x157670": [
+      "EXCV :: Motor drive voltage-comp map B (duty x battery V)",
+      "EXCV H-bridge drive voltage-compensation, bank B (other H-bridge side). Same axes/role as map A. Previously mislabeled 'Fuel :: Secondary Trim'; stock cells near-neutral (0x80)."
     ]
   }
 }
