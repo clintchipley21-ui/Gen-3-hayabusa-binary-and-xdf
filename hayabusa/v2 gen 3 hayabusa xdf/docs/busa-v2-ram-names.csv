@@ -1,0 +1,28 @@
+ram_address,meaning,unit,conversion,confidence
+# v2 deep-trace RAM-variable meanings, resolved by reading the writer functions in
+# re/decompiled.zip:all_functions.c. These are the axis variables master-v9's map_links left
+# with no human meaning. Each is labelled ONLY to the confidence the code supports (centered /
+# rate-limited intermediate signals are role-labelled, not guessed), matching the project's
+# honesty standard. Columns: ram_address, meaning, unit, conversion, confidence.
+# -- 0x40 (=64) neutral correction array, init by FUN_516bc, fef01567=copy via FUN_51990.
+#    Feeds ETV-2 aux + an RPMx? ignition map. 64 = no change (ignition-trim convention).
+0xFEF01540,ETV/ignition correction level (64 = neutral),level (64=0),X-64,medium
+0xFEF01567,ETV/ignition correction level (64 = neutral; copy of fef01540),level (64=0),X-64,medium
+# -- 0x8000-centered computed ratio (FUN_773f0: clamp((ratio-offset)*scale+0x8000)), reader
+#    FUN_4ddfc. Indexes Cluster-D 9pt curves that are FLAT (unused) in stock. Likely a slip /
+#    speed ratio; left role-labelled because the curves it feeds are disabled.
+0xFEF02644,computed ratio centered on 0x8000 (slip/speed ratio; indexes unused curves),raw (0x8000=0),X-32768,low
+0xFEF0135C,centered filtered signal (0x8000 = neutral; indexes unused Cluster-D curves),raw (0x8000=0),X-32768,low
+# -- 0x8000-centered rate-limited chassis/ETV signal via FUN_7a730 (FUN_91826 rate limiter).
+#    Matches the ETV/steering-damper secondary-input role seen on the sibling GSX-R ESD module.
+0xFEF0268C,rate-limited chassis/ETV signal (0x8000 = neutral),raw (0x8000=0),X-32768,medium
+0xFEF0267A,rate-limited chassis/ETV signal (0x8000 = neutral; damper secondary),raw (0x8000=0),X-32768,low
+# v2 deep-trace of the RAM variables that LOW/threshold_unk scalars compare against (task: go
+# deeper on LOW scalars). Traced from writer functions in all_functions.c. Honest finding: these
+# are COMPUTED/CENTERED intermediate signals (0x8000 = 0 differences, counters, config copies),
+# not raw sensors - which is why v9 could not give them clean units. Described, not unit-forced.
+0xFEF0264A,wheel-speed difference / slip signal (rear wheel speed - reference; 0x8000 = 0); FUN_7772e,raw (0x8000=0),X-32768,medium
+0xFEF02606,centered sensor-pair difference/average (0x8000 = 0; TP/sensor region); FUN_734f4,raw (0x8000=0),X-32768,low
+0xFEF030A0,saturating phase/step counter (ETV/throttle region); FUN_7dd24,raw,X,low
+0xFEF011E0,fuel-correction intermediate = fef012c1 x (fef012c0-0x80) centered; FUN_4b560,raw (0x8000=0),X-32768,low
+0xFEF031C0,config byte copied from calibration block 0x1B6F5E; FUN_83094,raw,X,low

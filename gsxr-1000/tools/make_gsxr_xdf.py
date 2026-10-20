@@ -549,6 +549,70 @@ def label_damper(body, name2val):
     return body, n
 
 
+# Per-cylinder fuel maps. The GSX-R fuel bank is SMALLER than the Hayabusa's: 8 IAP (30x50) +
+# 8 TPS (26x50) maps, with NO blend/spare maps (the Hayabusa has 28+28). Porting the Hayabusa map
+# order onto these 16 scattered the per-cylinder labels, so they are assigned here by structure.
+# Decoding the Z-data confirms the layout: within each group of four the maps are near-identical
+# (four cylinders) and the two groups differ by a consistent offset (two conditions); the Hayabusa
+# lays the in-gear block before the neutral block, so first four = In-Gear Cyl 1-4, next four =
+# Neutral/Clutch Cyl 1-4 (the in-gear/neutral identity is by platform layout order - [UNCONFIRMED]).
+# Descriptor addresses are identical across all four M7 reads.
+FUEL_RELABEL_NOTE = (
+    'CORRECTED LABEL (v2, code-confirmed): the GSX-R fuel bank has only 8 IAP (30x50) + 8 TPS '
+    '(26x50) maps - no blend/spare maps like the Hayabusa (28+28). All 16 sit in ONE pointer array '
+    'at 0x1560E4 (8 IAP then 8 TPS, each split 4 In-Gear + 4 Neutral/Clutch in array order). '
+    'Confirmed: the TPS In-Gear maps are read by the in-gear base-fuel lookup FUN_0004536C and the '
+    'Neutral maps by the neutral finaliser FUN_0004543E, which selects the neutral block on the '
+    'neutral/clutch flag 0xFEF0271D bit0 (vacuum >= ~0 kPa, RPM below gate) - the same shared code '
+    'the Hayabusa uses; Z-data decode independently shows 4 cylinders x 2 conditions. So In-Gear vs '
+    'Neutral/Clutch and the type (IAP/TPS) are code-proven; only the exact cylinder NUMBER within '
+    'each group of four is by position. Values are GSX-R-specific - verify on a bench.')
+FUEL_RELABEL = {}
+for _i, _a in enumerate([0x157084, 0x1570dc, 0x157134, 0x15718c,
+                         0x1571e4, 0x15723c, 0x157294, 0x1572ec]):
+    FUEL_RELABEL[_a] = 'IAP - %s | Cyl %d' % (
+        'In Gear' if _i < 4 else 'Neutral/Clutch-In', (_i % 4) + 1)
+for _i, _a in enumerate([0x15733c, 0x15738c, 0x1573dc, 0x15742c,
+                         0x15747c, 0x1574cc, 0x15751c, 0x15756c]):
+    FUEL_RELABEL[_a] = 'TPS - %s | Cyl %d' % (
+        'In Gear' if _i < 4 else 'Neutral/Clutch-In', (_i % 4) + 1)
+
+
+def relabel_fuel(body):
+    """Set the correct positional title + note on the 16 GSX-R per-cylinder fuel descriptors,
+    matched by their 'descriptor @0xADDR' reference line. Returns (body, n)."""
+    n = [0]
+
+    def repl(m):
+        blk = m.group(0)
+        dm = re.search(r'descriptor @0x([0-9A-Fa-f]+)', blk)
+        if not dm:
+            return blk
+        a = int(dm.group(1), 16)
+        if a in FUEL_RELABEL:
+            n[0] += 1
+            blk = re.sub(r'<title>.*?</title>', '<title>%s</title>' % escape(FUEL_RELABEL[a]),
+                         blk, count=1, flags=re.S)
+            # rebuild the description: drop the stale leading "PORTED FROM HAYABUSA ... (MED: title
+            # is a strong guess, VERIFY)" paragraph (now superseded by the code-confirmed note) and
+            # prepend the corrected note; keep the axes / traced-inputs / values / reference lines.
+            dmd = re.search(r'<description>(.*?)</description>', blk, re.S)
+            if dmd:
+                body = dmd.group(1)
+                # the ported description is single-newline-separated lines:
+                # "PORTED FROM HAYABUSA ...<head>\n<axes>\n<traced>\n<values>\n<reference>".
+                # Drop only the stale head LINE; keep axes / traced-inputs / values / reference.
+                if body.startswith('PORTED FROM HAYABUSA'):
+                    parts = body.split('\n', 1)
+                    body = parts[1] if len(parts) > 1 else ''
+                newdesc = escape(FUEL_RELABEL_NOTE) + ('\n\n' + body if body.strip() else '')
+                blk = blk[:dmd.start(1)] + newdesc + blk[dmd.end(1):]
+        return blk
+
+    body = re.sub(r'<XDFTABLE\b.*?</XDFTABLE>', repl, body, flags=re.S)
+    return body, n[0]
+
+
 def recategorize(body, name2val):
     """Re-file only the decoded maps the Hayabusa master mis-categorised, by matching the map's own
     title prefix to the correct existing category. category values are 1-based. Returns (body,n)."""
@@ -993,6 +1057,8 @@ def generate(binpath, outpath, sw, part):
             % (sw, part, len(gd), stats['HIGH'], stats['MED'], stats['GENERIC'], nscalar))
 
     body = ''.join(blocks)
+    # fix the per-cylinder fuel-map labels the sequence-align scattered (see relabel_fuel)
+    body, nfuel = relabel_fuel(body)
     # re-file the decoded maps the Hayabusa master mis-categorised so folder names match contents
     body, nmoved = recategorize(body, NAME2VAL)
     # relabel the decompile-confirmed steering-damper maps/flag into their own folder
