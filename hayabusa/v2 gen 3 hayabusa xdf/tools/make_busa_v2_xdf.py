@@ -192,7 +192,7 @@ def enhance(master_text, mi, v2t, cu, autodef, dtc):
         # service-manual DTC name, keyed by the DTC lamp-byte address
         if addr is not None and addr in dtc and 'SERVICE MANUAL:' not in new_desc:
             code, bindesc, official = dtc[addr]
-            name = official or bindesc
+            name = ''.join(c for c in (official or bindesc) if ord(c) < 127).strip()  # ASCII only
             if name:
                 new_desc = new_desc.rstrip() + '\n\nSERVICE MANUAL: %s - %s (Suzuki Hayabusa Gen3 SM).' % (code, name)
                 stats['dtc_named'] += 1

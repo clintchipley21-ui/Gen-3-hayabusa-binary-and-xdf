@@ -43884,7 +43884,7 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
 
 LEGEND: bit 0 (mask 0x01) - 1 = this DTC monitor turns ON the MIL / warning lamp, 0 = lamp disabled for this DTC (monitor may still run).
 
-SERVICE MANUAL: P1201 - Secondary Injector Circuit/ Open - Cylinder • Secondary fuel injector #1 (Suzuki Hayabusa Gen3 SM).</description>
+SERVICE MANUAL: P1201 - Secondary Injector Circuit/ Open - Cylinder 1 (Suzuki Hayabusa Gen3 SM).</description>
     <CATEGORYMEM index="0" category="49" />
     <EMBEDDEDDATA mmedaddress="0x1B9C88" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x01</mask>
@@ -43897,7 +43897,7 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
 
 LEGEND: bit 0 (mask 0x01) - 1 = this DTC monitor turns ON the MIL / warning lamp, 0 = lamp disabled for this DTC (monitor may still run).
 
-SERVICE MANUAL: P1202 - Secondary Injector Circuit/ Open - Cylinder • Secondary fuel injector #2 (Suzuki Hayabusa Gen3 SM).</description>
+SERVICE MANUAL: P1202 - Secondary Injector Circuit/ Open - Cylinder 2 (Suzuki Hayabusa Gen3 SM).</description>
     <CATEGORYMEM index="0" category="49" />
     <EMBEDDEDDATA mmedaddress="0x1B9C9C" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x01</mask>
@@ -43910,7 +43910,7 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
 
 LEGEND: bit 0 (mask 0x01) - 1 = this DTC monitor turns ON the MIL / warning lamp, 0 = lamp disabled for this DTC (monitor may still run).
 
-SERVICE MANUAL: P1203 - Secondary Injector Circuit/ Open - Cylinder • Secondary fuel injector #3 (Suzuki Hayabusa Gen3 SM).</description>
+SERVICE MANUAL: P1203 - Secondary Injector Circuit/ Open - Cylinder 3 (Suzuki Hayabusa Gen3 SM).</description>
     <CATEGORYMEM index="0" category="49" />
     <EMBEDDEDDATA mmedaddress="0x1B9CB0" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x01</mask>
@@ -43923,7 +43923,7 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
 
 LEGEND: bit 0 (mask 0x01) - 1 = this DTC monitor turns ON the MIL / warning lamp, 0 = lamp disabled for this DTC (monitor may still run).
 
-SERVICE MANUAL: P1204 - Secondary Injector Circuit/ Open - Cylinder (Suzuki Hayabusa Gen3 SM).</description>
+SERVICE MANUAL: P1204 - Secondary Injector Circuit/ Open - Cylinder 4 (Suzuki Hayabusa Gen3 SM).</description>
     <CATEGORYMEM index="0" category="49" />
     <EMBEDDEDDATA mmedaddress="0x1B9CC4" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x01</mask>

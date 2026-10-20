@@ -593,8 +593,20 @@ def relabel_fuel(body):
             n[0] += 1
             blk = re.sub(r'<title>.*?</title>', '<title>%s</title>' % escape(FUEL_RELABEL[a]),
                          blk, count=1, flags=re.S)
-            blk = re.sub(r'<description>', '<description>%s\n\n' % escape(FUEL_RELABEL_NOTE),
-                         blk, count=1)
+            # rebuild the description: drop the stale leading "PORTED FROM HAYABUSA ... (MED: title
+            # is a strong guess, VERIFY)" paragraph (now superseded by the code-confirmed note) and
+            # prepend the corrected note; keep the axes / traced-inputs / values / reference lines.
+            dmd = re.search(r'<description>(.*?)</description>', blk, re.S)
+            if dmd:
+                body = dmd.group(1)
+                # the ported description is single-newline-separated lines:
+                # "PORTED FROM HAYABUSA ...<head>\n<axes>\n<traced>\n<values>\n<reference>".
+                # Drop only the stale head LINE; keep axes / traced-inputs / values / reference.
+                if body.startswith('PORTED FROM HAYABUSA'):
+                    parts = body.split('\n', 1)
+                    body = parts[1] if len(parts) > 1 else ''
+                newdesc = escape(FUEL_RELABEL_NOTE) + ('\n\n' + body if body.strip() else '')
+                blk = blk[:dmd.start(1)] + newdesc + blk[dmd.end(1):]
         return blk
 
     body = re.sub(r'<XDFTABLE\b.*?</XDFTABLE>', repl, body, flags=re.S)

@@ -9604,7 +9604,6 @@ REFERENCE: descriptor @0x15702C, data @0x15A958, X @0x156250, Y @0x155DEC.</desc
     <title>IAP - In Gear | Cyl 1</title>
     <description>CORRECTED LABEL (v2, code-confirmed): the GSX-R fuel bank has only 8 IAP (30x50) + 8 TPS (26x50) maps - no blend/spare maps like the Hayabusa (28+28). All 16 sit in ONE pointer array at 0x1560E4 (8 IAP then 8 TPS, each split 4 In-Gear + 4 Neutral/Clutch in array order). Confirmed: the TPS In-Gear maps are read by the in-gear base-fuel lookup FUN_0004536C and the Neutral maps by the neutral finaliser FUN_0004543E, which selects the neutral block on the neutral/clutch flag 0xFEF0271D bit0 (vacuum &gt;= ~0 kPa, RPM below gate) - the same shared code the Hayabusa uses; Z-data decode independently shows 4 cylinders x 2 conditions. So In-Gear vs Neutral/Clutch and the type (IAP/TPS) are code-proven; only the exact cylinder NUMBER within each group of four is by position. Values are GSX-R-specific - verify on a bench.
 
-PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read's own.
 X: 30 pts 64.00..0.00 kPa vacuum; Y: 50 pts 800..16000 RPM
 INPUTS (Hayabusa decompile): X = intake pressure (IAP); Y = engine RPM. Read by FUN_00045320.
 MIN/MAX (32990-48L30): min 388, max 3298 fuel qty (raw).
@@ -9651,7 +9650,6 @@ REFERENCE: descriptor @0x157084, data @0x15AA84, X @0x157048, Y @0x15AA20.</desc
     <title>IAP - In Gear | Cyl 2</title>
     <description>CORRECTED LABEL (v2, code-confirmed): the GSX-R fuel bank has only 8 IAP (30x50) + 8 TPS (26x50) maps - no blend/spare maps like the Hayabusa (28+28). All 16 sit in ONE pointer array at 0x1560E4 (8 IAP then 8 TPS, each split 4 In-Gear + 4 Neutral/Clutch in array order). Confirmed: the TPS In-Gear maps are read by the in-gear base-fuel lookup FUN_0004536C and the Neutral maps by the neutral finaliser FUN_0004543E, which selects the neutral block on the neutral/clutch flag 0xFEF0271D bit0 (vacuum &gt;= ~0 kPa, RPM below gate) - the same shared code the Hayabusa uses; Z-data decode independently shows 4 cylinders x 2 conditions. So In-Gear vs Neutral/Clutch and the type (IAP/TPS) are code-proven; only the exact cylinder NUMBER within each group of four is by position. Values are GSX-R-specific - verify on a bench.
 
-PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read's own.
 X: 30 pts 64.00..0.00 vacuum kPa; Y: 50 pts 800..16000 RPM
 INPUTS (Hayabusa decompile): X = intake pressure (IAP); Y = engine RPM. Read by FUN_00045320.
 MIN/MAX (32990-48L30): min 390, max 3387 raw (inj. time?).
@@ -9699,7 +9697,6 @@ REFERENCE: descriptor @0x1570DC, data @0x15B6A0, X @0x1570A0, Y @0x15B63C.</desc
     <title>IAP - In Gear | Cyl 3</title>
     <description>CORRECTED LABEL (v2, code-confirmed): the GSX-R fuel bank has only 8 IAP (30x50) + 8 TPS (26x50) maps - no blend/spare maps like the Hayabusa (28+28). All 16 sit in ONE pointer array at 0x1560E4 (8 IAP then 8 TPS, each split 4 In-Gear + 4 Neutral/Clutch in array order). Confirmed: the TPS In-Gear maps are read by the in-gear base-fuel lookup FUN_0004536C and the Neutral maps by the neutral finaliser FUN_0004543E, which selects the neutral block on the neutral/clutch flag 0xFEF0271D bit0 (vacuum &gt;= ~0 kPa, RPM below gate) - the same shared code the Hayabusa uses; Z-data decode independently shows 4 cylinders x 2 conditions. So In-Gear vs Neutral/Clutch and the type (IAP/TPS) are code-proven; only the exact cylinder NUMBER within each group of four is by position. Values are GSX-R-specific - verify on a bench.
 
-PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read's own.
 X: 30 pts 64.00..0.00 vacuum kPa; Y: 50 pts 800..16000 RPM
 INPUTS (Hayabusa decompile): X = intake pressure (IAP); Y = engine RPM. Read by FUN_00045320.
 MIN/MAX (32990-48L30): min 389, max 3333 raw (inj. time?).
@@ -9747,7 +9744,6 @@ REFERENCE: descriptor @0x157134, data @0x15C2BC, X @0x1570F8, Y @0x15C258.</desc
     <title>IAP - In Gear | Cyl 4</title>
     <description>CORRECTED LABEL (v2, code-confirmed): the GSX-R fuel bank has only 8 IAP (30x50) + 8 TPS (26x50) maps - no blend/spare maps like the Hayabusa (28+28). All 16 sit in ONE pointer array at 0x1560E4 (8 IAP then 8 TPS, each split 4 In-Gear + 4 Neutral/Clutch in array order). Confirmed: the TPS In-Gear maps are read by the in-gear base-fuel lookup FUN_0004536C and the Neutral maps by the neutral finaliser FUN_0004543E, which selects the neutral block on the neutral/clutch flag 0xFEF0271D bit0 (vacuum &gt;= ~0 kPa, RPM below gate) - the same shared code the Hayabusa uses; Z-data decode independently shows 4 cylinders x 2 conditions. So In-Gear vs Neutral/Clutch and the type (IAP/TPS) are code-proven; only the exact cylinder NUMBER within each group of four is by position. Values are GSX-R-specific - verify on a bench.
 
-PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read's own.
 X: 30 pts 64.00..0.00 vacuum kPa; Y: 50 pts 800..16000 RPM
 INPUTS (Hayabusa decompile): X = intake pressure (IAP); Y = engine RPM. Read by FUN_00045320.
 MIN/MAX (32990-48L30): min 385, max 3372 raw (inj. time?).
@@ -9795,7 +9791,6 @@ REFERENCE: descriptor @0x15718C, data @0x15CED8, X @0x157150, Y @0x15CE74.</desc
     <title>IAP - Neutral/Clutch-In | Cyl 1</title>
     <description>CORRECTED LABEL (v2, code-confirmed): the GSX-R fuel bank has only 8 IAP (30x50) + 8 TPS (26x50) maps - no blend/spare maps like the Hayabusa (28+28). All 16 sit in ONE pointer array at 0x1560E4 (8 IAP then 8 TPS, each split 4 In-Gear + 4 Neutral/Clutch in array order). Confirmed: the TPS In-Gear maps are read by the in-gear base-fuel lookup FUN_0004536C and the Neutral maps by the neutral finaliser FUN_0004543E, which selects the neutral block on the neutral/clutch flag 0xFEF0271D bit0 (vacuum &gt;= ~0 kPa, RPM below gate) - the same shared code the Hayabusa uses; Z-data decode independently shows 4 cylinders x 2 conditions. So In-Gear vs Neutral/Clutch and the type (IAP/TPS) are code-proven; only the exact cylinder NUMBER within each group of four is by position. Values are GSX-R-specific - verify on a bench.
 
-PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read's own.
 X: 30 pts 64.00..0.00 vacuum kPa; Y: 50 pts 800..16000 RPM
 INPUTS (Hayabusa decompile): X = intake pressure (IAP); Y = engine RPM. Read by FUN_00045320.
 MIN/MAX (32990-48L30): min 392, max 3195 raw (inj. time?).
@@ -9843,7 +9838,6 @@ REFERENCE: descriptor @0x1571E4, data @0x15DAF4, X @0x1571A8, Y @0x15DA90.</desc
     <title>IAP - Neutral/Clutch-In | Cyl 2</title>
     <description>CORRECTED LABEL (v2, code-confirmed): the GSX-R fuel bank has only 8 IAP (30x50) + 8 TPS (26x50) maps - no blend/spare maps like the Hayabusa (28+28). All 16 sit in ONE pointer array at 0x1560E4 (8 IAP then 8 TPS, each split 4 In-Gear + 4 Neutral/Clutch in array order). Confirmed: the TPS In-Gear maps are read by the in-gear base-fuel lookup FUN_0004536C and the Neutral maps by the neutral finaliser FUN_0004543E, which selects the neutral block on the neutral/clutch flag 0xFEF0271D bit0 (vacuum &gt;= ~0 kPa, RPM below gate) - the same shared code the Hayabusa uses; Z-data decode independently shows 4 cylinders x 2 conditions. So In-Gear vs Neutral/Clutch and the type (IAP/TPS) are code-proven; only the exact cylinder NUMBER within each group of four is by position. Values are GSX-R-specific - verify on a bench.
 
-PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read's own.
 X: 30 pts 64.00..0.00 vacuum kPa; Y: 50 pts 800..16000 RPM
 INPUTS (Hayabusa decompile): X = intake pressure (IAP); Y = engine RPM. Read by FUN_00045320.
 MIN/MAX (32990-48L30): min 388, max 3231 raw (inj. time?).
@@ -9891,7 +9885,6 @@ REFERENCE: descriptor @0x15723C, data @0x15E710, X @0x157200, Y @0x15E6AC.</desc
     <title>IAP - Neutral/Clutch-In | Cyl 3</title>
     <description>CORRECTED LABEL (v2, code-confirmed): the GSX-R fuel bank has only 8 IAP (30x50) + 8 TPS (26x50) maps - no blend/spare maps like the Hayabusa (28+28). All 16 sit in ONE pointer array at 0x1560E4 (8 IAP then 8 TPS, each split 4 In-Gear + 4 Neutral/Clutch in array order). Confirmed: the TPS In-Gear maps are read by the in-gear base-fuel lookup FUN_0004536C and the Neutral maps by the neutral finaliser FUN_0004543E, which selects the neutral block on the neutral/clutch flag 0xFEF0271D bit0 (vacuum &gt;= ~0 kPa, RPM below gate) - the same shared code the Hayabusa uses; Z-data decode independently shows 4 cylinders x 2 conditions. So In-Gear vs Neutral/Clutch and the type (IAP/TPS) are code-proven; only the exact cylinder NUMBER within each group of four is by position. Values are GSX-R-specific - verify on a bench.
 
-PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read's own.
 X: 30 pts 64.00..0.00 kPa vacuum; Y: 50 pts 800..16000 RPM
 INPUTS (Hayabusa decompile): X = intake pressure (IAP); Y = engine RPM. Read by FUN_00045320.
 MIN/MAX (32990-48L30): min 387, max 3242 fuel qty (raw).
@@ -9938,7 +9931,6 @@ REFERENCE: descriptor @0x157294, data @0x15F32C, X @0x157258, Y @0x15F2C8.</desc
     <title>IAP - Neutral/Clutch-In | Cyl 4</title>
     <description>CORRECTED LABEL (v2, code-confirmed): the GSX-R fuel bank has only 8 IAP (30x50) + 8 TPS (26x50) maps - no blend/spare maps like the Hayabusa (28+28). All 16 sit in ONE pointer array at 0x1560E4 (8 IAP then 8 TPS, each split 4 In-Gear + 4 Neutral/Clutch in array order). Confirmed: the TPS In-Gear maps are read by the in-gear base-fuel lookup FUN_0004536C and the Neutral maps by the neutral finaliser FUN_0004543E, which selects the neutral block on the neutral/clutch flag 0xFEF0271D bit0 (vacuum &gt;= ~0 kPa, RPM below gate) - the same shared code the Hayabusa uses; Z-data decode independently shows 4 cylinders x 2 conditions. So In-Gear vs Neutral/Clutch and the type (IAP/TPS) are code-proven; only the exact cylinder NUMBER within each group of four is by position. Values are GSX-R-specific - verify on a bench.
 
-PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read's own.
 X: 30 pts 64.00..0.00 vacuum kPa; Y: 50 pts 800..16000 RPM
 INPUTS (Hayabusa decompile): X = intake pressure (IAP); Y = engine RPM. Read by FUN_00045320.
 MIN/MAX (32990-48L30): min 386, max 3257 raw (inj. time?).
@@ -9986,7 +9978,6 @@ REFERENCE: descriptor @0x1572EC, data @0x15FF48, X @0x1572B0, Y @0x15FEE4.</desc
     <title>TPS - In Gear | Cyl 1</title>
     <description>CORRECTED LABEL (v2, code-confirmed): the GSX-R fuel bank has only 8 IAP (30x50) + 8 TPS (26x50) maps - no blend/spare maps like the Hayabusa (28+28). All 16 sit in ONE pointer array at 0x1560E4 (8 IAP then 8 TPS, each split 4 In-Gear + 4 Neutral/Clutch in array order). Confirmed: the TPS In-Gear maps are read by the in-gear base-fuel lookup FUN_0004536C and the Neutral maps by the neutral finaliser FUN_0004543E, which selects the neutral block on the neutral/clutch flag 0xFEF0271D bit0 (vacuum &gt;= ~0 kPa, RPM below gate) - the same shared code the Hayabusa uses; Z-data decode independently shows 4 cylinders x 2 conditions. So In-Gear vs Neutral/Clutch and the type (IAP/TPS) are code-proven; only the exact cylinder NUMBER within each group of four is by position. Values are GSX-R-specific - verify on a bench.
 
-PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read's own.
 X: 26 pts 0.46..118.08 deg (abs. TP angle); Y: 50 pts 800..16000 RPM
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0004536c.
 MIN/MAX (32990-48L30): min 398, max 3298 raw (inj. time?).
@@ -10034,7 +10025,6 @@ REFERENCE: descriptor @0x15733C, data @0x160B64, X @0x157308, Y @0x160B00.</desc
     <title>TPS - In Gear | Cyl 2</title>
     <description>CORRECTED LABEL (v2, code-confirmed): the GSX-R fuel bank has only 8 IAP (30x50) + 8 TPS (26x50) maps - no blend/spare maps like the Hayabusa (28+28). All 16 sit in ONE pointer array at 0x1560E4 (8 IAP then 8 TPS, each split 4 In-Gear + 4 Neutral/Clutch in array order). Confirmed: the TPS In-Gear maps are read by the in-gear base-fuel lookup FUN_0004536C and the Neutral maps by the neutral finaliser FUN_0004543E, which selects the neutral block on the neutral/clutch flag 0xFEF0271D bit0 (vacuum &gt;= ~0 kPa, RPM below gate) - the same shared code the Hayabusa uses; Z-data decode independently shows 4 cylinders x 2 conditions. So In-Gear vs Neutral/Clutch and the type (IAP/TPS) are code-proven; only the exact cylinder NUMBER within each group of four is by position. Values are GSX-R-specific - verify on a bench.
 
-PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read's own.
 X: 26 pts 0.46..118.08 deg (abs. TP angle); Y: 50 pts 800..16000 RPM
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0004536c.
 MIN/MAX (32990-48L30): min 396, max 3387 raw (inj. time?).
@@ -10082,7 +10072,6 @@ REFERENCE: descriptor @0x15738C, data @0x1615F0, X @0x157358, Y @0x16158C.</desc
     <title>TPS - In Gear | Cyl 3</title>
     <description>CORRECTED LABEL (v2, code-confirmed): the GSX-R fuel bank has only 8 IAP (30x50) + 8 TPS (26x50) maps - no blend/spare maps like the Hayabusa (28+28). All 16 sit in ONE pointer array at 0x1560E4 (8 IAP then 8 TPS, each split 4 In-Gear + 4 Neutral/Clutch in array order). Confirmed: the TPS In-Gear maps are read by the in-gear base-fuel lookup FUN_0004536C and the Neutral maps by the neutral finaliser FUN_0004543E, which selects the neutral block on the neutral/clutch flag 0xFEF0271D bit0 (vacuum &gt;= ~0 kPa, RPM below gate) - the same shared code the Hayabusa uses; Z-data decode independently shows 4 cylinders x 2 conditions. So In-Gear vs Neutral/Clutch and the type (IAP/TPS) are code-proven; only the exact cylinder NUMBER within each group of four is by position. Values are GSX-R-specific - verify on a bench.
 
-PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read's own.
 X: 26 pts 0.46..118.08 deg (abs. TP angle); Y: 50 pts 800..16000 RPM
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0004536c.
 MIN/MAX (32990-48L30): min 386, max 3333 raw (inj. time?).
@@ -10130,7 +10119,6 @@ REFERENCE: descriptor @0x1573DC, data @0x16207C, X @0x1573A8, Y @0x162018.</desc
     <title>TPS - In Gear | Cyl 4</title>
     <description>CORRECTED LABEL (v2, code-confirmed): the GSX-R fuel bank has only 8 IAP (30x50) + 8 TPS (26x50) maps - no blend/spare maps like the Hayabusa (28+28). All 16 sit in ONE pointer array at 0x1560E4 (8 IAP then 8 TPS, each split 4 In-Gear + 4 Neutral/Clutch in array order). Confirmed: the TPS In-Gear maps are read by the in-gear base-fuel lookup FUN_0004536C and the Neutral maps by the neutral finaliser FUN_0004543E, which selects the neutral block on the neutral/clutch flag 0xFEF0271D bit0 (vacuum &gt;= ~0 kPa, RPM below gate) - the same shared code the Hayabusa uses; Z-data decode independently shows 4 cylinders x 2 conditions. So In-Gear vs Neutral/Clutch and the type (IAP/TPS) are code-proven; only the exact cylinder NUMBER within each group of four is by position. Values are GSX-R-specific - verify on a bench.
 
-PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read's own.
 X: 26 pts 0.46..118.08 deg (abs. TP angle); Y: 50 pts 800..16000 RPM
 INPUTS (Hayabusa decompile): X = throttle position; Y = engine RPM. Read by FUN_0004536c.
 MIN/MAX (32990-48L30): min 400, max 3372 raw (inj. time?).
@@ -10178,7 +10166,6 @@ REFERENCE: descriptor @0x15742C, data @0x162B08, X @0x1573F8, Y @0x162AA4.</desc
     <title>TPS - Neutral/Clutch-In | Cyl 1</title>
     <description>CORRECTED LABEL (v2, code-confirmed): the GSX-R fuel bank has only 8 IAP (30x50) + 8 TPS (26x50) maps - no blend/spare maps like the Hayabusa (28+28). All 16 sit in ONE pointer array at 0x1560E4 (8 IAP then 8 TPS, each split 4 In-Gear + 4 Neutral/Clutch in array order). Confirmed: the TPS In-Gear maps are read by the in-gear base-fuel lookup FUN_0004536C and the Neutral maps by the neutral finaliser FUN_0004543E, which selects the neutral block on the neutral/clutch flag 0xFEF0271D bit0 (vacuum &gt;= ~0 kPa, RPM below gate) - the same shared code the Hayabusa uses; Z-data decode independently shows 4 cylinders x 2 conditions. So In-Gear vs Neutral/Clutch and the type (IAP/TPS) are code-proven; only the exact cylinder NUMBER within each group of four is by position. Values are GSX-R-specific - verify on a bench.
 
-PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read's own.
 X: 26 pts 0.46..118.08 deg (abs. TP angle); Y: 50 pts 800..16000 RPM
 INPUTS (Hayabusa decompile): X = intake pressure (IAP); Y = engine RPM. Read by FUN_0004543e.
 MIN/MAX (32990-48L30): min 388, max 3195 raw (inj. time?).
@@ -10226,7 +10213,6 @@ REFERENCE: descriptor @0x15747C, data @0x163594, X @0x157448, Y @0x163530.</desc
     <title>TPS - Neutral/Clutch-In | Cyl 2</title>
     <description>CORRECTED LABEL (v2, code-confirmed): the GSX-R fuel bank has only 8 IAP (30x50) + 8 TPS (26x50) maps - no blend/spare maps like the Hayabusa (28+28). All 16 sit in ONE pointer array at 0x1560E4 (8 IAP then 8 TPS, each split 4 In-Gear + 4 Neutral/Clutch in array order). Confirmed: the TPS In-Gear maps are read by the in-gear base-fuel lookup FUN_0004536C and the Neutral maps by the neutral finaliser FUN_0004543E, which selects the neutral block on the neutral/clutch flag 0xFEF0271D bit0 (vacuum &gt;= ~0 kPa, RPM below gate) - the same shared code the Hayabusa uses; Z-data decode independently shows 4 cylinders x 2 conditions. So In-Gear vs Neutral/Clutch and the type (IAP/TPS) are code-proven; only the exact cylinder NUMBER within each group of four is by position. Values are GSX-R-specific - verify on a bench.
 
-PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read's own.
 X: 26 pts 0.46..118.08 deg (abs. TP angle); Y: 50 pts 800..16000 RPM
 INPUTS (Hayabusa decompile): X = intake pressure (IAP); Y = engine RPM. Read by FUN_0004543e.
 MIN/MAX (32990-48L30): min 388, max 3235 raw (inj. time?).
@@ -10274,7 +10260,6 @@ REFERENCE: descriptor @0x1574CC, data @0x164020, X @0x157498, Y @0x163FBC.</desc
     <title>TPS - Neutral/Clutch-In | Cyl 3</title>
     <description>CORRECTED LABEL (v2, code-confirmed): the GSX-R fuel bank has only 8 IAP (30x50) + 8 TPS (26x50) maps - no blend/spare maps like the Hayabusa (28+28). All 16 sit in ONE pointer array at 0x1560E4 (8 IAP then 8 TPS, each split 4 In-Gear + 4 Neutral/Clutch in array order). Confirmed: the TPS In-Gear maps are read by the in-gear base-fuel lookup FUN_0004536C and the Neutral maps by the neutral finaliser FUN_0004543E, which selects the neutral block on the neutral/clutch flag 0xFEF0271D bit0 (vacuum &gt;= ~0 kPa, RPM below gate) - the same shared code the Hayabusa uses; Z-data decode independently shows 4 cylinders x 2 conditions. So In-Gear vs Neutral/Clutch and the type (IAP/TPS) are code-proven; only the exact cylinder NUMBER within each group of four is by position. Values are GSX-R-specific - verify on a bench.
 
-PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read's own.
 X: 26 pts 0.46..118.08 deg (abs. TP angle); Y: 50 pts 800..16000 RPM
 INPUTS (Hayabusa decompile): X = intake pressure (IAP); Y = engine RPM. Read by FUN_0004543e.
 MIN/MAX (32990-48L30): min 379, max 3242 raw (inj. time?).
@@ -10322,7 +10307,6 @@ REFERENCE: descriptor @0x15751C, data @0x164AAC, X @0x1574E8, Y @0x164A48.</desc
     <title>TPS - Neutral/Clutch-In | Cyl 4</title>
     <description>CORRECTED LABEL (v2, code-confirmed): the GSX-R fuel bank has only 8 IAP (30x50) + 8 TPS (26x50) maps - no blend/spare maps like the Hayabusa (28+28). All 16 sit in ONE pointer array at 0x1560E4 (8 IAP then 8 TPS, each split 4 In-Gear + 4 Neutral/Clutch in array order). Confirmed: the TPS In-Gear maps are read by the in-gear base-fuel lookup FUN_0004536C and the Neutral maps by the neutral finaliser FUN_0004543E, which selects the neutral block on the neutral/clutch flag 0xFEF0271D bit0 (vacuum &gt;= ~0 kPa, RPM below gate) - the same shared code the Hayabusa uses; Z-data decode independently shows 4 cylinders x 2 conditions. So In-Gear vs Neutral/Clutch and the type (IAP/TPS) are code-proven; only the exact cylinder NUMBER within each group of four is by position. Values are GSX-R-specific - verify on a bench.
 
-PORTED FROM HAYABUSA 5JCZSJ10 (MED: same type/size and aligned by calibration order, but breakpoints differ - title is a strong guess, VERIFY before trusting). Units/scaling carried over; GSX-R addresses &amp; values are this read's own.
 X: 26 pts 0.46..118.08 deg (abs. TP angle); Y: 50 pts 800..16000 RPM
 INPUTS (Hayabusa decompile): X = intake pressure (IAP); Y = engine RPM. Read by FUN_0004543e.
 MIN/MAX (32990-48L30): min 381, max 3261 raw (inj. time?).

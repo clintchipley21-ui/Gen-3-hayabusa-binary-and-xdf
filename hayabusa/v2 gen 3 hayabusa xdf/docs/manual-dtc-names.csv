@@ -48,10 +48,10 @@ P0916,GP Sensor Circuit Low,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DT
 P1105,IAP Sensor Circuit Bank 2,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
 P1106,IAP Sensor Circuit Range/ Performance,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
 P1107,IAP Sensor Circuit Low Bank2,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
-P1201,Secondary Injector Circuit/ Open - Cylinder • Secondary fuel injector #1,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
-P1202,Secondary Injector Circuit/ Open - Cylinder • Secondary fuel injector #2,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
-P1203,Secondary Injector Circuit/ Open - Cylinder • Secondary fuel injector #3,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
-P1204,Secondary Injector Circuit/ Open - Cylinder,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P1201,Secondary Injector Circuit/ Open - Cylinder 1,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P1202,Secondary Injector Circuit/ Open - Cylinder 2,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P1203,Secondary Injector Circuit/ Open - Cylinder 3,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P1204,Secondary Injector Circuit/ Open - Cylinder 4,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
 P1610,Ignition Switch Signal Circuit,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
 P1622,Control Module ROM Error,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
 P1650,Inertial Measurement Unit,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
