@@ -62,7 +62,7 @@
     <CATEGORY index="0x33" name="ZZ Unmatched / Auto-discovered (verify)" />
     <CATEGORY index="0x34" name="ZZ Decompiler-discovered scalars (unverified)" />
     <CATEGORY index="0x35" name="Steering Damper (ESD) (decoded)" />
-    <CATEGORY index="0x36" name="Exhaust Control Valve (EXCV) (decoded)" />
+    <CATEGORY index="0x36" name="Exhaust Control Valve (EXCV) - Valve Control" />
     <CATEGORY index="0x37" name="ZZ Decompiler-discovered scalars (unverified) (part 2)" />
     <CATEGORY index="0x38" name="ZZ Decompiler-discovered scalars (unverified) (part 3)" />
     <CATEGORY index="0x39" name="ZZ Decompiler-discovered scalars (unverified) (part 4)" />
@@ -72,6 +72,7 @@
     <CATEGORY index="0x3D" name="ZZ Decompiler-discovered scalars (unverified) (part 8)" />
     <CATEGORY index="0x3E" name="ZZ Decompiler-discovered scalars (unverified) (part 9)" />
     <CATEGORY index="0x3F" name="ZZ Decompiler-discovered scalars (unverified) (part 10)" />
+    <CATEGORY index="0x40" name="Exhaust Control Valve (EXCV) - DTC Control" />
   </XDFHEADER>
   <XDFTABLE uniqueid="0x1001" flags="0x0">
     <title>Quickshifter :: GP-Sensor Upshift Window A Offset vs Gear</title>
@@ -10723,8 +10724,7 @@ REFERENCE: descriptor @0x157640, data @0x15879C, X @0x15878C.</description>
   <XDFTABLE uniqueid="0x10F2" flags="0x0">
     <title>EXCV :: Motor drive voltage-comp map A (duty x battery V)</title>
     <description>CURATED (code-proven): EXCV H-bridge drive voltage-compensation, bank A. FUN_0004C8D0 looks this up by commanded duty (0-255) x battery voltage (0xFEBF63C4) to scale PWM so valve speed is constant across Vbatt; feeds fef00dd2/dd3, final H-bridge PWM at 0xFEBF603D/603E. Previously mislabeled 'Fuel :: Primary Trim'; stock cells near-neutral (0x80). PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R</description>
-    <CATEGORYMEM index="0" category="2" />
-    <CATEGORYMEM index="1" category="22" />
+    <CATEGORYMEM index="0" category="55" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1587AC" mmedelementsizebits="16" mmedcolcount="23" mmedmajorstridebits="0" mmedminorstridebits="0" />
       <units>raw</units>
@@ -10764,8 +10764,7 @@ REFERENCE: descriptor @0x157640, data @0x15879C, X @0x15878C.</description>
   <XDFTABLE uniqueid="0x10F3" flags="0x0">
     <title>EXCV :: Motor drive voltage-comp map B (duty x battery V)</title>
     <description>CURATED (code-proven): EXCV H-bridge drive voltage-compensation, bank B (other H-bridge side). Same axes/role as map A. Previously mislabeled 'Fuel :: Secondary Trim'; stock cells near-neutral (0x80). PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses andamp; values are this read's own. Hayabusa code refs are not verified on GSX-R. X: 23 pts 14680..59963 raw; Y: 9 pts 0..255 raw GSX-R TR</description>
-    <CATEGORYMEM index="0" category="2" />
-    <CATEGORYMEM index="1" category="22" />
+    <CATEGORYMEM index="0" category="55" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1587F0" mmedelementsizebits="16" mmedcolcount="23" mmedmajorstridebits="0" mmedminorstridebits="0" />
       <units>raw</units>
@@ -39490,7 +39489,7 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
   <XDFCONSTANT uniqueid="0x1C3" flags="0x0">
     <title>EXCV :: P1400 position-sensor LOW threshold</title>
     <description>CURATED (code-proven): P1400 trips when EXCV position feedback 0xFEF025DA is at/below this (short-to-ground / out-of-range low). FUN_0003986E/0398F0, monitor id 0x35. Stock 29. Stock 29 (u16 0..65535).</description>
-    <CATEGORYMEM index="0" category="56" />
+    <CATEGORYMEM index="0" category="65" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x15597E" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
@@ -39502,7 +39501,7 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
   <XDFCONSTANT uniqueid="0x1C4" flags="0x0">
     <title>EXCV :: P1402 position-sensor HIGH threshold</title>
     <description>CURATED (code-proven): P1402 trips when EXCV position feedback is at/above this (open / short-to-power / out-of-range high). FUN_00039972/0399F4, monitor id 0x34. Stock 1004. Stock 1004 (u16 0..65535).</description>
-    <CATEGORYMEM index="0" category="56" />
+    <CATEGORYMEM index="0" category="65" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x155980" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
@@ -39730,7 +39729,7 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
   <XDFCONSTANT uniqueid="0x1D7" flags="0x0">
     <title>EXCV :: P1404 range window - low-normal</title>
     <description>CURATED (code-proven): P1404 range/stuck check lower-normal bound on EXCV position (FUN_0003B190/B21E, id 0x36). Stock 49. Stock 49 (u16 0..65535).</description>
-    <CATEGORYMEM index="0" category="56" />
+    <CATEGORYMEM index="0" category="65" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1559A6" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
@@ -39742,7 +39741,7 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
   <XDFCONSTANT uniqueid="0x1D8" flags="0x0">
     <title>EXCV :: P1404 range window - high-normal</title>
     <description>CURATED (code-proven): P1404 range/stuck upper-normal bound on EXCV position. Stock 983. Stock 983 (u16 0..65535).</description>
-    <CATEGORYMEM index="0" category="56" />
+    <CATEGORYMEM index="0" category="65" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1559A8" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
@@ -39754,7 +39753,7 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
   <XDFCONSTANT uniqueid="0x1D9" flags="0x0">
     <title>EXCV :: P1404 range window - low-limit</title>
     <description>CURATED (code-proven): P1404 range/stuck lower hard-limit on EXCV position. Stock 29. Stock 29 (u16 0..65535).</description>
-    <CATEGORYMEM index="0" category="56" />
+    <CATEGORYMEM index="0" category="65" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1559AA" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
@@ -39766,7 +39765,7 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
   <XDFCONSTANT uniqueid="0x1DA" flags="0x0">
     <title>EXCV :: P1404 range window - high-limit</title>
     <description>CURATED (code-proven): P1404 range/stuck upper hard-limit on EXCV position. Stock 1004. Stock 1004 (u16 0..65535).</description>
-    <CATEGORYMEM index="0" category="56" />
+    <CATEGORYMEM index="0" category="65" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1559AC" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
@@ -41870,7 +41869,7 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
   <XDFCONSTANT uniqueid="0x287" flags="0x0">
     <title>EXCV :: P1404 stall time limit</title>
     <description>CURATED (code-proven): P1404 motion/stall: if the valve fails to reach commanded position within this time count (_DAT_fef00b1c vs this), set stall fault. FUN_00041548, id 0x37. Stock 125. Stock 125 (u16 0..65535).</description>
-    <CATEGORYMEM index="0" category="57" />
+    <CATEGORYMEM index="0" category="65" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x155B1C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
@@ -48378,7 +48377,7 @@ REFERENCE: descriptor @0x194004, data @0x19EAA8, X @0x193FF0, Y @0x1952C0.</desc
   <XDFFLAG uniqueid="0xBCB">
     <title>EXCV :: Output arm (0x80 = on)</title>
     <description>CURATED (code-proven): Second EXCV output-enable/arm byte required (==0x80) for the H-bridge PWM to drive. Stock 0x80. Stock bit7 on (0x80); 0x80=set.</description>
-    <CATEGORYMEM index="0" category="58" />
+    <CATEGORYMEM index="0" category="55" />
     <EMBEDDEDDATA mmedaddress="0x167105" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x80</mask>
   </XDFFLAG>
@@ -55679,7 +55678,7 @@ Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x077A
   <XDFCONSTANT uniqueid="0x687" flags="0x0">
     <title>EXCV :: Target position - near-full open (raw)</title>
     <description>CURATED (code-proven): Exhaust Control Valve near-full-open demand setpoint. Stock 1020 (~full open). Stock 1020 (u16 0..65535).</description>
-    <CATEGORYMEM index="0" category="60" />
+    <CATEGORYMEM index="0" category="55" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x172E96" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
@@ -55691,7 +55690,7 @@ Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x077A
   <XDFCONSTANT uniqueid="0x688" flags="0x0">
     <title>EXCV :: Open/close decision threshold (raw)</title>
     <description>CURATED (code-proven): Threshold the EXCV state machine compares against to switch between open/closed demand. Stock 553. Stock 553 (u16 0..65535).</description>
-    <CATEGORYMEM index="0" category="60" />
+    <CATEGORYMEM index="0" category="55" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x172E98" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
@@ -55703,7 +55702,7 @@ Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x077A
   <XDFCONSTANT uniqueid="0x689" flags="0x0">
     <title>EXCV :: Engage gate (speed/RPM condition, raw)</title>
     <description>CURATED (code-proven): Gate value that enables EXCV motion based on the speed/RPM condition. Stock 463. Stock 463 (u16 0..65535).</description>
-    <CATEGORYMEM index="0" category="60" />
+    <CATEGORYMEM index="0" category="55" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x172E9A" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
@@ -55715,7 +55714,7 @@ Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x077A
   <XDFCONSTANT uniqueid="0x68A" flags="0x0">
     <title>EXCV :: Target position - CLOSED (raw 0-1023)</title>
     <description>CURATED (code-proven): Exhaust Control Valve closed-position setpoint. The EXCV demand (0xFEBF62BE) is driven to this value when closed; scale matches the position-sensor feedback 0xFEF025DA (ADC ch 0x33). State-machine control (FUN_0007899C family), not an RPM curve. Stock 204. Stock 204 (u16 0..65535).</description>
-    <CATEGORYMEM index="0" category="60" />
+    <CATEGORYMEM index="0" category="55" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x172E9C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
@@ -55727,7 +55726,7 @@ Decompiler-found scalar (UNVERIFIED): u16 read by ECU code (1 ref/1 fn fn 0x077A
   <XDFCONSTANT uniqueid="0x68B" flags="0x0">
     <title>EXCV :: Target position - OPEN (raw 0-1023)</title>
     <description>CURATED (code-proven): Exhaust Control Valve open-position setpoint for the EXCV demand (0xFEBF62BE). Raw 0-1023, same scale as the position feedback. Stock 828. Stock 828 (u16 0..65535).</description>
-    <CATEGORYMEM index="0" category="60" />
+    <CATEGORYMEM index="0" category="55" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x172E9E" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
@@ -57058,7 +57057,7 @@ Decompiler-found scalar (UNVERIFIED): u8 read by ECU code (6 ref/6 fn fn 0x039F2
   <XDFFLAG uniqueid="0xC37">
     <title>EXCV :: Master enable (0x80 = on)</title>
     <description>CURATED (code-proven): EXCV subsystem master-enable byte; output gate requires this == 0x80 (FUN_0004C8D0). Stock 0x80. Stock bit7 on (0x80); 0x80=set.</description>
-    <CATEGORYMEM index="0" category="61" />
+    <CATEGORYMEM index="0" category="55" />
     <EMBEDDEDDATA mmedaddress="0x172F32" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x80</mask>
   </XDFFLAG>
@@ -57149,7 +57148,7 @@ Decompiler-found scalar (UNVERIFIED): u8 read by ECU code (6 ref/6 fn fn 0x039F2
   <XDFCONSTANT uniqueid="0x6EA" flags="0x0">
     <title>EXCV :: Active-drive time limit</title>
     <description>CURATED (code-proven): EXCV active drive-time limit used by the motion/stall logic. Stock 1328. Stock 48 (u8 0..255).</description>
-    <CATEGORYMEM index="0" category="61" />
+    <CATEGORYMEM index="0" category="55" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x172F3A" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
@@ -57161,7 +57160,7 @@ Decompiler-found scalar (UNVERIFIED): u8 read by ECU code (6 ref/6 fn fn 0x039F2
   <XDFCONSTANT uniqueid="0x6EB" flags="0x0">
     <title>EXCV :: Direction hysteresis A</title>
     <description>CURATED (code-proven): EXCV motor open/close direction hysteresis/debounce constant. Stock 5. Stock 5 (u8 0..255).</description>
-    <CATEGORYMEM index="0" category="61" />
+    <CATEGORYMEM index="0" category="55" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x172F3B" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
@@ -57173,7 +57172,7 @@ Decompiler-found scalar (UNVERIFIED): u8 read by ECU code (6 ref/6 fn fn 0x039F2
   <XDFCONSTANT uniqueid="0x6EC" flags="0x0">
     <title>EXCV :: Direction hysteresis B</title>
     <description>CURATED (code-proven): EXCV motor open/close direction hysteresis/debounce constant. Stock 5. Stock 5 (u8 0..255).</description>
-    <CATEGORYMEM index="0" category="61" />
+    <CATEGORYMEM index="0" category="55" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x172F3C" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
@@ -57185,7 +57184,7 @@ Decompiler-found scalar (UNVERIFIED): u8 read by ECU code (6 ref/6 fn fn 0x039F2
   <XDFCONSTANT uniqueid="0x6ED" flags="0x0">
     <title>EXCV :: Direction hysteresis C</title>
     <description>CURATED (code-proven): EXCV motor direction logic constant. Stock 1. Stock 1 (u8 0..255).</description>
-    <CATEGORYMEM index="0" category="61" />
+    <CATEGORYMEM index="0" category="55" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x172F3D" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
@@ -57197,7 +57196,7 @@ Decompiler-found scalar (UNVERIFIED): u8 read by ECU code (6 ref/6 fn fn 0x039F2
   <XDFCONSTANT uniqueid="0x6EE" flags="0x0">
     <title>EXCV :: Direction hysteresis D</title>
     <description>CURATED (code-proven): EXCV motor direction logic constant. Stock 26. Stock 26 (u8 0..255).</description>
-    <CATEGORYMEM index="0" category="61" />
+    <CATEGORYMEM index="0" category="55" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x172F3E" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
@@ -57312,7 +57311,7 @@ Decompiler-found scalar (UNVERIFIED): u8 read by ECU code (6 ref/6 fn fn 0x039F2
   <XDFCONSTANT uniqueid="0x6F7" flags="0x0">
     <title>EXCV :: Drive clamp/limit</title>
     <description>CURATED (code-proven): EXCV motor drive clamp/limit constant. Stock 255. Stock 255 (u8 0..255).</description>
-    <CATEGORYMEM index="0" category="61" />
+    <CATEGORYMEM index="0" category="55" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x172F48" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
     <decimalpl>0</decimalpl>
@@ -70725,42 +70724,42 @@ Decompiler-found scalar (UNVERIFIED): u8 read by ECU code (6 ref/6 fn fn 0x039F2
   <XDFFLAG uniqueid="0xCD8">
     <title>EXCV :: P1400 MIL enable - valve position sensor LOW (short-to-gnd)</title>
     <description>DTC P1400, EXCV position-sensor voltage low / out-of-range low. Monitor FUN_0003986E vs threshold 0x15597E (29). Lamp byte bit0 = MIL enable; clear to disable the MIL for this DTC.</description>
-    <CATEGORYMEM index="0" category="55" />
+    <CATEGORYMEM index="0" category="65" />
     <EMBEDDEDDATA mmedaddress="0x1A1DE4" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x01</mask>
   </XDFFLAG>
   <XDFFLAG uniqueid="0xCD9">
     <title>EXCV :: P1402 MIL enable - valve position sensor HIGH (open/short-to-pwr)</title>
     <description>DTC P1402, EXCV position-sensor voltage high / out-of-range high. Monitor FUN_00039972 vs threshold 0x155980 (1004). Lamp byte bit0 = MIL enable.</description>
-    <CATEGORYMEM index="0" category="55" />
+    <CATEGORYMEM index="0" category="65" />
     <EMBEDDEDDATA mmedaddress="0x1A1DCC" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x01</mask>
   </XDFFLAG>
   <XDFFLAG uniqueid="0xCDA">
     <title>EXCV :: P1404 MIL enable - valve range/stuck (#1)</title>
     <description>DTC P1404, EXCV position range/stuck check (FUN_0003B190, window 0x1559A6-AC). Lamp bit0 = MIL.</description>
-    <CATEGORYMEM index="0" category="55" />
+    <CATEGORYMEM index="0" category="65" />
     <EMBEDDEDDATA mmedaddress="0x1A1DFC" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x01</mask>
   </XDFFLAG>
   <XDFFLAG uniqueid="0xCDB">
     <title>EXCV :: P1404 MIL enable - valve motion/stall (#2)</title>
     <description>DTC P1404, EXCV motion/stall - valve did not reach commanded position within the time limit 0x155B1C (125). Monitor FUN_00041548. Lamp bit0 = MIL.</description>
-    <CATEGORYMEM index="0" category="55" />
+    <CATEGORYMEM index="0" category="65" />
     <EMBEDDEDDATA mmedaddress="0x1A1E14" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x01</mask>
   </XDFFLAG>
   <XDFFLAG uniqueid="0xCDC">
     <title>EXCV :: P1404 MIL enable - valve fault (#3, master-warning)</title>
     <description>DTC P1404 variant, lamp byte = 0x40 (master-warning) stock. Lamp bit0 = MIL enable.</description>
-    <CATEGORYMEM index="0" category="55" />
+    <CATEGORYMEM index="0" category="65" />
     <EMBEDDEDDATA mmedaddress="0x1A2174" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x01</mask>
   </XDFFLAG>
   <XDFFLAG uniqueid="0xCDD">
     <title>EXCV :: P1404 MIL enable - valve fault (#4)</title>
     <description>DTC P1404 variant. Lamp byte bit0 = MIL enable.</description>
-    <CATEGORYMEM index="0" category="55" />
+    <CATEGORYMEM index="0" category="65" />
     <EMBEDDEDDATA mmedaddress="0x1A218C" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x01</mask>
   </XDFFLAG>

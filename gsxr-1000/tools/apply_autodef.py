@@ -211,6 +211,44 @@ def apply_curated_table(blk):
     return blk, True
 
 
+# EXCV DTC-side addresses: the P14xx MIL-enable flags and the position-sensor monitor thresholds.
+# Everything else titled "EXCV ::" (maps, setpoints, enable flags, hysteresis) is valve control.
+EXCV_DTC_ADDRS = {0x1A1DE4, 0x1A1DCC, 0x1A1DFC, 0x1A1E14, 0x1A2174, 0x1A218C,
+                  0x15597E, 0x155980, 0x1559A6, 0x1559A8, 0x1559AA, 0x1559AC, 0x155B1C}
+
+
+def consolidate_excv(x):
+    """Refile every 'EXCV ::' item into the two EXCV folders created by make_gsxr_xdf.py, with a
+    single membership each (stripping inherited Hayabusa categories). Idempotent."""
+    def catval(name):
+        m = re.search(r'<CATEGORY index="(0x[0-9A-Fa-f]+)" name="%s"' % re.escape(name), x)
+        return int(m.group(1), 16) + 1 if m else None
+    valve = catval('Exhaust Control Valve (EXCV) - Valve Control')
+    dtc = catval('Exhaust Control Valve (EXCV) - DTC Control')
+    if valve is None or dtc is None:
+        return x, 0
+    n = [0]
+
+    def fix(m):
+        blk = m.group(0)
+        tt = re.search(r'<title>(.*?)</title>', blk, re.S)
+        if not tt or not tt.group(1).startswith('EXCV ::'):
+            return blk
+        am = re.search(r'mmedaddress="(0x[0-9A-Fa-f]+)"', blk)
+        addr = int(am.group(1), 16) if am else -1
+        val = dtc if (addr in EXCV_DTC_ADDRS or 'P140' in tt.group(1)) else valve
+        blk = re.sub(r'\s*<CATEGORYMEM[^>]*/>', '', blk)
+        cm = '\n    <CATEGORYMEM index="0" category="%d" />' % val
+        if '</description>' in blk:
+            blk = blk.replace('</description>', '</description>' + cm, 1)
+        else:
+            blk = re.sub(r'(</title>)', r'\1' + cm, blk, count=1)
+        n[0] += 1
+        return blk
+    x = re.sub(r'<(XDFTABLE|XDFCONSTANT|XDFFLAG)\b.*?</\1>', fix, x, flags=re.S)
+    return x, n[0]
+
+
 def main(path):
     x = open(path).read()
     n = 0
@@ -240,9 +278,12 @@ def main(path):
     # strip the internal STOCKVAL/STOCKBYTE tokens the generator emits for this tool to consume -
     # any item we did not rewrite (e.g. a code-traced constant with its own name) still carries one.
     x = re.sub(r'\s*STOCK(?:VAL=-?\d+|BYTE=0x[0-9A-Fa-f]+)\.?', '', x)
+    # final EXCV consolidation - now that every EXCV item carries its curated "EXCV ::" title,
+    # file each into the two decoded folders the generator created (Valve Control / DTC Control)
+    x, nexcv = consolidate_excv(x)
     open(path, 'w').write(x)
-    print('%s: role-traced %d constants/flags, %d curated tables, renamed %d Unknown tables' % (
-        os.path.relpath(path, ROOT), n, nc_tab, nt_tab))
+    print('%s: role-traced %d constants/flags, %d curated tables, renamed %d Unknown tables, '
+          'filed %d EXCV items' % (os.path.relpath(path, ROOT), n, nc_tab, nt_tab, nexcv))
 
 
 if __name__ == '__main__':

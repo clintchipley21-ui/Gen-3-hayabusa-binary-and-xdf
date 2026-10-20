@@ -27,8 +27,8 @@ not editing.
 
 | Item | Addr | Size | Stock | Meaning |
 |---|---|---|---|---|
-| Motor voltage-comp map A | `0x1587AC` | table | — | duty × battery-V compensation |
-| Motor voltage-comp map B | `0x1587F0` | table | — | duty × battery-V compensation |
+| Motor voltage-comp map A | `0x16638C` | 9×23 u8 | ~0x80 | duty × battery-V comp (x-brk `0x1587AC`, y-brk `0x1587DC`) |
+| Motor voltage-comp map B | `0x16645C` | 9×23 u8 | ~0x80 | duty × battery-V comp (x-brk `0x1587F0`, y-brk `0x158820`) |
 | Target — near-full open | `0x172E96` | u16 | 1020 | ~full-open demand setpoint |
 | Open/close decision thr. | `0x172E98` | u16 | 553 | state-machine open↔closed switch |
 | Engage gate (speed/RPM) | `0x172E9A` | u16 | 463 | condition that enables motion |

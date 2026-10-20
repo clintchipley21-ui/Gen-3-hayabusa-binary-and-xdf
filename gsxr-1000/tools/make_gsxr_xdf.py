@@ -794,6 +794,52 @@ def excv_dtc_blocks(name2val, uid0):
     return out, uid - uid0
 
 
+# Final EXCV consolidation: every "EXCV ::" item is filed into one of two decoded folders -
+# "- Valve Control" (maps, setpoints, enable flags, hysteresis) or "- DTC Control" (the P14xx
+# MIL-enable flags and position-sensor monitor thresholds). Runs LAST (after prune/renumber/split)
+# so it works on final text and is immune to the earlier category passes. Idempotent, and it strips
+# any inherited Hayabusa category membership so each EXCV item lives only under its EXCV folder.
+EXCV_DTC_ADDRS = {0x1A1DE4, 0x1A1DCC, 0x1A1DFC, 0x1A1E14, 0x1A2174, 0x1A218C,
+                  0x15597E, 0x155980, 0x1559A6, 0x1559A8, 0x1559AA, 0x1559AC, 0x155B1C}
+
+
+def consolidate_excv(cats_xml, body):
+    cats = re.findall(r'    <CATEGORY index="(0x[0-9A-Fa-f]+)" name="([^"]*)" />\n', cats_xml)
+    idxs = [int(i, 16) for i, _ in cats]
+    valve_idx, newcats = None, []
+    for i, n in cats:
+        if 'Exhaust Control Valve (EXCV)' in n and valve_idx is None:
+            n, valve_idx = 'Exhaust Control Valve (EXCV) - Valve Control', int(i, 16)
+        newcats.append((int(i, 16), n))
+    if valve_idx is None:
+        valve_idx = max(idxs) + 1
+        newcats.append((valve_idx, 'Exhaust Control Valve (EXCV) - Valve Control'))
+        idxs.append(valve_idx)
+    dtc_idx = max(idxs + [valve_idx]) + 1
+    newcats.append((dtc_idx, 'Exhaust Control Valve (EXCV) - DTC Control'))
+    cats_xml = ''.join('    <CATEGORY index="0x%X" name="%s" />\n' % (i, n) for i, n in newcats)
+    valve_val, dtc_val = valve_idx + 1, dtc_idx + 1
+
+    def fix(m):
+        blk = m.group(0)
+        tt = re.search(r'<title>(.*?)</title>', blk, re.S)
+        if not tt or not tt.group(1).startswith('EXCV ::'):
+            return blk
+        am = re.search(r'mmedaddress="(0x[0-9A-Fa-f]+)"', blk)
+        addr = int(am.group(1), 16) if am else -1
+        val = dtc_val if (addr in EXCV_DTC_ADDRS or 'P140' in tt.group(1)) else valve_val
+        blk = re.sub(r'\s*<CATEGORYMEM[^>]*/>', '', blk)
+        cm = '\n    <CATEGORYMEM index="0" category="%d" />' % val
+        if '</description>' in blk:
+            blk = blk.replace('</description>', '</description>' + cm, 1)
+        else:
+            blk = re.sub(r'(</title>)', r'\1' + cm, blk, count=1)
+        return blk
+
+    body = re.sub(r'<(XDFTABLE|XDFCONSTANT|XDFFLAG)\b.*?</\1>', fix, body, flags=re.S)
+    return cats_xml, body
+
+
 # Map a context map title to a short, reliable subsystem tag (from the reading function).
 SUBSYS = [
     ('Launch Control', 'Launch Control'), ('Quickshifter', 'Quickshifter'),
@@ -957,6 +1003,8 @@ def generate(binpath, outpath, sw, part):
     cats_xml, body, nsplit = split_oversized_categories(cats_xml, body)
     # keep every uniqueid within the Hayabusa master's proven-good magnitude (scalars were 0x100000+)
     body, nrenum = renumber_item_uniqueids(body)
+    # file every EXCV item into the two decoded folders (Valve Control / DTC Control)
+    cats_xml, body = consolidate_excv(cats_xml, body)
 
     header = '''<!-- Written by make_gsxr_xdf.py - GSX-R1000 M7, ported from Hayabusa Gen3 -->
 <XDFFORMAT version="1.70">

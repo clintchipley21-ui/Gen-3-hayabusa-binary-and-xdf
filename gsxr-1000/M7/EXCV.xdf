@@ -17,7 +17,6 @@
     <title>EXCV :: Motor drive voltage-comp map A (duty x battery V)</title>
     <description>CURATED (code-proven): EXCV H-bridge drive voltage-compensation, bank A. FUN_0004C8D0 looks this up by commanded duty (0-255) x battery voltage (0xFEBF63C4) to scale PWM so valve speed is constant across Vbatt; feeds fef00dd2/dd3, final H-bridge PWM at 0xFEBF603D/603E. Previously mislabeled 'Fuel :: Primary Trim'; stock cells near-neutral (0x80). PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R</description>
     <CATEGORYMEM index="0" category="1" />
-    <CATEGORYMEM index="1" category="22" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1587AC" mmedelementsizebits="16" mmedcolcount="23" mmedmajorstridebits="0" mmedminorstridebits="0" />
       <units>raw</units>
@@ -58,7 +57,6 @@
     <title>EXCV :: Motor drive voltage-comp map B (duty x battery V)</title>
     <description>CURATED (code-proven): EXCV H-bridge drive voltage-compensation, bank B (other H-bridge side). Same axes/role as map A. Previously mislabeled 'Fuel :: Secondary Trim'; stock cells near-neutral (0x80). PORTED FROM HAYABUSA 5JCZSJ10 (HIGH: breakpoints byte-identical, almost certainly the same map). Units/scaling carried over; GSX-R addresses andamp; values are this read's own. Hayabusa code refs are not verified on GSX-R. X: 23 pts 14680..59963 raw; Y: 9 pts 0..255 raw GSX-R TR</description>
     <CATEGORYMEM index="0" category="1" />
-    <CATEGORYMEM index="1" category="22" />
     <XDFAXIS id="x" uniqueid="0x0">
       <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1587F0" mmedelementsizebits="16" mmedcolcount="23" mmedmajorstridebits="0" mmedminorstridebits="0" />
       <units>raw</units>
