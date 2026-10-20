@@ -1,9 +1,11 @@
 # GSX-R1000 M7 — EXCV (Exhaust Control Valve) quick reference
 
-Focused definition: **`gsxr-1000/M7/EXCV.xdf`** — the only items needed to
-**control the valve** and **control its DTCs**. Load it in CalStudio against any
-of the four M7 bins (addresses are identical across 48L00 / 48L10 / 48L20 / 48L30;
-base traced on `32990-48L00`).
+The EXCV items needed to **control the valve** and **control its DTCs** live in
+each of the four M7 XDFs (`32990-48L00/10-US/20-EU/30.xdf`) under two folders:
+**"Exhaust Control Valve (EXCV) - Valve Control"** and
+**"Exhaust Control Valve (EXCV) - DTC Control"**. Load the XDF for your bin in
+CalStudio and open those two folders. Addresses are identical across all four
+bins (base traced on `32990-48L00`). This file is the quick reference for them.
 
 All addresses and stock values are **code-proven** from the binary (Ghidra V850
 decompile, state-machine `FUN_0007899C` family). The EXCV is a cable-driven servo
