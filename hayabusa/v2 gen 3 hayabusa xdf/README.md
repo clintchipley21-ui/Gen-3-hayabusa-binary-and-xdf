@@ -31,13 +31,31 @@ busa-v2-master.xdf     the v2 definition, full text, valued for 5JCZSJ10 (refere
 <software>-v2.xdf      one full-text v2 per stock read (5JCZSJ00/10/20/30/40/A0/B0, NC0),
                        each carrying that read's own stock values + DIFFERS-from-5JCZSJ10 tags
                        (any one opens any stock read; only the stock-value text is read-specific)
+<software>-function-index.csv  per-read copy of the function index (identical across reads)
 tools/
-  make_busa_v2_xdf.py  the generator: enhance master-v9 from the decompile, emit master + reads
-  busa_v2_common.py    decompile joins (RAM meanings, per-map traced inputs, DTCs, role traces)
+  make_busa_v2_xdf.py      the generator: enhance master-v9 from the decompile, emit master + reads
+  busa_v2_common.py        decompile joins (RAM meanings, traced inputs, DTC names, legends, units)
+  make_function_index.py   build the function-index spreadsheet(s) for CalStudio
 docs/
-  COMPARISON.md        v2 vs master-v9: the machine diff, coverage, and the discussion
-  busa-v2-ram-names.csv  v2 deep-trace: axis RAM variables resolved by reading all_functions.c
+  COMPARISON.md            v2 vs master-v9: the machine diff, coverage, and the discussion
+  function-index.csv       every referenced function: address, handle, name, subsystem, maps/signals
+  manual-verification.md   service-manual sensor-scaling + DTC verification (manual kept in Dropbox)
+  manual-dtc-names.csv     68 official SAE DTC names from the Suzuki Gen3 service manual
+  busa-v2-ram-names.csv    v2 deep-trace: axis/compared RAM variables resolved from all_functions.c
 ```
+
+### Value legends, units and DTC names (this round)
+
+- **Every flag (235)** carries an explicit legend - `0x80 = ON / 0x00 = OFF`, or `bit0 = MIL
+  enable` for the DTC lamp bytes - and **every constant (2,768)** carries a value legend.
+- Raw threshold scalars are shown in meaningful units (RPM, deg, kPa, km/h, V, degC) wherever the
+  code proves the unit by comparing the scalar against a known sensor variable; the rest stay raw
+  with a legend saying so (no fabricated units).
+- **120 DTC enable flags** carry the service manual's official SAE name. Sensor scalings were
+  checked against the Suzuki Gen3 service manual (idle 1050-1250 rpm, NTC ECT/IAT tables, 0-5 V
+  TP/APS) - all consistent, none changed. See `docs/manual-verification.md`.
+- The sibling GSX-R M7 XDFs got the same legend pass, a function index, and a fix to their
+  per-cylinder fuel-map labels - see `../../gsxr-1000/docs/cylinder-fuel-maps.md`.
 
 ## What v2 adds over the current XDF
 
