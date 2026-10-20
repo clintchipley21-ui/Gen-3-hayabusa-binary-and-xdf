@@ -17,3 +17,12 @@ ram_address,meaning,unit,conversion,confidence
 #    Matches the ETV/steering-damper secondary-input role seen on the sibling GSX-R ESD module.
 0xFEF0268C,rate-limited chassis/ETV signal (0x8000 = neutral),raw (0x8000=0),X-32768,medium
 0xFEF0267A,rate-limited chassis/ETV signal (0x8000 = neutral; damper secondary),raw (0x8000=0),X-32768,low
+# v2 deep-trace of the RAM variables that LOW/threshold_unk scalars compare against (task: go
+# deeper on LOW scalars). Traced from writer functions in all_functions.c. Honest finding: these
+# are COMPUTED/CENTERED intermediate signals (0x8000 = 0 differences, counters, config copies),
+# not raw sensors - which is why v9 could not give them clean units. Described, not unit-forced.
+0xFEF0264A,wheel-speed difference / slip signal (rear wheel speed - reference; 0x8000 = 0); FUN_7772e,raw (0x8000=0),X-32768,medium
+0xFEF02606,centered sensor-pair difference/average (0x8000 = 0; TP/sensor region); FUN_734f4,raw (0x8000=0),X-32768,low
+0xFEF030A0,saturating phase/step counter (ETV/throttle region); FUN_7dd24,raw,X,low
+0xFEF011E0,fuel-correction intermediate = fef012c1 x (fef012c0-0x80) centered; FUN_4b560,raw (0x8000=0),X-32768,low
+0xFEF031C0,config byte copied from calibration block 0x1B6F5E; FUN_83094,raw,X,low

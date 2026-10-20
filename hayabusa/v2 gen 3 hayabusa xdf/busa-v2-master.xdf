@@ -33789,7 +33789,7 @@ Previous title: Cluster E :: Curve [RAM_fef030a0] 11pt FUN_814a2 #391 (flat)
 
 HOW THE ECU USES IT: looked up by FUN_814a2; X input = RAM 0xfef030a0.
 
-TRACED INPUTS (v2 decompile): X = signal (RAM 0xFEF030A0). Read by FUN_000814a2.
+TRACED INPUTS (v2 decompile): X = saturating phase/step counter (ETV/throttle region); FUN_7dd24 (RAM 0xFEF030A0) [low]. Read by FUN_000814a2.
 
 AXES: X axis: 11 points, 0.00 to 20.0 raw.
 

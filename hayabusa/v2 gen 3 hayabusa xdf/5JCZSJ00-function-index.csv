@@ -1,0 +1,1669 @@
+address,fun_handle,name,subsystem,xdf_refs,maps_read,signals_read,functional_note
+0x0,FUN_00000000,,,10,,,referenced in XDF notes; role not individually identified
+0x7,FUN_00000007,,,3,,,referenced in XDF notes; role not individually identified
+0x469,FUN_00000469,,,3,,,referenced in XDF notes; role not individually identified
+0x5145,FUN_00005145,,,1,,,referenced in XDF notes; role not individually identified
+0x11010,FUN_00011010,OBD mode/PID service,,83,,,OBD mode/PID service
+0x11466,FUN_00011466,,,6,,,referenced in XDF notes; role not individually identified
+0x184A0,FUN_000184A0,,,3,,,referenced in XDF notes; role not individually identified
+0x19B90,FUN_00019B90,,,1,,,referenced in XDF notes; role not individually identified
+0x1B9FA,FUN_0001B9FA,,,6,,,referenced in XDF notes; role not individually identified
+0x1BB2E,FUN_0001BB2E,,,8,,,referenced in XDF notes; role not individually identified
+0x219F6,FUN_000219F6,,,4,,,referenced in XDF notes; role not individually identified
+0x25710,FUN_00025710,,,1,,,referenced in XDF notes; role not individually identified
+0x26A5E,FUN_00026A5E,,,4,,,referenced in XDF notes; role not individually identified
+0x26A9E,FUN_00026A9E,,,3,,,referenced in XDF notes; role not individually identified
+0x27478,FUN_00027478,,,2,,,referenced in XDF notes; role not individually identified
+0x28000,FUN_00028000,,,1,,,referenced in XDF notes; role not individually identified
+0x28508,FUN_00028508,,,6,Cluster A :: Curve 37pt [vs ?] #066,,"reads 1 map(s), e.g. Cluster A :: Curve 37pt [vs ?] #066"
+0x28582,FUN_00028582,,,4,,,referenced in XDF notes; role not individually identified
+0x28618,FUN_00028618,,,6,,,referenced in XDF notes; role not individually identified
+0x2868A,FUN_0002868A,,,1,,,referenced in XDF notes; role not individually identified
+0x28730,FUN_00028730,,,3,,,referenced in XDF notes; role not individually identified
+0x2883E,FUN_0002883E,,,1,,,referenced in XDF notes; role not individually identified
+0x2888C,FUN_0002888C,,,10,,,referenced in XDF notes; role not individually identified
+0x289C4,FUN_000289C4,launch-control arming,,3,,,launch-control arming
+0x28A16,FUN_00028A16,,,4,Cluster A :: Curve 16pt [vs RPM] #04B (flat),engine RPM,"reads 1 map(s), e.g. Cluster A :: Curve 16pt [vs RPM] #04B (flat)"
+0x28A42,FUN_00028A42,launch-control speed gate,,7,,,launch-control speed gate
+0x28AC4,FUN_00028AC4,,,4,Cluster A :: Map 5x5 [? × ?] #04C,,"reads 1 map(s), e.g. Cluster A :: Map 5x5 [? × ?] #04C"
+0x28B08,FUN_00028B08,,,1,,,referenced in XDF notes; role not individually identified
+0x28B50,FUN_00028B50,launch RPM-limit release,,5,,,launch RPM-limit release
+0x28BC6,FUN_00028BC6,,,7,,,referenced in XDF notes; role not individually identified
+0x28C36,FUN_00028C36,launch-control state machine,,2,,,launch-control state machine
+0x28C7E,FUN_00028C7E,,,2,,,referenced in XDF notes; role not individually identified
+0x28CC4,FUN_00028CC4,,,2,,,referenced in XDF notes; role not individually identified
+0x28D1E,FUN_00028D1E,,,6,,,referenced in XDF notes; role not individually identified
+0x28D30,FUN_00028D30,,,3,,,referenced in XDF notes; role not individually identified
+0x28D8C,FUN_00028D8C,,,3,,,referenced in XDF notes; role not individually identified
+0x28E5E,FUN_00028E5E,,,12,,,referenced in XDF notes; role not individually identified
+0x29024,FUN_00029024,,,6,,,referenced in XDF notes; role not individually identified
+0x290EA,FUN_000290EA,,,27,Cluster A :: Map 39x7 [RPM × ?] #054; Cluster A :: Map 39x7 [RPM × ?] #050; Cluster A :: Map 39x7 [RPM × ?] #052,"engine RPM, index (gear/mode/cyl)","reads 7 map(s), e.g. Cluster A :: Map 39x7 [RPM × ?] #054; Cluster A :: Map 39x7 [RPM × ?] #050"
+0x2924C,FUN_0002924C,,,2,,,referenced in XDF notes; role not individually identified
+0x2925A,FUN_0002925A,,,1,,,referenced in XDF notes; role not individually identified
+0x292A6,FUN_000292A6,,,1,,,referenced in XDF notes; role not individually identified
+0x2934E,FUN_0002934E,,,6,,,referenced in XDF notes; role not individually identified
+0x2937E,FUN_0002937E,,,9,Cluster A :: Curve 31pt [vs TP] #01E,,"reads 1 map(s), e.g. Cluster A :: Curve 31pt [vs TP] #01E"
+0x29414,FUN_00029414,,,4,Cluster A :: Curve 7pt [vs ?] #01F (flat),index (gear/mode/cyl),"reads 1 map(s), e.g. Cluster A :: Curve 7pt [vs ?] #01F (flat)"
+0x29438,FUN_00029438,,,4,Cluster A :: Map 13x11 [? × index] #047 (flat),index (gear/mode/cyl),"reads 1 map(s), e.g. Cluster A :: Map 13x11 [? × index] #047 (flat)"
+0x29480,FUN_00029480,,,3,,,referenced in XDF notes; role not individually identified
+0x294E4,FUN_000294E4,,,2,Cluster A :: Curve 36pt [vs TP] #01C,throttle position,"reads 1 map(s), e.g. Cluster A :: Curve 36pt [vs TP] #01C"
+0x29582,FUN_00029582,,,8,Cluster A :: Map 23x39 [? × ?] #049; Cluster A :: Curve 11pt [vs index] #065 (flat); Cluster A :: Curve 36pt [vs TP] #020 (flat),"engine RPM, index (gear/mode/cyl), throttle position","reads 3 map(s), e.g. Cluster A :: Map 23x39 [? × ?] #049; Cluster A :: Curve 11pt [vs index] #065 (flat)"
+0x29612,FUN_00029612,,,2,,,referenced in XDF notes; role not individually identified
+0x29660,FUN_00029660,,,2,,,referenced in XDF notes; role not individually identified
+0x2970A,FUN_0002970A,,,8,Cluster A :: Map 23x39 [? × ?] #045; Cluster A :: Curve 7pt [vs ?] #01D,"engine RPM, index (gear/mode/cyl), throttle position","reads 2 map(s), e.g. Cluster A :: Map 23x39 [? × ?] #045; Cluster A :: Curve 7pt [vs ?] #01D"
+0x297D8,FUN_000297D8,,,4,,,referenced in XDF notes; role not individually identified
+0x29812,FUN_00029812,,,3,Cluster A :: Curve 36pt [vs TP] #01C,throttle position,"reads 1 map(s), e.g. Cluster A :: Curve 36pt [vs TP] #01C"
+0x298A0,FUN_000298A0,,,2,,,referenced in XDF notes; role not individually identified
+0x29A18,FUN_00029A18,,,1,,,referenced in XDF notes; role not individually identified
+0x29A4C,FUN_00029A4C,,,1,,,referenced in XDF notes; role not individually identified
+0x29A64,FUN_00029A64,,,1,,,referenced in XDF notes; role not individually identified
+0x29A98,FUN_00029A98,,,1,,,referenced in XDF notes; role not individually identified
+0x29AB0,FUN_00029AB0,,,1,,,referenced in XDF notes; role not individually identified
+0x29B3E,FUN_00029B3E,,,2,,,referenced in XDF notes; role not individually identified
+0x29B6E,FUN_00029B6E,,,2,Cluster D :: Curve 37pt [vs ?] #2ED,,"reads 1 map(s), e.g. Cluster D :: Curve 37pt [vs ?] #2ED"
+0x29BC4,FUN_00029BC4,,,24,Cluster A :: Curve 11pt [vs index] #021; Cluster A :: Curve 11pt [vs index] #022 (flat); Cluster A :: Curve 11pt [vs index] #023 (flat),index (gear/mode/cyl),"reads 3 map(s), e.g. Cluster A :: Curve 11pt [vs index] #021; Cluster A :: Curve 11pt [vs index] #022 (flat)"
+0x29C5A,FUN_00029C5A,,,3,Cluster D :: Curve 37pt [vs ?] #2ED; Cluster D :: Curve 37pt [vs ?] #2EE,,"reads 2 map(s), e.g. Cluster D :: Curve 37pt [vs ?] #2ED; Cluster D :: Curve 37pt [vs ?] #2EE"
+0x29D18,FUN_00029D18,,,4,Cluster D :: Curve 37pt [vs ?] #2EE,,"reads 1 map(s), e.g. Cluster D :: Curve 37pt [vs ?] #2EE"
+0x29D6A,FUN_00029D6A,,,9,,,referenced in XDF notes; role not individually identified
+0x29E3A,FUN_00029E3A,,,4,Cluster A :: Curve 30pt [vs ?] #024,,"reads 1 map(s), e.g. Cluster A :: Curve 30pt [vs ?] #024"
+0x29E7C,FUN_00029E7C,,,8,Cluster A :: Curve 30pt [vs ?] #025,,"reads 1 map(s), e.g. Cluster A :: Curve 30pt [vs ?] #025"
+0x29FD2,FUN_00029FD2,,,14,Cluster A :: Curve 36pt [vs TP] #026; Cluster A :: Map 23x39 [? × ?] #049,"engine RPM, throttle position","reads 2 map(s), e.g. Cluster A :: Curve 36pt [vs TP] #026; Cluster A :: Map 23x39 [? × ?] #049"
+0x2A0CA,FUN_0002A0CA,,,3,,,referenced in XDF notes; role not individually identified
+0x2A2D6,FUN_0002A2D6,,,1,,,referenced in XDF notes; role not individually identified
+0x2A33A,FUN_0002A33A,,,2,,,referenced in XDF notes; role not individually identified
+0x2A4D4,FUN_0002A4D4,quickshifter module,,54,,,quickshifter module
+0x2A526,FUN_0002A526,,,3,,,referenced in XDF notes; role not individually identified
+0x2A5B8,FUN_0002A5B8,quickshifter on-throttle debounce,,6,Cluster A :: Map 14x10 [RPM × ?] #033,engine RPM,quickshifter on-throttle debounce
+0x2A696,FUN_0002A696,,,8,Cluster A :: Curve 7pt [vs ?] #00D,index (gear/mode/cyl),"reads 1 map(s), e.g. Cluster A :: Curve 7pt [vs ?] #00D"
+0x2A6E8,FUN_0002A6E8,upshift detection,,29,Cluster A :: Curve 7pt [vs ?] #00F; Cluster A :: Map 14x7 [RPM × ?] #005 (flat); Cluster A :: Map 14x7 [RPM × ?] #007,"engine RPM, index (gear/mode/cyl)",upshift detection
+0x2A952,FUN_0002A952,,,5,Cluster A :: Curve 7pt [vs ?] #010,index (gear/mode/cyl),"reads 1 map(s), e.g. Cluster A :: Curve 7pt [vs ?] #010"
+0x2A9C8,FUN_0002A9C8,,,3,,,referenced in XDF notes; role not individually identified
+0x2AA2A,FUN_0002AA2A,,,1,,,referenced in XDF notes; role not individually identified
+0x2AA62,FUN_0002AA62,,,4,Cluster A :: Curve 7pt [vs ?] #00E,index (gear/mode/cyl),"reads 1 map(s), e.g. Cluster A :: Curve 7pt [vs ?] #00E"
+0x2AAAC,FUN_0002AAAC,,,6,Cluster A :: Curve 14pt [vs RPM] #013 (flat),engine RPM,"reads 1 map(s), e.g. Cluster A :: Curve 14pt [vs RPM] #013 (flat)"
+0x2ABA2,FUN_0002ABA2,,,32,,,referenced in XDF notes; role not individually identified
+0x2AD3C,FUN_0002AD3C,,,8,Cluster A :: Curve 7pt [vs ?] #014; Cluster A :: Curve 7pt [vs ?] #015,index (gear/mode/cyl),"reads 2 map(s), e.g. Cluster A :: Curve 7pt [vs ?] #014; Cluster A :: Curve 7pt [vs ?] #015"
+0x2AD8E,FUN_0002AD8E,downshift detection,,6,Cluster A :: Curve 7pt [vs ?] #011 (flat),index (gear/mode/cyl),downshift detection
+0x2AFB6,FUN_0002AFB6,,,5,Cluster A :: Curve 7pt [vs ?] #012 (flat),index (gear/mode/cyl),"reads 1 map(s), e.g. Cluster A :: Curve 7pt [vs ?] #012 (flat)"
+0x2B02A,FUN_0002B02A,,,3,,,referenced in XDF notes; role not individually identified
+0x2B08C,FUN_0002B08C,,,1,,,referenced in XDF notes; role not individually identified
+0x2B0C4,FUN_0002B0C4,,,4,Cluster A :: Curve 7pt [vs ?] #016,index (gear/mode/cyl),"reads 1 map(s), e.g. Cluster A :: Curve 7pt [vs ?] #016"
+0x2B10E,FUN_0002B10E,,,4,Cluster A :: Curve 14pt [vs RPM] #017 (flat),engine RPM,"reads 1 map(s), e.g. Cluster A :: Curve 14pt [vs RPM] #017 (flat)"
+0x2B204,FUN_0002B204,,,32,,,referenced in XDF notes; role not individually identified
+0x2B3B6,FUN_0002B3B6,,,10,Cluster A :: Curve 7pt [vs ?] #018 (flat),index (gear/mode/cyl),"reads 1 map(s), e.g. Cluster A :: Curve 7pt [vs ?] #018 (flat)"
+0x2B492,FUN_0002B492,,,2,,,referenced in XDF notes; role not individually identified
+0x2B4DE,FUN_0002B4DE,,,1,,,referenced in XDF notes; role not individually identified
+0x2B5DA,FUN_0002B5DA,,,10,Cluster A :: Map 14x7 [RPM × ?] #035; Cluster A :: Map 14x7 [RPM × ?] #037,"engine RPM, index (gear/mode/cyl)","reads 2 map(s), e.g. Cluster A :: Map 14x7 [RPM × ?] #035; Cluster A :: Map 14x7 [RPM × ?] #037"
+0x2B6B0,FUN_0002B6B0,quickshifter fuel-factor,,17,,,quickshifter fuel-factor
+0x2B76C,FUN_0002B76C,,,4,Cluster A :: Map 14x8 [RPM × ?] #039,"engine RPM, throttle position","reads 1 map(s), e.g. Cluster A :: Map 14x8 [RPM × ?] #039"
+0x2B7B0,FUN_0002B7B0,,,4,Cluster A :: Map 14x8 [RPM × ?] #03B,"engine RPM, throttle position","reads 1 map(s), e.g. Cluster A :: Map 14x8 [RPM × ?] #03B"
+0x2B7F4,FUN_0002B7F4,,,4,Cluster A :: Map 14x8 [RPM × ?] #03D,"engine RPM, throttle position","reads 1 map(s), e.g. Cluster A :: Map 14x8 [RPM × ?] #03D"
+0x2B838,FUN_0002B838,,,6,Cluster A :: Curve 14pt [vs RPM] #019,engine RPM,"reads 1 map(s), e.g. Cluster A :: Curve 14pt [vs RPM] #019"
+0x2B8B6,FUN_0002B8B6,,,4,Cluster A :: Map 14x8 [RPM × ?] #03F,"engine RPM, throttle position","reads 1 map(s), e.g. Cluster A :: Map 14x8 [RPM × ?] #03F"
+0x2B8FA,FUN_0002B8FA,,,4,Cluster A :: Map 14x8 [RPM × ?] #041,"engine RPM, throttle position","reads 1 map(s), e.g. Cluster A :: Map 14x8 [RPM × ?] #041"
+0x2B93E,FUN_0002B93E,,,4,Cluster A :: Map 14x8 [RPM × ?] #043,"engine RPM, throttle position","reads 1 map(s), e.g. Cluster A :: Map 14x8 [RPM × ?] #043"
+0x2B982,FUN_0002B982,,,6,Cluster A :: Curve 14pt [vs RPM] #01A (flat),engine RPM,"reads 1 map(s), e.g. Cluster A :: Curve 14pt [vs RPM] #01A (flat)"
+0x2BA00,FUN_0002BA00,,,60,,,referenced in XDF notes; role not individually identified
+0x2BAB4,FUN_0002BAB4,,,3,,,referenced in XDF notes; role not individually identified
+0x2BBE4,FUN_0002BBE4,,,1,,,referenced in XDF notes; role not individually identified
+0x2BC76,FUN_0002BC76,,,4,,,referenced in XDF notes; role not individually identified
+0x2BD08,FUN_0002BD08,,,12,,,referenced in XDF notes; role not individually identified
+0x2BDBA,FUN_0002BDBA,,,4,,,referenced in XDF notes; role not individually identified
+0x2BDEC,FUN_0002BDEC,,,4,,,referenced in XDF notes; role not individually identified
+0x2BE96,FUN_0002BE96,,,2,,,referenced in XDF notes; role not individually identified
+0x2BF90,FUN_0002BF90,,,4,,,referenced in XDF notes; role not individually identified
+0x2C01A,FUN_0002C01A,,,2,,,referenced in XDF notes; role not individually identified
+0x2C068,FUN_0002C068,per-gear RPM limiter,,17,,,per-gear RPM limiter
+0x2C184,FUN_0002C184,,,9,,,referenced in XDF notes; role not individually identified
+0x2C396,FUN_0002C396,spark-cut propagation,,0,,,spark-cut propagation
+0x2C3BC,FUN_0002C3BC,,,12,,,referenced in XDF notes; role not individually identified
+0x2C3F2,FUN_0002C3F2,,,27,,,referenced in XDF notes; role not individually identified
+0x2C4CC,FUN_0002C4CC,,,3,,,referenced in XDF notes; role not individually identified
+0x2C5B0,FUN_0002C5B0,,,8,,,referenced in XDF notes; role not individually identified
+0x2C652,FUN_0002C652,in-gear rev limiter,,2,,,in-gear rev limiter
+0x2C68C,FUN_0002C68C,neutral rev limiter,,2,,,neutral rev limiter
+0x2C6C6,FUN_0002C6C6,neutral rev limiter (alt),,3,,,neutral rev limiter (alt)
+0x2C700,FUN_0002C700,ignition-cut limiter,,2,,,ignition-cut limiter
+0x2C73E,FUN_0002C73E,in-gear rev-limiter state machine,,1,,,in-gear rev-limiter state machine
+0x2C7B4,FUN_0002C7B4,,,1,,,referenced in XDF notes; role not individually identified
+0x2C7E8,FUN_0002C7E8,hot-engine limiter delay,,16,Cluster A :: Curve 13pt [vs ?] #01B,,hot-engine limiter delay
+0x2C8E2,FUN_0002C8E2,gear-sensor window check,,28,,,gear-sensor window check
+0x2CA78,FUN_0002CA78,,,6,,,referenced in XDF notes; role not individually identified
+0x2CB40,FUN_0002CB40,,,8,Cluster A :: Curve 10pt [vs RPM] #05F,throttle position,"reads 1 map(s), e.g. Cluster A :: Curve 10pt [vs RPM] #05F"
+0x2CC84,FUN_0002CC84,,,4,,,referenced in XDF notes; role not individually identified
+0x2CCAA,FUN_0002CCAA,,,1,,,referenced in XDF notes; role not individually identified
+0x2CD56,FUN_0002CD56,,,6,,,referenced in XDF notes; role not individually identified
+0x2CE16,FUN_0002CE16,,,18,Cluster A :: Curve 37pt [vs ?] #05D; Cluster A :: Curve 37pt [vs ?] #05C,throttle position,"reads 2 map(s), e.g. Cluster A :: Curve 37pt [vs ?] #05D; Cluster A :: Curve 37pt [vs ?] #05C"
+0x2CFE4,FUN_0002CFE4,,,3,,,referenced in XDF notes; role not individually identified
+0x2D012,FUN_0002D012,,,6,,,referenced in XDF notes; role not individually identified
+0x2D0F0,FUN_0002D0F0,,,6,Cluster A :: Curve 36pt [vs TP] #05E,throttle position,"reads 1 map(s), e.g. Cluster A :: Curve 36pt [vs TP] #05E"
+0x2D150,FUN_0002D150,,,8,,,referenced in XDF notes; role not individually identified
+0x2D1BC,FUN_0002D1BC,,,5,,,referenced in XDF notes; role not individually identified
+0x2D286,FUN_0002D286,,,2,,,referenced in XDF notes; role not individually identified
+0x2D2F0,FUN_0002D2F0,,,8,,,referenced in XDF notes; role not individually identified
+0x2D3B6,FUN_0002D3B6,,,11,,,referenced in XDF notes; role not individually identified
+0x2D538,FUN_0002D538,,,9,Cluster A :: Curve 7pt [vs ?] #030 (flat),index (gear/mode/cyl),"reads 1 map(s), e.g. Cluster A :: Curve 7pt [vs ?] #030 (flat)"
+0x2D67A,FUN_0002D67A,,,2,,,referenced in XDF notes; role not individually identified
+0x2D724,FUN_0002D724,,,4,,,referenced in XDF notes; role not individually identified
+0x2D7A4,FUN_0002D7A4,,,2,,,referenced in XDF notes; role not individually identified
+0x2D96C,FUN_0002D96C,,,12,,,referenced in XDF notes; role not individually identified
+0x2DAC8,FUN_0002DAC8,,,2,,,referenced in XDF notes; role not individually identified
+0x2DB2A,FUN_0002DB2A,,,2,,,referenced in XDF notes; role not individually identified
+0x2DB8E,FUN_0002DB8E,,,2,,,referenced in XDF notes; role not individually identified
+0x2DC0A,FUN_0002DC0A,,,2,,,referenced in XDF notes; role not individually identified
+0x2DC60,FUN_0002DC60,,,2,,,referenced in XDF notes; role not individually identified
+0x2DCBA,FUN_0002DCBA,,,2,,,referenced in XDF notes; role not individually identified
+0x2DDE8,FUN_0002DDE8,,,11,Cluster A :: Curve 7pt [vs ?] #02C; Cluster A :: Curve 7pt [vs ?] #02D,,"reads 2 map(s), e.g. Cluster A :: Curve 7pt [vs ?] #02C; Cluster A :: Curve 7pt [vs ?] #02D"
+0x2E080,FUN_0002E080,,,4,,,referenced in XDF notes; role not individually identified
+0x2E144,FUN_0002E144,,,4,,,referenced in XDF notes; role not individually identified
+0x2E1F8,FUN_0002E1F8,,,4,,,referenced in XDF notes; role not individually identified
+0x2E264,FUN_0002E264,,,4,,,referenced in XDF notes; role not individually identified
+0x2E2D6,FUN_0002E2D6,,,7,,,referenced in XDF notes; role not individually identified
+0x2E35E,FUN_0002E35E,,,4,,,referenced in XDF notes; role not individually identified
+0x2E3EC,FUN_0002E3EC,,,12,Cluster A :: Curve 7pt [vs ?] #02F (flat); Cluster A :: Curve 7pt [vs ?] #031 (flat); Cluster A :: Curve 7pt [vs ?] #02E (flat),index (gear/mode/cyl),"reads 4 map(s), e.g. Cluster A :: Curve 7pt [vs ?] #02F (flat); Cluster A :: Curve 7pt [vs ?] #031 (flat)"
+0x2E64C,FUN_0002E64C,,,12,,,referenced in XDF notes; role not individually identified
+0x2E742,FUN_0002E742,,,4,,,referenced in XDF notes; role not individually identified
+0x2E7CC,FUN_0002E7CC,,,4,,,referenced in XDF notes; role not individually identified
+0x2E828,FUN_0002E828,,,1,,,referenced in XDF notes; role not individually identified
+0x2E88A,FUN_0002E88A,,,4,,,referenced in XDF notes; role not individually identified
+0x2E8D2,FUN_0002E8D2,,,2,,,referenced in XDF notes; role not individually identified
+0x2E946,FUN_0002E946,,,5,,,referenced in XDF notes; role not individually identified
+0x2E9AA,FUN_0002E9AA,,,9,,,referenced in XDF notes; role not individually identified
+0x2EA34,FUN_0002EA34,,,4,,,referenced in XDF notes; role not individually identified
+0x2EA7C,FUN_0002EA7C,,,4,,,referenced in XDF notes; role not individually identified
+0x2EB6E,FUN_0002EB6E,,,2,,,referenced in XDF notes; role not individually identified
+0x2EC1E,FUN_0002EC1E,,,4,,,referenced in XDF notes; role not individually identified
+0x2ECBC,FUN_0002ECBC,,,2,,,referenced in XDF notes; role not individually identified
+0x2EF00,FUN_0002EF00,,,4,,,referenced in XDF notes; role not individually identified
+0x2EFAE,FUN_0002EFAE,,,1,,,referenced in XDF notes; role not individually identified
+0x2F046,FUN_0002F046,,,4,Cluster A :: Curve 14pt [vs RPM] #032,engine RPM,"reads 1 map(s), e.g. Cluster A :: Curve 14pt [vs RPM] #032"
+0x2F17E,FUN_0002F17E,,,1,,,referenced in XDF notes; role not individually identified
+0x2F1A4,FUN_0002F1A4,,,2,,,referenced in XDF notes; role not individually identified
+0x2F2E0,FUN_0002F2E0,,,6,Cluster A :: Curve 14pt [vs RPM] #067,engine RPM,"reads 1 map(s), e.g. Cluster A :: Curve 14pt [vs RPM] #067"
+0x2F330,FUN_0002F330,,,4,Cluster A :: Curve 16pt [vs ?] #060,,"reads 1 map(s), e.g. Cluster A :: Curve 16pt [vs ?] #060"
+0x2F39C,FUN_0002F39C,,,5,Cluster A :: Curve 16pt [vs ?] #062,,"reads 1 map(s), e.g. Cluster A :: Curve 16pt [vs ?] #062"
+0x2F3EC,FUN_0002F3EC,,,10,Cluster A :: Curve 16pt [vs ?] #061,,"reads 1 map(s), e.g. Cluster A :: Curve 16pt [vs ?] #061"
+0x2F47C,FUN_0002F47C,,,8,Cluster A :: Curve 16pt [vs ?] #063,,"reads 1 map(s), e.g. Cluster A :: Curve 16pt [vs ?] #063"
+0x2F508,FUN_0002F508,,,4,Cluster A :: Curve 16pt [vs RPM] #068 (flat),engine RPM,"reads 1 map(s), e.g. Cluster A :: Curve 16pt [vs RPM] #068 (flat)"
+0x2F52A,FUN_0002F52A,,,4,Cluster A :: Curve 16pt [vs ?] #064,,"reads 1 map(s), e.g. Cluster A :: Curve 16pt [vs ?] #064"
+0x2F598,FUN_0002F598,,,3,,,referenced in XDF notes; role not individually identified
+0x2F6F8,FUN_0002F6F8,,,10,Cluster A :: Map 23x39 [? × ?] #049,engine RPM,"reads 1 map(s), e.g. Cluster A :: Map 23x39 [? × ?] #049"
+0x2F7B0,FUN_0002F7B0,,,6,,,referenced in XDF notes; role not individually identified
+0x2F90E,FUN_0002F90E,,,6,,,referenced in XDF notes; role not individually identified
+0x2F9CE,FUN_0002F9CE,,,20,Cluster A :: Curve 36pt [vs TP] #027 (flat); Cluster A :: Curve 36pt [vs TP] #028 (flat),throttle position,"reads 2 map(s), e.g. Cluster A :: Curve 36pt [vs TP] #027 (flat); Cluster A :: Curve 36pt [vs TP] #028 (flat)"
+0x2FB2E,FUN_0002FB2E,,,4,Cluster A :: Curve 36pt [vs TP] #029 (flat),throttle position,"reads 1 map(s), e.g. Cluster A :: Curve 36pt [vs TP] #029 (flat)"
+0x2FBA8,FUN_0002FBA8,,,8,Cluster A :: Curve 36pt [vs TP] #02A (flat); Cluster A :: Curve 36pt [vs TP] #02B (flat),throttle position,"reads 2 map(s), e.g. Cluster A :: Curve 36pt [vs TP] #02A (flat); Cluster A :: Curve 36pt [vs TP] #02B (flat)"
+0x2FE16,FUN_0002FE16,,,5,,,referenced in XDF notes; role not individually identified
+0x2FE98,FUN_0002FE98,,,6,,,referenced in XDF notes; role not individually identified
+0x2FF50,FUN_0002FF50,,,1,,,referenced in XDF notes; role not individually identified
+0x2FF8E,FUN_0002FF8E,,,4,,,referenced in XDF notes; role not individually identified
+0x2FFD8,FUN_0002FFD8,,,2,,,referenced in XDF notes; role not individually identified
+0x30064,FUN_00030064,,,5,Cluster A :: Curve 16pt [vs ?] #069 (flat),,"reads 1 map(s), e.g. Cluster A :: Curve 16pt [vs ?] #069 (flat)"
+0x300AA,FUN_000300AA,,,1,,,referenced in XDF notes; role not individually identified
+0x30160,FUN_00030160,,,6,Cluster A :: Map 23x39 [? × ?] #049,engine RPM,"reads 1 map(s), e.g. Cluster A :: Map 23x39 [? × ?] #049"
+0x30310,FUN_00030310,,,3,,,referenced in XDF notes; role not individually identified
+0x30454,FUN_00030454,,,2,,,referenced in XDF notes; role not individually identified
+0x304CC,FUN_000304CC,,,4,,,referenced in XDF notes; role not individually identified
+0x30598,FUN_00030598,,,2,,,referenced in XDF notes; role not individually identified
+0x306AE,FUN_000306AE,,,2,,,referenced in XDF notes; role not individually identified
+0x30868,FUN_00030868,,,4,,,referenced in XDF notes; role not individually identified
+0x308FE,FUN_000308FE,,,6,,,referenced in XDF notes; role not individually identified
+0x30A52,FUN_00030A52,,,1,,,referenced in XDF notes; role not individually identified
+0x30B0C,FUN_00030B0C,,,4,,,referenced in XDF notes; role not individually identified
+0x30B50,FUN_00030B50,,,1,,,referenced in XDF notes; role not individually identified
+0x30C1E,FUN_00030C1E,,,1,,,referenced in XDF notes; role not individually identified
+0x30C64,FUN_00030C64,,,2,,,referenced in XDF notes; role not individually identified
+0x30CD0,FUN_00030CD0,,,4,,,referenced in XDF notes; role not individually identified
+0x30D6E,FUN_00030D6E,,,2,,,referenced in XDF notes; role not individually identified
+0x30DD6,FUN_00030DD6,,,1,,,referenced in XDF notes; role not individually identified
+0x30E22,FUN_00030E22,,,1,,,referenced in XDF notes; role not individually identified
+0x30EC6,FUN_00030EC6,,,1,,,referenced in XDF notes; role not individually identified
+0x30EEC,FUN_00030EEC,,,1,,,referenced in XDF notes; role not individually identified
+0x30F12,FUN_00030F12,,,1,,,referenced in XDF notes; role not individually identified
+0x30F38,FUN_00030F38,,,1,,,referenced in XDF notes; role not individually identified
+0x30F9C,FUN_00030F9C,,,2,,,referenced in XDF notes; role not individually identified
+0x31052,FUN_00031052,,,4,,,referenced in XDF notes; role not individually identified
+0x310A4,FUN_000310A4,,,4,,,referenced in XDF notes; role not individually identified
+0x3111A,FUN_0003111A,,,6,,,referenced in XDF notes; role not individually identified
+0x31182,FUN_00031182,,,6,,,referenced in XDF notes; role not individually identified
+0x31256,FUN_00031256,,,3,,,referenced in XDF notes; role not individually identified
+0x312AC,FUN_000312AC,,,2,,,referenced in XDF notes; role not individually identified
+0x312F2,FUN_000312F2,,,4,,,referenced in XDF notes; role not individually identified
+0x3140A,FUN_0003140A,,,2,,,referenced in XDF notes; role not individually identified
+0x314A2,FUN_000314A2,,,2,,,referenced in XDF notes; role not individually identified
+0x314E0,FUN_000314E0,,,1,,,referenced in XDF notes; role not individually identified
+0x31520,FUN_00031520,,,3,,,referenced in XDF notes; role not individually identified
+0x31562,FUN_00031562,,,1,,,referenced in XDF notes; role not individually identified
+0x315A2,FUN_000315A2,,,3,,,referenced in XDF notes; role not individually identified
+0x31624,FUN_00031624,,,3,,,referenced in XDF notes; role not individually identified
+0x316A6,FUN_000316A6,,,3,,,referenced in XDF notes; role not individually identified
+0x31830,FUN_00031830,,,2,,,referenced in XDF notes; role not individually identified
+0x318A2,FUN_000318A2,,,2,,,referenced in XDF notes; role not individually identified
+0x31924,FUN_00031924,,,2,,,referenced in XDF notes; role not individually identified
+0x3199A,FUN_0003199A,,,2,,,referenced in XDF notes; role not individually identified
+0x31A06,FUN_00031A06,,,2,,,referenced in XDF notes; role not individually identified
+0x31DC0,FUN_00031DC0,,,1,,,referenced in XDF notes; role not individually identified
+0x31DE6,FUN_00031DE6,,,1,,,referenced in XDF notes; role not individually identified
+0x31E58,FUN_00031E58,,,1,,,referenced in XDF notes; role not individually identified
+0x31E7E,FUN_00031E7E,,,1,,,referenced in XDF notes; role not individually identified
+0x31EF0,FUN_00031EF0,,,1,,,referenced in XDF notes; role not individually identified
+0x31F88,FUN_00031F88,,,1,,,referenced in XDF notes; role not individually identified
+0x31FAE,FUN_00031FAE,,,1,,,referenced in XDF notes; role not individually identified
+0x31FD4,FUN_00031FD4,,,1,,,referenced in XDF notes; role not individually identified
+0x31FFA,FUN_00031FFA,,,1,,,referenced in XDF notes; role not individually identified
+0x32046,FUN_00032046,,,1,,,referenced in XDF notes; role not individually identified
+0x3205E,FUN_0003205E,,,2,,,referenced in XDF notes; role not individually identified
+0x320D4,FUN_000320D4,,,3,,,referenced in XDF notes; role not individually identified
+0x3214A,FUN_0003214A,,,2,,,referenced in XDF notes; role not individually identified
+0x321C0,FUN_000321C0,,,2,,,referenced in XDF notes; role not individually identified
+0x3227A,FUN_0003227A,,,2,,,referenced in XDF notes; role not individually identified
+0x322FC,FUN_000322FC,,,2,,,referenced in XDF notes; role not individually identified
+0x3237E,FUN_0003237E,,,2,,,referenced in XDF notes; role not individually identified
+0x32400,FUN_00032400,,,2,,,referenced in XDF notes; role not individually identified
+0x3243E,FUN_0003243E,,,1,,,referenced in XDF notes; role not individually identified
+0x3253A,FUN_0003253A,,,2,,,referenced in XDF notes; role not individually identified
+0x3269A,FUN_0003269A,,,1,,,referenced in XDF notes; role not individually identified
+0x326C0,FUN_000326C0,,,1,,,referenced in XDF notes; role not individually identified
+0x32732,FUN_00032732,,,1,,,referenced in XDF notes; role not individually identified
+0x32758,FUN_00032758,,,1,,,referenced in XDF notes; role not individually identified
+0x327CA,FUN_000327CA,,,1,,,referenced in XDF notes; role not individually identified
+0x32862,FUN_00032862,,,1,,,referenced in XDF notes; role not individually identified
+0x32888,FUN_00032888,,,1,,,referenced in XDF notes; role not individually identified
+0x328AE,FUN_000328AE,,,1,,,referenced in XDF notes; role not individually identified
+0x328D4,FUN_000328D4,,,1,,,referenced in XDF notes; role not individually identified
+0x32920,FUN_00032920,,,1,,,referenced in XDF notes; role not individually identified
+0x32938,FUN_00032938,,,2,,,referenced in XDF notes; role not individually identified
+0x329AE,FUN_000329AE,,,2,,,referenced in XDF notes; role not individually identified
+0x32A24,FUN_00032A24,,,84,,,referenced in XDF notes; role not individually identified
+0x32A9A,FUN_00032A9A,,,2,,,referenced in XDF notes; role not individually identified
+0x32B54,FUN_00032B54,,,2,,,referenced in XDF notes; role not individually identified
+0x32BD6,FUN_00032BD6,,,2,,,referenced in XDF notes; role not individually identified
+0x32C58,FUN_00032C58,,,2,,,referenced in XDF notes; role not individually identified
+0x32CDA,FUN_00032CDA,,,2,,,referenced in XDF notes; role not individually identified
+0x32D18,FUN_00032D18,,,1,,,referenced in XDF notes; role not individually identified
+0x32E14,FUN_00032E14,,,2,,,referenced in XDF notes; role not individually identified
+0x32F1A,FUN_00032F1A,,,1,,,referenced in XDF notes; role not individually identified
+0x32F64,FUN_00032F64,,,3,,,referenced in XDF notes; role not individually identified
+0x32FAE,FUN_00032FAE,,,1,,,referenced in XDF notes; role not individually identified
+0x32FF8,FUN_00032FF8,,,3,,,referenced in XDF notes; role not individually identified
+0x3308C,FUN_0003308C,,,2,,,referenced in XDF notes; role not individually identified
+0x3311E,FUN_0003311E,,,3,,,referenced in XDF notes; role not individually identified
+0x33200,FUN_00033200,,,1,,,referenced in XDF notes; role not individually identified
+0x3324A,FUN_0003324A,,,3,,,referenced in XDF notes; role not individually identified
+0x332D6,FUN_000332D6,,,2,,,referenced in XDF notes; role not individually identified
+0x33316,FUN_00033316,,,1,,,referenced in XDF notes; role not individually identified
+0x33360,FUN_00033360,,,3,,,referenced in XDF notes; role not individually identified
+0x333EC,FUN_000333EC,,,3,,,referenced in XDF notes; role not individually identified
+0x334EC,FUN_000334EC,,,4,,,referenced in XDF notes; role not individually identified
+0x33604,FUN_00033604,,,2,,,referenced in XDF notes; role not individually identified
+0x3362A,FUN_0003362A,,,4,,,referenced in XDF notes; role not individually identified
+0x3368A,FUN_0003368A,,,3,,,referenced in XDF notes; role not individually identified
+0x337D6,FUN_000337D6,,,4,,,referenced in XDF notes; role not individually identified
+0x33836,FUN_00033836,,,3,,,referenced in XDF notes; role not individually identified
+0x338D0,FUN_000338D0,,,8,,,referenced in XDF notes; role not individually identified
+0x33968,FUN_00033968,,,3,,,referenced in XDF notes; role not individually identified
+0x33B12,FUN_00033B12,,,1,,,referenced in XDF notes; role not individually identified
+0x33BA8,FUN_00033BA8,,,2,,,referenced in XDF notes; role not individually identified
+0x33D4A,FUN_00033D4A,P0412 PAIR circuit monitor,,0,,,P0412 PAIR circuit monitor
+0x33DE4,FUN_00033DE4,,,2,,,referenced in XDF notes; role not individually identified
+0x33FF6,FUN_00033FF6,,,2,,,referenced in XDF notes; role not individually identified
+0x343D6,FUN_000343D6,,,2,,,referenced in XDF notes; role not individually identified
+0x34544,FUN_00034544,,,1,,,referenced in XDF notes; role not individually identified
+0x34592,FUN_00034592,,,1,,,referenced in XDF notes; role not individually identified
+0x346CA,FUN_000346CA,,,1,,,referenced in XDF notes; role not individually identified
+0x347F8,FUN_000347F8,,,9,,,referenced in XDF notes; role not individually identified
+0x34A06,FUN_00034A06,,,2,,,referenced in XDF notes; role not individually identified
+0x34B1C,FUN_00034B1C,,,1,,,referenced in XDF notes; role not individually identified
+0x34B64,FUN_00034B64,,,1,,,referenced in XDF notes; role not individually identified
+0x34CAC,FUN_00034CAC,,,1,,,referenced in XDF notes; role not individually identified
+0x34F8C,FUN_00034F8C,,,2,,,referenced in XDF notes; role not individually identified
+0x3502C,FUN_0003502C,,,2,,,referenced in XDF notes; role not individually identified
+0x35094,FUN_00035094,,,2,,,referenced in XDF notes; role not individually identified
+0x351D4,FUN_000351D4,,,1,,,referenced in XDF notes; role not individually identified
+0x3522E,FUN_0003522E,,,1,,,referenced in XDF notes; role not individually identified
+0x35802,FUN_00035802,,,1,,,referenced in XDF notes; role not individually identified
+0x35924,FUN_00035924,,,2,,,referenced in XDF notes; role not individually identified
+0x359BC,FUN_000359BC,,,2,,,referenced in XDF notes; role not individually identified
+0x35FA0,FUN_00035FA0,,,2,,,referenced in XDF notes; role not individually identified
+0x360AA,FUN_000360AA,,,2,,,referenced in XDF notes; role not individually identified
+0x36142,FUN_00036142,,,2,,,referenced in XDF notes; role not individually identified
+0x362FA,FUN_000362FA,,,1,,,referenced in XDF notes; role not individually identified
+0x36320,FUN_00036320,,,1,,,referenced in XDF notes; role not individually identified
+0x365B8,FUN_000365B8,,,3,,,referenced in XDF notes; role not individually identified
+0x36810,FUN_00036810,,,3,,,referenced in XDF notes; role not individually identified
+0x36976,FUN_00036976,,,1,,,referenced in XDF notes; role not individually identified
+0x36A0E,FUN_00036A0E,,,3,,,referenced in XDF notes; role not individually identified
+0x36A34,FUN_00036A34,,,1,,,referenced in XDF notes; role not individually identified
+0x376AA,FUN_000376AA,,,2,,,referenced in XDF notes; role not individually identified
+0x37718,FUN_00037718,,,2,,,referenced in XDF notes; role not individually identified
+0x37998,FUN_00037998,,,2,,,referenced in XDF notes; role not individually identified
+0x37A06,FUN_00037A06,,,2,,,referenced in XDF notes; role not individually identified
+0x37E44,FUN_00037E44,,,1,,,referenced in XDF notes; role not individually identified
+0x38040,FUN_00038040,,,1,,,referenced in XDF notes; role not individually identified
+0x38092,FUN_00038092,,,8,,,referenced in XDF notes; role not individually identified
+0x381DE,FUN_000381DE,,,1,,,referenced in XDF notes; role not individually identified
+0x3822A,FUN_0003822A,,,2,,,referenced in XDF notes; role not individually identified
+0x38276,FUN_00038276,,,1,,,referenced in XDF notes; role not individually identified
+0x382C2,FUN_000382C2,,,2,,,referenced in XDF notes; role not individually identified
+0x38300,FUN_00038300,,,1,,,referenced in XDF notes; role not individually identified
+0x38346,FUN_00038346,,,3,,,referenced in XDF notes; role not individually identified
+0x383DC,FUN_000383DC,,,3,,,referenced in XDF notes; role not individually identified
+0x3841E,FUN_0003841E,,,1,,,referenced in XDF notes; role not individually identified
+0x38464,FUN_00038464,,,3,,,referenced in XDF notes; role not individually identified
+0x384FA,FUN_000384FA,,,3,,,referenced in XDF notes; role not individually identified
+0x385DA,FUN_000385DA,,,2,,,referenced in XDF notes; role not individually identified
+0x3862E,FUN_0003862E,,,3,,,referenced in XDF notes; role not individually identified
+0x38750,FUN_00038750,,,2,,,referenced in XDF notes; role not individually identified
+0x38798,FUN_00038798,,,2,,,referenced in XDF notes; role not individually identified
+0x38B72,FUN_00038B72,,,1,,,referenced in XDF notes; role not individually identified
+0x38C1E,FUN_00038C1E,,,1,,,referenced in XDF notes; role not individually identified
+0x38C64,FUN_00038C64,,,3,,,referenced in XDF notes; role not individually identified
+0x38CA6,FUN_00038CA6,,,1,,,referenced in XDF notes; role not individually identified
+0x38F1E,FUN_00038F1E,,,2,,,referenced in XDF notes; role not individually identified
+0x38FB6,FUN_00038FB6,,,2,,,referenced in XDF notes; role not individually identified
+0x39034,FUN_00039034,,,3,,,referenced in XDF notes; role not individually identified
+0x39076,FUN_00039076,,,2,,,referenced in XDF notes; role not individually identified
+0x390B6,FUN_000390B6,,,3,,,referenced in XDF notes; role not individually identified
+0x390F8,FUN_000390F8,,,2,,,referenced in XDF notes; role not individually identified
+0x39138,FUN_00039138,,,3,,,referenced in XDF notes; role not individually identified
+0x3917A,FUN_0003917A,,,2,,,referenced in XDF notes; role not individually identified
+0x391BA,FUN_000391BA,,,3,,,referenced in XDF notes; role not individually identified
+0x392FA,FUN_000392FA,,,2,,,referenced in XDF notes; role not individually identified
+0x39392,FUN_00039392,,,2,,,referenced in XDF notes; role not individually identified
+0x393D0,FUN_000393D0,,,1,,,referenced in XDF notes; role not individually identified
+0x39410,FUN_00039410,,,3,,,referenced in XDF notes; role not individually identified
+0x39492,FUN_00039492,,,3,,,referenced in XDF notes; role not individually identified
+0x394D4,FUN_000394D4,,,1,,,referenced in XDF notes; role not individually identified
+0x39514,FUN_00039514,,,3,,,referenced in XDF notes; role not individually identified
+0x39596,FUN_00039596,,,3,,,referenced in XDF notes; role not individually identified
+0x396D6,FUN_000396D6,,,2,,,referenced in XDF notes; role not individually identified
+0x3976E,FUN_0003976E,,,2,,,referenced in XDF notes; role not individually identified
+0x397AC,FUN_000397AC,,,1,,,referenced in XDF notes; role not individually identified
+0x397EC,FUN_000397EC,,,3,,,referenced in XDF notes; role not individually identified
+0x3986E,FUN_0003986E,,,3,,,referenced in XDF notes; role not individually identified
+0x398B0,FUN_000398B0,,,1,,,referenced in XDF notes; role not individually identified
+0x398F0,FUN_000398F0,,,3,,,referenced in XDF notes; role not individually identified
+0x39972,FUN_00039972,,,3,,,referenced in XDF notes; role not individually identified
+0x39AFE,FUN_00039AFE,,,1,,,referenced in XDF notes; role not individually identified
+0x39B16,FUN_00039B16,,,1,,,referenced in XDF notes; role not individually identified
+0x39B66,FUN_00039B66,,,2,,,referenced in XDF notes; role not individually identified
+0x39D1C,FUN_00039D1C,,,2,,,referenced in XDF notes; role not individually identified
+0x39DB0,FUN_00039DB0,,,6,,,referenced in XDF notes; role not individually identified
+0x39E8A,FUN_00039E8A,,,3,,,referenced in XDF notes; role not individually identified
+0x39F6A,FUN_00039F6A,,,3,,,referenced in XDF notes; role not individually identified
+0x3A04A,FUN_0003A04A,,,1,,,referenced in XDF notes; role not individually identified
+0x3A0E2,FUN_0003A0E2,,,1,,,referenced in XDF notes; role not individually identified
+0x3A110,FUN_0003A110,,,2,,,referenced in XDF notes; role not individually identified
+0x3A184,FUN_0003A184,,,3,,,referenced in XDF notes; role not individually identified
+0x3A234,FUN_0003A234,,,2,,,referenced in XDF notes; role not individually identified
+0x3A3A4,FUN_0003A3A4,,,2,,,referenced in XDF notes; role not individually identified
+0x3A438,FUN_0003A438,,,2,,,referenced in XDF notes; role not individually identified
+0x3A48C,FUN_0003A48C,,,1,,,referenced in XDF notes; role not individually identified
+0x3A760,FUN_0003A760,,,3,,,referenced in XDF notes; role not individually identified
+0x3A7DC,FUN_0003A7DC,,,2,,,referenced in XDF notes; role not individually identified
+0x3A81C,FUN_0003A81C,,,3,,,referenced in XDF notes; role not individually identified
+0x3A96C,FUN_0003A96C,,,1,,,referenced in XDF notes; role not individually identified
+0x3A9A0,FUN_0003A9A0,,,1,,,referenced in XDF notes; role not individually identified
+0x3A9EC,FUN_0003A9EC,,,1,,,referenced in XDF notes; role not individually identified
+0x3AA12,FUN_0003AA12,,,2,,,referenced in XDF notes; role not individually identified
+0x3AA50,FUN_0003AA50,,,2,,,referenced in XDF notes; role not individually identified
+0x3AA9C,FUN_0003AA9C,,,3,,,referenced in XDF notes; role not individually identified
+0x3AADE,FUN_0003AADE,,,2,,,referenced in XDF notes; role not individually identified
+0x3AB46,FUN_0003AB46,,,3,,,referenced in XDF notes; role not individually identified
+0x3AC32,FUN_0003AC32,,,2,,,referenced in XDF notes; role not individually identified
+0x3AC72,FUN_0003AC72,,,2,,,referenced in XDF notes; role not individually identified
+0x3ACC0,FUN_0003ACC0,,,7,,,referenced in XDF notes; role not individually identified
+0x3ADB4,FUN_0003ADB4,,,3,,,referenced in XDF notes; role not individually identified
+0x3ADF6,FUN_0003ADF6,,,13,,,referenced in XDF notes; role not individually identified
+0x3AFF2,FUN_0003AFF2,,,1,,,referenced in XDF notes; role not individually identified
+0x3B0A2,FUN_0003B0A2,,,7,,,referenced in XDF notes; role not individually identified
+0x3B196,FUN_0003B196,,,3,,,referenced in XDF notes; role not individually identified
+0x3B32E,FUN_0003B32E,,,1,,,referenced in XDF notes; role not individually identified
+0x3B3B8,FUN_0003B3B8,,,7,,,referenced in XDF notes; role not individually identified
+0x3B4B8,FUN_0003B4B8,,,3,,,referenced in XDF notes; role not individually identified
+0x3B65C,FUN_0003B65C,,,1,,,referenced in XDF notes; role not individually identified
+0x3B984,FUN_0003B984,,,1,,,referenced in XDF notes; role not individually identified
+0x3BB20,FUN_0003BB20,,,4,,,referenced in XDF notes; role not individually identified
+0x3BB62,FUN_0003BB62,,,3,,,referenced in XDF notes; role not individually identified
+0x3BCA6,FUN_0003BCA6,,,18,Cluster A :: Map 10x14 [? × RPM] #06C (flat),engine RPM,"reads 1 map(s), e.g. Cluster A :: Map 10x14 [? × RPM] #06C (flat)"
+0x3C068,FUN_0003C068,,,4,,,referenced in XDF notes; role not individually identified
+0x3C37C,FUN_0003C37C,,,2,,,referenced in XDF notes; role not individually identified
+0x3C444,FUN_0003C444,,,6,,,referenced in XDF notes; role not individually identified
+0x3C616,FUN_0003C616,,,8,,,referenced in XDF notes; role not individually identified
+0x3C92E,FUN_0003C92E,,,1,,,referenced in XDF notes; role not individually identified
+0x3C9E2,FUN_0003C9E2,,,1,,,referenced in XDF notes; role not individually identified
+0x3CAAE,FUN_0003CAAE,,,1,,,referenced in XDF notes; role not individually identified
+0x3CB2A,FUN_0003CB2A,,,1,,,referenced in XDF notes; role not individually identified
+0x3CCD8,FUN_0003CCD8,,,1,,,referenced in XDF notes; role not individually identified
+0x3CE94,FUN_0003CE94,,,2,,,referenced in XDF notes; role not individually identified
+0x3CECC,FUN_0003CECC,,,2,,,referenced in XDF notes; role not individually identified
+0x3CFF0,FUN_0003CFF0,,,1,,,referenced in XDF notes; role not individually identified
+0x3D038,FUN_0003D038,,,1,,,referenced in XDF notes; role not individually identified
+0x3D1CE,FUN_0003D1CE,,,1,,,referenced in XDF notes; role not individually identified
+0x3D46C,FUN_0003D46C,,,4,,,referenced in XDF notes; role not individually identified
+0x3D51A,FUN_0003D51A,,,2,,,referenced in XDF notes; role not individually identified
+0x3D5AC,FUN_0003D5AC,,,1,,,referenced in XDF notes; role not individually identified
+0x3D5F4,FUN_0003D5F4,,,1,,,referenced in XDF notes; role not individually identified
+0x3DAFA,FUN_0003DAFA,,,8,Cluster A :: Curve 6pt [vs ?] #06B (flat),,"reads 1 map(s), e.g. Cluster A :: Curve 6pt [vs ?] #06B (flat)"
+0x3DBAE,FUN_0003DBAE,,,3,,,referenced in XDF notes; role not individually identified
+0x3DC5E,FUN_0003DC5E,,,2,,,referenced in XDF notes; role not individually identified
+0x3DCDC,FUN_0003DCDC,,,2,,,referenced in XDF notes; role not individually identified
+0x3DD34,FUN_0003DD34,,,2,,,referenced in XDF notes; role not individually identified
+0x3DE22,FUN_0003DE22,,,4,,,referenced in XDF notes; role not individually identified
+0x3DF62,FUN_0003DF62,,,4,,,referenced in XDF notes; role not individually identified
+0x3E0C0,FUN_0003E0C0,,,1,,,referenced in XDF notes; role not individually identified
+0x3E12A,FUN_0003E12A,,,1,,,referenced in XDF notes; role not individually identified
+0x3E210,FUN_0003E210,,,1,,,referenced in XDF notes; role not individually identified
+0x3E258,FUN_0003E258,,,3,,,referenced in XDF notes; role not individually identified
+0x3E29A,FUN_0003E29A,,,1,,,referenced in XDF notes; role not individually identified
+0x3E2E2,FUN_0003E2E2,,,3,,,referenced in XDF notes; role not individually identified
+0x3E36C,FUN_0003E36C,,,2,,,referenced in XDF notes; role not individually identified
+0x3E3F4,FUN_0003E3F4,,,3,,,referenced in XDF notes; role not individually identified
+0x3E4C6,FUN_0003E4C6,,,2,,,referenced in XDF notes; role not individually identified
+0x3E51A,FUN_0003E51A,,,3,,,referenced in XDF notes; role not individually identified
+0x3E55C,FUN_0003E55C,,,2,,,referenced in XDF notes; role not individually identified
+0x3E5C8,FUN_0003E5C8,,,2,,,referenced in XDF notes; role not individually identified
+0x3E664,FUN_0003E664,,,1,,,referenced in XDF notes; role not individually identified
+0x3E726,FUN_0003E726,,,3,,,referenced in XDF notes; role not individually identified
+0x3E7B2,FUN_0003E7B2,,,3,,,referenced in XDF notes; role not individually identified
+0x3E83E,FUN_0003E83E,,,2,,,referenced in XDF notes; role not individually identified
+0x3E88E,FUN_0003E88E,,,13,,,referenced in XDF notes; role not individually identified
+0x3E910,FUN_0003E910,,,2,,,referenced in XDF notes; role not individually identified
+0x3E95C,FUN_0003E95C,P0410 PAIR monitor,,15,,,P0410 PAIR monitor
+0x3EBF2,FUN_0003EBF2,,,9,,,referenced in XDF notes; role not individually identified
+0x3EDF6,FUN_0003EDF6,,,3,,,referenced in XDF notes; role not individually identified
+0x3EFA0,FUN_0003EFA0,,,12,Cluster A :: Curve 8pt [vs ?] #06F; Cluster A :: Curve 10pt [vs ?] #070,,"reads 2 map(s), e.g. Cluster A :: Curve 8pt [vs ?] #06F; Cluster A :: Curve 10pt [vs ?] #070"
+0x3F0E0,FUN_0003F0E0,,,5,,,referenced in XDF notes; role not individually identified
+0x3F1DC,FUN_0003F1DC,,,2,,,referenced in XDF notes; role not individually identified
+0x3F2BA,FUN_0003F2BA,,,1,,,referenced in XDF notes; role not individually identified
+0x3F338,FUN_0003F338,,,1,,,referenced in XDF notes; role not individually identified
+0x3F510,FUN_0003F510,,,6,,,referenced in XDF notes; role not individually identified
+0x3F586,FUN_0003F586,,,3,,,referenced in XDF notes; role not individually identified
+0x3F624,FUN_0003F624,,,8,,,referenced in XDF notes; role not individually identified
+0x3F6D6,FUN_0003F6D6,,,3,,,referenced in XDF notes; role not individually identified
+0x3F8FC,FUN_0003F8FC,,,1,,,referenced in XDF notes; role not individually identified
+0x3F994,FUN_0003F994,,,1,,,referenced in XDF notes; role not individually identified
+0x3FA44,FUN_0003FA44,,,2,,,referenced in XDF notes; role not individually identified
+0x3FA96,FUN_0003FA96,,,3,,,referenced in XDF notes; role not individually identified
+0x3FAD8,FUN_0003FAD8,,,2,,,referenced in XDF notes; role not individually identified
+0x3FB46,FUN_0003FB46,,,3,,,referenced in XDF notes; role not individually identified
+0x3FBE6,FUN_0003FBE6,,,2,,,referenced in XDF notes; role not individually identified
+0x3FC32,FUN_0003FC32,,,2,,,referenced in XDF notes; role not individually identified
+0x3FCBC,FUN_0003FCBC,,,1,,,referenced in XDF notes; role not individually identified
+0x3FED2,FUN_0003FED2,,,2,,,referenced in XDF notes; role not individually identified
+0x3FF24,FUN_0003FF24,,,3,,,referenced in XDF notes; role not individually identified
+0x3FF66,FUN_0003FF66,,,2,,,referenced in XDF notes; role not individually identified
+0x3FFD4,FUN_0003FFD4,,,3,,,referenced in XDF notes; role not individually identified
+0x40074,FUN_00040074,,,2,,,referenced in XDF notes; role not individually identified
+0x400C0,FUN_000400C0,,,2,,,referenced in XDF notes; role not individually identified
+0x40132,FUN_00040132,,,2,,,referenced in XDF notes; role not individually identified
+0x40188,FUN_00040188,,,1,,,referenced in XDF notes; role not individually identified
+0x401DE,FUN_000401DE,,,1,,,referenced in XDF notes; role not individually identified
+0x40224,FUN_00040224,,,4,,,referenced in XDF notes; role not individually identified
+0x402A4,FUN_000402A4,,,2,,,referenced in XDF notes; role not individually identified
+0x402CE,FUN_000402CE,,,4,,,referenced in XDF notes; role not individually identified
+0x4032A,FUN_0004032A,,,2,,,referenced in XDF notes; role not individually identified
+0x403B6,FUN_000403B6,,,2,,,referenced in XDF notes; role not individually identified
+0x4060C,FUN_0004060C,,,3,,,referenced in XDF notes; role not individually identified
+0x406E4,FUN_000406E4,,,3,,,referenced in XDF notes; role not individually identified
+0x407D0,FUN_000407D0,,,2,,,referenced in XDF notes; role not individually identified
+0x4080E,FUN_0004080E,,,1,,,referenced in XDF notes; role not individually identified
+0x40866,FUN_00040866,,,3,,,referenced in XDF notes; role not individually identified
+0x4099A,FUN_0004099A,,,3,,,referenced in XDF notes; role not individually identified
+0x40B64,FUN_00040B64,,,2,,,referenced in XDF notes; role not individually identified
+0x40D44,FUN_00040D44,,,2,,,referenced in XDF notes; role not individually identified
+0x40DB4,FUN_00040DB4,,,2,,,referenced in XDF notes; role not individually identified
+0x40DE2,FUN_00040DE2,,,3,,,referenced in XDF notes; role not individually identified
+0x40F58,FUN_00040F58,,,1,,,referenced in XDF notes; role not individually identified
+0x40FA4,FUN_00040FA4,,,1,,,referenced in XDF notes; role not individually identified
+0x4102E,FUN_0004102E,,,2,,,referenced in XDF notes; role not individually identified
+0x4104C,FUN_0004104C,,,2,,,referenced in XDF notes; role not individually identified
+0x41144,FUN_00041144,,,3,,,referenced in XDF notes; role not individually identified
+0x4120E,FUN_0004120E,,,5,,,referenced in XDF notes; role not individually identified
+0x41278,FUN_00041278,,,2,,,referenced in XDF notes; role not individually identified
+0x41526,FUN_00041526,,,2,,,referenced in XDF notes; role not individually identified
+0x416BA,FUN_000416BA,,,4,,,referenced in XDF notes; role not individually identified
+0x41712,FUN_00041712,,,2,,,referenced in XDF notes; role not individually identified
+0x4189E,FUN_0004189E,,,10,,,referenced in XDF notes; role not individually identified
+0x419FC,FUN_000419FC,,,7,,,referenced in XDF notes; role not individually identified
+0x41BCE,FUN_00041BCE,,,1,,,referenced in XDF notes; role not individually identified
+0x41C0E,FUN_00041C0E,,,3,,,referenced in XDF notes; role not individually identified
+0x41C90,FUN_00041C90,,,3,,,referenced in XDF notes; role not individually identified
+0x41CD2,FUN_00041CD2,,,1,,,referenced in XDF notes; role not individually identified
+0x41D12,FUN_00041D12,,,3,,,referenced in XDF notes; role not individually identified
+0x41D94,FUN_00041D94,,,3,,,referenced in XDF notes; role not individually identified
+0x41ED4,FUN_00041ED4,,,2,,,referenced in XDF notes; role not individually identified
+0x41F6C,FUN_00041F6C,,,2,,,referenced in XDF notes; role not individually identified
+0x421C6,FUN_000421C6,,,1,,,referenced in XDF notes; role not individually identified
+0x42216,FUN_00042216,,,1,,,referenced in XDF notes; role not individually identified
+0x42264,FUN_00042264,,,3,,,referenced in XDF notes; role not individually identified
+0x422AE,FUN_000422AE,,,6,,,referenced in XDF notes; role not individually identified
+0x42384,FUN_00042384,EVAP purge enable window,,10,,,EVAP purge enable window
+0x424B2,FUN_000424B2,,,3,,,referenced in XDF notes; role not individually identified
+0x42556,FUN_00042556,,,3,,,referenced in XDF notes; role not individually identified
+0x425C4,FUN_000425C4,,,1,,,referenced in XDF notes; role not individually identified
+0x429A8,FUN_000429A8,,,1,,,referenced in XDF notes; role not individually identified
+0x42A90,FUN_00042A90,,,1,,,referenced in XDF notes; role not individually identified
+0x42B84,FUN_00042B84,,,4,,,referenced in XDF notes; role not individually identified
+0x42BC6,FUN_00042BC6,,,4,,,referenced in XDF notes; role not individually identified
+0x42C30,FUN_00042C30,,,8,,,referenced in XDF notes; role not individually identified
+0x42C9A,FUN_00042C9A,HO2 high-speed gate,,4,,,HO2 high-speed gate
+0x42D0C,FUN_00042D0C,,,2,,,referenced in XDF notes; role not individually identified
+0x42D56,FUN_00042D56,,,2,,,referenced in XDF notes; role not individually identified
+0x42D92,FUN_00042D92,,,2,,,referenced in XDF notes; role not individually identified
+0x42DCE,FUN_00042DCE,,,2,,,referenced in XDF notes; role not individually identified
+0x42DEC,FUN_00042DEC,,,1,,,referenced in XDF notes; role not individually identified
+0x42E80,FUN_00042E80,,,33,Cluster B :: Map 7x7 [? × RPM] #0DB; Cluster B :: Map 7x7 [? × RPM] #0DD; Cluster B :: Map 7x7 [? × RPM] #0DF,engine RPM,"reads 8 map(s), e.g. Cluster B :: Map 7x7 [? × RPM] #0DB; Cluster B :: Map 7x7 [? × RPM] #0DD"
+0x430B8,FUN_000430B8,,,1,,,referenced in XDF notes; role not individually identified
+0x436C2,FUN_000436C2,,,8,,,referenced in XDF notes; role not individually identified
+0x43886,FUN_00043886,,,2,,,referenced in XDF notes; role not individually identified
+0x43A16,FUN_00043A16,,,10,,,referenced in XDF notes; role not individually identified
+0x43B7A,FUN_00043B7A,,,8,,,referenced in XDF notes; role not individually identified
+0x43C1C,FUN_00043C1C,,,2,,,referenced in XDF notes; role not individually identified
+0x43CC0,FUN_00043CC0,,,2,,,referenced in XDF notes; role not individually identified
+0x43EEA,FUN_00043EEA,,,7,Cluster A :: Curve 7pt [vs RPM] #094; Cluster A :: Curve 7pt [vs RPM] #095; Cluster A :: Curve 7pt [vs RPM] #096,engine RPM,"reads 8 map(s), e.g. Cluster A :: Curve 7pt [vs RPM] #094; Cluster A :: Curve 7pt [vs RPM] #095"
+0x43F1C,FUN_00043F1C,,,20,Cluster A :: Curve 7pt [vs RPM] #096; Cluster A :: Curve 7pt [vs RPM] #097; Cluster A :: Curve 7pt [vs RPM] #09C (flat),engine RPM,"reads 6 map(s), e.g. Cluster A :: Curve 7pt [vs RPM] #096; Cluster A :: Curve 7pt [vs RPM] #097"
+0x43F4E,FUN_00043F4E,,,4,Cluster A :: Curve 7pt [vs RPM] #09E (flat); Cluster A :: Curve 7pt [vs RPM] #09F (flat),engine RPM,"reads 2 map(s), e.g. Cluster A :: Curve 7pt [vs RPM] #09E (flat); Cluster A :: Curve 7pt [vs RPM] #09F (flat)"
+0x43FA4,FUN_00043FA4,,,2,Cluster A :: Curve 7pt [vs RPM] #09C (flat); Cluster A :: Curve 7pt [vs RPM] #09D (flat); Cluster A :: Curve 7pt [vs RPM] #09E (flat),engine RPM,"reads 4 map(s), e.g. Cluster A :: Curve 7pt [vs RPM] #09C (flat); Cluster A :: Curve 7pt [vs RPM] #09D (flat)"
+0x43FFA,FUN_00043FFA,,,7,Cluster A :: Curve 7pt [vs RPM] #098; Cluster A :: Curve 7pt [vs RPM] #099,engine RPM,"reads 2 map(s), e.g. Cluster A :: Curve 7pt [vs RPM] #098; Cluster A :: Curve 7pt [vs RPM] #099"
+0x4402A,FUN_0004402A,,,4,,,referenced in XDF notes; role not individually identified
+0x4409A,FUN_0004409A,,,7,Cluster A :: Curve 7pt [vs RPM] #09A; Cluster A :: Curve 7pt [vs RPM] #09B,engine RPM,"reads 2 map(s), e.g. Cluster A :: Curve 7pt [vs RPM] #09A; Cluster A :: Curve 7pt [vs RPM] #09B"
+0x440CA,FUN_000440CA,,,2,,,referenced in XDF notes; role not individually identified
+0x4430C,FUN_0004430C,,,2,,,referenced in XDF notes; role not individually identified
+0x444F8,FUN_000444F8,,,4,,,referenced in XDF notes; role not individually identified
+0x44886,FUN_00044886,,,3,,,referenced in XDF notes; role not individually identified
+0x44A16,FUN_00044A16,,,2,,,referenced in XDF notes; role not individually identified
+0x44B4C,FUN_00044B4C,,,1,,,referenced in XDF notes; role not individually identified
+0x44B8A,FUN_00044B8A,,,1,,,referenced in XDF notes; role not individually identified
+0x44D1C,FUN_00044D1C,,,4,,,referenced in XDF notes; role not individually identified
+0x44D96,FUN_00044D96,,,4,,,referenced in XDF notes; role not individually identified
+0x44DF2,FUN_00044DF2,,,3,,,referenced in XDF notes; role not individually identified
+0x44E6E,FUN_00044E6E,,,2,,,referenced in XDF notes; role not individually identified
+0x44F4A,FUN_00044F4A,,,17,Cluster C :: Curve 15pt [vs RPM] #169; Cluster C :: Curve 15pt [vs RPM] #16A; Cluster C :: Curve 15pt [vs RPM] #16B,engine RPM,"reads 4 map(s), e.g. Cluster C :: Curve 15pt [vs RPM] #169; Cluster C :: Curve 15pt [vs RPM] #16A"
+0x4500A,FUN_0004500A,,,4,,,referenced in XDF notes; role not individually identified
+0x450A0,FUN_000450A0,,,22,,,referenced in XDF notes; role not individually identified
+0x4511C,FUN_0004511C,,,8,Cluster C :: Map 23x9 [? × ?] #16F (flat); Cluster C :: Map 23x9 [? × ?] #171 (flat),,"reads 2 map(s), e.g. Cluster C :: Map 23x9 [? × ?] #16F (flat); Cluster C :: Map 23x9 [? × ?] #171 (flat)"
+0x45182,FUN_00045182,,,5,,,referenced in XDF notes; role not individually identified
+0x45260,FUN_00045260,,,2,,,referenced in XDF notes; role not individually identified
+0x4529C,FUN_0004529C,,,2,Cluster C :: Curve 7pt [vs ?] #16D; Cluster C :: Curve 7pt [vs ?] #16E,,"reads 2 map(s), e.g. Cluster C :: Curve 7pt [vs ?] #16D; Cluster C :: Curve 7pt [vs ?] #16E"
+0x452D0,FUN_000452D0,,,2,Cluster C :: Curve 7pt [vs ?] #16D; Cluster C :: Curve 7pt [vs ?] #16E,,"reads 2 map(s), e.g. Cluster C :: Curve 7pt [vs ?] #16D; Cluster C :: Curve 7pt [vs ?] #16E"
+0x45320,FUN_00045320,base-fuel pressure lookup,Fuel,36,IAP - Mode A | Gear 1; IAP - Mode A | Gear 2; IAP - Mode A | Gear 3,"engine RPM, intake pressure (IAP)",base-fuel pressure lookup
+0x4536C,FUN_0004536C,cylinder base-fuel map lookup,Fuel,60,TPS - Mode A | Gear 1; TPS - Mode A | Gear 2; TPS - Mode A | Gear 3,"engine RPM, throttle position",cylinder base-fuel map lookup
+0x453B8,FUN_000453B8,fuel-map blend/result,,46,,,fuel-map blend/result
+0x4543E,FUN_0004543E,fuel finalizer (neutral/clutch select),Fuel,24,IAP - Neutral/Clutch-In | Cyl 1; IAP - Neutral/Clutch-In | Cyl 2; IAP - Neutral/Clutch-In | Cyl 3,"engine RPM, intake pressure (IAP)",fuel finalizer (neutral/clutch select)
+0x454DA,FUN_000454DA,,Fuel,13,TPS - Neutral/Clutch-In | Cyl 1; TPS - Neutral/Clutch-In | Cyl 2; TPS - Neutral/Clutch-In | Cyl 3,"engine RPM, throttle position","reads 4 map(s), e.g. TPS - Neutral/Clutch-In | Cyl 1; TPS - Neutral/Clutch-In | Cyl 2"
+0x455E6,FUN_000455E6,,,4,,,referenced in XDF notes; role not individually identified
+0x457EE,FUN_000457EE,,,4,Cluster A :: Curve 22pt [vs ?] #07C,,"reads 1 map(s), e.g. Cluster A :: Curve 22pt [vs ?] #07C"
+0x45810,FUN_00045810,start-prime pulse vs ECT,,4,Cluster A :: Curve 22pt [vs ?] #07B,,start-prime pulse vs ECT
+0x45832,FUN_00045832,,,4,Cluster A :: Curve 6pt [vs TP] #07E (flat),,"reads 1 map(s), e.g. Cluster A :: Curve 6pt [vs TP] #07E (flat)"
+0x45860,FUN_00045860,,,4,Cluster A :: Curve 8pt [vs ?] #07F,,"reads 1 map(s), e.g. Cluster A :: Curve 8pt [vs ?] #07F"
+0x45884,FUN_00045884,,,2,,,referenced in XDF notes; role not individually identified
+0x45910,FUN_00045910,start-prime pulse vs RPM,,4,Cluster A :: Curve 11pt [vs ?] #07D,,start-prime pulse vs RPM
+0x45934,FUN_00045934,,,3,,,referenced in XDF notes; role not individually identified
+0x45994,FUN_00045994,,,2,,,referenced in XDF notes; role not individually identified
+0x45A1E,FUN_00045A1E,,,2,,,referenced in XDF notes; role not individually identified
+0x45A4E,FUN_00045A4E,fuel option routine,,4,,,fuel option routine
+0x45AB6,FUN_00045AB6,,,1,,,referenced in XDF notes; role not individually identified
+0x45B2A,FUN_00045B2A,,,1,,,referenced in XDF notes; role not individually identified
+0x45BA4,FUN_00045BA4,,,1,,,referenced in XDF notes; role not individually identified
+0x45C18,FUN_00045C18,fuel-factor multiplier,,27,,,fuel-factor multiplier
+0x45DA6,FUN_00045DA6,,,1,,,referenced in XDF notes; role not individually identified
+0x45E92,FUN_00045E92,,,13,,,referenced in XDF notes; role not individually identified
+0x45FA4,FUN_00045FA4,,,1,,,referenced in XDF notes; role not individually identified
+0x45FEA,FUN_00045FEA,,,3,,,referenced in XDF notes; role not individually identified
+0x460F6,FUN_000460F6,injector pulsewidth clamp,,8,,,injector pulsewidth clamp
+0x46354,FUN_00046354,,,24,Cluster A :: Curve 8pt [vs ?] #075; Cluster A :: Curve 9pt [vs TP] #076; Cluster A :: Curve 22pt [vs ?] #077,"engine RPM, throttle position","reads 6 map(s), e.g. Cluster A :: Curve 8pt [vs ?] #075; Cluster A :: Curve 9pt [vs TP] #076"
+0x46408,FUN_00046408,,,1,,,referenced in XDF notes; role not individually identified
+0x46464,FUN_00046464,,,11,,,referenced in XDF notes; role not individually identified
+0x4650C,FUN_0004650C,accel-enrichment routine,,8,,,accel-enrichment routine
+0x46650,FUN_00046650,,,22,Cluster A :: Curve 8pt [vs RPM] #0A0 (flat); Cluster A :: Curve 8pt [vs RPM] #0A1 (flat); Cluster A :: Curve 8pt [vs RPM] #0A2 (flat),,"reads 7 map(s), e.g. Cluster A :: Curve 8pt [vs RPM] #0A0 (flat); Cluster A :: Curve 8pt [vs RPM] #0A1 (flat)"
+0x466AA,FUN_000466AA,,,2,,,referenced in XDF notes; role not individually identified
+0x4672C,FUN_0004672C,,,1,,,referenced in XDF notes; role not individually identified
+0x46816,FUN_00046816,,,2,,,referenced in XDF notes; role not individually identified
+0x4687C,FUN_0004687C,,,5,,,referenced in XDF notes; role not individually identified
+0x46946,FUN_00046946,,,6,,,referenced in XDF notes; role not individually identified
+0x469BC,FUN_000469BC,,,2,,,referenced in XDF notes; role not individually identified
+0x46CFA,FUN_00046CFA,,Fuel,6,Fuel Trim - TPS | 1; Fuel Trim - TPS | 4,"engine RPM, throttle position","reads 2 map(s), e.g. Fuel Trim - TPS | 1; Fuel Trim - TPS | 4"
+0x46D84,FUN_00046D84,,Fuel,3,Fuel Trim - TPS | 1; Fuel Trim - TPS | 4,"engine RPM, throttle position","reads 2 map(s), e.g. Fuel Trim - TPS | 1; Fuel Trim - TPS | 4"
+0x46DF2,FUN_00046DF2,,,3,,,referenced in XDF notes; role not individually identified
+0x46E26,FUN_00046E26,,Fuel,8,Fuel Trim - TPS | 1; Fuel Trim - TPS | 2,"engine RPM, throttle position","reads 2 map(s), e.g. Fuel Trim - TPS | 1; Fuel Trim - TPS | 2"
+0x46EA0,FUN_00046EA0,,Fuel,7,Fuel Trim - TPS | 3,"engine RPM, throttle position","reads 1 map(s), e.g. Fuel Trim - TPS | 3"
+0x46F1E,FUN_00046F1E,,Fuel,3,Fuel Trim - TPS | 4,"engine RPM, throttle position","reads 1 map(s), e.g. Fuel Trim - TPS | 4"
+0x46F7E,FUN_00046F7E,,,5,,,referenced in XDF notes; role not individually identified
+0x4700C,FUN_0004700C,,,1,,,referenced in XDF notes; role not individually identified
+0x470F8,FUN_000470F8,,,1,,,referenced in XDF notes; role not individually identified
+0x4714C,FUN_0004714C,,,3,,,referenced in XDF notes; role not individually identified
+0x47188,FUN_00047188,,,1,,,referenced in XDF notes; role not individually identified
+0x47232,FUN_00047232,,,4,,,referenced in XDF notes; role not individually identified
+0x47296,FUN_00047296,key-on prime pulse,,2,,,key-on prime pulse
+0x476DC,FUN_000476DC,,,3,,,referenced in XDF notes; role not individually identified
+0x477B0,FUN_000477B0,fuel-cut helper,,3,,,fuel-cut helper
+0x47A52,FUN_00047A52,,,4,,,referenced in XDF notes; role not individually identified
+0x47A84,FUN_00047A84,,,8,Cluster A :: Curve 22pt [vs ?] #080; Cluster A :: Curve 22pt [vs ?] #081,,"reads 2 map(s), e.g. Cluster A :: Curve 22pt [vs ?] #080; Cluster A :: Curve 22pt [vs ?] #081"
+0x47ACA,FUN_00047ACA,,,4,,,referenced in XDF notes; role not individually identified
+0x47AEC,FUN_00047AEC,,,4,,,referenced in XDF notes; role not individually identified
+0x47B6C,FUN_00047B6C,IAT air-density correction,,4,Cluster A :: Curve 21pt [vs ?] #084,,IAT air-density correction
+0x47B9C,FUN_00047B9C,,,1,,,referenced in XDF notes; role not individually identified
+0x47C96,FUN_00047C96,,,1,,,referenced in XDF notes; role not individually identified
+0x47CAE,FUN_00047CAE,,,1,,,referenced in XDF notes; role not individually identified
+0x47CF4,FUN_00047CF4,,,10,,,referenced in XDF notes; role not individually identified
+0x47D8E,FUN_00047D8E,,,2,,,referenced in XDF notes; role not individually identified
+0x47E04,FUN_00047E04,,,4,,,referenced in XDF notes; role not individually identified
+0x47ED4,FUN_00047ED4,,,2,,,referenced in XDF notes; role not individually identified
+0x480B2,FUN_000480B2,,,7,,,referenced in XDF notes; role not individually identified
+0x482B4,FUN_000482B4,,,2,,,referenced in XDF notes; role not individually identified
+0x482E2,FUN_000482E2,,,1,,,referenced in XDF notes; role not individually identified
+0x4832E,FUN_0004832E,,Fuel,7,Fuel Trim - TPS | Main; Cluster B :: Map 13x19 [? × RPM] #0B9 (flat),"engine RPM, throttle position","reads 2 map(s), e.g. Fuel Trim - TPS | Main; Cluster B :: Map 13x19 [? × RPM] #0B9 (flat)"
+0x4836A,FUN_0004836A,,,5,,,referenced in XDF notes; role not individually identified
+0x483DE,FUN_000483DE,,,1,,,referenced in XDF notes; role not individually identified
+0x484E0,FUN_000484E0,,,2,,,referenced in XDF notes; role not individually identified
+0x48594,FUN_00048594,,,1,,,referenced in XDF notes; role not individually identified
+0x485C4,FUN_000485C4,,,1,,,referenced in XDF notes; role not individually identified
+0x48606,FUN_00048606,,,9,,,referenced in XDF notes; role not individually identified
+0x48704,FUN_00048704,,,1,,,referenced in XDF notes; role not individually identified
+0x48ACC,FUN_00048ACC,,,4,,,referenced in XDF notes; role not individually identified
+0x48F1C,FUN_00048F1C,,,14,,,referenced in XDF notes; role not individually identified
+0x48F7C,FUN_00048F7C,,,1,,,referenced in XDF notes; role not individually identified
+0x490B2,FUN_000490B2,,,1,,,referenced in XDF notes; role not individually identified
+0x4916E,FUN_0004916E,,,3,,,referenced in XDF notes; role not individually identified
+0x491BC,FUN_000491BC,MAP/TPS fuel-blend weight,,10,,,MAP/TPS fuel-blend weight
+0x492B4,FUN_000492B4,,,6,,,referenced in XDF notes; role not individually identified
+0x4934C,FUN_0004934C,,,4,Cluster A :: Curve 21pt [vs ?] #082,,"reads 1 map(s), e.g. Cluster A :: Curve 21pt [vs ?] #082"
+0x4936C,FUN_0004936C,,,4,Cluster A :: Curve 21pt [vs ?] #083,,"reads 1 map(s), e.g. Cluster A :: Curve 21pt [vs ?] #083"
+0x4938C,FUN_0004938C,,,1,,,referenced in XDF notes; role not individually identified
+0x49456,FUN_00049456,,,14,Cluster A :: Curve 22pt [vs ?] #074 (flat); Cluster A :: Curve 22pt [vs ?] #073; Cluster A :: Curve 22pt [vs ?] #072,,"reads 3 map(s), e.g. Cluster A :: Curve 22pt [vs ?] #074 (flat); Cluster A :: Curve 22pt [vs ?] #073"
+0x49576,FUN_00049576,,,4,,,referenced in XDF notes; role not individually identified
+0x4960C,FUN_0004960C,,,2,,,referenced in XDF notes; role not individually identified
+0x49684,FUN_00049684,,,1,,,referenced in XDF notes; role not individually identified
+0x4969C,FUN_0004969C,,,3,,,referenced in XDF notes; role not individually identified
+0x49702,FUN_00049702,,,6,,,referenced in XDF notes; role not individually identified
+0x49752,FUN_00049752,,,4,,,referenced in XDF notes; role not individually identified
+0x49784,FUN_00049784,,,2,,,referenced in XDF notes; role not individually identified
+0x497CC,FUN_000497CC,,,4,,,referenced in XDF notes; role not individually identified
+0x49C24,FUN_00049C24,,,1,,,referenced in XDF notes; role not individually identified
+0x49E10,FUN_00049E10,decel fuel-cut band select,,5,,,decel fuel-cut band select
+0x4A256,FUN_0004A256,decel fuel-cut state machine,,4,,,decel fuel-cut state machine
+0x4A318,FUN_0004A318,,,4,,,referenced in XDF notes; role not individually identified
+0x4A416,FUN_0004A416,,,4,,,referenced in XDF notes; role not individually identified
+0x4A4CC,FUN_0004A4CC,,,8,,,referenced in XDF notes; role not individually identified
+0x4A54E,FUN_0004A54E,,,4,,,referenced in XDF notes; role not individually identified
+0x4A63E,FUN_0004A63E,,,8,,,referenced in XDF notes; role not individually identified
+0x4AB6A,FUN_0004AB6A,decel fuel-cut tip-in gate,,4,,,decel fuel-cut tip-in gate
+0x4ABB6,FUN_0004ABB6,,,8,Cluster A :: Curve 39pt [vs RPM] #091 (flat); Cluster A :: Curve 39pt [vs RPM] #092 (flat),engine RPM,"reads 2 map(s), e.g. Cluster A :: Curve 39pt [vs RPM] #091 (flat); Cluster A :: Curve 39pt [vs RPM] #092 (flat)"
+0x4ABFC,FUN_0004ABFC,,,4,Cluster A :: Curve 10pt [vs RPM] #090,engine RPM,"reads 1 map(s), e.g. Cluster A :: Curve 10pt [vs RPM] #090"
+0x4AC5C,FUN_0004AC5C,,,2,,,referenced in XDF notes; role not individually identified
+0x4ACA2,FUN_0004ACA2,,,2,,,referenced in XDF notes; role not individually identified
+0x4ACCE,FUN_0004ACCE,,,1,,,referenced in XDF notes; role not individually identified
+0x4AD2E,FUN_0004AD2E,,,2,,,referenced in XDF notes; role not individually identified
+0x4AD7A,FUN_0004AD7A,,,2,,,referenced in XDF notes; role not individually identified
+0x4AF76,FUN_0004AF76,,,2,,,referenced in XDF notes; role not individually identified
+0x4B07C,FUN_0004B07C,,,1,,,referenced in XDF notes; role not individually identified
+0x4B094,FUN_0004B094,,,1,,,referenced in XDF notes; role not individually identified
+0x4B12E,FUN_0004B12E,,,2,,,referenced in XDF notes; role not individually identified
+0x4B1A2,FUN_0004B1A2,,,1,,,referenced in XDF notes; role not individually identified
+0x4B1EE,FUN_0004B1EE,,,5,,,referenced in XDF notes; role not individually identified
+0x4B24A,FUN_0004B24A,,,3,,,referenced in XDF notes; role not individually identified
+0x4B29E,FUN_0004B29E,,,2,,,referenced in XDF notes; role not individually identified
+0x4B2E4,FUN_0004B2E4,,,4,,,referenced in XDF notes; role not individually identified
+0x4B346,FUN_0004B346,,,4,Cluster A :: Curve 17pt [vs RPM] #08B,,"reads 1 map(s), e.g. Cluster A :: Curve 17pt [vs RPM] #08B"
+0x4B364,FUN_0004B364,,,1,,,referenced in XDF notes; role not individually identified
+0x4B3AA,FUN_0004B3AA,,,2,,,referenced in XDF notes; role not individually identified
+0x4B3FE,FUN_0004B3FE,,,6,Cluster B :: Map 6x17 [TP × RPM] #0B3; Cluster B :: Map 6x17 [TP × RPM] #0B5,throttle position,"reads 2 map(s), e.g. Cluster B :: Map 6x17 [TP × RPM] #0B3; Cluster B :: Map 6x17 [TP × RPM] #0B5"
+0x4B43A,FUN_0004B43A,,,6,Cluster A :: Curve 17pt [vs RPM] #08E; Cluster A :: Curve 17pt [vs RPM] #08F,,"reads 2 map(s), e.g. Cluster A :: Curve 17pt [vs RPM] #08E; Cluster A :: Curve 17pt [vs RPM] #08F"
+0x4B46E,FUN_0004B46E,,,4,,,referenced in XDF notes; role not individually identified
+0x4B528,FUN_0004B528,,,6,Cluster A :: Curve 14pt [vs ?] #08C; Cluster A :: Curve 14pt [vs ?] #08D,,"reads 2 map(s), e.g. Cluster A :: Curve 14pt [vs ?] #08C; Cluster A :: Curve 14pt [vs ?] #08D"
+0x4B560,FUN_0004B560,,,4,,,referenced in XDF notes; role not individually identified
+0x4B59A,FUN_0004B59A,,,3,,,referenced in XDF notes; role not individually identified
+0x4B624,FUN_0004B624,,,6,,,referenced in XDF notes; role not individually identified
+0x4B752,FUN_0004B752,,,1,,,referenced in XDF notes; role not individually identified
+0x4B76A,FUN_0004B76A,,Ignition,4,IGN :: Correction - 14,engine RPM,"reads 1 map(s), e.g. IGN :: Correction - 14"
+0x4B7C0,FUN_0004B7C0,,,4,,,referenced in XDF notes; role not individually identified
+0x4B85E,FUN_0004B85E,,,9,,,referenced in XDF notes; role not individually identified
+0x4B91C,FUN_0004B91C,,,2,,,referenced in XDF notes; role not individually identified
+0x4B9DA,FUN_0004B9DA,,,12,,,referenced in XDF notes; role not individually identified
+0x4BAAE,FUN_0004BAAE,per-cylinder fuel cut,,19,,,per-cylinder fuel cut
+0x4BC76,FUN_0004BC76,,,32,,,referenced in XDF notes; role not individually identified
+0x4BF7E,FUN_0004BF7E,,,2,,,referenced in XDF notes; role not individually identified
+0x4BF9E,FUN_0004BF9E,,,12,,,referenced in XDF notes; role not individually identified
+0x4C00C,FUN_0004C00C,,,7,Cluster B :: Map 7x7 [? × ?] #0AD,,"reads 1 map(s), e.g. Cluster B :: Map 7x7 [? × ?] #0AD"
+0x4C0D2,FUN_0004C0D2,,,1,,,referenced in XDF notes; role not individually identified
+0x4C15E,FUN_0004C15E,,,12,Cluster A :: Curve 22pt [vs ?] #088; Cluster A :: Curve 22pt [vs ?] #089 (flat); Cluster A :: Curve 22pt [vs ?] #08A (flat),,"reads 3 map(s), e.g. Cluster A :: Curve 22pt [vs ?] #088; Cluster A :: Curve 22pt [vs ?] #089 (flat)"
+0x4C224,FUN_0004C224,,,4,,,referenced in XDF notes; role not individually identified
+0x4C266,FUN_0004C266,,,7,,,referenced in XDF notes; role not individually identified
+0x4C2DA,FUN_0004C2DA,idle-speed control,,10,,,idle-speed control
+0x4C468,FUN_0004C468,,,2,,,referenced in XDF notes; role not individually identified
+0x4C51A,FUN_0004C51A,,Ignition,6,IGN :: Correction - 3,engine RPM,"reads 1 map(s), e.g. IGN :: Correction - 3"
+0x4C5AC,FUN_0004C5AC,ECT ignition compensation,Ignition,13,IGN :: Correction - 1,engine RPM,ECT ignition compensation
+0x4C67A,FUN_0004C67A,,Ignition,37,IGN :: Correction Map - 1; IGN :: Correction - 2; IGN :: Correction - 10,"engine RPM, throttle position","reads 12 map(s), e.g. IGN :: Correction Map - 1; IGN :: Correction - 2"
+0x4C9BA,FUN_0004C9BA,,,4,,,referenced in XDF notes; role not individually identified
+0x4C9EC,FUN_0004C9EC,,,2,,,referenced in XDF notes; role not individually identified
+0x4CA10,FUN_0004CA10,,,2,,,referenced in XDF notes; role not individually identified
+0x4CA4E,FUN_0004CA4E,,,2,,,referenced in XDF notes; role not individually identified
+0x4CA72,FUN_0004CA72,,,2,,,referenced in XDF notes; role not individually identified
+0x4CAA4,FUN_0004CAA4,,,2,,,referenced in XDF notes; role not individually identified
+0x4CBD2,FUN_0004CBD2,,,2,,,referenced in XDF notes; role not individually identified
+0x4CCAA,FUN_0004CCAA,,,4,Cluster D :: Curve 12pt [vs RPM] #22A,engine RPM,"reads 1 map(s), e.g. Cluster D :: Curve 12pt [vs RPM] #22A"
+0x4CD6A,FUN_0004CD6A,,,13,,,referenced in XDF notes; role not individually identified
+0x4CE34,FUN_0004CE34,,,3,,,referenced in XDF notes; role not individually identified
+0x4CEB6,FUN_0004CEB6,,,4,,,referenced in XDF notes; role not individually identified
+0x4CF3C,FUN_0004CF3C,,,6,Cluster D :: Curve 8pt [vs ?] #268,,"reads 1 map(s), e.g. Cluster D :: Curve 8pt [vs ?] #268"
+0x4D11C,FUN_0004D11C,,,1,,,referenced in XDF notes; role not individually identified
+0x4D246,FUN_0004D246,,,5,,,referenced in XDF notes; role not individually identified
+0x4D374,FUN_0004D374,,,4,,,referenced in XDF notes; role not individually identified
+0x4D3C8,FUN_0004D3C8,,,4,,,referenced in XDF notes; role not individually identified
+0x4D410,FUN_0004D410,,,4,,,referenced in XDF notes; role not individually identified
+0x4D458,FUN_0004D458,,,4,,,referenced in XDF notes; role not individually identified
+0x4D4A4,FUN_0004D4A4,,,4,,,referenced in XDF notes; role not individually identified
+0x4D53E,FUN_0004D53E,,,8,,,referenced in XDF notes; role not individually identified
+0x4D602,FUN_0004D602,,,135,Cluster D :: Curve 21pt [vs ?] #1E8; Cluster D :: Curve 21pt [vs ?] #1E9; Cluster D :: Curve 21pt [vs ?] #1EA,,"reads 62 map(s), e.g. Cluster D :: Curve 21pt [vs ?] #1E8; Cluster D :: Curve 21pt [vs ?] #1E9"
+0x4D9DE,FUN_0004D9DE,,,23,Cluster D :: Curve 9pt [vs ?] #22B; Cluster D :: Curve 9pt [vs ?] #22C; Cluster D :: Curve 9pt [vs ?] #22D,,"reads 11 map(s), e.g. Cluster D :: Curve 9pt [vs ?] #22B; Cluster D :: Curve 9pt [vs ?] #22C"
+0x4DA8E,FUN_0004DA8E,,,19,Cluster D :: Curve 15pt [vs RPM] #236; Cluster D :: Curve 15pt [vs RPM] #237; Cluster D :: Curve 15pt [vs RPM] #238,engine RPM,"reads 6 map(s), e.g. Cluster D :: Curve 15pt [vs RPM] #236; Cluster D :: Curve 15pt [vs RPM] #237"
+0x4DB4C,FUN_0004DB4C,,,6,,,referenced in XDF notes; role not individually identified
+0x4DBD6,FUN_0004DBD6,,,102,,,referenced in XDF notes; role not individually identified
+0x4DDFC,FUN_0004DDFC,,Throttle/ETV,104,ETV - Grip Curve 1; ETV - Grip Curve 2; ETV - Grip Curve 3,grip / APS %,"reads 44 map(s), e.g. ETV - Grip Curve 1; ETV - Grip Curve 2"
+0x4E140,FUN_0004E140,,,1,,,referenced in XDF notes; role not individually identified
+0x4E2B4,FUN_0004E2B4,,,20,Cluster D :: Map 10x6 [TP × RPM] #275; Cluster D :: Map 10x6 [TP × RPM] #277; Cluster D :: Map 10x6 [TP × RPM] #279,"engine RPM, throttle position","reads 9 map(s), e.g. Cluster D :: Map 10x6 [TP × RPM] #275; Cluster D :: Map 10x6 [TP × RPM] #277"
+0x4E59E,FUN_0004E59E,,,16,Cluster D :: Curve 32pt [vs index] #269; Cluster D :: Curve 32pt [vs index] #26A; Cluster D :: Curve 32pt [vs index] #26B,,"reads 4 map(s), e.g. Cluster D :: Curve 32pt [vs index] #269; Cluster D :: Curve 32pt [vs index] #26A"
+0x4E704,FUN_0004E704,,,8,Cluster D :: Curve 39pt [vs RPM] #1E5; Cluster D :: Curve 39pt [vs RPM] #1E6,engine RPM,"reads 2 map(s), e.g. Cluster D :: Curve 39pt [vs RPM] #1E5; Cluster D :: Curve 39pt [vs RPM] #1E6"
+0x4E73A,FUN_0004E73A,,,4,,,referenced in XDF notes; role not individually identified
+0x4E830,FUN_0004E830,,,3,,,referenced in XDF notes; role not individually identified
+0x4E860,FUN_0004E860,,,2,,,referenced in XDF notes; role not individually identified
+0x4E8EE,FUN_0004E8EE,,,2,,,referenced in XDF notes; role not individually identified
+0x4E912,FUN_0004E912,,,1,,,referenced in XDF notes; role not individually identified
+0x4E936,FUN_0004E936,,,1,,,referenced in XDF notes; role not individually identified
+0x4EA30,FUN_0004EA30,,,1,,,referenced in XDF notes; role not individually identified
+0x4EAA2,FUN_0004EAA2,,,2,,,referenced in XDF notes; role not individually identified
+0x4EAEA,FUN_0004EAEA,,,1,,,referenced in XDF notes; role not individually identified
+0x4EB0A,FUN_0004EB0A,,,3,,,referenced in XDF notes; role not individually identified
+0x4EB5E,FUN_0004EB5E,,,2,,,referenced in XDF notes; role not individually identified
+0x4EBA6,FUN_0004EBA6,,,1,,,referenced in XDF notes; role not individually identified
+0x4EBC6,FUN_0004EBC6,,,2,,,referenced in XDF notes; role not individually identified
+0x4EC50,FUN_0004EC50,,,2,,,referenced in XDF notes; role not individually identified
+0x4EF36,FUN_0004EF36,,,13,,,referenced in XDF notes; role not individually identified
+0x4EFC2,FUN_0004EFC2,,,10,,,referenced in XDF notes; role not individually identified
+0x4F058,FUN_0004F058,,,12,Cluster D :: Curve 8pt [vs ?] #1E7 (flat),,"reads 1 map(s), e.g. Cluster D :: Curve 8pt [vs ?] #1E7 (flat)"
+0x4F16E,FUN_0004F16E,,,2,,,referenced in XDF notes; role not individually identified
+0x4F180,FUN_0004F180,,,6,,,referenced in XDF notes; role not individually identified
+0x4F2A0,FUN_0004F2A0,,,2,,,referenced in XDF notes; role not individually identified
+0x4F2B8,FUN_0004F2B8,,,7,,,referenced in XDF notes; role not individually identified
+0x4F364,FUN_0004F364,,,2,,,referenced in XDF notes; role not individually identified
+0x4F3A0,FUN_0004F3A0,,Ignition,7,IGN :: Volt-Dwell - 1; IGN :: Volt-Dwell - 2,engine RPM,"reads 2 map(s), e.g. IGN :: Volt-Dwell - 1; IGN :: Volt-Dwell - 2"
+0x4F408,FUN_0004F408,,,1,,,referenced in XDF notes; role not individually identified
+0x4F64C,FUN_0004F64C,,,1,,,referenced in XDF notes; role not individually identified
+0x4F7A2,FUN_0004F7A2,,,8,,,referenced in XDF notes; role not individually identified
+0x4F886,FUN_0004F886,,,2,,,referenced in XDF notes; role not individually identified
+0x4FA02,FUN_0004FA02,ignition-output per-cylinder,,32,,,ignition-output per-cylinder
+0x4FBCC,FUN_0004FBCC,ignition coil-inhibit (spark cut),,11,,,ignition coil-inhibit (spark cut)
+0x4FD0E,FUN_0004FD0E,,Ignition,7,IGN :: Correction - 21,,"reads 1 map(s), e.g. IGN :: Correction - 21"
+0x4FDBE,FUN_0004FDBE,,,2,,,referenced in XDF notes; role not individually identified
+0x4FE00,FUN_0004FE00,,Ignition,8,IGN :: Correction - 22,,"reads 1 map(s), e.g. IGN :: Correction - 22"
+0x4FEA4,FUN_0004FEA4,,,2,,,referenced in XDF notes; role not individually identified
+0x4FEF4,FUN_0004FEF4,,,6,,,referenced in XDF notes; role not individually identified
+0x4FFA2,FUN_0004FFA2,,Ignition,2,IGN :: Correction - 24,,"reads 1 map(s), e.g. IGN :: Correction - 24"
+0x4FFEC,FUN_0004FFEC,,,4,,,referenced in XDF notes; role not individually identified
+0x5002C,FUN_0005002C,,,1,,,referenced in XDF notes; role not individually identified
+0x5006A,FUN_0005006A,,Ignition,2,IGN :: Correction - 23,,"reads 1 map(s), e.g. IGN :: Correction - 23"
+0x500A8,FUN_000500A8,,,11,Cluster D :: Curve 27pt [vs ?] #287 (flat); Cluster D :: Curve 27pt [vs ?] #288 (flat),,"reads 2 map(s), e.g. Cluster D :: Curve 27pt [vs ?] #287 (flat); Cluster D :: Curve 27pt [vs ?] #288 (flat)"
+0x50152,FUN_00050152,,,1,,,referenced in XDF notes; role not individually identified
+0x5018A,FUN_0005018A,,,1,,,referenced in XDF notes; role not individually identified
+0x50258,FUN_00050258,,,1,,,referenced in XDF notes; role not individually identified
+0x50306,FUN_00050306,,,5,,,referenced in XDF notes; role not individually identified
+0x503FE,FUN_000503FE,,,6,,,referenced in XDF notes; role not individually identified
+0x504EC,FUN_000504EC,,,7,,,referenced in XDF notes; role not individually identified
+0x505DA,FUN_000505DA,,Ignition,5,IGN :: Correction - 44,,"reads 1 map(s), e.g. IGN :: Correction - 44"
+0x50612,FUN_00050612,,,11,,,referenced in XDF notes; role not individually identified
+0x50766,FUN_00050766,,,2,,,referenced in XDF notes; role not individually identified
+0x507DE,FUN_000507DE,,,2,,,referenced in XDF notes; role not individually identified
+0x5087C,FUN_0005087C,,,1,,,referenced in XDF notes; role not individually identified
+0x50930,FUN_00050930,,,2,,,referenced in XDF notes; role not individually identified
+0x509A2,FUN_000509A2,ride-mode variant feature,,36,,,ride-mode variant feature
+0x50ACA,FUN_00050ACA,,,2,,,referenced in XDF notes; role not individually identified
+0x50BA2,FUN_00050BA2,,,4,,,referenced in XDF notes; role not individually identified
+0x50C92,FUN_00050C92,,,6,,,referenced in XDF notes; role not individually identified
+0x50CEC,FUN_00050CEC,,,2,,,referenced in XDF notes; role not individually identified
+0x50DD4,FUN_00050DD4,,,2,,,referenced in XDF notes; role not individually identified
+0x50E38,FUN_00050E38,,,2,,,referenced in XDF notes; role not individually identified
+0x50EE2,FUN_00050EE2,,,1,,,referenced in XDF notes; role not individually identified
+0x50F52,FUN_00050F52,,Ignition,10,IGN :: Correction - 40; IGN :: Correction - 41; IGN :: Correction - 42,engine RPM,"reads 4 map(s), e.g. IGN :: Correction - 40; IGN :: Correction - 41"
+0x51104,FUN_00051104,,,4,,,referenced in XDF notes; role not individually identified
+0x51134,FUN_00051134,,,4,,,referenced in XDF notes; role not individually identified
+0x511D8,FUN_000511D8,,,2,,,referenced in XDF notes; role not individually identified
+0x51208,FUN_00051208,,,2,,,referenced in XDF notes; role not individually identified
+0x51238,FUN_00051238,,,2,,,referenced in XDF notes; role not individually identified
+0x51272,FUN_00051272,,,12,Cluster D :: Map 15x3 [? × RPM] #1D9; Cluster D :: Map 15x3 [? × RPM] #1DB; Cluster D :: Map 15x3 [? × RPM] #1DD,,"reads 3 map(s), e.g. Cluster D :: Map 15x3 [? × RPM] #1D9; Cluster D :: Map 15x3 [? × RPM] #1DB"
+0x5130C,FUN_0005130C,,,12,,,referenced in XDF notes; role not individually identified
+0x5140A,FUN_0005140A,,,2,,,referenced in XDF notes; role not individually identified
+0x5145C,FUN_0005145C,,Ignition,24,IGN :: Correction - 15; IGN :: Correction - 16; IGN :: Correction - 17,engine RPM,"reads 6 map(s), e.g. IGN :: Correction - 15; IGN :: Correction - 16"
+0x5150E,FUN_0005150E,,,2,,,referenced in XDF notes; role not individually identified
+0x51604,FUN_00051604,,,8,,,referenced in XDF notes; role not individually identified
+0x5167E,FUN_0005167E,,,1,,,referenced in XDF notes; role not individually identified
+0x5171C,FUN_0005171C,,,15,,,referenced in XDF notes; role not individually identified
+0x517B4,FUN_000517B4,,,21,,,referenced in XDF notes; role not individually identified
+0x518EC,FUN_000518EC,,,6,,,referenced in XDF notes; role not individually identified
+0x51A38,FUN_00051A38,,,1,,,referenced in XDF notes; role not individually identified
+0x51A90,FUN_00051A90,ignition gear/mode select,,2,,,ignition gear/mode select
+0x51B02,FUN_00051B02,,,13,,,referenced in XDF notes; role not individually identified
+0x51B8E,FUN_00051B8E,,,4,,,referenced in XDF notes; role not individually identified
+0x51BDE,FUN_00051BDE,,,2,,,referenced in XDF notes; role not individually identified
+0x51C8C,FUN_00051C8C,,,2,,,referenced in XDF notes; role not individually identified
+0x51CB0,FUN_00051CB0,,,6,,,referenced in XDF notes; role not individually identified
+0x51D28,FUN_00051D28,,Ignition,13,IGN :: Correction - 26; IGN :: Correction - 28; IGN :: Correction - 30,engine RPM,"reads 6 map(s), e.g. IGN :: Correction - 26; IGN :: Correction - 28"
+0x51D92,FUN_00051D92,,Ignition,13,IGN :: Correction - 27; IGN :: Correction - 29; IGN :: Correction - 31,engine RPM,"reads 6 map(s), e.g. IGN :: Correction - 27; IGN :: Correction - 29"
+0x51DFC,FUN_00051DFC,,,6,,,referenced in XDF notes; role not individually identified
+0x51E86,FUN_00051E86,,,4,,,referenced in XDF notes; role not individually identified
+0x51F14,FUN_00051F14,,Ignition,9,IGN :: Correction - 38,,"reads 1 map(s), e.g. IGN :: Correction - 38"
+0x51F8C,FUN_00051F8C,,,10,,,referenced in XDF notes; role not individually identified
+0x520E0,FUN_000520E0,,Ignition,10,IGN :: Correction - 25,,"reads 1 map(s), e.g. IGN :: Correction - 25"
+0x52166,FUN_00052166,,,6,,,referenced in XDF notes; role not individually identified
+0x52218,FUN_00052218,,,4,,,referenced in XDF notes; role not individually identified
+0x52266,FUN_00052266,ignition saturating clamp,Ignition,11,IGN :: Correction - 39,,ignition saturating clamp
+0x523A0,FUN_000523A0,,,13,,,referenced in XDF notes; role not individually identified
+0x52404,FUN_00052404,,,13,,,referenced in XDF notes; role not individually identified
+0x52468,FUN_00052468,,,13,,,referenced in XDF notes; role not individually identified
+0x52526,FUN_00052526,,Ignition,19,IGN :: Offset Timing - 1; IGN :: Offset Timing - 2; IGN :: Offset Timing - 3,"engine RPM, throttle position","reads 4 map(s), e.g. IGN :: Offset Timing - 1; IGN :: Offset Timing - 2"
+0x525A0,FUN_000525A0,,Ignition,16,IGN :: Offset Timing - 7; IGN :: Offset Timing - 8; IGN :: Offset Timing - 9,"engine RPM, throttle position","reads 3 map(s), e.g. IGN :: Offset Timing - 7; IGN :: Offset Timing - 8"
+0x525EE,FUN_000525EE,,Ignition,18,IGN :: Offset Timing - 5; IGN :: Offset Timing - 6,"engine RPM, throttle position","reads 2 map(s), e.g. IGN :: Offset Timing - 5; IGN :: Offset Timing - 6"
+0x5262A,FUN_0005262A,,Ignition,17,IGN :: Offset Timing - 10; IGN :: Offset Timing - 11; IGN :: Offset Timing - 12,"engine RPM, throttle position","reads 4 map(s), e.g. IGN :: Offset Timing - 10; IGN :: Offset Timing - 11"
+0x52688,FUN_00052688,,Ignition,8,IGN :: Advance Timing - Cyl 1; IGN :: Advance Timing - Cyl 2; IGN :: Advance Timing - Cyl 3,"engine RPM, throttle position","reads 4 map(s), e.g. IGN :: Advance Timing - Cyl 1; IGN :: Advance Timing - Cyl 2"
+0x5271E,FUN_0005271E,,,2,,,referenced in XDF notes; role not individually identified
+0x5275A,FUN_0005275A,,,12,,,referenced in XDF notes; role not individually identified
+0x5286E,FUN_0005286E,,,4,,,referenced in XDF notes; role not individually identified
+0x528A6,FUN_000528A6,,,15,,,referenced in XDF notes; role not individually identified
+0x52A2C,FUN_00052A2C,,,4,Cluster D :: Curve 12pt [vs RPM] #28D (flat),engine RPM,"reads 1 map(s), e.g. Cluster D :: Curve 12pt [vs RPM] #28D (flat)"
+0x52A4E,FUN_00052A4E,,,4,,,referenced in XDF notes; role not individually identified
+0x52A70,FUN_00052A70,,,1,,,referenced in XDF notes; role not individually identified
+0x52AEA,FUN_00052AEA,,,2,,,referenced in XDF notes; role not individually identified
+0x52B5E,FUN_00052B5E,,,8,,,referenced in XDF notes; role not individually identified
+0x52C1E,FUN_00052C1E,,,6,,,referenced in XDF notes; role not individually identified
+0x52C7C,FUN_00052C7C,,,3,,,referenced in XDF notes; role not individually identified
+0x52CD4,FUN_00052CD4,,,16,,,referenced in XDF notes; role not individually identified
+0x52D34,FUN_00052D34,,,2,,,referenced in XDF notes; role not individually identified
+0x52DFA,FUN_00052DFA,,,4,,,referenced in XDF notes; role not individually identified
+0x52E5C,FUN_00052E5C,,,1,,,referenced in XDF notes; role not individually identified
+0x52E9A,FUN_00052E9A,,,4,,,referenced in XDF notes; role not individually identified
+0x52EE4,FUN_00052EE4,,,4,,,referenced in XDF notes; role not individually identified
+0x52F74,FUN_00052F74,,,10,Cluster D :: Curve 22pt [vs ?] #298 (flat),,"reads 1 map(s), e.g. Cluster D :: Curve 22pt [vs ?] #298 (flat)"
+0x5303C,FUN_0005303C,,,4,,,referenced in XDF notes; role not individually identified
+0x5307C,FUN_0005307C,,,6,,,referenced in XDF notes; role not individually identified
+0x53130,FUN_00053130,,,2,,,referenced in XDF notes; role not individually identified
+0x531EE,FUN_000531EE,,,6,Cluster D :: Curve 8pt [vs ?] #28A (flat),,"reads 1 map(s), e.g. Cluster D :: Curve 8pt [vs ?] #28A (flat)"
+0x5321A,FUN_0005321A,,,4,Cluster D :: Curve 8pt [vs ?] #28B (flat),,"reads 1 map(s), e.g. Cluster D :: Curve 8pt [vs ?] #28B (flat)"
+0x53264,FUN_00053264,,,8,,,referenced in XDF notes; role not individually identified
+0x532D0,FUN_000532D0,,,9,,,referenced in XDF notes; role not individually identified
+0x53538,FUN_00053538,,,5,,,referenced in XDF notes; role not individually identified
+0x5367C,FUN_0005367C,,,1,,,referenced in XDF notes; role not individually identified
+0x5368E,FUN_0005368E,,,2,,,referenced in XDF notes; role not individually identified
+0x536CE,FUN_000536CE,,,4,,,referenced in XDF notes; role not individually identified
+0x53790,FUN_00053790,,,4,Cluster D :: Curve 22pt [vs ?] #293 (flat),,"reads 1 map(s), e.g. Cluster D :: Curve 22pt [vs ?] #293 (flat)"
+0x537D6,FUN_000537D6,,,9,,,referenced in XDF notes; role not individually identified
+0x5384A,FUN_0005384A,,,4,,,referenced in XDF notes; role not individually identified
+0x538C4,FUN_000538C4,,,4,,,referenced in XDF notes; role not individually identified
+0x53B4A,FUN_00053B4A,,,12,,,referenced in XDF notes; role not individually identified
+0x53C2E,FUN_00053C2E,,,16,Cluster D :: Curve 5pt [vs ?] #295; Cluster D :: Curve 5pt [vs ?] #296,,"reads 2 map(s), e.g. Cluster D :: Curve 5pt [vs ?] #295; Cluster D :: Curve 5pt [vs ?] #296"
+0x53D8A,FUN_00053D8A,,,2,,,referenced in XDF notes; role not individually identified
+0x53DD8,FUN_00053DD8,,,16,Cluster D :: Map 22x9 [RPM × ?] #2A4; Cluster D :: Map 22x9 [RPM × ?] #2A6; Cluster D :: Map 22x9 [RPM × ?] #2A8,engine RPM,"reads 3 map(s), e.g. Cluster D :: Map 22x9 [RPM × ?] #2A4; Cluster D :: Map 22x9 [RPM × ?] #2A6"
+0x53F00,FUN_00053F00,,,4,,,referenced in XDF notes; role not individually identified
+0x53F5A,FUN_00053F5A,,,2,,,referenced in XDF notes; role not individually identified
+0x53FAC,FUN_00053FAC,,,16,Cluster D :: Curve 22pt [vs RPM] #29A (flat); Cluster D :: Curve 22pt [vs RPM] #29B (flat); Cluster D :: Curve 22pt [vs RPM] #29C (flat),engine RPM,"reads 3 map(s), e.g. Cluster D :: Curve 22pt [vs RPM] #29A (flat); Cluster D :: Curve 22pt [vs RPM] #29B (flat)"
+0x54094,FUN_00054094,,,4,,,referenced in XDF notes; role not individually identified
+0x54172,FUN_00054172,,,1,,,referenced in XDF notes; role not individually identified
+0x541AC,FUN_000541AC,,,2,,,referenced in XDF notes; role not individually identified
+0x541E6,FUN_000541E6,,,8,Cluster D :: Curve 9pt [vs ?] #28E; Cluster D :: Curve 9pt [vs ?] #28F,,"reads 2 map(s), e.g. Cluster D :: Curve 9pt [vs ?] #28E; Cluster D :: Curve 9pt [vs ?] #28F"
+0x5425E,FUN_0005425E,,,4,Cluster D :: Curve 22pt [vs ?] #290,,"reads 1 map(s), e.g. Cluster D :: Curve 22pt [vs ?] #290"
+0x546CA,FUN_000546CA,,,6,,,referenced in XDF notes; role not individually identified
+0x5477A,FUN_0005477A,,,6,,,referenced in XDF notes; role not individually identified
+0x54824,FUN_00054824,,,1,,,referenced in XDF notes; role not individually identified
+0x54890,FUN_00054890,,,2,,,referenced in XDF notes; role not individually identified
+0x548CC,FUN_000548CC,,,1,,,referenced in XDF notes; role not individually identified
+0x548E4,FUN_000548E4,,,2,,,referenced in XDF notes; role not individually identified
+0x5492C,FUN_0005492C,,,1,,,referenced in XDF notes; role not individually identified
+0x549A4,FUN_000549A4,,,8,,,referenced in XDF notes; role not individually identified
+0x54A34,FUN_00054A34,,,4,,,referenced in XDF notes; role not individually identified
+0x54A8A,FUN_00054A8A,,,2,,,referenced in XDF notes; role not individually identified
+0x54AA2,FUN_00054AA2,,,4,,,referenced in XDF notes; role not individually identified
+0x54AF8,FUN_00054AF8,,,2,,,referenced in XDF notes; role not individually identified
+0x54B10,FUN_00054B10,,,4,,,referenced in XDF notes; role not individually identified
+0x54B66,FUN_00054B66,,,2,,,referenced in XDF notes; role not individually identified
+0x5502E,FUN_0005502E,,,3,,,referenced in XDF notes; role not individually identified
+0x550CE,FUN_000550CE,,,1,,,referenced in XDF notes; role not individually identified
+0x5518E,FUN_0005518E,,,9,Cluster D :: Curve 16pt [vs ?] #2AB,,"reads 1 map(s), e.g. Cluster D :: Curve 16pt [vs ?] #2AB"
+0x5543A,FUN_0005543A,,,1,,,referenced in XDF notes; role not individually identified
+0x554FE,FUN_000554FE,,,1,,,referenced in XDF notes; role not individually identified
+0x556CA,FUN_000556CA,,,6,,,referenced in XDF notes; role not individually identified
+0x557AC,FUN_000557AC,,,1,,,referenced in XDF notes; role not individually identified
+0x55834,FUN_00055834,,,1,,,referenced in XDF notes; role not individually identified
+0x558E2,FUN_000558E2,,,1,,,referenced in XDF notes; role not individually identified
+0x55A4E,FUN_00055A4E,,,1,,,referenced in XDF notes; role not individually identified
+0x55ABE,FUN_00055ABE,,,2,,,referenced in XDF notes; role not individually identified
+0x55B14,FUN_00055B14,,,2,,,referenced in XDF notes; role not individually identified
+0x55B88,FUN_00055B88,,,2,,,referenced in XDF notes; role not individually identified
+0x55BE0,FUN_00055BE0,,,2,,,referenced in XDF notes; role not individually identified
+0x55C12,FUN_00055C12,,,2,,,referenced in XDF notes; role not individually identified
+0x55C88,FUN_00055C88,,,2,,,referenced in XDF notes; role not individually identified
+0x55DA2,FUN_00055DA2,,,2,,,referenced in XDF notes; role not individually identified
+0x55DE4,FUN_00055DE4,,,2,,,referenced in XDF notes; role not individually identified
+0x55EE2,FUN_00055EE2,,,1,,,referenced in XDF notes; role not individually identified
+0x5602C,FUN_0005602C,,,3,Hardware Nr.,,"reads 1 map(s), e.g. Hardware Nr."
+0x56056,FUN_00056056,,,4,Cluster D :: Curve 11pt [vs index] #2AD,,"reads 1 map(s), e.g. Cluster D :: Curve 11pt [vs index] #2AD"
+0x5607E,FUN_0005607E,,,4,Cluster D :: Curve 11pt [vs index] #2AE,,"reads 1 map(s), e.g. Cluster D :: Curve 11pt [vs index] #2AE"
+0x560A6,FUN_000560A6,,,3,Software Upgrade Nr.,,"reads 1 map(s), e.g. Software Upgrade Nr."
+0x560D0,FUN_000560D0,,,4,Cluster D :: Curve 16pt [vs index] #2B0,,"reads 1 map(s), e.g. Cluster D :: Curve 16pt [vs index] #2B0"
+0x56106,FUN_00056106,,,4,,,referenced in XDF notes; role not individually identified
+0x5627E,FUN_0005627E,rear-speed/odometer calc,,2,,,rear-speed/odometer calc
+0x56310,FUN_00056310,,,2,,,referenced in XDF notes; role not individually identified
+0x563A8,FUN_000563A8,,,2,,,referenced in XDF notes; role not individually identified
+0x56502,FUN_00056502,,,2,,,referenced in XDF notes; role not individually identified
+0x56538,FUN_00056538,,,2,,,referenced in XDF notes; role not individually identified
+0x566AC,FUN_000566AC,,,8,,,referenced in XDF notes; role not individually identified
+0x56768,FUN_00056768,,,3,,,referenced in XDF notes; role not individually identified
+0x567BE,FUN_000567BE,,,10,,,referenced in XDF notes; role not individually identified
+0x5698E,FUN_0005698E,,,10,,,referenced in XDF notes; role not individually identified
+0x56A54,FUN_00056A54,,,5,,,referenced in XDF notes; role not individually identified
+0x56AD6,FUN_00056AD6,,,2,,,referenced in XDF notes; role not individually identified
+0x59CF4,FUN_00059CF4,,,2,,,referenced in XDF notes; role not individually identified
+0x59D5A,FUN_00059D5A,,,1,,,referenced in XDF notes; role not individually identified
+0x59DC0,FUN_00059DC0,,,1,,,referenced in XDF notes; role not individually identified
+0x5ABA4,FUN_0005ABA4,,,1,,,referenced in XDF notes; role not individually identified
+0x5ACB0,FUN_0005ACB0,,,2,,,referenced in XDF notes; role not individually identified
+0x5AE5A,FUN_0005AE5A,,,7,,,referenced in XDF notes; role not individually identified
+0x5AEE6,FUN_0005AEE6,,,1,,,referenced in XDF notes; role not individually identified
+0x5AF26,FUN_0005AF26,,,2,,,referenced in XDF notes; role not individually identified
+0x5AF98,FUN_0005AF98,,,4,,,referenced in XDF notes; role not individually identified
+0x5AFF4,FUN_0005AFF4,,,2,,,referenced in XDF notes; role not individually identified
+0x5B028,FUN_0005B028,,,3,,,referenced in XDF notes; role not individually identified
+0x5B082,FUN_0005B082,,,4,,,referenced in XDF notes; role not individually identified
+0x5B218,FUN_0005B218,,,2,,,referenced in XDF notes; role not individually identified
+0x5B264,FUN_0005B264,,,2,,,referenced in XDF notes; role not individually identified
+0x5B488,FUN_0005B488,,,19,,,referenced in XDF notes; role not individually identified
+0x5B702,FUN_0005B702,,,1,,,referenced in XDF notes; role not individually identified
+0x5B74C,FUN_0005B74C,,,5,,,referenced in XDF notes; role not individually identified
+0x5B7A6,FUN_0005B7A6,,,1,,,referenced in XDF notes; role not individually identified
+0x5B83E,FUN_0005B83E,,,2,,,referenced in XDF notes; role not individually identified
+0x5B9B0,FUN_0005B9B0,,,2,,,referenced in XDF notes; role not individually identified
+0x5BA0A,FUN_0005BA0A,,,2,,,referenced in XDF notes; role not individually identified
+0x5BA5E,FUN_0005BA5E,,,4,,,referenced in XDF notes; role not individually identified
+0x5BAA0,FUN_0005BAA0,,,3,,,referenced in XDF notes; role not individually identified
+0x5BAE2,FUN_0005BAE2,,,6,,,referenced in XDF notes; role not individually identified
+0x5BB50,FUN_0005BB50,,,2,,,referenced in XDF notes; role not individually identified
+0x5BCF2,FUN_0005BCF2,,,6,,,referenced in XDF notes; role not individually identified
+0x5BDB4,FUN_0005BDB4,5 ms starter task,,0,,,5 ms starter task
+0x5BF9A,FUN_0005BF9A,,,1,,,referenced in XDF notes; role not individually identified
+0x5BFF0,FUN_0005BFF0,,,5,,,referenced in XDF notes; role not individually identified
+0x5C020,FUN_0005C020,,,8,,,referenced in XDF notes; role not individually identified
+0x5C086,FUN_0005C086,,,4,,,referenced in XDF notes; role not individually identified
+0x5C0B6,FUN_0005C0B6,,,8,,,referenced in XDF notes; role not individually identified
+0x5C12A,FUN_0005C12A,,,2,,,referenced in XDF notes; role not individually identified
+0x5C15E,FUN_0005C15E,,,5,,,referenced in XDF notes; role not individually identified
+0x5C1E2,FUN_0005C1E2,,,4,,,referenced in XDF notes; role not individually identified
+0x5C212,FUN_0005C212,,,8,,,referenced in XDF notes; role not individually identified
+0x5C278,FUN_0005C278,,,4,,,referenced in XDF notes; role not individually identified
+0x5C2A8,FUN_0005C2A8,,,8,,,referenced in XDF notes; role not individually identified
+0x5C33C,FUN_0005C33C,,,4,,,referenced in XDF notes; role not individually identified
+0x5C36C,FUN_0005C36C,,,1,,,referenced in XDF notes; role not individually identified
+0x5C3C8,FUN_0005C3C8,,,4,,,referenced in XDF notes; role not individually identified
+0x5C466,FUN_0005C466,,,4,,,referenced in XDF notes; role not individually identified
+0x5C59C,FUN_0005C59C,,,2,,,referenced in XDF notes; role not individually identified
+0x5C610,FUN_0005C610,,,1,,,referenced in XDF notes; role not individually identified
+0x5C660,FUN_0005C660,,,2,,,referenced in XDF notes; role not individually identified
+0x5C76A,FUN_0005C76A,,,4,,,referenced in XDF notes; role not individually identified
+0x5C79A,FUN_0005C79A,,,4,,,referenced in XDF notes; role not individually identified
+0x5C7CA,FUN_0005C7CA,,,4,,,referenced in XDF notes; role not individually identified
+0x5C7FA,FUN_0005C7FA,,,4,,,referenced in XDF notes; role not individually identified
+0x5C82A,FUN_0005C82A,,,4,,,referenced in XDF notes; role not individually identified
+0x5C85A,FUN_0005C85A,,,5,,,referenced in XDF notes; role not individually identified
+0x5C918,FUN_0005C918,,,4,,,referenced in XDF notes; role not individually identified
+0x5C9C2,FUN_0005C9C2,,,4,,,referenced in XDF notes; role not individually identified
+0x5CA80,FUN_0005CA80,,,3,,,referenced in XDF notes; role not individually identified
+0x5CB28,FUN_0005CB28,,,2,,,referenced in XDF notes; role not individually identified
+0x5CB9A,FUN_0005CB9A,,,4,,,referenced in XDF notes; role not individually identified
+0x5CBFC,FUN_0005CBFC,,,2,,,referenced in XDF notes; role not individually identified
+0x5CC26,FUN_0005CC26,,,2,,,referenced in XDF notes; role not individually identified
+0x5CD26,FUN_0005CD26,,,2,,,referenced in XDF notes; role not individually identified
+0x5CD5A,FUN_0005CD5A,,,3,,,referenced in XDF notes; role not individually identified
+0x5CDEC,FUN_0005CDEC,,,2,,,referenced in XDF notes; role not individually identified
+0x5CF20,FUN_0005CF20,,,3,,,referenced in XDF notes; role not individually identified
+0x5CF3A,FUN_0005CF3A,,,2,,,referenced in XDF notes; role not individually identified
+0x5CF6E,FUN_0005CF6E,,,4,,,referenced in XDF notes; role not individually identified
+0x5CFB0,FUN_0005CFB0,,,6,,,referenced in XDF notes; role not individually identified
+0x5D1B4,FUN_0005D1B4,,,4,Cluster D :: Map 10x14 [? × RPM] #2C7,"engine RPM, throttle position","reads 1 map(s), e.g. Cluster D :: Map 10x14 [? × RPM] #2C7"
+0x5D1E8,FUN_0005D1E8,,,4,Cluster D :: Curve 22pt [vs ?] #2B5 (flat),,"reads 1 map(s), e.g. Cluster D :: Curve 22pt [vs ?] #2B5 (flat)"
+0x5D20C,FUN_0005D20C,,,4,Cluster D :: Curve 8pt [vs ?] #2B6 (flat),,"reads 1 map(s), e.g. Cluster D :: Curve 8pt [vs ?] #2B6 (flat)"
+0x5D230,FUN_0005D230,,,8,,,referenced in XDF notes; role not individually identified
+0x5D44C,FUN_0005D44C,,,2,,,referenced in XDF notes; role not individually identified
+0x5D494,FUN_0005D494,,,4,Cluster D :: Curve 10pt [vs ?] #2B7 (flat),,"reads 1 map(s), e.g. Cluster D :: Curve 10pt [vs ?] #2B7 (flat)"
+0x5D4B6,FUN_0005D4B6,,,3,,,referenced in XDF notes; role not individually identified
+0x5D514,FUN_0005D514,,,2,,,referenced in XDF notes; role not individually identified
+0x5D666,FUN_0005D666,,,1,,,referenced in XDF notes; role not individually identified
+0x5D6B6,FUN_0005D6B6,,,10,,,referenced in XDF notes; role not individually identified
+0x5D7BC,FUN_0005D7BC,,,1,,,referenced in XDF notes; role not individually identified
+0x5D7FE,FUN_0005D7FE,,,1,,,referenced in XDF notes; role not individually identified
+0x5D840,FUN_0005D840,,,5,,,referenced in XDF notes; role not individually identified
+0x5D8B0,FUN_0005D8B0,,,11,,,referenced in XDF notes; role not individually identified
+0x5D986,FUN_0005D986,,,1,,,referenced in XDF notes; role not individually identified
+0x5D9E0,FUN_0005D9E0,,,3,,,referenced in XDF notes; role not individually identified
+0x5DA62,FUN_0005DA62,,,1,,,referenced in XDF notes; role not individually identified
+0x5DAA2,FUN_0005DAA2,,,6,,,referenced in XDF notes; role not individually identified
+0x5DB5E,FUN_0005DB5E,PAIR/EVAP output mapper,,1,,,PAIR/EVAP output mapper
+0x5DCAA,FUN_0005DCAA,,,1,,,referenced in XDF notes; role not individually identified
+0x5E148,FUN_0005E148,,,4,Cluster D :: Curve 17pt [vs ?] #2B4 (flat),intake pressure (IAP),"reads 1 map(s), e.g. Cluster D :: Curve 17pt [vs ?] #2B4 (flat)"
+0x5E16C,FUN_0005E16C,,,4,Cluster D :: Map 10x21 [? × RPM] #2C3,"engine RPM, throttle position","reads 1 map(s), e.g. Cluster D :: Map 10x21 [? × RPM] #2C3"
+0x5E1BA,FUN_0005E1BA,,,5,,,referenced in XDF notes; role not individually identified
+0x5E296,FUN_0005E296,,,4,,,referenced in XDF notes; role not individually identified
+0x5E47C,FUN_0005E47C,,,4,,,referenced in XDF notes; role not individually identified
+0x5E4E8,FUN_0005E4E8,,,4,,,referenced in XDF notes; role not individually identified
+0x5E564,FUN_0005E564,,,8,Cluster D :: Curve 15pt [vs RPM] #2B2; Cluster D :: Curve 15pt [vs RPM] #2B3 (flat),engine RPM,"reads 2 map(s), e.g. Cluster D :: Curve 15pt [vs RPM] #2B2; Cluster D :: Curve 15pt [vs RPM] #2B3 (flat)"
+0x5E5C4,FUN_0005E5C4,,,4,,,referenced in XDF notes; role not individually identified
+0x5E606,FUN_0005E606,,,4,,,referenced in XDF notes; role not individually identified
+0x5E64C,FUN_0005E64C,,,10,,,referenced in XDF notes; role not individually identified
+0x5E788,FUN_0005E788,,,8,,,referenced in XDF notes; role not individually identified
+0x5E7FE,FUN_0005E7FE,,,4,,,referenced in XDF notes; role not individually identified
+0x5E85C,FUN_0005E85C,,,4,,,referenced in XDF notes; role not individually identified
+0x5E9D8,FUN_0005E9D8,,,4,,,referenced in XDF notes; role not individually identified
+0x5EA12,FUN_0005EA12,,,7,,,referenced in XDF notes; role not individually identified
+0x5EA9E,FUN_0005EA9E,,,9,,,referenced in XDF notes; role not individually identified
+0x5EB58,FUN_0005EB58,,,5,,,referenced in XDF notes; role not individually identified
+0x5EC50,FUN_0005EC50,,,1,,,referenced in XDF notes; role not individually identified
+0x5EC76,FUN_0005EC76,,,2,,,referenced in XDF notes; role not individually identified
+0x5EC9C,FUN_0005EC9C,,,4,,,referenced in XDF notes; role not individually identified
+0x5ECCC,FUN_0005ECCC,,,3,,,referenced in XDF notes; role not individually identified
+0x5ED1A,FUN_0005ED1A,,,13,,,referenced in XDF notes; role not individually identified
+0x5EE36,FUN_0005EE36,,,3,,,referenced in XDF notes; role not individually identified
+0x5EFFE,FUN_0005EFFE,,,8,,,referenced in XDF notes; role not individually identified
+0x60642,FUN_00060642,,,24,,,referenced in XDF notes; role not individually identified
+0x62E22,FUN_00062E22,,,4,,,referenced in XDF notes; role not individually identified
+0x62F32,FUN_00062F32,,,3,,,referenced in XDF notes; role not individually identified
+0x63230,FUN_00063230,,,6,,,referenced in XDF notes; role not individually identified
+0x632BA,FUN_000632BA,,,8,,,referenced in XDF notes; role not individually identified
+0x63312,FUN_00063312,,,1,,,referenced in XDF notes; role not individually identified
+0x636D6,FUN_000636D6,,,3,,,referenced in XDF notes; role not individually identified
+0x63890,FUN_00063890,,,9,,,referenced in XDF notes; role not individually identified
+0x63AAE,FUN_00063AAE,,,6,,,referenced in XDF notes; role not individually identified
+0x63BDA,FUN_00063BDA,,,14,,,referenced in XDF notes; role not individually identified
+0x63D6C,FUN_00063D6C,,,2,,,referenced in XDF notes; role not individually identified
+0x63E02,FUN_00063E02,,,2,,,referenced in XDF notes; role not individually identified
+0x646EC,FUN_000646EC,,,3,,,referenced in XDF notes; role not individually identified
+0x682D6,FUN_000682D6,,,3,,,referenced in XDF notes; role not individually identified
+0x69972,FUN_00069972,,,7,,,referenced in XDF notes; role not individually identified
+0x69A5A,FUN_00069A5A,,,6,,,referenced in XDF notes; role not individually identified
+0x69AE8,FUN_00069AE8,,,2,,,referenced in XDF notes; role not individually identified
+0x69B6C,FUN_00069B6C,,,2,,,referenced in XDF notes; role not individually identified
+0x69B96,FUN_00069B96,,,2,,,referenced in XDF notes; role not individually identified
+0x69BC6,FUN_00069BC6,PAIR command state machine,,0,,,PAIR command state machine
+0x69C02,FUN_00069C02,,,8,,,referenced in XDF notes; role not individually identified
+0x69CC6,FUN_00069CC6,,,3,,,referenced in XDF notes; role not individually identified
+0x69DD2,FUN_00069DD2,,,6,,,referenced in XDF notes; role not individually identified
+0x69F02,FUN_00069F02,,,1,,,referenced in XDF notes; role not individually identified
+0x69F9E,FUN_00069F9E,,,2,,,referenced in XDF notes; role not individually identified
+0x6A000,FUN_0006A000,,,2,,,referenced in XDF notes; role not individually identified
+0x6A156,FUN_0006A156,,,1,,,referenced in XDF notes; role not individually identified
+0x6A2C2,FUN_0006A2C2,,,4,,,referenced in XDF notes; role not individually identified
+0x6A378,FUN_0006A378,,,2,,,referenced in XDF notes; role not individually identified
+0x6A3A6,FUN_0006A3A6,,,2,,,referenced in XDF notes; role not individually identified
+0x6A424,FUN_0006A424,,,8,,,referenced in XDF notes; role not individually identified
+0x6A4B0,FUN_0006A4B0,,,2,,,referenced in XDF notes; role not individually identified
+0x6A554,FUN_0006A554,,,2,,,referenced in XDF notes; role not individually identified
+0x6A616,FUN_0006A616,,,6,,,referenced in XDF notes; role not individually identified
+0x6A6AC,FUN_0006A6AC,,,3,,,referenced in XDF notes; role not individually identified
+0x6A6CA,FUN_0006A6CA,,,18,Cluster D :: Curve 7pt [vs index] #2C0; Cluster D :: Curve 7pt [vs index] #2C1 (flat),index (gear/mode/cyl),"reads 2 map(s), e.g. Cluster D :: Curve 7pt [vs index] #2C0; Cluster D :: Curve 7pt [vs index] #2C1 (flat)"
+0x6A82A,FUN_0006A82A,,,8,,,referenced in XDF notes; role not individually identified
+0x6A89C,FUN_0006A89C,,,10,Cluster D :: Curve 37pt [vs ?] #2BC; Cluster D :: Curve 37pt [vs ?] #2BD; Cluster D :: Curve 37pt [vs ?] #2BE,,"reads 3 map(s), e.g. Cluster D :: Curve 37pt [vs ?] #2BC; Cluster D :: Curve 37pt [vs ?] #2BD"
+0x6A8EE,FUN_0006A8EE,,,4,Cluster D :: Curve 31pt [vs ?] #2BF,,"reads 1 map(s), e.g. Cluster D :: Curve 31pt [vs ?] #2BF"
+0x6A926,FUN_0006A926,ride-mode limit curve,,10,Cluster D :: Curve 16pt [vs TP] #2B9; Cluster D :: Curve 16pt [vs TP] #2BA; Cluster D :: Curve 16pt [vs TP] #2BB,throttle position,ride-mode limit curve
+0x6A980,FUN_0006A980,,,7,,,referenced in XDF notes; role not individually identified
+0x6AB0A,FUN_0006AB0A,,,12,,,referenced in XDF notes; role not individually identified
+0x6ABC6,FUN_0006ABC6,,,14,Cluster D :: Curve 5pt [vs ?] #2C2,,"reads 1 map(s), e.g. Cluster D :: Curve 5pt [vs ?] #2C2"
+0x6AD3C,FUN_0006AD3C,,,16,,,referenced in XDF notes; role not individually identified
+0x6AE4E,FUN_0006AE4E,,,4,,,referenced in XDF notes; role not individually identified
+0x6AF06,FUN_0006AF06,,,1,,,referenced in XDF notes; role not individually identified
+0x6AF48,FUN_0006AF48,,,2,,,referenced in XDF notes; role not individually identified
+0x6AF66,FUN_0006AF66,,,2,,,referenced in XDF notes; role not individually identified
+0x6AFA2,FUN_0006AFA2,,,2,,,referenced in XDF notes; role not individually identified
+0x6AFFA,FUN_0006AFFA,,,3,,,referenced in XDF notes; role not individually identified
+0x6B092,FUN_0006B092,,,3,,,referenced in XDF notes; role not individually identified
+0x6B150,FUN_0006B150,,,1,,,referenced in XDF notes; role not individually identified
+0x6B18E,FUN_0006B18E,,,29,Cluster D :: Map 6x25 [? × RPM] #2CF; Cluster D :: Map 6x25 [? × RPM] #2D1; Cluster D :: Map 6x25 [? × RPM] #2D3,"engine RPM, throttle position","reads 7 map(s), e.g. Cluster D :: Map 6x25 [? × RPM] #2CF; Cluster D :: Map 6x25 [? × RPM] #2D1"
+0x6B1F0,FUN_0006B1F0,,,4,,,referenced in XDF notes; role not individually identified
+0x6B298,FUN_0006B298,,,8,,,referenced in XDF notes; role not individually identified
+0x6B352,FUN_0006B352,,,6,,,referenced in XDF notes; role not individually identified
+0x6B51A,FUN_0006B51A,,,10,,,referenced in XDF notes; role not individually identified
+0x6B62E,FUN_0006B62E,,,3,,,referenced in XDF notes; role not individually identified
+0x6B70E,FUN_0006B70E,,,9,,,referenced in XDF notes; role not individually identified
+0x6B86E,FUN_0006B86E,,,2,,,referenced in XDF notes; role not individually identified
+0x6B8AE,FUN_0006B8AE,,,10,,,referenced in XDF notes; role not individually identified
+0x6B9BC,FUN_0006B9BC,,,5,,,referenced in XDF notes; role not individually identified
+0x6BA2E,FUN_0006BA2E,ride-mode threshold map,,18,Cluster D :: Map 6x25 [? × RPM] #2C9; Cluster D :: Map 6x25 [? × RPM] #2CB; Cluster D :: Map 6x25 [? × RPM] #2CD,"engine RPM, throttle position",ride-mode threshold map
+0x6BBC4,FUN_0006BBC4,,,2,,,referenced in XDF notes; role not individually identified
+0x6BC18,FUN_0006BC18,,,10,,,referenced in XDF notes; role not individually identified
+0x6C5DA,FUN_0006C5DA,,,6,,,referenced in XDF notes; role not individually identified
+0x6C722,FUN_0006C722,,,2,,,referenced in XDF notes; role not individually identified
+0x6C75C,FUN_0006C75C,,,4,,,referenced in XDF notes; role not individually identified
+0x6CBDE,FUN_0006CBDE,,,8,,,referenced in XDF notes; role not individually identified
+0x6CCE6,FUN_0006CCE6,,,2,,,referenced in XDF notes; role not individually identified
+0x6CFA6,FUN_0006CFA6,,,4,,,referenced in XDF notes; role not individually identified
+0x6D110,FUN_0006D110,,,1,,,referenced in XDF notes; role not individually identified
+0x6D158,FUN_0006D158,,,2,,,referenced in XDF notes; role not individually identified
+0x6D184,FUN_0006D184,,,7,,,referenced in XDF notes; role not individually identified
+0x6D226,FUN_0006D226,,,2,,,referenced in XDF notes; role not individually identified
+0x6D270,FUN_0006D270,,,1,,,referenced in XDF notes; role not individually identified
+0x6D29C,FUN_0006D29C,,,4,Cluster D :: Curve 30pt [vs ?] #2DF,,"reads 1 map(s), e.g. Cluster D :: Curve 30pt [vs ?] #2DF"
+0x6D2C0,FUN_0006D2C0,,,4,Cluster D :: Curve 30pt [vs ?] #2DF,,"reads 1 map(s), e.g. Cluster D :: Curve 30pt [vs ?] #2DF"
+0x6D348,FUN_0006D348,,,2,,,referenced in XDF notes; role not individually identified
+0x6D3B4,FUN_0006D3B4,,,8,,,referenced in XDF notes; role not individually identified
+0x6D508,FUN_0006D508,,,1,,,referenced in XDF notes; role not individually identified
+0x6D57A,FUN_0006D57A,,,29,,,referenced in XDF notes; role not individually identified
+0x6DB2A,FUN_0006DB2A,,,6,,,referenced in XDF notes; role not individually identified
+0x6DC42,FUN_0006DC42,,,2,,,referenced in XDF notes; role not individually identified
+0x6DD00,FUN_0006DD00,,,4,,,referenced in XDF notes; role not individually identified
+0x6DD46,FUN_0006DD46,,,4,,,referenced in XDF notes; role not individually identified
+0x6DD8C,FUN_0006DD8C,,,4,,,referenced in XDF notes; role not individually identified
+0x6DDD2,FUN_0006DDD2,,,4,,,referenced in XDF notes; role not individually identified
+0x6DE18,FUN_0006DE18,,,4,,,referenced in XDF notes; role not individually identified
+0x6DE5E,FUN_0006DE5E,,,4,,,referenced in XDF notes; role not individually identified
+0x6DEA4,FUN_0006DEA4,,,4,,,referenced in XDF notes; role not individually identified
+0x6E1E0,FUN_0006E1E0,,,5,,,referenced in XDF notes; role not individually identified
+0x6E3BA,FUN_0006E3BA,,,4,,,referenced in XDF notes; role not individually identified
+0x6E5B4,FUN_0006E5B4,,,4,,,referenced in XDF notes; role not individually identified
+0x6E7AE,FUN_0006E7AE,,,4,,,referenced in XDF notes; role not individually identified
+0x6E9A8,FUN_0006E9A8,,,4,,,referenced in XDF notes; role not individually identified
+0x6EBA2,FUN_0006EBA2,,,4,,,referenced in XDF notes; role not individually identified
+0x6ED98,FUN_0006ED98,,,4,,,referenced in XDF notes; role not individually identified
+0x6EF8C,FUN_0006EF8C,,,1,,,referenced in XDF notes; role not individually identified
+0x6F0E0,FUN_0006F0E0,,,4,,,referenced in XDF notes; role not individually identified
+0x6F1DA,FUN_0006F1DA,,,4,,,referenced in XDF notes; role not individually identified
+0x6F26A,FUN_0006F26A,,,2,,,referenced in XDF notes; role not individually identified
+0x6F2F0,FUN_0006F2F0,,,2,,,referenced in XDF notes; role not individually identified
+0x6F786,FUN_0006F786,,,28,,,referenced in XDF notes; role not individually identified
+0x6F9C6,FUN_0006F9C6,,,1,,,referenced in XDF notes; role not individually identified
+0x6FA18,FUN_0006FA18,,,2,,,referenced in XDF notes; role not individually identified
+0x6FA8A,FUN_0006FA8A,,,2,,,referenced in XDF notes; role not individually identified
+0x70262,FUN_00070262,,,2,,,referenced in XDF notes; role not individually identified
+0x70A16,FUN_00070A16,,,2,,,referenced in XDF notes; role not individually identified
+0x711C2,FUN_000711C2,,,6,,,referenced in XDF notes; role not individually identified
+0x71234,FUN_00071234,,,6,,,referenced in XDF notes; role not individually identified
+0x71422,FUN_00071422,,,1,,,referenced in XDF notes; role not individually identified
+0x7195A,FUN_0007195A,,,2,,,referenced in XDF notes; role not individually identified
+0x71A42,FUN_00071A42,,,4,,,referenced in XDF notes; role not individually identified
+0x725EE,FUN_000725EE,,,6,,,referenced in XDF notes; role not individually identified
+0x72656,FUN_00072656,,,2,,,referenced in XDF notes; role not individually identified
+0x72698,FUN_00072698,,,1,,,referenced in XDF notes; role not individually identified
+0x72812,FUN_00072812,,,8,,,referenced in XDF notes; role not individually identified
+0x72B1C,FUN_00072B1C,,,4,,,referenced in XDF notes; role not individually identified
+0x72B68,FUN_00072B68,,,4,,,referenced in XDF notes; role not individually identified
+0x72BB4,FUN_00072BB4,,,2,,,referenced in XDF notes; role not individually identified
+0x72EBC,FUN_00072EBC,,,3,,,referenced in XDF notes; role not individually identified
+0x7300A,FUN_0007300A,,,3,,,referenced in XDF notes; role not individually identified
+0x7316A,FUN_0007316A,,,2,,,referenced in XDF notes; role not individually identified
+0x731A0,FUN_000731A0,,,2,,,referenced in XDF notes; role not individually identified
+0x731FC,FUN_000731FC,,,8,,,referenced in XDF notes; role not individually identified
+0x732A8,FUN_000732A8,,,4,,,referenced in XDF notes; role not individually identified
+0x73322,FUN_00073322,,,4,,,referenced in XDF notes; role not individually identified
+0x733CC,FUN_000733CC,,,2,,,referenced in XDF notes; role not individually identified
+0x73406,FUN_00073406,,,2,,,referenced in XDF notes; role not individually identified
+0x73480,FUN_00073480,,,2,,,referenced in XDF notes; role not individually identified
+0x734BA,FUN_000734BA,,,2,,,referenced in XDF notes; role not individually identified
+0x735F2,FUN_000735F2,,,2,,,referenced in XDF notes; role not individually identified
+0x736B2,FUN_000736B2,,,2,Cluster D :: Curve 29pt [vs ?] #2DE,,"reads 1 map(s), e.g. Cluster D :: Curve 29pt [vs ?] #2DE"
+0x73714,FUN_00073714,,,10,Cluster D :: Curve 29pt [vs ?] #2DE,,"reads 1 map(s), e.g. Cluster D :: Curve 29pt [vs ?] #2DE"
+0x7386A,FUN_0007386A,,,2,,,referenced in XDF notes; role not individually identified
+0x738BC,FUN_000738BC,,,1,,,referenced in XDF notes; role not individually identified
+0x73902,FUN_00073902,,,8,Cluster D :: Curve 30pt [vs ?] #2E3,,"reads 1 map(s), e.g. Cluster D :: Curve 30pt [vs ?] #2E3"
+0x73988,FUN_00073988,,,2,,,referenced in XDF notes; role not individually identified
+0x73A3E,FUN_00073A3E,,,2,,,referenced in XDF notes; role not individually identified
+0x73A86,FUN_00073A86,,,1,,,referenced in XDF notes; role not individually identified
+0x73AC4,FUN_00073AC4,,,4,,,referenced in XDF notes; role not individually identified
+0x73B00,FUN_00073B00,,,4,,,referenced in XDF notes; role not individually identified
+0x73B52,FUN_00073B52,START/starter switch read,,4,,,START/starter switch read
+0x73BA6,FUN_00073BA6,,,1,,,referenced in XDF notes; role not individually identified
+0x73FD2,FUN_00073FD2,,,4,,,referenced in XDF notes; role not individually identified
+0x740A6,FUN_000740A6,,,9,,,referenced in XDF notes; role not individually identified
+0x74218,FUN_00074218,,,2,,,referenced in XDF notes; role not individually identified
+0x74252,FUN_00074252,,,2,,,referenced in XDF notes; role not individually identified
+0x742E2,FUN_000742E2,,,3,,,referenced in XDF notes; role not individually identified
+0x743C0,FUN_000743C0,,,1,,,referenced in XDF notes; role not individually identified
+0x7446A,FUN_0007446A,neutral/clutch-in flag,,49,,,neutral/clutch-in flag
+0x745E0,FUN_000745E0,,,2,,,referenced in XDF notes; role not individually identified
+0x7461E,FUN_0007461E,,,2,,,referenced in XDF notes; role not individually identified
+0x74670,FUN_00074670,,,2,,,referenced in XDF notes; role not individually identified
+0x746B6,FUN_000746B6,,,4,,,referenced in XDF notes; role not individually identified
+0x7472E,FUN_0007472E,,,3,,,referenced in XDF notes; role not individually identified
+0x747B6,FUN_000747B6,,,2,,,referenced in XDF notes; role not individually identified
+0x74B4A,FUN_00074B4A,,,3,,,referenced in XDF notes; role not individually identified
+0x74D12,FUN_00074D12,,,1,,,referenced in XDF notes; role not individually identified
+0x75038,FUN_00075038,,,2,,,referenced in XDF notes; role not individually identified
+0x7522E,FUN_0007522E,,,3,,,referenced in XDF notes; role not individually identified
+0x75262,FUN_00075262,,,21,,,referenced in XDF notes; role not individually identified
+0x75570,FUN_00075570,,,6,,,referenced in XDF notes; role not individually identified
+0x75644,FUN_00075644,,,5,,,referenced in XDF notes; role not individually identified
+0x756EC,FUN_000756EC,,,16,Cluster D :: Curve 7pt [vs ?] #2E4; Cluster D :: Curve 7pt [vs ?] #2E5,index (gear/mode/cyl),"reads 2 map(s), e.g. Cluster D :: Curve 7pt [vs ?] #2E4; Cluster D :: Curve 7pt [vs ?] #2E5"
+0x759CA,FUN_000759CA,,,1,,,referenced in XDF notes; role not individually identified
+0x759F4,FUN_000759F4,,,1,,,referenced in XDF notes; role not individually identified
+0x75B32,FUN_00075B32,,,1,,,referenced in XDF notes; role not individually identified
+0x75B66,FUN_00075B66,,,1,,,referenced in XDF notes; role not individually identified
+0x75C68,FUN_00075C68,,,4,,,referenced in XDF notes; role not individually identified
+0x75CBA,FUN_00075CBA,,,8,,,referenced in XDF notes; role not individually identified
+0x75E8A,FUN_00075E8A,,,2,,,referenced in XDF notes; role not individually identified
+0x75F50,FUN_00075F50,,,1,,,referenced in XDF notes; role not individually identified
+0x75FF0,FUN_00075FF0,,,3,,,referenced in XDF notes; role not individually identified
+0x7604C,FUN_0007604C,,,2,,,referenced in XDF notes; role not individually identified
+0x7626A,FUN_0007626A,,,3,,,referenced in XDF notes; role not individually identified
+0x7631E,FUN_0007631E,,,2,,,referenced in XDF notes; role not individually identified
+0x76390,FUN_00076390,,,1,,,referenced in XDF notes; role not individually identified
+0x763D4,FUN_000763D4,,,4,,,referenced in XDF notes; role not individually identified
+0x76406,FUN_00076406,,,6,,,referenced in XDF notes; role not individually identified
+0x76444,FUN_00076444,,,2,,,referenced in XDF notes; role not individually identified
+0x764C4,FUN_000764C4,,,6,,,referenced in XDF notes; role not individually identified
+0x76502,FUN_00076502,,,2,,,referenced in XDF notes; role not individually identified
+0x76556,FUN_00076556,,,3,,,referenced in XDF notes; role not individually identified
+0x76640,FUN_00076640,,,6,,,referenced in XDF notes; role not individually identified
+0x766EC,FUN_000766EC,,,4,,,referenced in XDF notes; role not individually identified
+0x76766,FUN_00076766,,,4,,,referenced in XDF notes; role not individually identified
+0x76808,FUN_00076808,,,2,,,referenced in XDF notes; role not individually identified
+0x76850,FUN_00076850,,,2,,,referenced in XDF notes; role not individually identified
+0x768C0,FUN_000768C0,,,11,,,referenced in XDF notes; role not individually identified
+0x76A46,FUN_00076A46,,,6,,,referenced in XDF notes; role not individually identified
+0x76BCC,FUN_00076BCC,,,2,,,referenced in XDF notes; role not individually identified
+0x76D06,FUN_00076D06,,,6,,,referenced in XDF notes; role not individually identified
+0x76D84,FUN_00076D84,,,4,,,referenced in XDF notes; role not individually identified
+0x76DE6,FUN_00076DE6,,,14,Cluster D :: Curve 9pt [vs ?] #2E6; Cluster D :: Curve 9pt [vs ?] #2E7,,"reads 2 map(s), e.g. Cluster D :: Curve 9pt [vs ?] #2E6; Cluster D :: Curve 9pt [vs ?] #2E7"
+0x76EA0,FUN_00076EA0,,,5,Cluster D :: Curve 9pt [vs ?] #2E8,,"reads 1 map(s), e.g. Cluster D :: Curve 9pt [vs ?] #2E8"
+0x76F44,FUN_00076F44,front wheel-speed calc,,6,,,front wheel-speed calc
+0x77000,FUN_00077000,front wheel-speed average,,2,,,front wheel-speed average
+0x770A8,FUN_000770A8,rear wheel-speed calc,,5,,,rear wheel-speed calc
+0x77184,FUN_00077184,rear wheel-speed average,,2,,,rear wheel-speed average
+0x7722C,FUN_0007722C,,,7,Cluster D :: Curve 7pt [vs ?] #2E9,index (gear/mode/cyl),"reads 1 map(s), e.g. Cluster D :: Curve 7pt [vs ?] #2E9"
+0x77330,FUN_00077330,,,12,,,referenced in XDF notes; role not individually identified
+0x77474,FUN_00077474,,,7,,,referenced in XDF notes; role not individually identified
+0x774E8,FUN_000774E8,,,2,,,referenced in XDF notes; role not individually identified
+0x77568,FUN_00077568,,,7,Cluster D :: Curve 14pt [vs RPM] #2EA,,"reads 1 map(s), e.g. Cluster D :: Curve 14pt [vs RPM] #2EA"
+0x77636,FUN_00077636,,,2,,,referenced in XDF notes; role not individually identified
+0x7772E,FUN_0007772E,,,11,,,referenced in XDF notes; role not individually identified
+0x777DE,FUN_000777DE,,,2,,,referenced in XDF notes; role not individually identified
+0x7782A,FUN_0007782A,,,1,,,referenced in XDF notes; role not individually identified
+0x77850,FUN_00077850,,,1,,,referenced in XDF notes; role not individually identified
+0x77876,FUN_00077876,,,1,,,referenced in XDF notes; role not individually identified
+0x7789C,FUN_0007789C,,,1,,,referenced in XDF notes; role not individually identified
+0x778C2,FUN_000778C2,,,6,,,referenced in XDF notes; role not individually identified
+0x778E8,FUN_000778E8,,,7,,,referenced in XDF notes; role not individually identified
+0x7790E,FUN_0007790E,,,2,,,referenced in XDF notes; role not individually identified
+0x77934,FUN_00077934,,,3,,,referenced in XDF notes; role not individually identified
+0x77A72,FUN_00077A72,,,3,,,referenced in XDF notes; role not individually identified
+0x77A98,FUN_00077A98,,,3,,,referenced in XDF notes; role not individually identified
+0x77ABE,FUN_00077ABE,,,3,,,referenced in XDF notes; role not individually identified
+0x77AE4,FUN_00077AE4,,,3,,,referenced in XDF notes; role not individually identified
+0x77BC8,FUN_00077BC8,,,1,,,referenced in XDF notes; role not individually identified
+0x77BEE,FUN_00077BEE,,,2,,,referenced in XDF notes; role not individually identified
+0x77D5C,FUN_00077D5C,,,1,,,referenced in XDF notes; role not individually identified
+0x77DA8,FUN_00077DA8,,,1,,,referenced in XDF notes; role not individually identified
+0x77F24,FUN_00077F24,,,4,,,referenced in XDF notes; role not individually identified
+0x7804E,FUN_0007804E,,,2,,,referenced in XDF notes; role not individually identified
+0x780F6,FUN_000780F6,,,6,,,referenced in XDF notes; role not individually identified
+0x78862,FUN_00078862,,,10,,,referenced in XDF notes; role not individually identified
+0x7891E,FUN_0007891E,,,10,,,referenced in XDF notes; role not individually identified
+0x78AA6,FUN_00078AA6,,,5,,,referenced in XDF notes; role not individually identified
+0x78B8C,FUN_00078B8C,,,2,,,referenced in XDF notes; role not individually identified
+0x78BD2,FUN_00078BD2,,,2,,,referenced in XDF notes; role not individually identified
+0x78C18,FUN_00078C18,,,2,,,referenced in XDF notes; role not individually identified
+0x78C5E,FUN_00078C5E,,,2,,,referenced in XDF notes; role not individually identified
+0x78DB6,FUN_00078DB6,,,2,,,referenced in XDF notes; role not individually identified
+0x7950C,FUN_0007950C,,,6,,,referenced in XDF notes; role not individually identified
+0x79582,FUN_00079582,,,6,,,referenced in XDF notes; role not individually identified
+0x79622,FUN_00079622,,,2,,,referenced in XDF notes; role not individually identified
+0x7968A,FUN_0007968A,,,2,,,referenced in XDF notes; role not individually identified
+0x796BE,FUN_000796BE,,,1,,,referenced in XDF notes; role not individually identified
+0x796CC,FUN_000796CC,,,1,,,referenced in XDF notes; role not individually identified
+0x79724,FUN_00079724,,,4,Cluster D :: Curve 29pt [vs ?] #2E0,,"reads 1 map(s), e.g. Cluster D :: Curve 29pt [vs ?] #2E0"
+0x79748,FUN_00079748,,,1,,,referenced in XDF notes; role not individually identified
+0x79A14,FUN_00079A14,,,18,,,referenced in XDF notes; role not individually identified
+0x79C22,FUN_00079C22,,,10,,,referenced in XDF notes; role not individually identified
+0x79DB4,FUN_00079DB4,,,4,,,referenced in XDF notes; role not individually identified
+0x79EAA,FUN_00079EAA,,,2,,,referenced in XDF notes; role not individually identified
+0x79F6A,FUN_00079F6A,,,6,,,referenced in XDF notes; role not individually identified
+0x7A0D6,FUN_0007A0D6,,Throttle/ETV,7,Cluster D :: Curve 37pt [vs ?] #2EE; Cluster D :: Curve 37pt [vs ?] #2ED; ETV - Helper 2,,"reads 3 map(s), e.g. Cluster D :: Curve 37pt [vs ?] #2EE; Cluster D :: Curve 37pt [vs ?] #2ED"
+0x7A202,FUN_0007A202,,,6,,,referenced in XDF notes; role not individually identified
+0x7A328,FUN_0007A328,,,12,,,referenced in XDF notes; role not individually identified
+0x7A43E,FUN_0007A43E,,,8,Cluster D :: Curve 37pt [vs ?] #2EB; Cluster D :: Curve 37pt [vs ?] #2EC,,"reads 2 map(s), e.g. Cluster D :: Curve 37pt [vs ?] #2EB; Cluster D :: Curve 37pt [vs ?] #2EC"
+0x7A4E6,FUN_0007A4E6,,,1,,,referenced in XDF notes; role not individually identified
+0x7A5C8,FUN_0007A5C8,,,3,,,referenced in XDF notes; role not individually identified
+0x7A638,FUN_0007A638,,,2,,,referenced in XDF notes; role not individually identified
+0x7A730,FUN_0007A730,,,4,,,referenced in XDF notes; role not individually identified
+0x7A7CA,FUN_0007A7CA,,Throttle/ETV,5,ETV - Helper 1,throttle position,"reads 1 map(s), e.g. ETV - Helper 1"
+0x7A86E,FUN_0007A86E,,,2,,,referenced in XDF notes; role not individually identified
+0x7A89E,FUN_0007A89E,,,3,,,referenced in XDF notes; role not individually identified
+0x7A8D4,FUN_0007A8D4,,,4,,,referenced in XDF notes; role not individually identified
+0x7A92C,FUN_0007A92C,,,2,,,referenced in XDF notes; role not individually identified
+0x7A976,FUN_0007A976,gear calculation,,18,,,gear calculation
+0x7AA94,FUN_0007AA94,,,2,,,referenced in XDF notes; role not individually identified
+0x7AAB8,FUN_0007AAB8,,,2,,,referenced in XDF notes; role not individually identified
+0x7ABE0,FUN_0007ABE0,,,2,,,referenced in XDF notes; role not individually identified
+0x7AC80,FUN_0007AC80,,,5,,,referenced in XDF notes; role not individually identified
+0x7AD00,FUN_0007AD00,,,7,,,referenced in XDF notes; role not individually identified
+0x7ADA0,FUN_0007ADA0,,,12,,,referenced in XDF notes; role not individually identified
+0x7AE3A,FUN_0007AE3A,,,4,,,referenced in XDF notes; role not individually identified
+0x7AE64,FUN_0007AE64,,,9,,,referenced in XDF notes; role not individually identified
+0x7AF06,FUN_0007AF06,,Throttle/ETV,9,ETV - Helper 6,,"reads 1 map(s), e.g. ETV - Helper 6"
+0x7B088,FUN_0007B088,,,4,,,referenced in XDF notes; role not individually identified
+0x7B0D2,FUN_0007B0D2,,,2,,,referenced in XDF notes; role not individually identified
+0x7B134,FUN_0007B134,,,11,,,referenced in XDF notes; role not individually identified
+0x7B1B0,FUN_0007B1B0,,,28,,,referenced in XDF notes; role not individually identified
+0x7B42E,FUN_0007B42E,,Throttle/ETV,10,ETV - Helper 7; ETV - Helper 8,engine RPM,"reads 2 map(s), e.g. ETV - Helper 7; ETV - Helper 8"
+0x7B4E6,FUN_0007B4E6,,,7,,,referenced in XDF notes; role not individually identified
+0x7B558,FUN_0007B558,,,4,,,referenced in XDF notes; role not individually identified
+0x7B582,FUN_0007B582,,,2,,,referenced in XDF notes; role not individually identified
+0x7B5D8,FUN_0007B5D8,,Throttle/ETV,5,ETV - Helper 5,,"reads 1 map(s), e.g. ETV - Helper 5"
+0x7B8A0,FUN_0007B8A0,,,4,,,referenced in XDF notes; role not individually identified
+0x7B8C6,FUN_0007B8C6,,,4,,,referenced in XDF notes; role not individually identified
+0x7B8EC,FUN_0007B8EC,,,1,,,referenced in XDF notes; role not individually identified
+0x7BA02,FUN_0007BA02,,,2,,,referenced in XDF notes; role not individually identified
+0x7BB56,FUN_0007BB56,,,4,,,referenced in XDF notes; role not individually identified
+0x7BC5E,FUN_0007BC5E,,,11,,,referenced in XDF notes; role not individually identified
+0x7BD7E,FUN_0007BD7E,,,10,,,referenced in XDF notes; role not individually identified
+0x7BEAC,FUN_0007BEAC,,,2,,,referenced in XDF notes; role not individually identified
+0x7BF48,FUN_0007BF48,,,6,,,referenced in XDF notes; role not individually identified
+0x7C024,FUN_0007C024,,,6,,,referenced in XDF notes; role not individually identified
+0x7C0F0,FUN_0007C0F0,,,1,,,referenced in XDF notes; role not individually identified
+0x7C108,FUN_0007C108,,,11,,,referenced in XDF notes; role not individually identified
+0x7C214,FUN_0007C214,,,6,,,referenced in XDF notes; role not individually identified
+0x7C4CE,FUN_0007C4CE,,Throttle/ETV,84,ETV - Mode A | Neutral/Clutch-In; ETV - Mode A | Gear 1; ETV - Mode A | Gear 2,"engine RPM, throttle position","reads 42 map(s), e.g. ETV - Mode A | Neutral/Clutch-In; ETV - Mode A | Gear 1"
+0x7C50E,FUN_0007C50E,,Throttle/ETV,1,ETV - 22,"engine RPM, throttle position","reads 1 map(s), e.g. ETV - 22"
+0x7C570,FUN_0007C570,,Throttle/ETV,13,ETV - 23; ETV - 24; ETV - 25,"engine RPM, throttle position","reads 22 map(s), e.g. ETV - 23; ETV - 24"
+0x7C5A2,FUN_0007C5A2,,Throttle/ETV,6,ETV 2 - 1; ETV 2 - 2; ETV 2 - 3,"engine RPM, throttle position","reads 19 map(s), e.g. ETV 2 - 1; ETV 2 - 2"
+0x7C5D4,FUN_0007C5D4,,,4,,,referenced in XDF notes; role not individually identified
+0x7C62A,FUN_0007C62A,,Throttle/ETV,18,ETV 2 Aux - 1; ETV 2 Aux - 2; ETV 2 Aux - 3,engine RPM,"reads 9 map(s), e.g. ETV 2 Aux - 1; ETV 2 Aux - 2"
+0x7C788,FUN_0007C788,,,10,,,referenced in XDF notes; role not individually identified
+0x7C7D6,FUN_0007C7D6,,,2,,,referenced in XDF notes; role not individually identified
+0x7C8C2,FUN_0007C8C2,,Throttle/ETV,27,ETV 2 - 7; ETV 2 - 8; ETV 2 - 9,"engine RPM, throttle position","reads 13 map(s), e.g. ETV 2 - 7; ETV 2 - 8"
+0x7C8F4,FUN_0007C8F4,,,22,,,referenced in XDF notes; role not individually identified
+0x7C944,FUN_0007C944,,,25,,,referenced in XDF notes; role not individually identified
+0x7C988,FUN_0007C988,,,22,,,referenced in XDF notes; role not individually identified
+0x7CBAC,FUN_0007CBAC,,Throttle/ETV,3,ETV - Helper 3,,"reads 1 map(s), e.g. ETV - Helper 3"
+0x7CBD0,FUN_0007CBD0,,,3,,,referenced in XDF notes; role not individually identified
+0x7CC3E,FUN_0007CC3E,,,4,,,referenced in XDF notes; role not individually identified
+0x7CDA2,FUN_0007CDA2,,,12,,,referenced in XDF notes; role not individually identified
+0x7CE5C,FUN_0007CE5C,,,4,,,referenced in XDF notes; role not individually identified
+0x7CEA6,FUN_0007CEA6,,Throttle/ETV,10,ETV - Helper 4,engine RPM,"reads 1 map(s), e.g. ETV - Helper 4"
+0x7D014,FUN_0007D014,,,1,,,referenced in XDF notes; role not individually identified
+0x7D02C,FUN_0007D02C,,,33,,,referenced in XDF notes; role not individually identified
+0x7D03A,FUN_0007D03A,,,1,,,referenced in XDF notes; role not individually identified
+0x7D078,FUN_0007D078,,,7,,,referenced in XDF notes; role not individually identified
+0x7D0CC,FUN_0007D0CC,,,8,,,referenced in XDF notes; role not individually identified
+0x7D186,FUN_0007D186,,,2,,,referenced in XDF notes; role not individually identified
+0x7D84E,FUN_0007D84E,,,6,,,referenced in XDF notes; role not individually identified
+0x7DD24,FUN_0007DD24,,,7,,,referenced in XDF notes; role not individually identified
+0x7DE20,FUN_0007DE20,,,4,,,referenced in XDF notes; role not individually identified
+0x7E02A,FUN_0007E02A,,,2,,,referenced in XDF notes; role not individually identified
+0x7E18A,FUN_0007E18A,,,4,,,referenced in XDF notes; role not individually identified
+0x7E4E0,FUN_0007E4E0,,,1,,,referenced in XDF notes; role not individually identified
+0x7E9DC,FUN_0007E9DC,,,4,Cluster E :: Curve 21pt [vs RPM] #43A (flat),engine RPM,"reads 1 map(s), e.g. Cluster E :: Curve 21pt [vs RPM] #43A (flat)"
+0x7EB02,FUN_0007EB02,,,4,,,referenced in XDF notes; role not individually identified
+0x7EC02,FUN_0007EC02,,,2,,,referenced in XDF notes; role not individually identified
+0x7F000,FUN_0007F000,,,25,Cluster E :: Map 10x21 [? × RPM] #43B (flat); Cluster E :: Map 10x21 [? × RPM] #43F (flat); Cluster E :: Map 10x21 [? × RPM] #43D (flat),engine RPM,"reads 8 map(s), e.g. Cluster E :: Map 10x21 [? × RPM] #43B (flat); Cluster E :: Map 10x21 [? × RPM] #43F (flat)"
+0x7F0FA,FUN_0007F0FA,,,2,,,referenced in XDF notes; role not individually identified
+0x7F14E,FUN_0007F14E,,,4,,,referenced in XDF notes; role not individually identified
+0x7F32A,FUN_0007F32A,,,7,,,referenced in XDF notes; role not individually identified
+0x7F430,FUN_0007F430,,,12,Cluster E :: Curve 21pt [vs RPM] #38E,,"reads 1 map(s), e.g. Cluster E :: Curve 21pt [vs RPM] #38E"
+0x7F47A,FUN_0007F47A,,,2,,,referenced in XDF notes; role not individually identified
+0x7F4C2,FUN_0007F4C2,,,6,,,referenced in XDF notes; role not individually identified
+0x7F512,FUN_0007F512,,,2,,,referenced in XDF notes; role not individually identified
+0x7F556,FUN_0007F556,,,4,Cluster E :: Map 5x21 [? × RPM] #391,engine RPM,"reads 1 map(s), e.g. Cluster E :: Map 5x21 [? × RPM] #391"
+0x7F580,FUN_0007F580,,,2,,,referenced in XDF notes; role not individually identified
+0x7F5BE,FUN_0007F5BE,,,4,,,referenced in XDF notes; role not individually identified
+0x7F61C,FUN_0007F61C,,,6,,,referenced in XDF notes; role not individually identified
+0x7F678,FUN_0007F678,,,1,,,referenced in XDF notes; role not individually identified
+0x7F786,FUN_0007F786,,,2,,,referenced in XDF notes; role not individually identified
+0x7F7DA,FUN_0007F7DA,,,4,,,referenced in XDF notes; role not individually identified
+0x7F86C,FUN_0007F86C,,,6,,,referenced in XDF notes; role not individually identified
+0x7F8D4,FUN_0007F8D4,,,8,,,referenced in XDF notes; role not individually identified
+0x7F916,FUN_0007F916,,,4,,,referenced in XDF notes; role not individually identified
+0x7F964,FUN_0007F964,,,2,,,referenced in XDF notes; role not individually identified
+0x7F99C,FUN_0007F99C,,,2,,,referenced in XDF notes; role not individually identified
+0x7FA26,FUN_0007FA26,,,4,,,referenced in XDF notes; role not individually identified
+0x7FA5A,FUN_0007FA5A,,,2,,,referenced in XDF notes; role not individually identified
+0x7FA8E,FUN_0007FA8E,,,2,,,referenced in XDF notes; role not individually identified
+0x7FAD6,FUN_0007FAD6,,,3,,,referenced in XDF notes; role not individually identified
+0x7FB38,FUN_0007FB38,,,3,,,referenced in XDF notes; role not individually identified
+0x7FB74,FUN_0007FB74,,,3,,,referenced in XDF notes; role not individually identified
+0x7FC10,FUN_0007FC10,,,1,,,referenced in XDF notes; role not individually identified
+0x7FC6A,FUN_0007FC6A,,,4,Cluster E :: Map 10x21 [? × RPM] #393,engine RPM,"reads 1 map(s), e.g. Cluster E :: Map 10x21 [? × RPM] #393"
+0x7FE48,FUN_0007FE48,,,4,Cluster E :: Curve 21pt [vs RPM] #395 (flat),engine RPM,"reads 1 map(s), e.g. Cluster E :: Curve 21pt [vs RPM] #395 (flat)"
+0x7FE6A,FUN_0007FE6A,,,2,,,referenced in XDF notes; role not individually identified
+0x7FECC,FUN_0007FECC,,,4,Cluster E :: Map 8x12 [? × RPM] #396 (flat),engine RPM,"reads 1 map(s), e.g. Cluster E :: Map 8x12 [? × RPM] #396 (flat)"
+0x7FF78,FUN_0007FF78,,,3,,,referenced in XDF notes; role not individually identified
+0x7FF9E,FUN_0007FF9E,,,8,Cluster E :: Curve 21pt [vs RPM] #398 (flat),engine RPM,"reads 1 map(s), e.g. Cluster E :: Curve 21pt [vs RPM] #398 (flat)"
+0x80274,FUN_00080274,,,2,,,referenced in XDF notes; role not individually identified
+0x802FA,FUN_000802FA,,,4,,,referenced in XDF notes; role not individually identified
+0x803DC,FUN_000803DC,,,5,Cluster E :: Curve 21pt [vs RPM] #399 (flat),engine RPM,"reads 1 map(s), e.g. Cluster E :: Curve 21pt [vs RPM] #399 (flat)"
+0x805E0,FUN_000805E0,,,2,,,referenced in XDF notes; role not individually identified
+0x80FFC,FUN_00080FFC,,,24,Cluster E :: Map 5x21 [? × RPM] #39A (flat); Cluster E :: Map 5x21 [? × RPM] #39C (flat); Cluster E :: Map 5x21 [? × RPM] #3A0 (flat),engine RPM,"reads 6 map(s), e.g. Cluster E :: Map 5x21 [? × RPM] #39A (flat); Cluster E :: Map 5x21 [? × RPM] #39C (flat)"
+0x81086,FUN_00081086,,,24,Cluster E :: Map 5x21 [? × RPM] #3A6 (flat); Cluster E :: Map 5x21 [? × RPM] #3A8 (flat); Cluster E :: Map 5x21 [? × RPM] #3AC,engine RPM,"reads 6 map(s), e.g. Cluster E :: Map 5x21 [? × RPM] #3A6 (flat); Cluster E :: Map 5x21 [? × RPM] #3A8 (flat)"
+0x81110,FUN_00081110,,,24,Cluster E :: Map 5x21 [? × RPM] #3B2 (flat); Cluster E :: Map 5x21 [? × RPM] #3B4 (flat); Cluster E :: Map 5x21 [? × RPM] #3B8 (flat),engine RPM,"reads 6 map(s), e.g. Cluster E :: Map 5x21 [? × RPM] #3B2 (flat); Cluster E :: Map 5x21 [? × RPM] #3B4 (flat)"
+0x8119A,FUN_0008119A,,,24,Cluster E :: Map 5x21 [? × RPM] #3BE (flat); Cluster E :: Map 5x21 [? × RPM] #3C0 (flat); Cluster E :: Map 5x21 [? × RPM] #3C4,engine RPM,"reads 6 map(s), e.g. Cluster E :: Map 5x21 [? × RPM] #3BE (flat); Cluster E :: Map 5x21 [? × RPM] #3C0 (flat)"
+0x81224,FUN_00081224,,,24,Cluster E :: Map 5x21 [? × RPM] #3CA (flat); Cluster E :: Map 5x21 [? × RPM] #3CC (flat); Cluster E :: Map 5x21 [? × RPM] #3D0,engine RPM,"reads 6 map(s), e.g. Cluster E :: Map 5x21 [? × RPM] #3CA (flat); Cluster E :: Map 5x21 [? × RPM] #3CC (flat)"
+0x812AE,FUN_000812AE,,,24,Cluster E :: Map 5x21 [? × RPM] #3D6 (flat); Cluster E :: Map 5x21 [? × RPM] #3D8 (flat); Cluster E :: Map 5x21 [? × RPM] #3DC,engine RPM,"reads 6 map(s), e.g. Cluster E :: Map 5x21 [? × RPM] #3D6 (flat); Cluster E :: Map 5x21 [? × RPM] #3D8 (flat)"
+0x81338,FUN_00081338,,,24,Cluster E :: Map 5x21 [? × RPM] #3E2 (flat); Cluster E :: Map 5x21 [? × RPM] #3E4 (flat); Cluster E :: Map 5x21 [? × RPM] #3E8,engine RPM,"reads 6 map(s), e.g. Cluster E :: Map 5x21 [? × RPM] #3E2 (flat); Cluster E :: Map 5x21 [? × RPM] #3E4 (flat)"
+0x813C2,FUN_000813C2,,,24,Cluster E :: Map 5x21 [? × RPM] #3EE (flat); Cluster E :: Map 5x21 [? × RPM] #3F0 (flat); Cluster E :: Map 5x21 [? × RPM] #3F4,engine RPM,"reads 6 map(s), e.g. Cluster E :: Map 5x21 [? × RPM] #3EE (flat); Cluster E :: Map 5x21 [? × RPM] #3F0 (flat)"
+0x81480,FUN_00081480,,,4,Cluster E :: Curve 16pt [vs ?] #38F (flat),,"reads 1 map(s), e.g. Cluster E :: Curve 16pt [vs ?] #38F (flat)"
+0x814A2,FUN_000814A2,,,4,Cluster E :: Curve 11pt [vs ?] #390 (flat),,"reads 1 map(s), e.g. Cluster E :: Curve 11pt [vs ?] #390 (flat)"
+0x817F8,FUN_000817F8,,,17,Cluster E :: Map 10x21 [? × RPM] #3FA (flat); Cluster E :: Map 10x21 [? × RPM] #3FE (flat); Cluster E :: Map 10x21 [? × RPM] #3FC (flat),engine RPM,"reads 4 map(s), e.g. Cluster E :: Map 10x21 [? × RPM] #3FA (flat); Cluster E :: Map 10x21 [? × RPM] #3FE (flat)"
+0x818F6,FUN_000818F6,,,16,Cluster E :: Map 10x21 [? × RPM] #402 (flat); Cluster E :: Map 10x21 [? × RPM] #406; Cluster E :: Map 10x21 [? × RPM] #404 (flat),engine RPM,"reads 4 map(s), e.g. Cluster E :: Map 10x21 [? × RPM] #402 (flat); Cluster E :: Map 10x21 [? × RPM] #406"
+0x819F4,FUN_000819F4,,,16,Cluster E :: Map 10x21 [? × RPM] #40A (flat); Cluster E :: Map 10x21 [? × RPM] #40E (flat); Cluster E :: Map 10x21 [? × RPM] #40C (flat),engine RPM,"reads 4 map(s), e.g. Cluster E :: Map 10x21 [? × RPM] #40A (flat); Cluster E :: Map 10x21 [? × RPM] #40E (flat)"
+0x81AF2,FUN_00081AF2,,,16,Cluster E :: Map 10x21 [? × RPM] #412 (flat); Cluster E :: Map 10x21 [? × RPM] #416; Cluster E :: Map 10x21 [? × RPM] #414 (flat),engine RPM,"reads 4 map(s), e.g. Cluster E :: Map 10x21 [? × RPM] #412 (flat); Cluster E :: Map 10x21 [? × RPM] #416"
+0x81BF0,FUN_00081BF0,,,16,Cluster E :: Map 10x21 [? × RPM] #41A (flat); Cluster E :: Map 10x21 [? × RPM] #41E; Cluster E :: Map 10x21 [? × RPM] #41C (flat),engine RPM,"reads 4 map(s), e.g. Cluster E :: Map 10x21 [? × RPM] #41A (flat); Cluster E :: Map 10x21 [? × RPM] #41E"
+0x81CEE,FUN_00081CEE,,,16,Cluster E :: Map 10x21 [? × RPM] #432 (flat); Cluster E :: Map 10x21 [? × RPM] #436; Cluster E :: Map 10x21 [? × RPM] #434 (flat),engine RPM,"reads 4 map(s), e.g. Cluster E :: Map 10x21 [? × RPM] #432 (flat); Cluster E :: Map 10x21 [? × RPM] #436"
+0x81DEC,FUN_00081DEC,,,16,Cluster E :: Map 10x21 [? × RPM] #422 (flat); Cluster E :: Map 10x21 [? × RPM] #426; Cluster E :: Map 10x21 [? × RPM] #424 (flat),engine RPM,"reads 4 map(s), e.g. Cluster E :: Map 10x21 [? × RPM] #422 (flat); Cluster E :: Map 10x21 [? × RPM] #426"
+0x81EEA,FUN_00081EEA,,,16,Cluster E :: Map 10x21 [? × RPM] #42A (flat); Cluster E :: Map 10x21 [? × RPM] #42E; Cluster E :: Map 10x21 [? × RPM] #42C (flat),engine RPM,"reads 4 map(s), e.g. Cluster E :: Map 10x21 [? × RPM] #42A (flat); Cluster E :: Map 10x21 [? × RPM] #42E"
+0x82108,FUN_00082108,,,6,Cluster E :: Map 10x21 [? × RPM] #453 (flat); Cluster E :: Map 10x21 [? × RPM] #455 (flat),engine RPM,"reads 2 map(s), e.g. Cluster E :: Map 10x21 [? × RPM] #453 (flat); Cluster E :: Map 10x21 [? × RPM] #455 (flat)"
+0x8217E,FUN_0008217E,,,6,Cluster E :: Map 10x21 [? × RPM] #44F (flat); Cluster E :: Map 10x21 [? × RPM] #451 (flat),engine RPM,"reads 2 map(s), e.g. Cluster E :: Map 10x21 [? × RPM] #44F (flat); Cluster E :: Map 10x21 [? × RPM] #451 (flat)"
+0x821F4,FUN_000821F4,,,9,Cluster E :: Map 10x21 [? × RPM] #44B (flat); Cluster E :: Map 10x21 [? × RPM] #44D (flat),engine RPM,"reads 2 map(s), e.g. Cluster E :: Map 10x21 [? × RPM] #44B (flat); Cluster E :: Map 10x21 [? × RPM] #44D (flat)"
+0x82462,FUN_00082462,,,2,,,referenced in XDF notes; role not individually identified
+0x82AEC,FUN_00082AEC,,,1,,,referenced in XDF notes; role not individually identified
+0x83094,FUN_00083094,,,14,,,referenced in XDF notes; role not individually identified
+0x83166,FUN_00083166,,,7,,,referenced in XDF notes; role not individually identified
+0x83880,FUN_00083880,,,2,,,referenced in XDF notes; role not individually identified
+0x83CEA,FUN_00083CEA,,,2,,,referenced in XDF notes; role not individually identified
+0x83F98,FUN_00083F98,,,12,,,referenced in XDF notes; role not individually identified
+0x85C44,FUN_00085C44,,,4,,,referenced in XDF notes; role not individually identified
+0x85DB2,FUN_00085DB2,,,2,,,referenced in XDF notes; role not individually identified
+0x8600C,FUN_0008600C,,,4,,,referenced in XDF notes; role not individually identified
+0x8617A,FUN_0008617A,,,2,,,referenced in XDF notes; role not individually identified
+0x86A44,FUN_00086A44,,,2,,,referenced in XDF notes; role not individually identified
+0x86BCC,FUN_00086BCC,,,1,,,referenced in XDF notes; role not individually identified
+0x87B58,FUN_00087B58,,,4,,,referenced in XDF notes; role not individually identified
+0x87CB6,FUN_00087CB6,,,2,,,referenced in XDF notes; role not individually identified
+0x87F2A,FUN_00087F2A,,,4,,,referenced in XDF notes; role not individually identified
+0x88092,FUN_00088092,,,2,,,referenced in XDF notes; role not individually identified
+0x8885E,FUN_0008885E,,,2,,,referenced in XDF notes; role not individually identified
+0x889E6,FUN_000889E6,,,1,,,referenced in XDF notes; role not individually identified
+0x899DE,FUN_000899DE,,,2,,,referenced in XDF notes; role not individually identified
+0x89B7A,FUN_00089B7A,,,1,,,referenced in XDF notes; role not individually identified
+0x89DE0,FUN_00089DE0,,,2,,,referenced in XDF notes; role not individually identified
+0x89F7C,FUN_00089F7C,,,1,,,referenced in XDF notes; role not individually identified
+0x8B464,FUN_0008B464,,,2,,,referenced in XDF notes; role not individually identified
+0x8B5EC,FUN_0008B5EC,,,1,,,referenced in XDF notes; role not individually identified
+0x8BBA4,FUN_0008BBA4,,,2,,,referenced in XDF notes; role not individually identified
+0x8BDB2,FUN_0008BDB2,,,1,,,referenced in XDF notes; role not individually identified
+0x8BF64,FUN_0008BF64,,,4,,,referenced in XDF notes; role not individually identified
+0x8CD18,FUN_0008CD18,,,1,,,referenced in XDF notes; role not individually identified
+0x8CE5C,FUN_0008CE5C,,,2,,,referenced in XDF notes; role not individually identified
+0x8CF84,FUN_0008CF84,,,2,,,referenced in XDF notes; role not individually identified
+0x8CFE2,FUN_0008CFE2,,,2,,,referenced in XDF notes; role not individually identified
+0x8D37A,FUN_0008D37A,,,6,,,referenced in XDF notes; role not individually identified
+0x8D5FC,FUN_0008D5FC,,,5,,,referenced in XDF notes; role not individually identified
+0x8D652,FUN_0008D652,,,2,,,referenced in XDF notes; role not individually identified
+0x8D7FA,FUN_0008D7FA,,,3,,,referenced in XDF notes; role not individually identified
+0x8D84E,FUN_0008D84E,,,168,,,referenced in XDF notes; role not individually identified
+0x8D8E4,FUN_0008D8E4,ADC channel selector,,66,,,ADC channel selector
+0x8E210,FUN_0008E210,,,4,,,referenced in XDF notes; role not individually identified
+0x8E2D6,FUN_0008E2D6,,,4,,,referenced in XDF notes; role not individually identified
+0x8E3B2,FUN_0008E3B2,,,4,,,referenced in XDF notes; role not individually identified
+0x8E3DE,FUN_0008E3DE,,,8,,,referenced in XDF notes; role not individually identified
+0x8E4FE,FUN_0008E4FE,,,2,,,referenced in XDF notes; role not individually identified
+0x8E5C4,FUN_0008E5C4,,,7,,,referenced in XDF notes; role not individually identified
+0x8E6D2,FUN_0008E6D2,,,1,,,referenced in XDF notes; role not individually identified
+0x8E6F2,FUN_0008E6F2,,,8,,,referenced in XDF notes; role not individually identified
+0x8E76C,FUN_0008E76C,,,3,,,referenced in XDF notes; role not individually identified
+0x8EA52,FUN_0008EA52,,,8,,,referenced in XDF notes; role not individually identified
+0x8EFA2,FUN_0008EFA2,,,1,,,referenced in XDF notes; role not individually identified
+0x8F0F0,FUN_0008F0F0,,,32,,,referenced in XDF notes; role not individually identified
+0x8F3BA,FUN_0008F3BA,,,4,,,referenced in XDF notes; role not individually identified
+0x8F632,FUN_0008F632,,,2,,,referenced in XDF notes; role not individually identified
+0x8F7E4,FUN_0008F7E4,,,9,,,referenced in XDF notes; role not individually identified
+0x8F9EE,FUN_0008F9EE,,,9,,,referenced in XDF notes; role not individually identified
+0x8FE1A,FUN_0008FE1A,,,16,,,referenced in XDF notes; role not individually identified
+0x8FEF6,FUN_0008FEF6,,,16,,,referenced in XDF notes; role not individually identified
+0x90116,FUN_00090116,,,51,,,referenced in XDF notes; role not individually identified
+0x9012E,FUN_0009012E,,,140,,,referenced in XDF notes; role not individually identified
+0x9016C,FUN_0009016C,,,16,,,referenced in XDF notes; role not individually identified
+0x90348,FUN_00090348,,,4,,,referenced in XDF notes; role not individually identified
+0x90376,FUN_00090376,,,4,,,referenced in XDF notes; role not individually identified
+0x903A4,FUN_000903A4,,,4,,,referenced in XDF notes; role not individually identified
+0x9053A,FUN_0009053A,,,34,,,referenced in XDF notes; role not individually identified
+0x90700,FUN_00090700,,,34,,,referenced in XDF notes; role not individually identified
+0x908C6,FUN_000908C6,,,1,,,referenced in XDF notes; role not individually identified
+0x90BC6,FUN_00090BC6,,,4,,,referenced in XDF notes; role not individually identified
+0x90BEE,FUN_00090BEE,,,2,,,referenced in XDF notes; role not individually identified
+0x90C04,FUN_00090C04,,,4,,,referenced in XDF notes; role not individually identified
+0x90C26,FUN_00090C26,,,4,,,referenced in XDF notes; role not individually identified
+0x90D6C,FUN_00090D6C,,,4,,,referenced in XDF notes; role not individually identified
+0x90D94,FUN_00090D94,,,2,,,referenced in XDF notes; role not individually identified
+0x90DAA,FUN_00090DAA,,,2,,,referenced in XDF notes; role not individually identified
+0x90DC0,FUN_00090DC0,,,4,,,referenced in XDF notes; role not individually identified
+0x90DE2,FUN_00090DE2,,,4,,,referenced in XDF notes; role not individually identified
+0x90E0A,FUN_00090E0A,,,4,,,referenced in XDF notes; role not individually identified
+0x9104E,FUN_0009104E,,,4,,,referenced in XDF notes; role not individually identified
+0x91320,FUN_00091320,,,8,,,referenced in XDF notes; role not individually identified
+0x91826,FUN_00091826,,,100,,,referenced in XDF notes; role not individually identified
+0x9191C,FUN_0009191C,,,1,,,referenced in XDF notes; role not individually identified
+0x91954,FUN_00091954,,,12,,,referenced in XDF notes; role not individually identified
+0x91960,FUN_00091960,,,3,,,referenced in XDF notes; role not individually identified
+0x919AA,FUN_000919AA,,,1,,,referenced in XDF notes; role not individually identified
+0x919B6,FUN_000919B6,,,20,,,referenced in XDF notes; role not individually identified
+0x919C2,FUN_000919C2,,,59,,,referenced in XDF notes; role not individually identified
+0x919D6,FUN_000919D6,,,1,,,referenced in XDF notes; role not individually identified
+0x91A30,FUN_00091A30,,,14,,,referenced in XDF notes; role not individually identified
+0x91A46,FUN_00091A46,,,2,,,referenced in XDF notes; role not individually identified
+0x91A6C,FUN_00091A6C,,,3,,,referenced in XDF notes; role not individually identified
+0x91A82,FUN_00091A82,,,108,,,referenced in XDF notes; role not individually identified
+0x91A92,FUN_00091A92,,,19,,,referenced in XDF notes; role not individually identified
+0x91AA4,FUN_00091AA4,,,2,,,referenced in XDF notes; role not individually identified
+0x91AB6,FUN_00091AB6,,,17,,,referenced in XDF notes; role not individually identified
+0x91ACA,FUN_00091ACA,,,6,,,referenced in XDF notes; role not individually identified
+0x91D8A,FUN_00091D8A,,,6,,,referenced in XDF notes; role not individually identified
+0x91DDE,FUN_00091DDE,,,3,,,referenced in XDF notes; role not individually identified
+0x9236E,FUN_0009236E,,,2,,,referenced in XDF notes; role not individually identified
+0x924AE,FUN_000924AE,,,2,,,referenced in XDF notes; role not individually identified
+0x924B8,FUN_000924B8,,,2,,,referenced in XDF notes; role not individually identified
+0x93464,FUN_00093464,,,4,,,referenced in XDF notes; role not individually identified
+0x938A8,FUN_000938A8,,,120,,,referenced in XDF notes; role not individually identified
+0x9393A,FUN_0009393A,,,10,,,referenced in XDF notes; role not individually identified
+0x93E86,FUN_00093E86,,,4,,,referenced in XDF notes; role not individually identified
+0x941AC,FUN_000941AC,,,120,,,referenced in XDF notes; role not individually identified
+0x943D2,FUN_000943D2,,,1,,,referenced in XDF notes; role not individually identified
+0x9446E,FUN_0009446E,,,4,,,referenced in XDF notes; role not individually identified
+0x95EDC,FUN_00095EDC,,,2,,,referenced in XDF notes; role not individually identified
+0x95F08,FUN_00095F08,,,4,,,referenced in XDF notes; role not individually identified
+0x95F86,FUN_00095F86,,,2,,,referenced in XDF notes; role not individually identified
+0x96008,FUN_00096008,,,4,,,referenced in XDF notes; role not individually identified
+0x97726,FUN_00097726,,,2,,,referenced in XDF notes; role not individually identified
+0x97856,FUN_00097856,,,2,,,referenced in XDF notes; role not individually identified
+0x978FC,FUN_000978FC,,,1,,,referenced in XDF notes; role not individually identified
+0x97B2A,FUN_00097B2A,,,1,,,referenced in XDF notes; role not individually identified
+0x97C6C,FUN_00097C6C,,,3,,,referenced in XDF notes; role not individually identified
+0x97CAA,FUN_00097CAA,,,3,,,referenced in XDF notes; role not individually identified
+0x97D5E,FUN_00097D5E,,,1,,,referenced in XDF notes; role not individually identified
+0x97E0A,FUN_00097E0A,,,1,,,referenced in XDF notes; role not individually identified
+0x97EF2,FUN_00097EF2,,,2,,,referenced in XDF notes; role not individually identified
+0x98016,FUN_00098016,,,1,,,referenced in XDF notes; role not individually identified
+0x980B2,FUN_000980B2,,,2,,,referenced in XDF notes; role not individually identified
+0x987FA,FUN_000987FA,,,3,,,referenced in XDF notes; role not individually identified
+0x988C0,FUN_000988C0,,,2,,,referenced in XDF notes; role not individually identified
+0x988E0,FUN_000988E0,,,4,,,referenced in XDF notes; role not individually identified
+0x98BBA,FUN_00098BBA,,,1,,,referenced in XDF notes; role not individually identified
+0x98C6C,FUN_00098C6C,,,1,,,referenced in XDF notes; role not individually identified
+0x98D6C,FUN_00098D6C,,,2,,,referenced in XDF notes; role not individually identified
+0x9901A,FUN_0009901A,,,8,,,referenced in XDF notes; role not individually identified
+0x991AE,FUN_000991AE,,,1,,,referenced in XDF notes; role not individually identified
+0x992E4,FUN_000992E4,,,7,,,referenced in XDF notes; role not individually identified
+0x99394,FUN_00099394,,,6,,,referenced in XDF notes; role not individually identified
+0x9951E,FUN_0009951E,,,1,,,referenced in XDF notes; role not individually identified
+0x997F6,FUN_000997F6,,,1,,,referenced in XDF notes; role not individually identified
+0x999F0,FUN_000999F0,,,3,,,referenced in XDF notes; role not individually identified
+0x99AAA,FUN_00099AAA,,,2,,,referenced in XDF notes; role not individually identified
+0x99CF4,FUN_00099CF4,,,3,,,referenced in XDF notes; role not individually identified
+0x99E2A,FUN_00099E2A,,,120,,,referenced in XDF notes; role not individually identified
+0x9A65A,FUN_0009A65A,,,5,,,referenced in XDF notes; role not individually identified
+0x9A752,FUN_0009A752,,,1,,,referenced in XDF notes; role not individually identified
+0x9B3F4,FUN_0009B3F4,,,4,,,referenced in XDF notes; role not individually identified
+0x9B4AC,FUN_0009B4AC,,,1,,,referenced in XDF notes; role not individually identified
+0x9B4F4,FUN_0009B4F4,,,1,,,referenced in XDF notes; role not individually identified
+0x9B9A6,FUN_0009B9A6,,,4,,,referenced in XDF notes; role not individually identified
+0x9BF20,FUN_0009BF20,,,4,,,referenced in XDF notes; role not individually identified
+0x9BFD8,FUN_0009BFD8,,,8,,,referenced in XDF notes; role not individually identified
+0x9C1B8,FUN_0009C1B8,,,4,,,referenced in XDF notes; role not individually identified
+0x9C9A2,FUN_0009C9A2,,,1,,,referenced in XDF notes; role not individually identified
+0x9CB3C,FUN_0009CB3C,,,4,,,referenced in XDF notes; role not individually identified
+0x9CC1A,FUN_0009CC1A,,,2,,,referenced in XDF notes; role not individually identified
+0x9D1D0,FUN_0009D1D0,,,2,,,referenced in XDF notes; role not individually identified
+0x9D548,FUN_0009D548,,,1,,,referenced in XDF notes; role not individually identified
+0x9DA94,FUN_0009DA94,,,1,,,referenced in XDF notes; role not individually identified
+0x9DB60,FUN_0009DB60,,,2,,,referenced in XDF notes; role not individually identified
+0x9DC02,FUN_0009DC02,,,1,,,referenced in XDF notes; role not individually identified
+0x9E0DA,FUN_0009E0DA,,,1,,,referenced in XDF notes; role not individually identified
+0x9E3B0,FUN_0009E3B0,,,1,,,referenced in XDF notes; role not individually identified
+0x9F3E8,FUN_0009F3E8,,,4,,,referenced in XDF notes; role not individually identified
+0x9F4E4,FUN_0009F4E4,,,6,,,referenced in XDF notes; role not individually identified
+0x9F56C,FUN_0009F56C,,,4,,,referenced in XDF notes; role not individually identified
+0x9F5AC,FUN_0009F5AC,,,4,,,referenced in XDF notes; role not individually identified
+0x9F5EC,FUN_0009F5EC,,,4,,,referenced in XDF notes; role not individually identified
+0x9F614,FUN_0009F614,,,1,,,referenced in XDF notes; role not individually identified
+0x9F7EA,FUN_0009F7EA,,,3,,,referenced in XDF notes; role not individually identified
+0x9F972,FUN_0009F972,,,7,,,referenced in XDF notes; role not individually identified
+0x9FBB8,FUN_0009FBB8,,,1,,,referenced in XDF notes; role not individually identified
+0x9FEC6,FUN_0009FEC6,,,1,,,referenced in XDF notes; role not individually identified
+0xA0068,FUN_000A0068,,,1,,,referenced in XDF notes; role not individually identified
+0xA00BE,FUN_000A00BE,,,1,,,referenced in XDF notes; role not individually identified
+0xA06DE,FUN_000A06DE,,,2,,,referenced in XDF notes; role not individually identified
+0xA0B86,FUN_000A0B86,,,2,,,referenced in XDF notes; role not individually identified
+0xA1AC4,FUN_000A1AC4,,,2,,,referenced in XDF notes; role not individually identified
+0xA1E40,FUN_000A1E40,,,2,,,referenced in XDF notes; role not individually identified
+0xA2124,FUN_000A2124,,,2,,,referenced in XDF notes; role not individually identified
+0xA2180,FUN_000A2180,,,1,,,referenced in XDF notes; role not individually identified
+0xA2242,FUN_000A2242,,,10,,,referenced in XDF notes; role not individually identified
+0xA257C,FUN_000A257C,,,3,,,referenced in XDF notes; role not individually identified
+0xA25BC,FUN_000A25BC,,,8,,,referenced in XDF notes; role not individually identified
+0xA2604,FUN_000A2604,,,1,,,referenced in XDF notes; role not individually identified
+0xA27DE,FUN_000A27DE,,,4,,,referenced in XDF notes; role not individually identified
+0xA29D8,FUN_000A29D8,,,6,,,referenced in XDF notes; role not individually identified
+0xA2A3E,FUN_000A2A3E,,,2,,,referenced in XDF notes; role not individually identified
+0xA2C66,FUN_000A2C66,,,2,,,referenced in XDF notes; role not individually identified
+0xA2D48,FUN_000A2D48,,,2,,,referenced in XDF notes; role not individually identified
+0xA2D86,FUN_000A2D86,,,5,,,referenced in XDF notes; role not individually identified
+0xA2F7C,FUN_000A2F7C,,,2,,,referenced in XDF notes; role not individually identified
+0xA3138,FUN_000A3138,,,6,,,referenced in XDF notes; role not individually identified
+0xA351C,FUN_000A351C,,,4,,,referenced in XDF notes; role not individually identified
+0xA3644,FUN_000A3644,,,4,,,referenced in XDF notes; role not individually identified
+0xA3674,FUN_000A3674,,,3,,,referenced in XDF notes; role not individually identified
+0xA36DA,FUN_000A36DA,,,1,,,referenced in XDF notes; role not individually identified
+0xA36F2,FUN_000A36F2,,,3,,,referenced in XDF notes; role not individually identified
+0xA397A,FUN_000A397A,,,7,,,referenced in XDF notes; role not individually identified
+0xA3C4A,FUN_000A3C4A,,,1,,,referenced in XDF notes; role not individually identified
+0xA3FAE,FUN_000A3FAE,,,2,,,referenced in XDF notes; role not individually identified
+0xA40DE,FUN_000A40DE,,,3,,,referenced in XDF notes; role not individually identified
+0xA41D8,FUN_000A41D8,,,2,,,referenced in XDF notes; role not individually identified
+0xA424A,FUN_000A424A,,,4,,,referenced in XDF notes; role not individually identified
+0xA42FC,FUN_000A42FC,,,9,,,referenced in XDF notes; role not individually identified
+0xA43B6,FUN_000A43B6,,,2,,,referenced in XDF notes; role not individually identified
+0xA441C,FUN_000A441C,,,8,,,referenced in XDF notes; role not individually identified
+0xA4446,FUN_000A4446,,,1,,,referenced in XDF notes; role not individually identified
+0xA449E,FUN_000A449E,,,7,,,referenced in XDF notes; role not individually identified
+0xA6310,FUN_000A6310,,,1,,,referenced in XDF notes; role not individually identified
+0xAA8B2,FUN_000AA8B2,,,4,,,referenced in XDF notes; role not individually identified
+0xAA982,FUN_000AA982,,,2,,,referenced in XDF notes; role not individually identified
+0xAA9FA,FUN_000AA9FA,,,2,,,referenced in XDF notes; role not individually identified
+0xAAA84,FUN_000AAA84,,,3,,,referenced in XDF notes; role not individually identified
+0xAAB6E,FUN_000AAB6E,,,2,,,referenced in XDF notes; role not individually identified
+0xAB16C,FUN_000AB16C,,,6,,,referenced in XDF notes; role not individually identified
+0xAB39E,FUN_000AB39E,,,3,,,referenced in XDF notes; role not individually identified
+0xAB5A2,FUN_000AB5A2,,,3,,,referenced in XDF notes; role not individually identified
+0xABBEA,FUN_000ABBEA,,,2,,,referenced in XDF notes; role not individually identified
+0xABCFA,FUN_000ABCFA,,,2,,,referenced in XDF notes; role not individually identified
+0x15B4AC,FUN_0015B4AC,,,1,,,referenced in XDF notes; role not individually identified
