@@ -176,6 +176,76 @@ def v2_trace_rows():
     return out
 
 
+# ---- value legends + code-grounded unit inheritance --------------------------------
+def ram_conv():
+    """RAM addr (0xUPPER) -> (unit, equation, meaning) from the curated ram-variables.csv.
+    equation is a TunerPro MATH expression in X (the raw value), e.g. 'X/2.56'."""
+    out = {}
+    for r in csv.DictReader(open(RAMVARS)):
+        a = norm_ram(r['ram_address'])
+        if a:
+            out[a] = (r['display_unit'].strip(), (r['conversion'].strip() or 'X'), r['meaning'].strip())
+    return out
+
+
+_FEF = re.compile(r'fef0[0-9a-fA-F]{4}')
+
+
+def const_unit_map():
+    """address(int) -> (unit, equation, meaning, ramvar) for every auto-defined THRESHOLD scalar
+    whose decompiled code line compares it against exactly one known sensor RAM variable. That
+    makes the scalar's unit the sensor's unit (the v9.2 re-pairing method, applied by code). Only
+    these high-confidence cases are offered for a unit upgrade; everything else keeps raw + a legend.
+    """
+    rc = ram_conv()
+    out = {}
+    for a, r in autodef_rows().items():
+        if r.get('role') != 'threshold':
+            continue
+        vs = [v for v in dict.fromkeys('0x' + x.upper() for x in _FEF.findall(r.get('code', ''))) if v in rc]
+        if len(vs) == 1:
+            unit, eq, meaning = rc[vs[0]]
+            if unit and unit.lower() != 'raw':
+                out[a] = (unit, eq, meaning, vs[0])
+    return out
+
+
+V2_DTC_NAMES = os.path.join(V2, 'docs/manual-dtc-names.csv')
+
+
+def dtc_by_lamp_addr():
+    """lamp-byte address (int) -> (code, bin_description, official_SAE_name) joining the bin's
+    DTC table (docs/dtc-table.csv) with the service-manual official names (manual-dtc-names.csv)."""
+    man = {}
+    if os.path.exists(V2_DTC_NAMES):
+        for r in csv.DictReader(open(V2_DTC_NAMES)):
+            man[r['code'].strip()] = r['official_name_SAE'].strip()
+    out = {}
+    for r in dtc_rows():
+        try:
+            a = int(r['Lamp byte address'], 16)
+        except (ValueError, KeyError):
+            continue
+        code = re.match(r'([PCU]\d{4})', r['DTC'].strip())
+        code = code.group(1) if code else r['DTC'].strip()
+        out[a] = (r['DTC'].strip(), r.get('Description', '').strip(), man.get(code, ''))
+    return out
+
+
+def flag_legend(mask):
+    """Human legend for a flag's on/off meaning, by its bit mask."""
+    m = int(mask, 16) if isinstance(mask, str) else mask
+    if m == 0x80:
+        return 'LEGEND: bit 7 (mask 0x80) - 0x80 = ON / enabled, 0x00 = OFF / disabled.'
+    if m == 0x01:
+        return ('LEGEND: bit 0 (mask 0x01) - 1 = this DTC monitor turns ON the MIL / warning lamp, '
+                '0 = lamp disabled for this DTC (monitor may still run).')
+    if m == 0x40:
+        return 'LEGEND: bit 6 (mask 0x40) - 0x40 = set / enabled, 0x00 = clear / disabled.'
+    bit = (m.bit_length() - 1) if m else 0
+    return 'LEGEND: bit %d (mask 0x%02X) - set = enabled, clear = disabled.' % (bit, m)
+
+
 if __name__ == '__main__':
     mi = map_inputs()
     xres = sum(1 for r in mi.values() if r['xmean'])

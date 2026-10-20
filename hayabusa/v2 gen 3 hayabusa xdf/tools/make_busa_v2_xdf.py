@@ -105,10 +105,50 @@ def apply_v2_trace(desc, title, row):
     return desc, title
 
 
-def enhance(master_text, mi, v2t):
-    """Walk every item block; insert TRACED INPUTS on tables, apply v2 upgrades. Returns
-    (new_text, stats)."""
-    stats = dict(tables=0, inputs_added=0, upgrades=0)
+def _add_legend(desc, legend):
+    """Append a LEGEND line once (idempotent)."""
+    if not legend or 'LEGEND:' in desc:
+        return desc
+    return desc.rstrip() + '\n\n' + legend
+
+
+def const_legend(block, cu, addr, autodef):
+    """(legend_text, new_units, new_equation) for a constant. Upgrades a raw threshold scalar to
+    its code-proven sensor unit; otherwise legends the existing unit or marks it raw."""
+    um = re.search(r'<units>(.*?)</units>', block, re.S)
+    unit = (um.group(1).strip() if um else 'raw')
+    eqm = re.search(r'<MATH equation="([^"]*)"', block)
+    eq = eqm.group(1) if eqm else 'X'
+    if addr in cu and unit.lower() == 'raw':
+        u, e, meaning, var = cu[addr]
+        legend = ('LEGEND (v2): displayed in %s via %s (X = raw value); unit inherited from the '
+                  'signal this threshold is compared with in code, %s (RAM %s).' % (u, e, meaning, var))
+        return legend, u, e
+    if unit.lower() != 'raw':
+        legend = 'LEGEND: displayed in %s%s (X = raw value).' % (
+            unit, (' via %s' % eq) if eq not in ('', 'X') else '')
+        return legend, None, None
+    role = (autodef.get(addr, {}) or {}).get('role', '')
+    if role == 'switch':
+        return ('LEGEND: byte switch - 0x80 = ON / enabled, 0x00 = OFF / disabled (some use other '
+                'values as a mode selector; see description).'), None, None
+    hint = {'count': 'debounce / timer count (cycles)',
+            'array': 'element of an indexed table (raw index/value)',
+            'arith': 'arithmetic operand used in a calculation',
+            'default': 'value written straight into a RAM variable',
+            'limit': 'clamp / limit value', 'filter': 'filter strength (higher = more smoothing)',
+            'cmp_local': 'threshold on a value computed inside the function',
+            'code_ptr': 'function-pointer table entry - NOT tunable'}.get(role, '')
+    legend = 'LEGEND: raw value%s; no physical unit assigned.' % ((' - ' + hint) if hint else '')
+    return legend, None, None
+
+
+def enhance(master_text, mi, v2t, cu, autodef, dtc):
+    """Walk every item block; insert TRACED INPUTS on tables, value legends on flags/constants,
+    code-grounded unit upgrades on raw thresholds, service-manual DTC names, and v2 deep-trace
+    upgrades. Returns (new_text, stats)."""
+    stats = dict(tables=0, inputs_added=0, upgrades=0, flag_legends=0, const_legends=0,
+                 unit_upgrades=0, dtc_named=0)
     out = []
     pos = 0
     block_re = re.compile(r'  <(XDFTABLE|XDFCONSTANT|XDFFLAG) uniqueid="0x[0-9A-Fa-f]+".*?</\1>\n', re.S)
@@ -121,6 +161,10 @@ def enhance(master_text, mi, v2t):
         dm = DESC.search(block)
         desc = dm.group(1) if dm else ''
         new_title, new_desc = title, desc
+        new_units = new_eq = None
+
+        am = re.search(r'mmedaddress="0x([0-9A-Fa-f]+)"', block)
+        addr = int(am.group(1), 16) if am else None
 
         if kind == 'XDFTABLE':
             stats['tables'] += 1
@@ -131,19 +175,42 @@ def enhance(master_text, mi, v2t):
                 if after != new_desc:
                     stats['inputs_added'] += 1
                     new_desc = after
+        elif kind == 'XDFFLAG':
+            mk = re.search(r'<mask>(0x[0-9A-Fa-f]+)</mask>', block)
+            if mk and 'LEGEND:' not in new_desc:
+                new_desc = _add_legend(new_desc, C.flag_legend(mk.group(1)))
+                stats['flag_legends'] += 1
+        elif kind == 'XDFCONSTANT' and addr is not None:
+            if 'LEGEND' not in new_desc:
+                legend, nu, ne = const_legend(block, cu, addr, autodef)
+                new_desc = _add_legend(new_desc, legend)
+                stats['const_legends'] += 1
+                if nu:
+                    new_units, new_eq = nu, ne
+                    stats['unit_upgrades'] += 1
+
+        # service-manual DTC name, keyed by the DTC lamp-byte address
+        if addr is not None and addr in dtc and 'SERVICE MANUAL:' not in new_desc:
+            code, bindesc, official = dtc[addr]
+            name = official or bindesc
+            if name:
+                new_desc = new_desc.rstrip() + '\n\nSERVICE MANUAL: %s - %s (Suzuki Hayabusa Gen3 SM).' % (code, name)
+                stats['dtc_named'] += 1
 
         # v2 deep-trace upgrade keyed by this item's primary EMBEDDEDDATA address
-        am = re.search(r'mmedaddress="0x([0-9A-Fa-f]+)"', block)
-        if am:
-            addr = int(am.group(1), 16)
-            if addr in v2t:
-                nd, nt = apply_v2_trace(new_desc, new_title, v2t[addr])
-                if nd != new_desc or nt != new_title:
-                    stats['upgrades'] += 1
-                    new_desc, new_title = nd, nt
+        if addr is not None and addr in v2t:
+            nd, nt = apply_v2_trace(new_desc, new_title, v2t[addr])
+            if nd != new_desc or nt != new_title:
+                stats['upgrades'] += 1
+                new_desc, new_title = nd, nt
 
+        if new_units:  # code-grounded unit upgrade: change <units> and the MATH equation
+            block = re.sub(r'<units>.*?</units>', '<units>%s</units>' % escape(new_units),
+                           block, count=1, flags=re.S)
+            block = re.sub(r'(<MATH equation=")[^"]*(")', r'\g<1>%s\g<2>' % new_eq, block, count=1)
         if new_desc != desc and dm:
-            block = block[:dm.start(1)] + escape(_unescape(new_desc)) + block[dm.end(1):]
+            dm2 = DESC.search(block)  # re-locate: block may have shifted from the units edit
+            block = block[:dm2.start(1)] + escape(_unescape(new_desc)) + block[dm2.end(1):]
         if new_title != title and tm:
             block = re.sub(r'<title>.*?</title>', '<title>%s</title>' % escape(new_title),
                            block, count=1, flags=re.S)
@@ -209,7 +276,8 @@ def build_master():
     """Enhance master-v9 into the full-text v2 master (valued, like v9, for 5JCZSJ10)."""
     import xml.etree.ElementTree as ET
     text = open(C.MASTER, encoding='utf-8').read()
-    text, stats = enhance(text, C.map_inputs(), C.v2_trace_rows())
+    text, stats = enhance(text, C.map_inputs(), C.v2_trace_rows(), C.const_unit_map(),
+                          C.autodef_rows(), C.dtc_by_lamp_addr())
     text = rewrite_header(text, '5JCZSJ10', '32990-10L1')
     text = clean_categories(text)
     text = _funcnames(text)
@@ -241,8 +309,11 @@ def build_read(master_text, sw, part):
 if __name__ == '__main__':
     args = sys.argv[1:]
     master_text, st = build_master()
-    print('master -> %s  (tables=%d traced-inputs=%d upgrades=%d)'
-          % (os.path.relpath(MASTER_OUT, C.ROOT), st['tables'], st['inputs_added'], st['upgrades']))
+    print('master -> %s' % os.path.relpath(MASTER_OUT, C.ROOT))
+    print('   tables=%d traced-inputs=%d | flag-legends=%d const-legends=%d unit-upgrades=%d '
+          'dtc-named=%d | v2-upgrades=%d'
+          % (st['tables'], st['inputs_added'], st['flag_legends'], st['const_legends'],
+             st['unit_upgrades'], st['dtc_named'], st['upgrades']))
     if args and args[0] == '--all':
         for sw in sorted(PARTS):
             if os.path.exists(os.path.join(C.HAYA, 'stock', sw, sw + '.bin')):
