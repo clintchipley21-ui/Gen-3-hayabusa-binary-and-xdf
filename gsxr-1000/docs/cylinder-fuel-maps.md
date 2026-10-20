@@ -34,24 +34,40 @@ on. Every one was already tagged `[UNCONFIRMED]` because the breakpoints differ 
 
 That is the artifact you saw. It was never a real gap in the tune — just mis-applied labels.
 
-## The fix (applied)
+## Confirmed by decoding the map data
 
-`tools/enhance_gsxr_xdf.py` relabels the 16 GSX-R fuel descriptors **positionally** from their own
-contiguous order:
+Decoding the Z-data of the 16 maps confirms the structure (not just a guess from shapes):
+
+- Within maps **0-3** the Z-means are near-identical (IAP 1043/1052/1036/1047; TPS
+  1508/1513/1468/1497) and within maps **4-7** likewise (IAP 1027/1030/1017/1024) — i.e. each
+  group of four is **four cylinders of one condition**.
+- The two groups of four differ by a small, consistent offset — i.e. **two conditions**.
+- Each map has its own X/Y axes: IAP = manifold vacuum (X, 30 pts) × RPM (Y, 50 pts, 800-16000);
+  TPS = throttle angle (X, 26 pts) × RPM (Y) — the expected fuel-map axes.
+
+So the layout is **4 cylinders × 2 conditions**, block-by-condition. The Hayabusa lays its In-Gear
+block before its Neutral/Clutch block (verified: in-gear `0x155a40` < neutral `0x156280`), so the
+GSX-R's first four are labelled In-Gear and the last four Neutral/Clutch.
+
+## The fix (applied, in the generator)
+
+`tools/make_gsxr_xdf.py` now relabels the 16 fuel descriptors by structure (function `relabel_fuel`,
+keyed by descriptor address), so a regenerate keeps the fix:
 
 - IAP 30×50 @ `0x157084,0dc,134,18c` → **IAP In-Gear Cyl 1-4**; `0x1571e4,23c,294,2ec` → **IAP
   Neutral/Clutch Cyl 1-4**.
 - TPS 26×50 @ `0x15733c,38c,3dc,42c` → **TPS In-Gear Cyl 1-4**; `0x15747c,cc,51c,56c` → **TPS
   Neutral/Clutch Cyl 1-4**.
 
-All stay `[UNCONFIRMED]`: the GSX-R values are its own, and the In-Gear-vs-Neutral split and
-cylinder order are assigned by position (the Hayabusa block runs In-Gear first, then
-Neutral/Clutch), to be confirmed by logging. The maps carry a `CORRECTED LABEL (v2)` note saying
-exactly this.
+The **4-cylinder × 2-condition split and the cylinder grouping are data-confirmed**; the
+**in-gear-vs-neutral identity and the cylinder numbering are by platform layout order**, so every
+map stays `[UNCONFIRMED]` and carries a `CORRECTED LABEL (v2)` note saying exactly this — confirm by
+logging. (`tools/enhance_gsxr_xdf.py` still adds the value legends; it detects the generator's note
+and leaves the fuel labels alone.)
 
 ## Takeaway for the generator
 
 `make_gsxr_xdf.py`'s global sequence-alignment is unreliable wherever the GSX-R bank size differs
 from the Hayabusa's (the fuel block is the clearest case). The robust approach is to align
-same-shape map runs by structure within their block, which is what the positional relabel above
-does by hand for the fuel maps.
+same-shape map runs by structure within their block — now done for the fuel maps; other
+size-mismatched blocks could be handled the same way if found.
