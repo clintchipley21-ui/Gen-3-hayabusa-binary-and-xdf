@@ -604,3 +604,72 @@ legitimate "stay inside the known-good envelope" improvements and remain in the 
 Verified on all four reads: **every table has 3 axes**; XML well-formed; no structural shape absent
 from the Hayabusa master; `&#x27;`/`&quot;` = 0; max category 300 members; max `uniqueid` 0x4088; no
 non-ASCII/control bytes. Confirmed opening in TunerPro 5.0 on the 48L00 read.
+
+## 3u. Injector fueling scalars (beyond deadtime) — traced in the GSX-R's own code
+
+The XDF showed injector **deadtime** (a ported table, vs battery voltage) but none of the injector
+**sizing** parameters a tuner expects. Those are scalars, not map-descriptors, so they did not port
+from the Hayabusa by address; they were sitting unnamed in the decompiler-scalar catch-all. Traced
+from the GSX-R's own pulse-time code and added as code-proven (CURATED) names.
+
+Two functions carry all the fueling math beyond deadtime:
+
+- **FUN_0004E5FA** — the universal combiner called by every injector output driver:
+  `final_time = saturate( deadtime + base_time*(DAT_00166e8c - 400)/200 , 0..0xFFFF )`.
+  This proves **`0x00166E8C` = global injector size scaler "K"** (effective multiplier = (K-400)/200;
+  stock 600 = x1.00).
+- **FUN_0004D68C** — computes the per-cylinder base time (air-charge x split x scaler) and clamps it
+  to [min,max] *before* deadtime, via `FUN_000A1C86(value, max, min)`. This proves:
+  - **`0x001670EE..0x001670F1`** = per-cylinder **primary flow trim** (one u8/cyl, selected by
+    cylinder index; `primary_time = air_charge * split * trim / 2^23`; stock all 0x80).
+  - **`0x001670F2`** = **secondary injector flow scaler** (applied only on the secondary outputs,
+    `/ 2^14`; stock 105). Role proven; exact label a strong inference.
+  - **`0x00166FC4`** = injector pulsewidth **minimum** clamp (stock 0).
+  - **`0x00166FC6`** = injector pulsewidth **maximum** clamp (stock 25000 ≈ 25 ms if µs).
+
+There is **no separate fuel-time offset/addend**: the only addend in the pulse-time path is the
+deadtime itself (table 0x15877C/0x15879C via descriptors 0x15762C/0x157640, interpolated by
+FUN_0004CA42 into `_DAT_febf6012`/`_DAT_febf602a`), added inside FUN_0004E5FA; the final saturate
+uses hard-coded 0/0xFFFF, not calibration. Verified against the 48L00 binary: K=600, trims=128 each,
+secondary=105, PW min=0, PW max=25000 — all internally consistent (K at unity, equal trims).
+
+## 3v. Exhaust Control Valve (EXCV) — found, mapped, added (P1400 cluster)
+
+Earlier drafts wrongly concluded "no exhaust valve." That was wrong: the 2017-2023 GSX-R1000 has a
+cable-driven **servo Exhaust Control Valve (EXCV)** (Suzuki 2023 TSB covers its cable adjustment).
+The miss had two causes: (1) the GSX-R DTC table uses **24-byte records** (the Hayabusa's are 20), so
+a stride-20 scan found nothing; (2) the EXCV is a **bang-bang / state-machine cable servo with a
+position-feedback potentiometer and an H-bridge motor**, not a smooth RPM-curve closed loop like the
+ETV — so an "RPM target map + closed-loop position" search missed it. The user-supplied DTC **P1400**
+was the key. All of the following is verified against the 48L00 binary (identical records in all four
+reads).
+
+**DTC table:** base `0x1A18EC`, 24-byte records (lamp@+0, SAE code lo@+9/hi@+10, RAM status@+20 in
+0xFEF0xxxx). EXCV cluster present in 48L00: **P1400** @0x1A1DE4 (code 0x1400), **P1402** @0x1A1DCC
+(0x1402), **P1404** ×4 @0x1A1DFC/0x1A1E14/0x1A2174/0x1A218C (0x1404). (P1403/P1406 exist on the
+Hayabusa but not in 48L00.) Lamp byte bit0 = MIL-enable → added as XDF flags (mask 0x01).
+
+**Position feedback:** `0xFEF025DA`, 10-bit (0-1023), written by `FUN_0008421E` =
+`FUN_00022ECE(0x33) >> 6` → **ADC logical channel 0x33 = EXCV valve-position potentiometer**. Scan
+PID at 0xFEF01683 (>>2 to 0-255).
+
+**Monitors (diagnostics):** P1400 = position LOW / short-to-ground (`FUN_0003986E` vs 0x15597E=29);
+P1402 = position HIGH / open / short-to-power (`FUN_00039972` vs 0x155980=1004); P1404 = range/stuck
+(`FUN_0003B190`, window 0x1559A6=49 / 0x1559A8=983 / 0x1559AA=29 / 0x1559AC=1004) and motion/stall
+(`FUN_00041548`, time limit 0x155B1C=125).
+
+**Control:** demand `0xFEBF62BE` driven to **discrete setpoints** (CLOSED 0x172E9C=204, OPEN
+0x172E9E=828, near-full 0x172E96=1020) by the state machine (`FUN_0007899C` family), gated by
+decision 0x172E98=553 / speed-RPM gate 0x172E9A=463. **There is no valve-opening-vs-RPM tuning
+curve** — it is threshold/state-machine, so no RPM target table exists to add. Duty % at 0xFEBF62CC;
+H-bridge PWM out at 0xFEBF603D/603E (`FUN_0004C8D0`), neutral 0x80 when off; enable gate
+`0x172F32==0x80 && 0x167105==0x80`.
+
+**Maps (the only genuine EXCV maps):** two 23×9 motor-drive voltage-compensation tables (duty ×
+battery voltage) — descriptor `0x157654` (data 0x16638C) and `0x157670` (data 0x16645C). These were
+previously mis-ported as "Fuel :: Primary/Secondary Trim"; relabelled to EXCV. Stock cells are
+near-neutral (0x80), so the tables are thin.
+
+**Added to the XDF** (`docs/curated-names.json` + generator): the 2 maps (relabelled), ~20 control/
+threshold/enable scalars (code-proven names with addresses and stock values), and the 6 P14xx DTC
+MIL-enable flags, all under a new "Exhaust Control Valve (EXCV) (decoded)" category.

@@ -236,9 +236,9 @@ def values_line(b, d, zinfo, sw):
     n = (d['r'] or 1) * d['c']
     raw = read_axis(b, zaddr, n, zbits, zsigned)
     lo, hi = min(raw), max(raw)
-    return 'VALUES (%s): %s to %s %s%s.' % (
+    return 'MIN/MAX (%s): min %s, max %s %s%s.' % (
         sw, fmt(ev(zeq, lo)), fmt(ev(zeq, hi)), zu,
-        ' - every cell the same' if lo == hi else '')
+        ' (every cell the same)' if lo == hi else '')
 
 
 def reference_line(d):
@@ -393,6 +393,8 @@ def category_block():
                 % scalarcat)
     cats.append('    <CATEGORY index="0x%X" name="Steering Damper (ESD) (decoded)" />\n'
                 % (maxidx + 3))
+    cats.append('    <CATEGORY index="0x%X" name="Exhaust Control Valve (EXCV) (decoded)" />\n'
+                % (maxidx + 4))
     # TunerPro CATEGORYMEM category="N" is 1-BASED: it selects CATEGORY index N-1 (verified against
     # the Hayabusa master, which the ported maps inherit their 1-based values from). So every category
     # VALUE the generator emits is (0-based index + 1). name2val maps a category NAME to that value.
@@ -746,6 +748,96 @@ SCALAR_FLAG = '''  <XDFFLAG uniqueid="0x%(uid)X">
     <mask>0x80</mask>
   </XDFFLAG>
 '''
+# same, but with an explicit bit mask (the DTC lamp bytes use bit0 = MIL-enable, not bit7)
+SCALAR_FLAG_MASK = '''  <XDFFLAG uniqueid="0x%(uid)X">
+    <title>%(title)s</title>
+    <description>%(desc)s</description>
+    <CATEGORYMEM index="0" category="%(cat)d" />
+    <EMBEDDEDDATA mmedaddress="0x%(addr)X" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x%(mask)02X</mask>
+  </XDFFLAG>
+'''
+
+
+# Exhaust Control Valve (EXCV) P14xx diagnostic MIL-enable flags, decoded from the GSX-R's own DTC
+# table (24-byte records at 0x1A18EC+; lamp byte at the record start, bit0 = MIL-enable). The EXCV is
+# the cable-driven servo exhaust valve (Suzuki 2017-2023 GSX-R1000). Position feedback 0xFEF025DA
+# (ADC ch 0x33); H-bridge PWM out 0xFEBF603D/603E. Only P1400/P1402/P1404 are present in 48L00.
+EXCV_DTC_FLAGS = [
+    (0x1A1DE4, 'EXCV :: P1400 MIL enable - valve position sensor LOW (short-to-gnd)',
+     'DTC P1400, EXCV position-sensor voltage low / out-of-range low. Monitor FUN_0003986E vs '
+     'threshold 0x15597E (29). Lamp byte bit0 = MIL enable; clear to disable the MIL for this DTC.'),
+    (0x1A1DCC, 'EXCV :: P1402 MIL enable - valve position sensor HIGH (open/short-to-pwr)',
+     'DTC P1402, EXCV position-sensor voltage high / out-of-range high. Monitor FUN_00039972 vs '
+     'threshold 0x155980 (1004). Lamp byte bit0 = MIL enable.'),
+    (0x1A1DFC, 'EXCV :: P1404 MIL enable - valve range/stuck (#1)',
+     'DTC P1404, EXCV position range/stuck check (FUN_0003B190, window 0x1559A6-AC). Lamp bit0 = MIL.'),
+    (0x1A1E14, 'EXCV :: P1404 MIL enable - valve motion/stall (#2)',
+     'DTC P1404, EXCV motion/stall - valve did not reach commanded position within the time limit '
+     '0x155B1C (125). Monitor FUN_00041548. Lamp bit0 = MIL.'),
+    (0x1A2174, 'EXCV :: P1404 MIL enable - valve fault (#3, master-warning)',
+     'DTC P1404 variant, lamp byte = 0x40 (master-warning) stock. Lamp bit0 = MIL enable.'),
+    (0x1A218C, 'EXCV :: P1404 MIL enable - valve fault (#4)',
+     'DTC P1404 variant. Lamp byte bit0 = MIL enable.'),
+]
+
+
+def excv_dtc_blocks(name2val, uid0):
+    """Emit the EXCV P14xx DTC MIL-enable flags (bit0) into the EXCV category."""
+    cat = name2val.get('Exhaust Control Valve (EXCV) (decoded)')
+    out = []
+    uid = uid0
+    for addr, title, desc in EXCV_DTC_FLAGS:
+        out.append(SCALAR_FLAG_MASK % dict(uid=uid, title=escape(title), desc=escape(desc),
+                                            cat=cat, addr=addr, mask=0x01))
+        uid += 1
+    return out, uid - uid0
+
+
+# Final EXCV consolidation: every "EXCV ::" item is filed into one of two decoded folders -
+# "- Valve Control" (maps, setpoints, enable flags, hysteresis) or "- DTC Control" (the P14xx
+# MIL-enable flags and position-sensor monitor thresholds). Runs LAST (after prune/renumber/split)
+# so it works on final text and is immune to the earlier category passes. Idempotent, and it strips
+# any inherited Hayabusa category membership so each EXCV item lives only under its EXCV folder.
+EXCV_DTC_ADDRS = {0x1A1DE4, 0x1A1DCC, 0x1A1DFC, 0x1A1E14, 0x1A2174, 0x1A218C,
+                  0x15597E, 0x155980, 0x1559A6, 0x1559A8, 0x1559AA, 0x1559AC, 0x155B1C}
+
+
+def consolidate_excv(cats_xml, body):
+    cats = re.findall(r'    <CATEGORY index="(0x[0-9A-Fa-f]+)" name="([^"]*)" />\n', cats_xml)
+    idxs = [int(i, 16) for i, _ in cats]
+    valve_idx, newcats = None, []
+    for i, n in cats:
+        if 'Exhaust Control Valve (EXCV)' in n and valve_idx is None:
+            n, valve_idx = 'Exhaust Control Valve (EXCV) - Valve Control', int(i, 16)
+        newcats.append((int(i, 16), n))
+    if valve_idx is None:
+        valve_idx = max(idxs) + 1
+        newcats.append((valve_idx, 'Exhaust Control Valve (EXCV) - Valve Control'))
+        idxs.append(valve_idx)
+    dtc_idx = max(idxs + [valve_idx]) + 1
+    newcats.append((dtc_idx, 'Exhaust Control Valve (EXCV) - DTC Control'))
+    cats_xml = ''.join('    <CATEGORY index="0x%X" name="%s" />\n' % (i, n) for i, n in newcats)
+    valve_val, dtc_val = valve_idx + 1, dtc_idx + 1
+
+    def fix(m):
+        blk = m.group(0)
+        tt = re.search(r'<title>(.*?)</title>', blk, re.S)
+        if not tt or not tt.group(1).startswith('EXCV ::'):
+            return blk
+        am = re.search(r'mmedaddress="(0x[0-9A-Fa-f]+)"', blk)
+        addr = int(am.group(1), 16) if am else -1
+        val = dtc_val if (addr in EXCV_DTC_ADDRS or 'P140' in tt.group(1)) else valve_val
+        blk = re.sub(r'\s*<CATEGORYMEM[^>]*/>', '', blk)
+        cm = '\n    <CATEGORYMEM index="0" category="%d" />' % val
+        if '</description>' in blk:
+            blk = blk.replace('</description>', '</description>' + cm, 1)
+        else:
+            blk = re.sub(r'(</title>)', r'\1' + cm, blk, count=1)
+        return blk
+
+    body = re.sub(r'<(XDFTABLE|XDFCONSTANT|XDFFLAG)\b.*?</\1>', fix, body, flags=re.S)
+    return cats_xml, body
 
 
 # Map a context map title to a short, reliable subsystem tag (from the reading function).
@@ -797,7 +889,8 @@ def scalar_blocks(b, scalars, cat, sw, name2idx=None):
         # a code-traced constant: emit with its real name + evidence, skip the generic path
         if addr in TRACED_CONSTS:
             desc = ('TRACED FROM GSX-R CODE: %s. VALUE %s: %d (raw). Confirm the exact engage '
-                    'point on a bench before relying on it.' % (TRACED_CONSTS[addr], sw, val))
+                    'point on a bench before relying on it. STOCKVAL=%d.'
+                    % (TRACED_CONSTS[addr], sw, val, val))
             out.append(SCALAR_CONST % dict(uid=uid, title=escape(TRACED_CONSTS[addr][:60]),
                                            desc=escape(desc), cat=cat, addr=addr, bits=bits))
             uid += 1
@@ -813,14 +906,14 @@ def scalar_blocks(b, scalars, cat, sw, name2idx=None):
         is_flag = s.get('is_flag') and (b[addr] & 0x7f) == 0  # a clean 0x80/0x00 toggle in THIS read
         if is_flag:
             desc = ('Decompiler-found flag (UNVERIFIED): 0x80 toggle read by ECU code '
-                    '(%d ref/%d fn%s). %s: 0x%02X.%s'
-                    % (s['refs'], s['nfuncs'], func, sw, b[addr], ctx_line))
+                    '(%d ref/%d fn%s). %s: 0x%02X.%s STOCKBYTE=0x%02X.'
+                    % (s['refs'], s['nfuncs'], func, sw, b[addr], ctx_line, b[addr]))
             out.append(SCALAR_FLAG % dict(uid=uid, title=escape('%sFlag @0x%X (bit7)' % (pre, addr)),
                                           desc=escape(desc), cat=thiscat, addr=addr))
         else:
             desc = ('Decompiler-found scalar (UNVERIFIED): u%d read by ECU code (%d ref/%d fn%s). '
-                    'VALUE %s: %d.%s'
-                    % (bits, s['refs'], s['nfuncs'], func, sw, val, ctx_line))
+                    'VALUE %s: %d.%s STOCKVAL=%d.'
+                    % (bits, s['refs'], s['nfuncs'], func, sw, val, ctx_line, val))
             out.append(SCALAR_CONST % dict(uid=uid,
                                            title=escape('%sScalar @0x%X (u%d)' % (pre, addr, bits)),
                                            desc=escape(desc), cat=thiscat, addr=addr, bits=bits))
@@ -886,12 +979,16 @@ def generate(binpath, outpath, sw, part):
     scalars = load_scalars()
     sblocks, nscalar, ntagged = scalar_blocks(b, scalars, SCALARCAT, sw, NAME2VAL)
     blocks.extend(sblocks)
+    # EXCV (exhaust control valve) P14xx DTC MIL-enable flags, decoded from the GSX-R's own DTC table
+    excv_blocks, nexcv = excv_dtc_blocks(NAME2VAL, 0x120000)
+    blocks.extend(excv_blocks)
 
     deftitle = 'Suzuki GSX-R1000 M7 %s (%s) - ported from Hayabusa Gen3 (auto)' % (sw, part)
     desc = ('Suzuki GSX-R1000 M7 (RH850), 2 MB read, sw %s (ECM %s). %d maps auto-ported from '
             'Hayabusa Gen3 via on-bin descriptors (%d HIGH, %d MED=verify, %d unknown) + %d '
             'scalars/flags found by Ghidra V850 decompile (generic titles + context hints, '
-            'UNVERIFIED). Scaling is the Hayabusa\'s, unverified here. Re-stamp field-1 CRC '
+            'UNVERIFIED). Scaling is the Hayabusa\'s, unverified here. Full per-item code trace: '
+            'gsxr-1000/docs/autodef-trace.csv. Re-stamp field-1 CRC '
             '(0x10000-0x1FFAFB @0x1FFAFE) with tools/fix_field1_crc.py. UNVERIFIED ON HARDWARE.'
             % (sw, part, len(gd), stats['HIGH'], stats['MED'], stats['GENERIC'], nscalar))
 
@@ -906,6 +1003,8 @@ def generate(binpath, outpath, sw, part):
     cats_xml, body, nsplit = split_oversized_categories(cats_xml, body)
     # keep every uniqueid within the Hayabusa master's proven-good magnitude (scalars were 0x100000+)
     body, nrenum = renumber_item_uniqueids(body)
+    # file every EXCV item into the two decoded folders (Valve Control / DTC Control)
+    cats_xml, body = consolidate_excv(cats_xml, body)
 
     header = '''<!-- Written by make_gsxr_xdf.py - GSX-R1000 M7, ported from Hayabusa Gen3 -->
 <XDFFORMAT version="1.70">
