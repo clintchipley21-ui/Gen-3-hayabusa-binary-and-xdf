@@ -57,6 +57,21 @@ docs/
 - The sibling GSX-R M7 XDFs got the same legend pass, a function index, and a fix to their
   per-cylinder fuel-map labels - see `../../gsxr-1000/docs/cylinder-fuel-maps.md`.
 
+### Patches, ETV maps, category name (this round)
+
+- **Rolling anti-lag + auto-upshift (air-shifter) settings** are now in every per-read v2 XDF,
+  under the folder **"22 Patches & Air-Shifter (apply to a stock bin)"** (10 Auto-Shift items +
+  9 ALS items), the same set the stock per-read XDFs carry. These are the *tuning items*; the
+  patch *code* is written to the bin by `../tools/apply_patches.py` (which also re-stamps the
+  field-1 CRC). Both ship DISABLED and are UNVERIFIED - bench first. The full-text
+  `busa-v2-master.xdf` stays patch-free (reference), matching the stock master.
+- **ETV limiting maps - audited complete.** v2 defines the whole throttle-limiting stack: base
+  ETV Limit A (per gear), ETV-PWR 1/2/3 targets (Neutral + Gears 1-6), TC / LF (anti-lift) /
+  Launch per-gear throttle limits, Engine-Brake throttle opening, Cruise throttle, and the ~110
+  ETV Monitor Level-2 safety-limit maps. With 0 generic titles and all 749 descriptors defined,
+  no ETV-limit descriptor is missing or unlabelled.
+- The root category tab **"xdf moto bin files"** is renamed to **"xdf bin files"**.
+
 ## What v2 adds over the current XDF
 
 1. **Standardized map-input tracing on every table.** Each table that the decompile resolves

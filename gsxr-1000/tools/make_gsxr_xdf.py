@@ -376,7 +376,8 @@ def clean_cat_name(name):
     'Unidentified - Cluster X' buckets mean nothing on the GSX-R, and '(legacy, empty)' is stale."""
     if 'Unidentified - Cluster' in name:
         return 'Uncategorized (auto-ported, verify)'
-    return name.replace(' (legacy, empty)', '')
+    name = name.replace(' (legacy, empty)', '')
+    return 'xdf bin files' if name == 'xdf moto bin files' else name
 
 
 def category_block():
