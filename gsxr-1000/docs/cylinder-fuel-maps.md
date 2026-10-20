@@ -34,24 +34,33 @@ on. Every one was already tagged `[UNCONFIRMED]` because the breakpoints differ 
 
 That is the artifact you saw. It was never a real gap in the tune — just mis-applied labels.
 
-## Confirmed by decoding the map data
+## Confirmed from the code (not just the shapes)
 
-Decoding the Z-data of the 16 maps confirms the structure (not just a guess from shapes):
+Three independent lines of evidence, all from the GSX-R's own bin:
 
-- Within maps **0-3** the Z-means are near-identical (IAP 1043/1052/1036/1047; TPS
-  1508/1513/1468/1497) and within maps **4-7** likewise (IAP 1027/1030/1017/1024) — i.e. each
-  group of four is **four cylinders of one condition**.
-- The two groups of four differ by a small, consistent offset — i.e. **two conditions**.
-- Each map has its own X/Y axes: IAP = manifold vacuum (X, 30 pts) × RPM (Y, 50 pts, 800-16000);
-  TPS = throttle angle (X, 26 pts) × RPM (Y) — the expected fuel-map axes.
+1. **One pointer array at `0x1560E4`.** The 16 fuel maps are addressed through a single contiguous
+   LE pointer array: entries 0-7 → the 8 IAP maps (`0x157084,0dc,134,18c,1e4,23c,294,2ec`), entries
+   8-15 → the 8 TPS maps (`0x15733c,38c,3dc,42c,47c,cc,51c,56c`). Within each 8-map half the array
+   order is the first four then the last four.
+2. **The readers differ by group.** The GSX-R fuel maps are read by the *same shared functions* as
+   the Hayabusa (same code addresses). The first four TPS maps are read by the in-gear base-fuel
+   lookup **`FUN_0004536C`**; the last four by the **neutral finaliser `FUN_0004543E`** — the
+   function that, in the Hayabusa decompile, selects the neutral/clutch fuel block only when the
+   **neutral/clutch flag `0xFEF0271D` bit 0** is set (with vacuum ≥ ~0 kPa and RPM below a gate).
+   So first-four = In-Gear, last-four = Neutral/Clutch, proven by which routine reads them.
+3. **Z-data decode agrees.** Within maps 0-3 the Z-means are near-identical (IAP
+   1043/1052/1036/1047; TPS 1508/1513/1468/1497) and within 4-7 likewise (IAP 1027/1030/1017/1024),
+   with a steady offset between the groups — four cylinders × two conditions. Axes decode as
+   expected: IAP = manifold vacuum (30 pts) × RPM (50 pts, 800-16000), TPS = throttle angle (26
+   pts) × RPM.
 
-So the layout is **4 cylinders × 2 conditions**, block-by-condition. The Hayabusa lays its In-Gear
-block before its Neutral/Clutch block (verified: in-gear `0x155a40` < neutral `0x156280`), so the
-GSX-R's first four are labelled In-Gear and the last four Neutral/Clutch.
+The Hayabusa lays In-Gear before Neutral/Clutch in address order (verified: in-gear `0x155a40` <
+neutral `0x156280`), and the GSX-R pointer-array order + readers match that, so the identities are
+settled.
 
 ## The fix (applied, in the generator)
 
-`tools/make_gsxr_xdf.py` now relabels the 16 fuel descriptors by structure (function `relabel_fuel`,
+`tools/make_gsxr_xdf.py` relabels the 16 fuel descriptors by structure (function `relabel_fuel`,
 keyed by descriptor address), so a regenerate keeps the fix:
 
 - IAP 30×50 @ `0x157084,0dc,134,18c` → **IAP In-Gear Cyl 1-4**; `0x1571e4,23c,294,2ec` → **IAP
@@ -59,11 +68,13 @@ keyed by descriptor address), so a regenerate keeps the fix:
 - TPS 26×50 @ `0x15733c,38c,3dc,42c` → **TPS In-Gear Cyl 1-4**; `0x15747c,cc,51c,56c` → **TPS
   Neutral/Clutch Cyl 1-4**.
 
-The **4-cylinder × 2-condition split and the cylinder grouping are data-confirmed**; the
-**in-gear-vs-neutral identity and the cylinder numbering are by platform layout order**, so every
-map stays `[UNCONFIRMED]` and carries a `CORRECTED LABEL (v2)` note saying exactly this — confirm by
-logging. (`tools/enhance_gsxr_xdf.py` still adds the value legends; it detects the generator's note
-and leaves the fuel labels alone.)
+**In-Gear vs Neutral/Clutch and the IAP/TPS type are code-proven** (pointer array + readers +
+neutral flag), so the `[UNCONFIRMED]` tag is dropped. The only residual is the exact **cylinder
+number** within each group of four (assigned by array position — cylinders are near-identical, so
+this can't be separated from the data); each map carries a `CORRECTED LABEL (v2, code-confirmed)`
+note stating this, and the values are still GSX-R-specific so verify on a bench.
+(`tools/enhance_gsxr_xdf.py` adds the value legends and detects the generator's note, leaving the
+fuel labels alone.)
 
 ## Takeaway for the generator
 

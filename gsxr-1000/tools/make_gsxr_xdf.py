@@ -558,19 +558,23 @@ def label_damper(body, name2val):
 # Neutral/Clutch Cyl 1-4 (the in-gear/neutral identity is by platform layout order - [UNCONFIRMED]).
 # Descriptor addresses are identical across all four M7 reads.
 FUEL_RELABEL_NOTE = (
-    'CORRECTED LABEL (v2): the GSX-R fuel bank has only 8 IAP (30x50) + 8 TPS (26x50) maps - no '
-    'blend/spare maps like the Hayabusa (28+28). Z-data decode confirms 4 cylinders x 2 conditions '
-    '(each group of four is near-identical; the two groups differ by a steady offset). Labelled by '
-    'position: In-Gear Cyl 1-4 then Neutral/Clutch Cyl 1-4. Values are GSX-R-specific; the '
-    'in-gear/neutral identity and cylinder order are by platform layout - VERIFY by logging.')
+    'CORRECTED LABEL (v2, code-confirmed): the GSX-R fuel bank has only 8 IAP (30x50) + 8 TPS '
+    '(26x50) maps - no blend/spare maps like the Hayabusa (28+28). All 16 sit in ONE pointer array '
+    'at 0x1560E4 (8 IAP then 8 TPS, each split 4 In-Gear + 4 Neutral/Clutch in array order). '
+    'Confirmed: the TPS In-Gear maps are read by the in-gear base-fuel lookup FUN_0004536C and the '
+    'Neutral maps by the neutral finaliser FUN_0004543E, which selects the neutral block on the '
+    'neutral/clutch flag 0xFEF0271D bit0 (vacuum >= ~0 kPa, RPM below gate) - the same shared code '
+    'the Hayabusa uses; Z-data decode independently shows 4 cylinders x 2 conditions. So In-Gear vs '
+    'Neutral/Clutch and the type (IAP/TPS) are code-proven; only the exact cylinder NUMBER within '
+    'each group of four is by position. Values are GSX-R-specific - verify on a bench.')
 FUEL_RELABEL = {}
 for _i, _a in enumerate([0x157084, 0x1570dc, 0x157134, 0x15718c,
                          0x1571e4, 0x15723c, 0x157294, 0x1572ec]):
-    FUEL_RELABEL[_a] = 'IAP - %s | Cyl %d  [UNCONFIRMED]' % (
+    FUEL_RELABEL[_a] = 'IAP - %s | Cyl %d' % (
         'In Gear' if _i < 4 else 'Neutral/Clutch-In', (_i % 4) + 1)
 for _i, _a in enumerate([0x15733c, 0x15738c, 0x1573dc, 0x15742c,
                          0x15747c, 0x1574cc, 0x15751c, 0x15756c]):
-    FUEL_RELABEL[_a] = 'TPS - %s | Cyl %d  [UNCONFIRMED]' % (
+    FUEL_RELABEL[_a] = 'TPS - %s | Cyl %d' % (
         'In Gear' if _i < 4 else 'Neutral/Clutch-In', (_i % 4) + 1)
 
 

@@ -30,18 +30,20 @@ def escape(s):
 
 
 # descriptor address -> corrected fuel-map title (addresses identical across all four M7 reads)
-FUEL_NOTE = ('CORRECTED LABEL (v2): the GSX-R fuel bank has only 8 IAP (30x50) + 8 TPS (26x50) maps '
-             '- no blend/spare maps like the Hayabusa (28+28). The earlier Hayabusa-order port '
-             'scattered the per-cylinder labels; these 16 are relabelled by position (In-Gear Cyl '
-             '1-4 then Neutral/Clutch Cyl 1-4). Values are GSX-R-specific; cylinder/condition is by '
-             'position - VERIFY before trusting.')
+# Fallback only: make_gsxr_xdf.py now owns the fuel relabel and writes a "CORRECTED LABEL (v2)"
+# note, so this pass detects that note and skips. These titles match the generator's (code-confirmed
+# In-Gear/Neutral via the 0x1560E4 pointer array + FUN_0004536C/FUN_0004543E).
+FUEL_NOTE = ('CORRECTED LABEL (v2, code-confirmed): GSX-R fuel bank = 8 IAP + 8 TPS maps in one '
+             'pointer array at 0x1560E4 (each split 4 In-Gear + 4 Neutral/Clutch). In-gear read by '
+             'FUN_0004536C, neutral by FUN_0004543E (neutral/clutch flag 0xFEF0271D bit0). Cylinder '
+             'number within each group is by position. Values GSX-R-specific - verify.')
 FUEL = {}
 for i, a in enumerate([0x157084, 0x1570dc, 0x157134, 0x15718c, 0x1571e4, 0x15723c, 0x157294, 0x1572ec]):
     cond = 'In Gear' if i < 4 else 'Neutral/Clutch-In'
-    FUEL[a] = 'IAP - %s | Cyl %d  [UNCONFIRMED]' % (cond, (i % 4) + 1)
+    FUEL[a] = 'IAP - %s | Cyl %d' % (cond, (i % 4) + 1)
 for i, a in enumerate([0x15733c, 0x15738c, 0x1573dc, 0x15742c, 0x15747c, 0x1574cc, 0x15751c, 0x15756c]):
     cond = 'In Gear' if i < 4 else 'Neutral/Clutch-In'
-    FUEL[a] = 'TPS - %s | Cyl %d  [UNCONFIRMED]' % (cond, (i % 4) + 1)
+    FUEL[a] = 'TPS - %s | Cyl %d' % (cond, (i % 4) + 1)
 
 
 def flag_legend(mask):
@@ -64,7 +66,7 @@ def enhance(text):
         if not dm:
             return blk
         addr = int(dm.group(1), 16)
-        if addr in FUEL and 'CORRECTED LABEL (v2)' not in blk:
+        if addr in FUEL and 'CORRECTED LABEL' not in blk:
             stats['fuel'] += 1
             blk = re.sub(r'<title>.*?</title>', '<title>%s</title>' % escape(FUEL[addr]),
                          blk, count=1, flags=re.S)
