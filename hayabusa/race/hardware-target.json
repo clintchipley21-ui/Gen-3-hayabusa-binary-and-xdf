@@ -60,5 +60,15 @@
     ],
     "manufacturer_instructions": "https://documents.holley.com/fe590cc4b242b6e955e9d12f206ba0e0cc7dd5c7.pdf",
     "pneumatic_disarm_state": "must be verified to release hat pressure; depends on port plumbing"
+  },
+  "integration_software": {
+    "portable_controller_source": "control/race_control.c",
+    "host_tests": "control/test_race_control.c",
+    "optional_profile_address": "0x170440",
+    "optional_profile_size": 576,
+    "firmware_loop_detachment_address": "0x453B0",
+    "firmware_loop_detachment_bytes": "62e2",
+    "physical_pwm_binding": false,
+    "controller_linked_into_ecu": false
   }
 }

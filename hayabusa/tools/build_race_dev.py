@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Build an OFFLINE DEVELOPMENT SD + ALS + air-shift image, XDF and manifest.
 
-No boost-output driver or full MAP-based base ignition is installed. TPS fuel
-storage remains live in fault paths and MUST NOT be repurposed by this builder.
+No boost-output driver or full MAP-based base ignition is installed. Main TPS
+fault-fallback maps remain live. Optional preparation detaches the spare readers
+and reserves one spare's storage; it does not install the portable controller.
 Accepts exact supported stock reads only; existing edited/patch images are rejected.
 """
 import argparse
@@ -144,12 +145,16 @@ def sensor_rescale(image, root, slope, offset, ceiling):
             'gain': gain, 'offset_word': bias, 'verified_on_hardware': False}
 
 
-def build(base, sensor=None):
+def build(base, sensor=None, prepare_boost=False):
     if len(base) != ap.SIZE:
         raise ValueError('expected exactly 2 MiB')
     variant = STOCK_HASHES.get(sha(base))
     if variant is None:
         raise ValueError('unsupported/modified base; 5JCZSJB0 requires a separate SD calibration port')
+    if prepare_boost and (sensor is None or
+            abs(sensor[0]-GM_55567257_CANDIDATE[0]) > 1e-12 or
+            abs(sensor[1]-GM_55567257_CANDIDATE[1]) > 1e-12):
+        raise ValueError('boost preparation currently requires the GM 55567257 candidate transfer')
     stock = reference('stock/5JCZSJ40/5JCZSJ40.bin')
     sd3 = reference('race/old/SD-v3.bin')
     sd4 = reference('race/Busa-SD-v4.1.bin')
@@ -180,6 +185,18 @@ def build(base, sensor=None):
         sensor_info = {'id': 'inherited PROVISIONAL 3-bar assumption; not a verified GM transfer',
                        'kpa_per_adc_count': PROVISIONAL_A, 'kpa_offset': PROVISIONAL_B,
                        'ceiling_kpa_absolute': 300, 'verified_on_hardware': False}
+    integration = None
+    if prepare_boost:
+        from prepare_boost_integration import prepare
+        integration = prepare(image, root)
+        write_int(image, integration['profile_address']+20,
+                  round(sensor_info['ceiling_kpa_absolute']*100), 2)
+        writes.extend([
+            {'feature':'detach TPS spare readers',
+             'address':integration['detached_lookup']['address'],'length':2},
+            {'feature':'reserved boost profile - ECU runtime absent',
+             'address':integration['profile_address'],'length':integration['profile_size']},
+        ])
     ap.crc_stamp(image)
     # Refresh per-image values, including variant-specific calibration kept from the base.
     # ms.build appends these two identity definitions unconditionally.
@@ -194,6 +211,12 @@ def build(base, sensor=None):
         'TPS fallback remains active: DO NOT reuse its storage. Base spark remains TPS-based '
         'with MAP retard. No boost-output driver. Sensor transfer requires calibration. '
         'Field 3 unchanged/unverified; bench validation required. See manifest and development notes.')
+    if integration is not None:
+        root.find('XDFHEADER/description').text = (
+            'OFFLINE INTEGRATION PREPARATION: ' + variant + ' SD/ALS/air-shift, ALS/shift OFF. '
+            'TPS spare 1 stores boost profile after detaching spare readers; main TPS fault fallback retained. '
+            'Boost controller C source is NOT installed in ECU; reserved maps do not operate outputs. '
+            'Base ignition remains TPS plus MAP retard. No verified PWM driver; bench validation required.')
     for table in root.findall('XDFTABLE'):
         z = table.find("XDFAXIS[@id='z']/EMBEDDEDDATA")
         if z is None:
@@ -228,12 +251,14 @@ def build(base, sensor=None):
         'features': {'sd_fuel': True, 'rolling_antilag': 'installed, OFF',
                      'airshift': 'installed, OFF; output unverified',
                      'map_based_base_ignition': False, 'map_based_retard': True,
-                     'boost_output_control': False, 'tps_storage_reclaimed': False},
+                     'boost_output_control': False, 'tps_storage_reclaimed': integration is not None},
         'field1_crc': '%04X' % int.from_bytes(image[0x1FFAFE:0x1FFB00], 'big'),
         'field3': 'unchanged; enforcement/algorithm not established',
         'changed_byte_count': len(changed), 'install_regions': writes,
         'changed_ranges': [{'address': a, 'length': e - a} for a, e in ranges(changed)],
     }
+    if integration is not None:
+        manifest['boost_integration_preparation'] = integration
     return bytes(image), ET.tostring(root, encoding='unicode') + '\n', manifest
 
 
@@ -246,6 +271,8 @@ def main():
     parser.add_argument('--max-kpa', type=float, help='absolute pressure ceiling, e.g. 250 for a 2.5-bar range')
     parser.add_argument('--sensor-preset', choices=['gm-55567257-candidate'],
                         help='supplier-published transfer; ADC/electrical validation still required')
+    parser.add_argument('--prepare-boost-integration', action='store_true',
+                        help='detach TPS spare readers and reserve boost profile; does NOT install ECU controller')
     args = parser.parse_args()
     if args.sensor_preset:
         if args.sensor_slope is not None or args.sensor_offset is not None:
@@ -260,7 +287,8 @@ def main():
     if any(p.exists() for p in targets) or args.stock_bin.resolve() in [p.resolve() for p in targets]:
         parser.error('output exists or would overwrite the input; use a new prefix')
     try:
-        image, xdf, manifest = build(args.stock_bin.read_bytes(), values if values[0] is not None else None)
+        image, xdf, manifest = build(args.stock_bin.read_bytes(), values if values[0] is not None else None,
+                                     args.prepare_boost_integration)
     except ValueError as error:
         parser.error(str(error))
     if args.sensor_preset:
@@ -274,7 +302,7 @@ def main():
     targets[1].write_text(xdf)
     targets[2].write_text(json.dumps(manifest, indent=2) + '\n')
     print('Built ' + ', '.join(map(str, targets)))
-    print('OFFLINE DEVELOPMENT: no boost-output driver, no TPS storage reuse, no full SD base ignition.')
+    print('OFFLINE DEVELOPMENT: no ECU boost runtime/output driver, no full SD base ignition.')
 
 
 if __name__ == '__main__':

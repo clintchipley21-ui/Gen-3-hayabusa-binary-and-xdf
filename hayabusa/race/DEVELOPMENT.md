@@ -1,5 +1,9 @@
 # Combined race development build
 
+For the implemented control core and optional TPS-spare/profile preparation, see
+[control/INTEGRATION.md](control/INTEGRATION.md). That mode changes the default
+storage-retention behavior described below, but does not install an ECU PWM runtime.
+
 This is a development foundation for the requested race firmware, **not the completed
 race package and not validated for flashing**. The source repository itself labels
 all custom firmware unverified on hardware.
@@ -97,7 +101,7 @@ stock-side IAP representation still saturates near 147 kPa; SD/retard maps use r
 IAP ADC. Raw ADC filtering, injector scaling, actual AFR and ignition need validation.
 Resampled values are starting calibration, not an engine tune.
 
-## Why the TPS fuel storage has not been repurposed
+## Default build: why main TPS fuel storage remains intact
 
 Static evidence from the supplied Ghidra project/export:
 
@@ -110,13 +114,17 @@ Static evidence from the supplied Ghidra project/export:
 | `0x491BC` | Sets final TPS/IAP selector `0xFEF011CA` to `0x100` on fault branches. |
 | `0x45E92` | Uses `0xFEF011CA` in the final fuel quantity calculation. |
 
-The 28 TPS fuel definitions are labeled **TPS STORAGE - NOT RELEASED** in the new
+In the default build, the 28 TPS fuel definitions are labeled **TPS STORAGE - NOT RELEASED** in the new
 XDF; their addresses and bytes remain intact. Original spare/blend labels are
 retained so calculated-but-unselected maps are distinguishable from the main maps.
 An unconditional table reader is still a consumer even if its result currently has
 zero selection weight. This audit is not a claim that every spare contributes fuel.
 
-To reclaim this area, implement and verify the replacement readers, explicitly
+The optional integration preparation now detaches spare readers and allocates
+one spare's storage, as documented in `control/INTEGRATION.md`. It retains the
+main/blend pair and neutral maps for the existing fault path.
+
+To reclaim the remaining main table area, implement and verify the replacement readers, explicitly
 resolve the fault path and its effect on fuel/boost, then establish a no-reader
 invariant for the allocated bytes. Only then rename those specific slots as boost
 target/base duty/limits. Renaming an XDF table does not install that behavior.
