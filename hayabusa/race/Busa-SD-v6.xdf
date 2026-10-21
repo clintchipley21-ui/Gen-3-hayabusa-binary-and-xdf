@@ -46,6 +46,7 @@
     <CATEGORY index="0x24" name="88 All On/Off Switches (0x80 = ON)" />
     <CATEGORY index="0x25" name="89 Unused / Flat / Inactive - leave stock" />
     <CATEGORY index="0x26" name="22 Patches &amp; Air-Shifter (apply to a stock bin)" />
+    <CATEGORY index="0x27" name="23 Boost Control (apply to a stock bin)" />
   </XDFHEADER>
   <XDFTABLE uniqueid="0x1001" flags="0x0">
     <title>Quickshifter :: GP-Sensor Upshift Window A Offset vs Gear</title>
@@ -82720,31 +82721,45 @@ STOCK (this read): raw 0 / 0x00000000.
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
-  <XDFFLAG uniqueid="0xE00A">
+  <XDFCONSTANT uniqueid="0xE00A" flags="0x0">
+    <title>IAP Sensor :: Conversion Divisor</title>
+    <description>SD sets this to 10925 (stock 21850) so a 3-bar-range MAP sensor fits the ECU internal pressure scale with a 16-bit gain. Leave it; retune the sensor with Gain/Offset. IAP sensor presets (kPa = a*raw + b; GAIN = round(393.14*a*10925/32), OFFSET = round(32768+393.14*b)): GM 3-bar a=0.307429 b=-12.6 -&gt; GAIN 0xA12F OFFSET 0x6CA6 (SD default); GM 2.5-bar a=0.256598 b=-10.5 -&gt; GAIN 0x8689 OFFSET 0x6FE0. Both PROVISIONAL - true them with one key-on reading (raw*a+b should equal local baro) and set the XDF kPa equation on the SD fuel/boost maps to match. @0x74302</description>
+    <CATEGORYMEM index="0" category="39" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x74302" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>raw</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xE00B">
     <title>Boost :: Enable</title>
     <description>0x80 = boost control ON. Software-PWMs the repurposed O2-heater output to a wastegate / boost-control solenoid at the per-gear duty below. Ships OFF (and all duties 0 = wastegate spring pressure). UNVERIFIED - bench the output first with "Bench Test Output". @0xBF030</description>
-    <CATEGORYMEM index="0" category="39" />
+    <CATEGORYMEM index="0" category="40" />
     <EMBEDDEDDATA mmedaddress="0xBF030" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x80</mask>
   </XDFFLAG>
-  <XDFFLAG uniqueid="0xE00B">
+  <XDFFLAG uniqueid="0xE00C">
     <title>Boost :: Bench Test Output</title>
     <description>0x80 = hold the solenoid output asserted (no PWM, no control) so you can confirm on the bench which pin drives it (candidate: O2-heater low-side driver). Output polarity is set by the wiring (relay coil leg / NO vs NC solenoid), not here. Set back to 0 for normal use. @0xBF031</description>
-    <CATEGORYMEM index="0" category="39" />
+    <CATEGORYMEM index="0" category="40" />
     <EMBEDDEDDATA mmedaddress="0xBF031" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x80</mask>
   </XDFFLAG>
-  <XDFFLAG uniqueid="0xE00C">
+  <XDFFLAG uniqueid="0xE00D">
     <title>Boost :: Closed-Loop Enable</title>
     <description>0x80 = trim the duty toward "CL Target" using the wastegate-pressure sensor on the input channel set by "Pressure Input Address". Leave OFF until that input is proven on the bench; open-loop per-gear duty works without it. @0xBF032</description>
-    <CATEGORYMEM index="0" category="39" />
+    <CATEGORYMEM index="0" category="40" />
     <EMBEDDEDDATA mmedaddress="0xBF032" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x80</mask>
   </XDFFLAG>
-  <XDFCONSTANT uniqueid="0xE00D" flags="0x0">
+  <XDFCONSTANT uniqueid="0xE00E" flags="0x0">
     <title>Boost :: PWM Period</title>
     <description>Software-PWM period in ~5 ms task ticks (20 ~= 100 ms ~= 10 Hz). Duty is 0..Period. Match your boost-control solenoid (MAC valves like ~30 Hz; raise the tick rate only if the bench shows room). @0xBF034</description>
-    <CATEGORYMEM index="0" category="39" />
+    <CATEGORYMEM index="0" category="40" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF034" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>ticks</units>
     <decimalpl>0</decimalpl>
@@ -82755,10 +82770,10 @@ STOCK (this read): raw 0 / 0x00000000.
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xE00E" flags="0x0">
+  <XDFCONSTANT uniqueid="0xE00F" flags="0x0">
     <title>Boost :: Min RPM to Run</title>
     <description>Below this RPM the solenoid is held off (wastegate spring pressure) so there is no boost off-idle. Default 2000. @0xBF036</description>
-    <CATEGORYMEM index="0" category="39" />
+    <CATEGORYMEM index="0" category="40" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF036" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>RPM</units>
     <decimalpl>0</decimalpl>
@@ -82769,10 +82784,10 @@ STOCK (this read): raw 0 / 0x00000000.
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xE00F" flags="0x0">
+  <XDFCONSTANT uniqueid="0xE010" flags="0x0">
     <title>Boost :: Duty Gear 1</title>
     <description>Solenoid on-ticks per period in 1st gear (duty%% = ticks/Period). 0 = spring pressure (least boost). @0xBF038</description>
-    <CATEGORYMEM index="0" category="39" />
+    <CATEGORYMEM index="0" category="40" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF038" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>ticks</units>
     <decimalpl>0</decimalpl>
@@ -82783,10 +82798,10 @@ STOCK (this read): raw 0 / 0x00000000.
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xE010" flags="0x0">
+  <XDFCONSTANT uniqueid="0xE011" flags="0x0">
     <title>Boost :: Duty Gear 2</title>
     <description>On-ticks per period in 2nd gear. @0xBF03A</description>
-    <CATEGORYMEM index="0" category="39" />
+    <CATEGORYMEM index="0" category="40" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF03A" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>ticks</units>
     <decimalpl>0</decimalpl>
@@ -82797,10 +82812,10 @@ STOCK (this read): raw 0 / 0x00000000.
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xE011" flags="0x0">
+  <XDFCONSTANT uniqueid="0xE012" flags="0x0">
     <title>Boost :: Duty Gear 3</title>
     <description>On-ticks per period in 3rd gear. @0xBF03C</description>
-    <CATEGORYMEM index="0" category="39" />
+    <CATEGORYMEM index="0" category="40" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF03C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>ticks</units>
     <decimalpl>0</decimalpl>
@@ -82811,10 +82826,10 @@ STOCK (this read): raw 0 / 0x00000000.
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xE012" flags="0x0">
+  <XDFCONSTANT uniqueid="0xE013" flags="0x0">
     <title>Boost :: Duty Gear 4</title>
     <description>On-ticks per period in 4th gear. @0xBF03E</description>
-    <CATEGORYMEM index="0" category="39" />
+    <CATEGORYMEM index="0" category="40" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF03E" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>ticks</units>
     <decimalpl>0</decimalpl>
@@ -82825,10 +82840,10 @@ STOCK (this read): raw 0 / 0x00000000.
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xE013" flags="0x0">
+  <XDFCONSTANT uniqueid="0xE014" flags="0x0">
     <title>Boost :: Duty Gear 5</title>
     <description>On-ticks per period in 5th gear. @0xBF040</description>
-    <CATEGORYMEM index="0" category="39" />
+    <CATEGORYMEM index="0" category="40" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF040" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>ticks</units>
     <decimalpl>0</decimalpl>
@@ -82839,10 +82854,10 @@ STOCK (this read): raw 0 / 0x00000000.
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xE014" flags="0x0">
+  <XDFCONSTANT uniqueid="0xE015" flags="0x0">
     <title>Boost :: Duty Gear 6</title>
     <description>On-ticks per period in 6th gear. @0xBF042</description>
-    <CATEGORYMEM index="0" category="39" />
+    <CATEGORYMEM index="0" category="40" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF042" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>ticks</units>
     <decimalpl>0</decimalpl>
@@ -82853,10 +82868,10 @@ STOCK (this read): raw 0 / 0x00000000.
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xE015" flags="0x0">
+  <XDFCONSTANT uniqueid="0xE016" flags="0x0">
     <title>Boost :: CL Target</title>
     <description>Closed-loop target manifold pressure. The cell stores RAW counts; this equation (X*0.342-15) is the wastegate-pressure SENSOR TRANSFER so you enter the target in kPa - PROVISIONAL, set it to match your sensor and input scaling (see "Pressure Input Address"). Only used when "Closed-Loop Enable" is on. @0xBF044</description>
-    <CATEGORYMEM index="0" category="39" />
+    <CATEGORYMEM index="0" category="40" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF044" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>kPa</units>
     <decimalpl>0</decimalpl>
@@ -82867,10 +82882,10 @@ STOCK (this read): raw 0 / 0x00000000.
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xE016" flags="0x0">
+  <XDFCONSTANT uniqueid="0xE017" flags="0x0">
     <title>Boost :: CL Trim Step</title>
     <description>Duty ticks the closed loop adds/removes each period while correcting toward CL Target. Small = slow/stable. Trim is clamped to +/- Period. @0xBF046</description>
-    <CATEGORYMEM index="0" category="39" />
+    <CATEGORYMEM index="0" category="40" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF046" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>ticks</units>
     <decimalpl>0</decimalpl>
@@ -82881,26 +82896,12 @@ STOCK (this read): raw 0 / 0x00000000.
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xE017" flags="0x0">
+  <XDFCONSTANT uniqueid="0xE018" flags="0x0">
     <title>Boost :: Pressure Input Address</title>
     <description>Which ADC word the wastegate-pressure sensor is read from, as the low 16 bits of a 0xFEF0xxxx RAM address (effective address = 0xFEF00000 + this). Default 0x2648 (a candidate repurposed-O2 input). Set it to the word the bench proves carries the sensor; add a TunerPro RAM gauge at 0xFEF0&lt;this&gt; with the same transfer as "CL Target" to watch live boost. Only used when "Closed-Loop Enable" is on. @0xBF048</description>
-    <CATEGORYMEM index="0" category="39" />
+    <CATEGORYMEM index="0" category="40" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF048" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>RAM lo</units>
-    <decimalpl>0</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0" />
-    <MATH equation="X">
-      <VAR id="X" />
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xE018" flags="0x0">
-    <title>IAP Sensor :: Conversion Divisor</title>
-    <description>SD sets this to 10925 (stock 21850) so a 3-bar-range MAP sensor fits the ECU internal pressure scale with a 16-bit gain. Leave it; retune the sensor with Gain/Offset. IAP sensor presets (kPa = a*raw + b; GAIN = round(393.14*a*10925/32), OFFSET = round(32768+393.14*b)): GM 3-bar a=0.307429 b=-12.6 -&gt; GAIN 0xA12F OFFSET 0x6CA6 (SD default); GM 2.5-bar a=0.256598 b=-10.5 -&gt; GAIN 0x8689 OFFSET 0x6FE0. Both PROVISIONAL - true them with one key-on reading (raw*a+b should equal local baro) and set the XDF kPa equation on the SD fuel/boost maps to match. @0x74302</description>
-    <CATEGORYMEM index="0" category="39" />
-    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x74302" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw</units>
     <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
