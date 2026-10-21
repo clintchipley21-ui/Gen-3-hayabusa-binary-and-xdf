@@ -3,6 +3,13 @@
 Custom build of 5JCZSJ40 (ECM 32990-10L4) for a boosted Gen 3 Hayabusa. Unverified on hardware:
 boot a CKTEST bin on a bench ECM first, and keep the stock read for recovery.
 
+For the combined, variant-preserving SD + ALS + air-shift development builder,
+sensor-transfer support, TPS storage audit and unfinished boost/ignition work,
+see [DEVELOPMENT.md](DEVELOPMENT.md). It is not a completed or flash-validated race package.
+The portable boost core and optional detached-TPS-spare calibration preparation
+are described in [control/INTEGRATION.md](control/INTEGRATION.md); no physical PWM
+driver/runtime is installed by that preparation mode.
+
 ## Current files
 
 | File | Use |

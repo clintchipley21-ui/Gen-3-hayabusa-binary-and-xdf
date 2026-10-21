@@ -1,0 +1,1944 @@
+Program: L4x_5JCZSJ40.bin
+Language: V850:LE:32:v850e3v5
+Executable SHA256: 676daf1c0048e9d0622b4ab2466f3e98e22e29623185d1c602698700f63c0c8d
+
+=== FUN_ram_00045320 @ ram:00045320 ===
+ram:00045320 prepare { r25,r26,r27,r28,r29,lp },0x0
+ram:00045324 mov r6,r25
+ram:00045326 zxb r25
+ram:00045328 movhi -0x110,r0,r27
+ram:0004532c movhi -0x110,r0,r26
+ram:00045330 ld.hu 0x258e[r27],r27
+ram:00045334 mov 0x0,r28
+ram:00045336 ld.hu 0x2628[r26],r26
+ram:0004533a mulhi 0x6,r25,r29
+ram:0004533e mov r26,r7
+ram:00045340 mov 0x16bdf4,r1
+ram:00045346 mov r27,r8
+ram:00045348 add r28,r29
+ram:0004534a mov r29,ep
+ram:0004534c shl 0x2,ep
+ram:0004534e add r1,ep
+ram:00045350 sld.w 0x0[ep],r6
+ram:00045352 jarl 0x00091dde,lp
+ram:00045356 shl 0x1,r29
+ram:00045358 movhi -0x110,r0,r1
+ram:0004535c add r1,r29
+ram:0004535e add 0x1,r28
+ram:00045360 st.h r10,0x1012[r29]
+ram:00045364 cmp 0x6,r28
+ram:00045366 bc 0x0004533a
+ram:00045368 dispose 0x0,{ r25,r26,r27,r28,r29,lp },[lp]
+
+void FUN_ram_00045320(uint param_1)
+
+{
+  undefined2 uVar1;
+  undefined2 uVar2;
+  undefined2 uVar3;
+  uint uVar4;
+  int iVar5;
+
+  uVar2 = DAT_ram_fef02628;
+  uVar1 = DAT_ram_fef0258e;
+  uVar4 = 0;
+  do {
+    iVar5 = (param_1 & 0xff) * 6 + uVar4;
+    uVar3 = FUN_ram_00091dde((&PTR_DAT_ram_00155a40_ram_0016bdf4)[iVar5],uVar2,uVar1);
+    uVar4 = uVar4 + 1;
+    *(undefined2 *)(&DAT_ram_fef01012 + iVar5 * 2) = uVar3;
+  } while (uVar4 < 6);
+  return;
+}
+
+
+
+=== FUN_ram_0004536c @ ram:0004536c ===
+ram:0004536c prepare { r25,r26,r27,r28,r29,lp },0x0
+ram:00045370 mov r6,r25
+ram:00045372 zxb r25
+ram:00045374 movhi -0x110,r0,r27
+ram:00045378 movhi -0x110,r0,r26
+ram:0004537c ld.hu 0x258e[r27],r27
+ram:00045380 mov 0x0,r28
+ram:00045382 ld.hu 0x2602[r26],r26
+ram:00045386 mulhi 0x6,r25,r29
+ram:0004538a mov r26,r7
+ram:0004538c mov 0x17ebe4,r1
+ram:00045392 mov r27,r8
+ram:00045394 add r28,r29
+ram:00045396 mov r29,ep
+ram:00045398 shl 0x2,ep
+ram:0004539a add r1,ep
+ram:0004539c sld.w 0x0[ep],r6
+ram:0004539e jarl 0x00091dde,lp
+ram:000453a2 shl 0x1,r29
+ram:000453a4 movhi -0x110,r0,r1
+ram:000453a8 add r1,r29
+ram:000453aa add 0x1,r28
+ram:000453ac st.h r10,0x1042[r29]
+ram:000453b0 cmp 0x6,r28
+ram:000453b2 bc 0x00045386
+ram:000453b4 dispose 0x0,{ r25,r26,r27,r28,r29,lp },[lp]
+
+void FUN_ram_0004536c(uint param_1)
+
+{
+  undefined2 uVar1;
+  undefined2 uVar2;
+  undefined2 uVar3;
+  uint uVar4;
+  int iVar5;
+
+  uVar2 = DAT_ram_fef02602;
+  uVar1 = DAT_ram_fef0258e;
+  uVar4 = 0;
+  do {
+    iVar5 = (param_1 & 0xff) * 6 + uVar4;
+    uVar3 = FUN_ram_00091dde((&PTR_DAT_ram_001563d8_ram_0017ebe4)[iVar5],uVar2,uVar1);
+    uVar4 = uVar4 + 1;
+    *(undefined2 *)(&DAT_ram_fef01042 + iVar5 * 2) = uVar3;
+  } while (uVar4 < 6);
+  return;
+}
+
+
+
+=== FUN_ram_000453b8 @ ram:000453b8 ===
+ram:000453b8 prepare { r25,r26,r27,r28,r29,lp },0x0
+ram:000453bc mov r6,r26
+ram:000453be zxb r26
+ram:000453c0 mov 0xfef00ffe,r29
+ram:000453c6 movhi 0x18,r0,r10
+ram:000453ca ld.hu 0x262a[r10],r10
+ram:000453ce cmp r0,r10
+ram:000453d0 be 0x000453de
+ram:000453d2 mov 0x0,r6
+ram:000453d4 movea 0x400,r0,r7
+ram:000453d8 jarl 0x000919c2,lp
+ram:000453dc zxh r10
+ram:000453de mulhi 0xc,r26,r28
+ram:000453e2 movea 0x14,r29,ep
+ram:000453e6 st.h r10,0x10[r29]
+ram:000453ea movea 0x400,r0,r27
+ram:000453ee sub r10,r27
+ram:000453f0 zxh r27
+ram:000453f2 add r28,ep
+ram:000453f4 sld.hu 0x2[ep],r6
+ram:000453f6 sld.hu 0x0[ep],r1
+ram:000453f8 mulu r10,r6,r0
+ram:000453fc macu r1,r27,r6r7,r6r7
+ram:00045400 ori 0xffff,r0,r7
+ram:00045404 shr 0xa,r6
+ram:00045406 jarl 0x000919c2,lp
+ram:0004540a ld.hu 0x10[r29],r19
+ram:0004540e add r29,r28
+ram:00045410 movea 0x44,r28,ep
+ram:00045414 mov r10,r25
+ram:00045416 sld.hu 0x2[ep],r6
+ram:00045418 sld.hu 0x0[ep],r1
+ram:0004541a mulu r19,r6,r0
+ram:0004541e macu r1,r27,r6r7,r6r7
+ram:00045422 ori 0xffff,r0,r7
+ram:00045426 shr 0xa,r6
+ram:00045428 jarl 0x000919c2,lp
+ram:0004542c shl 0x1,r26
+ram:0004542e mov r29,ep
+ram:00045430 add r26,ep
+ram:00045432 sst.h r25,0x0[ep]
+ram:00045434 add r29,r26
+ram:00045436 st.h r10,0x8[r26]
+ram:0004543a dispose 0x0,{ r25,r26,r27,r28,r29,lp },[lp]
+
+void FUN_ram_000453b8(uint param_1)
+
+{
+  undefined2 uVar1;
+  undefined2 uVar2;
+  uint uVar3;
+  uint uVar4;
+  int iVar5;
+
+  param_1 = param_1 & 0xff;
+  uVar3 = 0;
+  if (DAT_ram_0018262a != 0) {
+    uVar3 = FUN_ram_000919c2(0);
+    uVar3 = uVar3 & 0xffff;
+  }
+  iVar5 = param_1 * 0xc;
+  DAT_ram_fef0100e = (ushort)uVar3;
+  uVar4 = 0x400 - uVar3 & 0xffff;
+  uVar1 = FUN_ram_000919c2(uVar4 * *(ushort *)(&DAT_ram_fef01012 + iVar5) +
+                           *(ushort *)(&DAT_ram_fef01014 + iVar5) * uVar3 >> 10);
+  uVar2 = FUN_ram_000919c2(uVar4 * *(ushort *)(&DAT_ram_fef01042 + iVar5) +
+                           (uint)*(ushort *)(&DAT_ram_fef01044 + iVar5) * (uint)DAT_ram_fef0100e >>
+                           10);
+  (&DAT_ram_fef00ffe)[param_1] = uVar1;
+  (&DAT_ram_fef01006)[param_1] = uVar2;
+  return;
+}
+
+
+
+=== FUN_ram_0004543e @ ram:0004543e ===
+ram:0004543e prepare { r25,r26,r27,r28,r29,lp },0x0
+ram:00045442 mov r6,r28
+ram:00045444 zxb r28
+ram:00045446 mov 0xfef00ffe,r29
+ram:0004544c movhi -0x110,r0,r26
+ram:00045450 movhi -0x110,r0,r27
+ram:00045454 ld.hu 0x258e[r26],r26
+ram:00045458 movhi -0x110,r0,r25
+ram:0004545c ld.hu 0x2628[r27],r27
+ram:00045460 ld.hu 0x2590[r25],r25
+ram:00045464 jarl 0x0007446a,lp
+ram:00045468 movhi 0x18,r0,r15
+ram:0004546c ld.bu 0x26e8[r15],r15
+ram:00045470 mov 0x182703,lp
+ram:00045476 cmp 0x3,r15
+ram:00045478 bne 0x00045480
+ram:0004547a ld.hu 0x0[r29],r10
+ram:0004547e br 0x000454c8
+ram:00045480 movhi 0x18,r0,r19
+ram:00045484 movhi 0x18,r0,r18
+ram:00045488 ld.hu 0x2624[r19],r19
+ram:0004548c ld.bu 0x12[r29],r16
+ram:00045490 ld.hu 0x2626[r18],r18
+ram:00045494 ld.bu 0x0[lp],r17
+ram:00045498 cmp r19,r25
+ram:0004549a bh 0x000454c0
+ram:0004549c cmp r18,r27
+ram:0004549e bc 0x000454c0
+ram:000454a0 cmp 0x1,r10
+ram:000454a2 bne 0x000454c0
+ram:000454a4 cmp r17,r16
+ram:000454a6 bc 0x000454c0
+ram:000454a8 mov r28,ep
+ram:000454aa shl 0x2,ep
+ram:000454ac mov 0x154d7c,r1
+ram:000454b2 add r1,ep
+ram:000454b4 mov r27,r7
+ram:000454b6 sld.w 0x0[ep],r6
+ram:000454b8 mov r26,r8
+ram:000454ba jarl 0x00091dde,lp
+ram:000454be br 0x000454c8
+ram:000454c0 mov r28,ep
+ram:000454c2 shl 0x1,ep
+ram:000454c4 add r29,ep
+ram:000454c6 sld.hu 0x0[ep],r10
+ram:000454c8 mov r28,ep
+ram:000454ca shl 0x1,ep
+ram:000454cc mov 0xfef010cc,r1
+ram:000454d2 add r1,ep
+ram:000454d4 sst.h r10,0x0[ep]
+ram:000454d6 dispose 0x0,{ r25,r26,r27,r28,r29,lp },[lp]
+
+void FUN_ram_0004543e(uint param_1)
+
+{
+  undefined2 uVar1;
+  ushort uVar2;
+  ushort uVar3;
+  undefined2 uVar4;
+  int iVar5;
+
+  uVar3 = DAT_ram_fef02628;
+  uVar2 = DAT_ram_fef02590;
+  uVar1 = DAT_ram_fef0258e;
+  param_1 = param_1 & 0xff;
+  iVar5 = FUN_ram_0007446a();
+  uVar4 = DAT_ram_fef00ffe;
+  if (DAT_ram_001826e8 != '\x03') {
+    if ((((DAT_ram_00182624 < uVar2) || (uVar3 < DAT_ram_00182626)) || (iVar5 != 1)) ||
+       (DAT_ram_fef01010 < DAT_ram_00182703)) {
+      uVar4 = (&DAT_ram_fef00ffe)[param_1];
+    }
+    else {
+      uVar4 = FUN_ram_00091dde((&PTR_DAT_ram_00156280_ram_00154d7c)[param_1],uVar3,uVar1);
+    }
+  }
+  (&DAT_ram_fef010cc)[param_1] = uVar4;
+  return;
+}
+
+
+
+=== FUN_ram_000454da @ ram:000454da ===
+ram:000454da prepare { r22,r23,r24,r25,r26,r27,r28,r29,lp },0x0
+ram:000454de mov r6,r28
+ram:000454e0 zxb r28
+ram:000454e2 mov 0xfef01006,r29
+ram:000454e8 movhi -0x110,r0,r26
+ram:000454ec movhi -0x110,r0,r27
+ram:000454f0 ld.hu 0x258e[r26],r26
+ram:000454f4 movhi -0x110,r0,r25
+ram:000454f8 ld.hu 0x2602[r27],r27
+ram:000454fc ld.hu 0x2590[r25],r25
+ram:00045500 jarl 0x000362d4,lp
+ram:00045504 mov r10,r24
+ram:00045506 jarl 0x00036976,lp
+ram:0004550a ld.bu 0xb[r29],r22
+ram:0004550e mov r10,r23
+ram:00045510 jarl 0x0007446a,lp
+ram:00045514 mov 0x1826e8,lp
+ram:0004551a ld.bu 0x0[lp],r16
+ram:0004551e cmp 0x3,r16
+ram:00045520 bne 0x00045528
+ram:00045522 ld.hu 0x0[r29],r10
+ram:00045526 br 0x00045578
+ram:00045528 movhi 0x18,r0,r19
+ram:0004552c movhi 0x18,r0,r18
+ram:00045530 ld.hu 0x2624[r19],r19
+ram:00045534 movhi 0x18,r0,r17
+ram:00045538 ld.hu 0x2628[r18],r18
+ram:0004553c cmp 0x1,r24
+ram:0004553e ld.bu 0x2703[r17],r17
+ram:00045542 bne 0x00045548
+ram:00045544 cmp 0x1,r23
+ram:00045546 be 0x00045570
+ram:00045548 cmp r19,r25
+ram:0004554a bh 0x00045570
+ram:0004554c cmp r18,r27
+ram:0004554e bh 0x00045570
+ram:00045550 cmp 0x1,r10
+ram:00045552 bne 0x00045570
+ram:00045554 cmp r17,r22
+ram:00045556 bc 0x00045570
+ram:00045558 mov r28,ep
+ram:0004555a shl 0x2,ep
+ram:0004555c mov 0x154d8c,r1
+ram:00045562 add r1,ep
+ram:00045564 mov r27,r7
+ram:00045566 sld.w 0x0[ep],r6
+ram:00045568 mov r26,r8
+ram:0004556a jarl 0x00091dde,lp
+ram:0004556e br 0x00045578
+ram:00045570 mov r28,ep
+ram:00045572 shl 0x1,ep
+ram:00045574 add r29,ep
+ram:00045576 sld.hu 0x0[ep],r10
+ram:00045578 mov r28,ep
+ram:0004557a shl 0x1,ep
+ram:0004557c mov 0xfef010d4,r1
+ram:00045582 add r1,ep
+ram:00045584 sst.h r10,0x0[ep]
+ram:00045586 dispose 0x0,{ r22,r23,r24,r25,r26,r27,r28,r29,lp },[lp]
+
+void FUN_ram_000454da(uint param_1)
+
+{
+  byte bVar1;
+  undefined2 uVar2;
+  ushort uVar3;
+  ushort uVar4;
+  undefined2 uVar5;
+  int iVar6;
+  int iVar7;
+  int iVar8;
+
+  uVar4 = DAT_ram_fef02602;
+  uVar3 = DAT_ram_fef02590;
+  uVar2 = DAT_ram_fef0258e;
+  param_1 = param_1 & 0xff;
+  iVar6 = FUN_ram_000362d4();
+  iVar7 = FUN_ram_00036976();
+  bVar1 = DAT_ram_fef01011;
+  iVar8 = FUN_ram_0007446a();
+  uVar5 = DAT_ram_fef01006;
+  if (DAT_ram_001826e8 != '\x03') {
+    if ((((iVar6 == 1) && (iVar7 == 1)) || (DAT_ram_00182624 < uVar3)) ||
+       (((DAT_ram_00182628 < uVar4 || (iVar8 != 1)) || (bVar1 < DAT_ram_00182703)))) {
+      uVar5 = (&DAT_ram_fef01006)[param_1];
+    }
+    else {
+      uVar5 = FUN_ram_00091dde((&PTR_DAT_ram_00156b58_ram_00154d8c)[param_1],uVar4,uVar2);
+    }
+  }
+  (&DAT_ram_fef010d4)[param_1] = uVar5;
+  return;
+}
+
+
+
+=== FUN_ram_0004558a @ ram:0004558a ===
+ram:0004558a prepare { r29,lp },0x0
+ram:0004558e mov r6,r29
+ram:00045590 zxb r29
+ram:00045592 cmp 0x4,r29
+ram:00045594 bnc 0x000455b4
+ram:00045596 mov r29,r6
+ram:00045598 jarl 0x00045320,lp
+ram:0004559c mov r29,r6
+ram:0004559e jarl 0x0004536c,lp
+ram:000455a2 mov r29,r6
+ram:000455a4 jarl 0x000453b8,lp
+ram:000455a8 mov r29,r6
+ram:000455aa jarl 0x0004543e,lp
+ram:000455ae mov r29,r6
+ram:000455b0 jarl 0x000454da,lp
+ram:000455b4 dispose 0x0,{ r29,lp },[lp]
+
+void FUN_ram_0004558a(byte param_1)
+
+{
+  if (param_1 < 4) {
+    FUN_ram_00045320(param_1);
+    FUN_ram_0004536c(param_1);
+    FUN_ram_000453b8(param_1);
+    FUN_ram_0004543e(param_1);
+    FUN_ram_000454da(param_1);
+  }
+  return;
+}
+
+
+
+=== FUN_ram_00045e92 @ ram:00045e92 ===
+ram:00045e92 prepare { r23,r24,r25,r26,r27,r28,r29,lp },0x0
+ram:00045e96 mov r6,r28
+ram:00045e98 zxb r28
+ram:00045e9a mov 0xfef0108e,r1
+ram:00045ea0 movhi -0x110,r0,r6
+ram:00045ea4 movhi 0x18,r0,r23
+ram:00045ea8 ld.hu 0x11ca[r6],r6
+ram:00045eac cmp 0x1,r28
+ram:00045eae ld.bu 0x26e8[r23],r23
+ram:00045eb2 mov 0x1826f4,r25
+ram:00045eb8 mov 0x182600,r24
+ram:00045ebe bc 0x00045ee0
+ram:00045ec0 be 0x00045ef2
+ram:00045ec2 cmp 0x2,r28
+ram:00045ec4 be 0x00045f0c
+ram:00045ec6 movhi 0x18,r0,r26
+ram:00045eca movhi 0x18,r0,r29
+ram:00045ece ld.bu 0x26ec[r26],r26
+ram:00045ed2 movhi 0x18,r0,r27
+ram:00045ed6 ld.bu 0x26f7[r29],r29
+ram:00045eda ld.hu 0x2606[r27],r27
+ram:00045ede br 0x00045f24
+ram:00045ee0 ld.bu 0x0[r25],r29
+ram:00045ee4 movhi 0x18,r0,r26
+ram:00045ee8 ld.bu 0x26e9[r26],r26
+ram:00045eec ld.hu 0x0[r24],r27
+ram:00045ef0 br 0x00045f24
+ram:00045ef2 movhi 0x18,r0,r26
+ram:00045ef6 movhi 0x18,r0,r29
+ram:00045efa ld.bu 0x26ea[r26],r26
+ram:00045efe movhi 0x18,r0,r27
+ram:00045f02 ld.bu 0x26f5[r29],r29
+ram:00045f06 ld.hu 0x2602[r27],r27
+ram:00045f0a br 0x00045f24
+ram:00045f0c movhi 0x18,r0,r26
+ram:00045f10 movhi 0x18,r0,r29
+ram:00045f14 ld.bu 0x26eb[r26],r26
+ram:00045f18 movhi 0x18,r0,r27
+ram:00045f1c ld.bu 0x26f6[r29],r29
+ram:00045f20 ld.hu 0x2604[r27],r27
+ram:00045f24 shl 0x1,r28
+ram:00045f26 mov r1,ep
+ram:00045f28 add r28,ep
+ram:00045f2a movea 0x100,r0,r19
+ram:00045f2e sld.hu 0x0[ep],r18
+ram:00045f30 sub r6,r19
+ram:00045f32 movea 0x8,r1,ep
+ram:00045f36 add r28,ep
+ram:00045f38 sld.hu 0x0[ep],r1
+ram:00045f3a mulu r1,r6,r0
+ram:00045f3e macu r19,r18,r6r7,r6r7
+ram:00045f42 ori 0xffff,r0,r7
+ram:00045f46 shr 0x8,r6
+ram:00045f48 jarl 0x000919c2,lp
+ram:00045f4c cmp 0x1,r23
+ram:00045f4e be 0x00045f5c
+ram:00045f50 zxh r10
+ram:00045f52 cmp 0x4,r23
+ram:00045f54 be 0x00045f62
+ram:00045f56 cmp 0x5,r23
+ram:00045f58 be 0x00045f74
+ram:00045f5a br 0x00045f96
+ram:00045f5c mov r26,r10
+ram:00045f5e shl 0x5,r10
+ram:00045f60 br 0x00045f96
+ram:00045f62 addi 0x180,r29,r1
+ram:00045f66 mulu r1,r10,r0
+ram:00045f6a shr 0x9,r10
+ram:00045f6c add r10,r27
+ram:00045f6e addi -0x8000,r27,r6
+ram:00045f72 br 0x00045f8c
+ram:00045f74 ld.bu 0x0[r25],r1
+ram:00045f78 addi 0x180,r1,r1
+ram:00045f7c mulu r1,r10,r0
+ram:00045f80 ld.hu 0x0[r24],r1
+ram:00045f84 shr 0x9,r10
+ram:00045f86 add r10,r1
+ram:00045f88 addi -0x8000,r1,r6
+ram:00045f8c ori 0xffff,r0,r7
+ram:00045f90 mov 0x0,r8
+ram:00045f92 jarl 0x00091a82,lp
+ram:00045f96 mov 0xfef01154,ep
+ram:00045f9c add r28,ep
+ram:00045f9e sst.h r10,0x0[ep]
+ram:00045fa0 dispose 0x0,{ r23,r24,r25,r26,r27,r28,r29,lp },[lp]
+
+/* WARNING: Heritage AFTER dead removal. Example location: r7 : 0x00045f92 */
+/* WARNING: Restarted to delay deadcode elimination for space: register */
+
+void FUN_ram_00045e92(void)
+
+{
+  char cVar1;
+  int iVar2;
+  ulonglong in_r6r7;
+  uint uVar3;
+  uint uVar4;
+  uint uVar5;
+  uint uVar6;
+  uint uVar7;
+
+  cVar1 = DAT_ram_001826e8;
+  uVar6 = (uint)in_r6r7 & 0xff;
+  if ((in_r6r7 & 0xff) == 0) {
+    uVar7 = (uint)DAT_ram_001826f4;
+    uVar4 = (uint)DAT_ram_001826e9;
+    uVar5 = (uint)DAT_ram_00182600;
+  }
+  else if (uVar6 == 1) {
+    uVar4 = (uint)DAT_ram_001826ea;
+    uVar7 = (uint)DAT_ram_001826f5;
+    uVar5 = (uint)DAT_ram_00182602;
+  }
+  else if (uVar6 == 2) {
+    uVar4 = (uint)DAT_ram_001826eb;
+    uVar7 = (uint)DAT_ram_001826f6;
+    uVar5 = (uint)DAT_ram_00182604;
+  }
+  else {
+    uVar4 = (uint)DAT_ram_001826ec;
+    uVar7 = (uint)DAT_ram_001826f7;
+    uVar5 = (uint)DAT_ram_00182606;
+  }
+  uVar3 = FUN_ram_000919c2((uint)*(ushort *)(&DAT_ram_fef0108e + uVar6 * 2) *
+                           (0x100 - (uint)DAT_ram_fef011ca) +
+                           (uint)DAT_ram_fef011ca * (uint)*(ushort *)(&DAT_ram_fef01096 + uVar6 * 2)
+                           >> 8);
+  if (cVar1 == '\x01') {
+    uVar3 = uVar4 << 5;
+  }
+  else {
+    uVar3 = uVar3 & 0xffff;
+    if (cVar1 == '\x04') {
+      iVar2 = uVar5 + (uVar3 * (uVar7 + 0x180) >> 9);
+    }
+    else {
+      if (cVar1 != '\x05') goto LAB_ram_00045f96;
+      iVar2 = (uint)DAT_ram_00182600 + (uVar3 * (DAT_ram_001826f4 + 0x180) >> 9);
+    }
+    uVar3 = FUN_ram_00091a82(iVar2 + -0x8000,(int)(in_r6r7 >> 0x20),0);
+  }
+LAB_ram_00045f96:
+  (&DAT_ram_fef01154)[uVar6] = (short)uVar3;
+  return;
+}
+
+
+
+=== FUN_ram_000491bc @ ram:000491bc ===
+ram:000491bc prepare { r21,r22,r23,r24,r25,r26,r27,r28,r29,lp },0x0
+ram:000491c0 mov 0xfef01242,r29
+ram:000491c6 movhi -0x110,r0,r26
+ram:000491ca mov r29,ep
+ram:000491cc ld.hu 0x259c[r26],r26
+ram:000491d0 movhi -0x110,r0,r25
+ram:000491d4 sld.hu 0x0[ep],r28
+ram:000491d6 sld.hu 0x2[ep],r27
+ram:000491d8 ld.hu 0x2602[r25],r25
+ram:000491dc jarl 0x00036976,lp
+ram:000491e0 mov r10,r24
+ram:000491e2 jarl 0x000362d4,lp
+ram:000491e6 mov r10,r23
+ram:000491e8 jarl 0x00073a86,lp
+ram:000491ec mov r10,r22
+ram:000491ee jarl 0x0003a96c,lp
+ram:000491f2 mov r10,r21
+ram:000491f4 mov r26,r7
+ram:000491f6 mov 0x154e34,r6
+ram:000491fc jarl 0x00091d8a,lp
+ram:00049200 movhi -0x110,r0,r1
+ram:00049204 movhi 0x18,r0,r6
+ram:00049208 ld.bu 0x1241[r1],r1
+ram:0004920c ld.bu 0x2679[r6],r6
+ram:00049210 mov r10,r26
+ram:00049212 andi 0x1,r1,r1
+ram:00049216 cmp 0x1,r24
+ram:00049218 be 0x0004922e
+ram:0004921a cmp 0x1,r21
+ram:0004921c be 0x0004922e
+ram:0004921e cmp 0x1,r23
+ram:00049220 bne 0x00049226
+ram:00049222 mov 0x0,r1
+ram:00049224 br 0x00049264
+ram:00049226 cmp r0,r22
+ram:00049228 bne 0x00049234
+ram:0004922a cmp 0x1,r1
+ram:0004922c bne 0x00049234
+ram:0004922e movea 0x100,r0,r1
+ram:00049232 br 0x00049264
+ram:00049234 mov 0xc,r7
+ram:00049236 jarl 0x000919aa,lp
+ram:0004923a movea 0x10,r0,r1
+ram:0004923e mov r25,r6
+ram:00049240 shl r10,r1,r19
+ram:00049244 movea 0x100,r0,r7
+ram:00049248 mov r19,r1
+ram:0004924a sub r26,r1
+ram:0004924c add r1,r6
+ram:0004924e mov 0x0,r8
+ram:00049250 shl 0x8,r6
+ram:00049252 divq r19,r6,r0
+ram:00049256 jarl 0x00091a82,lp
+ram:0004925a mov r10,r28
+ram:0004925c zxh r28
+ram:0004925e cmp r28,r27
+ram:00049260 cmovnh r28,r27,r1
+ram:00049264 mov r29,ep
+ram:00049266 movhi -0x110,r0,r11
+ram:0004926a sst.h r26,0x4[ep]
+ram:0004926c sst.h r28,0x0[ep]
+ram:0004926e st.h r1,0x11ca[r11]
+ram:00049272 dispose 0x0,{ r21,r22,r23,r24,r25,r26,r27,r28,r29,lp },[lp]
+
+void FUN_ram_000491bc(void)
+
+{
+  ushort uVar1;
+  undefined2 uVar2;
+  ushort uVar3;
+  int iVar4;
+  int iVar5;
+  int iVar6;
+  int iVar7;
+  int iVar8;
+  uint uVar9;
+  uint uVar10;
+
+  uVar2 = DAT_ram_fef0259c;
+  uVar1 = DAT_ram_fef01244;
+  uVar3 = DAT_ram_fef01242;
+  uVar10 = (uint)DAT_ram_fef02602;
+  iVar4 = FUN_ram_00036976();
+  iVar5 = FUN_ram_000362d4();
+  iVar6 = FUN_ram_00073a86();
+  iVar7 = FUN_ram_0003a96c();
+  iVar8 = FUN_ram_00091d8a(&PTR_DAT_ram_00000a0a_ram_00154e34,uVar2);
+  if ((iVar4 != 1) && (iVar7 != 1)) {
+    if (iVar5 == 1) {
+      DAT_ram_fef011ca = 0;
+      goto LAB_ram_00049264;
+    }
+    if ((iVar6 != 0) || ((DAT_ram_fef01241 & 1) != 1)) {
+      uVar9 = FUN_ram_000919aa(DAT_ram_00182679,0xc);
+      iVar4 = 0x10 << (uVar9 & 0x1f);
+      uVar3 = FUN_ram_00091a82((int)((uVar10 + (iVar4 - iVar8)) * 0x100) / iVar4,0x100,0);
+      DAT_ram_fef011ca = uVar3 * (uVar1 <= uVar3) + uVar1 * (uVar1 > uVar3);
+      goto LAB_ram_00049264;
+    }
+  }
+  DAT_ram_fef011ca = 0x100;
+LAB_ram_00049264:
+  DAT_ram_fef01246 = (short)iVar8;
+  DAT_ram_fef01242 = uVar3;
+  return;
+}
+
+
+
+=== FUN_ram_0005171c @ ram:0005171c ===
+ram:0005171c prepare { r24,r25,r26,r27,r28,r29,lp },0x0
+ram:00051720 movea 0xff,r0,r7
+ram:00051724 movhi -0x110,r0,r1
+ram:00051728 ld.bu 0x156a[r1],r1
+ram:0005172c movhi -0x110,r0,r25
+ram:00051730 ld.bu 0xa16[r25],r25
+ram:00051734 movhi -0x110,r0,r26
+ram:00051738 ld.bu 0x157c[r26],r26
+ram:0005173c movhi -0x110,r0,r27
+ram:00051740 ld.bu 0xa15[r27],r27
+ram:00051744 movhi -0x110,r0,r28
+ram:00051748 ld.bu 0x1575[r28],r28
+ram:0005174c movhi -0x110,r0,r29
+ram:00051750 ld.bu 0x1574[r29],r29
+ram:00051754 addi 0x40,r1,r6
+ram:00051758 jarl 0x000919b6,lp
+ram:0005175c movhi -0x110,r0,r1
+ram:00051760 ld.bu 0x156c[r1],r1
+ram:00051764 movea 0xff,r0,r7
+ram:00051768 mov r10,r24
+ram:0005176a zxb r24
+ram:0005176c addi 0x40,r1,r6
+ram:00051770 jarl 0x000919b6,lp
+ram:00051774 movhi -0x110,r0,r19
+ram:00051778 ld.bu 0x156d[r19],r19
+ram:0005177c cmp r28,r27
+ram:0005177e cmovle r28,r27,r1
+ram:00051782 zxb r10
+ram:00051784 cmp r29,r1
+ram:00051786 cmovle r29,r1,r1
+ram:0005178a cmp r10,r19
+ram:0005178c cmovle r10,r19,r19
+ram:00051790 cmp r24,r19
+ram:00051792 cmovle r24,r19,r19
+ram:00051796 cmp r25,r19
+ram:00051798 cmovle r25,r19,r19
+ram:0005179c cmp r26,r19
+ram:0005179e cmovle r26,r19,r19
+ram:000517a2 cmp r1,r19
+ram:000517a4 cmovle r1,r19,r1
+ram:000517a8 movhi -0x110,r0,r19
+ram:000517ac st.b r1,0x1569[r19]
+ram:000517b0 dispose 0x0,{ r24,r25,r26,r27,r28,r29,lp },[lp]
+
+void FUN_ram_0005171c(void)
+
+{
+  uint uVar1;
+  uint uVar2;
+  uint uVar3;
+  uint uVar4;
+  uint uVar5;
+  uint uVar6;
+  uint uVar7;
+  uint uVar8;
+
+  uVar4 = (uint)DAT_ram_fef00a16;
+  uVar5 = (uint)DAT_ram_fef0157c;
+  uVar6 = (uint)DAT_ram_fef00a15;
+  uVar7 = (uint)DAT_ram_fef01575;
+  uVar8 = (uint)DAT_ram_fef01574;
+  uVar1 = FUN_ram_000919b6(DAT_ram_fef0156a + 0x40,0xff);
+  uVar1 = uVar1 & 0xff;
+  uVar2 = FUN_ram_000919b6(DAT_ram_fef0156c + 0x40,0xff);
+  uVar3 = (uint)DAT_ram_fef0156d;
+  uVar6 = uVar7 * (uVar6 <= uVar7) + uVar6 * (uVar6 > uVar7);
+  uVar2 = uVar2 & 0xff;
+  uVar6 = uVar8 * (uVar6 <= uVar8) + uVar6 * (uVar6 > uVar8);
+  uVar2 = uVar2 * (uVar3 <= uVar2) + uVar3 * (uVar3 > uVar2);
+  uVar1 = uVar1 * (uVar2 <= uVar1) + uVar2 * (uVar2 > uVar1);
+  uVar1 = uVar4 * (uVar1 <= uVar4) + uVar1 * (uVar1 > uVar4);
+  uVar1 = uVar5 * (uVar1 <= uVar5) + uVar1 * (uVar1 > uVar5);
+  DAT_ram_fef01569 = (char)uVar6 * (uVar1 <= uVar6) + (char)uVar1 * (uVar1 > uVar6);
+  return;
+}
+
+
+
+=== FUN_ram_000517b4 @ ram:000517b4 ===
+ram:000517b4 prepare { r25,r26,r27,r28,r29,lp },0x0
+ram:000517b8 mov r6,r28
+ram:000517ba zxb r28
+ram:000517bc mov r28,ep
+ram:000517be movhi -0x110,r0,r14
+ram:000517c2 movhi -0x110,r0,r18
+ram:000517c6 shl 0x2,ep
+ram:000517c8 mov 0x150028,r19
+ram:000517ce ld.bu 0x156b[r14],r14
+ram:000517d2 movhi -0x110,r0,r16
+ram:000517d6 ld.bu 0x1569[r18],r18
+ram:000517da add r19,ep
+ram:000517dc ld.bu 0x1571[r16],r16
+ram:000517e0 movhi -0x110,r0,r29
+ram:000517e4 sld.w 0x0[ep],ep
+ram:000517e6 movhi -0x110,r0,r19
+ram:000517ea ld.bu 0x156f[r29],r29
+ram:000517ee movhi -0x110,r0,r13
+ram:000517f2 ld.bu 0x156e[r19],r19
+ram:000517f6 subr r14,r18
+ram:000517f8 ld.bu 0x157d[r13],r13
+ram:000517fc add r16,r18
+ram:000517fe sld.bu 0x0[ep],r15
+ram:00051800 add r14,r16
+ram:00051802 movhi -0x110,r0,r11
+ram:00051806 add r16,r29
+ram:00051808 mov 0xfef0154c,ep
+ram:0005180e ld.bu 0x1576[r11],r11
+ram:00051812 add r18,r19
+ram:00051814 mov 0x18b730,lp
+ram:0005181a add r28,ep
+ram:0005181c sub r13,r29
+ram:0005181e ld.bu 0x0[lp],r18
+ram:00051822 sub r15,r29
+ram:00051824 sld.bu 0x0[ep],r12
+ram:00051826 sub r13,r19
+ram:00051828 mov 0xfef01550,ep
+ram:0005182e mov r29,r26
+ram:00051830 add r28,ep
+ram:00051832 sub r15,r19
+ram:00051834 sub r11,r26
+ram:00051836 sld.bu 0x0[ep],r25
+ram:00051838 addi -0x80,r18,r0
+ram:0005183c be 0x00051884
+ram:0005183e movhi -0x110,r0,r16
+ram:00051842 movhi 0x19,r0,r10
+ram:00051846 ld.bu 0x1578[r16],r16
+ram:0005184a movhi -0x110,r0,r27
+ram:0005184e ld.bu -0x48d2[r10],r10
+ram:00051852 movea 0xff,r0,r7
+ram:00051856 ld.bu 0x1579[r27],r27
+ram:0005185a mov 0x0,r8
+ram:0005185c sub r16,r19
+ram:0005185e movhi -0x110,r0,r16
+ram:00051862 ld.bu 0x1577[r16],r16
+ram:00051866 sub r16,r29
+ram:00051868 cmp 0x3,r10
+ram:0005186a be 0x0005187e
+ram:0005186c add r12,r19
+ram:0005186e mov r19,r6
+ram:00051870 sxh r6
+ram:00051872 jarl 0x00091a6c,lp
+ram:00051876 add r25,r29
+ram:00051878 mov r10,r27
+ram:0005187a mov r29,r6
+ram:0005187c br 0x000518ca
+ram:0005187e add r25,r26
+ram:00051880 mov r26,r6
+ram:00051882 br 0x000518d0
+ram:00051884 mov r19,r17
+ram:00051886 mov 0xfef01652,r1
+ram:0005188c ld.bu 0x8[r1],r19
+ram:00051890 mov r28,r29
+ram:00051892 add r1,r29
+ram:00051894 sub r11,r17
+ram:00051896 cmp r0,r19
+ram:00051898 be 0x000518a2
+ram:0005189a ld.bu 0x0[r29],r27
+ram:0005189e mov r27,r10
+ram:000518a0 br 0x000518d4
+ram:000518a2 ld.bu 0x4[r29],r1
+ram:000518a6 add r12,r17
+ram:000518a8 movea 0xff,r0,r7
+ram:000518ac mov r19,r8
+ram:000518ae add r17,r1
+ram:000518b0 addi -0x40,r1,r6
+ram:000518b4 sxh r6
+ram:000518b6 jarl 0x00091a6c,lp
+ram:000518ba ld.bu 0x4[r29],r1
+ram:000518be add r25,r26
+ram:000518c0 mov r10,r27
+ram:000518c2 add r26,r1
+ram:000518c4 addi -0x40,r1,r6
+ram:000518c8 sxh r6
+ram:000518ca movea 0xff,r0,r7
+ram:000518ce mov 0x0,r8
+ram:000518d0 jarl 0x00091a6c,lp
+ram:000518d4 mov 0xfef01548,ep
+ram:000518da add r28,ep
+ram:000518dc sst.b r27,0x0[ep]
+ram:000518de mov 0xfef01544,ep
+ram:000518e4 add r28,ep
+ram:000518e6 sst.b r10,0x0[ep]
+ram:000518e8 dispose 0x0,{ r25,r26,r27,r28,r29,lp },[lp]
+
+void FUN_ram_000517b4(uint param_1)
+
+{
+  byte bVar1;
+  short sVar2;
+  undefined1 uVar3;
+  undefined1 uVar4;
+  uint uVar5;
+  int iVar6;
+  int iVar7;
+
+  param_1 = param_1 & 0xff;
+  iVar7 = (((uint)DAT_ram_fef0156f + (uint)DAT_ram_fef01571 + (uint)DAT_ram_fef0156b) -
+          (uint)DAT_ram_fef0157d) - (uint)(byte)*(&PTR_DAT_ram_fef0157e_ram_00150028)[param_1];
+  sVar2 = (((ushort)DAT_ram_fef0156e +
+           ((ushort)DAT_ram_fef0156b - (ushort)DAT_ram_fef01569) + (ushort)DAT_ram_fef01571) -
+          (ushort)DAT_ram_fef0157d) - (ushort)(byte)*(&PTR_DAT_ram_fef0157e_ram_00150028)[param_1];
+  iVar6 = iVar7 - (uint)DAT_ram_fef01576;
+  bVar1 = (&DAT_ram_fef01550)[param_1];
+  if (DAT_ram_0018b730 == -0x80) {
+    if (DAT_ram_fef0165a != '\0') {
+      uVar3 = (&DAT_ram_fef01652)[param_1];
+      uVar4 = uVar3;
+      goto LAB_ram_000518d4;
+    }
+    uVar3 = FUN_ram_00091a6c((int)(short)((ushort)(byte)(&DAT_ram_fef01656)[param_1] +
+                                          (sVar2 - (ushort)DAT_ram_fef01576) +
+                                          (ushort)(byte)(&DAT_ram_fef0154c)[param_1] + -0x40),0xff,0
+                            );
+    iVar6 = (int)(short)((ushort)(byte)(&DAT_ram_fef01656)[param_1] + (short)iVar6 + (ushort)bVar1 +
+                        -0x40);
+  }
+  else {
+    uVar5 = (uint)DAT_ram_fef01577;
+    if (DAT_ram_0018b72e == '\x03') {
+      iVar6 = iVar6 + (uint)bVar1;
+      uVar3 = DAT_ram_fef01579;
+    }
+    else {
+      uVar3 = FUN_ram_00091a6c((int)(short)((sVar2 - (ushort)DAT_ram_fef01578) +
+                                           (ushort)(byte)(&DAT_ram_fef0154c)[param_1]),0xff,0);
+      iVar6 = (iVar7 - uVar5) + (uint)bVar1;
+    }
+  }
+  uVar4 = FUN_ram_00091a6c(iVar6,0xff,0);
+LAB_ram_000518d4:
+  (&DAT_ram_fef01548)[param_1] = uVar3;
+  (&DAT_ram_fef01544)[param_1] = uVar4;
+  return;
+}
+
+
+
+=== FUN_ram_000525ee @ ram:000525ee ===
+ram:000525ee prepare { lp },0x0
+ram:000525f2 jarl 0x0007446a,lp
+ram:000525f6 movhi -0x110,r0,r7
+ram:000525fa movhi -0x110,r0,r8
+ram:000525fe ld.hu 0x2602[r7],r7
+ram:00052602 cmp 0x1,r10
+ram:00052604 ld.hu 0x155c[r8],r8
+ram:00052608 bne 0x00052612
+ram:0005260a mov 0x1830ec,r6
+ram:00052610 br 0x00052618
+ram:00052612 mov 0x183108,r6
+ram:00052618 jarl 0x00091dde,lp
+ram:0005261c shr 0x8,r10
+ram:0005261e movhi -0x110,r0,r11
+ram:00052622 st.b r10,0x1671[r11]
+ram:00052626 dispose 0x0,{ lp },[lp]
+
+void FUN_ram_000525ee(void)
+
+{
+  undefined *puVar1;
+  undefined1 extraout_var;
+  int iVar2;
+
+  iVar2 = FUN_ram_0007446a();
+  if (iVar2 == 1) {
+    puVar1 = &DAT_ram_001830ec;
+  }
+  else {
+    puVar1 = &DAT_ram_00183108;
+  }
+  FUN_ram_00091dde(puVar1,DAT_ram_fef02602,DAT_ram_fef0155c);
+  DAT_ram_fef01671 = extraout_var;
+  return;
+}
+
+
+
+=== FUN_ram_0005db5e @ ram:0005db5e ===
+ram:0005db5e prepare { r23,r24,r25,r26,r27,r28,lp },0x0
+ram:0005db62 movhi -0x110,r0,r28
+ram:0005db66 movhi 0x19,r0,r26
+ram:0005db6a ld.bu 0x21c1[r28],r28
+ram:0005db6e movhi -0x110,r0,r25
+ram:0005db72 mov 0xfef02090,r23
+ram:0005db78 ld.bu -0x2474[r26],r26
+ram:0005db7c movhi 0x18,r0,r24
+ram:0005db80 ld.bu 0x26bd[r25],r25
+ram:0005db84 ld.bu 0x0[r23],r27
+ram:0005db88 shl 0x1d,r28
+ram:0005db8a ld.bu 0x26f9[r24],r24
+ram:0005db8e shr 0x1f,r28
+ram:0005db90 jarl 0x0005d78e,lp
+ram:0005db94 jarl 0x0005d7bc,lp
+ram:0005db98 jarl 0x0005d7fe,lp
+ram:0005db9c mov r26,r6
+ram:0005db9e mov r25,r7
+ram:0005dba0 jarl 0x0005d840,lp
+ram:0005dba4 mov r26,r6
+ram:0005dba6 mov r25,r7
+ram:0005dba8 mov r27,r8
+ram:0005dbaa jarl 0x0005d8b0,lp
+ram:0005dbae mov r28,r6
+ram:0005dbb0 jarl 0x0005d986,lp
+ram:0005dbb4 mov r28,r6
+ram:0005dbb6 jarl 0x0005d9e0,lp
+ram:0005dbba mov r28,r6
+ram:0005dbbc jarl 0x0005da62,lp
+ram:0005dbc0 mov r27,r6
+ram:0005dbc2 jarl 0x0005daa2,lp
+ram:0005dbc6 jarl 0x0005db32,lp
+ram:0005dbca mov 0xfef020e0,r28
+ram:0005dbd0 mov r27,r1
+ram:0005dbd2 cmp 0x4,r27
+ram:0005dbd4 bh 0x0005dc5a
+ram:0005dbd6 switch r1
+ram:0005dbe2 mov 0x0,r6
+ram:0005dbe4 jarl 0x0003429c,lp
+ram:0005dbe8 cmp 0x1,r10
+ram:0005dbea bne 0x0005dbf0
+ram:0005dbec cmp r0,r24
+ram:0005dbee be 0x0005dc08
+ram:0005dbf0 mov 0x0,r6
+ram:0005dbf2 jarl 0x0003429c,lp
+ram:0005dbf6 cmp 0x1,r10
+ram:0005dbf8 bne 0x0005dc5c
+ram:0005dbfa mov r10,r6
+ram:0005dbfc jarl 0x0003429c,lp
+ram:0005dc00 cmp 0x1,r10
+ram:0005dc02 bne 0x0005dc5c
+ram:0005dc04 cmp r0,r24
+ram:0005dc06 be 0x0005dc5c
+ram:0005dc08 tst1 0x2,0x0[r28]
+ram:0005dc0c bne 0x0005dc2a
+ram:0005dc0e tst1 0x1,0x0[r28]
+ram:0005dc12 bne 0x0005dc50
+ram:0005dc14 tst1 0x0,0x0[r28]
+ram:0005dc18 cmovne 0x1,r27,r27
+ram:0005dc1c br 0x0005dc5c
+ram:0005dc1e tst1 0x3,0x0[r28]
+ram:0005dc22 bne 0x0005dc5a
+ram:0005dc24 tst1 0x2,0x0[r28]
+ram:0005dc28 be 0x0005dc2e
+ram:0005dc2a mov 0x4,r27
+ram:0005dc2c br 0x0005dc5c
+ram:0005dc2e tst1 0x1,0x0[r28]
+ram:0005dc32 br 0x0005dc4e
+ram:0005dc34 tst1 0x3,0x0[r28]
+ram:0005dc38 bne 0x0005dc5a
+ram:0005dc3a tst1 0x5,0x0[r28]
+ram:0005dc3e cmovne 0x3,r27,r27
+ram:0005dc42 br 0x0005dc5c
+ram:0005dc44 tst1 0x3,0x0[r28]
+ram:0005dc48 bne 0x0005dc5a
+ram:0005dc4a tst1 0x6,0x0[r28]
+ram:0005dc4e be 0x0005dc5c
+ram:0005dc50 mov 0x2,r27
+ram:0005dc52 br 0x0005dc5c
+ram:0005dc54 tst1 0x4,0x0[r28]
+ram:0005dc58 be 0x0005dc5c
+ram:0005dc5a mov 0x0,r27
+ram:0005dc5c st.b r27,0x0[r23]
+ram:0005dc60 dispose 0x0,{ r23,r24,r25,r26,r27,r28,lp },[lp]
+
+void FUN_ram_0005db5e(void)
+
+{
+  byte bVar1;
+  char cVar2;
+  undefined1 uVar3;
+  char cVar4;
+  undefined1 uVar5;
+  int iVar6;
+  uint uVar7;
+  bool bVar8;
+
+  uVar5 = DAT_ram_fef026bd;
+  cVar4 = DAT_ram_fef02090;
+  uVar3 = DAT_ram_0018db8c;
+  cVar2 = DAT_ram_001826f9;
+  uVar7 = (DAT_ram_fef021c1 & 7) >> 2;
+  FUN_ram_0005d78e();
+  FUN_ram_0005d7bc();
+  FUN_ram_0005d7fe();
+  FUN_ram_0005d840(uVar3,uVar5);
+  FUN_ram_0005d8b0(uVar3,uVar5,cVar4);
+  FUN_ram_0005d986(uVar7);
+  FUN_ram_0005d9e0(uVar7);
+  FUN_ram_0005da62(uVar7);
+  FUN_ram_0005daa2(cVar4);
+  FUN_ram_0005db32();
+  switch(cVar4) {
+  case '\0':
+    iVar6 = FUN_ram_0003429c(0);
+    if ((iVar6 != 1) || (cVar2 != '\0')) {
+      iVar6 = FUN_ram_0003429c(0);
+      if (iVar6 != 1) {
+        DAT_ram_fef02090 = cVar4;
+        return;
+      }
+      iVar6 = FUN_ram_0003429c(1);
+      if (iVar6 != 1) {
+        DAT_ram_fef02090 = cVar4;
+        return;
+      }
+      if (cVar2 == '\0') {
+        DAT_ram_fef02090 = cVar4;
+        return;
+      }
+    }
+    if ((DAT_ram_fef020e0 & 4) != 0) {
+      DAT_ram_fef02090 = 4;
+      return;
+    }
+    if ((DAT_ram_fef020e0 & 2) != 0) {
+      DAT_ram_fef02090 = 2;
+      return;
+    }
+    bVar8 = (DAT_ram_fef020e0 & 1) != 0;
+    DAT_ram_fef02090 = bVar8 + cVar4 * !bVar8;
+    return;
+  case '\x01':
+    if ((DAT_ram_fef020e0 & 8) != 0) {
+      DAT_ram_fef02090 = 0;
+      return;
+    }
+    if ((DAT_ram_fef020e0 & 4) != 0) {
+      DAT_ram_fef02090 = 4;
+      return;
+    }
+    bVar1 = DAT_ram_fef020e0 & 2;
+    goto LAB_ram_0005dc4e;
+  case '\x02':
+    if ((DAT_ram_fef020e0 & 8) == 0) {
+      bVar8 = (DAT_ram_fef020e0 & 0x20) != 0;
+      DAT_ram_fef02090 = bVar8 * '\x03' + cVar4 * !bVar8;
+      return;
+    }
+    break;
+  case '\x03':
+    if ((DAT_ram_fef020e0 & 8) != 0) {
+      DAT_ram_fef02090 = 0;
+      return;
+    }
+    bVar1 = DAT_ram_fef020e0 & 0x40;
+LAB_ram_0005dc4e:
+    if (bVar1 != 0) {
+      DAT_ram_fef02090 = 2;
+      return;
+    }
+    DAT_ram_fef02090 = cVar4;
+    return;
+  case '\x04':
+    if ((DAT_ram_fef020e0 & 0x10) == 0) {
+      DAT_ram_fef02090 = cVar4;
+      return;
+    }
+  }
+  DAT_ram_fef02090 = 0;
+  return;
+}
+
+
+
+=== FUN_ram_0005dc9a @ ram:0005dc9a ===
+ram:0005dc9a prepare { lp },0x0
+ram:0005dc9e jarl 0x0005db5e,lp
+ram:0005dca2 jarl 0x0005dc64,lp
+ram:0005dca6 dispose 0x0,{ lp },[lp]
+
+void FUN_ram_0005dc9a(void)
+
+{
+  FUN_ram_0005db5e();
+  FUN_ram_0005dc64();
+  return;
+}
+
+
+
+=== FUN_ram_00069bc6 @ ram:00069bc6 ===
+ram:00069bc6 prepare { lp },0x0
+ram:00069bca jarl 0x000751da,lp
+ram:00069bce mov 0xfef021c1,ep
+ram:00069bd4 sld.bu 0x0[ep],r19
+ram:00069bd6 sld.bu 0x0[ep],r1
+ram:00069bd8 shl 0x1e,r19
+ram:00069bda shr 0x1f,r19
+ram:00069bdc shl 0x1d,r1
+ram:00069bde shr 0x1f,r1
+ram:00069be0 cmp r0,r10
+ram:00069be2 cmove 0x1,r1,r1
+ram:00069be6 cmp 0x1,r10
+ram:00069be8 bne 0x00069bf0
+ram:00069bea cmp r0,r19
+ram:00069bec cmove r19,r1,r1
+ram:00069bf0 cmp 0x1,r1
+ram:00069bf2 be 0x00069bfa
+ram:00069bf4 clr1 0x2,0x0[ep]
+ram:00069bf8 br 0x00069bfe
+ram:00069bfa set1 0x2,0x0[ep]
+ram:00069bfe dispose 0x0,{ lp },[lp]
+
+void FUN_ram_00069bc6(void)
+
+{
+  int iVar1;
+  int iVar2;
+  int iVar3;
+
+  iVar2 = FUN_ram_000751da();
+  iVar3 = -((int)((uint)DAT_ram_fef021c1 << 0x1e) >> 0x1f);
+  iVar1 = (uint)(iVar2 == 0) + -((int)((uint)DAT_ram_fef021c1 << 0x1d) >> 0x1f) * (uint)(iVar2 != 0)
+  ;
+  if (iVar2 == 1) {
+    iVar1 = iVar3 * (uint)(iVar3 == 0) + iVar1 * (uint)(iVar3 != 0);
+  }
+  if (iVar1 == 1) {
+    DAT_ram_fef021c1 = DAT_ram_fef021c1 | 4;
+  }
+  else {
+    DAT_ram_fef021c1 = DAT_ram_fef021c1 & 0xfb;
+  }
+  return;
+}
+
+
+
+=== FUN_ram_00042384 @ ram:00042384 ===
+ram:00042384 prepare { r20,r21,r22,r23,r24,r25,r26,r27,r28,r29,lp },0x1
+ram:00042388 zxb r6
+ram:0004238a movhi 0x18,r0,r13
+ram:0004238e ld.bu 0x2712[r13],r13
+ram:00042392 movhi 0x18,r0,r12
+ram:00042396 ld.bu 0x2711[r12],r12
+ram:0004239a movhi 0x18,r0,r11
+ram:0004239e ld.bu 0x2710[r11],r11
+ram:000423a2 movhi 0x18,r0,lp
+ram:000423a6 ld.bu 0x270f[lp],lp
+ram:000423aa movhi 0x18,r0,r20
+ram:000423ae ld.hu 0x2670[r20],r20
+ram:000423b2 movhi 0x18,r0,r21
+ram:000423b6 ld.hu 0x266e[r21],r21
+ram:000423ba movhi 0x18,r0,r22
+ram:000423be ld.hu 0x266c[r22],r22
+ram:000423c2 movhi 0x18,r0,r23
+ram:000423c6 ld.hu 0x266a[r23],r23
+ram:000423ca movhi 0x18,r0,r24
+ram:000423ce ld.hu 0x2668[r24],r24
+ram:000423d2 movhi 0x18,r0,r25
+ram:000423d6 ld.hu 0x2666[r25],r25
+ram:000423da movhi -0x110,r0,r27
+ram:000423de ld.hu 0x2628[r27],r27
+ram:000423e2 movhi -0x110,r0,r28
+ram:000423e6 ld.hu 0x2602[r28],r28
+ram:000423ea movhi -0x110,r0,r29
+ram:000423ee ld.hu 0x258e[r29],r29
+ram:000423f2 mov sp,ep
+ram:000423f4 sst.b r13,0x3[ep]
+ram:000423f6 sst.b r12,0x2[ep]
+ram:000423f8 sst.b r11,0x1[ep]
+ram:000423fa sst.b lp,0x0[ep]
+ram:000423fc mov r6,r26
+ram:000423fe jarl 0x00042120,lp
+ram:00042402 movhi -0x110,r0,r19
+ram:00042406 ld.bu 0x26c3[r19],r19
+ram:0004240a movhi -0x110,r0,r1
+ram:0004240e ld.bu 0x26bd[r1],r1
+ram:00042412 cmp 0x1,r10
+ram:00042414 bne 0x00042452
+ram:00042416 ld.bu 0x0[sp],r11
+ram:0004241a cmp r1,r11
+ram:0004241c bh 0x00042452
+ram:0004241e ld.bu 0x1[sp],r11
+ram:00042422 cmp r11,r1
+ram:00042424 bh 0x00042452
+ram:00042426 ld.bu 0x2[sp],r11
+ram:0004242a cmp r19,r11
+ram:0004242c bh 0x00042452
+ram:0004242e ld.bu 0x3[sp],r11
+ram:00042432 cmp r11,r19
+ram:00042434 bh 0x00042452
+ram:00042436 cmp r29,r25
+ram:00042438 bh 0x00042452
+ram:0004243a cmp r24,r29
+ram:0004243c bh 0x00042452
+ram:0004243e cmp r28,r23
+ram:00042440 bh 0x00042452
+ram:00042442 cmp r22,r28
+ram:00042444 bh 0x00042452
+ram:00042446 cmp r27,r21
+ram:00042448 bh 0x00042452
+ram:0004244a cmp r20,r27
+ram:0004244c setfnh r7
+ram:00042450 br 0x00042454
+ram:00042452 mov 0x0,r7
+ram:00042454 mov r26,r6
+ram:00042456 jarl 0x00042196,lp
+ram:0004245a dispose 0x1,{ r20,r21,r22,r23,r24,r25,r26,r27,r28,r29,lp },[lp]
+
+void FUN_ram_00042384(undefined1 param_1)
+
+{
+  ushort uVar1;
+  ushort uVar2;
+  ushort uVar3;
+  ushort uVar4;
+  ushort uVar5;
+  ushort uVar6;
+  byte bVar7;
+  byte bVar8;
+  byte bVar9;
+  byte bVar10;
+  ushort uVar11;
+  ushort uVar12;
+  ushort uVar13;
+  bool bVar14;
+  int iVar15;
+
+  uVar13 = DAT_ram_fef02628;
+  uVar12 = DAT_ram_fef02602;
+  uVar11 = DAT_ram_fef0258e;
+  bVar10 = DAT_ram_00182712;
+  bVar9 = DAT_ram_00182711;
+  bVar8 = DAT_ram_00182710;
+  bVar7 = DAT_ram_0018270f;
+  uVar6 = DAT_ram_00182670;
+  uVar5 = DAT_ram_0018266e;
+  uVar4 = DAT_ram_0018266c;
+  uVar3 = DAT_ram_0018266a;
+  uVar2 = DAT_ram_00182668;
+  uVar1 = DAT_ram_00182666;
+  iVar15 = FUN_ram_00042120();
+  if ((((((iVar15 == 1) && (bVar7 <= DAT_ram_fef026bd)) && (DAT_ram_fef026bd <= bVar8)) &&
+       ((bVar9 <= DAT_ram_fef026c3 && (DAT_ram_fef026c3 <= bVar10)))) &&
+      ((uVar1 <= uVar11 && ((uVar11 <= uVar2 && (uVar3 <= uVar12)))))) &&
+     ((uVar12 <= uVar4 && (uVar5 <= uVar13)))) {
+    bVar14 = uVar13 <= uVar6;
+  }
+  else {
+    bVar14 = false;
+  }
+  FUN_ram_00042196(param_1,bVar14);
+  return;
+}
+
+
+
+=== FUN_ram_000742e2 @ ram:000742e2 ===
+ram:000742e2 prepare { r28,lp },0x0
+ram:000742e6 movhi -0x110,r0,r1
+ram:000742ea movhi 0x19,r0,r19
+ram:000742ee ld.hu 0x2574[r1],r1
+ram:000742f2 ori 0xffff,r0,r7
+ram:000742f6 ld.hu -0x10a8[r19],r19
+ram:000742fa mov 0x0,r8
+ram:000742fc mul r19,r1,r0
+ram:00074300 movea 0x555a,r0,r19
+ram:00074304 shl 0x5,r1
+ram:00074306 divq r19,r1,r0
+ram:0007430a movhi 0x19,r0,r19
+ram:0007430e ld.hu -0x10a6[r19],r19
+ram:00074312 addi -0x8000,r19,r19
+ram:00074316 add r1,r19
+ram:00074318 addi 0x1eb6,r19,r6
+ram:0007431c jarl 0x00091a82,lp
+ram:00074320 movhi 0x19,r0,r7
+ram:00074324 mov r10,r8
+ram:00074326 ld.bu -0xf2c[r7],r7
+ram:0007432a zxh r8
+ram:0007432c movhi -0x110,r0,r14
+ram:00074330 mov 0xfef0271a,r28
+ram:00074336 st.h r8,0x2624[r14]
+ram:0007433a mov r28,r6
+ram:0007433c subr r0,r7
+ram:0007433e shl 0x8,r7
+ram:00074340 zxh r7
+ram:00074342 jarl 0x00091826,lp
+ram:00074346 ld.hu 0x0[r28],r1
+ram:0007434a movhi -0x110,r0,r16
+ram:0007434e st.h r1,0x2626[r16]
+ram:00074352 dispose 0x0,{ r28,lp },[lp]
+
+void FUN_ram_000742e2(void)
+
+{
+  DAT_ram_fef02624 =
+       FUN_ram_00091a82(&UNK_ram_ffff9eb6 +
+                        (uint)DAT_ram_0018ef5a +
+                        (int)((uint)DAT_ram_fef02574 * (uint)DAT_ram_0018ef58 * 0x20) / 0x555a,
+                        0xffff,0);
+  FUN_ram_00091826(&DAT_ram_fef0271a,(-(uint)DAT_ram_0018f0d4 & 0xff) << 8);
+  DAT_ram_fef02626 = DAT_ram_fef0271a;
+  return;
+}
+
+
+
+=== FUN_ram_0003dbae @ ram:0003dbae ===
+ram:0003dbae prepare { r27,r28,r29,lp },0x0
+ram:0003dbb2 zxb r6
+ram:0003dbb4 movhi -0x110,r0,r1
+ram:0003dbb8 movhi 0x15,r0,r27
+ram:0003dbbc ld.hu 0xbdc[r1],r1
+ram:0003dbc0 mov r6,r29
+ram:0003dbc2 ld.hu 0x4882[r27],r27
+ram:0003dbc6 movhi 0x1,r1,r28
+ram:0003dbca jarl 0x0003daa8,lp
+ram:0003dbce mov r10,r7
+ram:0003dbd0 cmp r0,r29
+ram:0003dbd2 mov 0xfef0118c,ep
+ram:0003dbd8 bne 0x0003dbe6
+ram:0003dbda sld.hu 0x0[ep],r1
+ram:0003dbdc movhi -0x110,r0,r19
+ram:0003dbe0 ld.hu 0x11da[r19],r19
+ram:0003dbe4 br 0x0003dbf0
+ram:0003dbe6 sld.hu 0x2[ep],r1
+ram:0003dbe8 movhi -0x110,r0,r19
+ram:0003dbec ld.hu 0x11dc[r19],r19
+ram:0003dbf0 add r1,r19
+ram:0003dbf2 cmp r28,r19
+ram:0003dbf4 bnc 0x0003dbfe
+ram:0003dbf6 cmp r27,r1
+ram:0003dbf8 bnc 0x0003dbfe
+ram:0003dbfa cmp 0x1,r10
+ram:0003dbfc be 0x0003dc00
+ram:0003dbfe mov 0x0,r7
+ram:0003dc00 mov r29,r6
+ram:0003dc02 jarl 0x0003d692,lp
+ram:0003dc06 dispose 0x0,{ r27,r28,r29,lp },[lp]
+
+void FUN_ram_0003dbae(char param_1)
+
+{
+  ushort uVar1;
+  ushort uVar2;
+  uint uVar3;
+  undefined4 uVar4;
+  int iVar5;
+  uint uVar6;
+
+  uVar3 = (uint)DAT_ram_fef00bdc;
+  uVar6 = (uint)DAT_ram_00154882;
+  iVar5 = FUN_ram_0003daa8();
+  uVar2 = DAT_ram_fef0118e;
+  uVar1 = DAT_ram_fef011dc;
+  if (param_1 == '\0') {
+    uVar2 = DAT_ram_fef0118c;
+    uVar1 = DAT_ram_fef011da;
+  }
+  if (((uVar3 + 0x10000 <= (uint)uVar1 + (uint)uVar2) || (uVar6 <= uVar2)) ||
+     (uVar4 = 1, iVar5 != 1)) {
+    uVar4 = 0;
+  }
+  FUN_ram_0003d692(param_1,uVar4);
+  return;
+}
+
+
+
+=== FUN_ram_0003ddb2 @ ram:0003ddb2 ===
+ram:0003ddb2 prepare { r27,r28,r29,lp },0x0
+ram:0003ddb6 zxb r6
+ram:0003ddb8 movhi -0x110,r0,r1
+ram:0003ddbc movhi 0x15,r0,r27
+ram:0003ddc0 ld.hu 0xbdc[r1],r1
+ram:0003ddc4 mov r6,r29
+ram:0003ddc6 ld.hu 0x4882[r27],r27
+ram:0003ddca movhi 0x1,r1,r28
+ram:0003ddce jarl 0x0003daa8,lp
+ram:0003ddd2 mov 0xfef0118c,ep
+ram:0003ddd8 cmp r0,r29
+ram:0003ddda bne 0x0003dde8
+ram:0003dddc sld.hu 0x0[ep],r1
+ram:0003ddde movhi -0x110,r0,r19
+ram:0003dde2 ld.hu 0x11da[r19],r19
+ram:0003dde6 br 0x0003ddf2
+ram:0003dde8 sld.hu 0x2[ep],r1
+ram:0003ddea movhi -0x110,r0,r19
+ram:0003ddee ld.hu 0x11dc[r19],r19
+ram:0003ddf2 add r1,r19
+ram:0003ddf4 cmp r28,r19
+ram:0003ddf6 bc 0x0003de00
+ram:0003ddf8 cmp 0x1,r10
+ram:0003ddfa bne 0x0003de00
+ram:0003ddfc mov r10,r7
+ram:0003ddfe br 0x0003de02
+ram:0003de00 mov 0x0,r7
+ram:0003de02 cmp r27,r1
+ram:0003de04 bc 0x0003de0e
+ram:0003de06 cmp 0x1,r10
+ram:0003de08 bne 0x0003de0e
+ram:0003de0a mov r10,r28
+ram:0003de0c br 0x0003de10
+ram:0003de0e mov 0x0,r28
+ram:0003de10 mov r29,r6
+ram:0003de12 jarl 0x0003d802,lp
+ram:0003de16 mov r29,r6
+ram:0003de18 mov r28,r7
+ram:0003de1a jarl 0x0003d85e,lp
+ram:0003de1e dispose 0x0,{ r27,r28,r29,lp },[lp]
+
+void FUN_ram_0003ddb2(char param_1)
+
+{
+  ushort uVar1;
+  ushort uVar2;
+  uint uVar3;
+  undefined4 uVar4;
+  int iVar5;
+  uint uVar6;
+  undefined4 uVar7;
+
+  uVar3 = (uint)DAT_ram_fef00bdc;
+  uVar6 = (uint)DAT_ram_00154882;
+  iVar5 = FUN_ram_0003daa8();
+  uVar2 = DAT_ram_fef0118e;
+  uVar1 = DAT_ram_fef011dc;
+  if (param_1 == '\0') {
+    uVar2 = DAT_ram_fef0118c;
+    uVar1 = DAT_ram_fef011da;
+  }
+  if (((uint)uVar1 + (uint)uVar2 < uVar3 + 0x10000) || (iVar5 != 1)) {
+    uVar4 = 0;
+  }
+  else {
+    uVar4 = 1;
+  }
+  if ((uVar2 < uVar6) || (iVar5 != 1)) {
+    uVar7 = 0;
+  }
+  else {
+    uVar7 = 1;
+  }
+  FUN_ram_0003d802(param_1,uVar4);
+  FUN_ram_0003d85e(param_1,uVar7);
+  return;
+}
+
+
+
+=== FUN_ram_0003e036 @ ram:0003e036 ===
+ram:0003e036 prepare { lp },0x0
+ram:0003e03a movhi -0x110,r0,r1
+ram:0003e03e andi 0xff,r6,r6
+ram:0003e042 ld.hu 0xbdc[r1],r1
+ram:0003e046 mov 0xfef0118c,ep
+ram:0003e04c movhi 0x1,r1,r18
+ram:0003e050 bne 0x0003e05e
+ram:0003e052 sld.hu 0x0[ep],r19
+ram:0003e054 movhi -0x110,r0,r1
+ram:0003e058 ld.hu 0x11da[r1],r1
+ram:0003e05c br 0x0003e068
+ram:0003e05e sld.hu 0x2[ep],r19
+ram:0003e060 movhi -0x110,r0,r1
+ram:0003e064 ld.hu 0x11dc[r1],r1
+ram:0003e068 add r19,r1
+ram:0003e06a mov 0x0,r7
+ram:0003e06c movhi -0x110,r0,r19
+ram:0003e070 ld.hu 0xbde[r19],r19
+ram:0003e074 cmp r1,r19
+ram:0003e076 bnc 0x0003e07e
+ram:0003e078 cmp r18,r1
+ram:0003e07a setfc r7
+ram:0003e07e jarl 0x0003da28,lp
+ram:0003e082 dispose 0x0,{ lp },[lp]
+
+void FUN_ram_0003e036(char param_1)
+
+{
+  ushort uVar1;
+  ushort uVar2;
+
+  uVar1 = DAT_ram_fef011dc;
+  uVar2 = DAT_ram_fef0118e;
+  if (param_1 == '\0') {
+    uVar1 = DAT_ram_fef011da;
+    uVar2 = DAT_ram_fef0118c;
+  }
+  FUN_ram_0003da28(param_1,(uint)DAT_ram_fef00bde < (uint)uVar1 + (uint)uVar2 &&
+                           (uint)uVar1 + (uint)uVar2 < DAT_ram_fef00bdc + 0x10000);
+  return;
+}
+
+
+
+=== FUN_ram_00044996 @ ram:00044996 ===
+ram:00044996 prepare { r20,r21,r22,r24,r25,r26,r27,r28,r29,lp },0x0
+ram:0004499a zxb r6
+ram:0004499c mov 0xfef00f54,r29
+ram:000449a2 mov r6,r27
+ram:000449a4 jarl 0x00042756,lp
+ram:000449a8 mov r10,r21
+ram:000449aa mov r27,r6
+ram:000449ac mov 0x0,r7
+ram:000449ae jarl 0x00044414,lp
+ram:000449b2 mov r10,r24
+ram:000449b4 mov r27,r6
+ram:000449b6 mov 0x1,r7
+ram:000449b8 jarl 0x00044414,lp
+ram:000449bc mov r10,r22
+ram:000449be mov r27,r6
+ram:000449c0 jarl 0x0004265a,lp
+ram:000449c4 shl 0x1,r27
+ram:000449c6 movhi -0x110,r0,r26
+ram:000449ca movhi -0x110,r0,r25
+ram:000449ce mov r10,r20
+ram:000449d0 add r27,r26
+ram:000449d2 add r27,r25
+ram:000449d4 ld.hu 0x118c[r26],r28
+ram:000449d8 cmp 0x1,r21
+ram:000449da ld.hu 0x1190[r25],r10
+ram:000449de movea 0x118c,r26,r26
+ram:000449e2 movea 0x1190,r25,r25
+ram:000449e6 bne 0x000449fa
+ram:000449e8 mov r27,ep
+ram:000449ea add r29,ep
+ram:000449ec sld.hu 0x0[ep],r6
+ram:000449ee mov r22,r28
+ram:000449f0 add r24,r28
+ram:000449f2 shr 0x1,r28
+ram:000449f4 subr r28,r6
+ram:000449f6 jarl 0x0009191c,lp
+ram:000449fa cmp 0x1,r20
+ram:000449fc mov r27,ep
+ram:000449fe cmove r24,r28,r28
+ram:00044a02 st.h r28,0x0[r26]
+ram:00044a06 cmove 0x0,r10,r10
+ram:00044a0a st.h r10,0x0[r25]
+ram:00044a0e add r29,ep
+ram:00044a10 sst.h r28,0x0[ep]
+ram:00044a12 dispose 0x0,{ r20,r21,r22,r24,r25,r26,r27,r28,r29,lp },[lp]
+
+void FUN_ram_00044996(uint param_1)
+
+{
+  short sVar1;
+  short sVar2;
+  int iVar3;
+  int iVar4;
+  int iVar5;
+  int iVar6;
+  uint uVar7;
+  bool bVar8;
+
+  param_1 = param_1 & 0xff;
+  iVar3 = FUN_ram_00042756();
+  iVar4 = FUN_ram_00044414(param_1,0);
+  iVar5 = FUN_ram_00044414(param_1,1);
+  iVar6 = FUN_ram_0004265a(param_1);
+  uVar7 = (uint)(ushort)(&DAT_ram_fef0118c)[param_1];
+  sVar2 = *(short *)(&DAT_ram_fef01190 + param_1 * 2);
+  if (iVar3 == 1) {
+    uVar7 = (uint)(iVar5 + iVar4) >> 1;
+    sVar2 = FUN_ram_0009191c(uVar7 - (ushort)(&DAT_ram_fef00f54)[param_1]);
+  }
+  bVar8 = iVar6 == 1;
+  sVar1 = (short)iVar4 * (ushort)bVar8 + (short)uVar7 * (ushort)!bVar8;
+  (&DAT_ram_fef0118c)[param_1] = sVar1;
+  *(ushort *)(&DAT_ram_fef01190 + param_1 * 2) = sVar2 * (ushort)!bVar8;
+  (&DAT_ram_fef00f54)[param_1] = sVar1;
+  return;
+}
+
+
+
+=== FUN_ram_000484e0 @ ram:000484e0 ===
+ram:000484e0 zxb r6
+ram:000484e2 cmp 0x1,r6
+ram:000484e4 bh 0x000484fa
+ram:000484e6 bnc 0x000484f2
+ram:000484e8 movhi -0x110,r0,r11
+ram:000484ec st.h r7,0x11da[r11]
+ram:000484f0 jmp [lp]
+ram:000484f2 movhi -0x110,r0,r11
+ram:000484f6 st.h r7,0x11dc[r11]
+ram:000484fa jmp [lp]
+
+void FUN_ram_000484e0(byte param_1,undefined2 param_2)
+
+{
+  undefined2 uVar1;
+
+  uVar1 = DAT_ram_fef011dc;
+  if ((param_1 < 2) && (uVar1 = param_2, param_1 == 0)) {
+    DAT_ram_fef011da = param_2;
+    return;
+  }
+  DAT_ram_fef011dc = uVar1;
+  return;
+}
+
+
+
+=== FUN_ram_00074ee4 @ ram:00074ee4 ===
+ram:00074ee4 prepare { r29,lp },0x0
+ram:00074ee8 mov r6,r29
+ram:00074eea zxb r29
+ram:00074eec cmp 0x1,r29
+ram:00074eee cmove 0x6,r6,r6
+ram:00074ef2 cmovne 0x7,r6,r6
+ram:00074ef6 jarl 0x00023354,lp
+ram:00074efa mov r29,ep
+ram:00074efc shl 0x1,ep
+ram:00074efe mov 0xfef02544,r1
+ram:00074f04 add r1,ep
+ram:00074f06 shr 0x6,r10
+ram:00074f08 sst.h r10,0x0[ep]
+ram:00074f0a dispose 0x0,{ r29,lp },[lp]
+
+void FUN_ram_00074ee4(uint param_1)
+
+{
+  uint uVar1;
+  bool bVar2;
+
+  bVar2 = (param_1 & 0xff) == 1;
+  uVar1 = FUN_ram_00023354((uint)!bVar2 * 7 + ((uint)bVar2 * 6 + param_1 * !bVar2) * (uint)bVar2);
+  (&DAT_ram_fef02544)[param_1 & 0xff] = (short)(uVar1 >> 6);
+  return;
+}
+
+
+
+=== FUN_ram_00074f0e @ ram:00074f0e ===
+ram:00074f0e prepare { r29,lp },0x0
+ram:00074f12 mov r6,r29
+ram:00074f14 zxb r29
+ram:00074f16 cmp 0x1,r29
+ram:00074f18 cmove 0x4,r6,r6
+ram:00074f1c cmovne 0x5,r6,r6
+ram:00074f20 jarl 0x00023354,lp
+ram:00074f24 mov r29,ep
+ram:00074f26 shl 0x1,ep
+ram:00074f28 mov 0xfef02548,r1
+ram:00074f2e add r1,ep
+ram:00074f30 shr 0x6,r10
+ram:00074f32 sst.h r10,0x0[ep]
+ram:00074f34 dispose 0x0,{ r29,lp },[lp]
+
+void FUN_ram_00074f0e(uint param_1)
+
+{
+  uint uVar1;
+  bool bVar2;
+
+  bVar2 = (param_1 & 0xff) == 1;
+  uVar1 = FUN_ram_00023354((uint)!bVar2 * 5 + ((uint)bVar2 * 4 + param_1 * !bVar2) * (uint)bVar2);
+  *(short *)(&DAT_ram_fef02548 + (param_1 & 0xff) * 2) = (short)(uVar1 >> 6);
+  return;
+}
+
+
+
+=== FUN_ram_00023354 @ ram:00023354 ===
+ram:00023354 prepare { lp },0x0
+ram:00023358 mov r6,r1
+ram:0002335a shl 0x10,r1
+ram:0002335c shr 0x18,r1
+ram:0002335e bne 0x00023368
+ram:00023360 zxb r6
+ram:00023362 jarl 0x00021b30,lp
+ram:00023366 br 0x0002336a
+ram:00023368 mov 0x0,r10
+ram:0002336a dispose 0x0,{ lp },[lp]
+
+undefined4 FUN_ram_00023354(uint param_1)
+
+{
+  undefined4 uVar1;
+
+  if ((param_1 & 0xffff) >> 8 == 0) {
+    uVar1 = FUN_ram_00021b30(param_1 & 0xff);
+  }
+  else {
+    uVar1 = 0;
+  }
+  return uVar1;
+}
+
+
+
+=== FUN_ram_00021b30 @ ram:00021b30 ===
+ram:00021b30 zxb r6
+ram:00021b32 shl 0x1,r6
+ram:00021b34 add gp,r6
+ram:00021b36 ld.hu -0x7cf6[r6],r10
+ram:00021b3a shl 0x1,r10
+ram:00021b3c zxh r10
+ram:00021b3e jmp [lp]
+
+int FUN_ram_00021b30(uint param_1)
+
+{
+  int unaff_gp;
+
+  return (*(ushort *)(&DAT_ram_ffff830a + (param_1 & 0xff) * 2 + unaff_gp) & 0x7fff) << 1;
+}
+
+
+
+=== FUN_ram_00075b18 @ ram:00075b18 ===
+ram:00075b18 zxb r6
+ram:00075b1a shl 0x1,r6
+ram:00075b1c movhi -0x110,r0,r1
+ram:00075b20 mov 0xfef0254c,ep
+ram:00075b26 add r6,ep
+ram:00075b28 add r1,r6
+ram:00075b2a ld.hu 0x2544[r6],r1
+ram:00075b2e sst.h r1,0x0[ep]
+ram:00075b30 jmp [lp]
+
+void FUN_ram_00075b18(uint param_1)
+
+{
+  (&DAT_ram_fef0254c)[param_1 & 0xff] = (&DAT_ram_fef02544)[param_1 & 0xff];
+  return;
+}
+
+
+
+=== FUN_ram_00034320 @ ram:00034320 ===
+ram:00034320 prepare { r26,r27,r28,r29,lp },0x0
+ram:00034324 mov r6,r27
+ram:00034326 zxb r27
+ram:00034328 movhi -0x110,r0,r29
+ram:0003432c movhi 0x15,r0,r28
+ram:00034330 ld.bu 0x21c1[r29],r29
+ram:00034334 ld.bu 0x4968[r28],r28
+ram:00034338 shl 0x1d,r29
+ram:0003433a shr 0x1f,r29
+ram:0003433c jarl 0x00073a86,lp
+ram:00034340 mov r10,r26
+ram:00034342 cmp 0x1,r27
+ram:00034344 bh 0x0003436c
+ram:00034346 bnc 0x0003434e
+ram:00034348 movea 0x5d,r0,r6
+ram:0003434c br 0x00034352
+ram:0003434e movea 0x5e,r0,r6
+ram:00034352 jarl 0x00054dfa,lp
+ram:00034356 cmp r0,r10
+ram:00034358 bne 0x0003436c
+ram:0003435a addi -0x80,r28,r0
+ram:0003435e bne 0x0003436c
+ram:00034360 cmp r0,r29
+ram:00034362 bne 0x0003436c
+ram:00034364 cmp r0,r26
+ram:00034366 setfe r7
+ram:0003436a br 0x0003436e
+ram:0003436c mov 0x0,r7
+ram:0003436e mov r27,r6
+ram:00034370 jarl 0x000342f0,lp
+ram:00034374 dispose 0x0,{ r26,r27,r28,r29,lp },[lp]
+
+void FUN_ram_00034320(byte param_1)
+
+{
+  char cVar1;
+  undefined4 uVar2;
+  int iVar3;
+  int iVar4;
+  uint uVar5;
+  bool bVar6;
+
+  cVar1 = DAT_ram_00154968;
+  uVar5 = (uint)DAT_ram_fef021c1;
+  iVar3 = FUN_ram_00073a86();
+  if (param_1 < 2) {
+    if (param_1 == 0) {
+      uVar2 = 0x5d;
+    }
+    else {
+      uVar2 = 0x5e;
+    }
+    iVar4 = FUN_ram_00054dfa(uVar2);
+    if (((iVar4 == 0) && (cVar1 == -0x80)) && (-1 < (int)(uVar5 << 0x1d))) {
+      bVar6 = iVar3 == 0;
+      goto LAB_ram_0003436e;
+    }
+  }
+  bVar6 = false;
+LAB_ram_0003436e:
+  FUN_ram_000342f0(param_1,bVar6);
+  return;
+}
+
+
+
+REFERENCES TO ram:0017ebe4
+From: ram:0004539c To: ram:0017ebe4 Type: DATA Op: 2 ANALYSIS
+
+REFERENCES TO ram:00154d8c
+From: ram:00045566 To: ram:00154d8c Type: DATA Op: 2 ANALYSIS
+
+REFERENCES TO ram:fef011ca
+From: ram:0005e8c8 To: ram:fef011ca Type: READ Op: 2 ANALYSIS
+From: ram:00045ea8 To: ram:fef011ca Type: READ Op: 2 ANALYSIS
+From: ram:00049142 To: ram:fef011ca Type: WRITE Op: 2 ANALYSIS
+From: ram:0004926e To: ram:fef011ca Type: WRITE Op: 2 ANALYSIS
+
+REFERENCES TO ram:fef020e0
+From: ram:0005d870 To: ram:fef020e0 Type: READ Op: 2 ANALYSIS
+From: ram:0005d8a2 To: ram:fef020e0 Type: READ_WRITE Op: 2 ANALYSIS
+From: ram:0005d8a8 To: ram:fef020e0 Type: READ_WRITE Op: 2 ANALYSIS
+From: ram:0005d922 To: ram:fef020e0 Type: READ Op: 2 ANALYSIS
+From: ram:0005d964 To: ram:fef020e0 Type: READ_WRITE Op: 2 ANALYSIS
+From: ram:0005d96a To: ram:fef020e0 Type: READ_WRITE Op: 2 ANALYSIS
+From: ram:0005d9d2 To: ram:fef020e0 Type: READ_WRITE Op: 2 ANALYSIS
+From: ram:0005d9d8 To: ram:fef020e0 Type: READ_WRITE Op: 2 ANALYSIS
+From: ram:0005da28 To: ram:fef020e0 Type: READ_WRITE Op: 2 ANALYSIS
+From: ram:0005da5a To: ram:fef020e0 Type: READ_WRITE Op: 2 ANALYSIS
+From: ram:0005da88 To: ram:fef020e0 Type: READ_WRITE Op: 2 ANALYSIS
+From: ram:0005da9a To: ram:fef020e0 Type: READ_WRITE Op: 2 ANALYSIS
+From: ram:0005dae0 To: ram:fef020e0 Type: READ Op: 2 ANALYSIS
+From: ram:0005db26 To: ram:fef020e0 Type: READ_WRITE Op: 2 ANALYSIS
+From: ram:0005db20 To: ram:fef020e0 Type: READ_WRITE Op: 2 ANALYSIS
+From: ram:0005db52 To: ram:fef020e0 Type: READ_WRITE Op: 2 ANALYSIS
+From: ram:0005db58 To: ram:fef020e0 Type: READ_WRITE Op: 2 ANALYSIS
+From: ram:0005dc54 To: ram:fef020e0 Type: READ Op: 2 ANALYSIS
+From: ram:0005dc44 To: ram:fef020e0 Type: READ Op: 2 ANALYSIS
+From: ram:0005dc4a To: ram:fef020e0 Type: READ Op: 2 ANALYSIS
+From: ram:0005dc34 To: ram:fef020e0 Type: READ Op: 2 ANALYSIS
+From: ram:0005dc3a To: ram:fef020e0 Type: READ Op: 2 ANALYSIS
+From: ram:0005dc1e To: ram:fef020e0 Type: READ Op: 2 ANALYSIS
+From: ram:0005dc24 To: ram:fef020e0 Type: READ Op: 2 ANALYSIS
+From: ram:0005dc2e To: ram:fef020e0 Type: READ Op: 2 ANALYSIS
+From: ram:0005dc08 To: ram:fef020e0 Type: READ Op: 2 ANALYSIS
+From: ram:0005dc0e To: ram:fef020e0 Type: READ Op: 2 ANALYSIS
+From: ram:0005dc14 To: ram:fef020e0 Type: READ Op: 2 ANALYSIS
+From: ram:0005d7a2 To: ram:fef020e0 Type: READ_WRITE Op: 2 ANALYSIS
+From: ram:0005d7a8 To: ram:fef020e0 Type: READ_WRITE Op: 2 ANALYSIS
+
+REFERENCES TO ram:fef020e1
+From: ram:0005d998 To: ram:fef020e1 Type: READ Op: 2 ANALYSIS
+From: ram:0005dad4 To: ram:fef020e1 Type: READ Op: 2 ANALYSIS
+From: ram:0005dada To: ram:fef020e1 Type: READ Op: 2 ANALYSIS
+From: ram:0005db46 To: ram:fef020e1 Type: READ Op: 2 ANALYSIS
+From: ram:0005db4c To: ram:fef020e1 Type: READ Op: 2 ANALYSIS
+From: ram:0005d7b0 To: ram:fef020e1 Type: READ_WRITE Op: 2 ANALYSIS
+From: ram:0005d7b6 To: ram:fef020e1 Type: READ_WRITE Op: 2 ANALYSIS
+From: ram:0005d7f0 To: ram:fef020e1 Type: READ_WRITE Op: 2 ANALYSIS
+From: ram:0005d7f6 To: ram:fef020e1 Type: READ_WRITE Op: 2 ANALYSIS
+From: ram:0005d832 To: ram:fef020e1 Type: READ_WRITE Op: 2 ANALYSIS
+From: ram:0005d838 To: ram:fef020e1 Type: READ_WRITE Op: 2 ANALYSIS
+
+REFERENCES TO ram:fef02090
+From: ram:0005db84 To: ram:fef02090 Type: READ Op: 1 ANALYSIS
+From: ram:0005dc5c To: ram:fef02090 Type: WRITE Op: 2 ANALYSIS
+From: ram:0005dcb4 To: ram:fef02090 Type: READ Op: 2 ANALYSIS
+From: ram:00075eda To: ram:fef02090 Type: READ Op: 2 ANALYSIS
+From: ram:0003d298 To: ram:fef02090 Type: READ Op: 2 ANALYSIS
+From: ram:0005d6c4 To: ram:fef02090 Type: READ Op: 2 ANALYSIS
+From: ram:0005d756 To: ram:fef02090 Type: READ Op: 2 ANALYSIS
+From: ram:00030c32 To: ram:fef02090 Type: READ Op: 2 ANALYSIS
+From: ram:00030ce6 To: ram:fef02090 Type: READ Op: 2 ANALYSIS
+From: ram:000343b0 To: ram:fef02090 Type: READ Op: 2 ANALYSIS
+From: ram:0003444c To: ram:fef02090 Type: READ Op: 2 ANALYSIS
+From: ram:0003480c To: ram:fef02090 Type: READ Op: 2 ANALYSIS
+
+REFERENCES TO ram:00045338
+
+REFERENCES TO ram:0004545e
+
+REFERENCES TO ram:00052600
+
+REFERENCES TO ram:00074302
+
+REFERENCES TO ram:00170440
+From: ram:00156484 To: ram:00170440 Type: DATA Op: 0 DEFAULT
+
+REFERENCES TO ram:00170ecc
+From: ram:001564d4 To: ram:00170ecc Type: DATA Op: 0 DEFAULT
+
+REFERENCES TO ram:00171958
+From: ram:00156524 To: ram:00171958 Type: DATA Op: 0 DEFAULT
+
+REFERENCES TO ram:001723e4
+From: ram:00156574 To: ram:001723e4 Type: DATA Op: 0 DEFAULT
+
+REFERENCES TO ram:fef02544
+From: ram:0005abc8 To: ram:fef02544 Type: READ Op: 1 ANALYSIS
+From: ram:00062e30 To: ram:fef02544 Type: READ Op: 2 ANALYSIS
+From: ram:0008a31e To: ram:fef02544 Type: READ Op: 2 ANALYSIS
+From: ram:00075b2a To: ram:fef02544 Type: DATA Op: 2 ANALYSIS
+From: ram:000a59a2 To: ram:fef02544 Type: READ Op: 2 ANALYSIS
+From: ram:0003d482 To: ram:fef02544 Type: DATA Op: 2 ANALYSIS
+From: ram:0003d4ec To: ram:fef02544 Type: DATA Op: 2 ANALYSIS
+From: ram:00030934 To: ram:fef02544 Type: DATA Op: 2 ANALYSIS
+From: ram:0003ceaa To: ram:fef02544 Type: DATA Op: 2 ANALYSIS
+From: ram:00074f08 To: ram:fef02544 Type: DATA Op: 2 ANALYSIS
+From: ram:0003cf34 To: ram:fef02544 Type: DATA Op: 2 ANALYSIS

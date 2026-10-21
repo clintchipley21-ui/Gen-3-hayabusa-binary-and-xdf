@@ -1,0 +1,113 @@
+{
+  "status": "requested wiring target; not electrically or bench verified",
+  "manifold_pressure": {
+    "sensor_part": "GM 55567257",
+    "proposed_ecu_input": "original IAP input",
+    "interpretation_pending": "confirmed by user: GM sensor replaces stock IAP on original wiring",
+    "candidate_transfer": {
+      "normalized_span_kpa": 312.5,
+      "offset_kpa": -11.25,
+      "raw_adc_full_scale_assumption": 1023,
+      "default_table_ceiling_kpa_absolute": 270,
+      "source": "https://dsxtuning.com/products/gm-3-bar-map-55567257",
+      "status": "supplier-published candidate; verify actual sensor/ADC"
+    }
+  },
+  "airshift": {
+    "requested_output": "PAIR valve",
+    "installed_patch": "existing autoshift.bin, disabled by default",
+    "physical_terminal_and_polarity": "unverified",
+    "manual_terminal": "ECM coupler C, T94 (PAIR control)"
+  },
+  "wastegate_hat_pressure": {
+    "requested_input": "O2 sensor signal",
+    "channel": 1,
+    "sensor_part": "Tuner Tools 150 PSI Motorsport sensor; description matches Haltech HT-010910 (physical part marking not provided)",
+    "sensor_transfer": {
+      "volts_zero_psi": 0.5,
+      "volts_150_psi": 4.5,
+      "psi_per_volt": 37.5,
+      "psi_offset": -18.75,
+      "status": "Haltech HT-010910 published transfer; confirm exact delivered sensor"
+    },
+    "ecu_input_voltage_range": "manual gives normal O2 signal about 0-1 V; compatibility with 0.5-4.5 V pressure signal not established",
+    "input_circuit_conditioning": "requires verification",
+    "product_url": "https://tunertools.com/products/150-psi-motorsport-fuel-oil-wastegate-pressure-sensor",
+    "supply": "requires regulated 5 V sensor supply, not heater 12 V",
+    "manufacturer_info_sheet": "https://store.haltech.com/wp-admin/admin-ajax.php?action=ht_get_file&id=5d30ec73506c256cc772dc06&op=1"
+  },
+  "wastegate_pwm": {
+    "requested_circuit": "O2 connector; heater output is a candidate distinct from signal input",
+    "channel": 1,
+    "solenoid_part": "AEM 30-2400",
+    "electrical_load_and_flyback": "coil current and ECU driver capability not established; verify before connecting",
+    "physical_output_register": null,
+    "pwm_timer_and_frequency": null,
+    "driver_installed": false,
+    "operating_voltage_vdc": 12,
+    "specified_frequency_hz": 31,
+    "specified_operating_duty_percent": [
+      10,
+      90
+    ],
+    "max_pressure_psi": 120,
+    "deenergized_ports_connected": [
+      2,
+      3
+    ],
+    "energized_ports_connected": [
+      1,
+      2
+    ],
+    "manufacturer_instructions": "https://documents.holley.com/fe590cc4b242b6e955e9d12f206ba0e0cc7dd5c7.pdf",
+    "pneumatic_disarm_state": "must be verified to release hat pressure; depends on port plumbing",
+    "manual_terminal": "ECM coupler C, T79 (O2 channel 1 heater control)"
+  },
+  "integration_software": {
+    "portable_controller_source": "control/race_control.c",
+    "host_tests": "control/test_race_control.c",
+    "optional_profile_address": "0x170440",
+    "optional_profile_size": 576,
+    "firmware_loop_detachment_address": "0x453B0",
+    "firmware_loop_detachment_bytes": "62e2",
+    "physical_pwm_binding": false,
+    "controller_linked_into_ecu": false
+  },
+  "service_manual_evidence": {
+    "publication": "Suzuki 99500-10L00-01E, GSX1300RM2",
+    "source_url": "https://www.scribd.com/document/1056621071/2020-2022-GSX1300RR-99500-10L00-01E-GSX1300RM2-unlocked",
+    "access": "publicly delivered document text; diagrams not independently visually verified",
+    "connector_orientation_section": "1A-7",
+    "o2_channel_1": {
+      "signal": "ECM coupler A, T24; sensor T1",
+      "sensor_return": "ECM coupler A, T28; sensor T2",
+      "heater_control": "ECM coupler C, T79; sensor T3",
+      "heater_supply": "sensor T4, battery voltage",
+      "references": [
+        "1A-32 to 1A-33",
+        "1A-45",
+        "1C-8 to 1C-9"
+      ],
+      "normal_sensor_output_v_approx": [
+        0,
+        1
+      ],
+      "heater_resistance_ohms_at_23c": [
+        11.5,
+        17.5
+      ]
+    },
+    "pair": {
+      "control": "ECM coupler C, T94; valve T1",
+      "supply": "valve T2, battery voltage",
+      "reference": "1A-65"
+    },
+    "not_established": [
+      "input absolute maximum voltage and transfer/conditioning",
+      "connector-to-MCU/ASIC channel mapping",
+      "driver current/flyback/PWM capability",
+      "modified bike wiring continuity"
+    ],
+    "bench_verified": false
+  }
+}

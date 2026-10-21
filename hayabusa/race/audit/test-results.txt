@@ -1,0 +1,18 @@
+test_decode_actual_prepared_profile_and_run_native_controller (test_boost_integration.BoostIntegrationTests.test_decode_actual_prepared_profile_and_run_native_controller) ... ok
+test_loop_keeps_main_and_blend_per_cylinder (test_boost_integration.BoostIntegrationTests.test_loop_keeps_main_and_blend_per_cylinder) ... ok
+test_only_detached_spare_profile_and_checksum_change (test_boost_integration.BoostIntegrationTests.test_only_detached_spare_profile_and_checksum_change) ... ok
+test_preparation_on_all_supported_variants_preserves_other_bytes (test_boost_integration.BoostIntegrationTests.test_preparation_on_all_supported_variants_preserves_other_bytes) ... ok
+test_profile_sensor_mismatch_is_rejected (test_boost_integration.BoostIntegrationTests.test_profile_sensor_mismatch_is_rejected) ... ok
+test_xdf_profile_replaces_one_spare_and_no_ids_collide (test_boost_integration.BoostIntegrationTests.test_xdf_profile_replaces_one_spare_and_no_ids_collide) ... ok
+test_custom_transfer_250_kpa_resamples_in_physical_units (test_race_dev.RaceBuildTests.test_custom_transfer_250_kpa_resamples_in_physical_units) ... ok
+test_gm_candidate_endpoints_and_build (test_race_dev.RaceBuildTests.test_gm_candidate_endpoints_and_build) ... ok
+test_j40_matches_existing_sd41_plus_assembled_airshift (test_race_dev.RaceBuildTests.test_j40_matches_existing_sd41_plus_assembled_airshift) ... ok
+test_no_tps_storage_repurposed_and_no_fake_boost_driver (test_race_dev.RaceBuildTests.test_no_tps_storage_repurposed_and_no_fake_boost_driver) ... ok
+test_reject_unknown_edited_or_unported_base (test_race_dev.RaceBuildTests.test_reject_unknown_edited_or_unported_base) ... ok
+test_reject_unrepresentable_or_faulting_transfers (test_race_dev.RaceBuildTests.test_reject_unrepresentable_or_faulting_transfers) ... ok
+test_supported_variants_preserve_every_unrelated_byte (test_race_dev.RaceBuildTests.test_supported_variants_preserve_every_unrelated_byte) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 40.205s
+
+OK

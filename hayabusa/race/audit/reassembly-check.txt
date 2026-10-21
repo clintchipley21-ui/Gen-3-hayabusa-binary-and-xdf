@@ -1,0 +1,4 @@
+GNU binutils 2.43; V850E3V5 assembly recheck.
+als: 328 bytes, sha256=0b88692de9be8803e349b232c984e13e14f3ab9f18182ff3a75f21c447035ef4
+autoshift: 310 bytes, sha256=dc9fcddcd9c86c46bd3a4c1895305762eb6663a39d86cf7d7fc61032e931026a
+Both match the existing reference payload hashes. No new hook or output binding.

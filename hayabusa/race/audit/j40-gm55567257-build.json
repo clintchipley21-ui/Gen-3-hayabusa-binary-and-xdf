@@ -1,0 +1,40 @@
+{
+  "status": "OFFLINE DEVELOPMENT - NOT FLASH VALIDATED",
+  "base_variant": "5JCZSJ40",
+  "base_sha256": "676daf1c0048e9d0622b4ab2466f3e98e22e29623185d1c602698700f63c0c8d",
+  "image_sha256": "ff6077629918cf43e768883c3889833a75cd45baf871c916f47147ff055b55ae",
+  "reference_sha256": {
+    "stock/5JCZSJ40/5JCZSJ40.bin": "676daf1c0048e9d0622b4ab2466f3e98e22e29623185d1c602698700f63c0c8d",
+    "race/old/SD-v3.bin": "1c9551cc4f176a799dbd886f37824c84e0535a347c8f8dcd63f08caf61f0247c",
+    "race/Busa-SD-v4.1.bin": "5af12da86686cd6441b1d8a319f99bd2b92521daf50c4d3f762eedeebc6fa7c0",
+    "race/als/autoshift.bin": "dc9fcddcd9c86c46bd3a4c1895305762eb6663a39d86cf7d7fc61032e931026a",
+    "race/Busa-SD-v6.xdf": "0387ed644800a7193b743db7e8a341d3376b802dd2b1353e9b8d1e3b935431ff"
+  },
+  "sensor": {
+    "id": "GM 55567257 CANDIDATE - supplier-published transfer, bench verification required",
+    "kpa_per_adc_count": 0.30547409579667645,
+    "kpa_offset": -11.25,
+    "ceiling_kpa_absolute": 270,
+    "gain": 41001,
+    "offset_word": 28345,
+    "verified_on_hardware": false,
+    "source": "https://dsxtuning.com/products/gm-3-bar-map-55567257",
+    "assumption": "312.5 kPa normalized span, -11.25 kPa offset, ratiometric raw/1023"
+  },
+  "features": {
+    "sd_fuel": true,
+    "rolling_antilag": "installed, OFF",
+    "airshift": "installed, OFF; output unverified",
+    "map_based_base_ignition": false,
+    "map_based_retard": true,
+    "boost_output_control": false,
+    "tps_storage_reclaimed": false
+  },
+  "field1_crc": "B05D",
+  "field3": "unchanged; enforcement/algorithm not established",
+  "changed_byte_count": 24534,
+  "install_region_count": 967,
+  "changed_range_count": 1005,
+  "summary_only": true,
+  "full_region_manifest": "emitted by build_race_dev.py beside the generated image"
+}
