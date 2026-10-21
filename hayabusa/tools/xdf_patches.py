@@ -49,6 +49,64 @@ ITEMS = [
     ('const', 0xBF020, 16, 'Auto-Shift :: Target 5 to 6', 'RPM', 'X/2.56', 0, 'Upshift when RPM reaches this in 5th gear.'),
 ]
 
+# boost-control settings at 0xBF030 (see race/als/boost.s). Software-PWM a repurposed O2-heater output
+# to a wastegate/boost-control solenoid, duty scheduled per gear, with an optional closed-loop trim from a
+# pressure sensor on a repurposed O2 signal input. Added to every XDF (the addresses are free flash).
+BOOST_ITEMS = [
+    ('flag', 0xBF030, 8, 'Boost :: Enable', '', '', 0,
+     '0x80 = boost control ON. Software-PWMs the repurposed O2-heater output to a wastegate / boost-control '
+     'solenoid at the per-gear duty below. Ships OFF (and all duties 0 = wastegate spring pressure). '
+     'UNVERIFIED - bench the output first with "Bench Test Output".'),
+    ('flag', 0xBF031, 8, 'Boost :: Bench Test Output', '', '', 0,
+     '0x80 = hold the solenoid output asserted (no PWM, no control) so you can confirm on the bench which pin '
+     'drives it (candidate: O2-heater low-side driver). Output polarity is set by the wiring (relay coil leg / '
+     'NO vs NC solenoid), not here. Set back to 0 for normal use.'),
+    ('flag', 0xBF032, 8, 'Boost :: Closed-Loop Enable', '', '', 0,
+     '0x80 = trim the duty toward "CL Target" using the wastegate-pressure sensor on the input channel set by '
+     '"Pressure Input Address". Leave OFF until that input is proven on the bench; open-loop per-gear duty works without it.'),
+    ('const', 0xBF034, 16, 'Boost :: PWM Period', 'ticks', 'X', 0,
+     'Software-PWM period in ~5 ms task ticks (20 ~= 100 ms ~= 10 Hz). Duty is 0..Period. Match your '
+     'boost-control solenoid (MAC valves like ~30 Hz; raise the tick rate only if the bench shows room).'),
+    ('const', 0xBF036, 16, 'Boost :: Min RPM to Run', 'RPM', 'X/2.56', 0,
+     'Below this RPM the solenoid is held off (wastegate spring pressure) so there is no boost off-idle. Default 2000.'),
+    ('const', 0xBF038, 16, 'Boost :: Duty Gear 1', 'ticks', 'X', 0, 'Solenoid on-ticks per period in 1st gear (duty%% = ticks/Period). 0 = spring pressure (least boost).'),
+    ('const', 0xBF03A, 16, 'Boost :: Duty Gear 2', 'ticks', 'X', 0, 'On-ticks per period in 2nd gear.'),
+    ('const', 0xBF03C, 16, 'Boost :: Duty Gear 3', 'ticks', 'X', 0, 'On-ticks per period in 3rd gear.'),
+    ('const', 0xBF03E, 16, 'Boost :: Duty Gear 4', 'ticks', 'X', 0, 'On-ticks per period in 4th gear.'),
+    ('const', 0xBF040, 16, 'Boost :: Duty Gear 5', 'ticks', 'X', 0, 'On-ticks per period in 5th gear.'),
+    ('const', 0xBF042, 16, 'Boost :: Duty Gear 6', 'ticks', 'X', 0, 'On-ticks per period in 6th gear.'),
+    ('const', 0xBF044, 16, 'Boost :: CL Target', 'kPa', 'X*0.342-15', 0,
+     'Closed-loop target manifold pressure. The cell stores RAW counts; this equation (X*0.342-15) is the '
+     'wastegate-pressure SENSOR TRANSFER so you enter the target in kPa - PROVISIONAL, set it to match your '
+     'sensor and input scaling (see "Pressure Input Address"). Only used when "Closed-Loop Enable" is on.'),
+    ('const', 0xBF046, 16, 'Boost :: CL Trim Step', 'ticks', 'X', 0,
+     'Duty ticks the closed loop adds/removes each period while correcting toward CL Target. Small = slow/stable. '
+     'Trim is clamped to +/- Period.'),
+    ('const', 0xBF048, 16, 'Boost :: Pressure Input Address', 'RAM lo', 'X', 0,
+     'Which ADC word the wastegate-pressure sensor is read from, as the low 16 bits of a 0xFEF0xxxx RAM address '
+     '(effective address = 0xFEF00000 + this). Default 0x2648 (a candidate repurposed-O2 input). Set it to the '
+     'word the bench proves carries the sensor; add a TunerPro RAM gauge at 0xFEF0<this> with the same transfer '
+     'as "CL Target" to watch live boost. Only used when "Closed-Loop Enable" is on.'),
+]
+
+# IAP MAP-sensor scaling. The SD patch sets these for a GM 3-bar sensor; the preset guide lets you retune for a
+# GM 2.5-bar (or calibrate any sensor). The conversion divisor (0x74302) is defined in no stock XDF, so the guide
+# is anchored there and shows in every XDF; gain/offset are added only where the SD consts are not already present.
+SENSOR_PRESETS = (
+    'IAP sensor presets (kPa = a*raw + b; GAIN = round(393.14*a*10925/32), OFFSET = round(32768+393.14*b)): '
+    'GM 3-bar a=0.307429 b=-12.6 -> GAIN 0xA12F OFFSET 0x6CA6 (SD default); '
+    'GM 2.5-bar a=0.256598 b=-10.5 -> GAIN 0x8689 OFFSET 0x6FE0. Both PROVISIONAL - true them with one key-on '
+    'reading (raw*a+b should equal local baro) and set the XDF kPa equation on the SD fuel/boost maps to match.')
+SENSOR_GUIDE = [
+    ('const', 0x74302, 16, 'IAP Sensor :: Conversion Divisor', 'raw', 'X', 0,
+     'SD sets this to 10925 (stock 21850) so a 3-bar-range MAP sensor fits the ECU internal pressure scale with a '
+     '16-bit gain. Leave it; retune the sensor with Gain/Offset. ' + SENSOR_PRESETS),
+]
+SENSOR_GAINOFF = [
+    ('const', 0x18EF58, 16, 'IAP Sensor :: Gain', 'raw', 'X', 0, 'IAP (manifold-pressure) sensor gain. ' + SENSOR_PRESETS),
+    ('const', 0x18EF5A, 16, 'IAP Sensor :: Offset', 'raw', 'X', 0, 'IAP (manifold-pressure) sensor offset. ' + SENSOR_PRESETS),
+]
+
 # rolling anti-lag settings at 0xBF000 (same layout the race XDF defines). Added only to XDFs that do not
 # already define them (i.e. the stock reads; the race XDF already has them in its race folders).
 ALS_ITEMS = [
@@ -105,6 +163,10 @@ def inject(text, which=('antilag', 'autoshift')):
     uids = {int(u, 16) for u in re.findall(r'uniqueid="(0x[0-9A-Fa-f]+)"', text)}
 
     items = list(ITEMS)
+    items += BOOST_ITEMS                      # boost-control settings (free flash, every XDF)
+    items += SENSOR_GUIDE                     # IAP sensor preset guide (anchored at the divisor, every XDF)
+    if 'mmedaddress="0x18EF58"' not in text:  # XDFs without the SD sensor consts: expose gain/offset too
+        items += SENSOR_GAINOFF
     if 'mmedaddress="0xBF000"' not in text:   # stock reads: also expose the anti-lag settings
         items += ALS_ITEMS
 

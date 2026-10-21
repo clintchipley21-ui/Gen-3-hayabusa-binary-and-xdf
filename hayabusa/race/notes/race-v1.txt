@@ -1,0 +1,52 @@
+RACE-v1  —  Busa-Race-v1.bin   (example working configuration)
+UNVERIFIED ON HARDWARE. Bench an ECM first; keep a stock read for recovery.
+Open with: Busa-SD-v6.xdf   (same addresses; its VALUE text is from SD-v4.1, but it reads this bin live)
+================================================================================
+
+WHAT THIS IS
+ A full race bin built from stock 5JCZSJ40 with ALL FOUR patches applied and then edited to a
+ plausible working configuration, so the new boost / sensor parameters are shown populated the way a
+ real setup would look. Rebuild it from scratch at any time:
+
+   python3 tools/apply_patches.py stock/5JCZSJ40/5JCZSJ40.bin Busa-Race-v1.bin
+   # then set the cal values listed below in the XDF (folder "22 Patches & Air-Shifter")
+   # then: python3 tools/fix_field1_crc.py Busa-Race-v1.bin
+
+ It is an EXAMPLE, not a finished tune. Before it runs: scale the injectors for your setup, calibrate
+ the IAP (3-bar) sensor, and bench-confirm the air-shift and boost outputs. Closed-loop boost ships OFF
+ until the pressure input is proven (see below).
+
+SPEED DENSITY (sd)
+ 3-bar MAP sensor (GM 3-bar preset, GAIN 0xA12F / OFFSET 0x6CA6, kPa = 0.307429*raw - 12.6 PROVISIONAL).
+ Throttle (TPS/alpha-N) fuel path disregarded; the MAP fuel tables hold authority everywhere. Fuel
+ values are the SD-v3 starting point - they need a wideband. Injector scaling is still stock.
+
+ROLLING ANTI-LAG (0xBF000)  -  ENABLED
+ Min coolant 60 C | min rolling speed 20 km/h | capture grip 90 deg (WOT) | release grip 60 deg |
+ min capture 3000 rpm | max capture 9500 rpm | hysteresis 200 rpm | max active 10 s.
+ START + WOT while rolling captures and holds rpm with a spark cut (fuel stays on - hot exhaust; short
+ bursts only).
+
+AIR-SHIFTER (0xBF010)  -  ENABLED
+ Pulse ~100 ms | WOT gate 30 deg grip | re-arm 500 rpm drop | shift targets 10,500 rpm in every gear.
+ Pulses the PAIR output; requires the factory quickshifter for the spark cut. Bench-confirm the PAIR
+ pin ("Auto-Shift :: Bench Test Output") before trusting it (polarity is set by wiring).
+
+BOOST CONTROL (0xBF030)  -  ENABLED, open loop
+ PWM period 20 ticks (~10 Hz) | min rpm to run 3500 | closed loop OFF.
+ Boost-by-gear duty (on-ticks of 20 = %% duty): 1:4(20%%) 2:7(35%%) 3:10(50%%) 4:13(65%%) 5:16(80%%) 6:18(90%%).
+   -> least boost in the low gears for traction, building to the top gears. DUTY->BOOST DIRECTION
+      DEPENDS ON YOUR SOLENOID PLUMBING - on a normally-closed MAC valve bleeding the wastegate signal,
+      more duty = more boost; confirm yours and flip the numbers if it is the other way.
+ Closed-loop (off): CL Target 250 kPa abs (raw 775 via the sensor transfer X*0.342-15), trim step 2.
+ Pressure Input Address 0x2648 -> 0xFEF02648 (candidate repurposed-O2 input). To use closed loop:
+   1. Wire the wastegate-hat pressure sensor to the repurposed O2 signal input.
+   2. Set "Pressure Input Address" to the ADC word the bench shows carries it.
+   3. Set "CL Target"'s equation to your sensor's real transfer (the X*0.342-15 here is provisional);
+      GM-style presets: 3-bar ~ X*0.342-15, 2.5-bar ~ X*0.285-12 (CALIBRATE against a known pressure).
+   4. Only then set "Closed-Loop Enable" = 0x80.
+
+OUTPUTS / INPUTS STILL TO BENCH-CONFIRM
+ - Air-shift PAIR output pin, boost O2-heater output pin (polarity by wiring), and the O2-signal
+   pressure input word. Procedures in notes/autoshift.txt and notes/boost.txt.
+ - Field 3 (0x1FFEF8) is not recomputed (same as every SD bin). Field-1 CRC is stamped.

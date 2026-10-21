@@ -1,0 +1,292 @@
+#!/usr/bin/env python3
+"""Apply the decompile-derived role trace (docs/autodef-roles.json) to a generated GSX-R XDF, in place.
+
+Every calibration CONSTANT/FLAG that the generator left with a generic "Scalar/Flag @0x.." title is
+rewritten to "<Subsystem> :: <Role> @0xADDR", and its description is replaced with what the code
+actually does with it: the role (threshold / gain / offset / divisor / bit mask / flag test / operand),
+the reader function, a confidence, and one real line of decompiled code showing the use. Nothing is
+invented - a specific role is given only where the code proves it; a bare arithmetic constant is
+honestly labelled "Operand" with its code line rather than a guessed functional name.
+
+Roles come from docs/autodef-roles.json, produced by tracing every reference into the calibration
+region (0x150000-0x1A6000) through the decompiled V850 code and classifying the referencing statement.
+
+Build order:  make_gsxr_xdf.py <read> <out.xdf> ...   then   apply_autodef.py <out.xdf>
+Idempotent: re-running changes nothing (already-traced items are detected and skipped).
+
+usage: python3 tools/apply_autodef.py <file.xdf>
+"""
+import json, os, re, sys
+from html import escape
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROLES = json.load(open(os.path.join(ROOT, 'docs', 'autodef-roles.json')))
+_cur = json.load(open(os.path.join(ROOT, 'docs', 'curated-names.json')))
+CURATED_SCALAR = {int(k, 16): v for k, v in _cur.get('scalars', {}).items()}
+CURATED_TABLE = {int(k, 16): v for k, v in _cur.get('tables', {}).items()}
+_tbl_inf_path = os.path.join(ROOT, 'docs', 'table-inferred.json')
+TABLE_INFERRED = {int(k, 16): v for k, v in json.load(open(_tbl_inf_path)).items()} \
+    if os.path.exists(_tbl_inf_path) else {}
+ROLE_TITLE = {'threshold': 'Threshold', 'gain': 'Gain/Factor', 'divisor': 'Divisor', 'offset': 'Offset',
+              'bitmask': 'Bit mask', 'flag-test': 'Flag (tested)', 'operand': 'Operand',
+              'unref': 'Data (unreferenced)', 'map': 'Map'}
+
+# Plain-language effect of each traced role: what the value does and which way to turn it. Kept
+# SHORT (these descriptions must stay compact so the whole XDF stays well under the size at which
+# TunerPro's loader fails). Only the roles with a genuinely known behaviour carry an effect; a bare
+# "operand" has no proven per-value effect so it gets none (the role word alone is honest). These are
+# the generic meaning of the detected role, not a per-parameter claim.
+ROLE_EFFECT = {
+    'gain': 'multiplier - higher raises the result, lower reduces it',
+    'threshold': 'compare point - higher engages later, lower sooner',
+    'offset': 'added - higher shifts the result up, lower down',
+    'divisor': 'divides - higher gives a smaller result',
+    'bitmask': 'bit mask - change individual bits',
+    'flag-test': 'bit-7 on/off: 0x80 = set, 0x00 = clear',
+}
+TRACED_TAG = 'ROLE-TRACED'
+
+# a generator-generic title we are allowed to overwrite (never touch hand-named / role-traced items)
+GENERIC = re.compile(r'^(?:[^:]+ :: )?(?:Scalar|Flag|Constant) @0x[0-9A-Fa-f]+|^Option .* bit\d|^Unknown ')
+
+
+def role_title(addr, info):
+    # prefer the INFERRED (educated-guess) title when one was generated; else the bare role title
+    if info.get('inferred_title'):
+        return info['inferred_title']
+    pre = ('%s :: ' % info['sub']) if info.get('sub') else ''
+    return '%s%s @0x%06X' % (pre, ROLE_TITLE.get(info['role'], 'Item'), addr)
+
+
+def oneline(s, cap=400):
+    """Collapse to a single line of plain ASCII and hard-cap the length. TunerPro's XDF reader is
+    fragile, so every description this tool writes is kept short, single-line and free of the
+    characters that break its loader. The caret '^' in particular crashes TunerPro on load (a
+    description containing '^', e.g. "2^23", reliably faulted it), so it is stripped here as well as
+    '<'/'>'/'&'; use a literal number or "x" for exponents instead."""
+    s = re.sub(r'\s+', ' ', s).strip()
+    s = s.replace('<', '').replace('>', '').replace('&', 'and').replace('^', '')
+    return s[:cap].rstrip()
+
+
+def field_range(blk):
+    """Representable min/max for a constant's data width + signedness, read from its EMBEDDEDDATA.
+    Returns (lo, hi, label) e.g. (0, 255, 'u8'); (None, None, None) if no element-size is present
+    (e.g. a flag)."""
+    wm = re.search(r'mmedelementsizebits="(\d+)"', blk)
+    if not wm:
+        return None, None, None
+    w = int(wm.group(1))
+    fm = re.search(r'mmedtypeflags="(0x[0-9A-Fa-f]+)"', blk)
+    signed = bool(int(fm.group(1), 16) & 1) if fm else False
+    if signed:
+        return -(1 << (w - 1)), (1 << (w - 1)) - 1, 's%d' % w
+    return 0, (1 << w) - 1, 'u%d' % w
+
+
+def stock_range_str(blk, old_desc):
+    """One SHORT clause: stock value (from the generator's STOCKVAL/STOCKBYTE token) and, for a
+    numeric constant, the representable field range. '' if neither is available. Kept terse to keep
+    the file small."""
+    mb = re.search(r'STOCKBYTE=0x([0-9A-Fa-f]+)', old_desc)
+    if mb:
+        byte = int(mb.group(1), 16)
+        return 'Stock bit7 %s (0x%02X); 0x80=set.' % ('on' if byte & 0x80 else 'off', byte)
+    lo, hi, lab = field_range(blk)
+    mv = re.search(r'STOCKVAL=(-?\d+)', old_desc)
+    if mv and lo is not None:
+        return 'Stock %s (%s %d..%d).' % (mv.group(1), lab, lo, hi)
+    if mv:
+        return 'Stock %s.' % mv.group(1)
+    if lo is not None:
+        return 'Range %d..%d (%s).' % (lo, hi, lab)
+    return ''
+
+
+def near_maps(old_desc):
+    m = re.search(r'Near maps: ([^.]*)\.', old_desc)
+    return m.group(1).strip() if m else ''
+
+
+def role_desc(addr, info, blk, old_desc):
+    # SHORT, single-line, no raw code - keeps the file small and TunerPro-safe. Carries the stock
+    # value + field range and a plain-language effect of the traced role.
+    if info.get('inferred_title'):
+        bits = ['INFERRED (educated guess - verify)']
+    else:
+        bits = ['code-traced (conf %s)' % info['conf']]
+    role = info['role']
+    eff = ROLE_EFFECT.get(role)
+    bits.append('role %s%s' % (role, (': ' + eff) if eff else ''))
+    if info.get('func'):
+        bits.append('reader %s' % info['func'])
+    if info.get('sub'):
+        bits.append('subsystem %s' % info['sub'])
+    s = '; '.join(bits) + '.'
+    sv = stock_range_str(blk, old_desc)
+    if sv:
+        s += ' ' + sv
+    nm = near_maps(old_desc)
+    if nm:
+        s += ' Near maps: ' + nm + '.'
+    # NOTE: the per-item "Full code trace: docs/autodef-trace.csv" pointer is intentionally omitted
+    # here (it was identical boilerplate on every item); the CSV is referenced once in the header.
+    return oneline(s, 420)
+
+
+def apply_block(blk):
+    tm = re.search(r'<title>(.*?)</title>', blk, re.S)
+    am = re.search(r'mmedaddress="(0x[0-9A-Fa-f]+)"', blk)
+    if not tm or not am:
+        return blk, False
+    title = tm.group(1)
+    addr = int(am.group(1), 16)
+    # curated (hand-verified, code-proven) names take precedence and bypass the generic check
+    if addr in CURATED_SCALAR:
+        if 'CURATED' in blk:
+            return blk, False
+        ct, cd = CURATED_SCALAR[addr]
+        dm = re.search(r'<description>(.*?)</description>', blk, re.S)
+        old = dm.group(1) if dm else ''
+        sv = stock_range_str(blk, old)
+        nd = oneline('CURATED (code-proven): ' + cd + ((' ' + sv) if sv else ''), 520)
+        blk = re.sub(r'<title>.*?</title>', lambda m: '<title>%s</title>' % escape(ct, quote=False), blk, count=1, flags=re.S)
+        blk = re.sub(r'<description>.*?</description>', lambda m: '<description>%s</description>' % escape(nd, quote=False), blk, count=1, flags=re.S)
+        return blk, True
+    if TRACED_TAG in blk:                 # already applied - idempotent
+        return blk, False
+    if not GENERIC.match(title):          # hand-named / already meaningful - leave it
+        return blk, False
+    info = ROLES.get('0x%06X' % addr)
+    if not info:
+        return blk, False
+    dm = re.search(r'<description>(.*?)</description>', blk, re.S)
+    old = dm.group(1) if dm else ''
+    nt = role_title(addr, info)
+    nd = role_desc(addr, info, blk, old)
+    blk = re.sub(r'<title>.*?</title>', lambda m: '<title>%s</title>' % escape(nt, quote=False), blk, count=1, flags=re.S)
+    blk = re.sub(r'<description>.*?</description>',
+                 lambda m: '<description>%s</description>' % escape(nd, quote=False), blk, count=1, flags=re.S)
+    return blk, True
+
+
+def retitle_unknown_table(blk):
+    """Rename a generator 'Unknown Curve/Map N @0x..' table to its traced axis, read from the
+    'GSX-R TRACED INPUTS' line the generator already wrote. Leaves the description intact."""
+    tm = re.search(r'<title>(Unknown (Curve|Map) [^<]*?)@0x([0-9A-Fa-f]+)</title>', blk)
+    if not tm:
+        return blk, False
+    kind, zaddr = tm.group(2), tm.group(3)
+    xi = re.search(r'TRACED INPUTS[^\n]*?X = (0x[0-9A-Fa-f]+) \(([^)\[]+?)[)\[]', blk)
+    if not xi:
+        # no traced axis: fall back to an inferred (educated-guess) name by address proximity
+        dm = re.search(r'descriptor @0x([0-9A-Fa-f]+)', blk)
+        da = int(dm.group(1), 16) if dm else None
+        if da in TABLE_INFERRED:
+            nt = TABLE_INFERRED[da] + ' @0x%s' % zaddr
+            return re.sub(r'<title>.*?</title>', lambda m: '<title>%s</title>' % escape(nt, quote=False),
+                          blk, count=1, flags=re.S), True
+        return blk, False
+    xc = xi.group(2).strip()
+    yi = re.search(r'Y = (0x[0-9A-Fa-f]+) \(([^)\[]+?)[)\[]', blk)
+    axis = xc + (' x ' + yi.group(2).strip() if yi else '')
+    nt = '%s vs %s @0x%s' % (kind, axis, zaddr)
+    return re.sub(r'<title>.*?</title>', lambda m: '<title>%s</title>' % escape(nt, quote=False),
+                  blk, count=1, flags=re.S), True
+
+
+def apply_curated_table(blk):
+    dm = re.search(r'descriptor @0x([0-9A-Fa-f]+)', blk)
+    if not dm:
+        return blk, False
+    addr = int(dm.group(1), 16)
+    if addr not in CURATED_TABLE or 'CURATED' in blk:
+        return blk, False
+    ct, cd = CURATED_TABLE[addr]
+    old = re.search(r'<description>(.*?)</description>', blk, re.S)
+    tail = old.group(1).strip() if old else ''
+    nd = oneline('CURATED (code-proven): ' + cd + (' ' + tail if tail else ''), 480)
+    blk = re.sub(r'<title>.*?</title>', lambda m: '<title>%s</title>' % escape(ct, quote=False), blk, count=1, flags=re.S)
+    blk = re.sub(r'<description>.*?</description>', lambda m: '<description>%s</description>' % escape(nd, quote=False), blk, count=1, flags=re.S)
+    return blk, True
+
+
+# EXCV DTC-side addresses: the P14xx MIL-enable flags and the position-sensor monitor thresholds.
+# Everything else titled "EXCV ::" (maps, setpoints, enable flags, hysteresis) is valve control.
+EXCV_DTC_ADDRS = {0x1A1DE4, 0x1A1DCC, 0x1A1DFC, 0x1A1E14, 0x1A2174, 0x1A218C,
+                  0x15597E, 0x155980, 0x1559A6, 0x1559A8, 0x1559AA, 0x1559AC, 0x155B1C}
+
+
+def consolidate_excv(x):
+    """Refile every 'EXCV ::' item into the two EXCV folders created by make_gsxr_xdf.py, with a
+    single membership each (stripping inherited Hayabusa categories). Idempotent."""
+    def catval(name):
+        m = re.search(r'<CATEGORY index="(0x[0-9A-Fa-f]+)" name="%s"' % re.escape(name), x)
+        return int(m.group(1), 16) + 1 if m else None
+    valve = catval('Exhaust Control Valve (EXCV) - Valve Control')
+    dtc = catval('Exhaust Control Valve (EXCV) - DTC Control')
+    if valve is None or dtc is None:
+        return x, 0
+    n = [0]
+
+    def fix(m):
+        blk = m.group(0)
+        tt = re.search(r'<title>(.*?)</title>', blk, re.S)
+        if not tt or not tt.group(1).startswith('EXCV ::'):
+            return blk
+        am = re.search(r'mmedaddress="(0x[0-9A-Fa-f]+)"', blk)
+        addr = int(am.group(1), 16) if am else -1
+        val = dtc if (addr in EXCV_DTC_ADDRS or 'P140' in tt.group(1)) else valve
+        blk = re.sub(r'\s*<CATEGORYMEM[^>]*/>', '', blk)
+        cm = '\n    <CATEGORYMEM index="0" category="%d" />' % val
+        if '</description>' in blk:
+            blk = blk.replace('</description>', '</description>' + cm, 1)
+        else:
+            blk = re.sub(r'(</title>)', r'\1' + cm, blk, count=1)
+        n[0] += 1
+        return blk
+    x = re.sub(r'<(XDFTABLE|XDFCONSTANT|XDFFLAG)\b.*?</\1>', fix, x, flags=re.S)
+    return x, n[0]
+
+
+def main(path):
+    x = open(path).read()
+    n = 0
+    nt_tab = 0
+    nc_tab = 0
+
+    def repl_tab(m):
+        nonlocal nt_tab, nc_tab
+        blk, ch = apply_curated_table(m.group(0))
+        if ch:
+            nc_tab += 1
+            return blk
+        blk, ch = retitle_unknown_table(m.group(0))
+        if ch:
+            nt_tab += 1
+        return blk
+    x = re.sub(r'<XDFTABLE\b.*?</XDFTABLE>', repl_tab, x, flags=re.S)
+    # rewrite each CONSTANT/FLAG block
+    def repl(m):
+        nonlocal n
+        blk, changed = apply_block(m.group(0))
+        if changed:
+            n += 1
+        return blk
+    x = re.sub(r'<XDFCONSTANT\b.*?</XDFCONSTANT>', repl, x, flags=re.S)
+    x = re.sub(r'<XDFFLAG\b.*?</XDFFLAG>', repl, x, flags=re.S)
+    # strip the internal STOCKVAL/STOCKBYTE tokens the generator emits for this tool to consume -
+    # any item we did not rewrite (e.g. a code-traced constant with its own name) still carries one.
+    x = re.sub(r'\s*STOCK(?:VAL=-?\d+|BYTE=0x[0-9A-Fa-f]+)\.?', '', x)
+    # final EXCV consolidation - now that every EXCV item carries its curated "EXCV ::" title,
+    # file each into the two decoded folders the generator created (Valve Control / DTC Control)
+    x, nexcv = consolidate_excv(x)
+    open(path, 'w').write(x)
+    print('%s: role-traced %d constants/flags, %d curated tables, renamed %d Unknown tables, '
+          'filed %d EXCV items' % (os.path.relpath(path, ROOT), n, nc_tab, nt_tab, nexcv))
+
+
+if __name__ == '__main__':
+    if len(sys.argv) != 2:
+        print(__doc__); sys.exit(1)
+    main(sys.argv[1])

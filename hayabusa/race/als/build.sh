@@ -28,16 +28,24 @@ $AS -o "$OUT/autoshift.o" "$HERE/autoshift.s"
 $LD -e 0 -Ttext=0xbe148 --defsym FUN_5DB5E=0x5db5e -o "$OUT/autoshift.elf" "$OUT/autoshift.o"
 $OC -O binary --only-section=.as_code "$OUT/autoshift.elf" "$OUT/autoshift.bin"
 
-# --- hook words (replace one jarl each): 0x5BE02->ALS_TICK, 0x5DC9E->AUTOSHIFT_TICK
-hook() { # addr target
+# --- boost control at 0xBE280 (runs after the stock routine at the 0x5dca2 call site, FUN_5DC64)
+$AS -o "$OUT/boost.o" "$HERE/boost.s"
+$LD -e 0 -Ttext=0xbe280 --defsym FUN_5DC64=0x5dc64 -o "$OUT/boost.elf" "$OUT/boost.o"
+$OC -O binary --only-section=.boost_code "$OUT/boost.elf" "$OUT/boost.bin"
+
+# --- hook words (replace one jarl each): 0x5BE02->ALS_TICK, 0x5DC9E->AUTOSHIFT_TICK, 0x5DCA2->BOOST_TICK
+hook() { # addr target  (-> stdout: "addr target = <4 hex bytes>")
   printf '\t.section .h,"ax"\n\tjarl %s, lp\n' "$2" > "$OUT/h.s"
   $AS -o "$OUT/h.o" "$OUT/h.s"
   $LD -e 0 -Ttext=$1 --defsym ALS_TICK=0xbe000 --defsym AUTOSHIFT_TICK=0xbe148 \
-      -o "$OUT/h.elf" "$OUT/h.o"
+      --defsym BOOST_TICK=0xbe280 -o "$OUT/h.elf" "$OUT/h.o"
   $OC -O binary --only-section=.h "$OUT/h.elf" "$OUT/h.bin"
   printf '%s %s = ' "$1" "$2"; od -An -tx1 "$OUT/h.bin" | tr -d ' \n'; echo
 }
 echo "als.bin       $(wc -c < "$OUT/als.bin") bytes @0xBE000"
 echo "autoshift.bin $(wc -c < "$OUT/autoshift.bin") bytes @0xBE148"
+echo "boost.bin     $(wc -c < "$OUT/boost.bin") bytes @0xBE280"
 echo "hooks:"
 hook 0x5dc9e AUTOSHIFT_TICK
+# boost hook: write the 4-byte word next to the blob so apply_patches.py installs it (boost.hook)
+hook 0x5dca2 BOOST_TICK | tee /dev/stderr | awk '{print $NF}' > "$OUT/boost.hook"

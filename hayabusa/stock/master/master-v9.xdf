@@ -41201,7 +41201,7 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
   </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA025" flags="0x0">
     <title>DTC P0132 - HO2 sensor B1S1 high [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 36. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9948. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 36. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9948. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9949" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -41213,9 +41213,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA100" flags="0x0">
+    <title>DTC P0132 - HO2 sensor B1S1 high - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 36, lamp byte @0x1B9954 (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9954" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA026" flags="0x0">
     <title>DTC P0130 #1 - HO2 sensor B1S1 circuit [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 37. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B995C. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 37. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B995C. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B995D" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -41227,9 +41236,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA101" flags="0x0">
+    <title>DTC P0130 #1 - HO2 sensor B1S1 circuit - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 37, lamp byte @0x1B9968 (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9968" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA027" flags="0x0">
     <title>DTC P2A00 - HO2 sensor B1S1 range/performance [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 38. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9970. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 38. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9970. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9971" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -41241,9 +41259,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA102" flags="0x0">
+    <title>DTC P2A00 - HO2 sensor B1S1 range/performance - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 38, lamp byte @0x1B997C (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B997C" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA028" flags="0x0">
     <title>DTC P0133 - HO2 sensor B1S1 slow response [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 39. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9984. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 39. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9984. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9985" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -41255,9 +41282,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA103" flags="0x0">
+    <title>DTC P0133 - HO2 sensor B1S1 slow response - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 39, lamp byte @0x1B9990 (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9990" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA029" flags="0x0">
     <title>DTC P0152 - HO2 sensor B2S1 high [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 40. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9998. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 40. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9998. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9999" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -41269,9 +41305,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA104" flags="0x0">
+    <title>DTC P0152 - HO2 sensor B2S1 high - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 40, lamp byte @0x1B99A4 (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B99A4" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA02A" flags="0x0">
     <title>DTC P0150 #1 - HO2 sensor B2S1 circuit [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 41. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B99AC. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 41. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B99AC. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B99AD" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -41283,9 +41328,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA105" flags="0x0">
+    <title>DTC P0150 #1 - HO2 sensor B2S1 circuit - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 41, lamp byte @0x1B99B8 (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B99B8" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA02B" flags="0x0">
     <title>DTC P2A03 - HO2 sensor B2S1 range/performance [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 42. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B99C0. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 42. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B99C0. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B99C1" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -41297,9 +41351,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA106" flags="0x0">
+    <title>DTC P2A03 - HO2 sensor B2S1 range/performance - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 42, lamp byte @0x1B99CC (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B99CC" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA02C" flags="0x0">
     <title>DTC P0153 - HO2 sensor B2S1 slow response [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 43. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B99D4. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 43. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B99D4. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B99D5" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -41311,6 +41374,15 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA107" flags="0x0">
+    <title>DTC P0153 - HO2 sensor B2S1 slow response - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 43, lamp byte @0x1B99E0 (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B99E0" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA02D" flags="0x0">
     <title>DTC P0138 - HO2 sensor B1S2 high (not used) [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 44. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B99E8. No lamp toggle is provided for emissions monitors.</description>
@@ -41425,7 +41497,7 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0xA035" flags="0x0">
     <title>DTC P1402 - Suzuki P1402 (not in Gen3 manual) [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 52. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9A88. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 52. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9A88. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9A89" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -41437,9 +41509,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA108" flags="0x0">
+    <title>DTC P1402 - Suzuki P1402 (not in Gen3 manual) - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 52, lamp byte @0x1B9A94 (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9A94" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA036" flags="0x0">
     <title>DTC P1400 - Suzuki P1400 (not in Gen3 manual) [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 53. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9A9C. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 53. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9A9C. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9A9D" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -41451,9 +41532,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA109" flags="0x0">
+    <title>DTC P1400 - Suzuki P1400 (not in Gen3 manual) - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 53, lamp byte @0x1B9AA8 (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9AA8" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA037" flags="0x0">
     <title>DTC P1404 #1 - Suzuki P1404 (not in Gen3 manual) [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 54. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9AB0. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 54. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9AB0. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9AB1" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -41465,9 +41555,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA10A" flags="0x0">
+    <title>DTC P1404 #1 - Suzuki P1404 (not in Gen3 manual) - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 54, lamp byte @0x1B9ABC (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9ABC" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA038" flags="0x0">
     <title>DTC P1404 #2 - Suzuki P1404 (not in Gen3 manual) [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 55. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9AC4. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 55. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9AC4. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9AC5" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -41479,6 +41578,15 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA10B" flags="0x0">
+    <title>DTC P1404 #2 - Suzuki P1404 (not in Gen3 manual) - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 55, lamp byte @0x1B9AD0 (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9AD0" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFFLAG uniqueid="0xA039" flags="0x0">
     <title>DTC P1702 - Suzuki P1702 (not in Gen3 manual) - Warning lamp enabled</title>
     <description>Ticked = this DTC lights the Warning lamp when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 56, lamp byte @0x1B9AE4 (mask 0x40).
@@ -41760,7 +41868,7 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
   </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA058" flags="0x0">
     <title>DTC P0444 - EVAP purge control valve circuit [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 87. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9D44. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 87. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9D44. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9D45" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -41772,9 +41880,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA10C" flags="0x0">
+    <title>DTC P0444 - EVAP purge control valve circuit - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 87, lamp byte @0x1B9D50 (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9D50" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA059" flags="0x0">
     <title>DTC P0412 - PAIR (secondary air) control valve circuit [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 88. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9D58. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 88. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9D58. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9D59" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -41786,9 +41903,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA10D" flags="0x0">
+    <title>DTC P0412 - PAIR (secondary air) control valve circuit - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 88, lamp byte @0x1B9D64 (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9D64" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA05A" flags="0x0">
     <title>DTC P0410 - PAIR (secondary air) system [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 89. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9D6C. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 89. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9D6C. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9D6D" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -41800,6 +41926,15 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA10E" flags="0x0">
+    <title>DTC P0410 - PAIR (secondary air) system - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 89, lamp byte @0x1B9D78 (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9D78" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFFLAG uniqueid="0xA05B" flags="0x0">
     <title>DTC P1750 - Suzuki P1750 (not in Gen3 manual) - Warning lamp enabled</title>
     <description>Ticked = this DTC lights the Warning lamp when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 90, lamp byte @0x1B9D8C (mask 0x40).
@@ -41811,7 +41946,7 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
   </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA05C" flags="0x0">
     <title>DTC P1403 - Suzuki P1403 (not in Gen3 manual) [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 91. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9D94. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 91. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9D94. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9D95" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -41823,9 +41958,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA10F" flags="0x0">
+    <title>DTC P1403 - Suzuki P1403 (not in Gen3 manual) - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 91, lamp byte @0x1B9DA0 (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9DA0" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA05D" flags="0x0">
     <title>DTC P1406 - Suzuki P1406 (not in Gen3 manual) [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 92. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9DA8. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 92. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9DA8. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9DA9" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -41837,9 +41981,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA110" flags="0x0">
+    <title>DTC P1406 - Suzuki P1406 (not in Gen3 manual) - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 92, lamp byte @0x1B9DB4 (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9DB4" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA05E" flags="0x0">
     <title>DTC P0030 - HO2 heater B1S1 control [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 93. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9DBC. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 93. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9DBC. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9DBD" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -41851,9 +42004,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA111" flags="0x0">
+    <title>DTC P0030 - HO2 heater B1S1 control - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 93, lamp byte @0x1B9DC8 (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9DC8" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA05F" flags="0x0">
     <title>DTC P0050 - HO2 heater B2S1 control [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 94. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9DD0. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 94. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9DD0. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9DD1" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -41865,6 +42027,15 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA112" flags="0x0">
+    <title>DTC P0050 - HO2 heater B2S1 control - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 94, lamp byte @0x1B9DDC (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9DDC" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA060" flags="0x0">
     <title>DTC P0036 - HO2 heater B1S2 (not used) [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 95. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9DE4. No lamp toggle is provided for emissions monitors.</description>
@@ -41904,7 +42075,7 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
   </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA063" flags="0x0">
     <title>DTC P0010 - Cam actuator circuit (not used - no VVT) [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 98. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9E20. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 98. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9E20. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9E21" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -41916,6 +42087,15 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA113" flags="0x0">
+    <title>DTC P0010 - Cam actuator circuit (not used - no VVT) - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 98, lamp byte @0x1B9E2C (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9E2C" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA064" flags="0x0">
     <title>DTC P003C - Cam profile actuator (not used) [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 99. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9E34. No lamp toggle is provided for emissions monitors.</description>
@@ -41941,7 +42121,7 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
   </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA066" flags="0x0">
     <title>DTC P0509 - Idle air control high (not in Gen3 manual) [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 101. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9E5C. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 101. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9E5C. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9E5D" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -41953,9 +42133,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA114" flags="0x0">
+    <title>DTC P0509 - Idle air control high (not in Gen3 manual) - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 101, lamp byte @0x1B9E68 (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9E68" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA067" flags="0x0">
     <title>DTC P0511 - Idle air control circuit (not in Gen3 manual) [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 102. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9E70. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 102. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9E70. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9E71" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -41967,9 +42156,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA115" flags="0x0">
+    <title>DTC P0511 - Idle air control circuit (not in Gen3 manual) - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 102, lamp byte @0x1B9E7C (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9E7C" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA068" flags="0x0">
     <title>DTC P0506 - Idle rpm lower than expected (not in Gen3 manual) [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 103. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9E84. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 103. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9E84. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9E85" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -41981,9 +42179,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA116" flags="0x0">
+    <title>DTC P0506 - Idle rpm lower than expected (not in Gen3 manual) - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 103, lamp byte @0x1B9E90 (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9E90" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA069" flags="0x0">
     <title>DTC P0507 - Idle rpm higher than expected (not in Gen3 manual) [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 104. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9E98. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 104. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9E98. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9E99" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -41995,9 +42202,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA117" flags="0x0">
+    <title>DTC P0507 - Idle rpm higher than expected (not in Gen3 manual) - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 104, lamp byte @0x1B9EA4 (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9EA4" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA06A" flags="0x0">
     <title>DTC P0505 - Idle air control system (not in Gen3 manual) [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 105. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9EAC. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 105. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9EAC. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9EAD" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -42009,9 +42225,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA118" flags="0x0">
+    <title>DTC P0505 - Idle air control system (not in Gen3 manual) - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 105, lamp byte @0x1B9EB8 (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9EB8" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA06B" flags="0x0">
     <title>DTC P0420 - Catalyst efficiency bank 1 (not in Gen3 manual) [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 106. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9EC0. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 106. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9EC0. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9EC1" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -42023,9 +42248,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA119" flags="0x0">
+    <title>DTC P0420 - Catalyst efficiency bank 1 (not in Gen3 manual) - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 106, lamp byte @0x1B9ECC (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9ECC" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA06C" flags="0x0">
     <title>DTC P0430 - Catalyst efficiency bank 2 (not in Gen3 manual) [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 107. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9ED4. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 107. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9ED4. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9ED5" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -42037,9 +42271,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA11A" flags="0x0">
+    <title>DTC P0430 - Catalyst efficiency bank 2 (not in Gen3 manual) - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 107, lamp byte @0x1B9EE0 (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9EE0" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA06D" flags="0x0">
     <title>DTC P0300 #1 - Misfire detected [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 108. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9EE8. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 108. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9EE8. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9EE9" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -42051,9 +42294,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA11B" flags="0x0">
+    <title>DTC P0300 #1 - Misfire detected - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 108, lamp byte @0x1B9EF4 (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9EF4" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA06E" flags="0x0">
     <title>DTC P0300 #2 - Misfire detected [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 109. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9EFC. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 109. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9EFC. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9EFD" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -42065,9 +42317,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA11C" flags="0x0">
+    <title>DTC P0300 #2 - Misfire detected - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 109, lamp byte @0x1B9F08 (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9F08" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA06F" flags="0x0">
     <title>DTC P0171 #1 - Fuel system too lean B1 [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 110. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9F10. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 110. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9F10. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9F11" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -42079,9 +42340,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA11D" flags="0x0">
+    <title>DTC P0171 #1 - Fuel system too lean B1 - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 110, lamp byte @0x1B9F1C (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9F1C" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA070" flags="0x0">
     <title>DTC P0172 #1 - Fuel system too rich B1 [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 111. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9F24. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 111. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9F24. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9F25" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -42093,9 +42363,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA11E" flags="0x0">
+    <title>DTC P0172 #1 - Fuel system too rich B1 - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 111, lamp byte @0x1B9F30 (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9F30" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA071" flags="0x0">
     <title>DTC P0174 #1 - Fuel system too lean B2 [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 112. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9F38. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 112. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9F38. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9F39" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -42107,9 +42386,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA11F" flags="0x0">
+    <title>DTC P0174 #1 - Fuel system too lean B2 - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 112, lamp byte @0x1B9F44 (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9F44" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA072" flags="0x0">
     <title>DTC P0175 #1 - Fuel system too rich B2 [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 113. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9F4C. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 113. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9F4C. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9F4D" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -42121,9 +42409,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA120" flags="0x0">
+    <title>DTC P0175 #1 - Fuel system too rich B2 - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 113, lamp byte @0x1B9F58 (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9F58" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA073" flags="0x0">
     <title>DTC P0171 #2 - Fuel system too lean B1 [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 114. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9F60. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 114. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9F60. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9F61" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -42135,9 +42432,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA121" flags="0x0">
+    <title>DTC P0171 #2 - Fuel system too lean B1 - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 114, lamp byte @0x1B9F6C (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9F6C" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA074" flags="0x0">
     <title>DTC P0172 #2 - Fuel system too rich B1 [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 115. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9F74. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 115. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9F74. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9F75" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -42149,9 +42455,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA122" flags="0x0">
+    <title>DTC P0172 #2 - Fuel system too rich B1 - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 115, lamp byte @0x1B9F80 (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9F80" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA075" flags="0x0">
     <title>DTC P0174 #2 - Fuel system too lean B2 [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 116. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9F88. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 116. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9F88. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9F89" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -42163,9 +42478,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA123" flags="0x0">
+    <title>DTC P0174 #2 - Fuel system too lean B2 - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 116, lamp byte @0x1B9F94 (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9F94" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA076" flags="0x0">
     <title>DTC P0175 #2 - Fuel system too rich B2 [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 117. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9F9C. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 117. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9F9C. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9F9D" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -42177,9 +42501,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA124" flags="0x0">
+    <title>DTC P0175 #2 - Fuel system too rich B2 - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 117, lamp byte @0x1B9FA8 (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9FA8" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA077" flags="0x0">
     <title>DTC P050B - Cold-start ignition timing performance [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 118. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9FB0. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 118. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9FB0. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1B9FB1" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -42191,6 +42524,15 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA125" flags="0x0">
+    <title>DTC P050B - Cold-start ignition timing performance - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 118, lamp byte @0x1B9FBC (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1B9FBC" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFFLAG uniqueid="0xA078" flags="0x0">
     <title>DTC P1650 - Suzuki P1650 (warning-lamp code) - Warning lamp enabled</title>
     <description>Ticked = this DTC lights the Warning lamp when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 119, lamp byte @0x1B9FD0 (mask 0x40).
@@ -42265,7 +42607,7 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
   </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA080" flags="0x0">
     <title>DTC P0130 #2 - HO2 sensor B1S1 circuit [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 127. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1BA064. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 127. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1BA064. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1BA065" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -42277,9 +42619,18 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA126" flags="0x0">
+    <title>DTC P0130 #2 - HO2 sensor B1S1 circuit - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 127, lamp byte @0x1BA070 (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1BA070" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA081" flags="0x0">
     <title>DTC P0150 #2 - HO2 sensor B2S1 circuit [emissions - label only]</title>
-    <description>Emissions-related DTC, DTC index 128. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1BA078. No lamp toggle is provided for emissions monitors.</description>
+    <description>Emissions-related DTC, DTC index 128. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1BA078. A MIL lamp toggle for this code IS now provided: see the matching "- MIL enabled" flag at the lamp byte (record +0x0C).</description>
     <CATEGORYMEM index="0" category="50" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x1BA079" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>DTC (hex)</units>
@@ -42291,6 +42642,15 @@ HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA127" flags="0x0">
+    <title>DTC P0150 #2 - HO2 sensor B2S1 circuit - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 128, lamp byte @0x1BA084 (mask 0x01). Emissions monitor (O2/HO2, catalyst, EVAP, PAIR, misfire, fuel-trim or idle): the stock calibration lights the MIL for this code; previously exposed here as a reference constant only, now toggleable like the other DTC lamps.
+
+HOW IT WORKS: each DTC has a 20-byte record in the diagnostic table at 0x1B9678 (131 records). Byte +0x0C of the record is the lamp group: 0x01 = MIL. FUN_938A8 moves the DTC into classes 6-8, which FUN_99E2A turns into the MIL request. 0x40 (or 0x80) = master warning lamp only (FUN_941AC). 0x00 = no lamp. Unticking the flag only stops the lamp. The DTC is still stored, still readable with a scan tool, and the ECU still runs its fail-safe for that fault.</description>
+    <CATEGORYMEM index="0" category="49" />
+    <EMBEDDEDDATA mmedaddress="0x1BA084" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFFLAG uniqueid="0xA082" flags="0x0">
     <title>DTC P0520 - Engine oil pressure sensor/switch circuit (not in Gen3 manual) - MIL enabled</title>
     <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 129, lamp byte @0x1BA098 (mask 0x01). CAUTION: safety-critical fault (throttle-by-wire, ECM integrity or oil pressure). Hiding its lamp means you will not be told when the ECU has gone into a throttle or engine fail-safe. Not recommended.

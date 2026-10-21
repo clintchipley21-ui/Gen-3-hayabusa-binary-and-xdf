@@ -1,0 +1,69 @@
+code,official_name_SAE,source
+P0030,HO2 Sensor Heater Control Circuit Bank1,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0050,HO2 Sensor Heater Control Circuit Bank 2,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0069,Manifold Absolute Pressure - Barometric,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0110,IAT Sensor 1 Circuit,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0111,IAT Sensor 1 Circuit Response Malfunction,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0112,IAT Sensor 1 Circuit Low,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0115,ECT Sensor Circuit,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0116,ECT Sensor Circuit Response Malfunction,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0117,ECT Sensor Circuit Low,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0120,"TP Sensor I Switch ""A"" Circuit",Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0123,"TP Sensor/ Switch ""A"" Circuit High",Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0171,System Too Lean Bank 1,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0172,System Too Rich Bank 1,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0174,System Too Lean Bank 2,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0175,System Too Rich Bank 2,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0201,Injector Circuit/ Open - Cylinder 1,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0202,Injector Circuit/ Open - Cylinder 2,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0203,Injector Circuit/ Open - Cylinder 3,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0204,Injector Circuit/ Open - Cylinder 4,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0220,"TP Sensor/ Switch ""B"" Circuit",Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0223,"TP Sensor/ Switch ""B"" Circuit High",Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0232,FP Secondary Circuit High,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0300,Random / Multiple Cylinder Misfire,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0301,Cylinder 1 Misfire Detected,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0302,Cylinder 2 Misfire Detected,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0303,Cylinder 3 Misfire Detected,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0304,Cylinder 4 Misfire Detected,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0335,"CKP Sensor ""A"" Circuit",Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0340,"CMP Sensor ""A"" Circuit Bank 1 or Single",Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0351,"Ignition Coil ""A"" Primary/ Secondary",Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0352,"Ignition Coil ""B"" Primary/ Secondary",Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0353,"Ignition Coil ""C"" Primary/ Secondary",Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0354,"Ignition Coil ""D"" Primary/ Secondary",Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0410,PAIR System,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0412,"PAIR System Switching Valve ""A"" Circuit",Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0444,EVAP System Purge Control Valve Circuit,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0480,Fan 1 Control Circuit,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0602,Control Module Programming Error,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0607,Control Module Performance,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0826,Up and Down Shift Switch Circuit,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0828,Up and Down Shift Switch Circuit High,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0830,"Clutch Switch ""A"" Circuit",Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0850,Park/ Neutral Switch Input Circuit,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0914,GP Sensor Circuit,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0915,GP Sensor Circuit Range/Performance,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P0916,GP Sensor Circuit Low,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P1105,IAP Sensor Circuit Bank 2,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P1106,IAP Sensor Circuit Range/ Performance,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P1107,IAP Sensor Circuit Low Bank2,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P1201,Secondary Injector Circuit/ Open - Cylinder 1,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P1202,Secondary Injector Circuit/ Open - Cylinder 2,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P1203,Secondary Injector Circuit/ Open - Cylinder 3,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P1204,Secondary Injector Circuit/ Open - Cylinder 4,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P1610,Ignition Switch Signal Circuit,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P1622,Control Module ROM Error,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P1650,Inertial Measurement Unit,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P2101,"Throttle Actuator ""A"" Control Motor Circuit",Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P2102,"Throttle Actuator ""A"" Control Motor Circuit",Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P2120,"TP Sensor/ Switch ""D"" Circuit",Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P2123,"TP Sensor/ Switch ""D"" Circuit High",Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P2125,"TP Sensor/ Switch ""E"" Circuit",Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P2128,"TP Sensor/ Switch ""E"" Circuit High",Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P2135,"TP Sensor/ Switch ""A""/ ""B"" Voltage",Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P2138,"TP Sensor/ Switch ""D"" / ""E"" Voltage",Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P2158,"Vehicle Speed Sensor ""B""",Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P2226,AP Sensor Circuit,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P2228,AP Sensor Circuit Low,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13
+P2505,ECM Power Input Signal,Suzuki Hayabusa Gen3 Service Manual v1.0.0 (2022) DTC Table 1A-13

@@ -1,0 +1,1397 @@
+address,fun_handle,subsystem,items_touched,roles,functional_note
+0x10F34,FUN_00010F34,,1,flag-test,unknown subsystem; touches 1 calibration item(s); roles: flag-test
+0x10F7C,FUN_00010F7C,,4,operand,unknown subsystem; touches 4 calibration item(s); roles: operand
+0x10FEA,FUN_00010FEA,,2,flag-test,unknown subsystem; touches 2 calibration item(s); roles: flag-test
+0x12CEA,FUN_00012CEA,Traction Control,1,operand,Traction Control subsystem; touches 1 calibration item(s); roles: operand
+0x180BA,FUN_000180BA,,4,operand,unknown subsystem; touches 4 calibration item(s); roles: operand
+0x18180,FUN_00018180,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x182F2,FUN_000182F2,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x183B8,FUN_000183B8,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x1857A,FUN_0001857A,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x186C0,FUN_000186C0,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x18758,FUN_00018758,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x18B8C,FUN_00018B8C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x18D60,FUN_00018D60,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x19748,FUN_00019748,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x1B582,FUN_0001B582,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x1B6B4,FUN_0001B6B4,,4,"gain, operand","unknown subsystem; touches 4 calibration item(s); roles: gain, operand"
+0x280A4,FUN_000280A4,Anti-Lift Control,1,threshold,Anti-Lift Control subsystem; touches 1 calibration item(s); roles: threshold
+0x281F4,FUN_000281F4,,5,threshold,unknown subsystem; touches 5 calibration item(s); roles: threshold
+0x2847C,FUN_0002847C,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x284BE,FUN_000284BE,,4,operand,unknown subsystem; touches 4 calibration item(s); roles: operand
+0x285E6,FUN_000285E6,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x2864E,FUN_0002864E,,3,"operand, threshold","unknown subsystem; touches 3 calibration item(s); roles: operand, threshold"
+0x2873E,FUN_0002873E,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x287AA,FUN_000287AA,,3,"threshold, operand","unknown subsystem; touches 3 calibration item(s); roles: threshold, operand"
+0x28816,FUN_00028816,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x2885E,FUN_0002885E,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x288A4,FUN_000288A4,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x2890E,FUN_0002890E,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x28A2E,FUN_00028A2E,,12,operand,unknown subsystem; touches 12 calibration item(s); roles: operand
+0x28BF0,FUN_00028BF0,,3,"operand, threshold","unknown subsystem; touches 3 calibration item(s); roles: operand, threshold"
+0x28CA6,FUN_00028CA6,Engine Brake Control (decoded),1,threshold,Engine Brake Control (decoded) subsystem; touches 1 calibration item(s); roles: threshold
+0x28DE0,FUN_00028DE0,Engine Brake Control (decoded),1,operand,Engine Brake Control (decoded) subsystem; touches 1 calibration item(s); roles: operand
+0x28F70,FUN_00028F70,,3,"gain, threshold","unknown subsystem; touches 3 calibration item(s); roles: gain, threshold"
+0x28FA0,FUN_00028FA0,Anti-Lift Control,2,operand,Anti-Lift Control subsystem; touches 2 calibration item(s); roles: operand
+0x290FE,FUN_000290FE,Anti-Lift Control,1,operand,Anti-Lift Control subsystem; touches 1 calibration item(s); roles: operand
+0x29220,FUN_00029220,,1,gain,unknown subsystem; touches 1 calibration item(s); roles: gain
+0x2926E,FUN_0002926E,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x292CA,FUN_000292CA,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x29348,FUN_00029348,Anti-Lift Control,1,operand,Anti-Lift Control subsystem; touches 1 calibration item(s); roles: operand
+0x2940A,FUN_0002940A,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x29760,FUN_00029760,,1,offset,unknown subsystem; touches 1 calibration item(s); roles: offset
+0x2978C,FUN_0002978C,Other ETV Maps,1,operand,Other ETV Maps subsystem; touches 1 calibration item(s); roles: operand
+0x297E2,FUN_000297E2,Anti-Lift Control,6,operand,Anti-Lift Control subsystem; touches 6 calibration item(s); roles: operand
+0x2987A,FUN_0002987A,Other ETV Maps,1,operand,Other ETV Maps subsystem; touches 1 calibration item(s); roles: operand
+0x29986,FUN_00029986,,4,"operand, gain, bitmask","unknown subsystem; touches 4 calibration item(s); roles: operand, gain, bitmask"
+0x29A94,FUN_00029A94,Anti-Lift Control,1,operand,Anti-Lift Control subsystem; touches 1 calibration item(s); roles: operand
+0x29BEA,FUN_00029BEA,Anti-Lift Control,5,"operand, bitmask","Anti-Lift Control subsystem; touches 5 calibration item(s); roles: operand, bitmask"
+0x29CE4,FUN_00029CE4,Quickshifter :: GP-Sensor Upshift Window A Offset vs Gear,2,threshold,Quickshifter :: GP-Sensor Upshift Window A Offset vs Gear subsystem; touches 2 calibration item(s); roles: threshold
+0x29D84,FUN_00029D84,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x29F34,FUN_00029F34,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x29F9A,FUN_00029F9A,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x2A0CA,FUN_0002A0CA,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x2A11C,FUN_0002A11C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x2A19A,FUN_0002A19A,Quickshifter,2,operand,Quickshifter subsystem; touches 2 calibration item(s); roles: operand
+0x2A2BA,FUN_0002A2BA,Quickshifter :: GP-Sensor Upshift Window A Offset vs Gear,6,operand,Quickshifter :: GP-Sensor Upshift Window A Offset vs Gear subsystem; touches 6 calibration item(s); roles: operand
+0x2A5AE,FUN_0002A5AE,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x2A61A,FUN_0002A61A,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x2A786,FUN_0002A786,,16,operand,unknown subsystem; touches 16 calibration item(s); roles: operand
+0x2A830,FUN_0002A830,,16,operand,unknown subsystem; touches 16 calibration item(s); roles: operand
+0x2A96E,FUN_0002A96E,Quickshifter,1,operand,Quickshifter subsystem; touches 1 calibration item(s); roles: operand
+0x2AC1A,FUN_0002AC1A,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x2AC86,FUN_0002AC86,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x2AFA4,FUN_0002AFA4,Quickshifter,2,operand,Quickshifter subsystem; touches 2 calibration item(s); roles: operand
+0x2B084,FUN_0002B084,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x2B0D0,FUN_0002B0D0,,1,flag-test,unknown subsystem; touches 1 calibration item(s); roles: flag-test
+0x2B1CC,FUN_0002B1CC,Quickshifter,1,operand,Quickshifter subsystem; touches 1 calibration item(s); roles: operand
+0x2B2A0,FUN_0002B2A0,,9,operand,unknown subsystem; touches 9 calibration item(s); roles: operand
+0x2B40A,FUN_0002B40A,Quickshifter,1,gain,Quickshifter subsystem; touches 1 calibration item(s); roles: gain
+0x2B538,FUN_0002B538,Quickshifter,1,gain,Quickshifter subsystem; touches 1 calibration item(s); roles: gain
+0x2B666,FUN_0002B666,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x2B8B6,FUN_0002B8B6,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x2B9DE,FUN_0002B9DE,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x2BA0C,FUN_0002BA0C,,2,"operand, gain","unknown subsystem; touches 2 calibration item(s); roles: operand, gain"
+0x2BAA4,FUN_0002BAA4,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x2BB76,FUN_0002BB76,,2,gain,unknown subsystem; touches 2 calibration item(s); roles: gain
+0x2BBEC,FUN_0002BBEC,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x2BC30,FUN_0002BC30,,17,operand,unknown subsystem; touches 17 calibration item(s); roles: operand
+0x2BD40,FUN_0002BD40,,9,operand,unknown subsystem; touches 9 calibration item(s); roles: operand
+0x2BF72,FUN_0002BF72,Speed Monitor :: Threshold vs Rear Wheel Speed,13,operand,Speed Monitor :: Threshold vs Rear Wheel Speed subsystem; touches 13 calibration item(s); roles: operand
+0x2C048,FUN_0002C048,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x2C088,FUN_0002C088,,8,threshold,unknown subsystem; touches 8 calibration item(s); roles: threshold
+0x2C12A,FUN_0002C12A,,8,threshold,unknown subsystem; touches 8 calibration item(s); roles: threshold
+0x2C1CC,FUN_0002C1CC,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x2C206,FUN_0002C206,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x2C240,FUN_0002C240,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x2C27A,FUN_0002C27A,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x2C350,FUN_0002C350,Limiters,2,operand,Limiters subsystem; touches 2 calibration item(s); roles: operand
+0x2C430,FUN_0002C430,,15,"operand, threshold","unknown subsystem; touches 15 calibration item(s); roles: operand, threshold"
+0x2C5BA,FUN_0002C5BA,,5,"operand, threshold","unknown subsystem; touches 5 calibration item(s); roles: operand, threshold"
+0x2C670,FUN_0002C670,Quickshifter :: GP-Sensor Upshift Window A Offset vs Gear,3,operand,Quickshifter :: GP-Sensor Upshift Window A Offset vs Gear subsystem; touches 3 calibration item(s); roles: operand
+0x2C840,FUN_0002C840,,6,"operand, threshold","unknown subsystem; touches 6 calibration item(s); roles: operand, threshold"
+0x2C8FE,FUN_0002C8FE,Anti-Lift Control,7,operand,Anti-Lift Control subsystem; touches 7 calibration item(s); roles: operand
+0x2CB26,FUN_0002CB26,,3,"operand, gain","unknown subsystem; touches 3 calibration item(s); roles: operand, gain"
+0x2CC0A,FUN_0002CC0A,Cruise Control (decoded),1,operand,Cruise Control (decoded) subsystem; touches 1 calibration item(s); roles: operand
+0x2CC6C,FUN_0002CC6C,,5,"operand, threshold","unknown subsystem; touches 5 calibration item(s); roles: operand, threshold"
+0x2CCD8,FUN_0002CCD8,,2,"bitmask, operand","unknown subsystem; touches 2 calibration item(s); roles: bitmask, operand"
+0x2CDA2,FUN_0002CDA2,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x2CE0C,FUN_0002CE0C,,6,operand,unknown subsystem; touches 6 calibration item(s); roles: operand
+0x2CF42,FUN_0002CF42,,4,operand,unknown subsystem; touches 4 calibration item(s); roles: operand
+0x2D118,FUN_0002D118,Cruise Control (decoded),3,"gain, operand, threshold","Cruise Control (decoded) subsystem; touches 3 calibration item(s); roles: gain, operand, threshold"
+0x2D258,FUN_0002D258,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x2D30A,FUN_0002D30A,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x2D384,FUN_0002D384,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x2D568,FUN_0002D568,,6,operand,unknown subsystem; touches 6 calibration item(s); roles: operand
+0x2D6D6,FUN_0002D6D6,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x2D738,FUN_0002D738,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x2D79C,FUN_0002D79C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x2D826,FUN_0002D826,,1,offset,unknown subsystem; touches 1 calibration item(s); roles: offset
+0x2D87C,FUN_0002D87C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x2D8D4,FUN_0002D8D4,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x2DA0E,FUN_0002DA0E,Cruise Control (decoded),2,operand,Cruise Control (decoded) subsystem; touches 2 calibration item(s); roles: operand
+0x2DD26,FUN_0002DD26,,2,unref,unknown subsystem; touches 2 calibration item(s); roles: unref
+0x2DDF2,FUN_0002DDF2,,2,unref,unknown subsystem; touches 2 calibration item(s); roles: unref
+0x2DEB2,FUN_0002DEB2,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x2DF20,FUN_0002DF20,,2,offset,unknown subsystem; touches 2 calibration item(s); roles: offset
+0x2DF96,FUN_0002DF96,,3,"operand, threshold","unknown subsystem; touches 3 calibration item(s); roles: operand, threshold"
+0x2E01E,FUN_0002E01E,,2,offset,unknown subsystem; touches 2 calibration item(s); roles: offset
+0x2E36C,FUN_0002E36C,,5,"operand, threshold","unknown subsystem; touches 5 calibration item(s); roles: operand, threshold"
+0x2E462,FUN_0002E462,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x2E4E0,FUN_0002E4E0,,2,"threshold, gain","unknown subsystem; touches 2 calibration item(s); roles: threshold, gain"
+0x2E596,FUN_0002E596,,2,"operand, threshold","unknown subsystem; touches 2 calibration item(s); roles: operand, threshold"
+0x2E5DA,FUN_0002E5DA,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x2E640,FUN_0002E640,,2,"offset, operand","unknown subsystem; touches 2 calibration item(s); roles: offset, operand"
+0x2E6A4,FUN_0002E6A4,,4,"threshold, operand","unknown subsystem; touches 4 calibration item(s); roles: threshold, operand"
+0x2E72E,FUN_0002E72E,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x2E776,FUN_0002E776,,3,threshold,unknown subsystem; touches 3 calibration item(s); roles: threshold
+0x2E864,FUN_0002E864,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x2E916,FUN_0002E916,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x2EC24,FUN_0002EC24,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x2ECDC,FUN_0002ECDC,,1,gain,unknown subsystem; touches 1 calibration item(s); roles: gain
+0x2EFE4,FUN_0002EFE4,Cruise Control (decoded),1,operand,Cruise Control (decoded) subsystem; touches 1 calibration item(s); roles: operand
+0x2F0DA,FUN_0002F0DA,Cruise Control (decoded),2,operand,Cruise Control (decoded) subsystem; touches 2 calibration item(s); roles: operand
+0x2F16A,FUN_0002F16A,Cruise Control (decoded),2,operand,Cruise Control (decoded) subsystem; touches 2 calibration item(s); roles: operand
+0x2F286,FUN_0002F286,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x2F3E6,FUN_0002F3E6,Anti-Lift Control,5,operand,Anti-Lift Control subsystem; touches 5 calibration item(s); roles: operand
+0x2F49A,FUN_0002F49A,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x2F5F4,FUN_0002F5F4,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x2F6B4,FUN_0002F6B4,Cruise Control (decoded),4,operand,Cruise Control (decoded) subsystem; touches 4 calibration item(s); roles: operand
+0x2FAEE,FUN_0002FAEE,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x2FB70,FUN_0002FB70,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x2FC62,FUN_0002FC62,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x2FCAA,FUN_0002FCAA,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x2FD42,FUN_0002FD42,Cruise Control (decoded),1,operand,Cruise Control (decoded) subsystem; touches 1 calibration item(s); roles: operand
+0x2FE3E,FUN_0002FE3E,Anti-Lift Control,2,operand,Anti-Lift Control subsystem; touches 2 calibration item(s); roles: operand
+0x2FF50,FUN_0002FF50,Speed Monitor :: Threshold vs Rear Wheel Speed,12,"operand, threshold","Speed Monitor :: Threshold vs Rear Wheel Speed subsystem; touches 12 calibration item(s); roles: operand, threshold"
+0x30182,FUN_00030182,,3,threshold,unknown subsystem; touches 3 calibration item(s); roles: threshold
+0x30218,FUN_00030218,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x30296,FUN_00030296,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x30330,FUN_00030330,Fuel :: Afterstart Enrichment vs ECT | Stage 1,1,threshold,Fuel :: Afterstart Enrichment vs ECT | Stage 1 subsystem; touches 1 calibration item(s); roles: threshold
+0x30698,FUN_00030698,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x30716,FUN_00030716,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x307DC,FUN_000307DC,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x30854,FUN_00030854,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x30920,FUN_00030920,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x30A34,FUN_00030A34,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x30B32,FUN_00030B32,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x30BCC,FUN_00030BCC,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x30C48,FUN_00030C48,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x30E68,FUN_00030E68,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x30EF6,FUN_00030EF6,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x31048,FUN_00031048,Fuel :: Afterstart Enrichment vs ECT | Stage 1,1,threshold,Fuel :: Afterstart Enrichment vs ECT | Stage 1 subsystem; touches 1 calibration item(s); roles: threshold
+0x310FA,FUN_000310FA,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x31142,FUN_00031142,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x31210,FUN_00031210,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x31256,FUN_00031256,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x312C2,FUN_000312C2,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x3135C,FUN_0003135C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3154E,FUN_0003154E,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x315F6,FUN_000315F6,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x31648,FUN_00031648,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x316BA,FUN_000316BA,,3,"threshold, operand","unknown subsystem; touches 3 calibration item(s); roles: threshold, operand"
+0x31718,FUN_00031718,,3,"threshold, operand","unknown subsystem; touches 3 calibration item(s); roles: threshold, operand"
+0x317DE,FUN_000317DE,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x3182E,FUN_0003182E,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x3186E,FUN_0003186E,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x31A08,FUN_00031A08,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x31A48,FUN_00031A48,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x31A8A,FUN_00031A8A,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x31ACA,FUN_00031ACA,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x31B4C,FUN_00031B4C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x31BCE,FUN_00031BCE,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x31D60,FUN_00031D60,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x31DE4,FUN_00031DE4,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x31E68,FUN_00031E68,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x31F00,FUN_00031F00,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x31FB6,FUN_00031FB6,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x32068,FUN_00032068,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x32124,FUN_00032124,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x327AA,FUN_000327AA,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x32820,FUN_00032820,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x32896,FUN_00032896,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x3290C,FUN_0003290C,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x329C6,FUN_000329C6,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x32A48,FUN_00032A48,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x32ACA,FUN_00032ACA,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x32B4C,FUN_00032B4C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x32B8A,FUN_00032B8A,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x32C76,FUN_00032C76,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x32F9C,FUN_00032F9C,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x33012,FUN_00033012,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x33088,FUN_00033088,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x330FE,FUN_000330FE,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x331B8,FUN_000331B8,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3323A,FUN_0003323A,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x332BC,FUN_000332BC,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3333E,FUN_0003333E,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3337C,FUN_0003337C,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x33468,FUN_00033468,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3355E,FUN_0003355E,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x3359E,FUN_0003359E,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x335E0,FUN_000335E0,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x33620,FUN_00033620,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x336A2,FUN_000336A2,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x33722,FUN_00033722,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x337F4,FUN_000337F4,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x33838,FUN_00033838,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x338BA,FUN_000338BA,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x338F6,FUN_000338F6,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x3393A,FUN_0003393A,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x339BC,FUN_000339BC,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x33AB4,FUN_00033AB4,,2,"operand, threshold","unknown subsystem; touches 2 calibration item(s); roles: operand, threshold"
+0x33B04,FUN_00033B04,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x33BB6,FUN_00033BB6,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x33BD8,FUN_00033BD8,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x33C26,FUN_00033C26,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x33CD4,FUN_00033CD4,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x33D5C,FUN_00033D5C,,2,"operand, threshold","unknown subsystem; touches 2 calibration item(s); roles: operand, threshold"
+0x33DA6,FUN_00033DA6,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x33E2A,FUN_00033E2A,,4,"operand, threshold","unknown subsystem; touches 4 calibration item(s); roles: operand, threshold"
+0x33EAA,FUN_00033EAA,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x34046,FUN_00034046,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x340D2,FUN_000340D2,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x3425E,FUN_0003425E,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x342EE,FUN_000342EE,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x34474,FUN_00034474,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x344E0,FUN_000344E0,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x347C4,FUN_000347C4,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x34880,FUN_00034880,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x34CD4,FUN_00034CD4,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x34D86,FUN_00034D86,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x35174,FUN_00035174,,10,operand,unknown subsystem; touches 10 calibration item(s); roles: operand
+0x3536A,FUN_0003536A,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x357DA,FUN_000357DA,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x358B0,FUN_000358B0,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x35950,FUN_00035950,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x359B8,FUN_000359B8,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x360C8,FUN_000360C8,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x361DC,FUN_000361DC,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x36274,FUN_00036274,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3682A,FUN_0003682A,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x36922,FUN_00036922,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x369BA,FUN_000369BA,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x37CB0,FUN_00037CB0,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x37D1E,FUN_00037D1E,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x37FA8,FUN_00037FA8,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x38016,FUN_00038016,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x38714,FUN_00038714,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x38924,FUN_00038924,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x3896A,FUN_0003896A,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x38A00,FUN_00038A00,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x38A42,FUN_00038A42,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x38A88,FUN_00038A88,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x38B1E,FUN_00038B1E,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x38B8E,FUN_00038B8E,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x38BE4,FUN_00038BE4,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x38C28,FUN_00038C28,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x38D08,FUN_00038D08,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x38D3A,FUN_00038D3A,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x38D78,FUN_00038D78,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x38F5A,FUN_00038F5A,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x39128,FUN_00039128,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3916C,FUN_0003916C,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x391AE,FUN_000391AE,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x391F0,FUN_000391F0,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x394E2,FUN_000394E2,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x39522,FUN_00039522,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x395A4,FUN_000395A4,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x395E6,FUN_000395E6,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x39626,FUN_00039626,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x396A8,FUN_000396A8,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3986E,FUN_0003986E,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x398AE,FUN_000398AE,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x39930,FUN_00039930,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x39972,FUN_00039972,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x399B2,FUN_000399B2,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x39A34,FUN_00039A34,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x39BFA,FUN_00039BFA,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x39C36,FUN_00039C36,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x39CB4,FUN_00039CB4,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x39CF6,FUN_00039CF6,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x39D32,FUN_00039D32,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x39DB0,FUN_00039DB0,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x39F22,FUN_00039F22,,3,"operand, threshold","unknown subsystem; touches 3 calibration item(s); roles: operand, threshold"
+0x39FB8,FUN_00039FB8,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x3A0BE,FUN_0003A0BE,Steering Damper (ESD) (decoded),1,operand,Steering Damper (ESD) (decoded) subsystem; touches 1 calibration item(s); roles: operand
+0x3A11E,FUN_0003A11E,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x3A1B6,FUN_0003A1B6,Steering Damper (ESD) (decoded),1,operand,Steering Damper (ESD) (decoded) subsystem; touches 1 calibration item(s); roles: operand
+0x3A234,FUN_0003A234,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x3A32E,FUN_0003A32E,Steering Damper (ESD) (decoded),1,threshold,Steering Damper (ESD) (decoded) subsystem; touches 1 calibration item(s); roles: threshold
+0x3A504,FUN_0003A504,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3A598,FUN_0003A598,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x3A612,FUN_0003A612,,7,operand,unknown subsystem; touches 7 calibration item(s); roles: operand
+0x3A6FA,FUN_0003A6FA,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x3A752,FUN_0003A752,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x3A8B6,FUN_0003A8B6,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x3A980,FUN_0003A980,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x3AA24,FUN_0003AA24,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3AB44,FUN_0003AB44,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3AB84,FUN_0003AB84,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x3AC18,FUN_0003AC18,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x3AEF0,FUN_0003AEF0,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x3AF68,FUN_0003AF68,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3AFA0,FUN_0003AFA0,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3B190,FUN_0003B190,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x3B1DC,FUN_0003B1DC,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3B21E,FUN_0003B21E,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x3B286,FUN_0003B286,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3B38A,FUN_0003B38A,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3B3D8,FUN_0003B3D8,,7,operand,unknown subsystem; touches 7 calibration item(s); roles: operand
+0x3B4E2,FUN_0003B4E2,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3B524,FUN_0003B524,,12,operand,unknown subsystem; touches 12 calibration item(s); roles: operand
+0x3B78C,FUN_0003B78C,,7,operand,unknown subsystem; touches 7 calibration item(s); roles: operand
+0x3B878,FUN_0003B878,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3BA5E,FUN_0003BA5E,,7,operand,unknown subsystem; touches 7 calibration item(s); roles: operand
+0x3BB56,FUN_0003BB56,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3C18C,FUN_0003C18C,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x3C1CA,FUN_0003C1CA,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3C30E,FUN_0003C30E,,15,operand,unknown subsystem; touches 15 calibration item(s); roles: operand
+0x3C3B0,FUN_0003C3B0,HO2 Monitor :: Enable Max Vacuum vs Baro x RPM (flat),1,operand,HO2 Monitor :: Enable Max Vacuum vs Baro x RPM (flat) subsystem; touches 1 calibration item(s); roles: operand
+0x3C6AC,FUN_0003C6AC,,3,"offset, operand","unknown subsystem; touches 3 calibration item(s); roles: offset, operand"
+0x3CC08,FUN_0003CC08,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3CCD0,FUN_0003CCD0,,3,threshold,unknown subsystem; touches 3 calibration item(s); roles: threshold
+0x3CECC,FUN_0003CECC,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x3D6BC,FUN_0003D6BC,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3D71A,FUN_0003D71A,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3D74E,FUN_0003D74E,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3DA50,FUN_0003DA50,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x3DAB0,FUN_0003DAB0,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3DB02,FUN_0003DB02,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x3DB74,FUN_0003DB74,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3DD8A,FUN_0003DD8A,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x3DDF6,FUN_0003DDF6,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3DE48,FUN_0003DE48,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3DEC6,FUN_0003DEC6,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3E42E,FUN_0003E42E,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3E4A6,FUN_0003E4A6,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x3E54E,FUN_0003E54E,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3E5CC,FUN_0003E5CC,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x3E61C,FUN_0003E61C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3E702,FUN_0003E702,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x3E83A,FUN_0003E83A,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x3EAE0,FUN_0003EAE0,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x3EB22,FUN_0003EB22,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x3EB60,FUN_0003EB60,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x3EBA2,FUN_0003EBA2,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x3EC22,FUN_0003EC22,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x3ECA0,FUN_0003ECA0,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x3ED6A,FUN_0003ED6A,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x3EDB8,FUN_0003EDB8,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x3EDF6,FUN_0003EDF6,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x3EE5C,FUN_0003EE5C,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x3EFAA,FUN_0003EFAA,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3F032,FUN_0003F032,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3F0BA,FUN_0003F0BA,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3F106,FUN_0003F106,,10,operand,unknown subsystem; touches 10 calibration item(s); roles: operand
+0x3F180,FUN_0003F180,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3F200,FUN_0003F200,,13,operand,unknown subsystem; touches 13 calibration item(s); roles: operand
+0x3F5F4,FUN_0003F5F4,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x3F674,FUN_0003F674,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x3F71C,FUN_0003F71C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3F8B2,FUN_0003F8B2,HO2 Monitor :: Enable Max Vacuum vs Baro x RPM (flat),2,"operand, gain","HO2 Monitor :: Enable Max Vacuum vs Baro x RPM (flat) subsystem; touches 2 calibration item(s); roles: operand, gain"
+0x3F9EE,FUN_0003F9EE,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x3FADC,FUN_0003FADC,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x3FD98,FUN_0003FD98,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3FE1C,FUN_0003FE1C,,3,"threshold, operand","unknown subsystem; touches 3 calibration item(s); roles: threshold, operand"
+0x3FE82,FUN_0003FE82,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x3FF20,FUN_0003FF20,,4,"operand, threshold","unknown subsystem; touches 4 calibration item(s); roles: operand, threshold"
+0x3FFBC,FUN_0003FFBC,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x402DA,FUN_000402DA,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x4032C,FUN_0004032C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x4036E,FUN_0004036E,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x403DC,FUN_000403DC,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x4052A,FUN_0004052A,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x40554,FUN_00040554,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x40590,FUN_00040590,,7,operand,unknown subsystem; touches 7 calibration item(s); roles: operand
+0x407DE,FUN_000407DE,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x4082C,FUN_0004082C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x4086E,FUN_0004086E,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x408D8,FUN_000408D8,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x40A16,FUN_00040A16,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x40ADA,FUN_00040ADA,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x40B16,FUN_00040B16,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x40B86,FUN_00040B86,HO2 Monitor :: Enable Max Vacuum vs Baro x RPM (flat),1,threshold,HO2 Monitor :: Enable Max Vacuum vs Baro x RPM (flat) subsystem; touches 1 calibration item(s); roles: threshold
+0x40C02,FUN_00040C02,,3,"gain, threshold, operand","unknown subsystem; touches 3 calibration item(s); roles: gain, threshold, operand"
+0x40C84,FUN_00040C84,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x40E2C,FUN_00040E2C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x40EBE,FUN_00040EBE,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x40F92,FUN_00040F92,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x41094,FUN_00041094,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x410E4,FUN_000410E4,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x41208,FUN_00041208,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x41548,FUN_00041548,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x415D6,FUN_000415D6,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x41600,FUN_00041600,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x41816,FUN_00041816,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x41834,FUN_00041834,,1,bitmask,unknown subsystem; touches 1 calibration item(s); roles: bitmask
+0x4192C,FUN_0004192C,,1,bitmask,unknown subsystem; touches 1 calibration item(s); roles: bitmask
+0x419C4,FUN_000419C4,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x419F6,FUN_000419F6,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x41A60,FUN_00041A60,,1,bitmask,unknown subsystem; touches 1 calibration item(s); roles: bitmask
+0x41BF4,FUN_00041BF4,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x41DA4,FUN_00041DA4,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x41E76,FUN_00041E76,,3,threshold,unknown subsystem; touches 3 calibration item(s); roles: threshold
+0x41F12,FUN_00041F12,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x420C8,FUN_000420C8,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x42222,FUN_00042222,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x423BE,FUN_000423BE,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x423FE,FUN_000423FE,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x42480,FUN_00042480,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x424C2,FUN_000424C2,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x42502,FUN_00042502,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x42584,FUN_00042584,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x4274A,FUN_0004274A,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x42866,FUN_00042866,,3,"threshold, operand","unknown subsystem; touches 3 calibration item(s); roles: threshold, operand"
+0x428F8,FUN_000428F8,HO2 Monitor :: Enable Max Vacuum vs Baro x RPM (flat),3,operand,HO2 Monitor :: Enable Max Vacuum vs Baro x RPM (flat) subsystem; touches 3 calibration item(s); roles: operand
+0x4296C,FUN_0004296C,HO2 Monitor :: Enable Max Vacuum vs Baro x RPM (flat),3,operand,HO2 Monitor :: Enable Max Vacuum vs Baro x RPM (flat) subsystem; touches 3 calibration item(s); roles: operand
+0x42AA0,FUN_00042AA0,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x42B10,FUN_00042B10,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x42B48,FUN_00042B48,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x42F2A,FUN_00042F2A,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x430AC,FUN_000430AC,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x431D2,FUN_000431D2,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x4323E,FUN_0004323E,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x432D8,FUN_000432D8,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x43588,FUN_00043588,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x43608,FUN_00043608,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x437DC,FUN_000437DC,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x438F0,FUN_000438F0,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x43942,FUN_00043942,,8,"operand, threshold","unknown subsystem; touches 8 calibration item(s); roles: operand, threshold"
+0x43C5E,FUN_00043C5E,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x43D6A,FUN_00043D6A,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x43E76,FUN_00043E76,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x43EEA,FUN_00043EEA,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x43FA4,FUN_00043FA4,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x447C8,FUN_000447C8,,6,"threshold, operand","unknown subsystem; touches 6 calibration item(s); roles: threshold, operand"
+0x44848,FUN_00044848,,3,"threshold, operand","unknown subsystem; touches 3 calibration item(s); roles: threshold, operand"
+0x4490E,FUN_0004490E,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x44972,FUN_00044972,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x44A14,FUN_00044A14,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x44AC4,FUN_00044AC4,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x44B74,FUN_00044B74,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x44BC6,FUN_00044BC6,,5,"threshold, operand","unknown subsystem; touches 5 calibration item(s); roles: threshold, operand"
+0x44CE6,FUN_00044CE6,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x44E12,FUN_00044E12,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x44E78,FUN_00044E78,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x44F5C,FUN_00044F5C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x45080,FUN_00045080,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x45972,FUN_00045972,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x45A64,FUN_00045A64,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x45AEC,FUN_00045AEC,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x45BE0,FUN_00045BE0,HO2 Monitor :: Enable Max Vacuum vs Baro x RPM (flat),3,"threshold, operand","HO2 Monitor :: Enable Max Vacuum vs Baro x RPM (flat) subsystem; touches 3 calibration item(s); roles: threshold, operand"
+0x45D00,FUN_00045D00,,7,operand,unknown subsystem; touches 7 calibration item(s); roles: operand
+0x45E64,FUN_00045E64,HO2 Monitor :: Enable Max Vacuum vs Baro x RPM (flat),8,operand,HO2 Monitor :: Enable Max Vacuum vs Baro x RPM (flat) subsystem; touches 8 calibration item(s); roles: operand
+0x4602C,FUN_0004602C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x46226,FUN_00046226,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x462FE,FUN_000462FE,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x464B6,FUN_000464B6,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x46512,FUN_00046512,HO2 Monitor :: Baro Correction vs Baro,6,"unref, operand","HO2 Monitor :: Baro Correction vs Baro subsystem; touches 6 calibration item(s); roles: unref, operand"
+0x468B0,FUN_000468B0,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x46A40,FUN_00046A40,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x46A96,FUN_00046A96,HO2 Monitor :: Baro Correction vs Baro,1,threshold,HO2 Monitor :: Baro Correction vs Baro subsystem; touches 1 calibration item(s); roles: threshold
+0x46CBA,FUN_00046CBA,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x46D1E,FUN_00046D1E,HO2 Monitor :: Baro Correction vs Baro,1,operand,HO2 Monitor :: Baro Correction vs Baro subsystem; touches 1 calibration item(s); roles: operand
+0x46DEE,FUN_00046DEE,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x47154,FUN_00047154,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x471B6,FUN_000471B6,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x47BC4,FUN_00047BC4,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x47C2E,FUN_00047C2E,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x47CB6,FUN_00047CB6,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x47D34,FUN_00047D34,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x47D6C,FUN_00047D6C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x47F14,FUN_00047F14,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x48184,FUN_00048184,,3,"threshold, operand","unknown subsystem; touches 3 calibration item(s); roles: threshold, operand"
+0x4824C,FUN_0004824C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x482CE,FUN_000482CE,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x48ADC,FUN_00048ADC,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x48B26,FUN_00048B26,,6,operand,unknown subsystem; touches 6 calibration item(s); roles: operand
+0x48C26,FUN_00048C26,,10,operand,unknown subsystem; touches 10 calibration item(s); roles: operand
+0x48D40,FUN_00048D40,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x48DE4,FUN_00048DE4,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x49440,FUN_00049440,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x4947E,FUN_0004947E,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x494E4,FUN_000494E4,,4,operand,unknown subsystem; touches 4 calibration item(s); roles: operand
+0x4954A,FUN_0004954A,,4,threshold,unknown subsystem; touches 4 calibration item(s); roles: threshold
+0x495B8,FUN_000495B8,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x49602,FUN_00049602,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x4963A,FUN_0004963A,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x49672,FUN_00049672,,1,gain,unknown subsystem; touches 1 calibration item(s); roles: gain
+0x49830,FUN_00049830,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x498AC,FUN_000498AC,Accel Enrichment :: TP-Change Factor,3,operand,Accel Enrichment :: TP-Change Factor subsystem; touches 3 calibration item(s); roles: operand
+0x4990E,FUN_0004990E,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x499D2,FUN_000499D2,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x49A4E,FUN_00049A4E,Accel Enrichment :: TP-Change Factor,3,operand,Accel Enrichment :: TP-Change Factor subsystem; touches 3 calibration item(s); roles: operand
+0x49AB2,FUN_00049AB2,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x49B6E,FUN_00049B6E,Accel Enrichment :: TP-Change Factor,1,operand,Accel Enrichment :: TP-Change Factor subsystem; touches 1 calibration item(s); roles: operand
+0x49C4C,FUN_00049C4C,Accel Enrichment :: TP-Change Factor,1,operand,Accel Enrichment :: TP-Change Factor subsystem; touches 1 calibration item(s); roles: operand
+0x49E92,FUN_00049E92,Speed Monitor :: Threshold vs Rear Wheel Speed,4,operand,Speed Monitor :: Threshold vs Rear Wheel Speed subsystem; touches 4 calibration item(s); roles: operand
+0x4A054,FUN_0004A054,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x4A1E4,FUN_0004A1E4,,5,operand,unknown subsystem; touches 5 calibration item(s); roles: operand
+0x4A344,FUN_0004A344,,4,operand,unknown subsystem; touches 4 calibration item(s); roles: operand
+0x4A6A8,FUN_0004A6A8,Accel Enrichment :: TP-Change Factor,2,operand,Accel Enrichment :: TP-Change Factor subsystem; touches 2 calibration item(s); roles: operand
+0x4A6EA,FUN_0004A6EA,Accel Enrichment :: TP-Change Factor,2,operand,Accel Enrichment :: TP-Change Factor subsystem; touches 2 calibration item(s); roles: operand
+0x4A72C,FUN_0004A72C,Accel Enrichment :: TP-Change Factor,6,operand,Accel Enrichment :: TP-Change Factor subsystem; touches 6 calibration item(s); roles: operand
+0x4A7F0,FUN_0004A7F0,Accel Enrichment :: TP-Change Factor,4,operand,Accel Enrichment :: TP-Change Factor subsystem; touches 4 calibration item(s); roles: operand
+0x4A8E2,FUN_0004A8E2,Accel Enrichment :: TP-Change Factor,2,operand,Accel Enrichment :: TP-Change Factor subsystem; touches 2 calibration item(s); roles: operand
+0x4AA24,FUN_0004AA24,Accel Enrichment :: TP-Change Factor,2,operand,Accel Enrichment :: TP-Change Factor subsystem; touches 2 calibration item(s); roles: operand
+0x4AFB6,FUN_0004AFB6,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x4B2AC,FUN_0004B2AC,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x4B382,FUN_0004B382,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x4B3C6,FUN_0004B3C6,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x4B3EE,FUN_0004B3EE,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x4B4B4,FUN_0004B4B4,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x4B5FA,FUN_0004B5FA,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x4BAF0,FUN_0004BAF0,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x4BB30,FUN_0004BB30,,4,threshold,unknown subsystem; touches 4 calibration item(s); roles: threshold
+0x4BB92,FUN_0004BB92,Fuel :: Afterstart Enrichment vs ECT | Stage 1,1,operand,Fuel :: Afterstart Enrichment vs ECT | Stage 1 subsystem; touches 1 calibration item(s); roles: operand
+0x4BBF0,FUN_0004BBF0,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x4BC1C,FUN_0004BC1C,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x4BC48,FUN_0004BC48,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x4BC78,FUN_0004BC78,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x4BCA4,FUN_0004BCA4,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x4BD7A,FUN_0004BD7A,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x4BDDA,FUN_0004BDDA,Fuel :: Afterstart Enrichment vs ECT | Stage 1,1,operand,Fuel :: Afterstart Enrichment vs ECT | Stage 1 subsystem; touches 1 calibration item(s); roles: operand
+0x4BE74,FUN_0004BE74,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x4BF0E,FUN_0004BF0E,,4,"threshold, gain, operand","unknown subsystem; touches 4 calibration item(s); roles: threshold, gain, operand"
+0x4BFCE,FUN_0004BFCE,,3,"operand, offset","unknown subsystem; touches 3 calibration item(s); roles: operand, offset"
+0x4C01E,FUN_0004C01E,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x4C074,FUN_0004C074,,2,gain,unknown subsystem; touches 2 calibration item(s); roles: gain
+0x4C10E,FUN_0004C10E,,1,offset,unknown subsystem; touches 1 calibration item(s); roles: offset
+0x4C29E,FUN_0004C29E,Fuel :: Afterstart Enrichment vs ECT | Stage 1,1,operand,Fuel :: Afterstart Enrichment vs ECT | Stage 1 subsystem; touches 1 calibration item(s); roles: operand
+0x4C328,FUN_0004C328,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x4C34E,FUN_0004C34E,Fuel :: Afterstart Enrichment vs ECT | Stage 1,3,operand,Fuel :: Afterstart Enrichment vs ECT | Stage 1 subsystem; touches 3 calibration item(s); roles: operand
+0x4C422,FUN_0004C422,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x4C538,FUN_0004C538,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x4C594,FUN_0004C594,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x4C610,FUN_0004C610,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x4C6E8,FUN_0004C6E8,Fuel,3,threshold,Fuel subsystem; touches 3 calibration item(s); roles: threshold
+0x4C7CE,FUN_0004C7CE,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x4C92E,FUN_0004C92E,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x4CA04,FUN_0004CA04,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x4CAC2,FUN_0004CAC2,Cranking Fuel :: TP Correction (flat),6,"threshold, operand","Cranking Fuel :: TP Correction (flat) subsystem; touches 6 calibration item(s); roles: threshold, operand"
+0x4CB50,FUN_0004CB50,Cranking Fuel :: TP Correction (flat),3,"operand, threshold","Cranking Fuel :: TP Correction (flat) subsystem; touches 3 calibration item(s); roles: operand, threshold"
+0x4CF7C,FUN_0004CF7C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x4CFFA,FUN_0004CFFA,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x4D1EA,FUN_0004D1EA,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x4D43E,FUN_0004D43E,,12,"operand, gain","unknown subsystem; touches 12 calibration item(s); roles: operand, gain"
+0x4D68C,FUN_0004D68C,,7,operand,unknown subsystem; touches 7 calibration item(s); roles: operand
+0x4D9BC,FUN_0004D9BC,,5,threshold,unknown subsystem; touches 5 calibration item(s); roles: threshold
+0x4DA54,FUN_0004DA54,,4,"gain, operand, threshold","unknown subsystem; touches 4 calibration item(s); roles: gain, operand, threshold"
+0x4DB8E,FUN_0004DB8E,Fuel :: Afterstart Enrichment vs ECT | Stage 1,1,operand,Fuel :: Afterstart Enrichment vs ECT | Stage 1 subsystem; touches 1 calibration item(s); roles: operand
+0x4DBBA,FUN_0004DBBA,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x4DBE8,FUN_0004DBE8,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x4DCD0,FUN_0004DCD0,,2,unref,unknown subsystem; touches 2 calibration item(s); roles: unref
+0x4DD8A,FUN_0004DD8A,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x4DDE4,FUN_0004DDE4,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x4DE90,FUN_0004DE90,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x4DF06,FUN_0004DF06,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x4E242,FUN_0004E242,Fuel,2,operand,Fuel subsystem; touches 2 calibration item(s); roles: operand
+0x4E306,FUN_0004E306,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x4E332,FUN_0004E332,Fuel,2,"gain, threshold","Fuel subsystem; touches 2 calibration item(s); roles: gain, threshold"
+0x4E396,FUN_0004E396,Fuel,2,operand,Fuel subsystem; touches 2 calibration item(s); roles: operand
+0x4E454,FUN_0004E454,,2,"operand, gain","unknown subsystem; touches 2 calibration item(s); roles: operand, gain"
+0x4E5FA,FUN_0004E5FA,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x4E6D4,FUN_0004E6D4,,2,"operand, threshold","unknown subsystem; touches 2 calibration item(s); roles: operand, threshold"
+0x4E72A,FUN_0004E72A,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x4EB34,FUN_0004EB34,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x4EE84,FUN_0004EE84,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x4F0E6,FUN_0004F0E6,,5,operand,unknown subsystem; touches 5 calibration item(s); roles: operand
+0x4F16E,FUN_0004F16E,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x4F1E4,FUN_0004F1E4,,2,"offset, threshold","unknown subsystem; touches 2 calibration item(s); roles: offset, threshold"
+0x4F2A8,FUN_0004F2A8,,1,flag-test,unknown subsystem; touches 1 calibration item(s); roles: flag-test
+0x4F45E,FUN_0004F45E,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x4F654,FUN_0004F654,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x4F6FE,FUN_0004F6FE,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x4F9DA,FUN_0004F9DA,,5,"operand, unref","unknown subsystem; touches 5 calibration item(s); roles: operand, unref"
+0x4FC24,FUN_0004FC24,Accel Enrichment :: TP-Change Factor,1,operand,Accel Enrichment :: TP-Change Factor subsystem; touches 1 calibration item(s); roles: operand
+0x4FCEE,FUN_0004FCEE,,12,operand,unknown subsystem; touches 12 calibration item(s); roles: operand
+0x4FEBC,FUN_0004FEBC,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x4FF2E,FUN_0004FF2E,,6,operand,unknown subsystem; touches 6 calibration item(s); roles: operand
+0x500DE,FUN_000500DE,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x50178,FUN_00050178,,5,operand,unknown subsystem; touches 5 calibration item(s); roles: operand
+0x50306,FUN_00050306,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x50344,FUN_00050344,,7,"operand, threshold","unknown subsystem; touches 7 calibration item(s); roles: operand, threshold"
+0x5059A,FUN_0005059A,Fuel :: Afterstart Enrichment vs ECT | Stage 1,2,operand,Fuel :: Afterstart Enrichment vs ECT | Stage 1 subsystem; touches 2 calibration item(s); roles: operand
+0x5061C,FUN_0005061C,Fuel,1,operand,Fuel subsystem; touches 1 calibration item(s); roles: operand
+0x50716,FUN_00050716,,3,"threshold, operand","unknown subsystem; touches 3 calibration item(s); roles: threshold, operand"
+0x508AC,FUN_000508AC,Fuel,1,operand,Fuel subsystem; touches 1 calibration item(s); roles: operand
+0x509C4,FUN_000509C4,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x50A56,FUN_00050A56,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x50ADC,FUN_00050ADC,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x50B42,FUN_00050B42,,3,threshold,unknown subsystem; touches 3 calibration item(s); roles: threshold
+0x50B92,FUN_00050B92,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x50C08,FUN_00050C08,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x511AA,FUN_000511AA,,6,unref,unknown subsystem; touches 6 calibration item(s); roles: unref
+0x515D6,FUN_000515D6,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x5168C,FUN_0005168C,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x51788,FUN_00051788,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x518B2,FUN_000518B2,Engine Brake Control (decoded),1,operand,Engine Brake Control (decoded) subsystem; touches 1 calibration item(s); roles: operand
+0x51EAA,FUN_00051EAA,,2,"operand, threshold","unknown subsystem; touches 2 calibration item(s); roles: operand, threshold"
+0x51F8E,FUN_00051F8E,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5205A,FUN_0005205A,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x520A8,FUN_000520A8,,5,"threshold, operand","unknown subsystem; touches 5 calibration item(s); roles: threshold, operand"
+0x5224E,FUN_0005224E,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5227A,FUN_0005227A,,1,unref,unknown subsystem; touches 1 calibration item(s); roles: unref
+0x522F8,FUN_000522F8,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x524AC,FUN_000524AC,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5256C,FUN_0005256C,,2,gain,unknown subsystem; touches 2 calibration item(s); roles: gain
+0x52614,FUN_00052614,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x52654,FUN_00052654,,2,gain,unknown subsystem; touches 2 calibration item(s); roles: gain
+0x52710,FUN_00052710,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x527BA,FUN_000527BA,,2,"threshold, gain","unknown subsystem; touches 2 calibration item(s); roles: threshold, gain"
+0x5294E,FUN_0005294E,Fuel,1,operand,Fuel subsystem; touches 1 calibration item(s); roles: operand
+0x52A78,FUN_00052A78,Ignition,1,operand,Ignition subsystem; touches 1 calibration item(s); roles: operand
+0x52ABA,FUN_00052ABA,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x52B48,FUN_00052B48,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x52C00,FUN_00052C00,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x52F26,FUN_00052F26,,16,operand,unknown subsystem; touches 16 calibration item(s); roles: operand
+0x53224,FUN_00053224,Sensor :: ECT Conversion (ADC -&gt; deg C) | Main,1,operand,Sensor :: ECT Conversion (ADC -&gt; deg C) | Main subsystem; touches 1 calibration item(s); roles: operand
+0x532A4,FUN_000532A4,Idle Control (decoded),1,operand,Idle Control (decoded) subsystem; touches 1 calibration item(s); roles: operand
+0x5337C,FUN_0005337C,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x534B6,FUN_000534B6,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x534EE,FUN_000534EE,,3,threshold,unknown subsystem; touches 3 calibration item(s); roles: threshold
+0x53564,FUN_00053564,,9,"operand, threshold","unknown subsystem; touches 9 calibration item(s); roles: operand, threshold"
+0x53792,FUN_00053792,Ignition,2,"threshold, operand","Ignition subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x53822,FUN_00053822,Ignition,2,operand,Ignition subsystem; touches 2 calibration item(s); roles: operand
+0x538FA,FUN_000538FA,Ignition,1,operand,Ignition subsystem; touches 1 calibration item(s); roles: operand
+0x53BC8,FUN_00053BC8,,2,"operand, threshold","unknown subsystem; touches 2 calibration item(s); roles: operand, threshold"
+0x53BF0,FUN_00053BF0,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x53C0C,FUN_00053C0C,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x53C4C,FUN_00053C4C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x53C7E,FUN_00053C7E,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x53CA2,FUN_00053CA2,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x53DC6,FUN_00053DC6,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x53F3E,FUN_00053F3E,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x5400E,FUN_0005400E,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x54098,FUN_00054098,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x5411E,FUN_0005411E,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x543CC,FUN_000543CC,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x54488,FUN_00054488,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x545B6,FUN_000545B6,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x5460C,FUN_0005460C,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x54656,FUN_00054656,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x546A0,FUN_000546A0,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x546EA,FUN_000546EA,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x54792,FUN_00054792,Ignition :: Ride-Mode Retard vs ECT | Mode A (flat 0),3,operand,Ignition :: Ride-Mode Retard vs ECT | Mode A (flat 0) subsystem; touches 3 calibration item(s); roles: operand
+0x54D80,FUN_00054D80,,3,threshold,unknown subsystem; touches 3 calibration item(s); roles: threshold
+0x54E02,FUN_00054E02,,13,operand,unknown subsystem; touches 13 calibration item(s); roles: operand
+0x55016,FUN_00055016,Traction Control,13,operand,Traction Control subsystem; touches 13 calibration item(s); roles: operand
+0x5534A,FUN_0005534A,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x557BA,FUN_000557BA,Ignition :: Transient One-Shot Correction (Correction-22),1,operand,Ignition :: Transient One-Shot Correction (Correction-22) subsystem; touches 1 calibration item(s); roles: operand
+0x5595C,FUN_0005595C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x55A7A,FUN_00055A7A,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x55B04,FUN_00055B04,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x55B26,FUN_00055B26,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x55B48,FUN_00055B48,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x55C44,FUN_00055C44,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x55CB0,FUN_00055CB0,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x55CFA,FUN_00055CFA,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x55D1C,FUN_00055D1C,,3,threshold,unknown subsystem; touches 3 calibration item(s); roles: threshold
+0x55D72,FUN_00055D72,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x55DBC,FUN_00055DBC,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x55DDE,FUN_00055DDE,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x55E6A,FUN_00055E6A,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5614E,FUN_0005614E,,6,operand,unknown subsystem; touches 6 calibration item(s); roles: operand
+0x561D6,FUN_000561D6,Ignition,8,"operand, unref","Ignition subsystem; touches 8 calibration item(s); roles: operand, unref"
+0x56264,FUN_00056264,Ignition,4,"threshold, offset","Ignition subsystem; touches 4 calibration item(s); roles: threshold, offset"
+0x5636C,FUN_0005636C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5637A,FUN_0005637A,,4,operand,unknown subsystem; touches 4 calibration item(s); roles: operand
+0x564AC,FUN_000564AC,,6,"gain, operand","unknown subsystem; touches 6 calibration item(s); roles: gain, operand"
+0x56546,FUN_00056546,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x5657E,FUN_0005657E,Ignition,1,operand,Ignition subsystem; touches 1 calibration item(s); roles: operand
+0x565D8,FUN_000565D8,,1,gain,unknown subsystem; touches 1 calibration item(s); roles: gain
+0x56954,FUN_00056954,,4,gain,unknown subsystem; touches 4 calibration item(s); roles: gain
+0x56A36,FUN_00056A36,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x56BAA,FUN_00056BAA,,24,operand,unknown subsystem; touches 24 calibration item(s); roles: operand
+0x56D70,FUN_00056D70,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x56EC4,FUN_00056EC4,Ignition,5,"threshold, operand","Ignition subsystem; touches 5 calibration item(s); roles: threshold, operand"
+0x56F60,FUN_00056F60,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x56F9E,FUN_00056F9E,Ignition,6,"threshold, operand, gain","Ignition subsystem; touches 6 calibration item(s); roles: threshold, operand, gain"
+0x57036,FUN_00057036,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x57082,FUN_00057082,,3,"threshold, operand","unknown subsystem; touches 3 calibration item(s); roles: threshold, operand"
+0x5716E,FUN_0005716E,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x5721A,FUN_0005721A,Ignition,3,threshold,Ignition subsystem; touches 3 calibration item(s); roles: threshold
+0x57288,FUN_00057288,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x572B8,FUN_000572B8,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x572E8,FUN_000572E8,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x57324,FUN_00057324,,3,threshold,unknown subsystem; touches 3 calibration item(s); roles: threshold
+0x573AC,FUN_000573AC,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x5744C,FUN_0005744C,,3,"operand, threshold","unknown subsystem; touches 3 calibration item(s); roles: operand, threshold"
+0x5753C,FUN_0005753C,,5,operand,unknown subsystem; touches 5 calibration item(s); roles: operand
+0x57626,FUN_00057626,,6,operand,unknown subsystem; touches 6 calibration item(s); roles: operand
+0x57710,FUN_00057710,Ignition,1,operand,Ignition subsystem; touches 1 calibration item(s); roles: operand
+0x57744,FUN_00057744,Ignition,5,operand,Ignition subsystem; touches 5 calibration item(s); roles: operand
+0x57884,FUN_00057884,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x578FC,FUN_000578FC,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x57996,FUN_00057996,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x57A42,FUN_00057A42,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x57AB2,FUN_00057AB2,,6,operand,unknown subsystem; touches 6 calibration item(s); roles: operand
+0x57BD2,FUN_00057BD2,,2,"operand, threshold","unknown subsystem; touches 2 calibration item(s); roles: operand, threshold"
+0x57CA2,FUN_00057CA2,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x57D8A,FUN_00057D8A,,3,"threshold, operand","unknown subsystem; touches 3 calibration item(s); roles: threshold, operand"
+0x57DE0,FUN_00057DE0,,1,gain,unknown subsystem; touches 1 calibration item(s); roles: gain
+0x57EC4,FUN_00057EC4,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x57F24,FUN_00057F24,,6,operand,unknown subsystem; touches 6 calibration item(s); roles: operand
+0x5803A,FUN_0005803A,Ignition :: Transient One-Shot Correction (Correction-22),2,operand,Ignition :: Transient One-Shot Correction (Correction-22) subsystem; touches 2 calibration item(s); roles: operand
+0x58200,FUN_00058200,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x58226,FUN_00058226,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x582D2,FUN_000582D2,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x582F8,FUN_000582F8,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x5831E,FUN_0005831E,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5836A,FUN_0005836A,,7,operand,unknown subsystem; touches 7 calibration item(s); roles: operand
+0x585B6,FUN_000585B6,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x585FE,FUN_000585FE,Ignition,1,gain,Ignition subsystem; touches 1 calibration item(s); roles: gain
+0x5869E,FUN_0005869E,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x58784,FUN_00058784,,4,"operand, gain","unknown subsystem; touches 4 calibration item(s); roles: operand, gain"
+0x587F8,FUN_000587F8,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x588F6,FUN_000588F6,Ignition :: Ride-Mode Retard vs ECT | Mode A (flat 0),2,"threshold, operand","Ignition :: Ride-Mode Retard vs ECT | Mode A (flat 0) subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x58A4C,FUN_00058A4C,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x58BFE,FUN_00058BFE,,2,"operand, unref","unknown subsystem; touches 2 calibration item(s); roles: operand, unref"
+0x58CF8,FUN_00058CF8,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x58D36,FUN_00058D36,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x58DD8,FUN_00058DD8,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x58DF4,FUN_00058DF4,,4,"threshold, operand","unknown subsystem; touches 4 calibration item(s); roles: threshold, operand"
+0x58F2C,FUN_00058F2C,,2,"operand, threshold","unknown subsystem; touches 2 calibration item(s); roles: operand, threshold"
+0x58FB0,FUN_00058FB0,,3,threshold,unknown subsystem; touches 3 calibration item(s); roles: threshold
+0x5903A,FUN_0005903A,Ignition,3,"operand, threshold","Ignition subsystem; touches 3 calibration item(s); roles: operand, threshold"
+0x590B0,FUN_000590B0,,4,"operand, threshold","unknown subsystem; touches 4 calibration item(s); roles: operand, threshold"
+0x5920C,FUN_0005920C,Ignition,3,"operand, threshold","Ignition subsystem; touches 3 calibration item(s); roles: operand, threshold"
+0x59294,FUN_00059294,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x59344,FUN_00059344,,2,"threshold, offset","unknown subsystem; touches 2 calibration item(s); roles: threshold, offset"
+0x593A6,FUN_000593A6,Ignition,2,operand,Ignition subsystem; touches 2 calibration item(s); roles: operand
+0x594CA,FUN_000594CA,,6,operand,unknown subsystem; touches 6 calibration item(s); roles: operand
+0x5952A,FUN_0005952A,,6,operand,unknown subsystem; touches 6 calibration item(s); roles: operand
+0x59586,FUN_00059586,,6,operand,unknown subsystem; touches 6 calibration item(s); roles: operand
+0x59634,FUN_00059634,Ignition,1,operand,Ignition subsystem; touches 1 calibration item(s); roles: operand
+0x5976E,FUN_0005976E,Ignition,1,operand,Ignition subsystem; touches 1 calibration item(s); roles: operand
+0x599D8,FUN_000599D8,Idle Control (decoded),2,operand,Idle Control (decoded) subsystem; touches 2 calibration item(s); roles: operand
+0x59C0E,FUN_00059C0E,,1,offset,unknown subsystem; touches 1 calibration item(s); roles: offset
+0x59C7E,FUN_00059C7E,,2,"operand, threshold","unknown subsystem; touches 2 calibration item(s); roles: operand, threshold"
+0x59D34,FUN_00059D34,,3,"operand, threshold","unknown subsystem; touches 3 calibration item(s); roles: operand, threshold"
+0x59FEC,FUN_00059FEC,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x5A07A,FUN_0005A07A,Idle Control (decoded),1,operand,Idle Control (decoded) subsystem; touches 1 calibration item(s); roles: operand
+0x5A13C,FUN_0005A13C,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x5A178,FUN_0005A178,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x5A22C,FUN_0005A22C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5A2EA,FUN_0005A2EA,Idle Control (decoded),1,threshold,Idle Control (decoded) subsystem; touches 1 calibration item(s); roles: threshold
+0x5A35C,FUN_0005A35C,,4,"operand, threshold","unknown subsystem; touches 4 calibration item(s); roles: operand, threshold"
+0x5A3C4,FUN_0005A3C4,,9,"operand, offset","unknown subsystem; touches 9 calibration item(s); roles: operand, offset"
+0x5A620,FUN_0005A620,,5,operand,unknown subsystem; touches 5 calibration item(s); roles: operand
+0x5A7A8,FUN_0005A7A8,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5A908,FUN_0005A908,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x5A982,FUN_0005A982,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x5AB6E,FUN_0005AB6E,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x5AC34,FUN_0005AC34,Idle Control (decoded),4,operand,Idle Control (decoded) subsystem; touches 4 calibration item(s); roles: operand
+0x5AD08,FUN_0005AD08,Idle Control (decoded),4,"operand, threshold","Idle Control (decoded) subsystem; touches 4 calibration item(s); roles: operand, threshold"
+0x5AEDA,FUN_0005AEDA,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5AF24,FUN_0005AF24,Idle Control (decoded),6,threshold,Idle Control (decoded) subsystem; touches 6 calibration item(s); roles: threshold
+0x5AFE8,FUN_0005AFE8,,2,"operand, threshold","unknown subsystem; touches 2 calibration item(s); roles: operand, threshold"
+0x5B016,FUN_0005B016,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5B0C8,FUN_0005B0C8,Idle Control (decoded),2,operand,Idle Control (decoded) subsystem; touches 2 calibration item(s); roles: operand
+0x5B1FA,FUN_0005B1FA,,2,"operand, threshold","unknown subsystem; touches 2 calibration item(s); roles: operand, threshold"
+0x5B252,FUN_0005B252,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5B2A2,FUN_0005B2A2,Idle Control :: IAT Factor (flat),6,threshold,Idle Control :: IAT Factor (flat) subsystem; touches 6 calibration item(s); roles: threshold
+0x5B382,FUN_0005B382,,5,"operand, threshold, offset","unknown subsystem; touches 5 calibration item(s); roles: operand, threshold, offset"
+0x5B494,FUN_0005B494,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5B96E,FUN_0005B96E,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x5BA0C,FUN_0005BA0C,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x5BB10,FUN_0005BB10,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5BB60,FUN_0005BB60,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5BC1C,FUN_0005BC1C,,4,"threshold, operand","unknown subsystem; touches 4 calibration item(s); roles: threshold, operand"
+0x5BCA8,FUN_0005BCA8,,2,"operand, threshold","unknown subsystem; touches 2 calibration item(s); roles: operand, threshold"
+0x5BD12,FUN_0005BD12,,2,"operand, threshold","unknown subsystem; touches 2 calibration item(s); roles: operand, threshold"
+0x5BD7C,FUN_0005BD7C,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x5BEDE,FUN_0005BEDE,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5C01A,FUN_0005C01A,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5C28C,FUN_0005C28C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5C2BC,FUN_0005C2BC,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5C2CE,FUN_0005C2CE,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x5C5E0,FUN_0005C5E0,Meter Fuel Consumption :: RPM Factor,1,threshold,Meter Fuel Consumption :: RPM Factor subsystem; touches 1 calibration item(s); roles: threshold
+0x5CBA0,FUN_0005CBA0,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5CBD2,FUN_0005CBD2,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5CC00,FUN_0005CC00,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5CE7C,FUN_0005CE7C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5CFFC,FUN_0005CFFC,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x5D06C,FUN_0005D06C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5D0C0,FUN_0005D0C0,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5D12C,FUN_0005D12C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5D19C,FUN_0005D19C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5D1CE,FUN_0005D1CE,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5D23C,FUN_0005D23C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5D37A,FUN_0005D37A,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5D3B8,FUN_0005D3B8,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5D718,FUN_0005D718,,2,unref,unknown subsystem; touches 2 calibration item(s); roles: unref
+0x5D880,FUN_0005D880,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x5DAFA,FUN_0005DAFA,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5DB56,FUN_0005DB56,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5DCC0,FUN_0005DCC0,,4,"operand, threshold, gain","unknown subsystem; touches 4 calibration item(s); roles: operand, threshold, gain"
+0x5DD74,FUN_0005DD74,,2,"threshold, gain","unknown subsystem; touches 2 calibration item(s); roles: threshold, gain"
+0x5DDD2,FUN_0005DDD2,,5,"operand, gain","unknown subsystem; touches 5 calibration item(s); roles: operand, gain"
+0x5DF94,FUN_0005DF94,,4,"operand, threshold","unknown subsystem; touches 4 calibration item(s); roles: operand, threshold"
+0x5E05E,FUN_0005E05E,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x5E0E0,FUN_0005E0E0,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x5E204,FUN_0005E204,,1,unref,unknown subsystem; touches 1 calibration item(s); roles: unref
+0x6406A,FUN_0006406A,,1,unref,unknown subsystem; touches 1 calibration item(s); roles: unref
+0x64506,FUN_00064506,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x6463C,FUN_0006463C,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x64698,FUN_00064698,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x646C8,FUN_000646C8,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x6471E,FUN_0006471E,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x648A6,FUN_000648A6,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x648F2,FUN_000648F2,,1,unref,unknown subsystem; touches 1 calibration item(s); roles: unref
+0x64B28,FUN_00064B28,,19,operand,unknown subsystem; touches 19 calibration item(s); roles: operand
+0x64EC4,FUN_00064EC4,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x64F82,FUN_00064F82,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x65072,FUN_00065072,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x650D0,FUN_000650D0,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x65128,FUN_00065128,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x6516A,FUN_0006516A,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x651AC,FUN_000651AC,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x65218,FUN_00065218,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x653B6,FUN_000653B6,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x656C0,FUN_000656C0,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x656EC,FUN_000656EC,,4,threshold,unknown subsystem; touches 4 calibration item(s); roles: threshold
+0x6574E,FUN_0006574E,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x6577A,FUN_0006577A,,4,operand,unknown subsystem; touches 4 calibration item(s); roles: operand
+0x657EA,FUN_000657EA,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x6581A,FUN_0006581A,,5,"threshold, flag-test","unknown subsystem; touches 5 calibration item(s); roles: threshold, flag-test"
+0x65898,FUN_00065898,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x658C4,FUN_000658C4,,4,threshold,unknown subsystem; touches 4 calibration item(s); roles: threshold
+0x65926,FUN_00065926,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x65952,FUN_00065952,,4,operand,unknown subsystem; touches 4 calibration item(s); roles: operand
+0x659E2,FUN_000659E2,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x65A6A,FUN_00065A6A,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x65B08,FUN_00065B08,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x65C2E,FUN_00065C2E,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x65CDE,FUN_00065CDE,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x65DD8,FUN_00065DD8,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x65DFE,FUN_00065DFE,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x65E24,FUN_00065E24,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x65E4A,FUN_00065E4A,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x65E70,FUN_00065E70,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x65E96,FUN_00065E96,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x65F54,FUN_00065F54,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x65FEA,FUN_00065FEA,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x660A8,FUN_000660A8,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x6613E,FUN_0006613E,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x661AA,FUN_000661AA,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x661D0,FUN_000661D0,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x66204,FUN_00066204,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x66266,FUN_00066266,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x66290,FUN_00066290,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x66394,FUN_00066394,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x663C2,FUN_000663C2,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x66452,FUN_00066452,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x6659A,FUN_0006659A,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x665CE,FUN_000665CE,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x6660C,FUN_0006660C,EVAP Purge (decoded),2,operand,EVAP Purge (decoded) subsystem; touches 2 calibration item(s); roles: operand
+0x66868,FUN_00066868,,7,operand,unknown subsystem; touches 7 calibration item(s); roles: operand
+0x66A84,FUN_00066A84,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x66AEE,FUN_00066AEE,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x66CF2,FUN_00066CF2,,4,operand,unknown subsystem; touches 4 calibration item(s); roles: operand
+0x66EEC,FUN_00066EEC,,4,operand,unknown subsystem; touches 4 calibration item(s); roles: operand
+0x67018,FUN_00067018,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x670DE,FUN_000670DE,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x67750,FUN_00067750,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x67820,FUN_00067820,,2,"operand, bitmask","unknown subsystem; touches 2 calibration item(s); roles: operand, bitmask"
+0x679F8,FUN_000679F8,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x67A60,FUN_00067A60,,2,"operand, threshold","unknown subsystem; touches 2 calibration item(s); roles: operand, threshold"
+0x67B38,FUN_00067B38,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x67B7A,FUN_00067B7A,,2,flag-test,unknown subsystem; touches 2 calibration item(s); roles: flag-test
+0x67BC0,FUN_00067BC0,,7,operand,unknown subsystem; touches 7 calibration item(s); roles: operand
+0x67CF4,FUN_00067CF4,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x67D6A,FUN_00067D6A,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x67DC4,FUN_00067DC4,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x67F72,FUN_00067F72,,3,threshold,unknown subsystem; touches 3 calibration item(s); roles: threshold
+0x67FFC,FUN_00067FFC,,4,operand,unknown subsystem; touches 4 calibration item(s); roles: operand
+0x680AE,FUN_000680AE,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x681D4,FUN_000681D4,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x68204,FUN_00068204,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x68252,FUN_00068252,,9,"threshold, operand, gain","unknown subsystem; touches 9 calibration item(s); roles: threshold, operand, gain"
+0x6836A,FUN_0006836A,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x6A55C,FUN_0006A55C,,8,"operand, unref","unknown subsystem; touches 8 calibration item(s); roles: operand, unref"
+0x6D3C4,FUN_0006D3C4,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x6D4CC,FUN_0006D4CC,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x6D7DA,FUN_0006D7DA,,4,operand,unknown subsystem; touches 4 calibration item(s); roles: operand
+0x6D850,FUN_0006D850,,4,operand,unknown subsystem; touches 4 calibration item(s); roles: operand
+0x6DC64,FUN_0006DC64,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x6E02C,FUN_0006E02C,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x6E150,FUN_0006E150,Sensor :: ECT Conversion (ADC -&gt; deg C) | Main,21,operand,Sensor :: ECT Conversion (ADC -&gt; deg C) | Main subsystem; touches 21 calibration item(s); roles: operand
+0x6E2DE,FUN_0006E2DE,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x6E36C,FUN_0006E36C,,36,"operand, threshold","unknown subsystem; touches 36 calibration item(s); roles: operand, threshold"
+0x76D7E,FUN_00076D7E,,7,operand,unknown subsystem; touches 7 calibration item(s); roles: operand
+0x76E5A,FUN_00076E5A,,6,"operand, threshold","unknown subsystem; touches 6 calibration item(s); roles: operand, threshold"
+0x76EE4,FUN_00076EE4,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x76FDA,FUN_00076FDA,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x7708A,FUN_0007708A,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x77192,FUN_00077192,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x772C6,FUN_000772C6,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x77370,FUN_00077370,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x7766E,FUN_0007766E,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x7770C,FUN_0007770C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x77732,FUN_00077732,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x777A8,FUN_000777A8,,4,operand,unknown subsystem; touches 4 calibration item(s); roles: operand
+0x7790A,FUN_0007790A,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x779AE,FUN_000779AE,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x779D6,FUN_000779D6,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x77A8C,FUN_00077A8C,,3,"operand, threshold","unknown subsystem; touches 3 calibration item(s); roles: operand, threshold"
+0x77C18,FUN_00077C18,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x77CC0,FUN_00077CC0,,4,"operand, threshold","unknown subsystem; touches 4 calibration item(s); roles: operand, threshold"
+0x77D50,FUN_00077D50,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x77DC2,FUN_00077DC2,Steering Damper (ESD) (decoded),7,"threshold, operand","Steering Damper (ESD) (decoded) subsystem; touches 7 calibration item(s); roles: threshold, operand"
+0x77F14,FUN_00077F14,,3,"operand, threshold","unknown subsystem; touches 3 calibration item(s); roles: operand, threshold"
+0x78058,FUN_00078058,,8,"operand, unref, threshold","unknown subsystem; touches 8 calibration item(s); roles: operand, unref, threshold"
+0x78214,FUN_00078214,,6,"operand, gain","unknown subsystem; touches 6 calibration item(s); roles: operand, gain"
+0x782CC,FUN_000782CC,Speed Monitor :: Threshold vs Rear Wheel Speed,2,threshold,Speed Monitor :: Threshold vs Rear Wheel Speed subsystem; touches 2 calibration item(s); roles: threshold
+0x78308,FUN_00078308,Steering Damper (ESD) (decoded),3,operand,Steering Damper (ESD) (decoded) subsystem; touches 3 calibration item(s); roles: operand
+0x783EC,FUN_000783EC,,2,"operand, threshold","unknown subsystem; touches 2 calibration item(s); roles: operand, threshold"
+0x7843C,FUN_0007843C,,2,"operand, threshold","unknown subsystem; touches 2 calibration item(s); roles: operand, threshold"
+0x78534,FUN_00078534,,6,operand,unknown subsystem; touches 6 calibration item(s); roles: operand
+0x7864A,FUN_0007864A,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x7872E,FUN_0007872E,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x78744,FUN_00078744,,1,gain,unknown subsystem; touches 1 calibration item(s); roles: gain
+0x78776,FUN_00078776,,1,gain,unknown subsystem; touches 1 calibration item(s); roles: gain
+0x787C2,FUN_000787C2,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x78858,FUN_00078858,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x78942,FUN_00078942,Ride Mode Presets,7,"unref, operand","Ride Mode Presets subsystem; touches 7 calibration item(s); roles: unref, operand"
+0x7899C,FUN_0007899C,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x78A26,FUN_00078A26,,4,"operand, gain","unknown subsystem; touches 4 calibration item(s); roles: operand, gain"
+0x78AE0,FUN_00078AE0,,5,"operand, threshold","unknown subsystem; touches 5 calibration item(s); roles: operand, threshold"
+0x78CB8,FUN_00078CB8,,4,operand,unknown subsystem; touches 4 calibration item(s); roles: operand
+0x78DD4,FUN_00078DD4,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x78E9A,FUN_00078E9A,,4,operand,unknown subsystem; touches 4 calibration item(s); roles: operand
+0x78FFC,FUN_00078FFC,Speed Monitor :: Threshold vs Rear Wheel Speed,1,threshold,Speed Monitor :: Threshold vs Rear Wheel Speed subsystem; touches 1 calibration item(s); roles: threshold
+0x7902E,FUN_0007902E,,3,"operand, threshold","unknown subsystem; touches 3 calibration item(s); roles: operand, threshold"
+0x79124,FUN_00079124,Speed Monitor :: Threshold vs Rear Wheel Speed,2,operand,Speed Monitor :: Threshold vs Rear Wheel Speed subsystem; touches 2 calibration item(s); roles: operand
+0x7919A,FUN_0007919A,Ride Mode Presets,3,operand,Ride Mode Presets subsystem; touches 3 calibration item(s); roles: operand
+0x79384,FUN_00079384,,4,operand,unknown subsystem; touches 4 calibration item(s); roles: operand
+0x79CBA,FUN_00079CBA,,3,threshold,unknown subsystem; touches 3 calibration item(s); roles: threshold
+0x79DFE,FUN_00079DFE,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x79E38,FUN_00079E38,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x7A2C0,FUN_0007A2C0,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x7A3C8,FUN_0007A3C8,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x7A684,FUN_0007A684,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x7A96E,FUN_0007A96E,Speed Monitor :: Threshold vs Rear Wheel Speed,1,operand,Speed Monitor :: Threshold vs Rear Wheel Speed subsystem; touches 1 calibration item(s); roles: operand
+0x7AA22,FUN_0007AA22,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x7AA60,FUN_0007AA60,Speed Monitor :: Threshold vs Rear Wheel Speed,2,operand,Speed Monitor :: Threshold vs Rear Wheel Speed subsystem; touches 2 calibration item(s); roles: operand
+0x7ABAE,FUN_0007ABAE,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x7ABF8,FUN_0007ABF8,Speed Monitor :: Threshold vs Rear Wheel Speed,4,operand,Speed Monitor :: Threshold vs Rear Wheel Speed subsystem; touches 4 calibration item(s); roles: operand
+0x7ADC4,FUN_0007ADC4,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x7ADF0,FUN_0007ADF0,,3,"operand, gain","unknown subsystem; touches 3 calibration item(s); roles: operand, gain"
+0x7AE92,FUN_0007AE92,,1,bitmask,unknown subsystem; touches 1 calibration item(s); roles: bitmask
+0x7AF2C,FUN_0007AF2C,Sensor Scaling,2,operand,Sensor Scaling subsystem; touches 2 calibration item(s); roles: operand
+0x7AFB4,FUN_0007AFB4,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x7B020,FUN_0007B020,,4,threshold,unknown subsystem; touches 4 calibration item(s); roles: threshold
+0x7B378,FUN_0007B378,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x7B8CE,FUN_0007B8CE,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x7B8F6,FUN_0007B8F6,,6,"operand, unref","unknown subsystem; touches 6 calibration item(s); roles: operand, unref"
+0x7BBCA,FUN_0007BBCA,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x7BC2E,FUN_0007BC2E,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x7BC84,FUN_0007BC84,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x7BCC2,FUN_0007BCC2,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x7BD00,FUN_0007BD00,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x7BD4C,FUN_0007BD4C,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x7BD8A,FUN_0007BD8A,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x7BDC8,FUN_0007BDC8,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x7C04A,FUN_0007C04A,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x7C2F0,FUN_0007C2F0,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x7C3B8,FUN_0007C3B8,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x7C57E,FUN_0007C57E,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x7C606,FUN_0007C606,,3,"threshold, operand, unref","unknown subsystem; touches 3 calibration item(s); roles: threshold, operand, unref"
+0x7C914,FUN_0007C914,,8,operand,unknown subsystem; touches 8 calibration item(s); roles: operand
+0x7CA0C,FUN_0007CA0C,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x7CBFC,FUN_0007CBFC,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x7CDD4,FUN_0007CDD4,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x7CFC4,FUN_0007CFC4,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x7D0E0,FUN_0007D0E0,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x7D1C6,FUN_0007D1C6,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x7D38C,FUN_0007D38C,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x7D4C0,FUN_0007D4C0,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x7D5BA,FUN_0007D5BA,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x7D64C,FUN_0007D64C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x7D6DE,FUN_0007D6DE,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x7D72A,FUN_0007D72A,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x7D7F0,FUN_0007D7F0,,1,gain,unknown subsystem; touches 1 calibration item(s); roles: gain
+0x7D87C,FUN_0007D87C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x7DC22,FUN_0007DC22,,28,"operand, gain","unknown subsystem; touches 28 calibration item(s); roles: operand, gain"
+0x7DE8A,FUN_0007DE8A,,1,gain,unknown subsystem; touches 1 calibration item(s); roles: gain
+0x7DF04,FUN_0007DF04,,1,bitmask,unknown subsystem; touches 1 calibration item(s); roles: bitmask
+0x7E75C,FUN_0007E75C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x7F034,FUN_0007F034,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x80148,FUN_00080148,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x80198,FUN_00080198,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x802CE,FUN_000802CE,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x8155E,FUN_0008155E,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x815C8,FUN_000815C8,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x81854,FUN_00081854,,4,"threshold, operand","unknown subsystem; touches 4 calibration item(s); roles: threshold, operand"
+0x81940,FUN_00081940,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x819DC,FUN_000819DC,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x81A58,FUN_00081A58,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x81AE4,FUN_00081AE4,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x81B1C,FUN_00081B1C,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x81BD8,FUN_00081BD8,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x81C94,FUN_00081C94,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x81D7A,FUN_00081D7A,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x81E0E,FUN_00081E0E,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x81ECC,FUN_00081ECC,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x81F8A,FUN_00081F8A,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x82072,FUN_00082072,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x82182,FUN_00082182,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x822FA,FUN_000822FA,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x82622,FUN_00082622,,2,"operand, offset","unknown subsystem; touches 2 calibration item(s); roles: operand, offset"
+0x82722,FUN_00082722,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x82860,FUN_00082860,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x828B0,FUN_000828B0,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x82966,FUN_00082966,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x82A04,FUN_00082A04,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x82AAC,FUN_00082AAC,,1,bitmask,unknown subsystem; touches 1 calibration item(s); roles: bitmask
+0x82ADE,FUN_00082ADE,,1,bitmask,unknown subsystem; touches 1 calibration item(s); roles: bitmask
+0x82B54,FUN_00082B54,,1,bitmask,unknown subsystem; touches 1 calibration item(s); roles: bitmask
+0x82B86,FUN_00082B86,,1,bitmask,unknown subsystem; touches 1 calibration item(s); roles: bitmask
+0x82CBA,FUN_00082CBA,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x82D40,FUN_00082D40,,1,bitmask,unknown subsystem; touches 1 calibration item(s); roles: bitmask
+0x82DBE,FUN_00082DBE,Sensor Scaling,1,operand,Sensor Scaling subsystem; touches 1 calibration item(s); roles: operand
+0x82E1C,FUN_00082E1C,Sensor Scaling,1,operand,Sensor Scaling subsystem; touches 1 calibration item(s); roles: operand
+0x82F5A,FUN_00082F5A,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x83014,FUN_00083014,Sensor Scaling,2,operand,Sensor Scaling subsystem; touches 2 calibration item(s); roles: operand
+0x83094,FUN_00083094,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x83140,FUN_00083140,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x831B8,FUN_000831B8,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x831E8,FUN_000831E8,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x836C6,FUN_000836C6,,3,"operand, gain","unknown subsystem; touches 3 calibration item(s); roles: operand, gain"
+0x8377C,FUN_0008377C,,4,operand,unknown subsystem; touches 4 calibration item(s); roles: operand
+0x838CC,FUN_000838CC,,1,bitmask,unknown subsystem; touches 1 calibration item(s); roles: bitmask
+0x838FE,FUN_000838FE,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x83982,FUN_00083982,,3,"gain, operand, bitmask","unknown subsystem; touches 3 calibration item(s); roles: gain, operand, bitmask"
+0x83C1C,FUN_00083C1C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x83C4E,FUN_00083C4E,,1,gain,unknown subsystem; touches 1 calibration item(s); roles: gain
+0x83C98,FUN_00083C98,,1,gain,unknown subsystem; touches 1 calibration item(s); roles: gain
+0x83CD6,FUN_00083CD6,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x83D42,FUN_00083D42,,1,gain,unknown subsystem; touches 1 calibration item(s); roles: gain
+0x845D0,FUN_000845D0,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x847B0,FUN_000847B0,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x847DC,FUN_000847DC,,9,operand,unknown subsystem; touches 9 calibration item(s); roles: operand
+0x84A6C,FUN_00084A6C,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x84C06,FUN_00084C06,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x84CD0,FUN_00084CD0,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x84DC0,FUN_00084DC0,Sensor :: ECT Conversion (ADC -&gt; deg C) | Main,2,gain,Sensor :: ECT Conversion (ADC -&gt; deg C) | Main subsystem; touches 2 calibration item(s); roles: gain
+0x8525C,FUN_0008525C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x85356,FUN_00085356,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x853A8,FUN_000853A8,,8,operand,unknown subsystem; touches 8 calibration item(s); roles: operand
+0x85576,FUN_00085576,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x85840,FUN_00085840,,2,"operand, offset","unknown subsystem; touches 2 calibration item(s); roles: operand, offset"
+0x858C8,FUN_000858C8,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x8591A,FUN_0008591A,,8,operand,unknown subsystem; touches 8 calibration item(s); roles: operand
+0x85BCE,FUN_00085BCE,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x85E60,FUN_00085E60,,1,bitmask,unknown subsystem; touches 1 calibration item(s); roles: bitmask
+0x85F40,FUN_00085F40,,3,"operand, offset","unknown subsystem; touches 3 calibration item(s); roles: operand, offset"
+0x85FDE,FUN_00085FDE,,3,"operand, offset","unknown subsystem; touches 3 calibration item(s); roles: operand, offset"
+0x8605A,FUN_0008605A,,1,bitmask,unknown subsystem; touches 1 calibration item(s); roles: bitmask
+0x8617C,FUN_0008617C,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x8621A,FUN_0008621A,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x86306,FUN_00086306,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x86344,FUN_00086344,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x863AA,FUN_000863AA,,7,"operand, threshold","unknown subsystem; touches 7 calibration item(s); roles: operand, threshold"
+0x8651C,FUN_0008651C,,7,"operand, threshold","unknown subsystem; touches 7 calibration item(s); roles: operand, threshold"
+0x86796,FUN_00086796,,3,"threshold, operand","unknown subsystem; touches 3 calibration item(s); roles: threshold, operand"
+0x8680C,FUN_0008680C,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x86872,FUN_00086872,Traction Control,3,operand,Traction Control subsystem; touches 3 calibration item(s); roles: operand
+0x86928,FUN_00086928,Traction Control,1,operand,Traction Control subsystem; touches 1 calibration item(s); roles: operand
+0x869C8,FUN_000869C8,Sensor :: ECT Conversion (ADC -&gt; deg C) | Main,3,"operand, threshold","Sensor :: ECT Conversion (ADC -&gt; deg C) | Main subsystem; touches 3 calibration item(s); roles: operand, threshold"
+0x86AAC,FUN_00086AAC,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x86C52,FUN_00086C52,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x86CF0,FUN_00086CF0,Traction Control,2,gain,Traction Control subsystem; touches 2 calibration item(s); roles: gain
+0x86F14,FUN_00086F14,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x86FFA,FUN_00086FFA,Sensor :: ECT Conversion (ADC -&gt; deg C) | Main,1,operand,Sensor :: ECT Conversion (ADC -&gt; deg C) | Main subsystem; touches 1 calibration item(s); roles: operand
+0x870C8,FUN_000870C8,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x871B0,FUN_000871B0,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x8725A,FUN_0008725A,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x87292,FUN_00087292,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x87A94,FUN_00087A94,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x87BC8,FUN_00087BC8,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x87C7A,FUN_00087C7A,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x883FC,FUN_000883FC,,5,"operand, threshold","unknown subsystem; touches 5 calibration item(s); roles: operand, threshold"
+0x884AA,FUN_000884AA,,5,operand,unknown subsystem; touches 5 calibration item(s); roles: operand
+0x8865C,FUN_0008865C,,1,gain,unknown subsystem; touches 1 calibration item(s); roles: gain
+0x886A2,FUN_000886A2,,1,gain,unknown subsystem; touches 1 calibration item(s); roles: gain
+0x886FA,FUN_000886FA,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x88848,FUN_00088848,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x88F6A,FUN_00088F6A,,6,"threshold, operand","unknown subsystem; touches 6 calibration item(s); roles: threshold, operand"
+0x89338,FUN_00089338,,18,"operand, offset","unknown subsystem; touches 18 calibration item(s); roles: operand, offset"
+0x89540,FUN_00089540,,10,"operand, gain","unknown subsystem; touches 10 calibration item(s); roles: operand, gain"
+0x896DC,FUN_000896DC,,2,"bitmask, operand","unknown subsystem; touches 2 calibration item(s); roles: bitmask, operand"
+0x897E4,FUN_000897E4,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x898B2,FUN_000898B2,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x89B54,FUN_00089B54,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x89C86,FUN_00089C86,,6,"operand, bitmask","unknown subsystem; touches 6 calibration item(s); roles: operand, bitmask"
+0x89F1C,FUN_00089F1C,,1,gain,unknown subsystem; touches 1 calibration item(s); roles: gain
+0x89F88,FUN_00089F88,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x8A08A,FUN_0008A08A,,2,"bitmask, operand","unknown subsystem; touches 2 calibration item(s); roles: bitmask, operand"
+0x8A118,FUN_0008A118,Sensor :: ECT Conversion (ADC -&gt; deg C) | Main,1,threshold,Sensor :: ECT Conversion (ADC -&gt; deg C) | Main subsystem; touches 1 calibration item(s); roles: threshold
+0x8A240,FUN_0008A240,,2,"gain, operand","unknown subsystem; touches 2 calibration item(s); roles: gain, operand"
+0x8A298,FUN_0008A298,,1,bitmask,unknown subsystem; touches 1 calibration item(s); roles: bitmask
+0x8A2E2,FUN_0008A2E2,,13,threshold,unknown subsystem; touches 13 calibration item(s); roles: threshold
+0x8A400,FUN_0008A400,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x8A420,FUN_0008A420,,1,bitmask,unknown subsystem; touches 1 calibration item(s); roles: bitmask
+0x8A606,FUN_0008A606,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x8A71A,FUN_0008A71A,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x8A7BA,FUN_0008A7BA,,9,"operand, threshold, gain","unknown subsystem; touches 9 calibration item(s); roles: operand, threshold, gain"
+0x8A854,FUN_0008A854,,2,gain,unknown subsystem; touches 2 calibration item(s); roles: gain
+0x8A87E,FUN_0008A87E,,8,operand,unknown subsystem; touches 8 calibration item(s); roles: operand
+0x8A91C,FUN_0008A91C,Throttle By Wire,3,operand,Throttle By Wire subsystem; touches 3 calibration item(s); roles: operand
+0x8AA9E,FUN_0008AA9E,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x8AAE8,FUN_0008AAE8,,1,gain,unknown subsystem; touches 1 calibration item(s); roles: gain
+0x8AB46,FUN_0008AB46,,5,"gain, operand","unknown subsystem; touches 5 calibration item(s); roles: gain, operand"
+0x8ABBE,FUN_0008ABBE,,26,operand,unknown subsystem; touches 26 calibration item(s); roles: operand
+0x8AE3E,FUN_0008AE3E,Throttle By Wire,2,operand,Throttle By Wire subsystem; touches 2 calibration item(s); roles: operand
+0x8AEF2,FUN_0008AEF2,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x8AF64,FUN_0008AF64,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x8AFE0,FUN_0008AFE0,Throttle By Wire,1,operand,Throttle By Wire subsystem; touches 1 calibration item(s); roles: operand
+0x8B388,FUN_0008B388,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x8B4DC,FUN_0008B4DC,,2,"operand, threshold","unknown subsystem; touches 2 calibration item(s); roles: operand, threshold"
+0x8B5D8,FUN_0008B5D8,,5,"operand, threshold","unknown subsystem; touches 5 calibration item(s); roles: operand, threshold"
+0x8B6F4,FUN_0008B6F4,,5,operand,unknown subsystem; touches 5 calibration item(s); roles: operand
+0x8B81A,FUN_0008B81A,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x8B8B6,FUN_0008B8B6,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x8B98A,FUN_0008B98A,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x8BA66,FUN_0008BA66,,5,operand,unknown subsystem; touches 5 calibration item(s); roles: operand
+0x8BB74,FUN_0008BB74,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0x8BE2C,FUN_0008BE2C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x8BECE,FUN_0008BECE,ETV :: QS RPM Scaling vs Ride Mode,1,operand,ETV :: QS RPM Scaling vs Ride Mode subsystem; touches 1 calibration item(s); roles: operand
+0x8BF00,FUN_0008BF00,ETV :: QS RPM Scaling vs Ride Mode,1,operand,ETV :: QS RPM Scaling vs Ride Mode subsystem; touches 1 calibration item(s); roles: operand
+0x8C0DE,FUN_0008C0DE,,1,gain,unknown subsystem; touches 1 calibration item(s); roles: gain
+0x8C12C,FUN_0008C12C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x8C214,FUN_0008C214,ETV :: QS RPM Scaling vs Ride Mode,1,operand,ETV :: QS RPM Scaling vs Ride Mode subsystem; touches 1 calibration item(s); roles: operand
+0x8C2D6,FUN_0008C2D6,,12,operand,unknown subsystem; touches 12 calibration item(s); roles: operand
+0x8C4D4,FUN_0008C4D4,ETV :: QS RPM Scaling vs Ride Mode,1,operand,ETV :: QS RPM Scaling vs Ride Mode subsystem; touches 1 calibration item(s); roles: operand
+0x8C520,FUN_0008C520,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x8C58E,FUN_0008C58E,ETV :: QS RPM Scaling vs Ride Mode,5,operand,ETV :: QS RPM Scaling vs Ride Mode subsystem; touches 5 calibration item(s); roles: operand
+0x8C6FA,FUN_0008C6FA,,4,"operand, threshold","unknown subsystem; touches 4 calibration item(s); roles: operand, threshold"
+0x8C7B0,FUN_0008C7B0,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x8C7FA,FUN_0008C7FA,Throttle By Wire,2,operand,Throttle By Wire subsystem; touches 2 calibration item(s); roles: operand
+0x8C86E,FUN_0008C86E,Throttle By Wire,2,operand,Throttle By Wire subsystem; touches 2 calibration item(s); roles: operand
+0x8CA2C,FUN_0008CA2C,,2,"operand, unref","unknown subsystem; touches 2 calibration item(s); roles: operand, unref"
+0x8CA7C,FUN_0008CA7C,,5,"operand, threshold","unknown subsystem; touches 5 calibration item(s); roles: operand, threshold"
+0x8CF78,FUN_0008CF78,,4,operand,unknown subsystem; touches 4 calibration item(s); roles: operand
+0x8D48C,FUN_0008D48C,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x8D5EA,FUN_0008D5EA,,1,unref,unknown subsystem; touches 1 calibration item(s); roles: unref
+0x8D70A,FUN_0008D70A,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x8DF54,FUN_0008DF54,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x8E040,FUN_0008E040,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x8E4BE,FUN_0008E4BE,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x8E514,FUN_0008E514,,2,"operand, threshold","unknown subsystem; touches 2 calibration item(s); roles: operand, threshold"
+0x8E6E0,FUN_0008E6E0,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x8E7AC,FUN_0008E7AC,ETV Monitor :: Limit vs RPM | Set A,2,operand,ETV Monitor :: Limit vs RPM | Set A subsystem; touches 2 calibration item(s); roles: operand
+0x8E7EA,FUN_0008E7EA,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x8E82E,FUN_0008E82E,,3,"gain, threshold","unknown subsystem; touches 3 calibration item(s); roles: gain, threshold"
+0x8E86E,FUN_0008E86E,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x8E8CC,FUN_0008E8CC,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x8E90A,FUN_0008E90A,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0x8E95E,FUN_0008E95E,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x8E9B0,FUN_0008E9B0,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x8EAAC,FUN_0008EAAC,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x8EAF6,FUN_0008EAF6,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x8EB78,FUN_0008EB78,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x8EBD4,FUN_0008EBD4,,4,threshold,unknown subsystem; touches 4 calibration item(s); roles: threshold
+0x8EC0E,FUN_0008EC0E,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x8EC5E,FUN_0008EC5E,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x8EC8E,FUN_0008EC8E,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x8ED0A,FUN_0008ED0A,,2,"threshold, offset","unknown subsystem; touches 2 calibration item(s); roles: threshold, offset"
+0x8ED34,FUN_0008ED34,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x8ED5E,FUN_0008ED5E,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x8ED9C,FUN_0008ED9C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x8EDF6,FUN_0008EDF6,ETV Monitor :: Limit vs RPM | Set A,1,threshold,ETV Monitor :: Limit vs RPM | Set A subsystem; touches 1 calibration item(s); roles: threshold
+0x8EE28,FUN_0008EE28,ETV Monitor :: Limit vs RPM | Set A,1,threshold,ETV Monitor :: Limit vs RPM | Set A subsystem; touches 1 calibration item(s); roles: threshold
+0x8F092,FUN_0008F092,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x8F176,FUN_0008F176,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x8F194,FUN_0008F194,,2,"gain, operand","unknown subsystem; touches 2 calibration item(s); roles: gain, operand"
+0x8F520,FUN_0008F520,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x8F5A0,FUN_0008F5A0,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x8F82A,FUN_0008F82A,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x91370,FUN_00091370,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x91ED6,FUN_00091ED6,,7,operand,unknown subsystem; touches 7 calibration item(s); roles: operand
+0x926B4,FUN_000926B4,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x92A86,FUN_00092A86,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x92D24,FUN_00092D24,,6,"unref, operand","unknown subsystem; touches 6 calibration item(s); roles: unref, operand"
+0x94596,FUN_00094596,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x948F4,FUN_000948F4,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x9553E,FUN_0009553E,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x96046,FUN_00096046,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x963BE,FUN_000963BE,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x96DDC,FUN_00096DDC,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x97EC4,FUN_00097EC4,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x982BE,FUN_000982BE,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x985C4,FUN_000985C4,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x9886A,FUN_0009886A,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x9990C,FUN_0009990C,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x99F3A,FUN_00099F3A,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x9A316,FUN_0009A316,,2,unref,unknown subsystem; touches 2 calibration item(s); roles: unref
+0x9A828,FUN_0009A828,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x9C2B2,FUN_0009C2B2,,3,"threshold, operand","unknown subsystem; touches 3 calibration item(s); roles: threshold, operand"
+0x9C5C0,FUN_0009C5C0,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x9D03C,FUN_0009D03C,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x9D09A,FUN_0009D09A,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x9D480,FUN_0009D480,,6,operand,unknown subsystem; touches 6 calibration item(s); roles: operand
+0x9D702,FUN_0009D702,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x9D758,FUN_0009D758,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x9D896,FUN_0009D896,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x9E422,FUN_0009E422,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x9E4E8,FUN_0009E4E8,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0x9E5C4,FUN_0009E5C4,,2,"operand, unref","unknown subsystem; touches 2 calibration item(s); roles: operand, unref"
+0x9E5F0,FUN_0009E5F0,,4,unref,unknown subsystem; touches 4 calibration item(s); roles: unref
+0x9E710,FUN_0009E710,,1,gain,unknown subsystem; touches 1 calibration item(s); roles: gain
+0x9E7D6,FUN_0009E7D6,,4,operand,unknown subsystem; touches 4 calibration item(s); roles: operand
+0x9E904,FUN_0009E904,,4,operand,unknown subsystem; touches 4 calibration item(s); roles: operand
+0x9E97E,FUN_0009E97E,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0x9EC64,FUN_0009EC64,,4,operand,unknown subsystem; touches 4 calibration item(s); roles: operand
+0x9F302,FUN_0009F302,,30,"threshold, operand","unknown subsystem; touches 30 calibration item(s); roles: threshold, operand"
+0x9F5EA,FUN_0009F5EA,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0x9F862,FUN_0009F862,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0x9FA14,FUN_0009FA14,,9,"unref, flag-test","unknown subsystem; touches 9 calibration item(s); roles: unref, flag-test"
+0xA004A,FUN_000A004A,,16,operand,unknown subsystem; touches 16 calibration item(s); roles: operand
+0xA0126,FUN_000A0126,,16,operand,unknown subsystem; touches 16 calibration item(s); roles: operand
+0xA039C,FUN_000A039C,,16,operand,unknown subsystem; touches 16 calibration item(s); roles: operand
+0xA04A0,FUN_000A04A0,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xA0588,FUN_000A0588,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0xA05B6,FUN_000A05B6,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0xA05E4,FUN_000A05E4,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0xA0D62,FUN_000A0D62,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xA0E06,FUN_000A0E06,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0xA0E2E,FUN_000A0E2E,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xA0E44,FUN_000A0E44,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0xA0E66,FUN_000A0E66,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0xA0FAC,FUN_000A0FAC,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0xA0FD4,FUN_000A0FD4,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xA0FEA,FUN_000A0FEA,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xA1000,FUN_000A1000,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0xA1022,FUN_000A1022,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0xA104A,FUN_000A104A,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0xA128E,FUN_000A128E,,2,"gain, operand","unknown subsystem; touches 2 calibration item(s); roles: gain, operand"
+0xA25CA,FUN_000A25CA,,3,"unref, operand","unknown subsystem; touches 3 calibration item(s); roles: unref, operand"
+0xA26DA,FUN_000A26DA,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xA26E4,FUN_000A26E4,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xA3608,FUN_000A3608,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xA365E,FUN_000A365E,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xA36BE,FUN_000A36BE,,2,"operand, unref","unknown subsystem; touches 2 calibration item(s); roles: operand, unref"
+0xA36DE,FUN_000A36DE,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xA3B02,FUN_000A3B02,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0xA3B96,FUN_000A3B96,,5,operand,unknown subsystem; touches 5 calibration item(s); roles: operand
+0xA40E2,FUN_000A40E2,,2,"operand, unref","unknown subsystem; touches 2 calibration item(s); roles: operand, unref"
+0xA4634,FUN_000A4634,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xA46CE,FUN_000A46CE,,2,"operand, unref","unknown subsystem; touches 2 calibration item(s); roles: operand, unref"
+0xA475C,FUN_000A475C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xA63EA,FUN_000A63EA,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0xA6412,FUN_000A6412,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0xA6488,FUN_000A6488,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0xA6504,FUN_000A6504,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0xA70BA,FUN_000A70BA,,1,flag-test,unknown subsystem; touches 1 calibration item(s); roles: flag-test
+0xA7A6E,FUN_000A7A6E,,3,"threshold, flag-test, operand","unknown subsystem; touches 3 calibration item(s); roles: threshold, flag-test, operand"
+0xA7AD6,FUN_000A7AD6,,4,operand,unknown subsystem; touches 4 calibration item(s); roles: operand
+0xA7B9E,FUN_000A7B9E,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0xA7C44,FUN_000A7C44,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0xA7C80,FUN_000A7C80,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0xA7CBC,FUN_000A7CBC,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0xA7FF2,FUN_000A7FF2,,8,"operand, threshold","unknown subsystem; touches 8 calibration item(s); roles: operand, threshold"
+0xA80A6,FUN_000A80A6,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0xA8152,FUN_000A8152,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0xA8316,FUN_000A8316,,2,"flag-test, operand","unknown subsystem; touches 2 calibration item(s); roles: flag-test, operand"
+0xA835E,FUN_000A835E,,2,"unref, flag-test","unknown subsystem; touches 2 calibration item(s); roles: unref, flag-test"
+0xA83FA,FUN_000A83FA,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0xA85A4,FUN_000A85A4,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xA8674,FUN_000A8674,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xA87C4,FUN_000A87C4,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xA88CE,FUN_000A88CE,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xA8984,FUN_000A8984,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xA8B42,FUN_000A8B42,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xA8C08,FUN_000A8C08,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xA8C28,FUN_000A8C28,,2,"flag-test, operand","unknown subsystem; touches 2 calibration item(s); roles: flag-test, operand"
+0xA8CE6,FUN_000A8CE6,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xA8FB4,FUN_000A8FB4,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0xA9362,FUN_000A9362,,1,unref,unknown subsystem; touches 1 calibration item(s); roles: unref
+0xA94F6,FUN_000A94F6,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xA957E,FUN_000A957E,,1,flag-test,unknown subsystem; touches 1 calibration item(s); roles: flag-test
+0xA962C,FUN_000A962C,,8,"operand, threshold","unknown subsystem; touches 8 calibration item(s); roles: operand, threshold"
+0xA9B3E,FUN_000A9B3E,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xA9BBE,FUN_000A9BBE,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0xA9DF6,FUN_000A9DF6,,1,flag-test,unknown subsystem; touches 1 calibration item(s); roles: flag-test
+0xAA040,FUN_000AA040,,1,unref,unknown subsystem; touches 1 calibration item(s); roles: unref
+0xAA176,FUN_000AA176,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xAA83E,FUN_000AA83E,,1,offset,unknown subsystem; touches 1 calibration item(s); roles: offset
+0xAA9AA,FUN_000AA9AA,,4,"operand, unref","unknown subsystem; touches 4 calibration item(s); roles: operand, unref"
+0xAACA2,FUN_000AACA2,,1,unref,unknown subsystem; touches 1 calibration item(s); roles: unref
+0xAB746,FUN_000AB746,,1,bitmask,unknown subsystem; touches 1 calibration item(s); roles: bitmask
+0xABC00,FUN_000ABC00,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xABF66,FUN_000ABF66,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xAC046,FUN_000AC046,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0xAC272,FUN_000AC272,,2,"unref, threshold","unknown subsystem; touches 2 calibration item(s); roles: unref, threshold"
+0xAC32A,FUN_000AC32A,,8,"unref, threshold, gain","unknown subsystem; touches 8 calibration item(s); roles: unref, threshold, gain"
+0xAC3CC,FUN_000AC3CC,,2,"operand, unref","unknown subsystem; touches 2 calibration item(s); roles: operand, unref"
+0xAC50A,FUN_000AC50A,,2,"flag-test, unref","unknown subsystem; touches 2 calibration item(s); roles: flag-test, unref"
+0xAC800,FUN_000AC800,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0xACA9A,FUN_000ACA9A,,1,flag-test,unknown subsystem; touches 1 calibration item(s); roles: flag-test
+0xACDD8,FUN_000ACDD8,,1,unref,unknown subsystem; touches 1 calibration item(s); roles: unref
+0xACE8E,FUN_000ACE8E,,6,operand,unknown subsystem; touches 6 calibration item(s); roles: operand
+0xACF6C,FUN_000ACF6C,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0xAD2A6,FUN_000AD2A6,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xAD544,FUN_000AD544,,3,"operand, threshold","unknown subsystem; touches 3 calibration item(s); roles: operand, threshold"
+0xADEB2,FUN_000ADEB2,,2,"threshold, unref","unknown subsystem; touches 2 calibration item(s); roles: threshold, unref"
+0xAF758,FUN_000AF758,,3,"operand, unref","unknown subsystem; touches 3 calibration item(s); roles: operand, unref"
+0xAF7A6,FUN_000AF7A6,,1,unref,unknown subsystem; touches 1 calibration item(s); roles: unref
+0xAF7EC,FUN_000AF7EC,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xAF82C,FUN_000AF82C,,1,unref,unknown subsystem; touches 1 calibration item(s); roles: unref
+0xAF854,FUN_000AF854,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0xAF87A,FUN_000AF87A,,1,unref,unknown subsystem; touches 1 calibration item(s); roles: unref
+0xAF8DC,FUN_000AF8DC,,2,"operand, unref","unknown subsystem; touches 2 calibration item(s); roles: operand, unref"
+0xAF91C,FUN_000AF91C,,2,"operand, unref","unknown subsystem; touches 2 calibration item(s); roles: operand, unref"
+0xAF95C,FUN_000AF95C,,2,"operand, unref","unknown subsystem; touches 2 calibration item(s); roles: operand, unref"
+0xAF9C0,FUN_000AF9C0,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xAFA86,FUN_000AFA86,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0xAFB5A,FUN_000AFB5A,,1,unref,unknown subsystem; touches 1 calibration item(s); roles: unref
+0xAFCA8,FUN_000AFCA8,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xAFCE2,FUN_000AFCE2,,9,"operand, flag-test, unref","unknown subsystem; touches 9 calibration item(s); roles: operand, flag-test, unref"
+0xAFDEE,FUN_000AFDEE,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0xAFE42,FUN_000AFE42,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xAFE78,FUN_000AFE78,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0xB0090,FUN_000B0090,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0xB03D8,FUN_000B03D8,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xB0550,FUN_000B0550,,1,unref,unknown subsystem; touches 1 calibration item(s); roles: unref
+0xB0892,FUN_000B0892,,6,operand,unknown subsystem; touches 6 calibration item(s); roles: operand
+0xB0988,FUN_000B0988,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0xB0A4E,FUN_000B0A4E,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xB0EF6,FUN_000B0EF6,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xB1368,FUN_000B1368,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xB146E,FUN_000B146E,,2,"unref, gain","unknown subsystem; touches 2 calibration item(s); roles: unref, gain"
+0xB16C4,FUN_000B16C4,,2,"unref, gain","unknown subsystem; touches 2 calibration item(s); roles: unref, gain"
+0xB1750,FUN_000B1750,,2,"unref, gain","unknown subsystem; touches 2 calibration item(s); roles: unref, gain"
+0xB183A,FUN_000B183A,,2,"unref, gain","unknown subsystem; touches 2 calibration item(s); roles: unref, gain"
+0xB185E,FUN_000B185E,,2,"unref, gain","unknown subsystem; touches 2 calibration item(s); roles: unref, gain"
+0xB1882,FUN_000B1882,,2,"unref, gain","unknown subsystem; touches 2 calibration item(s); roles: unref, gain"
+0xB1E80,FUN_000B1E80,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0xB1EE6,FUN_000B1EE6,,2,"operand, unref","unknown subsystem; touches 2 calibration item(s); roles: operand, unref"
+0xB1FE8,FUN_000B1FE8,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xB2376,FUN_000B2376,,1,unref,unknown subsystem; touches 1 calibration item(s); roles: unref
+0xB25E2,FUN_000B25E2,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xB2670,FUN_000B2670,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xB2700,FUN_000B2700,,2,"threshold, operand","unknown subsystem; touches 2 calibration item(s); roles: threshold, operand"
+0xB2A7A,FUN_000B2A7A,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xB2B5C,FUN_000B2B5C,,1,unref,unknown subsystem; touches 1 calibration item(s); roles: unref
+0xB2E96,FUN_000B2E96,,3,threshold,unknown subsystem; touches 3 calibration item(s); roles: threshold
+0xB306E,FUN_000B306E,,2,"operand, unref","unknown subsystem; touches 2 calibration item(s); roles: operand, unref"
+0xB3124,FUN_000B3124,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xB3206,FUN_000B3206,,2,"flag-test, unref","unknown subsystem; touches 2 calibration item(s); roles: flag-test, unref"
+0xB3244,FUN_000B3244,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xB3540,FUN_000B3540,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xB35F6,FUN_000B35F6,,9,"operand, unref, offset","unknown subsystem; touches 9 calibration item(s); roles: operand, unref, offset"
+0xB3870,FUN_000B3870,,1,unref,unknown subsystem; touches 1 calibration item(s); roles: unref
+0xB3988,FUN_000B3988,,2,unref,unknown subsystem; touches 2 calibration item(s); roles: unref
+0xB39DA,FUN_000B39DA,,5,"operand, unref","unknown subsystem; touches 5 calibration item(s); roles: operand, unref"
+0xB3B02,FUN_000B3B02,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0xB3B32,FUN_000B3B32,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xB3B98,FUN_000B3B98,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xB3BB0,FUN_000B3BB0,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xB3E38,FUN_000B3E38,,3,"operand, unref","unknown subsystem; touches 3 calibration item(s); roles: operand, unref"
+0xB4428,FUN_000B4428,,2,"operand, flag-test","unknown subsystem; touches 2 calibration item(s); roles: operand, flag-test"
+0xB4466,FUN_000B4466,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xB44AA,FUN_000B44AA,,2,"operand, unref","unknown subsystem; touches 2 calibration item(s); roles: operand, unref"
+0xB451C,FUN_000B451C,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xB4690,FUN_000B4690,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xB46D8,FUN_000B46D8,,1,unref,unknown subsystem; touches 1 calibration item(s); roles: unref
+0xB4702,FUN_000B4702,,4,"operand, unref","unknown subsystem; touches 4 calibration item(s); roles: operand, unref"
+0xB47B4,FUN_000B47B4,,7,"unref, operand","unknown subsystem; touches 7 calibration item(s); roles: unref, operand"
+0xB4880,FUN_000B4880,,1,unref,unknown subsystem; touches 1 calibration item(s); roles: unref
+0xB48E6,FUN_000B48E6,,4,"unref, operand","unknown subsystem; touches 4 calibration item(s); roles: unref, operand"
+0xB4910,FUN_000B4910,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0xB4968,FUN_000B4968,,2,"operand, unref","unknown subsystem; touches 2 calibration item(s); roles: operand, unref"
+0xBB23C,FUN_000BB23C,,3,"unref, operand","unknown subsystem; touches 3 calibration item(s); roles: unref, operand"
+0xBB30C,FUN_000BB30C,,1,unref,unknown subsystem; touches 1 calibration item(s); roles: unref
+0xBB384,FUN_000BB384,,1,unref,unknown subsystem; touches 1 calibration item(s); roles: unref
+0xBB40E,FUN_000BB40E,,1,unref,unknown subsystem; touches 1 calibration item(s); roles: unref
+0xBB4F8,FUN_000BB4F8,,2,operand,unknown subsystem; touches 2 calibration item(s); roles: operand
+0xBBB9E,FUN_000BBB9E,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0xBBDC2,FUN_000BBDC2,,3,operand,unknown subsystem; touches 3 calibration item(s); roles: operand
+0xBBE3C,FUN_000BBE3C,,2,threshold,unknown subsystem; touches 2 calibration item(s); roles: threshold
+0xBBFA0,FUN_000BBFA0,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand
+0xBC5CA,FUN_000BC5CA,,1,threshold,unknown subsystem; touches 1 calibration item(s); roles: threshold
+0xBC79A,FUN_000BC79A,,2,"operand, unref","unknown subsystem; touches 2 calibration item(s); roles: operand, unref"
+0xC8C64,FUN_000C8C64,,1,operand,unknown subsystem; touches 1 calibration item(s); roles: operand

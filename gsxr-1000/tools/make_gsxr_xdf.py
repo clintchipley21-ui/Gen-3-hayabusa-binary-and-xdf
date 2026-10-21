@@ -28,7 +28,16 @@ Checksums are NOT handled here: re-stamp the field-1 CRC with the repo's tools/f
 usage:  python3 gsxr-1000/tools/make_gsxr_xdf.py <read.bin> <out.xdf> <software> <partno>
 """
 import os, re, struct, sys, difflib
-from html import escape
+from html import escape as _escape
+
+
+def escape(s):
+    """XML-escape element text (&, <, >) but NOT quotes. Everything this module escapes goes
+    into element content (<title>/<description>/<units>), never an attribute value, so apostrophes
+    and double-quotes must stay as literal characters. TunerPro's XDF reader chokes on the numeric
+    apostrophe entity &#x27; that html.escape emits by default, so we must avoid it (the working
+    Hayabusa master XDF contains zero such entities)."""
+    return _escape(str(s), quote=False)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))              # repo root
@@ -227,9 +236,9 @@ def values_line(b, d, zinfo, sw):
     n = (d['r'] or 1) * d['c']
     raw = read_axis(b, zaddr, n, zbits, zsigned)
     lo, hi = min(raw), max(raw)
-    return 'VALUES (%s): %s to %s %s%s.' % (
+    return 'MIN/MAX (%s): min %s, max %s %s%s.' % (
         sw, fmt(ev(zeq, lo)), fmt(ev(zeq, hi)), zu,
-        ' - every cell the same' if lo == hi else '')
+        ' (every cell the same)' if lo == hi else '')
 
 
 def reference_line(d):
@@ -277,6 +286,18 @@ GENERIC_Y = '''    <XDFAXIS id="y">
       <MATH equation="X"><VAR id="X" /></MATH>
     </XDFAXIS>
 '''
+# A 1-D curve still needs a (degenerate) y-axis: TunerPro reads a fixed x/y/z triple per XDFTABLE and
+# faults when a table has only two axes. The known-good Hayabusa master gives every 1-D curve exactly
+# this dummy single-row y-axis (no address, indexcount 1), so we emit the identical shape.
+GENERIC_Y_DUMMY = '''    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>1</indexcount>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X"><VAR id="X" /></MATH>
+    </XDFAXIS>
+'''
 
 
 def generic_block(b, d, uid, cat):
@@ -292,7 +313,7 @@ def generic_block(b, d, uid, cat):
             'unknown - log before changing.\n%s\n%s%s\n%s'
             % (axes_line(b, d, None, None), (tl + '\n') if tl else '',
                values_line(b, d, None, SW), reference_line(d)))
-    yaxis = (GENERIC_Y % dict(yp=d['yp'], yb=yb, r=d['r'])) if is2d else ''
+    yaxis = (GENERIC_Y % dict(yp=d['yp'], yb=yb, r=d['r'])) if is2d else GENERIC_Y_DUMMY
     return GENERIC % dict(uid=uid, title=escape(title), desc=escape(desc), cat=cat,
                           xp=d['xp'], xb=xb, c=d['c'], r=d['r'], zr=(d['r'] or 1),
                           zp=zaddr, zb=zb, yaxis=yaxis)
@@ -350,9 +371,20 @@ def ported_block(b, d, m, conf, sw, ml=None):
 
 
 # ---------------------------------------------------------------- categories
+def clean_cat_name(name):
+    """Scrub Hayabusa-specific artifacts from an inherited category name: the Hayabusa ID-range
+    'Unidentified - Cluster X' buckets mean nothing on the GSX-R, and '(legacy, empty)' is stale."""
+    if 'Unidentified - Cluster' in name:
+        return 'Uncategorized (auto-ported, verify)'
+    name = name.replace(' (legacy, empty)', '')
+    return 'xdf bin files' if name == 'xdf moto bin files' else name
+
+
 def category_block():
     txt = open(HAYA_MASTER).read()
     cats = re.findall(r'    <CATEGORY index="0x[0-9A-Fa-f]+" name="[^"]*" />\n', txt)
+    cats = [re.sub(r'name="[^"]*"',
+                   lambda m: 'name="%s"' % clean_cat_name(m.group(0)[6:-1]), c) for c in cats]
     maxidx = max(int(re.search(r'index="(0x[0-9A-Fa-f]+)"', c).group(1), 16) for c in cats)
     unmatched = maxidx + 1
     scalarcat = maxidx + 2
@@ -360,7 +392,351 @@ def category_block():
                 % unmatched)
     cats.append('    <CATEGORY index="0x%X" name="ZZ Decompiler-discovered scalars (unverified)" />\n'
                 % scalarcat)
-    return ''.join(cats), unmatched, scalarcat
+    cats.append('    <CATEGORY index="0x%X" name="Steering Damper (ESD) (decoded)" />\n'
+                % (maxidx + 3))
+    cats.append('    <CATEGORY index="0x%X" name="Exhaust Control Valve (EXCV) (decoded)" />\n'
+                % (maxidx + 4))
+    # TunerPro CATEGORYMEM category="N" is 1-BASED: it selects CATEGORY index N-1 (verified against
+    # the Hayabusa master, which the ported maps inherit their 1-based values from). So every category
+    # VALUE the generator emits is (0-based index + 1). name2val maps a category NAME to that value.
+    name2val = {}
+    for c in cats:
+        mm = re.search(r'index="(0x[0-9A-Fa-f]+)" name="([^"]*)"', c)
+        if mm:
+            name2val[mm.group(2)] = int(mm.group(1), 16) + 1
+    return ''.join(cats), unmatched + 1, scalarcat + 1, name2val
+
+
+# SUBSYS tag -> the "Scalars - X" category name in the master (unescaped). Untagged scalars, or
+# tags with no dedicated folder, fall back to the generic decompiler-scalar category.
+SCALAR_CAT_NAME = {
+    'Ignition': 'Scalars - Ignition', 'Quickshifter': 'Scalars - Quickshifter',
+    'Launch Control': 'Scalars - Launch Control', 'Traction Control': 'Scalars - Traction Control',
+    'Anti-Lift': 'Scalars - Anti-Lift Control', 'Cruise Control': 'Scalars - Cruise Control',
+    'Engine Brake': 'Scalars - Engine Brake Control', 'Fuel': 'Scalars - Fuel',
+    'Idle/Fan': 'Scalars - Idle Control', 'O2/Closed-Loop': 'Scalars - HO2 / Closed Loop',
+    'Rev/Speed Limiter': 'Scalars - Limiters', 'Throttle/ETV': 'Scalars - Throttle By Wire',
+    'Diagnostics': 'Scalars - Diagnostics - Monitors', 'IMU/Chassis': 'Scalars - IMU / Wheel Speed',
+    'Speed/Wheel': 'Scalars - IMU / Wheel Speed', 'Ride Modes': 'Scalars - Ride Mode Presets',
+    'Sensors': 'Scalars - Sensor Scaling (MAP/baro)',
+}
+
+
+# Title-prefix -> correct category NAME, for decoded GSX-R maps the Hayabusa master mis-filed
+# (e.g. it parks "Ride Mode" and "Mode-Setting Limit" tables in its "DTC Lamp Control" folder, and
+# "Idle/Heat-Soak" tables in "Meter / CAN Outputs"). Only titles matching a rule are re-filed; every
+# other map keeps the category it inherited, so the already-correct folders (TPS, IAP, Ignition
+# Advance, PWR-n, Launch Control, Anti-Lift ...) are untouched. Ground truth is the map's own title.
+RECAT = [
+    ('Ride Mode ::', 'Ride Mode Presets'), ('Mode-Setting Limit ::', 'Ride Mode Presets'),
+    ('Idle/Heat-Soak ::', 'Idle Control (decoded)'), ('Idle Control ::', 'Idle Control (decoded)'),
+    ('ETV Monitor ::', 'ETV Monitor / Level-2 Safety (decoded)'),
+    ('Meter / CAN Outputs ::', 'Meter / CAN Outputs (decoded)'),
+    ('Meter Fuel Consumption ::', 'Meter / CAN Outputs (decoded)'),
+    ('EVAP Purge ::', 'EVAP Purge (decoded)'),
+    ('Catalyst/HO2 Monitor ::', 'HO2 / Closed Loop (decoded)'), ('HO2 ', 'HO2 / Closed Loop (decoded)'),
+    ('Cruise Control ::', 'Cruise Control (decoded)'),
+    ('Engine Brake Control ::', 'Engine Brake Control (decoded)'),
+    ('Pitch Control ::', 'Anti-Lift Control'), ('Anti-Lift ::', 'Anti-Lift Control'),
+    ('Speed Monitor ::', 'IMU / Wheel Speed (decoded)'),
+    ('Diagnostics - DTC Lamp Control ::', 'Diagnostics - DTC Lamp Control'),
+]
+
+
+# Electronic steering damper (ESD) module - decompile-confirmed (see docs/tracing.md 3o).
+# Controller FUN_000784dc: rear-wheel speed 0xFEBF63F4 -> one of three 16-pt curves -> modulation
+# chain -> FUN_00024cb4 (PWM channel 0x500) -> T54 solenoid. These descriptors are referenced ONLY
+# by the ESD module's own functions. Titles get a "Steering Damper ::" prefix so the RECAT rule below
+# re-files them into the dedicated folder.
+DAMPER_CAT = 'Steering Damper (ESD) (decoded)'
+DAMPER_TABLES = {
+    0x1716AC: 'Steering Damper :: Damping vs Speed - Mode 1',
+    0x1716C0: 'Steering Damper :: Damping vs Speed - Mode 2',
+    0x1716D4: 'Steering Damper :: Damping vs Speed - Mode 3',
+    0x1716E8: 'Steering Damper :: Secondary Curve - Mode 1 (axis unverified)',
+    0x1716FC: 'Steering Damper :: Secondary Curve - Mode 2 (axis unverified)',
+    0x171710: 'Steering Damper :: Secondary Curve - Mode 3 (axis unverified)',
+    0x171724: 'Steering Damper :: Correction Factor (axis unverified)',
+    0x171738: 'Steering Damper :: Correction Table A (verify)',
+    0x17174C: 'Steering Damper :: Correction Table B (verify)',
+    0x171760: 'Steering Damper :: Output compensation (vs 0xFEBF643C, axis unverified)',
+    0x155218: 'Steering Damper :: Diagnostic threshold (lo)',
+    0x15522C: 'Steering Damper :: Diagnostic threshold (hi)',
+}
+# Per-table description overrides (default note used otherwise).
+DAMPER_NOTES = {
+    0x171760: ('Electronic steering damper output-compensation gain (5-pt, centred on 0x8000 = 1.0; '
+               'stock 1.17 at low end -> 0.88 at high end). Indexed by 0xFEBF643C, an IMU/chassis-'
+               'derived signed signal (0x8000 = neutral, rate-limited) from the fef0265A-2668 block '
+               'that also feeds the damper secondary inputs 0xFEBF642A/C/E - i.e. the ESD modulates '
+               'on vehicle attitude/dynamics, not just speed (exact IMU axis not yet pinned). SHARED '
+               'within the ESD subsystem: the controller FUN_00078308 '
+               'multiplies the damper modulation by this gain, and the damper solenoid DIAGNOSTIC '
+               '(FUN_0003a062 / 0003a0be / 0003a1b6 / 0003a32e, which set fault bits in fef009c9 / '
+               'fef009ca from the damper command 0xFEBF62BC) scales its expected-feedback thresholds '
+               'by it. Not shared with any non-damper module.'),
+    0x155218: ('ESD solenoid-diagnostic threshold, lower bound. The damper fault monitor '
+               '(FUN_0003a062/0003a1b6/0003a32e) looks this up on the damper command 0xFEBF62BC, '
+               'scales it by the 0x171760 compensation gain, and flags a fault if the measured '
+               'feedback 0xFEBF6422 falls outside [lo,hi]. Backs the steering-damper solenoid DTC.'),
+    0x15522C: ('ESD solenoid-diagnostic threshold, upper bound (pair of 0x155218). See 0x155218.'),
+}
+# The three Damping-vs-Speed curves share one note; it is only correct for them.
+DAMPER_SPEED_NOTE = (
+    'ELECTRONIC STEERING DAMPER modulation curve (decompile-confirmed). X axis = rear-wheel speed '
+    '0xFEBF63F4: raw 2560 = 20 km/h, so the 16 breakpoints are 0,20,40,...,300 km/h. Output = damping '
+    'modulation (stock: 0 below ~60 km/h, rising to ~0x4000 = full at 300 km/h = light steering at low '
+    'speed, firm at high speed). Three mode curves (1/2/3) selected by 0xFEBF6480. Read by FUN_00078006; '
+    'feeds the PWM solenoid on T54 via FUN_00024cb4 (ch 0x500). This is the "steering damper map" that '
+    'commercial tools edit; set the enable byte 0x172F28 to 0x00 to disable the damper entirely.')
+DAMPER_SCALARS = {
+    0x172F28: ('Steering Damper :: Enable (0xFF=on, 0x00=disable)',
+               'MASTER ESD ENABLE byte (u8). 0xFF (all stock reads) = damper active; 0x00 = output '
+               'forced to zero (this is the commercial "Disable Steering Damper" setting); 0x80 = '
+               'alternate branch. Read by FUN_00078058 / FUN_00078534.'),
+    0x172E3A: ('Steering Damper :: Activation speed threshold',
+               'Rear-wheel-speed threshold (u16) gating ESD activation in FUN_00077A8C.'),
+}
+
+
+def label_damper(body, name2val):
+    """Relabel the decompile-confirmed steering-damper descriptors and scalars, and re-file them into
+    the Steering Damper folder. Operates on the emitted block text, matching tables by their
+    'descriptor @0xADDR' reference line and scalars by mmedaddress."""
+    dval = name2val[DAMPER_CAT]
+    n = 0
+
+    def retitle_cat(block, new_title, note):
+        b2 = re.sub(r'<title>[^<]*</title>', '<title>%s</title>' % escape(new_title), block, count=1)
+        b2 = re.sub(r'<description>', '<description>%s\n\n' % escape(note), b2, count=1)
+        b2 = re.sub(r'(<CATEGORYMEM index="0" category=")\d+(")',
+                    r'\g<1>%d\g<2>' % dval, b2, count=1)
+        # drop any extra CATEGORYMEM so the item sits only in the damper folder
+        b2 = re.sub(r'\s*<CATEGORYMEM index="[1-9][0-9]*"[^/]*/>', '', b2)
+        return b2
+
+    # tables (XDFTABLE): locate by the "descriptor @0xADDR" reference line in the description
+    def repl_table(m):
+        nonlocal n
+        blk = m.group(0)
+        for addr, title in DAMPER_TABLES.items():
+            if ('descriptor @0x%X' % addr) in blk:
+                n += 1
+                if addr in (0x1716AC, 0x1716C0, 0x1716D4):
+                    note = DAMPER_SPEED_NOTE
+                elif addr in DAMPER_NOTES:
+                    note = DAMPER_NOTES[addr]
+                else:
+                    note = ('Electronic steering damper module table (decompile-confirmed; referenced '
+                            'only by the ESD controller FUN_000784dc). Role within the modulation '
+                            'chain not fully resolved - verify before changing.')
+                return retitle_cat(blk, title, note)
+        return blk
+    body = re.sub(r'<XDFTABLE\b.*?</XDFTABLE>\s*', repl_table, body, flags=re.S)
+
+    # scalars (XDFCONSTANT): locate by mmedaddress
+    def repl_scalar(m):
+        nonlocal n
+        blk = m.group(0)
+        am = re.search(r'mmedaddress="(0x[0-9A-Fa-f]+)"', blk)
+        if am:
+            addr = int(am.group(1), 16)
+            if addr in DAMPER_SCALARS:
+                n += 1
+                title, note = DAMPER_SCALARS[addr]
+                return retitle_cat(blk, title, note)
+        return blk
+    body = re.sub(r'<XDFCONSTANT\b.*?</XDFCONSTANT>\s*', repl_scalar, body, flags=re.S)
+    return body, n
+
+
+# Per-cylinder fuel maps. The GSX-R fuel bank is SMALLER than the Hayabusa's: 8 IAP (30x50) +
+# 8 TPS (26x50) maps, with NO blend/spare maps (the Hayabusa has 28+28). Porting the Hayabusa map
+# order onto these 16 scattered the per-cylinder labels, so they are assigned here by structure.
+# Decoding the Z-data confirms the layout: within each group of four the maps are near-identical
+# (four cylinders) and the two groups differ by a consistent offset (two conditions); the Hayabusa
+# lays the in-gear block before the neutral block, so first four = In-Gear Cyl 1-4, next four =
+# Neutral/Clutch Cyl 1-4 (the in-gear/neutral identity is by platform layout order - [UNCONFIRMED]).
+# Descriptor addresses are identical across all four M7 reads.
+FUEL_RELABEL_NOTE = (
+    'CORRECTED LABEL (v2, code-confirmed): the GSX-R fuel bank has only 8 IAP (30x50) + 8 TPS '
+    '(26x50) maps - no blend/spare maps like the Hayabusa (28+28). All 16 sit in ONE pointer array '
+    'at 0x1560E4 (8 IAP then 8 TPS, each split 4 In-Gear + 4 Neutral/Clutch in array order). '
+    'Confirmed: the TPS In-Gear maps are read by the in-gear base-fuel lookup FUN_0004536C and the '
+    'Neutral maps by the neutral finaliser FUN_0004543E, which selects the neutral block on the '
+    'neutral/clutch flag 0xFEF0271D bit0 (vacuum >= ~0 kPa, RPM below gate) - the same shared code '
+    'the Hayabusa uses; Z-data decode independently shows 4 cylinders x 2 conditions. So In-Gear vs '
+    'Neutral/Clutch and the type (IAP/TPS) are code-proven; only the exact cylinder NUMBER within '
+    'each group of four is by position. Values are GSX-R-specific - verify on a bench.')
+FUEL_RELABEL = {}
+for _i, _a in enumerate([0x157084, 0x1570dc, 0x157134, 0x15718c,
+                         0x1571e4, 0x15723c, 0x157294, 0x1572ec]):
+    FUEL_RELABEL[_a] = 'IAP - %s | Cyl %d' % (
+        'In Gear' if _i < 4 else 'Neutral/Clutch-In', (_i % 4) + 1)
+for _i, _a in enumerate([0x15733c, 0x15738c, 0x1573dc, 0x15742c,
+                         0x15747c, 0x1574cc, 0x15751c, 0x15756c]):
+    FUEL_RELABEL[_a] = 'TPS - %s | Cyl %d' % (
+        'In Gear' if _i < 4 else 'Neutral/Clutch-In', (_i % 4) + 1)
+
+
+def relabel_fuel(body):
+    """Set the correct positional title + note on the 16 GSX-R per-cylinder fuel descriptors,
+    matched by their 'descriptor @0xADDR' reference line. Returns (body, n)."""
+    n = [0]
+
+    def repl(m):
+        blk = m.group(0)
+        dm = re.search(r'descriptor @0x([0-9A-Fa-f]+)', blk)
+        if not dm:
+            return blk
+        a = int(dm.group(1), 16)
+        if a in FUEL_RELABEL:
+            n[0] += 1
+            blk = re.sub(r'<title>.*?</title>', '<title>%s</title>' % escape(FUEL_RELABEL[a]),
+                         blk, count=1, flags=re.S)
+            # rebuild the description: drop the stale leading "PORTED FROM HAYABUSA ... (MED: title
+            # is a strong guess, VERIFY)" paragraph (now superseded by the code-confirmed note) and
+            # prepend the corrected note; keep the axes / traced-inputs / values / reference lines.
+            dmd = re.search(r'<description>(.*?)</description>', blk, re.S)
+            if dmd:
+                body = dmd.group(1)
+                # the ported description is single-newline-separated lines:
+                # "PORTED FROM HAYABUSA ...<head>\n<axes>\n<traced>\n<values>\n<reference>".
+                # Drop only the stale head LINE; keep axes / traced-inputs / values / reference.
+                if body.startswith('PORTED FROM HAYABUSA'):
+                    parts = body.split('\n', 1)
+                    body = parts[1] if len(parts) > 1 else ''
+                newdesc = escape(FUEL_RELABEL_NOTE) + ('\n\n' + body if body.strip() else '')
+                blk = blk[:dmd.start(1)] + newdesc + blk[dmd.end(1):]
+        return blk
+
+    body = re.sub(r'<XDFTABLE\b.*?</XDFTABLE>', repl, body, flags=re.S)
+    return body, n[0]
+
+
+def recategorize(body, name2val):
+    """Re-file only the decoded maps the Hayabusa master mis-categorised, by matching the map's own
+    title prefix to the correct existing category. category values are 1-based. Returns (body,n)."""
+    rules = [(p, name2val[n]) for p, n in RECAT if n in name2val]
+    moved = [0]
+
+    def fix(block):
+        mt = re.search(r'<title>([^<]*)</title>', block)
+        if not mt:
+            return block
+        title = mt.group(1)
+        for pre, newcat in rules:
+            if title.startswith(pre) or pre in title:
+                new = re.sub(r'(<CATEGORYMEM index="0" category=")\d+(")',
+                             r'\g<1>%d\g<2>' % newcat, block, count=1)
+                if new != block:
+                    moved[0] += 1
+                return new
+        return block
+
+    body = re.sub(r'<XDFTABLE\b.*?</XDFTABLE>\n', lambda m: fix(m.group(0)), body, flags=re.S)
+    return body, moved[0]
+
+
+def prune_and_renumber(cats_xml, body):
+    """Drop categories with no members (Hayabusa-inherited leftovers) and compact-renumber the rest,
+    rewriting every CATEGORYMEM reference. CATEGORYMEM category="N" is 1-BASED (CATEGORY index N-1);
+    category 0-index (root) is always kept."""
+    used_idx = set(int(n) - 1 for n in re.findall(r'category="(\d+)"', body))  # value N -> index N-1
+    used_idx.add(0)  # keep the TunerPro root category
+    old = [(int(re.search(r'index="(0x[0-9A-Fa-f]+)"', c).group(1), 16), c)
+           for c in re.findall(r'    <CATEGORY [^\n]*\n', cats_xml)]
+    remap = {}  # old 0-based index -> new 0-based index
+    new_cats = []
+    for oldidx, line in old:
+        if oldidx not in used_idx:
+            continue
+        newidx = len(new_cats)
+        remap[oldidx] = newidx
+        new_cats.append(re.sub(r'index="0x[0-9A-Fa-f]+"', 'index="0x%X"' % newidx, line))
+    # rewrite each 1-based value V: old index V-1 -> new index -> new 1-based value
+    body = re.sub(r'category="(\d+)"',
+                  lambda m: 'category="%d"' % (remap[int(m.group(1)) - 1] + 1), body)
+    return ''.join(new_cats), body, len(old) - len(new_cats)
+
+
+# TunerPro loads a category's member list into a fixed-size buffer and faults
+# (STATUS_STACK_BUFFER_OVERRUN, 0xc0000409) when a single category holds too many items. The largest
+# category in the known-good Hayabusa master is 412 members and opens fine, so we cap every category
+# well below that. The decompiler-discovered scalar catch-all alone is ~2,965 items, which crashed
+# TunerPro on open; splitting it into bounded "(part N)" folders is what actually fixes the crash.
+CAT_MEMBER_CAP = 300
+
+
+def split_oversized_categories(cats_xml, body, cap=CAT_MEMBER_CAP):
+    """Spill any category with more than `cap` members into extra "<name> (part N)" categories so no
+    single folder exceeds TunerPro's per-category limit. Members keep document order; the first `cap`
+    stay in the original folder, the next `cap` go to "(part 2)", and so on. Returns the (possibly
+    extended) category block, the rewritten body, and the number of extra folders created."""
+    from collections import Counter
+    cat_lines = re.findall(r'    <CATEGORY index="0x[0-9A-Fa-f]+" name="[^"]*" />\n', cats_xml)
+    counts = Counter(int(v) for v in re.findall(r'category="(\d+)"', body))   # 1-based value -> count
+    next_index = len(cat_lines)                                              # next free 0-based index
+    extra_lines = []
+    plan = {}                       # 1-based value V -> [1-based values for part2, part3, ...]
+    for v, c in sorted(counts.items()):
+        if c <= cap:
+            continue
+        name = re.search(r'name="([^"]*)"', cat_lines[v - 1]).group(1)
+        nparts = (c + cap - 1) // cap
+        newvals = []
+        for p in range(2, nparts + 1):
+            extra_lines.append('    <CATEGORY index="0x%X" name="%s (part %d)" />\n'
+                               % (next_index, name, p))
+            newvals.append(next_index + 1)
+            next_index += 1
+        plan[v] = newvals
+    if not plan:
+        return cats_xml, body, 0
+    running = Counter()
+
+    def repl(m):
+        v = int(m.group(1))
+        running[v] += 1
+        if v in plan:
+            part = (running[v] - 1) // cap          # 0 = original folder, 1 = part2, ...
+            if part >= 1:
+                return 'category="%d"' % plan[v][part - 1]
+        return m.group(0)
+
+    body = re.sub(r'category="(\d+)"', repl, body)
+    return cats_xml + ''.join(extra_lines), body, len(extra_lines)
+
+
+def renumber_item_uniqueids(body):
+    """Keep every item's uniqueid inside the magnitude the known-good Hayabusa master uses (its ids
+    top out at 0x20A69). The ported TABLE ids already sit in that range; only the decompiler
+    scalar/flag ids were emitted at 0x100000+ (far outside it), which is the clearest structural
+    difference from any XDF TunerPro opens. Give every XDFCONSTANT/XDFFLAG a small free id instead,
+    reusing none a table holds, so the file's maximum uniqueid equals the max ported-table id - the
+    same ceiling the Hayabusa master loads with. Returns (body, how_many_renumbered)."""
+    table_ids = set()
+    for blk in re.findall(r'<XDFTABLE\b.*?</XDFTABLE>', body, re.S):
+        mm = re.search(r'uniqueid="(0x[0-9A-Fa-f]+)"', blk)
+        if mm:
+            table_ids.add(int(mm.group(1), 16))
+    nxt = [1]
+    n = [0]
+
+    def free():
+        while nxt[0] in table_ids:
+            nxt[0] += 1
+        v = nxt[0]
+        nxt[0] += 1
+        return v
+
+    def repl(m):
+        n[0] += 1
+        return re.sub(r'uniqueid="0x[0-9A-Fa-f]+"', 'uniqueid="0x%X"' % free(), m.group(0), count=1)
+
+    body = re.sub(r'<XDFCONSTANT\b.*?</XDFCONSTANT>', repl, body, flags=re.S)
+    body = re.sub(r'<XDFFLAG\b.*?</XDFFLAG>', repl, body, flags=re.S)
+    return body, n[0]
 
 
 # ---------------------------------------------------------------- scalar constants
@@ -437,6 +813,96 @@ SCALAR_FLAG = '''  <XDFFLAG uniqueid="0x%(uid)X">
     <mask>0x80</mask>
   </XDFFLAG>
 '''
+# same, but with an explicit bit mask (the DTC lamp bytes use bit0 = MIL-enable, not bit7)
+SCALAR_FLAG_MASK = '''  <XDFFLAG uniqueid="0x%(uid)X">
+    <title>%(title)s</title>
+    <description>%(desc)s</description>
+    <CATEGORYMEM index="0" category="%(cat)d" />
+    <EMBEDDEDDATA mmedaddress="0x%(addr)X" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x%(mask)02X</mask>
+  </XDFFLAG>
+'''
+
+
+# Exhaust Control Valve (EXCV) P14xx diagnostic MIL-enable flags, decoded from the GSX-R's own DTC
+# table (24-byte records at 0x1A18EC+; lamp byte at the record start, bit0 = MIL-enable). The EXCV is
+# the cable-driven servo exhaust valve (Suzuki 2017-2023 GSX-R1000). Position feedback 0xFEF025DA
+# (ADC ch 0x33); H-bridge PWM out 0xFEBF603D/603E. Only P1400/P1402/P1404 are present in 48L00.
+EXCV_DTC_FLAGS = [
+    (0x1A1DE4, 'EXCV :: P1400 MIL enable - valve position sensor LOW (short-to-gnd)',
+     'DTC P1400, EXCV position-sensor voltage low / out-of-range low. Monitor FUN_0003986E vs '
+     'threshold 0x15597E (29). Lamp byte bit0 = MIL enable; clear to disable the MIL for this DTC.'),
+    (0x1A1DCC, 'EXCV :: P1402 MIL enable - valve position sensor HIGH (open/short-to-pwr)',
+     'DTC P1402, EXCV position-sensor voltage high / out-of-range high. Monitor FUN_00039972 vs '
+     'threshold 0x155980 (1004). Lamp byte bit0 = MIL enable.'),
+    (0x1A1DFC, 'EXCV :: P1404 MIL enable - valve range/stuck (#1)',
+     'DTC P1404, EXCV position range/stuck check (FUN_0003B190, window 0x1559A6-AC). Lamp bit0 = MIL.'),
+    (0x1A1E14, 'EXCV :: P1404 MIL enable - valve motion/stall (#2)',
+     'DTC P1404, EXCV motion/stall - valve did not reach commanded position within the time limit '
+     '0x155B1C (125). Monitor FUN_00041548. Lamp bit0 = MIL.'),
+    (0x1A2174, 'EXCV :: P1404 MIL enable - valve fault (#3, master-warning)',
+     'DTC P1404 variant, lamp byte = 0x40 (master-warning) stock. Lamp bit0 = MIL enable.'),
+    (0x1A218C, 'EXCV :: P1404 MIL enable - valve fault (#4)',
+     'DTC P1404 variant. Lamp byte bit0 = MIL enable.'),
+]
+
+
+def excv_dtc_blocks(name2val, uid0):
+    """Emit the EXCV P14xx DTC MIL-enable flags (bit0) into the EXCV category."""
+    cat = name2val.get('Exhaust Control Valve (EXCV) (decoded)')
+    out = []
+    uid = uid0
+    for addr, title, desc in EXCV_DTC_FLAGS:
+        out.append(SCALAR_FLAG_MASK % dict(uid=uid, title=escape(title), desc=escape(desc),
+                                            cat=cat, addr=addr, mask=0x01))
+        uid += 1
+    return out, uid - uid0
+
+
+# Final EXCV consolidation: every "EXCV ::" item is filed into one of two decoded folders -
+# "- Valve Control" (maps, setpoints, enable flags, hysteresis) or "- DTC Control" (the P14xx
+# MIL-enable flags and position-sensor monitor thresholds). Runs LAST (after prune/renumber/split)
+# so it works on final text and is immune to the earlier category passes. Idempotent, and it strips
+# any inherited Hayabusa category membership so each EXCV item lives only under its EXCV folder.
+EXCV_DTC_ADDRS = {0x1A1DE4, 0x1A1DCC, 0x1A1DFC, 0x1A1E14, 0x1A2174, 0x1A218C,
+                  0x15597E, 0x155980, 0x1559A6, 0x1559A8, 0x1559AA, 0x1559AC, 0x155B1C}
+
+
+def consolidate_excv(cats_xml, body):
+    cats = re.findall(r'    <CATEGORY index="(0x[0-9A-Fa-f]+)" name="([^"]*)" />\n', cats_xml)
+    idxs = [int(i, 16) for i, _ in cats]
+    valve_idx, newcats = None, []
+    for i, n in cats:
+        if 'Exhaust Control Valve (EXCV)' in n and valve_idx is None:
+            n, valve_idx = 'Exhaust Control Valve (EXCV) - Valve Control', int(i, 16)
+        newcats.append((int(i, 16), n))
+    if valve_idx is None:
+        valve_idx = max(idxs) + 1
+        newcats.append((valve_idx, 'Exhaust Control Valve (EXCV) - Valve Control'))
+        idxs.append(valve_idx)
+    dtc_idx = max(idxs + [valve_idx]) + 1
+    newcats.append((dtc_idx, 'Exhaust Control Valve (EXCV) - DTC Control'))
+    cats_xml = ''.join('    <CATEGORY index="0x%X" name="%s" />\n' % (i, n) for i, n in newcats)
+    valve_val, dtc_val = valve_idx + 1, dtc_idx + 1
+
+    def fix(m):
+        blk = m.group(0)
+        tt = re.search(r'<title>(.*?)</title>', blk, re.S)
+        if not tt or not tt.group(1).startswith('EXCV ::'):
+            return blk
+        am = re.search(r'mmedaddress="(0x[0-9A-Fa-f]+)"', blk)
+        addr = int(am.group(1), 16) if am else -1
+        val = dtc_val if (addr in EXCV_DTC_ADDRS or 'P140' in tt.group(1)) else valve_val
+        blk = re.sub(r'\s*<CATEGORYMEM[^>]*/>', '', blk)
+        cm = '\n    <CATEGORYMEM index="0" category="%d" />' % val
+        if '</description>' in blk:
+            blk = blk.replace('</description>', '</description>' + cm, 1)
+        else:
+            blk = re.sub(r'(</title>)', r'\1' + cm, blk, count=1)
+        return blk
+
+    body = re.sub(r'<(XDFTABLE|XDFCONSTANT|XDFFLAG)\b.*?</\1>', fix, body, flags=re.S)
+    return cats_xml, body
 
 
 # Map a context map title to a short, reliable subsystem tag (from the reading function).
@@ -465,12 +931,19 @@ def subsystem(ctx):
     return ''
 
 
-def scalar_blocks(b, scalars, cat, sw):
+def scalar_blocks(b, scalars, cat, sw, name2idx=None):
     """Emit XDFCONSTANT/XDFFLAG for each decompiler-discovered scalar, valued from this read.
 
     Where the reading function also reads a named (Hayabusa-ported) map, the scalar's title is
-    prefixed with that subsystem - a reliable area tag from the decompile, not a value guess.
+    prefixed with that subsystem - a reliable area tag from the decompile, not a value guess - and
+    the scalar is filed under that subsystem's "Scalars - X" folder (falling back to the generic
+    decompiler-scalar category when the tag has no dedicated folder).
     """
+    name2idx = name2idx or {}
+
+    def scalar_cat(sub):
+        return name2idx.get(SCALAR_CAT_NAME.get(sub, ''), cat)
+
     out = []
     uid = 0x100000
     tagged = 0
@@ -481,7 +954,8 @@ def scalar_blocks(b, scalars, cat, sw):
         # a code-traced constant: emit with its real name + evidence, skip the generic path
         if addr in TRACED_CONSTS:
             desc = ('TRACED FROM GSX-R CODE: %s. VALUE %s: %d (raw). Confirm the exact engage '
-                    'point on a bench before relying on it.' % (TRACED_CONSTS[addr], sw, val))
+                    'point on a bench before relying on it. STOCKVAL=%d.'
+                    % (TRACED_CONSTS[addr], sw, val, val))
             out.append(SCALAR_CONST % dict(uid=uid, title=escape(TRACED_CONSTS[addr][:60]),
                                            desc=escape(desc), cat=cat, addr=addr, bits=bits))
             uid += 1
@@ -490,23 +964,24 @@ def scalar_blocks(b, scalars, cat, sw):
         sub = subsystem(s.get('context') or [])
         if sub:
             tagged += 1
+        thiscat = scalar_cat(sub)
         pre = ('%s :: ' % sub) if sub else ''
         ctx_line = (' Near maps: %s.' % '; '.join(ctx)) if ctx else ''
         func = (' fn %s' % s['func']) if s.get('func') else ''
         is_flag = s.get('is_flag') and (b[addr] & 0x7f) == 0  # a clean 0x80/0x00 toggle in THIS read
         if is_flag:
             desc = ('Decompiler-found flag (UNVERIFIED): 0x80 toggle read by ECU code '
-                    '(%d ref/%d fn%s). %s: 0x%02X.%s'
-                    % (s['refs'], s['nfuncs'], func, sw, b[addr], ctx_line))
+                    '(%d ref/%d fn%s). %s: 0x%02X.%s STOCKBYTE=0x%02X.'
+                    % (s['refs'], s['nfuncs'], func, sw, b[addr], ctx_line, b[addr]))
             out.append(SCALAR_FLAG % dict(uid=uid, title=escape('%sFlag @0x%X (bit7)' % (pre, addr)),
-                                          desc=escape(desc), cat=cat, addr=addr))
+                                          desc=escape(desc), cat=thiscat, addr=addr))
         else:
             desc = ('Decompiler-found scalar (UNVERIFIED): u%d read by ECU code (%d ref/%d fn%s). '
-                    'VALUE %s: %d.%s'
-                    % (bits, s['refs'], s['nfuncs'], func, sw, val, ctx_line))
+                    'VALUE %s: %d.%s STOCKVAL=%d.'
+                    % (bits, s['refs'], s['nfuncs'], func, sw, val, ctx_line, val))
             out.append(SCALAR_CONST % dict(uid=uid,
                                            title=escape('%sScalar @0x%X (u%d)' % (pre, addr, bits)),
-                                           desc=escape(desc), cat=cat, addr=addr, bits=bits))
+                                           desc=escape(desc), cat=thiscat, addr=addr, bits=bits))
         uid += 1
     return out, uid - 0x100000, tagged
 
@@ -538,7 +1013,7 @@ def generate(binpath, outpath, sw, part):
         for k in range(size):
             g2h[bi + k] = ai + k
 
-    cats_xml, UNMATCHED, SCALARCAT = category_block()
+    cats_xml, UNMATCHED, SCALARCAT, NAME2VAL = category_block()
 
     stats = dict(HIGH=0, MED=0, GENERIC=0)
     blocks = []
@@ -567,16 +1042,36 @@ def generate(binpath, outpath, sw, part):
 
     # decompiler-discovered scalar constants / flags (code cross-reference analysis)
     scalars = load_scalars()
-    sblocks, nscalar, ntagged = scalar_blocks(b, scalars, SCALARCAT, sw)
+    sblocks, nscalar, ntagged = scalar_blocks(b, scalars, SCALARCAT, sw, NAME2VAL)
     blocks.extend(sblocks)
+    # EXCV (exhaust control valve) P14xx DTC MIL-enable flags, decoded from the GSX-R's own DTC table
+    excv_blocks, nexcv = excv_dtc_blocks(NAME2VAL, 0x120000)
+    blocks.extend(excv_blocks)
 
     deftitle = 'Suzuki GSX-R1000 M7 %s (%s) - ported from Hayabusa Gen3 (auto)' % (sw, part)
     desc = ('Suzuki GSX-R1000 M7 (RH850), 2 MB read, sw %s (ECM %s). %d maps auto-ported from '
             'Hayabusa Gen3 via on-bin descriptors (%d HIGH, %d MED=verify, %d unknown) + %d '
             'scalars/flags found by Ghidra V850 decompile (generic titles + context hints, '
-            'UNVERIFIED). Scaling is the Hayabusa\'s, unverified here. Re-stamp field-1 CRC '
+            'UNVERIFIED). Scaling is the Hayabusa\'s, unverified here. Full per-item code trace: '
+            'gsxr-1000/docs/autodef-trace.csv. Re-stamp field-1 CRC '
             '(0x10000-0x1FFAFB @0x1FFAFE) with tools/fix_field1_crc.py. UNVERIFIED ON HARDWARE.'
             % (sw, part, len(gd), stats['HIGH'], stats['MED'], stats['GENERIC'], nscalar))
+
+    body = ''.join(blocks)
+    # fix the per-cylinder fuel-map labels the sequence-align scattered (see relabel_fuel)
+    body, nfuel = relabel_fuel(body)
+    # re-file the decoded maps the Hayabusa master mis-categorised so folder names match contents
+    body, nmoved = recategorize(body, NAME2VAL)
+    # relabel the decompile-confirmed steering-damper maps/flag into their own folder
+    body, ndamper = label_damper(body, NAME2VAL)
+    # drop categories with no members (Hayabusa-inherited empty folders) and compact-renumber
+    cats_xml, body, npruned = prune_and_renumber(cats_xml, body)
+    # cap each category's member count so TunerPro does not overrun its fixed per-category buffer
+    cats_xml, body, nsplit = split_oversized_categories(cats_xml, body)
+    # keep every uniqueid within the Hayabusa master's proven-good magnitude (scalars were 0x100000+)
+    body, nrenum = renumber_item_uniqueids(body)
+    # file every EXCV item into the two decoded folders (Valve Control / DTC Control)
+    cats_xml, body = consolidate_excv(cats_xml, body)
 
     header = '''<!-- Written by make_gsxr_xdf.py - GSX-R1000 M7, ported from Hayabusa Gen3 -->
 <XDFFORMAT version="1.70">
@@ -593,9 +1088,9 @@ def generate(binpath, outpath, sw, part):
 
     with open(outpath, 'w') as f:
         f.write(header)
-        f.write(''.join(blocks))
+        f.write(body)
         f.write('</XDFFORMAT>\n')
-    return stats, len(gd), nscalar
+    return stats, len(gd), nscalar, npruned, nsplit, nrenum
 
 
 if __name__ == '__main__':
@@ -603,7 +1098,9 @@ if __name__ == '__main__':
         print(__doc__)
         sys.exit(1)
     _, binpath, outpath, sw, part = sys.argv
-    st, n, nsc = generate(binpath, outpath, sw, part)
+    st, n, nsc, npruned, nsplit, nrenum = generate(binpath, outpath, sw, part)
     print('%s: %d descriptors + %d scalars -> %s'
           % (os.path.basename(binpath), n, nsc, os.path.basename(outpath)))
     print('   HIGH=%(HIGH)d  MED=%(MED)d  GENERIC=%(GENERIC)d' % st)
+    print('   pruned %d empty categories; split %d overflow sub-categories (cap %d/folder); '
+          'renumbered %d item uniqueids into Hayabusa range' % (npruned, nsplit, CAT_MEMBER_CAP, nrenum))
