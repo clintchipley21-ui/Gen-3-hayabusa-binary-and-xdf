@@ -7,7 +7,7 @@
     <BASEOFFSET offset="0" subtract="0" />
     <DEFAULTS datasizeinbits="8" sigdigits="2" outputtype="1" signed="0" lsbfirst="1" float="0" />
     <REGION type="0xFFFFFFFF" startaddress="0x0" size="0x200000" regioncolor="0x0" regionflags="0x0" name="Binary File" desc="2 MB full read" />
-    <CATEGORY index="0x0" name="xdf moto bin files" />
+    <CATEGORY index="0x0" name="xdf bin files" />
     <CATEGORY index="0x1" name="Fuel" />
     <CATEGORY index="0x2" name="TPS" />
     <CATEGORY index="0x3" name="IAP" />

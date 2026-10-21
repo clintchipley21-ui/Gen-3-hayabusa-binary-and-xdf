@@ -248,10 +248,14 @@ def rewrite_header(text, sw, part):
 
 
 def clean_categories(text):
-    """Scrub the legacy ' (legacy, empty)' folder-name suffix inherited from v9's header."""
-    return re.sub(r'(<CATEGORY index="0x[0-9A-Fa-f]+" name=")([^"]*)(" />)',
-                  lambda m: m.group(1) + m.group(2).replace(' (legacy, empty)', '') + m.group(3),
-                  text)
+    """Scrub the legacy ' (legacy, empty)' folder-name suffix inherited from v9's header, and
+    rename the root category 'xdf moto bin files' -> 'xdf bin files'."""
+    def fix(m):
+        name = m.group(2).replace(' (legacy, empty)', '')
+        if name == 'xdf moto bin files':
+            name = 'xdf bin files'
+        return m.group(1) + name + m.group(3)
+    return re.sub(r'(<CATEGORY index="0x[0-9A-Fa-f]+" name=")([^"]*)(" />)', fix, text)
 
 
 # ECM part number per stock read (the v2 per-read XDFs carry that read's own stock values)
@@ -300,6 +304,9 @@ def build_read(master_text, sw, part):
     text = rewrite_header(text, sw, part)    # swap ms's stock header for the v2 header
     text = clean_categories(text)
     text = _funcnames(text)
+    import xdf_patches as xp                 # add the "22 Patches & Air-Shifter" folder + settings
+    text = xp.inject(text)                   # rolling anti-lag (0xBF000) + auto-upshift (0xBF010)
+    xp.check(text)                           # folder present, no XDFPATCH, no duplicate uniqueids
     ET.fromstring(text)                      # valid XML; no ms.check (that enforces TunerPro limits)
     out = os.path.join(C.V2, '%s-v2.xdf' % sw)
     open(out, 'w', encoding='utf-8').write(text)
