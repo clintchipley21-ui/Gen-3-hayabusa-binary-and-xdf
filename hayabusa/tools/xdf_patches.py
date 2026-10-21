@@ -50,45 +50,57 @@ ITEMS = [
     ('const', 0xBF020, 16, 'Auto-Shift :: Target 5 to 6', 'RPM', 'X/2.56', 0, 'Upshift when RPM reaches this in 5th gear.'),
 ]
 
-# boost-control settings at 0xBF030 (see race/als/boost.s). Software-PWM a repurposed O2-heater output
-# to a wastegate/boost-control solenoid, duty scheduled per gear, with an optional closed-loop trim from a
-# pressure sensor on a repurposed O2 signal input. Added to every XDF (the addresses are free flash).
+# boost-control settings at 0xBF030 (see race/als/boost.s). Software-PWM a repurposed O2-heater output to a
+# wastegate solenoid; per-gear feed-forward duty, with a closed-loop trim toward a POWER-MODE x GEAR x RPM
+# target table (0xBF100). Added to every XDF (the addresses are free flash). The boost-pressure SENSOR
+# TRANSFER used to show targets in kPa (PROVISIONAL - calibrate to your sensor):
+BOOST_XFER = 'X*0.342-15'
 BOOST_ITEMS = [
     ('flag', 0xBF030, 8, 'Boost :: Enable', '', '', 0,
      '0x80 = boost control ON. Software-PWMs the repurposed O2-heater output to a wastegate / boost-control '
-     'solenoid at the per-gear duty below. Ships OFF (and all duties 0 = wastegate spring pressure). '
-     'UNVERIFIED - bench the output first with "Bench Test Output".'),
+     'solenoid at the per-gear feed-forward duty (plus the closed-loop trim if enabled). Ships OFF (all duties 0 '
+     '= wastegate spring pressure). UNVERIFIED - bench the output first with "Bench Test Output".'),
     ('flag', 0xBF031, 8, 'Boost :: Bench Test Output', '', '', 0,
      '0x80 = hold the solenoid output asserted (no PWM, no control) so you can confirm on the bench which pin '
      'drives it (candidate: O2-heater low-side driver). Output polarity is set by the wiring (relay coil leg / '
      'NO vs NC solenoid), not here. Set back to 0 for normal use.'),
     ('flag', 0xBF032, 8, 'Boost :: Closed-Loop Enable', '', '', 0,
-     '0x80 = trim the duty toward "CL Target" using the wastegate-pressure sensor on the input channel set by '
-     '"Pressure Input Address". Leave OFF until that input is proven on the bench; open-loop per-gear duty works without it.'),
+     '0x80 = trim the duty toward the "Boost Target" table (power mode x gear x rpm) using the pressure sensor on '
+     '"Pressure Input Address" and the mode on "Mode Input Address". Leave OFF until both inputs are proven on the '
+     'bench; open-loop per-gear duty works without them.'),
     ('const', 0xBF034, 16, 'Boost :: PWM Period', 'ticks', 'X', 0,
      'Software-PWM period in ~5 ms task ticks (20 ~= 100 ms ~= 10 Hz). Duty is 0..Period. Match your '
      'boost-control solenoid (MAC valves like ~30 Hz; raise the tick rate only if the bench shows room).'),
     ('const', 0xBF036, 16, 'Boost :: Min RPM to Run', 'RPM', 'X/2.56', 0,
      'Below this RPM the solenoid is held off (wastegate spring pressure) so there is no boost off-idle. Default 2000.'),
-    ('const', 0xBF038, 16, 'Boost :: Duty Gear 1', 'ticks', 'X', 0, 'Solenoid on-ticks per period in 1st gear (duty%% = ticks/Period). 0 = spring pressure (least boost).'),
-    ('const', 0xBF03A, 16, 'Boost :: Duty Gear 2', 'ticks', 'X', 0, 'On-ticks per period in 2nd gear.'),
-    ('const', 0xBF03C, 16, 'Boost :: Duty Gear 3', 'ticks', 'X', 0, 'On-ticks per period in 3rd gear.'),
-    ('const', 0xBF03E, 16, 'Boost :: Duty Gear 4', 'ticks', 'X', 0, 'On-ticks per period in 4th gear.'),
-    ('const', 0xBF040, 16, 'Boost :: Duty Gear 5', 'ticks', 'X', 0, 'On-ticks per period in 5th gear.'),
-    ('const', 0xBF042, 16, 'Boost :: Duty Gear 6', 'ticks', 'X', 0, 'On-ticks per period in 6th gear.'),
-    ('const', 0xBF044, 16, 'Boost :: CL Target', 'kPa', 'X*0.342-15', 0,
-     'Closed-loop target manifold pressure. The cell stores RAW counts; this equation (X*0.342-15) is the '
-     'wastegate-pressure SENSOR TRANSFER so you enter the target in kPa - PROVISIONAL, set it to match your '
-     'sensor and input scaling (see "Pressure Input Address"). Only used when "Closed-Loop Enable" is on.'),
-    ('const', 0xBF046, 16, 'Boost :: CL Trim Step', 'ticks', 'X', 0,
-     'Duty ticks the closed loop adds/removes each period while correcting toward CL Target. Small = slow/stable. '
-     'Trim is clamped to +/- Period.'),
-    ('const', 0xBF048, 16, 'Boost :: Pressure Input Address', 'RAM lo', 'X', 0,
+    ('const', 0xBF038, 16, 'Boost :: CL Trim Step', 'ticks', 'X', 0,
+     'Duty ticks the closed loop adds/removes each period while correcting toward the Boost Target. Small = '
+     'slow/stable. Trim is clamped to +/- Period. Only used when "Closed-Loop Enable" is on.'),
+    ('const', 0xBF03A, 16, 'Boost :: Pressure Input Address', 'RAM lo', 'X', 0,
      'Which ADC word the wastegate-pressure sensor is read from, as the low 16 bits of a 0xFEF0xxxx RAM address '
      '(effective address = 0xFEF00000 + this). Default 0x2648 (a candidate repurposed-O2 input). Set it to the '
-     'word the bench proves carries the sensor; add a TunerPro RAM gauge at 0xFEF0<this> with the same transfer '
-     'as "CL Target" to watch live boost. Only used when "Closed-Loop Enable" is on.'),
+     'word the bench proves carries the sensor; add a RAM gauge at 0xFEF0<this> with transfer ' + BOOST_XFER +
+     ' to watch live boost. Only used when "Closed-Loop Enable" is on.'),
+    ('const', 0xBF03C, 16, 'Boost :: Mode Input Address', 'RAM lo', 'X', 0,
+     'Which RAM byte holds the active power mode (PW 1-3), as the low 16 bits of a 0xFEF0xxxx address. Default '
+     '0x1F74 (0xFEF01F74, the active power-mode working value). Value 1/2/3 selects Boost Target table Mode A/B/C.'),
+    ('const', 0xBF03E, 16, 'Boost :: Duty Gear 1', 'ticks', 'X', 0, 'Open-loop feed-forward on-ticks per period in 1st gear (duty%% = ticks/Period). 0 = spring pressure.'),
+    ('const', 0xBF040, 16, 'Boost :: Duty Gear 2', 'ticks', 'X', 0, 'Feed-forward on-ticks per period in 2nd gear.'),
+    ('const', 0xBF042, 16, 'Boost :: Duty Gear 3', 'ticks', 'X', 0, 'Feed-forward on-ticks per period in 3rd gear.'),
+    ('const', 0xBF044, 16, 'Boost :: Duty Gear 4', 'ticks', 'X', 0, 'Feed-forward on-ticks per period in 4th gear.'),
+    ('const', 0xBF046, 16, 'Boost :: Duty Gear 5', 'ticks', 'X', 0, 'Feed-forward on-ticks per period in 5th gear.'),
+    ('const', 0xBF048, 16, 'Boost :: Duty Gear 6', 'ticks', 'X', 0, 'Feed-forward on-ticks per period in 6th gear.'),
 ]
+
+# Closed-loop boost TARGET: three tables (one per power mode A/B/C), each GEAR (rows 1-6) x RPM (cols).
+# Z data in free flash at 0xBF100 + mode*96; the shared RPM axis (X) is at 0xBF04A (8 u16, X/2.56); cells
+# store raw ADC and display as kPa via the sensor transfer. (mode_label, z_addr).
+BOOST_TABLES = [('Mode A (PW1)', 0xBF100), ('Mode B (PW2)', 0xBF160), ('Mode C (PW3)', 0xBF1C0)]
+BOOST_RPMAX_ADDR = 0xBF04A
+BOOST_TBL_DESC = ('Closed-loop boost TARGET for power mode %s: rows = gear 1-6, columns = RPM. Cells store raw '
+                  'ADC of the boost-pressure sensor, shown in kPa via ' + BOOST_XFER + ' (PROVISIONAL - set the '
+                  'equation to your sensor). The closed loop trims the solenoid duty toward this. RPM breakpoints '
+                  '(the X axis) are shared with the other modes. Only used when "Closed-Loop Enable" is on. @0x%X')
 
 # IAP MAP-sensor scaling. The SD patch sets these for a GM 3-bar sensor; the preset guide lets you retune for a
 # GM 2.5-bar (or calibrate any sensor). The conversion divisor (0x74302) is defined in no stock XDF, so the guide
@@ -151,6 +163,25 @@ CONST = ('  <XDFCONSTANT uniqueid="0x{uid:X}" flags="0x0">\n    <title>{title}</
 FLAG = ('  <XDFFLAG uniqueid="0x{uid:X}">\n    <title>{title}</title>\n    <description>{desc}</description>\n'
         '    <CATEGORYMEM index="0" category="{cat}" />\n    <EMBEDDEDDATA mmedaddress="0x{addr:X}" '
         'mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />\n    <mask>0x80</mask>\n  </XDFFLAG>\n')
+TABLE = ('  <XDFTABLE uniqueid="0x{uid:X}" flags="0x0">\n    <title>{title}</title>\n'
+         '    <description>{desc}</description>\n    <CATEGORYMEM index="0" category="{cat}" />\n'
+         '    <XDFAXIS id="x" uniqueid="0x0">\n'
+         '      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x{xaddr:X}" mmedelementsizebits="16" '
+         'mmedcolcount="8" mmedmajorstridebits="0" mmedminorstridebits="0" />\n'
+         '      <units>RPM</units>\n      <indexcount>8</indexcount>\n      <decimalpl>0</decimalpl>\n'
+         '      <embedinfo type="1" />\n      <datatype>0</datatype>\n      <unittype>0</unittype>\n'
+         '      <DALINK index="0" />\n      <MATH equation="X/2.56">\n        <VAR id="X" />\n      </MATH>\n'
+         '    </XDFAXIS>\n    <XDFAXIS id="y" uniqueid="0x0">\n'
+         '      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />\n'
+         '      <indexcount>6</indexcount>\n      <LABEL index="0" value="1" />\n      <LABEL index="1" value="2" />\n'
+         '      <LABEL index="2" value="3" />\n      <LABEL index="3" value="4" />\n      <LABEL index="4" value="5" />\n'
+         '      <LABEL index="5" value="6" />\n      <decimalpl>0</decimalpl>\n      <datatype>0</datatype>\n'
+         '      <unittype>0</unittype>\n      <DALINK index="0" />\n'
+         '      <MATH equation="X">\n        <VAR id="X" />\n      </MATH>\n    </XDFAXIS>\n'
+         '    <XDFAXIS id="z">\n      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x{zaddr:X}" '
+         'mmedelementsizebits="16" mmedrowcount="6" mmedcolcount="8" mmedmajorstridebits="0" mmedminorstridebits="0" />\n'
+         '      <units>kPa</units>\n      <decimalpl>0</decimalpl>\n      <outputtype>1</outputtype>\n'
+         '      <MATH equation="{xfer}">\n        <VAR id="X" />\n      </MATH>\n    </XDFAXIS>\n  </XDFTABLE>\n')
 PATCH = ('  <XDFPATCH uniqueid="0x{uid:X}" flags="0x0">\n    <title>{title}</title>\n'
          '    <description>{desc}</description>\n    <CATEGORYMEM index="0" category="{cat}" />\n{entries}  </XDFPATCH>\n')
 PENTRY = ('    <XDFPATCHENTRY name="{name}" address="0x{addr:X}" datasize="0x{n:X}" '
@@ -181,6 +212,14 @@ def inject(text, which=('antilag', 'autoshift')):
         tmpl = FLAG if kind == 'flag' else CONST
         out.append(tmpl.format(uid=uid, title=escape(title, quote=False), desc=d, cat=cat,
                                addr=addr, bits=bits, units=escape(units, quote=False), eq=escape(eq, quote=False), dec=dec))
+        uid += 1
+
+    # closed-loop boost target: one gear x rpm table per power mode, in the boost folder
+    for label, zaddr in BOOST_TABLES:
+        assert uid not in uids, uid
+        out.append(TABLE.format(uid=uid, title=escape('Boost Target :: ' + label + ' (gear x RPM)', quote=False),
+                                desc=escape(BOOST_TBL_DESC % (label, zaddr), quote=False), cat=cat_boost,
+                                xaddr=BOOST_RPMAX_ADDR, zaddr=zaddr, xfer=escape(BOOST_XFER, quote=False)))
         uid += 1
 
     # NOTE: native TunerPro patches (XDFPATCH) are intentionally NOT embedded - that element crashed

@@ -32,18 +32,23 @@ AIR-SHIFTER (0xBF010)  -  ENABLED
  Pulses the PAIR output; requires the factory quickshifter for the spark cut. Bench-confirm the PAIR
  pin ("Auto-Shift :: Bench Test Output") before trusting it (polarity is set by wiring).
 
-BOOST CONTROL (0xBF030)  -  ENABLED, open loop
- PWM period 20 ticks (~10 Hz) | min rpm to run 3500 | closed loop OFF.
- Boost-by-gear duty (on-ticks of 20 = %% duty): 1:4(20%%) 2:7(35%%) 3:10(50%%) 4:13(65%%) 5:16(80%%) 6:18(90%%).
-   -> least boost in the low gears for traction, building to the top gears. DUTY->BOOST DIRECTION
-      DEPENDS ON YOUR SOLENOID PLUMBING - on a normally-closed MAC valve bleeding the wastegate signal,
-      more duty = more boost; confirm yours and flip the numbers if it is the other way.
- Closed-loop (off): CL Target 250 kPa abs (raw 775 via the sensor transfer X*0.342-15), trim step 2.
- Pressure Input Address 0x2648 -> 0xFEF02648 (candidate repurposed-O2 input). To use closed loop:
-   1. Wire the wastegate-hat pressure sensor to the repurposed O2 signal input.
-   2. Set "Pressure Input Address" to the ADC word the bench shows carries it.
-   3. Set "CL Target"'s equation to your sensor's real transfer (the X*0.342-15 here is provisional);
-      GM-style presets: 3-bar ~ X*0.342-15, 2.5-bar ~ X*0.285-12 (CALIBRATE against a known pressure).
+BOOST CONTROL (0xBF030 + target table 0xBF100)  -  ENABLED, open loop
+ PWM period 20 ticks (~10 Hz) | min rpm to run 3500 | trim step 2 | closed loop OFF.
+ Feed-forward duty by gear (on-ticks of 20 = %% duty): 1:4(20%%) 2:7(35%%) 3:10(50%%) 4:13(65%%) 5:16(80%%) 6:18(90%%).
+   -> least boost in the low gears for traction, building up top. DUTY->BOOST DIRECTION DEPENDS ON YOUR
+      SOLENOID PLUMBING - on a normally-closed MAC valve bleeding the wastegate signal, more duty = more
+      boost; confirm yours and flip the numbers if it is the other way.
+ Closed-loop TARGET tables (populated, used only when CL is enabled), kPa abs via X*0.342-15:
+   Mode A (PW1, full): per-gear peaks 160/180/200/220/235/235, shaped over RPM (ramp in, hold, slight top taper).
+   Mode B (PW2, mid) : ~82%% of A's boost-over-atmosphere.
+   Mode C (PW3, low) : ~60%% of A (rain/low-grip).
+ Inputs (defaults): Pressure Input 0xFEF02648, Mode Input 0xFEF01F74 (active PW 1-3 -> Mode A/B/C).
+ To use closed loop:
+   1. Wire the wastegate-hat pressure sensor to the repurposed O2 signal input; delete/ignore that O2 sensor.
+   2. Set "Pressure Input Address" to the ADC word the bench shows carries it, and confirm "Mode Input
+      Address" reads 1/2/3 as you switch ride mode A/B/C.
+   3. Set the Boost Target tables' equation to your sensor's real transfer (X*0.342-15 is provisional;
+      2.5-bar ~ X*0.285-12). CALIBRATE against a known pressure.
    4. Only then set "Closed-Loop Enable" = 0x80.
 
 OUTPUTS / INPUTS STILL TO BENCH-CONFIRM
