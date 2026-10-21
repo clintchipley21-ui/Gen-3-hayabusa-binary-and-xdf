@@ -80,6 +80,12 @@ int main(int argc, char **argv) {
     for (i=0; i<RACE_RPM_POINTS; ++i) c.target_hat[1][i]=(uint16_t)(i*100);
     assert(race_curve(c.rpm,c.target_hat[1],5500)==550);
     assert(race_curve(c.rpm,c.target_hat[1],20000)==1500);
+    /* Maximum validated PI product stays within int32 on the target. */
+    c.hat_limit=12000; c.hat_mv_min=100; c.max_step_ms=100;
+    for (i=0; i<RACE_RPM_POINTS; ++i) c.target_hat[1][i]=12000;
+    race_init(&s); in.hat_mv=100; in.now_ms=0;
+    race_tick(&c,&in,&s,&o); in.now_ms=100;
+    race_tick(&c,&in,&s,&o); assert(o.duty==9000 && !o.faults);
     puts("native controller scenarios passed (profile decode, pressure units, PI, gates, faults, timer wrap, anti-windup)");
     return 0;
 }

@@ -113,14 +113,30 @@ the O2 signal pin is electrically compatible with a 0.5–4.5-V transducer.
 
 ## Remaining physical/runtime adapter
 
+### Located service-manual evidence
+
+Publicly delivered text from [Suzuki 99500-10L00-01E, GSX1300RM2](https://www.scribd.com/document/1056621071/2020-2022-GSX1300RR-99500-10L00-01E-GSX1300RM2-unlocked)
+identifies O2 #1 signal/return at ECM A/T24 and A/T28 (1A-45), heater control at
+C/T79 (1A-32/33), and PAIR control at C/T94 (1A-65). Connector orientation is in
+1A-7. The normal O2 output is approximately 0–1 V and heater resistance is
+11.5–17.5 ohms at 23 C (1C-8/9). These are manual-reported assignments, not a
+continuity check of this bike or a verified MCU/ASIC binding. Diagram orientation
+has not been independently visually checked.
+
+The pressure sensor's 0.5–4.5-V signal must not be treated as electrically
+interchangeable with that normal O2 signal. A diagnostic high-voltage threshold
+does not establish the input's absolute maximum rating or analog transfer.
+The manual narrows the terminal search; it does not document ECU-internal PWM
+registers, task ownership, flyback limits or the proposed sensor's compatibility.
+
 The specified parts and selected channel are recorded in `../hardware-target.json`.
 The remaining blockers are ECU electrical/pin/timer evidence and verification:
 
-1. Establish O2 channel 1's physical signal terminal, reference/conditioning and
+1. Verify the manual-reported O2 channel 1 terminal against this bike, then its reference/conditioning and
    permissible input range. Provide regulated 5-V sensor power separately from
    the heater's 12-V supply. Identify the delivered pressure-sensor marking.
-2. Identify the actual heater driver command and all stock writers, physical
-   terminal, current limit, polarity/flyback and PWM timer. The old heater-duty
+2. Identify the actual heater driver command and all stock writers; verify the
+   manual-reported terminal, current limit, polarity/flyback and PWM timer. The old heater-duty
    XDF curves do not establish this. Do not write guessed ports/request bits.
 3. Replace stock channel ownership, closed-loop fuel feedback/learning, relevant
    diagnostics and heater scheduling coherently. Disabling a lamp or monitor
@@ -137,3 +153,37 @@ The remaining blockers are ECU electrical/pin/timer evidence and verification:
 
 No physical driver binding or ECU controller hook is emitted until that evidence
 exists. The build manifest explicitly reports `runtime_driver_installed: false`.
+
+
+## Cross-compiled reference and Ghidra execution
+
+The core also builds freestanding with GCC 13.3.0 and GNU binutils 2.43 for
+`-mv850e3v5` (compiler default RH850 ABI). It includes its own minimal memset/memcmp
+and uses bounded 32-bit integer math; the combined object has no unresolved
+library symbols. GNU GAS emits an unreferenced `r31` symbol for register operands;
+the build strips that symbol using objcopy, which rejects removal if a relocation
+references it. Code bytes are not edited.
+
+Reproduce with a V850 cross toolchain and a prepared development image:
+
+```sh
+python3 hayabusa/race/control/build_reference.py \
+  --prefix /opt/cross/bin/v850-elf- --out work/target-reference \
+  --profile-bin work/Race-integration-J40.bin
+```
+
+This emits relocatable reference objects and an **emulator-only** flat self-test.
+The self-test uses the actual 576-byte prepared profile. Run in a read-only copy of
+the existing Ghidra project using `RaceEmulate.java`, with arguments
+`<absolute-selftest.bin> 0xc0000 0xc0000 <absolute-report.txt>`.
+It exercises decoding, disabled output, calibration, PI response, ALS/shift
+inhibition, faults, reset and timer wrap. The recorded V850E3V5 run returned zero
+(pass) after 27,355 instructions. See `../audit/target-emulation.txt` and
+`../audit/target-reference-build.json`. Emulator warnings about saved, previously
+uninitialized registers do not represent physical ECU observations.
+
+This test executes standalone compiled code in an emulator overlay. It does not
+establish the stock scheduler's ABI, RAM ownership, electrical behavior, ECU
+execution timing or a physical output adapter, and is never installed into a
+flashable image. Existing ALS/airshift assembly was independently rebuilt and
+matched the reference hashes (`../audit/reassembly-check.txt`).

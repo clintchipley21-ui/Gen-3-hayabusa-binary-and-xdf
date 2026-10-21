@@ -57,7 +57,9 @@ class BoostIntegrationTests(unittest.TestCase):
             blob.write_bytes(self.image[prep.PROFILE_ADDRESS:prep.PROFILE_ADDRESS+prep.PROFILE_SIZE])
             subprocess.run(['gcc','-std=c99','-Wall','-Wextra','-Werror','-pedantic',
                             '-fsanitize=undefined','-fno-sanitize-recover=all',
+                            '-ffreestanding','-fno-builtin','-I'+str(source/'freestanding'),
                             str(source/'race_control.c'),str(source/'test_race_control.c'),
+                            str(source/'freestanding/memory.c'),
                             '-o',str(tmp/'controller-test')],check=True,capture_output=True,text=True)
             result=subprocess.run([str(tmp/'controller-test'),str(blob)],check=True,capture_output=True,text=True)
             self.assertIn('native controller scenarios passed',result.stdout)

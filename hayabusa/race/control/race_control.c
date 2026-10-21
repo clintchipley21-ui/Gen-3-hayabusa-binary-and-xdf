@@ -2,7 +2,7 @@
 #include <string.h>
 
 static uint16_t u16(const uint8_t *p) { return (uint16_t)(p[0] | ((uint16_t)p[1] << 8)); }
-static int32_t clamp32(int64_t value, int32_t low, int32_t high) {
+static int32_t clamp32(int32_t value, int32_t low, int32_t high) {
     return value < low ? low : value > high ? high : (int32_t)value;
 }
 int32_t race_gm55567257_kpa_x100(uint16_t mv) {
@@ -102,7 +102,9 @@ void race_tick(const race_config *c, const race_inputs *in, race_state *s, race_
     base=race_curve(c->rpm, c->base_duty[in->gear], in->rpm);
     error=(int32_t)out->target_hat-out->hat_psi_x100;
     proportional=(int32_t)c->kp*error/100;
-    integral=clamp32((int64_t)s->integral_milli_bp + (int64_t)c->ki*error*dt/100,
+    /* Validated bounds: |error| <= 13500, ki <= 1000, dt <= 100 ms.
+       Product <= 1.35e9; integral addition <= 22.5e6. No 64-bit helper/ABI needed. */
+    integral=clamp32(s->integral_milli_bp + (int32_t)c->ki*error*(int32_t)dt/100,
                      -(int32_t)c->duty_max*1000, (int32_t)c->duty_max*1000);
     requested=(int32_t)base+proportional+integral/1000;
     /* Do not integrate farther into either saturation rail. */

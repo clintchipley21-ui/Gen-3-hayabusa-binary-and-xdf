@@ -1,0 +1,51 @@
+{
+  "status": "V850E3V5 RELOCATABLE REFERENCE OBJECTS - NO ECU RUNTIME INSTALLED",
+  "compiler": "v850-elf-gcc (GCC) 13.3.0",
+  "flags": [
+    "-mv850e3v5",
+    "-Os",
+    "-std=c99",
+    "-ffreestanding",
+    "-fno-builtin",
+    "-fno-common",
+    "-fno-pic",
+    "-fno-stack-protector",
+    "-msda=0",
+    "-mtda=0",
+    "-mzda=0",
+    "-Wall",
+    "-Wextra",
+    "-Werror"
+  ],
+  "objects": [
+    {
+      "object": "race_control.o",
+      "source": "race_control.c",
+      "source_sha256": "d3b5b09eddcc9a23cf61cf2582c7d482c4935e7d7a742e18846437d10faa0f5c",
+      "sha256": "5ba3d199264d67b09a960b69572e0c33570075775c202a44aa5d5c7b35ea3d30",
+      "undefined_symbols": [
+        "         U _memcmp",
+        "         U _memset"
+      ]
+    },
+    {
+      "object": "race_memory.o",
+      "source": "freestanding/memory.c",
+      "source_sha256": "8d3f759bcb38256dc5fbde065704b0e505f8ba2355e74413559fcc981b1a3a1f",
+      "sha256": "2fd06acdcdcf0d78429f0b56bdbf1c2be128b95f3922f59ed9c0631615c49cb0",
+      "undefined_symbols": []
+    }
+  ],
+  "combined_object_sha256": "57da2b445fbc8c0cc98e5b98388ffd1ed0f81a7f67f610a28269eff07ff2a168",
+  "combined_undefined_symbols": [],
+  "target_execution_tested": false,
+  "ecu_adapter_installed": false,
+  "note": "Self-contained target core; ECU ABI/hooks/RAM/IO remain to be validated before firmware linking.",
+  "selftest": {
+    "load_address": "0xc0000",
+    "entry_address": "0xc0000",
+    "profile_sha256": "63d233d05f63a015624c3ca057114864662662b24abd67d7c4780cd6db286b9b",
+    "flat_image_sha256": "7c2d7d672b03c8be1398c37ca282639aebde4d3e2042ca542ca4237c00aab5ce",
+    "note": "Emulator-only fixture; never flash to ECU"
+  }
+}

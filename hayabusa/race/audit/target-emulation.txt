@@ -1,0 +1,7 @@
+Language: V850:LE:32:v850e3v5
+Emulator overlay only; no ECU image patched or hardware actuated.
+load=0xc0000 entry=0xc0000 stop=0xcffffe
+instructions stepped: 27355
+returned: true
+self-test result (0=pass, otherwise C source line): 0
+physical I/O tested: false
