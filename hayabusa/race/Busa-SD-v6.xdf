@@ -35463,6 +35463,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA100" flags="0x0">
+    <title>DTC P0132 - HO2 sensor B1S1 high - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 36, lamp byte @0x1B9954 (mask 0x01).
+@0x1B9954 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9954" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA026" flags="0x0">
     <title>DTC P0130 #1 - HO2 sensor B1S1 circuit [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 37. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B995C.
@@ -35479,6 +35488,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA101" flags="0x0">
+    <title>DTC P0130 #1 - HO2 sensor B1S1 circuit - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 37, lamp byte @0x1B9968 (mask 0x01).
+@0x1B9968 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9968" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA027" flags="0x0">
     <title>DTC P2A00 - HO2 sensor B1S1 range/performance [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 38. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9970.
@@ -35495,6 +35513,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA102" flags="0x0">
+    <title>DTC P2A00 - HO2 sensor B1S1 range/performance - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 38, lamp byte @0x1B997C (mask 0x01).
+@0x1B997C - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B997C" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA028" flags="0x0">
     <title>DTC P0133 - HO2 sensor B1S1 slow response [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 39. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9984.
@@ -35511,6 +35538,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA103" flags="0x0">
+    <title>DTC P0133 - HO2 sensor B1S1 slow response - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 39, lamp byte @0x1B9990 (mask 0x01).
+@0x1B9990 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9990" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA029" flags="0x0">
     <title>DTC P0152 - HO2 sensor B2S1 high [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 40. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9998.
@@ -35527,6 +35563,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA104" flags="0x0">
+    <title>DTC P0152 - HO2 sensor B2S1 high - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 40, lamp byte @0x1B99A4 (mask 0x01).
+@0x1B99A4 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B99A4" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA02A" flags="0x0">
     <title>DTC P0150 #1 - HO2 sensor B2S1 circuit [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 41. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B99AC.
@@ -35543,6 +35588,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA105" flags="0x0">
+    <title>DTC P0150 #1 - HO2 sensor B2S1 circuit - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 41, lamp byte @0x1B99B8 (mask 0x01).
+@0x1B99B8 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B99B8" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA02B" flags="0x0">
     <title>DTC P2A03 - HO2 sensor B2S1 range/performance [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 42. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B99C0.
@@ -35559,6 +35613,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA106" flags="0x0">
+    <title>DTC P2A03 - HO2 sensor B2S1 range/performance - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 42, lamp byte @0x1B99CC (mask 0x01).
+@0x1B99CC - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B99CC" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA02C" flags="0x0">
     <title>DTC P0153 - HO2 sensor B2S1 slow response [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 43. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B99D4.
@@ -35575,6 +35638,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA107" flags="0x0">
+    <title>DTC P0153 - HO2 sensor B2S1 slow response - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 43, lamp byte @0x1B99E0 (mask 0x01).
+@0x1B99E0 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B99E0" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA02D" flags="0x0">
     <title>DTC P0138 - HO2 sensor B1S2 high (not used) [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 44. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B99E8.
@@ -35719,6 +35791,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA108" flags="0x0">
+    <title>DTC P1402 - Suzuki P1402 (not in Gen3 manual) - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 52, lamp byte @0x1B9A94 (mask 0x01).
+@0x1B9A94 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9A94" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA036" flags="0x0">
     <title>DTC P1400 - Suzuki P1400 (not in Gen3 manual) [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 53. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9A9C.
@@ -35735,6 +35816,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA109" flags="0x0">
+    <title>DTC P1400 - Suzuki P1400 (not in Gen3 manual) - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 53, lamp byte @0x1B9AA8 (mask 0x01).
+@0x1B9AA8 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9AA8" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA037" flags="0x0">
     <title>DTC P1404 #1 - Suzuki P1404 (not in Gen3 manual) [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 54. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9AB0.
@@ -35751,6 +35841,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA10A" flags="0x0">
+    <title>DTC P1404 #1 - Suzuki P1404 (not in Gen3 manual) - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 54, lamp byte @0x1B9ABC (mask 0x01).
+@0x1B9ABC - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9ABC" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA038" flags="0x0">
     <title>DTC P1404 #2 - Suzuki P1404 (not in Gen3 manual) [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 55. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9AC4.
@@ -35767,6 +35866,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA10B" flags="0x0">
+    <title>DTC P1404 #2 - Suzuki P1404 (not in Gen3 manual) - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 55, lamp byte @0x1B9AD0 (mask 0x01).
+@0x1B9AD0 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9AD0" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFFLAG uniqueid="0xA039" flags="0x0">
     <title>DTC P1702 - Suzuki P1702 (not in Gen3 manual) - Warning lamp enabled</title>
     <description>Ticked = this DTC lights the Warning lamp when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 56, lamp byte @0x1B9AE4 (mask 0x40).
@@ -36062,6 +36170,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA10C" flags="0x0">
+    <title>DTC P0444 - EVAP purge control valve circuit - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 87, lamp byte @0x1B9D50 (mask 0x01).
+@0x1B9D50 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9D50" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA059" flags="0x0">
     <title>DTC P0412 - PAIR (secondary air) control valve circuit [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 88. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9D58.
@@ -36078,6 +36195,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA10D" flags="0x0">
+    <title>DTC P0412 - PAIR (secondary air) control valve circuit - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 88, lamp byte @0x1B9D64 (mask 0x01).
+@0x1B9D64 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9D64" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA05A" flags="0x0">
     <title>DTC P0410 - PAIR (secondary air) system [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 89. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9D6C.
@@ -36094,6 +36220,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA10E" flags="0x0">
+    <title>DTC P0410 - PAIR (secondary air) system - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 89, lamp byte @0x1B9D78 (mask 0x01).
+@0x1B9D78 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9D78" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFFLAG uniqueid="0xA05B" flags="0x0">
     <title>DTC P1750 - Suzuki P1750 (not in Gen3 manual) - Warning lamp enabled</title>
     <description>Ticked = this DTC lights the Warning lamp when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 90, lamp byte @0x1B9D8C (mask 0x40).
@@ -36119,6 +36254,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA10F" flags="0x0">
+    <title>DTC P1403 - Suzuki P1403 (not in Gen3 manual) - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 91, lamp byte @0x1B9DA0 (mask 0x01).
+@0x1B9DA0 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9DA0" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA05D" flags="0x0">
     <title>DTC P1406 - Suzuki P1406 (not in Gen3 manual) [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 92. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9DA8.
@@ -36135,6 +36279,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA110" flags="0x0">
+    <title>DTC P1406 - Suzuki P1406 (not in Gen3 manual) - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 92, lamp byte @0x1B9DB4 (mask 0x01).
+@0x1B9DB4 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9DB4" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA05E" flags="0x0">
     <title>DTC P0030 - HO2 heater B1S1 control [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 93. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9DBC.
@@ -36151,6 +36304,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA111" flags="0x0">
+    <title>DTC P0030 - HO2 heater B1S1 control - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 93, lamp byte @0x1B9DC8 (mask 0x01).
+@0x1B9DC8 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9DC8" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA05F" flags="0x0">
     <title>DTC P0050 - HO2 heater B2S1 control [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 94. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9DD0.
@@ -36167,6 +36329,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA112" flags="0x0">
+    <title>DTC P0050 - HO2 heater B2S1 control - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 94, lamp byte @0x1B9DDC (mask 0x01).
+@0x1B9DDC - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9DDC" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA060" flags="0x0">
     <title>DTC P0036 - HO2 heater B1S2 (not used) [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 95. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9DE4.
@@ -36224,6 +36395,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA113" flags="0x0">
+    <title>DTC P0010 - Cam actuator circuit (not used - no VVT) - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 98, lamp byte @0x1B9E2C (mask 0x01).
+@0x1B9E2C - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9E2C" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA064" flags="0x0">
     <title>DTC P003C - Cam profile actuator (not used) [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 99. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9E34.
@@ -36265,6 +36445,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA114" flags="0x0">
+    <title>DTC P0509 - Idle air control high (not in Gen3 manual) - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 101, lamp byte @0x1B9E68 (mask 0x01).
+@0x1B9E68 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9E68" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA067" flags="0x0">
     <title>DTC P0511 - Idle air control circuit (not in Gen3 manual) [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 102. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9E70.
@@ -36281,6 +36470,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA115" flags="0x0">
+    <title>DTC P0511 - Idle air control circuit (not in Gen3 manual) - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 102, lamp byte @0x1B9E7C (mask 0x01).
+@0x1B9E7C - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9E7C" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA068" flags="0x0">
     <title>DTC P0506 - Idle rpm lower than expected (not in Gen3 manual) [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 103. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9E84.
@@ -36297,6 +36495,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA116" flags="0x0">
+    <title>DTC P0506 - Idle rpm lower than expected (not in Gen3 manual) - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 103, lamp byte @0x1B9E90 (mask 0x01).
+@0x1B9E90 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9E90" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA069" flags="0x0">
     <title>DTC P0507 - Idle rpm higher than expected (not in Gen3 manual) [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 104. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9E98.
@@ -36313,6 +36520,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA117" flags="0x0">
+    <title>DTC P0507 - Idle rpm higher than expected (not in Gen3 manual) - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 104, lamp byte @0x1B9EA4 (mask 0x01).
+@0x1B9EA4 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9EA4" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA06A" flags="0x0">
     <title>DTC P0505 - Idle air control system (not in Gen3 manual) [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 105. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9EAC.
@@ -36329,6 +36545,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA118" flags="0x0">
+    <title>DTC P0505 - Idle air control system (not in Gen3 manual) - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 105, lamp byte @0x1B9EB8 (mask 0x01).
+@0x1B9EB8 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9EB8" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA06B" flags="0x0">
     <title>DTC P0420 - Catalyst efficiency bank 1 (not in Gen3 manual) [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 106. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9EC0.
@@ -36345,6 +36570,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA119" flags="0x0">
+    <title>DTC P0420 - Catalyst efficiency bank 1 (not in Gen3 manual) - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 106, lamp byte @0x1B9ECC (mask 0x01).
+@0x1B9ECC - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9ECC" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA06C" flags="0x0">
     <title>DTC P0430 - Catalyst efficiency bank 2 (not in Gen3 manual) [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 107. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9ED4.
@@ -36361,6 +36595,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA11A" flags="0x0">
+    <title>DTC P0430 - Catalyst efficiency bank 2 (not in Gen3 manual) - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 107, lamp byte @0x1B9EE0 (mask 0x01).
+@0x1B9EE0 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9EE0" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA06D" flags="0x0">
     <title>DTC P0300 #1 - Misfire detected [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 108. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9EE8.
@@ -36377,6 +36620,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA11B" flags="0x0">
+    <title>DTC P0300 #1 - Misfire detected - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 108, lamp byte @0x1B9EF4 (mask 0x01).
+@0x1B9EF4 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9EF4" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA06E" flags="0x0">
     <title>DTC P0300 #2 - Misfire detected [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 109. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9EFC.
@@ -36393,6 +36645,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA11C" flags="0x0">
+    <title>DTC P0300 #2 - Misfire detected - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 109, lamp byte @0x1B9F08 (mask 0x01).
+@0x1B9F08 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9F08" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA06F" flags="0x0">
     <title>DTC P0171 #1 - Fuel system too lean B1 [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 110. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9F10.
@@ -36409,6 +36670,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA11D" flags="0x0">
+    <title>DTC P0171 #1 - Fuel system too lean B1 - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 110, lamp byte @0x1B9F1C (mask 0x01).
+@0x1B9F1C - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9F1C" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA070" flags="0x0">
     <title>DTC P0172 #1 - Fuel system too rich B1 [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 111. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9F24.
@@ -36425,6 +36695,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA11E" flags="0x0">
+    <title>DTC P0172 #1 - Fuel system too rich B1 - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 111, lamp byte @0x1B9F30 (mask 0x01).
+@0x1B9F30 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9F30" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA071" flags="0x0">
     <title>DTC P0174 #1 - Fuel system too lean B2 [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 112. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9F38.
@@ -36441,6 +36720,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA11F" flags="0x0">
+    <title>DTC P0174 #1 - Fuel system too lean B2 - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 112, lamp byte @0x1B9F44 (mask 0x01).
+@0x1B9F44 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9F44" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA072" flags="0x0">
     <title>DTC P0175 #1 - Fuel system too rich B2 [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 113. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9F4C.
@@ -36457,6 +36745,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA120" flags="0x0">
+    <title>DTC P0175 #1 - Fuel system too rich B2 - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 113, lamp byte @0x1B9F58 (mask 0x01).
+@0x1B9F58 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9F58" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA073" flags="0x0">
     <title>DTC P0171 #2 - Fuel system too lean B1 [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 114. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9F60.
@@ -36473,6 +36770,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA121" flags="0x0">
+    <title>DTC P0171 #2 - Fuel system too lean B1 - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 114, lamp byte @0x1B9F6C (mask 0x01).
+@0x1B9F6C - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9F6C" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA074" flags="0x0">
     <title>DTC P0172 #2 - Fuel system too rich B1 [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 115. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9F74.
@@ -36489,6 +36795,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA122" flags="0x0">
+    <title>DTC P0172 #2 - Fuel system too rich B1 - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 115, lamp byte @0x1B9F80 (mask 0x01).
+@0x1B9F80 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9F80" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA075" flags="0x0">
     <title>DTC P0174 #2 - Fuel system too lean B2 [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 116. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9F88.
@@ -36505,6 +36820,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA123" flags="0x0">
+    <title>DTC P0174 #2 - Fuel system too lean B2 - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 116, lamp byte @0x1B9F94 (mask 0x01).
+@0x1B9F94 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9F94" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA076" flags="0x0">
     <title>DTC P0175 #2 - Fuel system too rich B2 [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 117. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9F9C.
@@ -36521,6 +36845,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA124" flags="0x0">
+    <title>DTC P0175 #2 - Fuel system too rich B2 - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 117, lamp byte @0x1B9FA8 (mask 0x01).
+@0x1B9FA8 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9FA8" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA077" flags="0x0">
     <title>DTC P050B - Cold-start ignition timing performance [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 118. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1B9FB0.
@@ -36537,6 +36870,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA125" flags="0x0">
+    <title>DTC P050B - Cold-start ignition timing performance - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 118, lamp byte @0x1B9FBC (mask 0x01).
+@0x1B9FBC - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1B9FBC" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFFLAG uniqueid="0xA078" flags="0x0">
     <title>DTC P1650 - Suzuki P1650 (warning-lamp code) - Warning lamp enabled</title>
     <description>Ticked = this DTC lights the Warning lamp when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 119, lamp byte @0x1B9FD0 (mask 0x40).
@@ -36625,6 +36967,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA126" flags="0x0">
+    <title>DTC P0130 #2 - HO2 sensor B1S1 circuit - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 127, lamp byte @0x1BA070 (mask 0x01).
+@0x1BA070 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1BA070" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFCONSTANT uniqueid="0xA081" flags="0x0">
     <title>DTC P0150 #2 - HO2 sensor B2S1 circuit [emissions - label only]</title>
     <description>Emissions-related DTC, DTC index 128. Shown for reference only: this constant displays the DTC number stored in the record (hex, no P prefix), not the lamp byte. Stock lamp group: MIL. Record @0x1BA078.
@@ -36641,6 +36992,15 @@ Confidence MEDIUM. @0x15437E - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xA127" flags="0x0">
+    <title>DTC P0150 #2 - HO2 sensor B2S1 circuit - MIL enabled</title>
+    <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 128, lamp byte @0x1BA084 (mask 0x01).
+@0x1BA084 - full notes: docs/xdf-notes.csv</description>
+    <CATEGORYMEM index="0" category="9" />
+    <CATEGORYMEM index="1" category="33" />
+    <EMBEDDEDDATA mmedaddress="0x1BA084" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x01</mask>
+  </XDFFLAG>
   <XDFFLAG uniqueid="0xA082" flags="0x0">
     <title>DTC P0520 - Engine oil pressure sensor/switch circuit (not in Gen3 manual) - MIL enabled</title>
     <description>Ticked = this DTC lights the MIL when it sets (stock). Unticked = the code still sets and is stored, but no lamp lights. DTC index 129, lamp byte @0x1BA098 (mask 0x01).
@@ -82357,6 +82717,181 @@ STOCK (this read): raw 0 / 0x00000000.
     <unittype>0</unittype>
     <DALINK index="0" />
     <MATH equation="X/2.56">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFFLAG uniqueid="0xE00A">
+    <title>Boost :: Enable</title>
+    <description>0x80 = boost control ON. Software-PWMs the repurposed O2-heater output to a wastegate / boost-control solenoid at the per-gear duty below. Ships OFF (and all duties 0 = wastegate spring pressure). UNVERIFIED - bench the output first with "Bench Test Output". @0xBF030</description>
+    <CATEGORYMEM index="0" category="39" />
+    <EMBEDDEDDATA mmedaddress="0xBF030" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0xE00B">
+    <title>Boost :: Bench Test Output</title>
+    <description>0x80 = hold the solenoid output asserted (no PWM, no control) so you can confirm on the bench which pin / relay it drives (candidate: O2-heater low-side driver). Set back to 0 for normal use. @0xBF031</description>
+    <CATEGORYMEM index="0" category="39" />
+    <EMBEDDEDDATA mmedaddress="0xBF031" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0xE00C">
+    <title>Boost :: Closed-Loop Enable</title>
+    <description>0x80 = trim the duty toward "CL Target" using the pressure sensor on the repurposed O2 signal input. Leave OFF until that input is proven on the bench; open-loop per-gear duty works without it. @0xBF032</description>
+    <CATEGORYMEM index="0" category="39" />
+    <EMBEDDEDDATA mmedaddress="0xBF032" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFCONSTANT uniqueid="0xE00D" flags="0x0">
+    <title>Boost :: PWM Period</title>
+    <description>Software-PWM period in ~5 ms task ticks (20 ~= 100 ms ~= 10 Hz). Duty is 0..Period. Match your boost-control solenoid (MAC valves like ~30 Hz; raise the tick rate only if the bench shows room). @0xBF034</description>
+    <CATEGORYMEM index="0" category="39" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF034" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>ticks</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE00E" flags="0x0">
+    <title>Boost :: Min RPM to Run</title>
+    <description>Below this RPM the solenoid is held off (wastegate spring pressure) so there is no boost off-idle. Default 2000. @0xBF036</description>
+    <CATEGORYMEM index="0" category="39" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF036" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>RPM</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/2.56">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE00F" flags="0x0">
+    <title>Boost :: Duty Gear 1</title>
+    <description>Solenoid on-ticks per period in 1st gear (duty%% = ticks/Period). 0 = spring pressure (least boost). @0xBF038</description>
+    <CATEGORYMEM index="0" category="39" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF038" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>ticks</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE010" flags="0x0">
+    <title>Boost :: Duty Gear 2</title>
+    <description>On-ticks per period in 2nd gear. @0xBF03A</description>
+    <CATEGORYMEM index="0" category="39" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF03A" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>ticks</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE011" flags="0x0">
+    <title>Boost :: Duty Gear 3</title>
+    <description>On-ticks per period in 3rd gear. @0xBF03C</description>
+    <CATEGORYMEM index="0" category="39" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF03C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>ticks</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE012" flags="0x0">
+    <title>Boost :: Duty Gear 4</title>
+    <description>On-ticks per period in 4th gear. @0xBF03E</description>
+    <CATEGORYMEM index="0" category="39" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF03E" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>ticks</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE013" flags="0x0">
+    <title>Boost :: Duty Gear 5</title>
+    <description>On-ticks per period in 5th gear. @0xBF040</description>
+    <CATEGORYMEM index="0" category="39" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF040" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>ticks</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE014" flags="0x0">
+    <title>Boost :: Duty Gear 6</title>
+    <description>On-ticks per period in 6th gear. @0xBF042</description>
+    <CATEGORYMEM index="0" category="39" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF042" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>ticks</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE015" flags="0x0">
+    <title>Boost :: CL Target</title>
+    <description>Closed-loop target manifold pressure as RAW counts on the pressure input (convert with your sensor scaling). Only used when "Closed-Loop Enable" is on. @0xBF044</description>
+    <CATEGORYMEM index="0" category="39" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF044" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>raw ADC</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE016" flags="0x0">
+    <title>Boost :: CL Trim Step</title>
+    <description>Duty ticks the closed loop adds/removes each period while correcting toward CL Target. Small = slow/stable. Trim is clamped to +/- Period. @0xBF046</description>
+    <CATEGORYMEM index="0" category="39" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF046" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>ticks</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE017" flags="0x0">
+    <title>IAP Sensor :: Conversion Divisor</title>
+    <description>SD sets this to 10925 (stock 21850) so a 3-bar-range MAP sensor fits the ECU internal pressure scale with a 16-bit gain. Leave it; retune the sensor with Gain/Offset. IAP sensor presets (kPa = a*raw + b; GAIN = round(393.14*a*10925/32), OFFSET = round(32768+393.14*b)): GM 3-bar a=0.307429 b=-12.6 -&gt; GAIN 0xA12F OFFSET 0x6CA6 (SD default); GM 2.5-bar a=0.256598 b=-10.5 -&gt; GAIN 0x8689 OFFSET 0x6FE0. Both PROVISIONAL - true them with one key-on reading (raw*a+b should equal local baro) and set the XDF kPa equation on the SD fuel/boost maps to match. @0x74302</description>
+    <CATEGORYMEM index="0" category="39" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x74302" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>raw</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>

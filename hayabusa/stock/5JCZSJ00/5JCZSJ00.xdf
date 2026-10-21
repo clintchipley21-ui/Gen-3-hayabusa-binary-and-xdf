@@ -82763,7 +82763,182 @@ STOCK (this read): raw 2281701377 / 0x88000001.
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xE00A" flags="0x0">
+  <XDFFLAG uniqueid="0xE00A">
+    <title>Boost :: Enable</title>
+    <description>0x80 = boost control ON. Software-PWMs the repurposed O2-heater output to a wastegate / boost-control solenoid at the per-gear duty below. Ships OFF (and all duties 0 = wastegate spring pressure). UNVERIFIED - bench the output first with "Bench Test Output". @0xBF030</description>
+    <CATEGORYMEM index="0" category="38" />
+    <EMBEDDEDDATA mmedaddress="0xBF030" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0xE00B">
+    <title>Boost :: Bench Test Output</title>
+    <description>0x80 = hold the solenoid output asserted (no PWM, no control) so you can confirm on the bench which pin / relay it drives (candidate: O2-heater low-side driver). Set back to 0 for normal use. @0xBF031</description>
+    <CATEGORYMEM index="0" category="38" />
+    <EMBEDDEDDATA mmedaddress="0xBF031" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFFLAG uniqueid="0xE00C">
+    <title>Boost :: Closed-Loop Enable</title>
+    <description>0x80 = trim the duty toward "CL Target" using the pressure sensor on the repurposed O2 signal input. Leave OFF until that input is proven on the bench; open-loop per-gear duty works without it. @0xBF032</description>
+    <CATEGORYMEM index="0" category="38" />
+    <EMBEDDEDDATA mmedaddress="0xBF032" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <mask>0x80</mask>
+  </XDFFLAG>
+  <XDFCONSTANT uniqueid="0xE00D" flags="0x0">
+    <title>Boost :: PWM Period</title>
+    <description>Software-PWM period in ~5 ms task ticks (20 ~= 100 ms ~= 10 Hz). Duty is 0..Period. Match your boost-control solenoid (MAC valves like ~30 Hz; raise the tick rate only if the bench shows room). @0xBF034</description>
+    <CATEGORYMEM index="0" category="38" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF034" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>ticks</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE00E" flags="0x0">
+    <title>Boost :: Min RPM to Run</title>
+    <description>Below this RPM the solenoid is held off (wastegate spring pressure) so there is no boost off-idle. Default 2000. @0xBF036</description>
+    <CATEGORYMEM index="0" category="38" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF036" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>RPM</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X/2.56">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE00F" flags="0x0">
+    <title>Boost :: Duty Gear 1</title>
+    <description>Solenoid on-ticks per period in 1st gear (duty%% = ticks/Period). 0 = spring pressure (least boost). @0xBF038</description>
+    <CATEGORYMEM index="0" category="38" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF038" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>ticks</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE010" flags="0x0">
+    <title>Boost :: Duty Gear 2</title>
+    <description>On-ticks per period in 2nd gear. @0xBF03A</description>
+    <CATEGORYMEM index="0" category="38" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF03A" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>ticks</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE011" flags="0x0">
+    <title>Boost :: Duty Gear 3</title>
+    <description>On-ticks per period in 3rd gear. @0xBF03C</description>
+    <CATEGORYMEM index="0" category="38" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF03C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>ticks</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE012" flags="0x0">
+    <title>Boost :: Duty Gear 4</title>
+    <description>On-ticks per period in 4th gear. @0xBF03E</description>
+    <CATEGORYMEM index="0" category="38" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF03E" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>ticks</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE013" flags="0x0">
+    <title>Boost :: Duty Gear 5</title>
+    <description>On-ticks per period in 5th gear. @0xBF040</description>
+    <CATEGORYMEM index="0" category="38" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF040" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>ticks</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE014" flags="0x0">
+    <title>Boost :: Duty Gear 6</title>
+    <description>On-ticks per period in 6th gear. @0xBF042</description>
+    <CATEGORYMEM index="0" category="38" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF042" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>ticks</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE015" flags="0x0">
+    <title>Boost :: CL Target</title>
+    <description>Closed-loop target manifold pressure as RAW counts on the pressure input (convert with your sensor scaling). Only used when "Closed-Loop Enable" is on. @0xBF044</description>
+    <CATEGORYMEM index="0" category="38" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF044" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>raw ADC</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE016" flags="0x0">
+    <title>Boost :: CL Trim Step</title>
+    <description>Duty ticks the closed loop adds/removes each period while correcting toward CL Target. Small = slow/stable. Trim is clamped to +/- Period. @0xBF046</description>
+    <CATEGORYMEM index="0" category="38" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF046" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>ticks</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE017" flags="0x0">
+    <title>IAP Sensor :: Conversion Divisor</title>
+    <description>SD sets this to 10925 (stock 21850) so a 3-bar-range MAP sensor fits the ECU internal pressure scale with a 16-bit gain. Leave it; retune the sensor with Gain/Offset. IAP sensor presets (kPa = a*raw + b; GAIN = round(393.14*a*10925/32), OFFSET = round(32768+393.14*b)): GM 3-bar a=0.307429 b=-12.6 -&gt; GAIN 0xA12F OFFSET 0x6CA6 (SD default); GM 2.5-bar a=0.256598 b=-10.5 -&gt; GAIN 0x8689 OFFSET 0x6FE0. Both PROVISIONAL - true them with one key-on reading (raw*a+b should equal local baro) and set the XDF kPa equation on the SD fuel/boost maps to match. @0x74302</description>
+    <CATEGORYMEM index="0" category="38" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0x74302" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>raw</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE018" flags="0x0">
     <title>ALS Enable</title>
     <description>0x80 = rolling anti-lag ON; anything else = OFF (START button behaves stock). Ships OFF on a patched bin. @0xBF000</description>
     <CATEGORYMEM index="0" category="38" />
@@ -82777,7 +82952,7 @@ STOCK (this read): raw 2281701377 / 0x88000001.
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xE00B" flags="0x0">
+  <XDFCONSTANT uniqueid="0xE019" flags="0x0">
     <title>ALS Min Coolant Temp</title>
     <description>ALS will not arm below this coolant temperature (RAM 0xFEF026BD). Default 60 C. @0xBF001</description>
     <CATEGORYMEM index="0" category="38" />
@@ -82791,7 +82966,7 @@ STOCK (this read): raw 2281701377 / 0x88000001.
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xE00C" flags="0x0">
+  <XDFCONSTANT uniqueid="0xE01A" flags="0x0">
     <title>ALS Min Rolling Speed</title>
     <description>ALS arms only while FRONT wheel speed (0xFEF0263A) is at or above this; below it START stays stock. Default 20. @0xBF002</description>
     <CATEGORYMEM index="0" category="38" />
@@ -82805,7 +82980,7 @@ STOCK (this read): raw 2281701377 / 0x88000001.
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xE00D" flags="0x0">
+  <XDFCONSTANT uniqueid="0xE01B" flags="0x0">
     <title>ALS Capture Grip Angle (WOT)</title>
     <description>With START held and rolling, when grip (0xFEF025EC, ~107 deg = full) reaches this the current RPM is captured. Default 90. @0xBF004</description>
     <CATEGORYMEM index="0" category="38" />
@@ -82819,7 +82994,7 @@ STOCK (this read): raw 2281701377 / 0x88000001.
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xE00E" flags="0x0">
+  <XDFCONSTANT uniqueid="0xE01C" flags="0x0">
     <title>ALS Release Grip Angle</title>
     <description>Grip below this while active releases ALS; re-opening past the capture angle re-captures. Keep below capture. Default 60. @0xBF006</description>
     <CATEGORYMEM index="0" category="38" />
@@ -82833,7 +83008,7 @@ STOCK (this read): raw 2281701377 / 0x88000001.
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xE00F" flags="0x0">
+  <XDFCONSTANT uniqueid="0xE01D" flags="0x0">
     <title>ALS Min Capture RPM</title>
     <description>ALS will not engage if RPM at capture is below this. Default 3000. Must be greater than the hysteresis. @0xBF008</description>
     <CATEGORYMEM index="0" category="38" />
@@ -82847,7 +83022,7 @@ STOCK (this read): raw 2281701377 / 0x88000001.
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xE010" flags="0x0">
+  <XDFCONSTANT uniqueid="0xE01E" flags="0x0">
     <title>ALS Max Capture RPM</title>
     <description>Captured RPM is clamped to this. Keep below the fuel-cut (11,200) and ignition-cut (12,000) limiters. Default 10500. @0xBF00A</description>
     <CATEGORYMEM index="0" category="38" />
@@ -82861,7 +83036,7 @@ STOCK (this read): raw 2281701377 / 0x88000001.
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xE011" flags="0x0">
+  <XDFCONSTANT uniqueid="0xE01F" flags="0x0">
     <title>ALS Hold Hysteresis</title>
     <description>Spark returns when RPM falls this far below the captured RPM. Smaller = tighter, harsher cut. Default 150. @0xBF00C</description>
     <CATEGORYMEM index="0" category="38" />
@@ -82875,7 +83050,7 @@ STOCK (this read): raw 2281701377 / 0x88000001.
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xE012" flags="0x0">
+  <XDFCONSTANT uniqueid="0xE020" flags="0x0">
     <title>ALS Max Active Time</title>
     <description>Safety timer: after this long continuously active, ALS drops out until START is released. Default 2000 counts = 10 s. @0xBF00E</description>
     <CATEGORYMEM index="0" category="38" />

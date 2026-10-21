@@ -1,0 +1,87 @@
+BOOST CONTROL (wastegate solenoid PWM)  —  code patch, applies to any stock 5JCZ read
+UNVERIFIED ON HARDWARE. Bench an ECM first and keep a stock read for recovery.
+Source:   boost.s (GNU as -mv850e3v5), build with race/als/build.sh
+Apply:    python3 tools/apply_patches.py stock.bin out.bin boost      (re-stamps CRC)
+          (or just: apply_patches.py stock.bin race.bin   -> sd + antilag + autoshift + boost)
+================================================================================
+
+WHAT IT DOES (rider / tuner view)
+ Software-PWMs a RACE-UNUSED output to a boost-control / wastegate solenoid (a MAC-style duty
+ valve that bleeds wastegate dome / actuator pressure). The duty is scheduled PER GEAR, so you can
+ run less boost in 1st/2nd and more in the top gears. Below "Min RPM to Run" the solenoid is held
+ off (wastegate spring pressure = lowest boost), so there is no boost off-idle. An OPTIONAL
+ closed-loop trim nudges the duty toward a target manifold pressure read from a sensor on a
+ repurposed O2 signal input. Ships DISABLED, all per-gear duties 0 (spring pressure).
+
+WHY THE O2 CIRCUIT (both halves)
+ On a turbo build the stock narrowband O2 sensors are useless under boost and are normally deleted,
+ which frees BOTH halves of an O2 circuit:
+   OUTPUT - the O2 heater low-side driver becomes the solenoid output (it is already a beefy PWM
+            low-side driver, exactly what a boost solenoid wants).
+   INPUT  - the O2 signal input becomes a 0-5 V boost-pressure input for closed loop.
+ You give up stock O2 fuel trim on that bank, which a speed-density race tune does not use anyway.
+ The air-shifter uses the PAIR output; boost uses the O2-heater output; they do not collide.
+
+HOW IT WORKS (code)
+ CODE (free flash 0xBE280-0xBE3C9, 330 bytes, previously 0xFF; sits right after the air-shifter
+   block, which ends at 0xBE27D):
+     BOOST_TICK  runs once per output-mapper cycle (~5 ms) immediately after the stock routine at the
+                 second call in FUN_5dc9a, so a forced output level has the last word that cycle.
+ HOOK (1):
+   0x5DCA2  jarl 0x5DC64  ->  jarl BOOST_TICK   (BOOST_TICK calls FUN_5DC64 first, then returns)
+            Hook word from build.sh: 86 ff de 05. (0x5DC9E, the first call in the same function, is
+            the air-shifter's hook; the two are independent.)
+ INPUTS: rpm fef0258C (X/2.56, confirmed, shared with the air-shifter), gear bitmask fef026C2
+   (1=N,2=1st,4=2nd,8=3rd,0x10=4th,0x20=5th,0x40=6th, confirmed), and for closed loop a pressure
+   ADC on the repurposed O2 signal input (CANDIDATE fef02648 - confirm on the bench).
+ RAM: 4 bytes at 0xFEBFE010 (u16 PWM phase + s16 closed-loop trim), in the zero-init local RAM above
+   the stack, clear of the anti-lag scratch (0xFEBFE000) and the air-shifter scratch (0xFEBFE008).
+ CALIBRATION 0xBF030-0xBF047 (24 bytes, previously 0xFF), all exposed in the XDF folder
+   "22 Patches & Air-Shifter":
+     +0  u8  Enable             0x80 = on                                 (default 0 = OFF)
+     +1  u8  Bench Test Output  0x80 = hold solenoid asserted             (default 0)
+     +2  u8  Closed-Loop Enable 0x80 = trim duty from the pressure input  (default 0 = open loop)
+     +3  u8  pad
+     +4  u16 PWM Period         task ticks (~5 ms each); duty is 0..Period; def 20 (~100 ms ~10 Hz)
+     +6  u16 Min RPM to Run     X/2.56, def ~2000 rpm
+     +8  u16 Duty Gear 1        on-ticks per period (0 = spring pressure); def 0
+     +10 u16 Duty Gear 2 .. +18 u16 Duty Gear 6
+     +20 u16 CL Target          target pressure as raw ADC counts on the pressure input
+     +22 u16 CL Trim Step       duty ticks added/removed per period while correcting (clamped +/-Period)
+
+ OPEN LOOP (default): on-time per period = the current gear's duty, clamped to [0, Period].
+ CLOSED LOOP (optional, ships OFF): each period, if measured pressure < target the trim steps up,
+   else down; trim is clamped to +/- Period and added to the gear duty. Prove the pressure input on
+   the bench before enabling, or the loop is chasing a number it cannot trust.
+
+*** OUTPUT AND INPUT PRIMITIVES ARE UNVERIFIED — BENCH THEM FIRST ***
+ The exact O2-heater drive bit/polarity and the O2-signal ADC word are not provable from the
+ decompile alone. Every hardware touch is isolated to one spot:
+   OUTPUT - OUT_ON / OUT_OFF macros in boost.s. Candidate: O2-heater drive shadow fef020e4 bit0
+            (the extra output-shadow block fef020e2..e6, distinct from the PAIR/EVAP arbiter the
+            air-shifter pokes). Flip set1<->clr1 if inverted; change the address/bit if the bench
+            shows a different pin. Two-line change, then re-run build.sh and re-apply.
+   INPUT  - the PRESS_IN .set in boost.s (candidate fef02648). Closed loop ships OFF so this is never
+            on the critical path until proven.
+ BENCH PROCEDURE
+   1. Flash a CKTEST/bench bin with the patch applied.
+   2. XDF: set "Boost :: Bench Test Output" = 0x80 (leave "Boost :: Enable" OFF).
+   3. Confirm the intended O2-heater ECM terminal goes active (solenoid/relay clicks) and nothing
+      else moves. If silent or inverted, adjust the OUT_ON/OUT_OFF macro and re-build.
+   4. Set Bench Test Output back to 0.
+   5. For closed loop: feed the pressure input a known voltage, read the raw ADC (candidate
+      fef02648), confirm it tracks before enabling "Closed-Loop Enable".
+
+NOTES / WATCH
+ - A boost solenoid controls boost; it does not protect the engine. Keep a mechanical wastegate
+   spring that is safe with 0% duty, set per-gear duties conservatively, and log manifold pressure
+   (the 3-bar IAP, fef02574 raw) on every pull. Overboost from a stuck-on solenoid must be survivable.
+ - Task period is the ~5 ms output-mapper family (same as the air-shifter); time it on the bench and
+   size PWM Period to your solenoid.
+ - If the stock O2-heater driver still writes the same output each cycle, it could fight the PWM.
+   BOOST_TICK runs after the stock routine at its hook, but the heater driver lives elsewhere; if the
+   bench shows contention, neuter the stock heater output for that bank (a separate small patch) or
+   move OUT_* to a cleaner pin. Flagged here because it is the most likely bench surprise.
+ - Independent of the SD / anti-lag / air-shift patches: no code, cal, RAM or hook overlap.
+ - Field 3 (0x1FFEF8) is not recomputed (same as all SD bins). Field-1 CRC is re-stamped by
+   apply_patches.py; re-stamp it yourself if you patch inside TunerPro.
