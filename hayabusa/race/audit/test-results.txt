@@ -1,0 +1,12 @@
+test_custom_transfer_250_kpa_resamples_in_physical_units (test_race_dev.RaceBuildTests.test_custom_transfer_250_kpa_resamples_in_physical_units) ... ok
+test_gm_candidate_endpoints_and_build (test_race_dev.RaceBuildTests.test_gm_candidate_endpoints_and_build) ... ok
+test_j40_matches_existing_sd41_plus_assembled_airshift (test_race_dev.RaceBuildTests.test_j40_matches_existing_sd41_plus_assembled_airshift) ... ok
+test_no_tps_storage_repurposed_and_no_fake_boost_driver (test_race_dev.RaceBuildTests.test_no_tps_storage_repurposed_and_no_fake_boost_driver) ... ok
+test_reject_unknown_edited_or_unported_base (test_race_dev.RaceBuildTests.test_reject_unknown_edited_or_unported_base) ... ok
+test_reject_unrepresentable_or_faulting_transfers (test_race_dev.RaceBuildTests.test_reject_unrepresentable_or_faulting_transfers) ... ok
+test_supported_variants_preserve_every_unrelated_byte (test_race_dev.RaceBuildTests.test_supported_variants_preserve_every_unrelated_byte) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 16.780s
+
+OK

@@ -56,7 +56,8 @@ def entries(stock, sd):
     antilag = []
     for a, n in ((0x2C700, 4), (0x525F2, 4), (0x5BE02, 4), (0xBE000, 328), (0xBF000, 16), (0x188214, 892)):
         antilag.append((a, stock[a:a + n], sd[a:a + n]))
-    code = open(AS_BLOB, 'rb').read()
+    with open(AS_BLOB, 'rb') as blob:
+        code = blob.read()
     autoshift = [
         (0xBE148, stock[0xBE148:0xBE148 + len(code)], code),
         (0x5DC9E, stock[0x5DC9E:0x5DC9E + 4], AS_HOOK),
