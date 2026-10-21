@@ -82906,7 +82906,7 @@ STOCK (this read): raw 2281701377 / 0x88000001.
   </XDFCONSTANT>
   <XDFFLAG uniqueid="0xE014">
     <title>Boost :: Enable</title>
-    <description>0x80 = boost control ON. Software-PWMs the repurposed O2-heater output to a wastegate / boost-control solenoid at the per-gear duty below. Ships OFF (and all duties 0 = wastegate spring pressure). UNVERIFIED - bench the output first with "Bench Test Output". @0xBF030</description>
+    <description>0x80 = boost control ON. Software-PWMs the repurposed O2-heater output to a wastegate / boost-control solenoid at the per-gear feed-forward duty (plus the closed-loop trim if enabled). Ships OFF (all duties 0 = wastegate spring pressure). UNVERIFIED - bench the output first with "Bench Test Output". @0xBF030</description>
     <CATEGORYMEM index="0" category="39" />
     <EMBEDDEDDATA mmedaddress="0xBF030" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x80</mask>
@@ -82920,7 +82920,7 @@ STOCK (this read): raw 2281701377 / 0x88000001.
   </XDFFLAG>
   <XDFFLAG uniqueid="0xE016">
     <title>Boost :: Closed-Loop Enable</title>
-    <description>0x80 = trim the duty toward "CL Target" using the wastegate-pressure sensor on the input channel set by "Pressure Input Address". Leave OFF until that input is proven on the bench; open-loop per-gear duty works without it. @0xBF032</description>
+    <description>0x80 = trim the duty toward the "Boost Target" table (power mode x gear x rpm) using the pressure sensor on "Pressure Input Address" and the mode on "Mode Input Address". Leave OFF until both inputs are proven on the bench; open-loop per-gear duty works without them. @0xBF032</description>
     <CATEGORYMEM index="0" category="39" />
     <EMBEDDEDDATA mmedaddress="0xBF032" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x80</mask>
@@ -82954,8 +82954,8 @@ STOCK (this read): raw 2281701377 / 0x88000001.
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0xE019" flags="0x0">
-    <title>Boost :: Duty Gear 1</title>
-    <description>Solenoid on-ticks per period in 1st gear (duty%% = ticks/Period). 0 = spring pressure (least boost). @0xBF038</description>
+    <title>Boost :: CL Trim Step</title>
+    <description>Duty ticks the closed loop adds/removes each period while correcting toward the Boost Target. Small = slow/stable. Trim is clamped to +/- Period. Only used when "Closed-Loop Enable" is on. @0xBF038</description>
     <CATEGORYMEM index="0" category="39" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF038" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>ticks</units>
@@ -82968,11 +82968,11 @@ STOCK (this read): raw 2281701377 / 0x88000001.
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0xE01A" flags="0x0">
-    <title>Boost :: Duty Gear 2</title>
-    <description>On-ticks per period in 2nd gear. @0xBF03A</description>
+    <title>Boost :: Pressure Input Address</title>
+    <description>Which ADC word the wastegate-pressure sensor is read from, as the low 16 bits of a 0xFEF0xxxx RAM address (effective address = 0xFEF00000 + this). Default 0x2648 (a candidate repurposed-O2 input). Set it to the word the bench proves carries the sensor; add a RAM gauge at 0xFEF0&lt;this&gt; with transfer X*0.342-15 to watch live boost. Only used when "Closed-Loop Enable" is on. @0xBF03A</description>
     <CATEGORYMEM index="0" category="39" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF03A" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>ticks</units>
+    <units>RAM lo</units>
     <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
@@ -82982,11 +82982,11 @@ STOCK (this read): raw 2281701377 / 0x88000001.
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0xE01B" flags="0x0">
-    <title>Boost :: Duty Gear 3</title>
-    <description>On-ticks per period in 3rd gear. @0xBF03C</description>
+    <title>Boost :: Mode Input Address</title>
+    <description>Which RAM byte holds the active power mode (PW 1-3), as the low 16 bits of a 0xFEF0xxxx address. Default 0x1F74 (0xFEF01F74, the active power-mode working value). Value 1/2/3 selects Boost Target table Mode A/B/C. @0xBF03C</description>
     <CATEGORYMEM index="0" category="39" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF03C" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>ticks</units>
+    <units>RAM lo</units>
     <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
@@ -82996,8 +82996,8 @@ STOCK (this read): raw 2281701377 / 0x88000001.
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0xE01C" flags="0x0">
-    <title>Boost :: Duty Gear 4</title>
-    <description>On-ticks per period in 4th gear. @0xBF03E</description>
+    <title>Boost :: Duty Gear 1</title>
+    <description>Open-loop feed-forward on-ticks per period in 1st gear (duty%% = ticks/Period). 0 = spring pressure. @0xBF03E</description>
     <CATEGORYMEM index="0" category="39" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF03E" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>ticks</units>
@@ -83010,8 +83010,8 @@ STOCK (this read): raw 2281701377 / 0x88000001.
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0xE01D" flags="0x0">
-    <title>Boost :: Duty Gear 5</title>
-    <description>On-ticks per period in 5th gear. @0xBF040</description>
+    <title>Boost :: Duty Gear 2</title>
+    <description>Feed-forward on-ticks per period in 2nd gear. @0xBF040</description>
     <CATEGORYMEM index="0" category="39" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF040" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>ticks</units>
@@ -83024,8 +83024,8 @@ STOCK (this read): raw 2281701377 / 0x88000001.
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0xE01E" flags="0x0">
-    <title>Boost :: Duty Gear 6</title>
-    <description>On-ticks per period in 6th gear. @0xBF042</description>
+    <title>Boost :: Duty Gear 3</title>
+    <description>Feed-forward on-ticks per period in 3rd gear. @0xBF042</description>
     <CATEGORYMEM index="0" category="39" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF042" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>ticks</units>
@@ -83038,22 +83038,22 @@ STOCK (this read): raw 2281701377 / 0x88000001.
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0xE01F" flags="0x0">
-    <title>Boost :: CL Target</title>
-    <description>Closed-loop target manifold pressure. The cell stores RAW counts; this equation (X*0.342-15) is the wastegate-pressure SENSOR TRANSFER so you enter the target in kPa - PROVISIONAL, set it to match your sensor and input scaling (see "Pressure Input Address"). Only used when "Closed-Loop Enable" is on. @0xBF044</description>
+    <title>Boost :: Duty Gear 4</title>
+    <description>Feed-forward on-ticks per period in 4th gear. @0xBF044</description>
     <CATEGORYMEM index="0" category="39" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF044" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>kPa</units>
+    <units>ticks</units>
     <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X*0.342-15">
+    <MATH equation="X">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0xE020" flags="0x0">
-    <title>Boost :: CL Trim Step</title>
-    <description>Duty ticks the closed loop adds/removes each period while correcting toward CL Target. Small = slow/stable. Trim is clamped to +/- Period. @0xBF046</description>
+    <title>Boost :: Duty Gear 5</title>
+    <description>Feed-forward on-ticks per period in 5th gear. @0xBF046</description>
     <CATEGORYMEM index="0" category="39" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF046" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>ticks</units>
@@ -83066,11 +83066,11 @@ STOCK (this read): raw 2281701377 / 0x88000001.
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0xE021" flags="0x0">
-    <title>Boost :: Pressure Input Address</title>
-    <description>Which ADC word the wastegate-pressure sensor is read from, as the low 16 bits of a 0xFEF0xxxx RAM address (effective address = 0xFEF00000 + this). Default 0x2648 (a candidate repurposed-O2 input). Set it to the word the bench proves carries the sensor; add a TunerPro RAM gauge at 0xFEF0&lt;this&gt; with the same transfer as "CL Target" to watch live boost. Only used when "Closed-Loop Enable" is on. @0xBF048</description>
+    <title>Boost :: Duty Gear 6</title>
+    <description>Feed-forward on-ticks per period in 6th gear. @0xBF048</description>
     <CATEGORYMEM index="0" category="39" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF048" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>RAM lo</units>
+    <units>ticks</units>
     <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
@@ -83079,4 +83079,136 @@ STOCK (this read): raw 2281701377 / 0x88000001.
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
+  <XDFTABLE uniqueid="0xE022" flags="0x0">
+    <title>Boost Target :: Mode A (PW1) (gear x RPM)</title>
+    <description>Closed-loop boost TARGET for power mode Mode A (PW1): rows = gear 1-6, columns = RPM. Cells store raw ADC of the boost-pressure sensor, shown in kPa via X*0.342-15 (PROVISIONAL - set the equation to your sensor). The closed loop trims the solenoid duty toward this. RPM breakpoints (the X axis) are shared with the other modes. Only used when "Closed-Loop Enable" is on. @0xBF100</description>
+    <CATEGORYMEM index="0" category="39" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF04A" mmedelementsizebits="16" mmedcolcount="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>RPM</units>
+      <indexcount>8</indexcount>
+      <decimalpl>0</decimalpl>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X/2.56">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>6</indexcount>
+      <LABEL index="0" value="1" />
+      <LABEL index="1" value="2" />
+      <LABEL index="2" value="3" />
+      <LABEL index="3" value="4" />
+      <LABEL index="4" value="5" />
+      <LABEL index="5" value="6" />
+      <decimalpl>0</decimalpl>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF100" mmedelementsizebits="16" mmedrowcount="6" mmedcolcount="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>kPa</units>
+      <decimalpl>0</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X*0.342-15">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0xE023" flags="0x0">
+    <title>Boost Target :: Mode B (PW2) (gear x RPM)</title>
+    <description>Closed-loop boost TARGET for power mode Mode B (PW2): rows = gear 1-6, columns = RPM. Cells store raw ADC of the boost-pressure sensor, shown in kPa via X*0.342-15 (PROVISIONAL - set the equation to your sensor). The closed loop trims the solenoid duty toward this. RPM breakpoints (the X axis) are shared with the other modes. Only used when "Closed-Loop Enable" is on. @0xBF160</description>
+    <CATEGORYMEM index="0" category="39" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF04A" mmedelementsizebits="16" mmedcolcount="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>RPM</units>
+      <indexcount>8</indexcount>
+      <decimalpl>0</decimalpl>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X/2.56">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>6</indexcount>
+      <LABEL index="0" value="1" />
+      <LABEL index="1" value="2" />
+      <LABEL index="2" value="3" />
+      <LABEL index="3" value="4" />
+      <LABEL index="4" value="5" />
+      <LABEL index="5" value="6" />
+      <decimalpl>0</decimalpl>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF160" mmedelementsizebits="16" mmedrowcount="6" mmedcolcount="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>kPa</units>
+      <decimalpl>0</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X*0.342-15">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0xE024" flags="0x0">
+    <title>Boost Target :: Mode C (PW3) (gear x RPM)</title>
+    <description>Closed-loop boost TARGET for power mode Mode C (PW3): rows = gear 1-6, columns = RPM. Cells store raw ADC of the boost-pressure sensor, shown in kPa via X*0.342-15 (PROVISIONAL - set the equation to your sensor). The closed loop trims the solenoid duty toward this. RPM breakpoints (the X axis) are shared with the other modes. Only used when "Closed-Loop Enable" is on. @0xBF1C0</description>
+    <CATEGORYMEM index="0" category="39" />
+    <XDFAXIS id="x" uniqueid="0x0">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF04A" mmedelementsizebits="16" mmedcolcount="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>RPM</units>
+      <indexcount>8</indexcount>
+      <decimalpl>0</decimalpl>
+      <embedinfo type="1" />
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X/2.56">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y" uniqueid="0x0">
+      <EMBEDDEDDATA mmedelementsizebits="16" mmedmajorstridebits="-32" mmedminorstridebits="0" />
+      <indexcount>6</indexcount>
+      <LABEL index="0" value="1" />
+      <LABEL index="1" value="2" />
+      <LABEL index="2" value="3" />
+      <LABEL index="3" value="4" />
+      <LABEL index="4" value="5" />
+      <LABEL index="5" value="6" />
+      <decimalpl>0</decimalpl>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0" />
+      <MATH equation="X">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF1C0" mmedelementsizebits="16" mmedrowcount="6" mmedcolcount="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
+      <units>kPa</units>
+      <decimalpl>0</decimalpl>
+      <outputtype>1</outputtype>
+      <MATH equation="X*0.342-15">
+        <VAR id="X" />
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
 </XDFFORMAT>

@@ -84,26 +84,40 @@ AS_CAL = bytes([
 AS_HOOK = bytes.fromhex('86ffaa04')   # 0x5DC9E: jarl 0x5DB5E -> jarl AUTOSHIFT_TICK (0xBE148)
 
 # boost-control calibration defaults at 0xBF030 (see boost.s for the field layout). Ships DISABLED.
+# Scalars + per-gear feed-forward duty + the 8-point RPM axis for the target lookup; the
+# closed-loop TARGET table (3 power modes x 6 gears x 8 rpm) lives separately at 0xBF100.
 BOOST_CAL = bytes([
     0x00,        # +0  enable             0x80 = on   (ships OFF)
     0x00,        # +1  bench test output  0x80 = hold solenoid output on
-    0x00,        # +2  closed-loop enable 0x80 = trim duty toward target from the pressure input
+    0x00,        # +2  closed-loop enable 0x80 = trim duty toward the mode x gear x rpm target
     0x00,        # +3  pad
     0x14, 0x00,  # +4  pwm period ticks   0x0014 (~100 ms at a 5 ms tick -> ~10 Hz software PWM)
     0x00, 0x14,  # +6  min rpm to run     ~2000 rpm (X/2.56) below this the solenoid stays off (no boost)
-    0x00, 0x00,  # +8  duty 1st gear      0..period ticks on (0 = wastegate spring pressure)
-    0x00, 0x00,  # +10 duty 2nd
-    0x00, 0x00,  # +12 duty 3rd
-    0x00, 0x00,  # +14 duty 4th
-    0x00, 0x00,  # +16 duty 5th
-    0x00, 0x00,  # +18 duty 6th
-    0x00, 0x00,  # +20 closed-loop target as raw-ADC counts on the pressure input (XDF shows kPa)
-    0x02, 0x00,  # +22 trim step          duty ticks per period when closed-loop correcting
-    0x48, 0x26,  # +24 pressure-input RAM low word -> 0xFEF00000+X (default 0x2648; set in the XDF)
+    0x02, 0x00,  # +8  trim step          duty ticks per period when closed-loop correcting
+    0x48, 0x26,  # +10 pressure-input RAM low word -> 0xFEF00000+X (default 0x2648; set in the XDF)
+    0x74, 0x1F,  # +12 power-mode input RAM low word -> 0xFEF01F74 (active PW 1-3; set in the XDF)
+    0x00, 0x00,  # +14 duty 1st gear      0..period ticks on (0 = wastegate spring pressure)
+    0x00, 0x00,  # +16 duty 2nd
+    0x00, 0x00,  # +18 duty 3rd
+    0x00, 0x00,  # +20 duty 4th
+    0x00, 0x00,  # +22 duty 5th
+    0x00, 0x00,  # +24 duty 6th
+    0x00, 0x1E,  # +26 rpm axis 0  3000 rpm (X/2.56)  -- target-lookup RPM zone breakpoints (ascending)
+    0x00, 0x2D,  # +28 rpm axis 1  4500
+    0x00, 0x3C,  # +30 rpm axis 2  6000
+    0x00, 0x4B,  # +32 rpm axis 3  7500
+    0x00, 0x5A,  # +34 rpm axis 4  9000
+    0x00, 0x69,  # +36 rpm axis 5  10500
+    0x00, 0x73,  # +38 rpm axis 6  11500
+    0x00, 0x78,  # +40 rpm axis 7  12000
 ])
+# Closed-loop boost TARGET table at 0xBF100: u16[3 power modes][6 gears][8 rpm], raw-ADC counts
+# (the XDF shows kPa). Ships all-zero (closed loop is off); populate per mode in the XDF.
+BOOST_TBL = bytes(3 * 6 * 8 * 2)
 BOOST_HOOK = bytes.fromhex('00000000')   # filled from boost.bin's hook word if the blob is present
 BOOST_CODE_ADDR = 0xBE280
 BOOST_CAL_ADDR = 0xBF030
+BOOST_TBL_ADDR = 0xBF100
 BOOST_HOOK_ADDR = 0x5DCA2   # FUN_5dc9a: 'jarl 0x5dc64' -> 'jarl BOOST_TICK'; exact word comes from build.sh
 
 
@@ -176,6 +190,7 @@ def entries(stock, sd41, sd3, want):
             (BOOST_CODE_ADDR, [stock[BOOST_CODE_ADDR:BOOST_CODE_ADDR + len(bcode)]], bcode, []),
             (BOOST_HOOK_ADDR, [stock[BOOST_HOOK_ADDR:BOOST_HOOK_ADDR + 4]], hook, []),
             (BOOST_CAL_ADDR, [stock[BOOST_CAL_ADDR:BOOST_CAL_ADDR + len(BOOST_CAL)]], BOOST_CAL, []),
+            (BOOST_TBL_ADDR, [stock[BOOST_TBL_ADDR:BOOST_TBL_ADDR + len(BOOST_TBL)]], BOOST_TBL, []),
         ]
     elif 'boost' in want:
         print('  boost     SKIPPED - race/als/boost.bin not assembled yet (run race/als/build.sh on a '
