@@ -11,6 +11,21 @@
       "default_table_ceiling_kpa_absolute": 270,
       "source": "https://dsxtuning.com/products/gm-3-bar-map-55567257",
       "status": "supplier-published candidate; verify actual sensor/ADC"
+    },
+    "electrical_research": {
+      "acdelco_cross_reference": "213-4760",
+      "supply_v_nominal": 5,
+      "supply_source": "https://www.nzefi.com/product/gm-2-7-bar-map-sensor-ls9-lsa/",
+      "supplier_cross_reference_pinout": {
+        "1": "+5 V",
+        "2": "ground",
+        "3": "signal"
+      },
+      "pinout_status": "Supplier Bosch/GM cross-reference; verify molded numbering on installed sensor, not wire order",
+      "current_consumption_ma": null,
+      "absolute_maximum_supply_v": null,
+      "range_note": "NZEFI identifies cross-referenced sensor as 2.7 bar, despite common 3-bar marketing. DSX calibration yields 270 kPa at 4.5 V on a nominal 5-V supply.",
+      "gm_identity_source": "https://parts.chevrolet.com/product/gm-genuine-parts-manifold-absolute-pressure-%28map%29-sensor-%28programming-required%29-55567257"
     }
   },
   "airshift": {
@@ -34,7 +49,20 @@
     "input_circuit_conditioning": "requires verification",
     "product_url": "https://tunertools.com/products/150-psi-motorsport-fuel-oil-wastegate-pressure-sensor",
     "supply": "requires regulated 5 V sensor supply, not heater 12 V",
-    "manufacturer_info_sheet": "https://store.haltech.com/wp-admin/admin-ajax.php?action=ht_get_file&id=5d30ec73506c256cc772dc06&op=1"
+    "manufacturer_info_sheet": "https://store.haltech.com/wp-admin/admin-ajax.php?action=ht_get_file&id=5d30ec73506c256cc772dc06&op=1",
+    "electrical_research": {
+      "likely_part": "Haltech HT-010910; seller metadata tags Haltech, but SKU blank",
+      "supply_v_nominal": 5,
+      "pinout_harness_side_per_haltech_sheet": {
+        "A": "signal ground",
+        "B": "+5 V",
+        "C": "signal"
+      },
+      "current_consumption_ma": null,
+      "absolute_maximum_supply_v": null,
+      "confirmed_transfer": "0.5 V = 0 PSI gauge; 4.5 V = 150 PSI gauge",
+      "source": "https://store.haltech.com/wp-admin/admin-ajax.php?action=ht_get_file&id=5d30ec73506c256cc772dc06&op=1"
+    }
   },
   "wastegate_pwm": {
     "requested_circuit": "O2 connector; heater output is a candidate distinct from signal input",
@@ -61,7 +89,29 @@
     ],
     "manufacturer_instructions": "https://documents.holley.com/fe590cc4b242b6e955e9d12f206ba0e0cc7dd5c7.pdf",
     "pneumatic_disarm_state": "must be verified to release hat pressure; depends on port plumbing",
-    "manual_terminal": "ECM coupler C, T79 (O2 channel 1 heater control)"
+    "manual_terminal": "ECM coupler C, T79 (O2 channel 1 heater control)",
+    "electrical_research": {
+      "aem_manual_confirms": {
+        "supply_v_nominal": 12,
+        "frequency_hz": 31,
+        "duty_percent": [
+          10,
+          90
+        ],
+        "polarity_sensitive": false
+      },
+      "aem_published_coil_resistance_ohm": null,
+      "aem_published_coil_current_a": null,
+      "candidate_mac_cross_reference": "35A-AAA-DDBA-1BA; retailer replacement claim, not AEM manufacturer confirmation",
+      "mac_retailer_reports": {
+        "power_w": 5.4,
+        "measured_resistance_ohm": 25.4,
+        "current_a_at_12v_approx": 0.45
+      },
+      "mac_source": "https://ecrperformance.com/mac-valve-boost-controller-kit/",
+      "cross_reference_claim_source": "https://paradiseracing.com/products/mac-boost-control-solenoid-35a-aaa-ddba-1ba",
+      "do_not_infer": "MAC coil ratings and suppression are not confirmed for the delivered AEM valve; heater driver inductive capability remains unknown"
+    }
   },
   "integration_software": {
     "portable_controller_source": "control/race_control.c",
@@ -100,7 +150,11 @@
     "pair": {
       "control": "ECM coupler C, T94; valve T1",
       "supply": "valve T2, battery voltage",
-      "reference": "1A-65"
+      "reference": "1A-65",
+      "resistance_ohms_at_20_to_30c": [
+        20,
+        24
+      ]
     },
     "not_established": [
       "input absolute maximum voltage and transfer/conditioning",
@@ -109,5 +163,22 @@
       "modified bike wiring continuity"
     ],
     "bench_verified": false
+  },
+  "electrical_ratings_research": {
+    "date": "2026-10-21",
+    "details": "ELECTRICAL_RATINGS.md",
+    "ecu_part": "Suzuki blank ECM 32910-10L00",
+    "ecu_part_source": "https://www1.suzuki.co.jp/motor/support/parts_catalog_manage/files/GSX1300RRQM2.pdf",
+    "oem_o2_sensor_parts": [
+      "18213-04K00",
+      "18213-18K00"
+    ],
+    "o2_part_source": "https://www.revzilla.com/oem/suzuki/2022-suzuki-hayabusa/muffler?submodel=gsx1300rrqm2",
+    "pair_valve_part": "18510-29G31",
+    "pair_part_source": "https://www.revzilla.com/oem/suzuki/2022-suzuki-hayabusa/2nd-air?submodel=gsx1300rrqm2",
+    "ecu_o2_input_absolute_maximum_v": null,
+    "ecu_heater_driver_current_rating_a": null,
+    "ecu_heater_driver_inductive_clamp_rating": null,
+    "conclusion": "Component operating ratings located; no public ECU pin electrical specification or internal driver identification established. No runtime or wiring compatibility authorization inferred."
   }
 }
