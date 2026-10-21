@@ -25,6 +25,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import apply_patches as ap  # noqa: E402
 
 FOLDER = '22 Patches & Air-Shifter (apply to a stock bin)'
+FOLDER_BOOST = '23 Boost Control (apply to a stock bin)'   # boost gets its own folder so it is easy to find
 UID_ITEM = 0xE000
 UID_PATCH = 0xE100
 
@@ -158,21 +159,23 @@ PENTRY = ('    <XDFPATCHENTRY name="{name}" address="0x{addr:X}" datasize="0x{n:
 
 def inject(text, which=('antilag', 'autoshift')):
     cats = re.findall(r'<CATEGORY index="(0x[0-9A-Fa-f]+)" name="[^"]*"', text)
-    n = len(cats)                       # new folder gets 0-based index n -> CATEGORYMEM category = n+1
-    cat = n + 1
+    n = len(cats)                       # new folders get 0-based indices n, n+1 -> category = index+1
+    cat_patch = n + 1                   # "22 Patches & Air-Shifter": air-shift + sensor (+ anti-lag on stock)
+    cat_boost = n + 2                   # "23 Boost Control": the boost-control items, in their own folder
     uids = {int(u, 16) for u in re.findall(r'uniqueid="(0x[0-9A-Fa-f]+)"', text)}
 
-    items = list(ITEMS)
-    items += BOOST_ITEMS                      # boost-control settings (free flash, every XDF)
-    items += SENSOR_GUIDE                     # IAP sensor preset guide (anchored at the divisor, every XDF)
-    if 'mmedaddress="0x18EF58"' not in text:  # XDFs without the SD sensor consts: expose gain/offset too
-        items += SENSOR_GAINOFF
-    if 'mmedaddress="0xBF000"' not in text:   # stock reads: also expose the anti-lag settings
-        items += ALS_ITEMS
+    # (item, category) pairs. Boost lives in its own folder so it is unmissable in any editor.
+    grouped = [(it, cat_patch) for it in ITEMS]
+    grouped += [(it, cat_patch) for it in SENSOR_GUIDE]           # IAP sensor preset guide (every XDF)
+    if 'mmedaddress="0x18EF58"' not in text:                      # XDFs without the SD sensor consts
+        grouped += [(it, cat_patch) for it in SENSOR_GAINOFF]
+    if 'mmedaddress="0xBF000"' not in text:                       # stock reads: expose anti-lag settings
+        grouped += [(it, cat_patch) for it in ALS_ITEMS]
+    grouped += [(it, cat_boost) for it in BOOST_ITEMS]            # boost-control settings -> own folder
 
     out = []
     uid = UID_ITEM
-    for kind, addr, bits, title, units, eq, dec, desc in items:
+    for (kind, addr, bits, title, units, eq, dec, desc), cat in grouped:
         assert uid not in uids, uid
         d = escape(desc + ' @0x%X' % addr, quote=False)
         tmpl = FLAG if kind == 'flag' else CONST
@@ -184,7 +187,8 @@ def inject(text, which=('antilag', 'autoshift')):
     # TunerPro on open. Patches are applied with tools/apply_patches.py instead. The PATCH/PENTRY
     # templates and PATCH_DESC are kept for reference / possible future use once the format is confirmed.
 
-    cat_xml = '    <CATEGORY index="0x%X" name="%s" />\n' % (n, escape(FOLDER))
+    cat_xml = ('    <CATEGORY index="0x%X" name="%s" />\n    <CATEGORY index="0x%X" name="%s" />\n'
+               % (n, escape(FOLDER), n + 1, escape(FOLDER_BOOST)))
     text = re.sub(r'(\n  </XDFHEADER>)', lambda m: '\n' + cat_xml.rstrip('\n') + m.group(1), text, count=1)
     text = text.replace('</XDFFORMAT>', ''.join(out) + '</XDFFORMAT>')
     return text
@@ -194,6 +198,7 @@ def check(text):
     root = ET.fromstring(text)                 # must be valid XML
     names = [c.get('name') for c in root.find('XDFHEADER').findall('CATEGORY')]
     assert FOLDER in names, 'patch folder missing'
+    assert FOLDER_BOOST in names, 'boost folder missing'
     assert not root.findall('XDFPATCH'), 'XDFPATCH present - crashes TunerPro, must not be embedded'
     seen = [e.get('uniqueid') for e in root.iter() if e.tag in ('XDFCONSTANT', 'XDFFLAG', 'XDFTABLE')]
     assert len(seen) == len(set(seen)), 'duplicate uniqueid'
