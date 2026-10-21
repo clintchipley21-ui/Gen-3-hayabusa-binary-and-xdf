@@ -58,11 +58,12 @@ BOOST_ITEMS = [
      'solenoid at the per-gear duty below. Ships OFF (and all duties 0 = wastegate spring pressure). '
      'UNVERIFIED - bench the output first with "Bench Test Output".'),
     ('flag', 0xBF031, 8, 'Boost :: Bench Test Output', '', '', 0,
-     '0x80 = hold the solenoid output asserted (no PWM, no control) so you can confirm on the bench which pin / '
-     'relay it drives (candidate: O2-heater low-side driver). Set back to 0 for normal use.'),
+     '0x80 = hold the solenoid output asserted (no PWM, no control) so you can confirm on the bench which pin '
+     'drives it (candidate: O2-heater low-side driver). Output polarity is set by the wiring (relay coil leg / '
+     'NO vs NC solenoid), not here. Set back to 0 for normal use.'),
     ('flag', 0xBF032, 8, 'Boost :: Closed-Loop Enable', '', '', 0,
-     '0x80 = trim the duty toward "CL Target" using the pressure sensor on the repurposed O2 signal input. '
-     'Leave OFF until that input is proven on the bench; open-loop per-gear duty works without it.'),
+     '0x80 = trim the duty toward "CL Target" using the wastegate-pressure sensor on the input channel set by '
+     '"Pressure Input Address". Leave OFF until that input is proven on the bench; open-loop per-gear duty works without it.'),
     ('const', 0xBF034, 16, 'Boost :: PWM Period', 'ticks', 'X', 0,
      'Software-PWM period in ~5 ms task ticks (20 ~= 100 ms ~= 10 Hz). Duty is 0..Period. Match your '
      'boost-control solenoid (MAC valves like ~30 Hz; raise the tick rate only if the bench shows room).'),
@@ -74,12 +75,18 @@ BOOST_ITEMS = [
     ('const', 0xBF03E, 16, 'Boost :: Duty Gear 4', 'ticks', 'X', 0, 'On-ticks per period in 4th gear.'),
     ('const', 0xBF040, 16, 'Boost :: Duty Gear 5', 'ticks', 'X', 0, 'On-ticks per period in 5th gear.'),
     ('const', 0xBF042, 16, 'Boost :: Duty Gear 6', 'ticks', 'X', 0, 'On-ticks per period in 6th gear.'),
-    ('const', 0xBF044, 16, 'Boost :: CL Target', 'raw ADC', 'X', 0,
-     'Closed-loop target manifold pressure as RAW counts on the pressure input (convert with your sensor '
-     'scaling). Only used when "Closed-Loop Enable" is on.'),
+    ('const', 0xBF044, 16, 'Boost :: CL Target', 'kPa', 'X*0.342-15', 0,
+     'Closed-loop target manifold pressure. The cell stores RAW counts; this equation (X*0.342-15) is the '
+     'wastegate-pressure SENSOR TRANSFER so you enter the target in kPa - PROVISIONAL, set it to match your '
+     'sensor and input scaling (see "Pressure Input Address"). Only used when "Closed-Loop Enable" is on.'),
     ('const', 0xBF046, 16, 'Boost :: CL Trim Step', 'ticks', 'X', 0,
      'Duty ticks the closed loop adds/removes each period while correcting toward CL Target. Small = slow/stable. '
      'Trim is clamped to +/- Period.'),
+    ('const', 0xBF048, 16, 'Boost :: Pressure Input Address', 'RAM lo', 'X', 0,
+     'Which ADC word the wastegate-pressure sensor is read from, as the low 16 bits of a 0xFEF0xxxx RAM address '
+     '(effective address = 0xFEF00000 + this). Default 0x2648 (a candidate repurposed-O2 input). Set it to the '
+     'word the bench proves carries the sensor; add a TunerPro RAM gauge at 0xFEF0<this> with the same transfer '
+     'as "CL Target" to watch live boost. Only used when "Closed-Loop Enable" is on.'),
 ]
 
 # IAP MAP-sensor scaling. The SD patch sets these for a GM 3-bar sensor; the preset guide lets you retune for a

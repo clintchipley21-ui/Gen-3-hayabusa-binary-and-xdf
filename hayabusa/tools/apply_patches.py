@@ -97,8 +97,9 @@ BOOST_CAL = bytes([
     0x00, 0x00,  # +14 duty 4th
     0x00, 0x00,  # +16 duty 5th
     0x00, 0x00,  # +18 duty 6th
-    0x00, 0x00,  # +20 target kPa abs (closed loop) raw-ADC counts on the pressure input
+    0x00, 0x00,  # +20 closed-loop target as raw-ADC counts on the pressure input (XDF shows kPa)
     0x02, 0x00,  # +22 trim step          duty ticks per period when closed-loop correcting
+    0x48, 0x26,  # +24 pressure-input RAM low word -> 0xFEF00000+X (default 0x2648; set in the XDF)
 ])
 BOOST_HOOK = bytes.fromhex('00000000')   # filled from boost.bin's hook word if the blob is present
 BOOST_CODE_ADDR = 0xBE280

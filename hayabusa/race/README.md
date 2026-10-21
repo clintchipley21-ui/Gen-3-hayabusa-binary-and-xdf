@@ -7,7 +7,8 @@ boot a CKTEST bin on a bench ECM first, and keep the stock read for recovery.
 
 | File | Use |
 |---|---|
-| `Busa-SD-v4.1.bin` | The bin to flash. Anti-lag ships **disabled**. |
+| `Busa-SD-v4.1.bin` | The original SD + anti-lag bin. Anti-lag ships **disabled**. |
+| `Busa-Race-v1.bin` | Full race bin: SD + anti-lag + air-shift + boost, built from 5JCZSJ40 and edited to an **example working configuration** (boost-by-gear 20→90 %, air-shift at 10,500, anti-lag armed, closed-loop boost off). Still **unverified** — calibrate injectors + sensor and bench the outputs first. See [`notes/race-v1.txt`](notes/race-v1.txt). Rebuild: `python3 ../tools/apply_patches.py ../stock/5JCZSJ40/5JCZSJ40.bin Busa-Race-v1.bin`. |
 | `Busa-SD-v6.xdf` | Open this in TunerPro. XDF v6 = the full stock XDF v9.3 (quickshifter decode, top-speed limiter, unit audit, every auto-defined item traced) plus the race definitions: SD fuel maps, ALS / boost spark maps, sensor scaling, and the patch tuning items (anti-lag, air-shift, boost control, MAP-sensor presets) in folder `22 Patches & Air-Shifter`. Values are from the SD-v4.1 bin; items the race software changed are marked. Same numbered workflow folders as the stock XDFs (start in `00 Start Here`; race items are also in `20 Race`). Short descriptions (<= 420 chars) keep TunerPro from crashing; full notes are in `docs/xdf-notes.csv`. Rebuild with `python3 tools/make_race_xdf.py`. |
 
 ## Versions

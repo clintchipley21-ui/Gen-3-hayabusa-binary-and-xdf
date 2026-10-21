@@ -15,12 +15,15 @@
 # last word on the output that cycle (same technique the air-shifter uses for the PAIR output).
 # Upshift/air-shift uses the PAIR output; boost uses the O2-heater output; they do not collide.
 #
-# *** OUTPUT AND INPUT PRIMITIVES ARE UNVERIFIED ON HARDWARE ***
-# The exact O2-heater drive bit/polarity and the O2-signal ADC word are confirmed on the bench,
-# not from static analysis. Every hardware touch is isolated to the OUT_ON / OUT_OFF macros and
-# the PRESS_IN address below (one spot each). The XDF "Bench Test Output" switch holds the
-# solenoid asserted so you can confirm which pin drives it; closed loop ships OFF so the
-# (also unverified) pressure input is never on the critical path until you have proven it.
+# *** OUTPUT AND INPUT CHANNELS ARE UNVERIFIED ON HARDWARE ***
+# The exact O2-heater drive bit and the O2-signal ADC word are confirmed on the bench, not from
+# static analysis. The output is isolated to the OUT_ON / OUT_OFF macros (one spot); the "Bench
+# Test Output" switch holds the solenoid asserted so you can find which pin drives it. OUTPUT
+# POLARITY IS NOT A SOFTWARE CONCERN - set it with the wiring (which relay coil leg / whether the
+# solenoid is normally-open or normally-closed). The boost-pressure INPUT channel is a calibration
+# field (C_PADDR), so you point it at whichever ADC word the bench shows without re-assembling, and
+# its scaling (counts <-> kPa) is set in the XDF. Closed loop ships OFF so the pressure input is
+# never on the critical path until you have proven it.
 # Ships DISABLED. Default per-gear duties are all 0 = wastegate spring pressure (lowest boost).
 
         .set B_RAM,   0xfebfe010        # scratch RAM (ALS 0xfebfe000..5, air-shift 0xfebfe008..a)
@@ -39,13 +42,15 @@
         .set C_D4,    14                # u16 duty gear 4
         .set C_D5,    16                # u16 duty gear 5
         .set C_D6,    18                # u16 duty gear 6
-        .set C_TGT,   20                # u16 closed-loop target (PRESS_IN raw ADC counts)
+        .set C_TGT,   20                # u16 closed-loop target (pressure-input raw ADC counts)
         .set C_STEP,  22                # u16 closed-loop trim step (duty ticks per period)
+        .set C_PADDR, 24                # u16 pressure-input RAM address, low word (base 0xFEF00000)
 
         .set RPM,     0xfef0258c        # u16 engine rpm (X/2.56)      [confirmed, shared with air-shift]
         .set GEAR,    0xfef026c2         # u8 gear bitmask 1=N,2..0x40=6th [confirmed, shared with air-shift]
-        .set PRESS_IN,0xfef02648        # u16 boost-pressure ADC on the repurposed O2 signal input
-                                        #     *** CANDIDATE - confirm the O2-signal ADC word on the bench ***
+        .set IO_BASE, 0xfef0            # high half of the RAM/IO window; C_PADDR supplies the low half.
+                                        # Default C_PADDR 0x2648 -> 0xFEF02648, a candidate O2-signal ADC
+                                        # word; set it to whatever the bench proves, in the XDF, no re-build.
 
         # ---- OUTPUT PRIMITIVE (the only code that touches the physical solenoid output) ----
         # Candidate: O2-heater drive shadow fef020e4 bit0 (extra output-shadow block fef020e2..e6).
@@ -129,8 +134,10 @@ BOOST_TICK:
         movea   0x80, r0, r13
         cmp     r13, r12
         bne     .Lnoloop
-        # measured pressure vs target
-        mov     PRESS_IN, r13
+        # measured pressure vs target. The input channel is a cal field: ptr = 0xFEF00000 + C_PADDR.
+        ld.hu   C_PADDR[r11], r12       # r12 = pressure-input RAM low word (e.g. 0x2648)
+        movhi   IO_BASE, r0, r13        # r13 = 0xFEF00000
+        add     r12, r13                # r13 = 0xFEF0xxxx (pressure-input address)
         ld.hu   0[r13], r12             # r12 = measured raw ADC
         ld.hu   C_TGT[r11], r13         # r13 = target raw ADC
         ld.hu   R_TRIM[r10], r17        # r17 = current trim (treated signed)

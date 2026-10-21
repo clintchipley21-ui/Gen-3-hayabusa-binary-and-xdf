@@ -82729,14 +82729,14 @@ STOCK (this read): raw 0 / 0x00000000.
   </XDFFLAG>
   <XDFFLAG uniqueid="0xE00B">
     <title>Boost :: Bench Test Output</title>
-    <description>0x80 = hold the solenoid output asserted (no PWM, no control) so you can confirm on the bench which pin / relay it drives (candidate: O2-heater low-side driver). Set back to 0 for normal use. @0xBF031</description>
+    <description>0x80 = hold the solenoid output asserted (no PWM, no control) so you can confirm on the bench which pin drives it (candidate: O2-heater low-side driver). Output polarity is set by the wiring (relay coil leg / NO vs NC solenoid), not here. Set back to 0 for normal use. @0xBF031</description>
     <CATEGORYMEM index="0" category="39" />
     <EMBEDDEDDATA mmedaddress="0xBF031" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x80</mask>
   </XDFFLAG>
   <XDFFLAG uniqueid="0xE00C">
     <title>Boost :: Closed-Loop Enable</title>
-    <description>0x80 = trim the duty toward "CL Target" using the pressure sensor on the repurposed O2 signal input. Leave OFF until that input is proven on the bench; open-loop per-gear duty works without it. @0xBF032</description>
+    <description>0x80 = trim the duty toward "CL Target" using the wastegate-pressure sensor on the input channel set by "Pressure Input Address". Leave OFF until that input is proven on the bench; open-loop per-gear duty works without it. @0xBF032</description>
     <CATEGORYMEM index="0" category="39" />
     <EMBEDDEDDATA mmedaddress="0xBF032" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <mask>0x80</mask>
@@ -82855,15 +82855,15 @@ STOCK (this read): raw 0 / 0x00000000.
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0xE015" flags="0x0">
     <title>Boost :: CL Target</title>
-    <description>Closed-loop target manifold pressure as RAW counts on the pressure input (convert with your sensor scaling). Only used when "Closed-Loop Enable" is on. @0xBF044</description>
+    <description>Closed-loop target manifold pressure. The cell stores RAW counts; this equation (X*0.342-15) is the wastegate-pressure SENSOR TRANSFER so you enter the target in kPa - PROVISIONAL, set it to match your sensor and input scaling (see "Pressure Input Address"). Only used when "Closed-Loop Enable" is on. @0xBF044</description>
     <CATEGORYMEM index="0" category="39" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF044" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
-    <units>raw ADC</units>
+    <units>kPa</units>
     <decimalpl>0</decimalpl>
     <datatype>0</datatype>
     <unittype>0</unittype>
     <DALINK index="0" />
-    <MATH equation="X">
+    <MATH equation="X*0.342-15">
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
@@ -82882,6 +82882,20 @@ STOCK (this read): raw 0 / 0x00000000.
     </MATH>
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0xE017" flags="0x0">
+    <title>Boost :: Pressure Input Address</title>
+    <description>Which ADC word the wastegate-pressure sensor is read from, as the low 16 bits of a 0xFEF0xxxx RAM address (effective address = 0xFEF00000 + this). Default 0x2648 (a candidate repurposed-O2 input). Set it to the word the bench proves carries the sensor; add a TunerPro RAM gauge at 0xFEF0&lt;this&gt; with the same transfer as "CL Target" to watch live boost. Only used when "Closed-Loop Enable" is on. @0xBF048</description>
+    <CATEGORYMEM index="0" category="39" />
+    <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF048" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" />
+    <units>RAM lo</units>
+    <decimalpl>0</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0" />
+    <MATH equation="X">
+      <VAR id="X" />
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0xE018" flags="0x0">
     <title>IAP Sensor :: Conversion Divisor</title>
     <description>SD sets this to 10925 (stock 21850) so a 3-bar-range MAP sensor fits the ECU internal pressure scale with a 16-bit gain. Leave it; retune the sensor with Gain/Offset. IAP sensor presets (kPa = a*raw + b; GAIN = round(393.14*a*10925/32), OFFSET = round(32768+393.14*b)): GM 3-bar a=0.307429 b=-12.6 -&gt; GAIN 0xA12F OFFSET 0x6CA6 (SD default); GM 2.5-bar a=0.256598 b=-10.5 -&gt; GAIN 0x8689 OFFSET 0x6FE0. Both PROVISIONAL - true them with one key-on reading (raw*a+b should equal local baro) and set the XDF kPa equation on the SD fuel/boost maps to match. @0x74302</description>
     <CATEGORYMEM index="0" category="39" />
