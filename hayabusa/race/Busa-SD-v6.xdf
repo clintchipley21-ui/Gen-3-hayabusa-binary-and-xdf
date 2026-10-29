@@ -82489,7 +82489,7 @@ Confidence LOW. @0x1BCEE8 - full notes: docs/xdf-notes.csv</description>
       <VAR id="X" />
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xD100" flags="0x0"><title>ALS Enable</title><description>128 (0x80) = rolling anti-lag enabled; anything else = disabled (START button behaves stock: launch control long-press works again). Default 128.
+  <XDFCONSTANT uniqueid="0xD100" flags="0x0"><title>ALS Enable</title><description>128 (0x80) = rolling anti-lag ON. TRIGGER = hold the cruise SET button (CAN 0x1D1 byte4 bit 0x02 -&gt; RAM 0xFEF02443): hold SET = capture and hold RPM with a spark cut; release = stop. Default 128.
 SD-v4.1 VALUE: 0.00 raw (raw 0).
 CHANGED BY RACE SOFTWARE vs stock. @0xBF000 - full notes: docs/xdf-notes.csv</description>    <CATEGORYMEM index="0" category="35" />
     <CATEGORYMEM index="1" category="1" />
@@ -82498,15 +82498,15 @@ CHANGED BY RACE SOFTWARE vs stock. @0xBF000 - full notes: docs/xdf-notes.csv</de
 SD-v4.1 VALUE: 60 deg C (raw 96).
 CHANGED BY RACE SOFTWARE vs stock. @0xBF001 - full notes: docs/xdf-notes.csv</description>    <CATEGORYMEM index="0" category="35" />
 <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF001" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" /><units>deg C</units><decimalpl>0</decimalpl><datatype>0</datatype><unittype>0</unittype><DALINK index="0" /><MATH equation="X*0.9375-30"><VAR id="X" /></MATH></XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xD102" flags="0x0"><title>ALS Min Rolling Speed</title><description>ALS arms only while the FRONT wheel speed (RAM 0xFEF0263A) is at or above this. Below it, holding START keeps its stock launch-control function. Default 20 km/h.
+  <XDFCONSTANT uniqueid="0xD102" flags="0x0"><title>ALS Min Rolling Speed</title><description>UNUSED in the SET-hold trigger variant (kept for layout). ALS arms only while the FRONT wheel speed (RAM 0xFEF0263A) is at or above this. Below it, holding START keeps its stock launch-control function. Default 20 km/h.
 SD-v4.1 VALUE: 20 km/h (raw 2560).
 CHANGED BY RACE SOFTWARE vs stock. @0xBF002 - full notes: docs/xdf-notes.csv</description>    <CATEGORYMEM index="0" category="35" />
 <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF002" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" /><units>km/h</units><decimalpl>1</decimalpl><datatype>0</datatype><unittype>0</unittype><DALINK index="0" /><MATH equation="X/128"><VAR id="X" /></MATH></XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xD103" flags="0x0"><title>ALS Capture Grip Angle (WOT)</title><description>With START held and rolling, the moment grip angle (RAM 0xFEF025EC, abs. accel angle; ~107 deg = full) reaches this, the current RPM is captured and held. Default 90 deg.
+  <XDFCONSTANT uniqueid="0xD103" flags="0x0"><title>ALS Capture Grip Angle (WOT)</title><description>UNUSED in the SET-hold trigger variant (kept for layout). With START held and rolling, the moment grip angle (RAM 0xFEF025EC, abs. accel angle; ~107 deg = full) reaches this, the current RPM is captured and held.
 SD-v4.1 VALUE: 90.00 deg grip (raw 32767).
 CHANGED BY RACE SOFTWARE vs stock. @0xBF004 - full notes: docs/xdf-notes.csv</description>    <CATEGORYMEM index="0" category="35" />
 <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF004" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" /><units>deg grip</units><decimalpl>1</decimalpl><datatype>0</datatype><unittype>0</unittype><DALINK index="0" /><MATH equation="X/364.08"><VAR id="X" /></MATH></XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xD104" flags="0x0"><title>ALS Release Grip Angle</title><description>If the grip drops below this while active, ALS releases (re-opening past the capture angle re-captures). Default 60 deg. Keep below the capture angle.
+  <XDFCONSTANT uniqueid="0xD104" flags="0x0"><title>ALS Release Grip Angle</title><description>UNUSED in the SET-hold trigger variant (kept for layout). If the grip drops below this while active, ALS releases (re-opening past the capture angle re-captures). Default 60 deg. Keep below the capture angle.
 SD-v4.1 VALUE: 60.00 deg grip (raw 21845).
 CHANGED BY RACE SOFTWARE vs stock. @0xBF006 - full notes: docs/xdf-notes.csv</description>    <CATEGORYMEM index="0" category="35" />
 <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF006" mmedelementsizebits="16" mmedmajorstridebits="0" mmedminorstridebits="0" /><units>deg grip</units><decimalpl>1</decimalpl><datatype>0</datatype><unittype>0</unittype><DALINK index="0" /><MATH equation="X/364.08"><VAR id="X" /></MATH></XDFCONSTANT>

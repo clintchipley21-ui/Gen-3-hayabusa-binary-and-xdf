@@ -48,6 +48,8 @@ SD41_REF = os.path.join(ROOT, 'race/Busa-SD-v4.1.bin')          # supplies the a
 SD3_REF = os.path.join(ROOT, 'race/old/SD-v3.bin')              # supplies the speed-density patch bytes
 AS_BLOB = os.path.join(ROOT, 'race/als/autoshift.bin')          # assembled auto-upshift code
 BOOST_BLOB = os.path.join(ROOT, 'race/als/boost.bin')           # assembled boost-control code (optional)
+ALS_BLOB = os.path.join(ROOT, 'race/als/als.bin')               # assembled anti-lag code (SET-hold trigger)
+ALS_CODE_ADDR = 0xBE000                                         # anti-lag code region (328 bytes)
 
 ORDER = ['sd', 'antilag', 'autoshift', 'boost']   # canonical apply order (resolves the 0x188214 overlap)
 SIZE = 0x200000
@@ -160,7 +162,11 @@ def entries(stock, sd41, sd3, want):
         sd.append((a, [stock[a:a + n]], sd3[a:a + n], [sd41[a:a + n]]))
     ent['sd'] = sd
 
-    # --- rolling anti-lag: every SD-v4.1-vs-SD-v3 region except the CRC word (bytes from SD-v4.1)
+    # --- rolling anti-lag: every SD-v4.1-vs-SD-v3 region except the CRC word (bytes from SD-v4.1),
+    #     EXCEPT the code block at 0xBE000, which comes from the freshly assembled als.bin (the SET-hold
+    #     trigger variant). als.bin keeps ALS_LIMIT/ALS_IS_ACTIVE byte-identical, so the three hooks still
+    #     land. If als.bin is absent, fall back to the SD-v4.1 bytes (the original START+WOT trigger).
+    als_code = open(ALS_BLOB, 'rb').read() if os.path.exists(ALS_BLOB) else None
     antilag = []
     for a, n in diff_runs(sd3, sd41):
         if a == 0x1FFAFE:
@@ -168,7 +174,11 @@ def entries(stock, sd41, sd3, want):
         bases = [stock[a:a + n]]
         if sd3[a:a + n] != stock[a:a + n]:     # SD also touched this region -> accept its bytes as a base too
             bases.append(sd3[a:a + n])
-        antilag.append((a, bases, sd41[a:a + n], []))
+        if a == ALS_CODE_ADDR and als_code is not None:
+            # write als.bin at 0xBE000 (base is stock free flash; SD-v4.1's START-trigger code is also ok)
+            antilag.append((a, [stock[a:a + len(als_code)], sd41[a:a + len(als_code)]], als_code, [als_code]))
+        else:
+            antilag.append((a, bases, sd41[a:a + n], []))
     ent['antilag'] = antilag
 
     # --- auto-upshift (air-shifter)

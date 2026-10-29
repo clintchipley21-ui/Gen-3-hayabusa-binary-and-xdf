@@ -141,6 +141,18 @@ def build_race():
                            '<description>' + escape(new, quote=False) + '</description>', 1)
     text = BLOCK.sub(add_value, text)
 
+    # The anti-lag TRIGGER is now the cruise SET long-hold (als.s SET-hold variant), not START+WOT.
+    # Correct the race-sourced (SD-v5) descriptions so the primary XDF matches the installed code.
+    text = text.replace(
+        'rolling anti-lag enabled; anything else = disabled (START button behaves stock: launch control '
+        'long-press works again).',
+        'rolling anti-lag ON. TRIGGER = hold the cruise SET button (CAN 0x1D1 byte4 bit 0x02 -> RAM 0xFEF02443): '
+        'hold SET = capture and hold RPM with a spark cut; release = stop.')
+    for frag in ('With START held and rolling, the moment grip angle', 'If the grip drops below this while active',
+                 'ALS arms only while the FRONT wheel speed'):
+        text = re.sub(r'(<description>)(' + re.escape(frag) + r')',
+                      r'\1UNUSED in the SET-hold trigger variant (kept for layout). \2', text)
+
     hdr = re.search(r'<deftitle>.*?</deftitle>\s*<description>.*?</description>', text, re.S)
     assert len(HEADER) <= ms.HEADER_MAX, len(HEADER)
     text = (text[:hdr.start()] + '<deftitle>Hayabusa Gen3 race software SD-v4.1 - XDF v6 (stock v9.3 base)</deftitle>\n'

@@ -124,23 +124,25 @@ SENSOR_GAINOFF = [
 # already define them (i.e. the stock reads; the race XDF already has them in its race folders).
 ALS_ITEMS = [
     ('const', 0xBF000, 8, 'ALS Enable', 'raw', 'X', 0,
-     '0x80 = rolling anti-lag ON; anything else = OFF (START button behaves stock). Ships OFF on a patched bin.'),
+     '0x80 = rolling anti-lag ON; anything else = OFF. TRIGGER = hold the cruise SET button: the meter sends the '
+     'SET long-hold flag in CAN 0x1D1 byte4 bit 0x02 (RAM 0xFEF02443). Hold SET -> capture RPM and hold it with a '
+     'spark cut; release SET -> stop. Ships OFF on a patched bin.'),
     ('const', 0xBF001, 8, 'ALS Min Coolant Temp', 'deg C', 'X*0.9375-30', 0,
      'ALS will not arm below this coolant temperature (RAM 0xFEF026BD). Default 60 C.'),
     ('const', 0xBF002, 16, 'ALS Min Rolling Speed', 'km/h', 'X/128', 1,
-     'ALS arms only while FRONT wheel speed (0xFEF0263A) is at or above this; below it START stays stock. Default 20.'),
+     'UNUSED in the SET-hold trigger variant (kept for layout). Default 20.'),
     ('const', 0xBF004, 16, 'ALS Capture Grip Angle (WOT)', 'deg grip', 'X/364.08', 1,
-     'With START held and rolling, when grip (0xFEF025EC, ~107 deg = full) reaches this the current RPM is captured. Default 90.'),
+     'UNUSED in the SET-hold trigger variant (kept for layout). Default 90.'),
     ('const', 0xBF006, 16, 'ALS Release Grip Angle', 'deg grip', 'X/364.08', 1,
-     'Grip below this while active releases ALS; re-opening past the capture angle re-captures. Keep below capture. Default 60.'),
+     'UNUSED in the SET-hold trigger variant (kept for layout). Default 60.'),
     ('const', 0xBF008, 16, 'ALS Min Capture RPM', 'RPM', 'X/2.56', 0,
-     'ALS will not engage if RPM at capture is below this. Default 3000. Must be greater than the hysteresis.'),
+     'Captured RPM is clamped UP to this (hold SET below it and ALS targets this). Default 3000.'),
     ('const', 0xBF00A, 16, 'ALS Max Capture RPM', 'RPM', 'X/2.56', 0,
-     'Captured RPM is clamped to this. Keep below the fuel-cut (11,200) and ignition-cut (12,000) limiters. Default 10500.'),
+     'Captured RPM is clamped DOWN to this. Keep below the fuel-cut (11,200) and ignition-cut (12,000) limiters. Default 10500.'),
     ('const', 0xBF00C, 16, 'ALS Hold Hysteresis', 'RPM', 'X/2.56', 0,
      'Spark returns when RPM falls this far below the captured RPM. Smaller = tighter, harsher cut. Default 150.'),
     ('const', 0xBF00E, 16, 'ALS Max Active Time', 's', 'X*0.005', 1,
-     'Safety timer: after this long continuously active, ALS drops out until START is released. Default 2000 counts = 10 s.'),
+     'Safety timer: after this long continuously active, ALS latches off until SET is released. Default 2000 counts = 10 s.'),
 ]
 
 PATCH_DESC = {
