@@ -126,7 +126,8 @@ ALS_ITEMS = [
     ('const', 0xBF000, 8, 'ALS Enable', 'raw', 'X', 0,
      '0x80 = rolling anti-lag ON; anything else = OFF. TRIGGER = hold the cruise SET button: the meter sends the '
      'SET long-hold flag in CAN 0x1D1 byte4 bit 0x02 (RAM 0xFEF02443). Hold SET -> capture RPM and hold it with a '
-     'spark cut; release SET -> stop. Ships OFF on a patched bin.'),
+     'spark cut; release SET -> stop. CRUISE IS PRESERVED: if the cruise system is ON (0xFEF02726 bit0) anti-lag '
+     'will NOT arm, so SET works as cruise; turn cruise off to use SET for anti-lag. Ships OFF on a patched bin.'),
     ('const', 0xBF001, 8, 'ALS Min Coolant Temp', 'deg C', 'X*0.9375-30', 0,
      'ALS will not arm below this coolant temperature (RAM 0xFEF026BD). Default 60 C.'),
     ('const', 0xBF002, 16, 'ALS Min Rolling Speed', 'km/h', 'X/128', 1,

@@ -146,8 +146,9 @@ def build_race():
     text = text.replace(
         'rolling anti-lag enabled; anything else = disabled (START button behaves stock: launch control '
         'long-press works again).',
-        'rolling anti-lag ON. TRIGGER = hold the cruise SET button (CAN 0x1D1 byte4 bit 0x02 -> RAM 0xFEF02443): '
-        'hold SET = capture and hold RPM with a spark cut; release = stop.')
+        'rolling anti-lag ON. Hold cruise SET = capture and hold RPM (spark cut); release = stop. CRUISE KEPT: '
+        'if cruise is ON (fef02726 bit0) ALS will not arm, so SET stays cruise. Trigger bit: 0x1D1 byte4 0x02 '
+        '(fef02443).')
     for frag in ('With START held and rolling, the moment grip angle', 'If the grip drops below this while active',
                  'ALS arms only while the FRONT wheel speed'):
         text = re.sub(r'(<description>)(' + re.escape(frag) + r')',

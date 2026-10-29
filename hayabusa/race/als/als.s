@@ -4,6 +4,9 @@
 # CAN frame 0x1D1 byte 4 (bit 0x02), which the ECU mirrors to RAM fef02443. While that bit is
 # held, anti-lag captures the engine RPM at the moment of the press and holds it with an
 # all-cylinder spark cut (fuel stays on); releasing SET drops anti-lag and returns spark.
+# CRUISE IS PRESERVED: if the cruise system is switched ON (fef02726 bit0, the cruise ON/OFF
+# state read by FUN_751da), anti-lag does NOT arm, so SET keeps its normal cruise function.
+# Turn cruise off to use the SET button for anti-lag.
 #   - Capture RPM on the press, clamped to [Min RPM, Max RPM].
 #   - Safety: needs coolant >= Min Coolant; latches off after Max Active Time until released.
 # (The old START+WOT trigger and the grip/speed gates are gone; "Capture/Release Grip Angle"
@@ -22,6 +25,7 @@
         .set C_TMAX,    14              # u16 max active time (5 ms ticks)
 
         .set SETHOLD,   0xfef02443      # 0x1D1 byte4 button byte; bit 0x02 = SET long-hold
+        .set CRUISE_ON, 0xfef02726      # bit0 = cruise system ON (FUN_751da); gate ALS off when set
 
         .section .als_code,"ax"
         .globl ALS_TICK, ALS_LIMIT, ALS_IS_ACTIVE
@@ -37,6 +41,10 @@ ALS_TICK:
         mov     SETHOLD, r13
         tst1    1, 0[r13]
         bz      .Ldisarm
+        # ---- cruise gate: if the cruise system is ON, leave SET to cruise (no anti-lag)
+        mov     CRUISE_ON, r13
+        tst1    0, 0[r13]
+        bnz     .Ldisarm
         # ---- coolant >= min (safety)
         mov     0xfef026bd, r13
         ld.bu   0[r13], r13
