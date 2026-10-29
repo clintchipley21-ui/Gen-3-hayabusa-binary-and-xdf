@@ -17,7 +17,9 @@ LD="$TOOLS/ld/ld-new"
 OC="$TOOLS/binutils/objcopy"
 OUT="$HERE/out"; mkdir -p "$OUT"
 
-# --- rolling anti-lag at 0xBE000 (external refs resolved to their stock addresses)
+# --- rolling anti-lag at 0xBE000 (SET-hold trigger). ALS_LIMIT/ALS_IS_ACTIVE are pinned (.org) to
+#     their original offsets so the stock hooks still land; only ALS_TICK changed. apply_patches.py
+#     installs this als.bin at 0xBE000 (falling back to the SD-v4.1 START-trigger bytes if it is absent).
 $AS -o "$OUT/als.o" "$HERE/als.s"
 $LD -e 0 -Ttext=0xbe000 --defsym FUN_5BDB4=0x5bdb4 --defsym FUN_2C396=0x2c396 \
     -o "$OUT/als.elf" "$OUT/als.o"
