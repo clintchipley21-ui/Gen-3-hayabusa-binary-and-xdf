@@ -82780,7 +82780,7 @@ STOCK (this read): raw 2281701377 / 0x88000001.
   </XDFCONSTANT>
   <XDFCONSTANT uniqueid="0xE00B" flags="0x0">
     <title>ALS Enable</title>
-    <description>0x80 = rolling anti-lag ON; anything else = OFF. TRIGGER = hold the cruise SET button: the meter sends the SET long-hold flag in CAN 0x1D1 byte4 bit 0x02 (RAM 0xFEF02443). Hold SET -&gt; capture RPM and hold it with a spark cut; release SET -&gt; stop. Ships OFF on a patched bin. @0xBF000</description>
+    <description>0x80 = rolling anti-lag ON; anything else = OFF. TRIGGER = hold the cruise SET button: the meter sends the SET long-hold flag in CAN 0x1D1 byte4 bit 0x02 (RAM 0xFEF02443). Hold SET -&gt; capture RPM and hold it with a spark cut; release SET -&gt; stop. CRUISE IS PRESERVED: if the cruise system is ON (0xFEF02726 bit0) anti-lag will NOT arm, so SET works as cruise; turn cruise off to use SET for anti-lag. Ships OFF on a patched bin. @0xBF000</description>
     <CATEGORYMEM index="0" category="38" />
     <EMBEDDEDDATA mmedtypeflags="0x02" mmedaddress="0xBF000" mmedelementsizebits="8" mmedmajorstridebits="0" mmedminorstridebits="0" />
     <units>raw</units>
