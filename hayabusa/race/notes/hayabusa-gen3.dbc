@@ -1,0 +1,208 @@
+VERSION "Hayabusa Gen3 (5JCZSJ) - v0.1 scaffold. Switch cluster 0x1D1 + cruise decoded from the ECU firmware (FUN_7201A/FUN_72BB4) and two bus traces; telemetry frames are stubs to confirm with ground-truth captures (see can-capture-plan.md). Senders for broadcast frames are INFERRED - correct them as you label."
+
+NS_ :
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: ECM METER ABS UNKWN
+
+VAL_TABLE_ SwitchState 1 "pressed" 0 "released" ;
+VAL_TABLE_ CruiseOnOff 240 "cruise_on" 0 "cruise_off" ;
+
+
+BO_ 465 SW_LeftCluster: 8 METER
+ SG_ CruiseComposite_B0 : 0|8@1+ (1,0) [0|255] "" ECM
+ SG_ CruiseOnByte_B1 : 8|8@1+ (1,0) [0|255] "" ECM
+ SG_ StatusNibble_B2 : 16|8@1+ (1,0) [0|255] "" ECM
+ SG_ SwitchBits_B3 : 24|8@1+ (1,0) [0|255] "" ECM
+ SG_ SetHold : 33|1@1+ (1,0) [0|1] "" ECM
+ SG_ Byte4_bit2 : 34|1@1+ (1,0) [0|1] "" ECM
+ SG_ SetTap : 35|1@1+ (1,0) [0|1] "" ECM
+ SG_ ResHold : 37|1@1+ (1,0) [0|1] "" ECM
+ SG_ Byte4_bit6 : 38|1@1+ (1,0) [0|1] "" ECM
+ SG_ ResTap : 39|1@1+ (1,0) [0|1] "" ECM
+ SG_ SwByte5_bit5 : 45|1@1+ (1,0) [0|1] "" ECM
+ SG_ SwByte5_bit6 : 46|1@1+ (1,0) [0|1] "" ECM
+ SG_ SwByte5_bit7 : 47|1@1+ (1,0) [0|1] "" ECM
+ SG_ AliveCounter : 48|8@1+ (1,0) [0|255] "" ECM
+ SG_ Checksum : 56|8@1+ (1,0) [0|255] "" ECM
+
+BO_ 801 Cruise_Status: 8 ECM
+ SG_ CruiseComposite_B0 : 0|8@1+ (1,0) [0|255] "" METER
+ SG_ CruiseOnByte_B1 : 8|8@1+ (1,0) [0|255] "" METER
+ SG_ ResEcho_B4 : 32|8@1+ (1,0) [0|255] "" METER
+ SG_ AliveCounter : 48|8@1+ (1,0) [0|255] "" METER
+ SG_ Checksum : 56|8@1+ (1,0) [0|255] "" METER
+
+BO_ 373 ENG_175: 8 ECM
+ SG_ Word0 : 7|16@0+ (1,0) [0|65535] "" UNKWN
+ SG_ Word2 : 23|16@0+ (1,0) [0|65535] "" UNKWN
+ SG_ Word4 : 39|16@0+ (1,0) [0|65535] "" UNKWN
+ SG_ AliveCounter : 48|8@1+ (1,0) [0|255] "" UNKWN
+ SG_ Checksum : 56|8@1+ (1,0) [0|255] "" UNKWN
+
+BO_ 377 ENG_179: 8 ECM
+ SG_ Word0 : 7|16@0+ (1,0) [0|65535] "" UNKWN
+ SG_ Word2 : 23|16@0+ (1,0) [0|65535] "" UNKWN
+ SG_ Word4 : 39|16@0+ (1,0) [0|65535] "" UNKWN
+ SG_ AliveCounter : 48|8@1+ (1,0) [0|255] "" UNKWN
+ SG_ Checksum : 56|8@1+ (1,0) [0|255] "" UNKWN
+
+BO_ 384 ENG_180: 8 ECM
+ SG_ Word0 : 7|16@0+ (1,0) [0|65535] "" UNKWN
+ SG_ Word2 : 23|16@0+ (1,0) [0|65535] "" UNKWN
+ SG_ Word4 : 39|16@0+ (1,0) [0|65535] "" UNKWN
+ SG_ AliveCounter : 48|8@1+ (1,0) [0|255] "" UNKWN
+ SG_ Checksum : 56|8@1+ (1,0) [0|255] "" UNKWN
+
+BO_ 385 ENG_181: 8 ECM
+ SG_ Word0 : 7|16@0+ (1,0) [0|65535] "" UNKWN
+ SG_ Word2 : 23|16@0+ (1,0) [0|65535] "" UNKWN
+ SG_ Word4 : 39|16@0+ (1,0) [0|65535] "" UNKWN
+ SG_ AliveCounter : 48|8@1+ (1,0) [0|255] "" UNKWN
+ SG_ Checksum : 56|8@1+ (1,0) [0|255] "" UNKWN
+
+BO_ 417 UNK_1A1: 8 UNKWN
+ SG_ Word0 : 7|16@0+ (1,0) [0|65535] "" UNKWN
+ SG_ Byte4 : 32|8@1+ (1,0) [0|255] "" UNKWN
+ SG_ AliveCounter : 48|8@1+ (1,0) [0|255] "" UNKWN
+
+BO_ 421 UNK_1A5: 8 UNKWN
+ SG_ SignedWord0 : 7|16@0+ (1,-32768) [-32768|32767] "" UNKWN
+ SG_ Byte4 : 32|8@1+ (1,0) [0|255] "" UNKWN
+ SG_ AliveCounter : 48|8@1+ (1,0) [0|255] "" UNKWN
+
+BO_ 425 UNK_1A9: 8 UNKWN
+ SG_ Byte3 : 24|8@1+ (1,0) [0|255] "" UNKWN
+ SG_ AliveCounter : 48|8@1+ (1,0) [0|255] "" UNKWN
+
+BO_ 429 UNK_1AD: 8 UNKWN
+ SG_ AliveCounter : 48|8@1+ (1,0) [0|255] "" UNKWN
+
+BO_ 405 UNK_195: 8 UNKWN
+ SG_ AliveCounter : 48|8@1+ (1,0) [0|255] "" UNKWN
+ SG_ Checksum : 56|8@1+ (1,0) [0|255] "" UNKWN
+
+BO_ 406 UNK_196: 8 UNKWN
+ SG_ AliveCounter : 48|8@1+ (1,0) [0|255] "" UNKWN
+ SG_ Checksum : 56|8@1+ (1,0) [0|255] "" UNKWN
+
+BO_ 545 UNK_221: 8 ABS
+ SG_ Word2 : 23|16@0+ (1,0) [0|65535] "" UNKWN
+ SG_ Byte4 : 32|8@1+ (1,0) [0|255] "" UNKWN
+ SG_ AliveCounter : 48|8@1+ (1,0) [0|255] "" UNKWN
+
+BO_ 561 UNK_231: 8 ABS
+ SG_ AliveCounter : 48|8@1+ (1,0) [0|255] "" UNKWN
+
+BO_ 565 UNK_235: 8 ABS
+ SG_ AliveCounter : 48|8@1+ (1,0) [0|255] "" UNKWN
+
+BO_ 813 UNK_32D: 8 UNKWN
+ SG_ Byte0 : 0|8@1+ (1,0) [0|255] "" UNKWN
+ SG_ AliveCounter : 48|8@1+ (1,0) [0|255] "" UNKWN
+
+BO_ 817 UNK_331: 8 UNKWN
+ SG_ Byte5 : 40|8@1+ (1,0) [0|255] "" UNKWN
+ SG_ AliveCounter : 48|8@1+ (1,0) [0|255] "" UNKWN
+
+BO_ 821 UNK_335: 8 UNKWN
+ SG_ Byte3 : 24|8@1+ (1,0) [0|255] "" UNKWN
+ SG_ Byte7 : 56|8@1+ (1,0) [0|255] "" UNKWN
+
+BO_ 825 UNK_339: 8 UNKWN
+ SG_ Byte7 : 56|8@1+ (1,0) [0|255] "" UNKWN
+
+BO_ 829 UNK_33D: 8 UNKWN
+ SG_ Byte3 : 24|8@1+ (1,0) [0|255] "" UNKWN
+ SG_ Byte7 : 56|8@1+ (1,0) [0|255] "" UNKWN
+
+BO_ 833 UNK_341: 8 UNKWN
+ SG_ Byte3 : 24|8@1+ (1,0) [0|255] "" UNKWN
+ SG_ Byte4 : 32|8@1+ (1,0) [0|255] "" UNKWN
+ SG_ AliveCounter : 48|8@1+ (1,0) [0|255] "" UNKWN
+
+BO_ 945 UNK_3B1: 8 UNKWN
+ SG_ Byte0 : 0|8@1+ (1,0) [0|255] "" UNKWN
+
+BO_ 1073 UNK_431: 8 UNKWN
+ SG_ Byte1 : 8|8@1+ (1,0) [0|255] "" UNKWN
+ SG_ AliveCounter : 48|8@1+ (1,0) [0|255] "" UNKWN
+
+BO_ 1089 UNK_441: 8 UNKWN
+ SG_ Byte1 : 8|8@1+ (1,0) [0|255] "" UNKWN
+ SG_ Byte2 : 16|8@1+ (1,0) [0|255] "" UNKWN
+ SG_ Byte4 : 32|8@1+ (1,0) [0|255] "" UNKWN
+ SG_ AliveCounter : 48|8@1+ (1,0) [0|255] "" UNKWN
+
+BO_ 1233 DIAG_4D1: 8 UNKWN
+ SG_ Byte0 : 0|8@1+ (1,0) [0|255] "" UNKWN
+
+BO_ 1239 DIAG_4D7: 8 UNKWN
+ SG_ Byte0 : 0|8@1+ (1,0) [0|255] "" UNKWN
+
+
+CM_ "Hayabusa Gen3 powertrain CAN. Only SW_LeftCluster (0x1D1) and Cruise_Status (0x321) are decoded from firmware; the rest are scaffolds. byte6 is a rolling 0-F alive counter and byte7 a checksum on most 8-byte frames (not all - 0x335/0x339/0x33D carry their varying byte in byte7). Capture plan: notes/can-capture-plan.md.";
+CM_ BU_ ECM "Engine ECU (32990-xxx). Receives 0x1D1; broadcasts engine telemetry. Verified receiver of the switch cluster.";
+CM_ BU_ METER "Instrument cluster / left switch pod. Sends the switch cluster 0x1D1. Sender of other dash frames is inferred.";
+CM_ BU_ ABS "ABS/wheel-speed module - INFERRED sender for 0x221/0x231/0x235, confirm with a wheel-speed capture.";
+CM_ BU_ UNKWN "Sender not yet identified - label from captures.";
+CM_ BO_ 465 "Left switch cluster -> ECM. ECU mirrors the 8 bytes to RAM fef0243f..fef02446 (FUN_7201A) and decodes in FUN_72BB4. DO NOT treat byte0 as a cruise flag - it is a composite (see CruiseComposite_B0).";
+CM_ SG_ 465 CruiseComposite_B0 "NOT a clean cruise flag. Riding trace: 0x00 idle, 0xF0 during SET press AND cruise-on, 0x11 while riding with cruise off. Gating anti-lag on this would self-disarm the SET trigger. Use the ECU-internal fef02726 bit0 instead (not on the bus).";
+CM_ SG_ 465 CruiseOnByte_B1 "0x10 when cruise OFF, 0x00 when cruise ON. Cleaner than byte0 but ECU folds byte0+byte1 into fef02664.";
+CM_ SG_ 465 StatusNibble_B2 "Rides 0x10..0x50 while moving; a status field, not a button.";
+CM_ SG_ 465 SetHold "Cruise SET long-hold (byte4 0x02). This is the anti-lag trigger (als.s reads RAM fef02443 bit 0x02).";
+CM_ SG_ 465 SetTap "Cruise SET tap (byte4 0x08).";
+CM_ SG_ 465 ResHold "Cruise RES long-hold (byte4 0x20; appears as 0xA0 with the tap bit).";
+CM_ SG_ 465 ResTap "Cruise RES/RESUME tap (byte4 0x80).";
+CM_ SG_ 465 Byte4_bit2 "byte4 0x04 (FUN_70E1A) - fires on the bus (160 frames) but function unconfirmed. Candidate free trigger.";
+CM_ SG_ 465 Byte4_bit6 "byte4 0x40 (FUN_70DA8) - fires on the bus (166 frames) but function unconfirmed. Candidate free trigger.";
+CM_ SG_ 465 SwByte5_bit7 "byte5 is a second active switch byte (0x80 1647x, 0x40 108x, 0xA0 872x). Identify these buttons in the switch sweep - more free inputs.";
+CM_ SG_ 465 AliveCounter "Rolling 0-F counter (low nibble of byte6).";
+CM_ SG_ 465 Checksum "Payload checksum (byte7). Must be recomputed if ever transmitting this frame.";
+CM_ BO_ 801 "Redundant cruise/button STATUS frame that mirrors 0x1D1 (byte0/1 cruise state, byte4 echoes RES tap/hold). The ECU does NOT parse 0x321, so it is a monitor frame only, not a usable ECU input.";
+CM_ BO_ 373 "High-rate engine data (ECM). Confirm which Word is RPM with an RPM sweep; words are big-endian (Motorola).";
+CM_ BO_ 377 "High-rate engine data (ECM), most-dynamic frame. Candidate for RPM/throttle - confirm with RPM + throttle sweeps.";
+CM_ BO_ 421 "SignedWord0 centres on 0x8000 (decoded 0) with a small swing - looks like lean/attitude. Confirm with a lean sweep.";
+CM_ BO_ 545 "Low-rate, byte3 varies - candidate gear or temperature. INFERRED ABS; confirm sender + content.";
+CM_ BO_ 1233 "All-zero payload, appears a few times mid-ride - looks like a periodic handshake/heartbeat, no signal seen.";
+CM_ BO_ 1239 "All-zero payload, appears a few times mid-ride - looks like a periodic handshake/heartbeat, no signal seen.";
+
+VAL_ 465 SetHold 1 "pressed" 0 "released" ;
+VAL_ 465 SetTap 1 "pressed" 0 "released" ;
+VAL_ 465 ResHold 1 "pressed" 0 "released" ;
+VAL_ 465 ResTap 1 "pressed" 0 "released" ;
+VAL_ 465 Byte4_bit2 1 "pressed" 0 "released" ;
+VAL_ 465 Byte4_bit6 1 "pressed" 0 "released" ;
+VAL_ 465 SwByte5_bit5 1 "pressed" 0 "released" ;
+VAL_ 465 SwByte5_bit6 1 "pressed" 0 "released" ;
+VAL_ 465 SwByte5_bit7 1 "pressed" 0 "released" ;
+VAL_ 465 CruiseOnByte_B1 16 "cruise_off" 0 "cruise_on" ;
