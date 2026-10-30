@@ -9,11 +9,13 @@ FRAME 0x1D1 (left switch cluster incl. cruise SET / RES)
  read in a patch (NOT the febf57xx mailbox scratch, and NOT fef023c8 which is reused for several frames).
 
    payload byte -> RAM            (byte 0 is first on the wire)
-     byte0/1  fef0243f/40   non-button value (combined to fef02664)
+     byte0    fef0243f      CRUISE STATE: 0x00 = cruise off, 0xF0 = cruise on  <-- bus-confirmed
+     byte1    fef02440      0x10 when cruise off, 0x00 when cruise on (byte0/1 combine to fef02664)
      byte2    fef02441      switch bits (2 used)
-     byte3    fef02442      switch bits
+     byte3    fef02442      switch bits (bit 0x40 set when cruise off)
      byte4    fef02443      switch bits  <-- cruise SET / RES live here
      byte5    fef02444      switch bits
+ Whole-frame: cruise OFF = "00 10 30 C0 .." , cruise ON = "F0 00 30 80 .." (cangaroo trace, 18k frames).
 
  BYTE 4 = fef02443 bit map (bit -> stock handler in FUN_72BB4):
      0x80  RES / RESUME tap          FUN_71430     <- observed: press RES -> byte4 = 0x80
@@ -28,16 +30,19 @@ FRAME 0x1D1 (left switch cluster incl. cruise SET / RES)
  CAN bits - handy as independent triggers. On a race bike cruise is dead weight, so these are free.
 
 CRUISE CONTROL STATE (so the race patches can stay out of its way)
- fef02726 bit0 = cruise system ON/OFF (set by FUN_751e8, read by FUN_751da; the master gate that
-   ~8 cruise sub-controllers check via fef02467). 1 = cruise on.
- fef02467 bit0 = cruise operating (on + speed in window + no brake); fef02407/08/09/0a = engage/
-   accel/decel sub-states. Debounced SET-hold also lands at fef023bc bit0x80 (FUN_70E40).
+ fef0243f = 0x1D1 byte0 = cruise state (0x00 off / 0xF0 on). BUS-CONFIRMED and the cleanest signal:
+   it rides in the same frame as the buttons and the ECU already parses it (FUN_7201A).
+ Internal equivalents: fef02726 bit0 = cruise ON/OFF switch (FUN_751e8/751da; ~8 cruise functions
+   gate on fef02467 derived from it); fef02467 bit0 = cruise operating (on + speed window + no brake).
+ FRAME 0x321 byte0/1 (00 10 off / F0 00 on) is the same cruise status on the bus, but the ECU does
+   NOT parse 0x321 (it is not in the image), so the patch uses fef0243f (0x1D1 byte0) instead.
+ Debounced SET-hold also lands at fef023bc bit0x80 (FUN_70E40).
 
 USED BY THE RACE PATCHES
  - Anti-lag TRIGGER = SET long-hold: als.s reads fef02443 bit 0x02. Hold SET -> capture & hold RPM;
    release -> stop. (See race/als/als.s and the "ALS Enable" XDF item.)
- - CRUISE PRESERVED: als.s also reads fef02726 bit0; if cruise is ON, anti-lag does NOT arm, so SET
-   keeps its cruise function. Turn cruise off to use SET for anti-lag.
+ - CRUISE PRESERVED: als.s reads fef0243f (0x1D1 byte0); if cruise is ON (nonzero), anti-lag does NOT
+   arm, so SET keeps its cruise function. Turn cruise off to use SET for anti-lag.
 
 OTHER METER FRAMES (from the generic signal registration FUN_5EFB8, key -> dest bytes)
    0x1C8 fef02062/67   0x1C9 fef0206c   0x1CB fef02063/68   0x1CC fef0206d   0x1CE fef02064/69

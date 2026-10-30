@@ -4,9 +4,11 @@
 # CAN frame 0x1D1 byte 4 (bit 0x02), which the ECU mirrors to RAM fef02443. While that bit is
 # held, anti-lag captures the engine RPM at the moment of the press and holds it with an
 # all-cylinder spark cut (fuel stays on); releasing SET drops anti-lag and returns spark.
-# CRUISE IS PRESERVED: if the cruise system is switched ON (fef02726 bit0, the cruise ON/OFF
-# state read by FUN_751da), anti-lag does NOT arm, so SET keeps its normal cruise function.
-# Turn cruise off to use the SET button for anti-lag.
+# CRUISE IS PRESERVED: the cruise on/off state rides in CAN 0x1D1 byte0, which the ECU parses to
+# RAM fef0243f (0x00 = cruise off, 0xF0 = cruise on; bus-confirmed from a cangaroo trace, and it
+# matches the 0x321 cruise-status frame 00 10 / F0 00). If cruise is on, anti-lag does NOT arm, so
+# SET keeps its normal cruise function. Turn cruise off to use the SET button for anti-lag.
+# (The ECU's internal cruise-enable flag fef02726 bit0 is an equivalent alternative.)
 #   - Capture RPM on the press, clamped to [Min RPM, Max RPM].
 #   - Safety: needs coolant >= Min Coolant; latches off after Max Active Time until released.
 # (The old START+WOT trigger and the grip/speed gates are gone; "Capture/Release Grip Angle"
@@ -25,7 +27,7 @@
         .set C_TMAX,    14              # u16 max active time (5 ms ticks)
 
         .set SETHOLD,   0xfef02443      # 0x1D1 byte4 button byte; bit 0x02 = SET long-hold
-        .set CRUISE_ON, 0xfef02726      # bit0 = cruise system ON (FUN_751da); gate ALS off when set
+        .set CRUISE_ON, 0xfef0243f      # 0x1D1 byte0: 0x00 = cruise off, 0xF0 = cruise on (bus-confirmed)
 
         .section .als_code,"ax"
         .globl ALS_TICK, ALS_LIMIT, ALS_IS_ACTIVE
@@ -41,10 +43,11 @@ ALS_TICK:
         mov     SETHOLD, r13
         tst1    1, 0[r13]
         bz      .Ldisarm
-        # ---- cruise gate: if the cruise system is ON, leave SET to cruise (no anti-lag)
+        # ---- cruise gate: if cruise is ON (0x1D1 byte0 != 0), leave SET to cruise (no anti-lag)
         mov     CRUISE_ON, r13
-        tst1    0, 0[r13]
-        bnz     .Ldisarm
+        ld.bu   0[r13], r13
+        cmp     0, r13
+        bne     .Ldisarm
         # ---- coolant >= min (safety)
         mov     0xfef026bd, r13
         ld.bu   0[r13], r13
