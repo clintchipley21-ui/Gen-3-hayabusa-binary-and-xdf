@@ -104,12 +104,28 @@ Calibration bytes differ from 5JCZSJ40 by the amounts below.
 | [`5JCZSJB0/`](stock/5JCZSJB0/) | 32920-10LB | 5JCZSJB0 | 123,307 |
 | [`5JCZSNC0/`](stock/5JCZSNC0/) | 32920-10LC | 5JCZSNC0 | 252 |
 
-`stock/other/` holds files the XDFs here do **not** fit:
+`stock/other/` holds files the main 5JCZ XDFs do **not** fit — a separate software line
+(5JCU / 5JE0 / 5JCX) whose code is a different build and whose calibration descriptors are
+relocated vs 5JCZ. These have **their own descriptor-built XDFs** (`tools/make_other_xdf.py`);
+do not open them with a 5JCZ XDF. See [`re/full-dump-analysis.md`](re/full-dump-analysis.md).
 
 - `5JCXSJ10.bin` — software 5JCXSJ10, from the original DanCycles HayabusaGen3 project
   (see [NOTICE.md](NOTICE.md)). Roughly 700 KB of code differs from 5JCZSJ10, and the field-1 CRC method
   below does not match it.
-- `5JCUSJ40.ori` (ECM 32990-10L4) — software 5JCUSJ40 in a 2,031,679-byte container, not a plain 2 MB read.
+- `5JCUSJ40.ori` (ECM 32990-10L4) — software 5JCUSJ40 in a 2,031,679-byte container, with its
+  code half **encrypted**; superseded by the full dump below. Kept for provenance.
+- `5JCUSJ40-full.mot` / `5JCUSJ40-full.bin` — the **decrypted, complete 2 MB** read of 5JCUSJ40
+  (RFP3 S-record + decoded binary via `tools/decode_srec.py`). First fully-readable copy of this
+  firmware: exposes the 64 KB boot block (Renesas PBL + RH850/F1L device IDs) and ~760 KB of code
+  the `.ori` never showed. XDF: `5JCUSJ40-full.xdf` (748 maps, open with `5JCUSJ40-full.bin`).
+- `5JE0SJ00.bin` (ECM 32990-10L0) — a market variant not previously here; native read omits the
+  front 64 KB. `5JE0SJ00-2mb.bin` is the 2 MB-padded image (front = `0xFF`) to open with
+  `5JE0SJ00.xdf` (748 maps). Same calibration as 5JCUSJ40 on an earlier software revision; 5JCU
+  and 5JE0 share a byte-identical descriptor table, so one XDF layout serves both (values differ).
+
+> XDFs here are **maps/curves only** (built from each read's on-bin descriptors). The scalar
+> constants/flags that the 5JCZ master carries came from the 5JCZ Ghidra decompile and do **not**
+> apply to this line; they need a 5JCU/5JE0 decompile (`tools/ghidra_export_fulldump.py`).
 
 ## Race-relevant settings (stock XDFs, no code patch)
 
