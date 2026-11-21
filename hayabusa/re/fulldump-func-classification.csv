@@ -1,0 +1,7 @@
+class,function_count,meaning
+identical,174,byte-identical at same address - existing 5JCZ decompile applies as-is
+near-identical(<5%),81,"same code, <5% bytes differ (e.g. embedded constants) - decompile largely applies"
+substantially-different,7711,different bytes at this address - NOT covered by 5JCZ decompile (needs own pass)
+dump-only(boot/PBL),1,"code present in dump, erased in committed 5JCZ read"
+5JCZ-only(absent-in-dump),15,address blank in the new dump
+both-erased,30,0xFF in both

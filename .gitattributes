@@ -4,3 +4,4 @@
 *.zip binary
 # XDFs are XML but multi-megabyte; keep them byte-exact and out of text diffs
 *.xdf -text -diff linguist-generated
+*.mot binary

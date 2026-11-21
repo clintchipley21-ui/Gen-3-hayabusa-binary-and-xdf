@@ -1,0 +1,11 @@
+offset,size,kind,note
+0x00000,96,code,ascii: PBL_RH_TMC_010B_S Ver1.40r2
+0x01000,2752,code,
+0x01FE0,16,table/const,
+0x02000,336,code,
+0x02300,16,table/const,
+0x02400,304,code,
+0x02800,46112,code,ascii: 8kWYU{?
+0x0FED0,16,table/const,
+0x0FFB0,32,code,
+0x0FFE0,32,table/const,ascii: ECM-010L0-0

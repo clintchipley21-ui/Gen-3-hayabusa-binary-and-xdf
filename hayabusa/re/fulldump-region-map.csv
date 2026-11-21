@@ -1,0 +1,14 @@
+start,end,size_bytes,class,entropy
+0x000000,0x00DFFF,57344,code-or-data,6.11
+0x00E000,0x00FFFF,8192,erased(0xFF),0.08
+0x010000,0x0BDFFF,712704,code-or-data,6.91
+0x0BE000,0x13FFFF,532480,erased(0xFF),-0.0
+0x140000,0x147FFF,32768,code-or-data,4.36
+0x148000,0x149FFF,8192,sparse/const,1.43
+0x14A000,0x14FFFF,24576,erased(0xFF),-0.0
+0x150000,0x187FFF,229376,code-or-data,6.83
+0x188000,0x189FFF,8192,sparse/const,0.71
+0x18A000,0x1B3FFF,172032,code-or-data,6.47
+0x1B4000,0x1B5FFF,8192,sparse/const,1.56
+0x1B6000,0x1BDFFF,32768,code-or-data,4.52
+0x1BE000,0x1FFFFF,270336,erased(0xFF),0.01
