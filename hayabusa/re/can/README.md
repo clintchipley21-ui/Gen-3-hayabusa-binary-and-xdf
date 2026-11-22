@@ -148,3 +148,31 @@ bytes to values. One good drive log decodes them; firmware tracing does not.
 RX frames are the exception and *are* decodable (the switch cluster 0x1D1 and cruise
 0x321 were decoded from `FUN_7201A`/`FUN_72BB4`), because you read received bytes
 directly rather than chase the COM transmit router.
+
+## Signal structure recovered without a capture
+
+Since physical names need a correlated log, this is the best static+empirical cut:
+`can-signal-structure.csv` characterises every word of the key frames from the full
+drive capture (202k frames for the fast ECM messages). For each 16-bit word it gives
+the **format, observed range, and classification** — the layout you can label once a
+drive log arrives, instead of generic `Word0` stubs.
+
+Key result — the **ECM telemetry words are offset-binary signed** (`value = raw - 0x8000`,
+so `0x8000` = 0), which matches the firmware math (`... + 0x8000` in the interpolation
+code). Apply scaling `(1, -32768)` to those words in the DBC/scanner.
+
+Highlights (observed ranges, physical meaning TBD):
+- **0x175** (ECM, 10 ms): three offset-binary signed words, small spans — fine
+  correction/factor channels (e.g. `word2` span 190).
+- **0x179 / 0x181** (ECM): each has a **biased unsigned word** (0x179 word2 0x8C72–0x98EE;
+  0x181 word0 0x8389–0x844E, word2 0x92C8–0x94B7) — the strongest candidates for primary
+  sensors (load/rpm/temp), because biased (not 0x8000-centred) unsigned words are usually
+  scaled physical quantities.
+- **0x180** (ECM): three offset-binary words, tiny spans — slow/idle-trim channels.
+- **0x1A1**: `word4` ranges 0..0x32C0 (0..12992) — a strong **rpm or speed** candidate
+  (wide unsigned span, no checksum).
+- **0x321** (cruise): discrete states only (confirms the existing decode).
+- **0x231/0x235** (ABS): mostly static/binary in this (stationary) capture — wheel-speed
+  words will light up in a moving log.
+
+Every 8-byte frame: **byte6 = AliveCounter, byte7 = Checksum** (confirmed across 14 frames).

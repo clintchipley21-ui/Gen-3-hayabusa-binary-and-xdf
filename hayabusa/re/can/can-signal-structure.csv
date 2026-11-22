@@ -1,0 +1,71 @@
+can_id,sender,field,position,format,obs_min,obs_max,span,distinct,classification
+0x175,ECM,word0,byte 0-1 BE,i16 offset-binary (val=raw-0x8000),0x7D1A,0x82E0,1478,841,continuous signal (signed)
+0x175,ECM,word2,byte 2-3 BE,i16 offset-binary (val=raw-0x8000),0x7F9C,0x805A,190,124,continuous signal (signed)
+0x175,ECM,word4,byte 4-5 BE,i16 offset-binary (val=raw-0x8000),0x7EF1,0x816E,637,396,continuous signal (signed)
+0x175,ECM,byte6,byte 6,u8,,,32,32,AliveCounter
+0x175,ECM,byte7,byte 7,u8,,,256,256,Checksum
+0x179,ECM,word0,byte 0-1 BE,i16 offset-binary (val=raw-0x8000),0x7F59,0x87F5,2204,1301,continuous signal (signed)
+0x179,ECM,word2,byte 2-3 BE,u16,0x8C72,0x98EE,3196,1772,continuous signal (unsigned)
+0x179,ECM,word4,byte 4-5 BE,i16 offset-binary (val=raw-0x8000),0x7C77,0x8453,2012,1440,continuous signal (signed)
+0x179,ECM,byte6,byte 6,u8,,,32,32,AliveCounter
+0x179,ECM,byte7,byte 7,u8,,,256,256,Checksum
+0x180,ECM,word0,byte 0-1 BE,i16 offset-binary (val=raw-0x8000),0x7FC9,0x8038,111,85,continuous signal (signed)
+0x180,ECM,word2,byte 2-3 BE,i16 offset-binary (val=raw-0x8000),0x7FEF,0x801A,43,39,continuous signal (signed)
+0x180,ECM,word4,byte 4-5 BE,i16 offset-binary (val=raw-0x8000),0x7FAC,0x806B,191,152,continuous signal (signed)
+0x180,ECM,byte6,byte 6,u8,,,27,27,AliveCounter
+0x180,ECM,byte7,byte 7,u8,,,256,256,Checksum
+0x181,ECM,word0,byte 0-1 BE,u16,0x8389,0x844E,197,152,continuous signal (unsigned)
+0x181,ECM,word2,byte 2-3 BE,u16,0x92C8,0x94B7,495,125,continuous signal (unsigned)
+0x181,ECM,word4,byte 4-5 BE,i16 offset-binary (val=raw-0x8000),0x7FE8,0x8054,108,100,continuous signal (signed)
+0x181,ECM,byte6,byte 6,u8,,,27,27,AliveCounter
+0x181,ECM,byte7,byte 7,u8,,,256,256,Checksum
+0x195,?,word0,byte 0-1 BE,enum/flags,0x0000,0x0030,48,5,discrete/status (5 states)
+0x195,?,word2,byte 2-3 BE,enum/flags,0x0000,0x0040,64,6,discrete/status (6 states)
+0x195,?,word4,byte 4-5 BE,u16,0x0000,0x0000,0,1,static (const 0x0000)
+0x195,?,byte6,byte 6,u8,,,16,16,AliveCounter
+0x195,?,byte7,byte 7,u8,,,145,145,Checksum
+0x196,?,word0,byte 0-1 BE,enum/flags,0x0000,0x0040,64,6,discrete/status (6 states)
+0x196,?,word2,byte 2-3 BE,enum/flags,0x0000,0x0030,48,5,discrete/status (5 states)
+0x196,?,word4,byte 4-5 BE,u16,0x0000,0x0000,0,1,static (const 0x0000)
+0x196,?,byte6,byte 6,u8,,,16,16,AliveCounter
+0x196,?,byte7,byte 7,u8,,,147,147,Checksum
+0x1A1,?,word0,byte 0-1 BE,u16,0x0000,0x0705,1797,248,continuous signal (unsigned)
+0x1A1,?,word2,byte 2-3 BE,enum/flags,0x0000,0x0100,256,5,discrete/status (5 states)
+0x1A1,?,word4,byte 4-5 BE,u16,0x0000,0x32C0,12992,46,continuous signal (unsigned)
+0x1A1,?,byte6,byte 6,u8,,,16,16,AliveCounter
+0x1A1,?,byte7,byte 7,u8,,,1,1,const 0x00
+0x1A5,?,word0,byte 0-1 BE,u16,0x782E,0x8000,2002,747,continuous signal (unsigned)
+0x1A5,?,word2,byte 2-3 BE,u16,0x8000,0x8000,0,1,static (const 0x8000)
+0x1A5,?,word4,byte 4-5 BE,u16,0x5E00,0x6A08,3080,11,continuous signal (unsigned)
+0x1A5,?,byte6,byte 6,u8,,,16,16,AliveCounter
+0x1A5,?,byte7,byte 7,u8,,,1,1,const 0x00
+0x1A9,?,word0,byte 0-1 BE,u16,0x0000,0x0000,0,1,static (const 0x0000)
+0x1A9,?,word2,byte 2-3 BE,i16 offset-binary (val=raw-0x8000),0x7151,0x9B07,10678,501,continuous signal (signed)
+0x1A9,?,word4,byte 4-5 BE,u16,0x0000,0x0000,0,1,static (const 0x0000)
+0x1A9,?,byte6,byte 6,u8,,,16,16,AliveCounter
+0x1A9,?,byte7,byte 7,u8,,,1,1,const 0x00
+0x231,ABS,word0,byte 0-1 BE,u16,0x0000,0x0000,0,1,static (const 0x0000)
+0x231,ABS,word2,byte 2-3 BE,u16,0x0013,0x0013,0,1,static (const 0x0013)
+0x231,ABS,word4,byte 4-5 BE,enum/flags,0x281E,0x2839,27,3,discrete/status (3 states)
+0x231,ABS,byte6,byte 6,u8,,,16,16,AliveCounter
+0x231,ABS,byte7,byte 7,u8,,,1,1,const 0x00
+0x235,ABS,word0,byte 0-1 BE,enum/flags,0x0000,0x8000,32768,2,discrete/status (2 states)
+0x235,ABS,word2,byte 2-3 BE,u16,0x0000,0x0000,0,1,static (const 0x0000)
+0x235,ABS,word4,byte 4-5 BE,enum/flags,0x0000,0x0080,128,2,discrete/status (2 states)
+0x235,ABS,byte6,byte 6,u8,,,16,16,AliveCounter
+0x235,ABS,byte7,byte 7,u8,,,1,1,const 0x00
+0x321,ECM,word0,byte 0-1 BE,i16 offset-binary (val=raw-0x8000),0x0000,0xF000,61440,5,continuous signal (signed)
+0x321,ECM,word2,byte 2-3 BE,u16,0x0000,0x0000,0,1,static (const 0x0000)
+0x321,ECM,word4,byte 4-5 BE,enum/flags,0x8018,0xE019,24577,3,discrete/status (3 states)
+0x321,ECM,byte6,byte 6,u8,,,32,32,AliveCounter
+0x321,ECM,byte7,byte 7,u8,,,1,1,const 0x00
+0x431,?,word0,byte 0-1 BE,enum/flags,0x0000,0x0057,87,2,discrete/status (2 states)
+0x431,?,word2,byte 2-3 BE,enum/flags,0x0000,0x8201,33281,2,discrete/status (2 states)
+0x431,?,word4,byte 4-5 BE,enum/flags,0x0000,0x0100,256,2,discrete/status (2 states)
+0x431,?,byte6,byte 6,u8,,,16,16,AliveCounter
+0x431,?,byte7,byte 7,u8,,,1,1,const 0x00
+0x441,?,word0,byte 0-1 BE,enum/flags,0x0000,0x00C1,193,3,discrete/status (3 states)
+0x441,?,word2,byte 2-3 BE,enum/flags,0x0000,0x7304,29444,5,discrete/status (5 states)
+0x441,?,word4,byte 4-5 BE,enum/flags,0x0000,0x0400,1024,5,discrete/status (5 states)
+0x441,?,byte6,byte 6,u8,,,16,16,AliveCounter
+0x441,?,byte7,byte 7,u8,,,1,1,const 0x00
