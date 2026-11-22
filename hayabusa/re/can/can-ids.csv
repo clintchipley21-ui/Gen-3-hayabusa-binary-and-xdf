@@ -1,0 +1,33 @@
+can_id,name,sender,on_bus,in_fw_filter,dlc,frames,dynamic_bytes,note
+0x000,,,1,0,0,10,,
+0x175,ENG_175,ECM,1,1,8,202222,XXXXXXXX,
+0x179,ENG_179,ECM,1,1,8,202219,XXXXXXXX,
+0x180,ENG_180,ECM,1,0,8,101112,XXXXXXXX,
+0x181,ENG_181,ECM,1,0,8,101114,XXXXXXXX,
+0x195,UNK_195,UNKWN,1,1,8,101186,.X.X..XX,
+0x196,UNK_196,UNKWN,1,1,8,101185,.X.X..XX,
+0x1A1,UNK_1A1,UNKWN,1,0,8,101127,XXXXXXX.,
+0x1A5,UNK_1A5,UNKWN,1,0,8,101128,XX..XXX.,
+0x1A9,UNK_1A9,UNKWN,1,0,8,101127,..XX..X.,
+0x1AD,UNK_1AD,UNKWN,1,0,8,101127,......X.,
+0x1D1,SW_LeftCluster,METER,1,1,8,101191,XXXXXXXX,
+0x221,UNK_221,ABS,1,0,8,50565,..XXX.X.,
+0x231,UNK_231,ABS,1,1,8,50597,.....XX.,
+0x235,UNK_235,ABS,1,1,8,50597,X....XX.,
+0x321,Cruise_Status,ECM,1,0,8,20237,XX..XXX.,
+0x32D,UNK_32D,UNKWN,1,0,8,20224,X.....X.,
+0x331,UNK_331,UNKWN,1,0,8,20224,.....XX.,
+0x335,UNK_335,UNKWN,1,0,8,20224,...X...X,
+0x339,UNK_339,UNKWN,1,0,8,20224,.......X,
+0x33D,UNK_33D,UNKWN,1,0,8,20226,...X...X,
+0x341,UNK_341,UNKWN,1,0,8,20226,....XXX.,
+0x3B1,UNK_3B1,UNKWN,1,1,8,10124,........,
+0x431,UNK_431,UNKWN,1,0,8,10119,.XXXX.X.,
+0x441,UNK_441,UNKWN,1,0,8,10113,.XXXX.X.,
+0x4D1,DIAG_4D1,UNKWN,1,0,8,4,........,
+0x4D4,,,0,1,,,,diagnostic/comms channel
+0x4D7,DIAG_4D7,UNKWN,1,1,8,4,........,diagnostic/comms channel
+0x6A0,,,0,1,,,,diagnostic/comms channel
+0x7B0,,,0,1,,,,Suzuki diagnostic request (resp 0x7B1)
+0x7DF,,,0,1,,,,OBD-II functional broadcast request
+0x7E0,,,0,1,,,,OBD-II physical request (resp 0x7E8)
