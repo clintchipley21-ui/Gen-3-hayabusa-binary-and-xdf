@@ -70,3 +70,39 @@ for decoding the remaining `UNK_*` messages.
 - **Decode the `UNK_*` messages** using the dynamic‑byte maps + the sender modules.
 - `0x6A0` has larger buffer config than the 8‑byte broadcasts — likely a
   multi‑frame (ISO‑TP) diagnostic/comms channel worth watching during a tool session.
+
+## Scanner integration
+
+`hayabusa-gen3-enhanced.dbc` is your scanner DBC with our findings merged in:
+
+- **+7 diagnostic/comms messages** the ECM filters but your DBC didn't have:
+  `OBD_Functional_Request_7DF`, `OBD_Physical_Request_7E0`, `OBD_Response_7E8`,
+  `SDS_Request_7B0`, `SDS_Response_7B1`, `COMM_6A0`, `COMM_4D4` (+ a `Tester` node).
+- **Firmware-confirmed direction** on every broadcast id (RX-filter vs TX), in the
+  provenance comment — so sender guesses in the scaffold can be corrected.
+
+What this adds to the scanner, concretely:
+
+1. **Broadcast decoding.** Your sampler currently *polls* (OBD PIDs on 0x7E0, RAM on
+   0x7B0). The bike also *broadcasts* engine/ABS/cluster data continuously (0x175/179/…).
+   A DBC-driven broadcast source gives that live data with zero polling — just listen.
+2. **OBD-II profile is validated.** Your `suzuki-hayabusa-gen3-obd2` profile (0x7E0→0x7E8)
+   is confirmed correct: 0x7DF and 0x7E0 really are in the ECM's hardware receive filter.
+3. **Ready-made RAM channel names.** `re/decompiled.zip` already carries ~2,270 labeled
+   RAM variables (823 HIGH-confidence) — a large name/definition source for the RAM
+   (0x7B0) logging source, beyond what's wired today.
+
+Still a stub: the **engine broadcast signal names** (0x175/179/180/181 payload words).
+Naming those needs a decode of the ECM's CAN transmit builders (which sensor RAM fills
+each byte) — a focused follow-up, not guesswork.
+
+## Does this help the XDFs?
+
+Mostly no — the CAN recon helps the *scanner*, not the tuning tables. The tuning XDFs
+describe fuel/ignition/limit maps, which the CAN stack doesn't touch. The real XDF-detail
+lever from this session is different: the **full 10L4 decompile** (`decompiled-10L4.zip`,
+7048 functions) is exactly what your `docs/autodef-trace.csv` → `tools/xdf_autodef_trace.py`
+pipeline consumes. The existing trace was built from `5JCZSJ40`; regenerating it against
+the 10L4 image would refresh/extend the auto-defined item labels for the 10-series XDFs.
+That's a substantial tracing pass (the current CSV is ~2,270 rows) — worth doing as its
+own step if you want the 10L4 XDFs labeled from current code.
