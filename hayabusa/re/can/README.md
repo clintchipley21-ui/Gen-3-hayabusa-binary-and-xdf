@@ -123,3 +123,28 @@ is at `0xFEBF57xx` (`DAT_febf57a8` holds the received CAN id, flow-control `0x30
 checked). Naming the individual engine broadcast signals still requires tracing
 each CAN transmit builder to its sensor source (or a correlated bus+PID capture
 for ground-truth scaling) — the clean decompile is the prerequisite for that work.
+
+## Engine telemetry naming — why static tracing stalls (and the fix)
+
+Attempted (with gp resolved) to name the engine broadcast signals by tracing the
+transmit path. Result: the ECM uses an **AUTOSAR-style COM/PDU stack**, not
+hand-packed frames.
+
+- `FUN_0001f81a(descriptor, 1, msg_id)` registers transmit messages. It registers
+  **434 contiguous internal handles `0x100..0x1e9`** into a routing table
+  (`DAT_00140442`) — a COM signal-handle space, not CAN ids (only ~24 ids are
+  actually on the bus). The apparent `0x175 -> 0xFFFFBDD4` hit was a coincidental
+  handle-number overlap, not a frame buffer.
+- Because signal→PDU→frame assembly is **table-driven**, the byte-level mapping is
+  in config tables, and the physical meaning of each signal lives in the software
+  component that writes it — neither is practically recoverable by reading packing
+  code.
+
+This matches the DBC's own note that the telemetry frames are stubs. **The reliable
+method is a correlated capture:** log the broadcast bus (0x175/179/180/181/321)
+while the scanner reads known OBD/SDS values (RPM, TPS, coolant, speed), then match
+bytes to values. One good drive log decodes them; firmware tracing does not.
+
+RX frames are the exception and *are* decodable (the switch cluster 0x1D1 and cruise
+0x321 were decoded from `FUN_7201A`/`FUN_72BB4`), because you read received bytes
+directly rather than chase the COM transmit router.
