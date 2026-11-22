@@ -106,3 +106,20 @@ pipeline consumes. The existing trace was built from `5JCZSJ40`; regenerating it
 the 10L4 image would refresh/extend the auto-defined item labels for the 10-series XDFs.
 That's a substantial tracing pass (the current CSV is ~2,270 rows) — worth doing as its
 own step if you want the 10L4 XDFs labeled from current code.
+
+## Global pointer (gp) resolved
+
+The RH850 **global pointer `gp` is 0 at the application level** — the C runtime
+never loads it with an immediate, so the compiler's "gp-relative" accesses are
+really absolute into the `0xFFFF8xxx` local-RAM region, and the engine sensor
+RAM lives at `0xFEF0xxxx` (addressed absolutely). Pinning `gp=0` / `tp=0` in the
+decompiler context clears the spurious `+ unaff_gp` term and resolves the RAM
+references (e.g. `FUN_00019966`: `iVar2 = uVar3 + unaff_gp; (&DAT_ffff93b8)[iVar2]`
+becomes `(&DAT_ffff93b8)[iVar3]`). `decompiled-10L4.zip` is the clean re-decompile;
+`tools/ghidra/SetGp0.java` reproduces it (run as a Ghidra preScript before export).
+
+Sensor RAM confirmed at `0xFEF0xxxx`; the Suzuki diagnostic ISO-TP receive buffer
+is at `0xFEBF57xx` (`DAT_febf57a8` holds the received CAN id, flow-control `0x30`
+checked). Naming the individual engine broadcast signals still requires tracing
+each CAN transmit builder to its sensor source (or a correlated bus+PID capture
+for ground-truth scaling) — the clean decompile is the prerequisite for that work.
